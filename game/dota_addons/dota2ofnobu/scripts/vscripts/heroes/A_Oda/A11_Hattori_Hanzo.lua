@@ -15,7 +15,7 @@ function A11E:OnSpellStart()
 	local dir = target - caster:GetOrigin()
 	caster:SetForwardVector(dir:Normalized())
 	caster:AddNewModifier(caster, self, "A11E_modifier", { duration = 2}) 
-	caster:AddNewModifier(caster, self, "A11E_followthrough", { duration = 0.15 } )
+	caster:AddNewModifier(caster, self, "A11E_followthrough", { duration = 0.3 } )
 end
 
 A11E_followthrough = class({})
@@ -93,7 +93,7 @@ function A11E_modifier:OnCreated( event )
 	self.path = {}
 	self.particle = {}
 	self.hook_pos = self:GetParent():GetOrigin()
-	self:StartIntervalThink(0.03) 
+	self:StartIntervalThink(0.04) 
 end
 
 function A11E_modifier:OnIntervalThink()
@@ -103,10 +103,10 @@ function A11E_modifier:OnIntervalThink()
 		local angle = caster:GetAnglesAsVector().y
 		local vDirection =  caster:GetForwardVector()
 		self.path[self.interval_Count] = self.hook_pos
-		local next_hook_pos = self.hook_pos + vDirection:Normalized() * 20 * self.interval_Count
+		local next_hook_pos = self.hook_pos + vDirection:Normalized() * 25 * self.interval_Count
 		self.distance_sum = self.distance_sum + 20 * self.interval_Count
 		
-		local particle = ParticleManager:CreateParticle("particles/pudge_meathook_whale2.vpcf",PATTACH_WORLDORIGIN,caster)
+		local particle = ParticleManager:CreateParticle("particles/a11/_2pudge_meathook_whale2.vpcf",PATTACH_WORLDORIGIN,caster)
 		ParticleManager:SetParticleControl(particle,0, next_hook_pos)
 		ParticleManager:SetParticleControl(particle,1,Vector(0.8 - self.interval_Count*0.06,0,0))
 		ParticleManager:SetParticleControl(particle,4,Vector(1,0,0))
