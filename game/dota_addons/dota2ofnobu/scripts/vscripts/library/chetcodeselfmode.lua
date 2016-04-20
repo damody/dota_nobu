@@ -39,14 +39,14 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
     GameRules: GetGameModeEntity():SetStashPurchasingDisabled(true)
   end
 
-  if s == "Creat C19" then
+  if s == "create c19" then
     u2 = CreateUnitByName("C19T_SE",hero:GetAbsOrigin(),true,nil,nil,hero:GetTeamNumber())
     --u2:SetAnimation("c19_model_ani_spell_slam")
     --u2:SetAnimation("ACT_DOTA_ATTACK2")
     u2: SetRenderColor(175,175,175)
   end
 
-	if s == "creat" then
+	if s == "create" then
 		u2 = CreateUnitByName("npc_jidi",Vector(0,-1200),true,nil,nil,0)
 	end	
 
@@ -62,7 +62,7 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 			end
 	end
 
-	if s == "creat lina" then--實驗句柄獲取
+	if s == "create lina" then--實驗句柄獲取
 	    local lina = {}
  		for n=1,5 do
         	lina[n] = CreateUnitByName("npc_dota_hero_lina",Vector(0,0),true,nil,nil,2)
@@ -76,12 +76,12 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 	end
 
 
-	if s == "creat item" then
+	if s == "create item" then
 		item = CreateItem("item_blink",nil,nil)
 		CreateItemOnPositionSync(Vector(5,5), item)
 	end
 
-	if s == "revome item" then
+	if s == "remove item" then
 		hero:RemoveItem(item)
 		--item: Destroy() --無法刪除地面上的道具
 	end
@@ -118,7 +118,7 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 		hero: CastAbilityToggle(spell,0)
 	end
 
-	if s == "level up" then
+	if (s == "level up" or s == "lp") then
 		for i=1,25 do
 			hero.HeroLevelUp(hero,true)
 		end

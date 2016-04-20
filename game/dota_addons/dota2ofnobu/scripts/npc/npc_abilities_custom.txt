@@ -523,7 +523,7 @@
 		"AnimationPlaybackRate"	"3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"999"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"
@@ -800,7 +800,6 @@
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_ALL"
 				"Aura_ApplyToCaster"	"1"
 				"Passive"	"1"
-				"Duration"	"5"
 			}
 			"modifier_A06R_2"
 			{
@@ -810,6 +809,25 @@
 				}
 				"IsBuff"	"1"
 				"AllowIllusionDuplicate"	"1"
+			}
+			"modifier_A06R_passive_attack"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
+						"Function"	"A06R_OnAttack"
+						"Target"	"NONE"
+					}
+				}
+			}
+			"modifier_A06R_to_A06D"
+			{
+				"IsBuff"	"1"
+				"Duration"	"1000"
 			}
 		}
 		"AbilitySpecial"
