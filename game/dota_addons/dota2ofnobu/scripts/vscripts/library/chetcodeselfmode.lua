@@ -8,6 +8,11 @@ if Ctest == nil then
     GameMode = class({})
 end
 
+
+--GameMode = GameRules: GetGameModeEntity()
+
+
+
 function Ctest:OnNPCSpawned(info)
 end
 
@@ -25,11 +30,23 @@ function Chat(info)
 --測試創造單位
 --local id    = info.player --BUG:在講話事件裡，讀取不到玩家，是整數。
 local s   	   = info.text	
-local id  	   = info.userid --BUG:會1.2的調換，不知道為甚麼
+local id  	   = 1 --info.userid --BUG:會1.2的調換，不知道為甚麼
 local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
 local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 
-	if s == "create" then
+
+  if s == "SetStashPurchasingDisabled" then
+    GameRules: GetGameModeEntity():SetStashPurchasingDisabled(true)
+  end
+
+  if s == "Creat C19" then
+    u2 = CreateUnitByName("C19T_SE",hero:GetAbsOrigin(),true,nil,nil,hero:GetTeamNumber())
+    --u2:SetAnimation("c19_model_ani_spell_slam")
+    --u2:SetAnimation("ACT_DOTA_ATTACK2")
+    u2: SetRenderColor(175,175,175)
+  end
+
+	if s == "creat" then
 		u2 = CreateUnitByName("npc_jidi",Vector(0,-1200),true,nil,nil,0)
 	end	
 
@@ -45,7 +62,7 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 			end
 	end
 
-	if s == "create lina" then--實驗句柄獲取
+	if s == "creat lina" then--實驗句柄獲取
 	    local lina = {}
  		for n=1,5 do
         	lina[n] = CreateUnitByName("npc_dota_hero_lina",Vector(0,0),true,nil,nil,2)
@@ -59,12 +76,12 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 	end
 
 
-	if (s == "create item" or s == "mk item") then
+	if s == "creat item" then
 		item = CreateItem("item_blink",nil,nil)
 		CreateItemOnPositionSync(Vector(5,5), item)
 	end
 
-	if (s == "remove item" or s == "rm item") then
+	if s == "revome item" then
 		hero:RemoveItem(item)
 		--item: Destroy() --無法刪除地面上的道具
 	end
@@ -101,7 +118,7 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 		hero: CastAbilityToggle(spell,0)
 	end
 
-	if (s == "level up" or s == "lp") then
+	if s == "level up" then
 		for i=1,25 do
 			hero.HeroLevelUp(hero,true)
 		end

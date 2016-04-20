@@ -28,12 +28,13 @@
 	"A0BM"
 	{
 		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"enchantress_natures_attendants"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"precache"
 		{
-			"particle"	"particles/econ/courier/courier_f2p/courier_f2p_ambient_core.vpcf"
+			"particle"	"dota/particles/econ/items/natures_prophet/natures_prophet_weapon_scythe_of_ice/natures_prophet_scythe_of_ice_c.vpcf"
 		}
 		"Modifiers"
 		{
@@ -45,6 +46,8 @@
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CUSTOM"
 				"Aura_ApplyToCaster"	"0"
 				"Passive"	"1"
+				"IsHidden"	"1"
+				"TextureName"	"enigma_black_hole"
 			}
 			"modifier_A0BM_2"
 			{
@@ -55,8 +58,9 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"3"
 					"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"3"
 				}
-				"EffectName"	"particles/econ/courier/courier_f2p/courier_f2p_ambient_core.vpcf"
+				"EffectName"	"dota/particles/econ/items/natures_prophet/natures_prophet_weapon_scythe_of_ice/natures_prophet_scythe_of_ice_c.vpcf"
 				"EffectAttachType"	"follow_head"
+				"IsHidden"	"1"
 			}
 		}
 	}
@@ -408,8 +412,8 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"	"3"
 		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"155"
 		"AbilityManaCost"	"275"

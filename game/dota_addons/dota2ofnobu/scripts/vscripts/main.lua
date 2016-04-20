@@ -40,7 +40,7 @@ function CEasyGameMode:InitGameMode()
 
 
 	--關閉英雄買活功能
-	GameRules: GetGameModeEntity() :SetBuybackEnabled(true) --test mode  
+	GameRules: GetGameModeEntity() :SetBuybackEnabled(true)--test mode
 
 	--設置遊戲準備時間
 	GameRules:SetPreGameTime( 0.00 )
@@ -48,25 +48,25 @@ function CEasyGameMode:InitGameMode()
 	-- 設定選擇英雄時間
 	GameRules:SetHeroSelectionTime(0) --原版是15秒
 
+	-- 设置砍倒的树木重生时间
+	GameRules:SetTreeRegrowTime(1.0)
+
+	-- 开启/关闭全地图商店模式
+	GameRules:SetUseUniversalShopMode(false)
+
 
 	--<EndTest>
 
 	--<GameRulesSet>
 
 	-- 是否关闭/开启储藏处购买功能
-	SetStashPurchasingDisabled(true)
-
-	-- 开启/关闭全地图商店模式
-	GameRules: SetUseUniversalShopMode(false)
+	GameRules: GetGameModeEntity():SetStashPurchasingDisabled(true)
 
 	-- 設定是否可以選擇相同英雄
 	GameRules:SetSameHeroSelectionEnabled( true )
 
-	-- 设置砍倒的树木重生时间
-	GameRules:SetTreeRegrowTime(6000.0)
-
 	-- 设置是否对英雄使用基础金钱奖励
-	GameRules: SetUseBaseGoldBountyOnHeroes(true)
+	GameRules:SetUseBaseGoldBountyOnHeroes(true)
   	
   	-- 設定每秒工資數
   	GameRules:SetGoldPerTick(6)
