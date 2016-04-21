@@ -1218,6 +1218,7 @@
 	"A23R"
 	{
 		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"drow_ranger_marksmanship"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1233,7 +1234,7 @@
 		"AbilityCastRange"	"1000"
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+			"particle"	"particles/a23r/necronomicon_archer_projectile_2.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
 			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
@@ -1244,7 +1245,7 @@
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
-				"EffectName"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+				"EffectName"	"particles/a23r/necronomicon_archer_projectile_2.vpcf"
 				"Dodgeable"	"1"
 				"ProvidesVision"	"1"
 				"MoveSpeed"	"1800"
@@ -1341,6 +1342,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"	"3"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -1740,6 +1742,34 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"damage_interval"	"1.0"
+			}
+		}
+	}
+
+	"C19T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C19T"
+				"Duration"	"100"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C19T"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"Properties"	{}
+				"States"	{}
 			}
 		}
 	}

@@ -33,7 +33,22 @@ local s   	   = info.text
 local id  	   = 1 --info.userid --BUG:會1.2的調換，不知道為甚麼
 local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
 local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
+local point    = hero:GetAbsOrigin()
 
+  if s == "test" then
+    --物品
+    item = CreateItem("item_RRRRRRRRRRRR",nil,nil)
+    CreateItemOnPositionSync(point, item)
+    GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
+
+
+
+    --等級
+    for i=1,25 do
+      hero.HeroLevelUp(hero,true)
+    end
+
+  end
 
   if s == "SetStashPurchasingDisabled" then
     GameRules: GetGameModeEntity():SetStashPurchasingDisabled(true)
@@ -77,7 +92,7 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 
 
 	if s == "create item" then
-		item = CreateItem("item_blink",nil,nil)
+		item = CreateItem("跳戒-Test",nil,nil)
 		CreateItemOnPositionSync(Vector(5,5), item)
 	end
 
