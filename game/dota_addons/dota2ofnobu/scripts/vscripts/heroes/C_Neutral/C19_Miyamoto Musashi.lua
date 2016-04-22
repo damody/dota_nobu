@@ -44,13 +44,18 @@ function C19T_Effect(u,u2,i)
 	u:SetOrigin(point3)
 	u:SetForwardVector((point-point2):Normalized())
 
-	--動畫
-	--u.model:SetAnimation(ANI_string)
-
-	--音效
-
 	--傷害
 	AMHC:Damage( u,u2,110.0,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+
+	--發動攻擊	 
+	local order_target = 
+	{
+		UnitIndex = u:entindex(),
+		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+		TargetIndex = u2:entindex()
+	}
+
+    ExecuteOrderFromTable(order_target)
 
 end
 
@@ -67,8 +72,6 @@ function C19T_Copy(u,i)
 
 	-- --紀錄特效單位在群組
 	table.insert(udg_C19T_Table[i],tu)
-
-
 
 end
 
@@ -114,7 +117,7 @@ function Trig_C19TActions( keys )
         local flags = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE
 
         --獲取周圍的單位
-        group = FindUnitsInRadius(u:GetTeamNumber(),point,nil,radius,teams,types,flags,FIND_CLOSEST,true)
+        group = FindUnitsInRadius(u:GetTeamNumber(),point,nil,radius,teams,types,flags,FIND_ANY_ORDER,true)
 
         --如果元素大於0個單位才隨機抓取
         if #group > 0 and ti ~= 0 then
@@ -129,10 +132,6 @@ function Trig_C19TActions( keys )
 
 			--清理分身
 			for ii,unit in pairs(udg_C19T_Table[i]) do
-				--如果表裡面元素為0中斷
-                -- if (#udg_C19T_Table[i])==0 then
-                --         break
-                -- end
 
             	--刪除單位
                 unit:ForceKill(false)
@@ -141,8 +140,6 @@ function Trig_C19TActions( keys )
                 --刪除無敵
                 u:RemoveModifierByName("modifier_C19T")
 
-                --清空表
-      			--udg_C19T_Table[i][ii]=nil
             end
 
 
@@ -183,8 +180,15 @@ function Trig_C19EActions(keys)
 				u:SetForwardVector((point-point2):Normalized())
 
 
-				--發動攻擊
-				--call IssueTargetOrder(u1,"attack",u2)
+				--發動攻擊	 
+				local order_target = 
+				{
+					UnitIndex = u:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = u2:entindex()
+				}
+		 
+		        ExecuteOrderFromTable(order_target)
 
 				--紀錄次數
 				time = time - 1
