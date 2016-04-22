@@ -50,6 +50,11 @@ local point    = hero:GetAbsOrigin()
 
   end
 
+  if s == "SetForwardVector" then
+    hero:SetForwardVector(Vector(0,0,128))
+  end
+
+
   if s == "SetStashPurchasingDisabled" then
     GameRules: GetGameModeEntity():SetStashPurchasingDisabled(true)
   end

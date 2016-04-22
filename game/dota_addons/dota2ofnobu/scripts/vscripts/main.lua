@@ -35,7 +35,6 @@ function CEasyGameMode:InitGameMode()
       return 1
     end)
 
-
     --<Test>
 
 
