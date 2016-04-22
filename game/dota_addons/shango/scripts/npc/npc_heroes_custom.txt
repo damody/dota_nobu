@@ -1,0 +1,1023 @@
+"DOTAHeroes"
+{
+	// 已完成： 关羽  张飞 赵云 诸葛亮 典韦 司马懿 郭嘉 寻
+	// 待制作： 魏延 曹仁
+	// v1.02计划中的英雄：
+
+    //=================================================================================================================
+	// 测试  
+	//=================================================================================================================
+    "zhansan_ceshi"
+    {
+    	"override_hero"       "npc_dota_hero_bane"
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"zhensan_test"						// Ability 1
+		"Ability2"				"zhensan_test_02"					// Ability 2
+		"Ability3"				""					// Ability 3
+		"Ability4"				""						// Ability 4
+        "ProjectileModel"			""
+        "AttackDamageMin"			   "0"     // 85// Damage range min.
+		"AttackDamageMax"			   "0" 
+		"AttackAnimationPoint"		"0.2"
+    }
+    //=================================================================================================================
+	// 曹丕  -createhero npc_dota_hero_bane enemy
+	//=================================================================================================================
+    "zhensan_caopi"
+	{																		
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"override_hero"     "npc_dota_hero_antimage"
+		"Team"						"Bad"
+		
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"					"caopi_touxi"					// Ability 1
+		"Ability2"					"caopi_beicixinde"						// Ability 2
+		"Ability3"					"caopi_mingxiang"					// Ability 3
+		"Ability4"					"caopi_zhongjiaoyi"					// Ability 4
+		"Ability7"                  "caopi_zhongjiaoyi"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"2"										// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"27"									// Damage range min.
+		"AttackDamageMax"			"31"									// Damage range max.	
+		"AttackRate"				"1.45"									// Speed of attack.
+		"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
+		"AttackRange"				"128"									// Range within a target can be attacked.
+		"ProjectileModel"			""										// Particle system model for projectile.
+		"ProjectileSpeed"			"0"										// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"22"									// Base strength
+		"AttributeStrengthGain"		"1.2"									// Strength bonus per level.
+		"AttributeBaseIntelligence"	"15"									// Base intelligence
+		"AttributeIntelligenceGain"	"1.8"									// Intelligence bonus per level.
+		"AttributeBaseAgility"		"22"									// Base agility
+		"AttributeAgilityGain"		"2.8"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+		
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"140"
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"50"		// Base mana.
+		"StatusManaRegen"			"0.01"
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"
+    }
+    //=================================================================================================================
+	// 张辽  -createhero npc_dota_hero_dragon_knight enemy
+	//=================================================================================================================
+    "zhensan_zhangliao"
+    {
+    	"override_hero"       "npc_dota_hero_dragon_knight"
+    	"ModelScale" 				"1"
+    	// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"zhangliao_dunji"				// Ability 1
+		"Ability2"				"zhangliao_chongjibo"					// Ability 2
+		"Ability3"				"zhangliao_zhenzuo"				// Ability 3
+		"Ability4"				"zhangliao_cizhenkuijia"
+		"Ability6"		        "attribute_bonus"
+	    //"Ability7"	            "zhangliao_cizhenkuijia_01"
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"2"									// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"27"									// Damage range min.
+		"AttackDamageMax"			"37"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.5"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"									// Range within a target can be acquired.
+		"AttackRange"				"128"									// Range within a target can be attacked.
+		"ProjectileModel"			""										// Particle system model for projectile.
+		"ProjectileSpeed"			"900"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"22"									// Base strength
+		"AttributeStrengthGain"		"2.8"									// Strength bonus per level.
+		"AttributeBaseAgility"		"21"									// Base agility
+		"AttributeAgilityGain"		"1.7"									// Agility bonus per level.
+		"AttributeBaseIntelligence"	"17"									// Base intelligence
+		"AttributeIntelligenceGain"	"1.7"									// Intelligence bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.6"									// Turning rate.
+		
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"170"
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"50"		// Base mana.
+		"StatusManaRegen"			"0.01"
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"
+    }
+    //=================================================================================================================
+	// 张宝  风暴  
+	//=================================================================================================================
+    "zhensan_zhangbao"
+    {
+    	"override_hero"       "npc_dota_hero_storm_spirit"
+    	// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"					"zhangbao_suolianshandian"					// Ability 1
+		"Ability2"					"zhangbao_tianleiji"					// Ability 2
+		"Ability3"					"zhangbao_leidun"							// Ability 3
+		"Ability4"					"zhangbao_shandianqiu"					// Ability 4
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"2"										// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"12"									// Damage range min.
+		"AttackDamageMax"			"18"									// Damage range max.
+		"AttackRate"				"2.6"									// Speed of attack.
+		"AttackAnimationPoint"			"0.5"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"		"600"									// Range within a target can be acquired.
+		"AttackRange"				"600"									// Range within a target can be attacked.
+		//"ProjectileModel"			"stormspirit_base_attack"				// Particle system model for projectile.
+		"ProjectileSpeed"			"1000"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"			"19"									// Base strength
+		"AttributeStrengthGain"			"1.9"									// Strength bonus per level.
+		"AttributeBaseIntelligence"		"24"									// Base intelligence
+		"AttributeIntelligenceGain"		"2.2"									// Intelligence bonus per level.
+		"AttributeBaseAgility"			"19"									// Base agility
+		"AttributeAgilityGain"			"1.9"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+		
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"170"
+
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"	
+    }
+	 //=================================================================================================================
+	// 天云隐士  
+	//=================================================================================================================
+   
+    "zhensan_tianyunyinshi"
+    {
+    	"override_hero"       "npc_dota_hero_necrolyte"
+       // Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"					"tianyunyinshi_jiasuqiang"					// Ability 1
+		"Ability2"					"tianyunyinshi_yinshenqiang"				// Ability 2
+		"Ability3"					"tianyunyinshi_yiyiguxing"					// Ability 3
+		"Ability4"					"tianyunyinshi_lianzhan"				// Ability 4
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"0"									// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"22"									// Damage range min.
+		"AttackDamageMax"			"26"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"			"0.53"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"		"800"									// Range within a target can be acquired.
+		"AttackRange"				"600"									// Range within a target can be attacked.
+		//"ProjectileModel"			"necrolyte_base_attack"							// Particle system model for projectile.
+		"ProjectileSpeed"			"900"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"			"16"									// Base strength
+		"AttributeStrengthGain"			"2.0"									// Strength bonus per level.
+		"AttributeBaseIntelligence"		"22"									// Base intelligence
+		"AttributeIntelligenceGain"		"2.5"									// Intelligence bonus per level.
+		"AttributeBaseAgility"			"15"									// Base agility
+		"AttributeAgilityGain"			"1.7"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.4"									// Turning rate.
+		
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"160"
+
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"	
+    }
+    //=================================================================================================================
+	// 隐士 
+	//=================================================================================================================
+     "zhensan_zhuerchongyinshi"
+     {
+     	"override_hero"       "npc_dota_hero_warlock"
+          // Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"Ability1"					""					// Ability 1
+		"Ability2"					""					// Ability 2
+		"Ability3"					""						// Ability 3
+		"Ability4"					""					// Ability 4
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"1"									// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"22"									// Damage range min.
+		"AttackDamageMax"			"32"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+		"AttackRange"				"600"									// Range within a target can be attacked.
+		//"ProjectileModel"			"warlock_base_attack"							// Particle system model for projectile.
+		"ProjectileSpeed"			"1200"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"			"18"									// Base strength
+		"AttributeStrengthGain"			"2.5"									// Strength bonus per level.
+		"AttributeBaseIntelligence"		"24"									// Base intelligence
+		"AttributeIntelligenceGain"		"2.7"									// Intelligence bonus per level.
+		"AttributeBaseAgility"			"10"									// Base agility
+		"AttributeAgilityGain"			"1.0"										// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.4"									// Turning rate.
+		"HasAggressiveStance"			"1"
+		
+		
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"195"
+
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"	
+     }
+    //=================================================================================================================
+	// 魏延  
+	//=================================================================================================================
+    "zhensan_weiyan"
+    {
+    	"override_hero"            "npc_dota_hero_chaos_knight"
+    	"ModelScale"			"0.79"
+    	// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"					"weiyan_fengbaozhichui"
+		"Ability2"					"weiyan_fangshouzhanshu"
+		"Ability3"					"weiyan_hengsaoqianjun"
+		"Ability4"					"weiyan_fenshen"
+		"Ability5"					"attribute_bonus"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"2"								// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"25"									// Damage range min.
+		"AttackDamageMax"			"35"									// Damage range max.
+		"AttackRate"				"2.2"									// Speed of attack.
+		"AttackAnimationPoint"		"0.5"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"									// Range within a target can be acquired.
+		"AttackRange"				"100"									// Range within a target can be attacked.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"23"									// Base strength
+		"AttributeStrengthGain"			"2.65"									// Strength bonus per level.
+		"AttributeBaseAgility"			"17"									// Base agility
+		"AttributeAgilityGain"			"1.75"									// Agility bonus per level.
+		"AttributeBaseIntelligence"		"20"									// Base intelligence
+		"AttributeIntelligenceGain"		"1.50"									// Intelligence bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.6"									// Turning rate.
+		
+		"HealthBarOffset"			"220"
+		
+		"ParticleFile"				"particles/units/heroes/hero_chaos_knight.pcf"
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"50"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"	
+    }
+    //=================================================================================================================
+	// 曹仁  
+	//=================================================================================================================
+   
+    "zhensan_caoren"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"override_hero"       "npc_dota_hero_night_stalker"
+		"Model"				"models/heroes/nightstalker/nightstalker.mdl"	// Model.
+		"Enabled"			"1"
+		"HeroUnlockOrder"		"2"
+
+		"Team"				"Bad"
+											// unique ID number for this hero.  Do not change this once established or it will invalidate collected stats.
+		"ModelScale"		".74"
+	
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"caoren_cuimianshu"
+		"Ability2"				"caoren_shifuqun"
+		"Ability3"				"caoren_siyao"
+		"Ability4"				"caoren_guishen"
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"			"3"										// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"22"									// Damage range min.
+		"AttackDamageMax"			"32"									// Damage range max.
+		"AttackRate"				"2.2"									// Speed of attack.
+		"AttackAnimationPoint"		"0.55"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"									// Range within a target can be acquired.
+		"AttackRange"				"100"									// Range within a target can be attacked.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"24"									// Base strength
+		"AttributeStrengthGain"		"2.8"									// Strength bonus per level.
+		"AttributeBaseIntelligence"	"17"									// Base intelligence
+		"AttributeIntelligenceGain"	"1.7"									// Intelligence bonus per level.
+		"AttributeBaseAgility"		"19"									// Base agility
+		"AttributeAgilityGain"		"1.8"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"   //DOTA_HULL_SIZE_HERO
+		"HealthBarOffset"			"185"
+
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"	
+    }
+   //=================================================================================================================
+	// 关羽  
+	//=================================================================================================================
+   
+    "zhensan_guanyu"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------	
+        "override_hero"      "npc_dota_hero_juggernaut"
+        "ModelScale"			"1.0"
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"guanyu_xzhan"						// Ability 1
+		"Ability2"				"guanyu_liuyuefeizhan"					// Ability 2
+		"Ability3"				"guanyu_zuiquan"					// Ability 3
+		"Ability4"				"guanyu_jianshengfengbao"
+		"Ability6"					"attribute_bonus"						// Ability 4
+        "Ability8"               "guanyu_jianshengfengbao_dummy"
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"			"1"											// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"27"									// Damage range min.
+		"AttackDamageMax"			"49"									// Damage range max.
+		"AttackRate"				"2"									// Speed of attack.
+		"AttackAnimationPoint"		"0.33"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"									// Range within a target can be acquired.
+		"AttackRange"				"128"									// Range within a target can be attacked.
+		"ProjectileModel"			""										// Particle system model for projectile.
+		"ProjectileSpeed"			"0"										// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"25"									// Base strength
+		"AttributeStrengthGain"		"2.4"									// Strength bonus per level.
+		"AttributeBaseIntelligence"	"15"									// Base intelligence
+		"AttributeIntelligenceGain"	"1.5"									// Intelligence bonus per level.
+		"AttributeBaseAgility"		"20"									// Base agility
+		"AttributeAgilityGain"		"2.5"									// Agility bonus per level.
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealthRegen"			"0.75"									// Health regeneration rate.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.6"									// Turning rate.
+		"HasAggressiveStance"		"1"										// Plays alternate idle/run animation when near enemies
+		//"vscripts"                  "scripts/vscripts/abilities/guanyu.lua"
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"170"
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+
+		"VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"	
+	}
+    //=================================================================================================================
+	// 郭嘉  
+	//=================================================================================================================
+	
+	"zhensan_guojia"
+	{
+		"override_hero"       "npc_dota_hero_oracle"
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"guojia_hanbinbao"						// Ability 1
+		"Ability2"				"guojia_shuangdonghujia"					// Ability 2
+		"Ability3"				"guojia_yaomufaguang"					// Ability 3
+		"Ability4"				"guojia_binhebaoliepo"						// Ability 4
+ 
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"			"0"											// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"17"									// Damage range min.
+		"AttackDamageMax"			"23"									// Damage range max.
+		"AttackRate"				"2.6"									// Speed of attack.
+		"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
+		"AttackRange"				"600"									// Range within a target can be attacked.
+		//"ProjectileModel"			"maiden_base_attack"					// Particle system model for projectile.
+		"ProjectileSpeed"			"900"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"18"									// Base strength
+		"AttributeStrengthGain"		"1.8"									// Strength bonus per level.
+		"AttributeBaseIntelligence"	"24"									// Base intelligence
+		"AttributeIntelligenceGain"	"3.2"									// Intelligence bonus per level.
+		"AttributeBaseAgility"		"18"									// Base agility
+		"AttributeAgilityGain"		"1.0"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+		"HasAggressiveStance"                  "1"  
+
+         "VisionDaytimeRange"		"800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"	
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"135"
+	    	// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+	}
+	//=================================================================================================================
+	// 刘备  
+	//=================================================================================================================
+	
+	"zhensan_liubei"
+	{
+		"override_hero"    "npc_dota_hero_kunkka"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"Model"						"models/heroes/kunkka/kunkka.mdl"	
+		"ModelScale" 			"1"
+// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"					"liubei_shengguangshu"						// Ability 1
+		"Ability2"					"liubei_zhandoumingling"					// Ability 2
+		"Ability3"					"liubei_hujia"				// Ability 3
+		"Ability4"					"liubei_zhanyi"						// Ability 4
+		"Ability6"					""							// Ability 6
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"0"									// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"25"									// Damage range min.
+		"AttackDamageMax"			"35"									// Damage range max.
+		"AttackRate"				"2.23"									// Speed of attack.
+		"AttackAnimationPoint"		"0.4"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
+		"AttackRange"				"128"									// Range within a target can be attacked.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"20"									// Base strength
+		"AttributeStrengthGain"			"2"									// Strength bonus per level.
+		"AttributeBaseIntelligence"		"20"									// Base intelligence
+		"AttributeIntelligenceGain"		"2"									// Intelligence bonus per level.
+		"AttributeBaseAgility"			"20"									// Base agility
+		"AttributeAgilityGain"			"2.2"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+		
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"150"
+
+		   "VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		
+	"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"100"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+	}
+	//=================================================================================================================
+	// 赵云  
+	//=================================================================================================================
+	"zhensan_zhaoyun"
+	{
+		"override_hero"       "npc_dota_hero_phantom_lancer"
+		"Team"						"Good"
+		"ModelScale"			"1"
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"zhaoyun_zhangqiangtuci"				// Ability 1
+		"Ability2"				"zhaoyun_hengsaoqianjun"					// Ability 2
+		"Ability3"				"zhaoyun_sanbi"					// Ability 3
+		"Ability4"				"zhaoyun_wushuang"				// Ability 4
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"			"0"											// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"27"									// Damage range min.
+		"AttackDamageMax"			"49"									// Damage range max.
+		"AttackRate"				"1.85"			//1.85						// Speed of attack.
+		"AttackAnimationPoint"		"0.5"
+									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"650"									// Range within a target can be acquired.
+		"AttackRange"				"125"									// Range within a target can be attacked.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"22"									// Base strength
+		"AttributeStrengthGain"		"2.3"									// Strength bonus per level.
+		"AttributeBaseIntelligence"	"16"									// Base intelligence
+		"AttributeIntelligenceGain"	"1.5"									// Intelligence bonus per level.
+		"AttributeBaseAgility"		"22" 	//22								// Base agility
+		"AttributeAgilityGain"		"2.6"									// Agility bonus per level.
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+			
+        "VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+		"HasAggressiveStance"		"1"										// Plays alternate idle/run animation when near enemies
+		
+		"ParticleFile"				"particles/units/heroes/hero_phantom_lancer.pcf"
+		"HealthBarOffset"			"190"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"  
+		
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+	}
+	//=================================================================================================================
+	// 寻  
+	//=================================================================================================================
+	"zhensan_xun"
+	{
+		"override_hero"       "npc_dota_hero_huskar"
+		"ModelScale"				"1"
+		"Team"						"Bad"
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"xun_zhimingjiejie"			// Ability 1
+		"Ability2"				"xun_yiliaobo"				// Ability 2
+		"Ability3"				"xun_jingzhixianjin"			// Ability 3
+		"Ability4"				"xun_shexingjiejie"	       // Ability 4
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"			"-1"										// Physical protection.
+
+         "precache"
+         {
+         	"particles" 			"particles/units/heroes/hero_silencer/silencer_base_attack.vpcf"
+         	
+         }
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"17"									// Damage range min.
+		"AttackDamageMax"			"23"									// Damage range max.
+		"AttackRate"				"2.6"									// Speed of attack.
+		"AttackAnimationPoint"		"0.4"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+		"AttackRange"				"600"									// Range within a target can be attacked.
+		//"ProjectileModel"			"particles/units/heroes/hero_silencer/silencer_base_attack.vpcf"				// Particle system model for projectile.
+		"ProjectileSpeed"			"900"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"18"									// Base strength
+		"AttributeStrengthGain"		"1.6"									// Strength bonus per level.
+		"AttributeBaseIntelligence"	"24"									// Base intelligence
+		"AttributeIntelligenceGain"	"3.0"									// Intelligence bonus per level.
+		"AttributeBaseAgility"		"18"			//18						// Base agility
+		"AttributeAgilityGain"		"1.4"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+         "VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		// Movement
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"130"
+			// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+
+	}
+	//=================================================================================================================
+	// 诸葛
+	//=================================================================================================================
+	"npc_zs_hero_zhuge"
+	{
+		"override_hero"				"npc_dota_hero_invoker"
+		"Team"						"Good"
+		"AbilityLayout"				"5"
+		"ModelScale" 				"0.74"
+		"Ability1"					"Zhuge_Baoleiyu"		//暴雷雨
+		"Ability2"					"Zhuge_Jidongningjie"	//急冻凝结
+		"Ability3"					"Zhuge_Jufeng"			//飓风
+		"Ability4"					"Zhuge_Tianbian"		//天变
+		"Ability5"					"Zhuge_Wolongguangxian"	//卧龙光纤
+		"Ability6"					"attribute_bonus"		//+
+		"Ability7"					"Zhuge_Tianbian_Wu"		//雾
+		"Ability8"					"Zhuge_Tianbian_Yu"		//雨
+		"Ability9"					"Zhuge_Tianbian_Xue"	//雪
+		"Ability10"					"Zhuge_Tianbian_Cancel"	//取消
+		"Ability11"					"Zhuge_Wuyin"			//雾隐
+		"Ability12"					"Zhuge_Leiting"			//雷霆
+		"Ability13"					"Zhuge_Bingxuebao"		//冰雪爆
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"				"0"			// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackDamageMin"			"20"		// Damage range min.
+		"AttackDamageMax"			"26"		// Damage range max.
+		"AttackRate"				"1.64"			// Speed of attack.
+		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"600"		// Range within a target can be attacked.
+		"ProjectileSpeed"			"900"		// Speed of projectile.
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributeBaseStrength"		"19"			// Base strength
+		"AttributeStrengthGain"		"1.6"			// Strength bonus per level.
+		"AttributeBaseIntelligence"	"26"			// Base intelligence
+		"AttributeIntelligenceGain"	"3.4"			// Intelligence bonus per level.
+		"AttributeBaseAgility"		"15"			// Base agility
+		"AttributeAgilityGain"		"1.0"			// Agility bonus per level.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"300"		// Speed
+		"MovementTurnRate"			"0.5"		// Turning rate.
+        "VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		// Movement
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"50"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+
+
+	}
+	//=================================================================================================================
+	// 司马
+	//=================================================================================================================
+	"npc_zs_hero_sima"
+	{
+		"override_hero"				"npc_dota_hero_silencer"    //npc_dota_hero_silencer
+		"Model"						"models/heroes/silencer/silencer.mdl"
+		"Team"						"Bad"
+		"AbilityLayout"				"4"
+		"ModelScale" 				"0.74"
+		"Ability1"					"Simayi_Yanjibo"   // Simayi_Yanjibo   toushiche_toushi
+		"Ability2"					"Simayi_Huoyanyu"
+		"Ability3"					"Simayi_Yetaihuo"		
+		"Ability4"					"Simayi_Xingluo"	
+		"Ability5"					"attribute_bonus"
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					""
+		"Ability9"					""
+		"Ability10"					""
+		"Ability11"					""
+		"Ability12"					""
+		"Ability13"					""
+		"Ability14"					""
+		"Ability15"					""
+
+
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"				"0"			// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackDamageMin"			"19"		// Damage range min.
+		"AttackDamageMax"			"27"		// Damage range max.
+		"AttackRate"				"1.64"			// Speed of attack.
+		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"750"		// Range within a target can be acquired.
+		"AttackRange"				"500"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"
+		"ProjectileSpeed"			"900"		// Speed of projectile.
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributeBaseStrength"		"18"			// Base strength
+		"AttributeStrengthGain"		"1.8"			// Strength bonus per level.
+		"AttributeBaseIntelligence"	"26"			// Base intelligence
+		"AttributeIntelligenceGain"	"3.2"			// Intelligence bonus per level.
+		"AttributeBaseAgility"		"16"			// Base agility
+		"AttributeAgilityGain"		"1.0"			// Agility bonus per level.
+        "VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		// Movement
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"300"		// Speed
+		"MovementTurnRate"			"0.5"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"100"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+
+		"ParticleFile"				"particles/units/heroes/hero_silencer.pcf"
+	// Items
+		//-------------------------------------------------------------------------------------------------------------
+			
+	}
+	//=================================================================================================================
+	// HERO: 典韦
+	//=================================================================================================================
+	"zhensan_dianwei"	
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"override_hero"                 "npc_dota_hero_beastmaster"
+		"Model"						"models/heroes/beastmaster/beastmaster.mdl"		// Model.
+		
+		"Team"						"Bad"
+													// unique ID number for this hero.  Do not change this once established or it will invalidate collected stats.	
+		"ModelScale"			"1.0"
+		
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityLayout"			    "5"
+		"Ability1"					"dianwei_zhanzhengjianta"					// Ability 1
+		"Ability2"					"dianwei_zhongji"			// Ability 2
+		"Ability3"					"dianwei_yexingzhanhun"			// Ability 3
+		"Ability4"					"dianwei_yaohuo"				// Ability 4
+		"Ability5"					""				// Ability 5
+		"Ability6"					"attribute_bonus"						// Ability 6 - Bonuses.
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"2"									// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"26"									// Damage range min.
+		"AttackDamageMax"			"36"									// Damage range max.
+		"AttackRate"				"2.20"									// Speed of attack.
+		"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"									// Range within a target can be acquired.
+		"AttackRange"				"100"									// Range within a target can be attacked.
+		"ProjectileModel"			""										// Particle system model for projectile.
+		"ProjectileSpeed"			"0"										// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"23"								// Base strength
+		"AttributeStrengthGain"			"2.75"								// Strength bonus per level.
+		"AttributeBaseIntelligence"		"17"								// Base intelligence
+		"AttributeIntelligenceGain"		"1.45"								// Intelligence bonus per level.
+		"AttributeBaseAgility"			"20"								// Base agility
+		"AttributeAgilityGain"			"1.6"								// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.6"									// Turning rate.
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+		"VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		// Movement
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"220"
+
+		
+	}
+
+	
+	// HERO: 张飞
+	//=================================================================================================================
+	"zhensan_zhangfei"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"override_hero"         "npc_dota_hero_axe"
+		"Model"					"models/heroes/axe/axe.mdl"				// Model.
+		
+		"Team"					"Good"
+	
+		"ModelScale"			"1.0"	
+	
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"					"ability_zhangfei_didongduo"					// Ability 1
+		"Ability2"					"zhangfei_shenji"					// Ability 2
+		"Ability3"					"zhangfei_yinghan"						// Ability 3
+		"Ability4"					"zhangfei_wanfumodi"				// Ability 4
+         "Ability6"					"attribute_bonus"
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"1"									// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"47"									// Damage range min.
+		"AttackDamageMax"			"57"									// Damage range max.
+		"AttackRate"				"1.9"									// Speed of attack.
+		"AttackAnimationPoint"		"0.5"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"									// Range within a target can be acquired.
+		"AttackRange"				"128"									// Range within a target can be attacked.
+		"ProjectileModel"			"0"						// Particle system model for projectile.
+		"ProjectileSpeed"			"0"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"25"									// Base strength
+		"AttributeStrengthGain"			"2.8"									// Strength bonus per level.
+		"AttributeBaseIntelligence"		"15"									// Base intelligence
+		"AttributeIntelligenceGain"		"1.5"									// Intelligence bonus per level.
+		"AttributeBaseAgility"			"17"									// Base agility
+		"AttributeAgilityGain"			"1.7"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.4"									// Turning rate.
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.25"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0.01"		// Mana regeneration rate.
+		"VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		// Movement
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"160"
+		
+		
+	}
+}

@@ -1,0 +1,52 @@
+"CustomEvents"
+{
+	
+	"custom_error_show"
+	{
+		"player_ID"		"short"
+		"_error"		"string"
+	}
+	"speedlumber"
+	{
+	    "player_ID"     "short"
+	    "needcount"     "short"
+	    "itemname"      "string"
+	}
+	 // Stat collection
+    "stat_collection_part"
+    {
+        "data"          "string"
+    }
+
+    "stat_collection_send"
+    {
+    }
+    // Morale System
+    "morale_update"
+    {
+    	"MoraleShu"		"short"
+    	"MoraleWei"		"short"
+    }
+    // Lumber UI
+    "lumber_update"
+    {
+    	"PlayerID"		"short"
+    	"Lumber"		"long"
+    }
+    // Popup Image
+    "show_popup_image"
+    {
+        "_x"            "short"
+        "_y"            "short"
+        "_z"            "short"
+        "_playerID"     "short"
+        "_image_name"   "string"
+    }
+    "show_popup_image_all"
+    {
+        "_x"            "short"
+        "_y"            "short"
+        "_z"            "short"
+        "_image_name"   "string"
+    }
+}

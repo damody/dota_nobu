@@ -1,0 +1,23 @@
+"AddonInfo"
+{
+	"TeamCount"		"1"
+	"rpg_example"
+	{
+		"MaxPlayers"		"4"
+	}
+	"Default_Keys"
+	{
+		"01"
+		{
+			"Key"		"S"
+			"Command"		"CustomGameExecuteAbility1"
+			"Name"		"Execute Ability 1"
+		}
+		"02"
+		{
+			"Key"		"Z"
+			"Command"		"+CustomGameTestButton"
+			"Name"		"Example"
+		}
+	}
+}
