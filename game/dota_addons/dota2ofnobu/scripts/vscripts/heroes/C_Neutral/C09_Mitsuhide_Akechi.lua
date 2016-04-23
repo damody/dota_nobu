@@ -195,7 +195,7 @@ function C09T_Mitsuhide_Akechi_Effect( keys, point )
 
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
-			if (not(it:IsTower())) then
+			if (not(it:IsBuilding())) then
 				AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09T",nil)
 			else

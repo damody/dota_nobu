@@ -24,21 +24,99 @@ function A23E(keys)
 	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, keys.caster)
 end
 
-
---[[ ============================================================================================================
-	Author: Rook
-	Date: January 25, 2015
-	Called when a unit with Blink Dagger in their inventory takes damage.  Puts the Blink Dagger on a brief cooldown
-	if the damage is nonzero (after reductions) and originated from any player or Roshan.
-	Additional parameters: keys.BlinkDamageCooldown and keys.Damage
-	Known Bugs: keys.Damage contains the damage before reductions, whereas we want to compare the damage to 0 after reductions.
-================================================================================================================= ]]
-function modifier_a23e_damage_cooldown_on_take_damage(keys)
-	local attacker_name = keys.attacker:GetName()
-
-	if keys.Damage > 0 and (attacker_name == "npc_dota_roshan" or keys.attacker:IsControllableByAnyPlayer()) then  --If the damage was dealt by neutrals or lane creeps, essentially.
-		if keys.ability:GetCooldownTimeRemaining() < keys.BlinkDamageCooldown then
-			keys.ability:StartCooldown(keys.BlinkDamageCooldown)
+function A23W( keys )
+	local count = 0;
+	Timers:CreateTimer( 0.05, function()
+		A23W_2(keys)
+		count = count + 1
+		if (count < 250) then
+			return 0.04
+		else
+			return nil
 		end
+		end )
+
+	local ability = keys.ability
+	local caster = keys.caster
+	local casterLocation = keys.target_points[1]
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local abilityDamage = ability:GetLevelSpecialValueFor( "abilityDamage", ( ability:GetLevel() - 1 ) )
+	local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
+	local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	local damageType = ability:GetAbilityDamageType()
+	local second = 0
+	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_A23W", {duration = 10})
+	Timers:CreateTimer( 1, 
+		function()
+			second = second + 1
+			local units = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+	                              casterLocation,
+	                              nil,
+	                              radius,
+	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              FIND_ANY_ORDER,
+	                              false)
+			for _, it in pairs( units ) do
+				if (not(it:IsBuilding())) then
+					AMHC:Damage(caster, it, abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				end
+			end
+			local units = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
+	                              casterLocation,
+	                              nil,
+	                              radius,
+	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              FIND_ANY_ORDER,
+	                              false)
+			for _, it in pairs( units ) do
+				AMHC:Damage(caster, it, abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+			if (second <= 10) then
+				return 1
+			else
+				return nil
+			end
+		end)
+	
+end
+
+function A23W_2( keys )
+	local ability = keys.ability
+	local caster = keys.caster
+	local casterLocation = keys.target_points[1]
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local directionConstraint = keys.section
+	local modifierName = "modifier_freezing_field_debuff_datadriven"
+	local refModifierName = "modifier_freezing_field_ref_point_datadriven"
+	local particleName = "particles/a23w/a23w.vpcf"
+	local soundEventName = "hero_Crystal.freezingField.explosion"
+	
+	-- Get random point
+	local castDistance = RandomInt( 0, radius )
+	local angle = RandomInt( 0, 90 )
+	local vec = RandomVector(castDistance)
+	local dy = vec.y
+	local dx = vec.x
+	local attackPoint = Vector( 0, 0, 0 )
+	
+	if directionConstraint == 0 then			-- NW
+		attackPoint = Vector( casterLocation.x - dx, casterLocation.y + dy, casterLocation.z )
+	elseif directionConstraint == 1 then		-- NE
+		attackPoint = Vector( casterLocation.x + dx, casterLocation.y + dy, casterLocation.z )
+	elseif directionConstraint == 2 then		-- SE
+		attackPoint = Vector( casterLocation.x + dx, casterLocation.y - dy, casterLocation.z )
+	else										-- SW
+		attackPoint = Vector( casterLocation.x - dx, casterLocation.y - dy, casterLocation.z )
 	end
+	
+	
+	-- Fire effect
+	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster )
+	ParticleManager:SetParticleControl( fxIndex, 0, attackPoint )
+	
 end
