@@ -6,6 +6,54 @@ LinkLuaModifier( "A11E_followthrough", "scripts/vscripts/heroes/A_Oda/A11_Hattor
 LinkLuaModifier( "A11E_hook_back", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
 
+function A11W(keys)
+	local caster = keys.caster
+	local id  = caster:GetPlayerID()
+	local skill = keys.ability
+	local level = keys.ability:GetLevel()
+	local people = level + 1
+	local eachAngle = 6.0 / people
+	local avatar = {}
+	local target_pos = {}
+	local radius = 700
+	local origin_go_index = RandomInt(1, people)
+	local random_angle = RandomInt(-20, 20)*0.1
+	local origin_pos = caster:GetOrigin()
+	for i=1,people do
+		if (i ~= origin_go_index) then
+			avatar[i] = CreateUnitByName(caster:GetUnitName(), origin_pos, true,nil,nil, caster:GetTeamNumber())
+		end
+	end
+	Timers:CreateTimer( 0.1, 
+		function()
+			for i=1,people do
+				target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
+				if (i ~= origin_go_index) then
+					ProjectileManager:ProjectileDodge(avatar[i])
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, avatar[i])
+					avatar[i]:SetOrigin(origin_pos+target_pos[i])
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, avatar[i])
+					avatar[i]:StartGesture( ACT_DOTA_CAST_ABILITY_1 )
+					avatar[i]:SetForwardVector(target_pos[i]:Normalized())
+					avatar[i]:SetPlayerID(caster:GetPlayerID())
+					avatar[i]:SetControllableByPlayer(caster:GetPlayerID(), true)
+					avatar[i]:AddNewModifier(avatar[i], skill, "modifier_A11W", { duration = 2}) 
+				else
+					ProjectileManager:ProjectileDodge(caster)
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
+					caster:SetOrigin(origin_pos+target_pos[i])
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
+					caster:SetForwardVector(target_pos[i]:Normalized())
+				end
+			end
+			return nil
+		end )
+	
+	--keys.caster:EmitSound("DOTA_Item.BlinkDagger.Activate")
+	--keys.caster:SetAbsOrigin(target_point)
+	--FindClearSpaceForUnit(keys.caster, target_point, false)
+end
+
 A11E = class ({})
 
 function A11E:OnSpellStart()

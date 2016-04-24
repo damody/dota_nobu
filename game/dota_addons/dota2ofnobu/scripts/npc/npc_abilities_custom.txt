@@ -1409,7 +1409,83 @@
 		}
 		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	}
+	// 服部半藏 忍法．影惑之術
+	"A11W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"A11W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+				"Function"		"A11W"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A11W"
+			{
+				"IsPurgable"	"0"
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED" //隐藏血条
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED" //魔法免疫
+					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED" //攻击免疫
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED" //不可选择
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED" //无碰撞
+				}
 
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION"	"%A11W_attack"
+				}
+
+				"OnDestroy"  //BUFF消失就删除拥有这个BUFF的单位
+				{
+					"RemoveUnit"
+					{
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A11W_Duration"	"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A11W_Damage"	"100 200 300 400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A11W_attack"	"50 60 70 80"
+			}
+		}
+	}
 	// 服部半藏 忍法．勾鎖鐮
 	"A11E"
 	{
