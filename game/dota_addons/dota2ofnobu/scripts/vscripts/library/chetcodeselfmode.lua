@@ -18,7 +18,33 @@ end
 
 function Pick_Hero(info)
   print("@@@@ : Pick Hero Init")
-  DeepPrintTable(info)    --详细打印传递进来的表
+  DeepPrintTable(info)    --[[
+  player                            = 1 (number)
+  hero                              = "npc_dota_hero_alchemist" (string)
+  1heroindex                         = 109 (number)
+  splitscreenplayer                 = -1 (number)]]
+
+  local id       = info.player  --info.userid --BUG:會1.2的調換，不知道為甚麼
+  local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
+  local hero     = p: GetAssignedHero() --获取该玩家的英雄
+  local point    = hero:GetAbsOrigin()
+
+
+  --<<test>>
+
+    --物品
+  item = CreateItem("item_RRRRRRRRRRRR",nil,nil)
+  CreateItemOnPositionSync(point, item)
+  GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
+
+
+
+  --等級
+  for i=1,25 do
+    hero.HeroLevelUp(hero,true)
+  end
+
+  --<<test>>
 end
 
 
@@ -34,6 +60,15 @@ local id  	   = 1 --info.userid --BUG:會1.2的調換，不知道為甚麼
 local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
 local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 local point    = hero:GetAbsOrigin()
+
+  if s == "playanislam" then
+
+      --播放動畫
+    --hero:StartGesture( ACT_DOTA_ECHO_SLAM )
+
+    hero:StartGestureWithPlaybackRate( ACT_DOTA_ECHO_SLAM, 17 )
+
+  end  
 
   if s == "test" then
     --物品
@@ -59,16 +94,17 @@ local point    = hero:GetAbsOrigin()
     GameRules: GetGameModeEntity():SetStashPurchasingDisabled(true)
   end
 
-  if s == "create c19" then
-    u2 = CreateUnitByName("C19T_SE",hero:GetAbsOrigin(),true,nil,nil,hero:GetTeamNumber())
-    --u2:SetAnimation("c19_model_ani_spell_slam")
-    --u2:SetAnimation("ACT_DOTA_ATTACK2")
-    u2: SetRenderColor(175,175,175)
+  if s == "createc19" then
+    CreateUnitByName("A11_SE",hero:GetAbsOrigin(),true,nil,nil,hero:GetTeamNumber())
   end
 
-	if s == "create" then
+	if s == "create2222222222" then
 		u2 = CreateUnitByName("npc_jidi",Vector(0,-1200),true,nil,nil,0)
 	end	
+
+  if s == "createEnemy" then
+    u2 = CreateUnitByName("A23",Vector(0,0,128),true,nil,nil,DOTA_TEAM_BADGUYS )
+  end 
 
 	if s == "change" then
 	end

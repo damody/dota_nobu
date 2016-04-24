@@ -4,12 +4,12 @@
 	udg_C19T_Boolean = {}
 	udg_C19T_Index = {}
 	udg_C19T_LV = {}
+
+
 	bj_PI                            = 3.14159
 	bj_RADTODEG                      = 180.0/bj_PI
 	bj_DEGTORAD                      = bj_PI/180.0
 --ednglobal
-
-
 
 function C19T_Effect(u,u2,i)
 	local  r = 0
@@ -56,6 +56,9 @@ function C19T_Effect(u,u2,i)
 	}
 
     ExecuteOrderFromTable(order_target)
+
+    --播放動畫
+    u:StartGesture( ACT_DOTA_ECHO_SLAM )
 
 end
 
