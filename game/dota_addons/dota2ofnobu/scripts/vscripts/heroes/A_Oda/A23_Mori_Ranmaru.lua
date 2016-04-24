@@ -46,6 +46,7 @@ function A23W( keys )
 	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	local damageType = ability:GetAbilityDamageType()
 	local second = 0
+	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
 	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_A23W", {duration = 10})
 	Timers:CreateTimer( 1, 
 		function()

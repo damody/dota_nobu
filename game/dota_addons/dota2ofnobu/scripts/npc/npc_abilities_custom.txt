@@ -523,7 +523,7 @@
 		"AnimationPlaybackRate"	"3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"999"
+		"AbilityCooldown"	"0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"
@@ -963,6 +963,19 @@
 		}
 		"OnSpellStart"
 		{
+			"TrackingProjectile"
+			{
+
+
+
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"1100"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A23_Mori_Ranmaru.lua"
@@ -1356,10 +1369,10 @@
 		"AbilityCooldown"	"0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100"
+		"AbilityManaCost"	"0"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"700 1000 1300 1600"
+		"AbilityCastRange"	"400 600 800 1200"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -1386,7 +1399,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"hook_distance"	"800 1100 1400 1700"
+				"hook_distance"	"500 700 900 1300"
 			}
 			"04"
 			{

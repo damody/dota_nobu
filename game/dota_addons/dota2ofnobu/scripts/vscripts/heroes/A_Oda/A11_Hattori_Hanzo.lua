@@ -18,6 +18,22 @@ function A11E:OnSpellStart()
 	caster:AddNewModifier(caster, self, "A11E_followthrough", { duration = 0.3 } )
 end
 
+function A11E:OnAbilityPhaseStart()
+	self:GetCaster():StartGesture( ACT_DOTA_CAST_ABILITY_1 )
+	return true
+end
+
+--------------------------------------------------------------------------------
+
+function A11E:OnAbilityPhaseInterrupted()
+	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
+end
+
+function A11E:OnOwnerDied()
+	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
+end
+
+
 A11E_followthrough = class({})
 
 --------------------------------------------------------------------------------
@@ -83,7 +99,7 @@ A11E_modifier = class ({})
 function A11E_modifier:OnCreated( event )
 	local ability = self:GetAbility()
 	self.hook_width = ability:GetSpecialValueFor("hook_width")
-	self.hook_distance = 1200 -- ability:GetSpecialValueFor("hook_distance")
+	self.hook_distance = ability:GetSpecialValueFor("hook_distance")
 	self.hook_damage = ability:GetSpecialValueFor("hook_damage")
 	if IsServer() then
 		self.damage_type = ability:GetAbilityDamageType()
@@ -95,17 +111,25 @@ function A11E_modifier:OnCreated( event )
 	self.oriangle = self:GetParent():GetAnglesAsVector().y
 	self.hook_pos = self:GetParent():GetOrigin()
 	self:StartIntervalThink(0.05) 
+
 end
 
 function A11E_modifier:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetParent()
 		self.interval_Count = self.interval_Count + 1
-		local angle = caster:GetAnglesAsVector().y
-		print("angle: "..(angle-self.oriangle))
+		local angle = math.abs(caster:GetAnglesAsVector().y - self.oriangle)
+		print("angle: "..(angle))
+		if (angle > 45) then
+			if (angle > 80) then
+				angle = angle * 4
+			else
+				angle = angle * 2
+			end
+		end
 		local vDirection =  caster:GetForwardVector()
 		self.path[self.interval_Count] = self.hook_pos
-		local length = (20+math.abs(angle-self.oriangle)*0.5) * self.interval_Count
+		local length = (20+angle*0.2) * self.interval_Count
 
 		hook_pts = {}
 		if (length > 100) then

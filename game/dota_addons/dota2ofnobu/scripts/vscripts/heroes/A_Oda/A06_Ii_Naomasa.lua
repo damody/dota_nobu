@@ -14,10 +14,10 @@ function A06R_OnAttack(keys)
 		local hModifier = caster:FindModifierByNameAndCaster("modifier_A06R_to_A06D", hCaster)
 		local scount = hModifier:GetStackCount()
 		scount = scount + 1
-		if (scount <= 5) then
+		if (scount <= 15) then
 			hModifier:SetStackCount(scount)
 		end
-		if (scount == 5) then
+		if (scount == 15) then
 			local ability = caster:FindAbilityByName("A06D")
 			ability:SetLevel(level)
 			ability:SetActivated(true)
@@ -31,6 +31,6 @@ function A06D_Use(keys)
 	local caster = keys.caster
 	caster:FindAbilityByName("A06D"):SetActivated(false)
 	local hModifier = caster:FindModifierByNameAndCaster("modifier_A06R_to_A06D", hCaster)
-	hModifier:SetStackCount(0)
+	hModifier:SetStackCount(hModifier:GetStackCount() - 5)
 end
 
