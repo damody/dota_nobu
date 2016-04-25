@@ -61,10 +61,11 @@ function A11W( event )
 			end
 			-- Set the unit as an illusion
 			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			illusion[i]:AddNewModifier(caster, ability, "modifier_A11W", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+			illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			
 			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 			illusion[i]:MakeIllusion()
+			illusion[i]:SetRenderColor(255,0,255)
 		end
 	end
 
@@ -249,6 +250,19 @@ function A11E_modifier:OnIntervalThink()
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
 	                              false)
+			if (table.getn(direUnits) == 0) then
+				local floorpos = hookpoint
+				floorpos.z = 0
+				direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+	                              floorpos,
+	                              nil,
+	                              SEARCH_RADIUS,
+	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              FIND_ANY_ORDER,
+	                              false)
+			end
 			local hashook = false
 			for _,it in pairs(direUnits) do
 				if (not(it:IsBuilding())) then
@@ -353,3 +367,93 @@ end
 function A11E_modifier:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+
+function A11T( keys )
+	-- Variables
+	local caster = keys.caster
+	local ability = keys.ability
+	local casterLoc = caster:GetAbsOrigin()
+	local targetLoc = keys.target_points[1]
+	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
+	local distance = ability:GetLevelSpecialValueFor( "distance", ability:GetLevel() - 1 )
+	local radius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
+	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
+	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
+	local machines_per_sec = ability:GetLevelSpecialValueFor ( "machines_per_sec", ability:GetLevel() - 1 )
+	local dummyModifierName = "modifier_march_of_the_machines_dummy_datadriven"
+	
+	-- Find forward vector
+	local forwardVec = targetLoc - casterLoc
+	forwardVec = forwardVec:Normalized()
+	
+	-- Find backward vector
+	local backwardVec = casterLoc - targetLoc
+	backwardVec = backwardVec:Normalized()
+	
+	-- Find middle point of the spawning line
+	local middlePoint = casterLoc + ( radius * backwardVec )
+	
+	-- Find perpendicular vector
+	local v = middlePoint - casterLoc
+	local dx = -v.y
+	local dy = v.x
+	local perpendicularVec = Vector( dx, dy, v.z )
+	perpendicularVec = perpendicularVec:Normalized()
+	
+	-- Create dummy to store data in case of multiple instances are called
+	local dummy = CreateUnitByName( "npc_dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
+	ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
+	dummy.march_of_the_machines_num = 0
+	
+	-- Create timer to spawn projectile
+	Timers:CreateTimer( function()
+			-- Get random location for projectile
+			local random_distance = RandomInt( -radius, radius )
+			local spawn_location = middlePoint + perpendicularVec * random_distance
+			
+			local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 )
+			
+			-- Spawn projectiles
+			local projectileTable = {
+				Ability = ability,
+				EffectName = "particles/units/heroes/hero_tinker/tinker_machine.vpcf",
+				vSpawnOrigin = spawn_location,
+				fDistance = distance,
+				fStartRadius = collision_radius,
+				fEndRadius = collision_radius,
+				Source = caster,
+				bHasFrontalCone = false,
+				bReplaceExisting = false,
+				bProvidesVision = false,
+				iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_MECHANICAL,
+				vVelocity = velocityVec * projectile_speed
+			}
+			ProjectileManager:CreateLinearProjectile( projectileTable )
+			
+			-- Increment the counter
+			dummy.march_of_the_machines_num = dummy.march_of_the_machines_num + 1
+			
+			-- Check if the number of machines have been reached
+			if dummy.march_of_the_machines_num == machines_per_sec * duration then
+				dummy:Destroy()
+				return nil
+			else
+				return 1 / machines_per_sec
+			end
+		end
+	)
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@ function A06R_OnAttack(keys)
 		if (scount <= 15) then
 			hModifier:SetStackCount(scount)
 		end
-		if (scount == 15) then
+		if (scount >= 5) then
 			local ability = caster:FindAbilityByName("A06D")
 			ability:SetLevel(level)
 			ability:SetActivated(true)
@@ -29,8 +29,10 @@ end
 
 function A06D_Use(keys)
 	local caster = keys.caster
-	caster:FindAbilityByName("A06D"):SetActivated(false)
 	local hModifier = caster:FindModifierByNameAndCaster("modifier_A06R_to_A06D", hCaster)
 	hModifier:SetStackCount(hModifier:GetStackCount() - 5)
+	if (hModifier:GetStackCount() < 5) then
+		caster:FindAbilityByName("A06D"):SetActivated(false)
+	end	
 end
 
