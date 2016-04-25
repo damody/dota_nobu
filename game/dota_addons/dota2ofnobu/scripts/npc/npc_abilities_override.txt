@@ -8019,14 +8019,14 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.53 0.53 0.53 0.53"
+		"AbilityCastPoint"	"0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"0.0 0.0 0.0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"125 225 325"
-		"AbilityChannelTime"	"3.0 1.5 0.75"
+		"AbilityManaCost"	"0"
+		"AbilityChannelTime"	"0.0"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
@@ -8038,7 +8038,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"channel_tooltip"	"3.0 1.5 0.75"
+				"channel_tooltip"	"0.0 0.0 0.00"
 			}
 		}
 	}

@@ -1624,6 +1624,7 @@
 		}
 		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	}
+
 	// 服部半藏 忍法．影惑之術
 	"A11W"
 	{
@@ -1652,7 +1653,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
-				"Function"		"A11W"
+				"Function"	"A11W"
 			}
 		}
 		"Modifiers"
@@ -1661,11 +1662,12 @@
 			{
 				"Passive"	"1"
 				"IsPurgable"	"1"
-				"OnDestroy"  //BUFF消失就删除拥有这个BUFF的单位
+				// BUFF消失就删除拥有这个BUFF的单位
+				"OnDestroy"
 				{
 					"RemoveUnit"
 					{
-						"Target"		"TARGET"
+						"Target"	"TARGET"
 					}
 				}
 			}
@@ -1682,13 +1684,14 @@
 				"var_type"	"FIELD_INTEGER"
 				"A11W_Damage"	"150 140 130 120"
 			}
-			"02"
+			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"A11W_attack"	"0 5 10 15"
 			}
 		}
 	}
+
 	// 服部半藏 忍法．勾鎖鐮
 	"A11E"
 	{
@@ -2080,5 +2083,12 @@
 				"Duration"	"10"
 			}
 		}
+	}
+
+	"A11R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"caopi_tuxi"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
 }
