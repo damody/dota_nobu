@@ -34,11 +34,13 @@ end
 	Known Bugs: keys.Damage contains the damage before reductions, whereas we want to compare the damage to 0 after reductions.
 ================================================================================================================= ]]
 function modifier_item_blink_datadriven_damage_cooldown_on_take_damage(keys)
-	local attacker_name = keys.attacker:GetName()
+	if (keys.attacker ~= nil) then
+		local attacker_name = keys.attacker:GetName()
 
-	if keys.Damage > 0 and (attacker_name == "npc_dota_roshan" or keys.attacker:IsControllableByAnyPlayer()) then  --If the damage was dealt by neutrals or lane creeps, essentially.
-		if keys.ability:GetCooldownTimeRemaining() < keys.BlinkDamageCooldown then
-			keys.ability:StartCooldown(keys.BlinkDamageCooldown)
+		if keys.Damage > 0 and (attacker_name == "npc_dota_roshan" or keys.attacker:IsControllableByAnyPlayer()) then  --If the damage was dealt by neutrals or lane creeps, essentially.
+			if keys.ability:GetCooldownTimeRemaining() < keys.BlinkDamageCooldown then
+				keys.ability:StartCooldown(keys.BlinkDamageCooldown)
+			end
 		end
 	end
 end
