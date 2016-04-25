@@ -1624,7 +1624,71 @@
 		}
 		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	}
-
+	// 服部半藏 忍法．影惑之術
+	"A11W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"A11W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastPoint"	"0.8 0.8 0.8 0.8"
+		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
+		"AbilityManaCost"	"0 0 0 0"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+				"Function"		"A11W"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A11W"
+			{
+				"Passive"	"1"
+				"IsPurgable"	"1"
+				"OnDestroy"  //BUFF消失就删除拥有这个BUFF的单位
+				{
+					"RemoveUnit"
+					{
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A11W_Duration"	"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A11W_Damage"	"150 140 130 120"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A11W_attack"	"0 5 10 15"
+			}
+		}
+	}
 	// 服部半藏 忍法．勾鎖鐮
 	"A11E"
 	{

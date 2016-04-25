@@ -5,6 +5,91 @@ LinkLuaModifier( "A11E_followthrough", "scripts/vscripts/heroes/A_Oda/A11_Hattor
 
 LinkLuaModifier( "A11E_hook_back", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
+function A11W( event )
+	print("Conjure Image")
+	local caster = event.caster
+	local player = caster:GetPlayerID()
+	local ability = event.ability
+	local unit_name = caster:GetUnitName()
+	local origin = caster:GetAbsOrigin() + RandomVector(100)
+	local duration = ability:GetLevelSpecialValueFor( "A11W_Duration", ability:GetLevel() - 1 )
+	local outgoingDamage = ability:GetLevelSpecialValueFor( "A11W_attack", ability:GetLevel() - 1 )
+	local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_incoming_damage", ability:GetLevel() - 1 )
+
+	local people = ability:GetLevel() + 1
+	local eachAngle = 6.28 / people
+	local illusion = {}
+	local target_pos = {}
+	local radius = 700
+	local origin_go_index = RandomInt(1, people)
+	local random_angle = RandomInt(-20, 20) * 0.1
+	local origin_pos = caster:GetOrigin()
+
+	for i=1,people do
+		if (i ~= origin_go_index) then
+			-- handle_UnitOwner needs to be nil, else it will crash the game.
+			illusion[i] = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
+			illusion[i]:SetPlayerID(caster:GetPlayerID())
+			illusion[i]:SetControllableByPlayer(player, true)
+			
+			-- Level Up the unit to the casters level
+			local casterLevel = caster:GetLevel()
+			for j=1,casterLevel-1 do
+				illusion[i]:HeroLevelUp(false)
+			end
+
+			-- Set the skill points to 0 and learn the skills of the caster
+			illusion[i]:SetAbilityPoints(0)
+			for abilitySlot=0,15 do
+				local ability = caster:GetAbilityByIndex(abilitySlot)
+				if ability ~= nil then 
+					local abilityLevel = ability:GetLevel()
+					local abilityName = ability:GetAbilityName()
+					local illusionAbility = illusion[i]:FindAbilityByName(abilityName)
+					illusionAbility:SetLevel(abilityLevel)
+				end
+			end
+
+			-- Recreate the items of the caster
+			for itemSlot=0,5 do
+				local item = caster:GetItemInSlot(itemSlot)
+				if item ~= nil then
+					local itemName = item:GetName()
+					local newItem = CreateItem(itemName, illusion[i], illusion[i])
+					illusion[i]:AddItem(newItem)
+				end
+			end
+			-- Set the unit as an illusion
+			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+			illusion[i]:AddNewModifier(caster, ability, "modifier_A11W", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+			
+			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
+			illusion[i]:MakeIllusion()
+		end
+	end
+
+	Timers:CreateTimer( 0.1, 
+		function()
+			for i=1,people do
+				target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
+				if (i ~= origin_go_index) then
+					ProjectileManager:ProjectileDodge(illusion[i])
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
+					illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
+					illusion[i]:SetForwardVector(target_pos[i]:Normalized())
+				else
+					ProjectileManager:ProjectileDodge(caster)
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
+					caster:SetAbsOrigin(origin_pos+target_pos[i])
+					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
+					caster:SetForwardVector(target_pos[i]:Normalized())
+				end
+			end
+			return nil
+		end )
+end
+
 
 A11E = class ({})
 
