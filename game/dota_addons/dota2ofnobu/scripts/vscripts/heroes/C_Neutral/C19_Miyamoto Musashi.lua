@@ -68,7 +68,7 @@ function C19T_Copy(u,i)
 	local  point = u:GetAbsOrigin()
 	local  tu   = CreateUnitByName("C19T_SE",point,true,nil,nil,team)
 
-	-- --播放動畫(透明度50%,顏色要改金),隨機播放攻擊動作
+	-- --播放動畫(透明度50%,顏色要改金),隨機播放攻擊動作	
 	tu: SetRenderColor(0,0,0)
 	-- call SetUnitTimeScale(u,3)
 	-- call SetUnitAnimation(u,"Attack Slam")
@@ -161,7 +161,7 @@ function Trig_C19EActions(keys)
     local  point2 = u2:GetAbsOrigin() --獲取目標的座標
     local  time = keys.ability:GetLevel()--獲取技能等級
 
-    --timer
+    --timer2
 	AMHC:Timer( "C19T_E1"..tostring(id),function( )
 
 			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
@@ -196,10 +196,23 @@ function Trig_C19EActions(keys)
 				--紀錄次數
 				time = time - 1
 
+				--閃爍的粒子特效
+    			local p1 = ParticleManager:CreateParticle("particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_start.vpcf",PATTACH_ABSORIGIN,u2)
+    			ParticleManager:ReleaseParticleIndex(p1)
+
 				return 0.5
 			end	
 
 
 
 		end,0.50 )
+end
+
+
+function Trig_C19WActions(keys)
+	local caster = keys.caster --unit
+	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_C19W",nil)
+
+	--debug
+	GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
 end

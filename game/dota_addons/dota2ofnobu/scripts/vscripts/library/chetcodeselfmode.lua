@@ -37,7 +37,8 @@ function Pick_Hero(info)
   CreateItemOnPositionSync(point, item)
   GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
 
-
+  --金錢
+  PlayerResource:SetGold(id-1,99999,false)--玩家ID需要減一
 
   --等級
   for i=1,25 do
@@ -60,6 +61,15 @@ local id  	   = 1 --info.userid --BUG:會1.2的調換，不知道為甚麼
 local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
 local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 local point    = hero:GetAbsOrigin()
+
+  if s == "add ability" then
+    AddAbility("")
+    
+  end
+
+  if s == "GOLD" then
+    PlayerResource:SetGold(id-1,99999,false)--玩家ID需要減一 
+  end
 
   if s == "playanislam" then
 
