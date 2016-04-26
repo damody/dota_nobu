@@ -49,7 +49,6 @@ function Pick_Hero(info)
 end
 
 
-
 function Chat(info)
   print("@@@@ : Chat Init")
   DeepPrintTable(info)    --详细打印传递进来的表
@@ -63,8 +62,15 @@ local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 local point    = hero:GetAbsOrigin()
 
   if s == "add ability" then
-    AddAbility("")
-    
+    --
+    hero:AddAbility("tinker_rearm")
+
+    --
+    local spell = hero: FindAbilityByName("tinker_rearm")
+    spell:SetLevel(3)
+    spell:SetActivated(true)
+    hero: CastAbilityImmediately(spell,0)
+
   end
 
   if s == "GOLD" then

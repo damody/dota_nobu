@@ -5,7 +5,258 @@
 {
 	"Version"		"1"
 
-	
+	"C19R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_dance2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_C19R_critical_strike"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C19R_critical_strike_crit"
+						"Target"	"CASTER"
+					}
+					"Random"
+					{
+						"Chance"	"%crit_chance"
+						"OnSuccess"
+						{
+							"FireSound"
+							{
+								"EffectName"	"Hero_SkeletonKing.CriticalStrike"
+								"Target"	"CASTER"
+							}
+							"FireEffect"
+							{
+								"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+								"EffectAttachType"	"attach_sword"
+								"Target"	"CASTER"
+								"ControlPoints"	{}
+								"ControlPointEntities"	{}
+							}
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_C19R_critical_strike_crit"
+								"Target"	"CASTER"
+							}
+						}
+					}
+				}
+			}
+			"modifier_C19R_critical_strike_crit"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"	"TARGET"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C19R_critical_strike_crit"
+						"Target"	"CASTER"
+					}
+				}
+			}
+			"modifier_C19R"
+			{
+				"IsBuff"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%C19R_EVASION"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_bonus"	"130 150 170 190"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance"	"40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C19R_EVASION"	"15 19 23 27"
+			}
+		}
+	}
+
+	"C19W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_fury"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"0"
+		"AbilityCastPoint"	"0.300"
+		"AbilityCooldown"	"22.0 17.0 12.00 7.00"
+		"AbilityManaCost"	"100 125 150 175"
+		"AbilityCastRange"	"700"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
+				"Function"	"anyunitspellability"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C19W"
+				"Target"	"CASTER"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C19W"
+			{
+				"OverrideAnimation"	"ACT_DOTA_VICTORY"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"	"CASTER"
+						"ControlPoints"
+						{
+							"05"	"%bladestorm_radius 0 0"
+						}
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStart"
+						"Target"	"CASTER"
+					}
+				}
+				"ThinkInterval"	"%bladestorm_damage_tick"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%bladestorm_radius"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+							}
+							// Custom Building Damage
+							"RunScript"
+							{
+								"ScriptFile"	"buildings/damage.lua"
+								"Function"	"DoBuildingDamage"
+								"Target"
+								{
+									"Center"	"TARGET"
+									"Radius"	"%radius"
+									"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Types"	"DOTA_UNIT_TARGET_BASIC"
+									"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+								}
+								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+							}
+							"FireSound"
+							{
+								"EffectName"	"Hero_Juggernaut.BladeFury.Impact"
+								"Target"	"TARGET"
+							}
+						}
+					}
+				}
+				"OnDestroy"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStop"
+						"Target"	"CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/blademaster/bladestorm.lua"
+						"Function"	"BladeFuryStop"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bladestorm_damage_tick"	"0.2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bladestorm_radius"	"335"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2.0 2.0 2.0 2.0"
+			}
+		}
+		"AbilityDamage"	"225 275 325 375"
+	}
+
 	// =================================================================================================================
 	// Ability: Dummy
 	// =================================================================================================================
@@ -1380,74 +1631,7 @@
 		}
 		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	}
-	// 服部半藏 忍法．風行步
-	"A11D"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"A11W"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"FightRecapLevel"	"0"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"HotKeyOverride"	"W"
-		"MaxLevel"	"4"
-		"RequiredLevel"	"6"
-		"LevelsBetweenUpgrades"	"6"
 
-		"AbilityCastPoint"	"0.0"
-		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
-		"AbilityManaCost"	"0 0 0 0"
-		"precache"
-		{
-			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
-				"Function"		"A11W"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_A11W"
-			{
-				"Passive"	"1"
-				"IsPurgable"	"1"
-				"OnDestroy"  //BUFF消失就删除拥有这个BUFF的单位
-
-				{
-					"RemoveUnit"
-					{
-						"Target"		"TARGET"
-					}
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"A11W_Duration"	"3 4 5 6"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A11W_Damage"	"150 140 130 120"
-			}
-
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A11W_attack"	"0 5 10 15"
-			}
-		}
-	}
 	// 服部半藏 忍法．影惑之術
 	"A11W"
 	{
@@ -1498,6 +1682,7 @@
 			}
 		}
 	}	
+	
 	// 服部半藏 忍法．勾鎖鐮
 	"A11E"
 	{
@@ -1877,318 +2062,7 @@
 		}
 	}
 
-	// 宮本武藏 奧義．弧月斬
-	"C19W"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"juggernaut_blade_fury"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"HotKeyOverride"	"W"
-		"MaxLevel"	"4"
-		"RequiredLevel"	"0"
-		"AbilityCastPoint"	"0.300"
-		"AbilityCooldown"	"22.0 17.0 12.00 7.00"
-		"AbilityManaCost"	"100 125 150 175"
-		"AbilityCastRange"	"700"
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_C19W"
-				"Target"	"CASTER"
-				"Duration"	"%duration"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_C19W"
-			{
-				"OverrideAnimation"	"ACT_DOTA_VICTORY"
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"	"CASTER"
-						"ControlPoints"
-						{
-							"05"	"%bladestorm_radius 0 0"
-						}
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Juggernaut.BladeFuryStart"
-						"Target"	"CASTER"
-					}
-				}
-				"ThinkInterval"	"%bladestorm_damage_tick"
-				"OnIntervalThink"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"	"CASTER"
-							"Radius"	"%bladestorm_radius"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"Action"
-						{
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
-							}
-							// Custom Building Damage
-							"RunScript"
-							{
-								"ScriptFile"	"buildings/damage.lua"
-								"Function"	"DoBuildingDamage"
-								"Target"
-								{
-									"Center"	"TARGET"
-									"Radius"	"%radius"
-									"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-									"Types"	"DOTA_UNIT_TARGET_BASIC"
-									"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-								}
-								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
-							}
-							"FireSound"
-							{
-								"EffectName"	"Hero_Juggernaut.BladeFury.Impact"
-								"Target"	"TARGET"
-							}
-						}
-					}
-				}
-				"OnDestroy"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Juggernaut.BladeFuryStop"
-						"Target"	"CASTER"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/blademaster/bladestorm.lua"
-						"Function"	"BladeFuryStop"
-					}
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"bladestorm_damage_tick"	"0.2"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bladestorm_radius"	"335"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"2.0 2.0 2.0 2.0"
-			}
-		}
-		"AbilityDamage"	"225 275 325 375"
-	}
 
-	// 宮本武藏 奧義．連環鋼破
-	"C19E"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"xunyu_yiliao"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"HotKeyOverride"	"E"
-		"AbilityCooldown"	"23 20 17 14"
-		"AbilityManaCost"	"110 140 170 200"
-		"AbilityCastRange"	"575"
-		"precache"
-		{
-			"particle"	"particles/c19r.vpcf"
-			"particle"	"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_start.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_C19E"
-				"Duration"	"100"
-			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19_Miyamoto Musashi.lua"
-				"Function"	"Trig_C19EActions"
-			}
-			"AttachEffect"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_start.vpcf"
-				"EffectAttachType"	"follow_attachment"
-				"ControlPointEntities"
-				{
-					"TARGET"	"attach_origin"
-				}
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_C19E"
-			{
-				"IsBuff"	"1"
-				"IsHidden"	"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10000"
-				}
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"Duration"	"10"
-			}
-		}
-	}
-	
-	// 宮本武藏 二天一流
-	"C19R"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"juggernaut_blade_dance2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"HotKeyOverride"	"R"
-		"MaxLevel"	"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
-			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
-			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
-		}
-		"Modifiers"
-		{
-			"modifier_C19R_critical_strike"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"OnAttackStart"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_C19R_critical_strike_crit"
-						"Target"	"CASTER"
-					}
-					"Random"
-					{
-						"Chance"	"%crit_chance"
-						"OnSuccess"
-						{
-							"FireSound"
-							{
-								"EffectName"	"Hero_SkeletonKing.CriticalStrike"
-								"Target"	"CASTER"
-							}
-							"FireEffect"
-							{
-								"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
-								"EffectAttachType"	"attach_sword"
-								"Target"	"CASTER"
-								"ControlPoints"	{}
-								"ControlPointEntities"	{}
-							}
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_C19R_critical_strike_crit"
-								"Target"	"CASTER"
-							}
-						}
-					}
-				}
-			}
-			"modifier_C19R_critical_strike_crit"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_C19R_critical_strike_crit"
-						"Target"	"CASTER"
-					}
-				}
-			}
-			"modifier_C19R"
-			{
-				"IsBuff"	"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%C19R_EVASION"
-				}
-				"Passive"	"1"
-				"IsHidden"	"1"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"crit_bonus"	"130 150 170 190"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"crit_chance"	"40"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"C19R_EVASION"	"15 19 23 27"
-			}
-		}
-	}
-	
-	// 宮本武藏 祕奧義．飛翔烈震斬
 	"C19T"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -2208,6 +2082,12 @@
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_C19T"
 				"Duration"	"100"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
+				"Function"	"anyunitspellability"
 			}
 			"RunScript"
 			{
@@ -2234,5 +2114,134 @@
 				"Duration"	"10"
 			}
 		}
-	}	
+	}
+
+	"C19E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"xunyu_yiliao"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"AbilityCooldown"	"23 20 17 14"
+		"AbilityManaCost"	"110 140 170 200"
+		"AbilityCastRange"	"575"
+		"precache"
+		{
+			"particle"	"particles/c19r.vpcf"
+			"particle"	"particles/c19e/c19e.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C19E"
+				"Duration"	"100"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19_Miyamoto Musashi.lua"
+				"Function"	"Trig_C19EActions"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
+				"Function"	"anyunitspellability"
+			}
+			"AttachEffect"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/c19e/c19e.vpcf"
+				"EffectAttachType"	"follow_attachment"
+				"ControlPointEntities"
+				{
+					"TARGET"	"attach_origin"
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C19E"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10000"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"10"
+			}
+		}
+	}
+
+
+	"B08W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"magnataur_shockwave"
+		"ScriptFile"	"scripts/vscripts/lua_abilities/B08W.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.3 0.3 0.3 0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10.0 9.0 8.0 7.0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"90 90 90 90"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1150"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B08_Asai_Nagamasa.lua"
+				"Function"	"B08W_Action"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_speed"	"1050"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_width"	"150"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_distance"	"1150"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_damage"	"75 150 225 300"
+			}
+		}
+		"AbilityDuration"	"0.6875 0.6875 0.6875 0.6875"
+	}
 }

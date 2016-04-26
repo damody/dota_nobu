@@ -197,7 +197,7 @@ function Trig_C19EActions(keys)
 				time = time - 1
 
 				--閃爍的粒子特效
-    			local p1 = ParticleManager:CreateParticle("particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_start.vpcf",PATTACH_ABSORIGIN,u2)
+    			local p1 = ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_ABSORIGIN,u2)
     			ParticleManager:ReleaseParticleIndex(p1)
 
 				return 0.5
