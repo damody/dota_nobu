@@ -3,11 +3,9 @@
 	_class = "CVModel"
 	m_meshList =
 	{
-		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
-				_class = "CVmesh"
 				m_meshName = "defense_tower_ver2"
 				m_meshFile = "models/defencetower/defense_tower_ver2.fbx"
 				m_materialSearchPath = ""
@@ -42,7 +40,6 @@
 	}
 	m_physicsMeshList =
 	{
-		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -59,16 +56,13 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
-				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
-						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Root"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -103,13 +97,114 @@
 	]
 	m_pAttachmentLists =
 	[
+		{
+			_class = "CVattachmentListReference"
+			m_pObject =
+			{
+				m_name = ""
+				m_attachments =
+				[
+					{
+						m_name = "attach_origin"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_hitloc"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									189.406403,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack1"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									347.107178,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									352.138184,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
 	]
 	m_pAnimGroup =
 	{
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
-			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -132,7 +227,6 @@
 					_class = "CVanimGroupReference"
 					m_pObject =
 					{
-						_class = "CVanimGroup"
 						m_Name = "ani_g"
 						m_pReferenceSkeleton =
 						{
@@ -155,7 +249,6 @@
 						m_Vanim =
 						[
 							{
-								_class = "CVanim"
 								m_Animationname = "defense_tower_ver2_ani2 _idle"
 								m_Filepath = "models/defencetower/defense_tower_ver2_ani2 _idle.fbx"
 								m_nStartframe = 0
@@ -163,7 +256,6 @@
 								m_flFps = 13.000000
 								m_Loop =
 								{
-									_class = "CAnimationLoop"
 									m_bLoop = true
 									m_bSmoothLoop = false
 									m_nSmoothLoopStart = 0
@@ -180,7 +272,6 @@
 								m_Activities =
 								[
 									{
-										_class = "CActivity"
 										m_Name = "ACT_DOTA_IDLE"
 										m_nWeight = 1
 									},
@@ -197,7 +288,6 @@
 								m_pAlignAnimation = null
 								m_adjustAnimation =
 								{
-									_class = "CAdjustAnimation"
 									m_translation =
 									[
 										0.000000,
@@ -216,7 +306,6 @@
 								]
 								m_sequenceParams =
 								{
-									_class = "CVAnimResourceSequenceParams"
 									m_flFadeInTime = 0.200000
 									m_flFadeOutTime = 0.200000
 								}
@@ -224,7 +313,6 @@
 								m_MotionFramesRootBone = ""
 							},
 							{
-								_class = "CVanim"
 								m_Animationname = "defense_tower_ver2_ani2 _die"
 								m_Filepath = "models/defencetower/defense_tower_ver2_ani2 _die.fbx"
 								m_nStartframe = 150
@@ -232,7 +320,6 @@
 								m_flFps = 120.000000
 								m_Loop =
 								{
-									_class = "CAnimationLoop"
 									m_bLoop = false
 									m_bSmoothLoop = false
 									m_nSmoothLoopStart = 0
@@ -249,28 +336,7 @@
 								m_Activities =
 								[
 									{
-										_class = "CActivity"
 										m_Name = "ACT_DOTA_DIE"
-										m_nWeight = 1
-									},
-									{
-										_class = "CActivity"
-										m_Name = "ACT_DOTA_DEATH_BY_SNIPER"
-										m_nWeight = 1
-									},
-									{
-										_class = "CActivity"
-										m_Name = "ACT_DOTA_DIE_SPECIAL"
-										m_nWeight = 1
-									},
-									{
-										_class = "CActivity"
-										m_Name = "ACT_DIE_STANDING"
-										m_nWeight = 1
-									},
-									{
-										_class = "CActivity"
-										m_Name = "ACT_DIEVIOLENT"
 										m_nWeight = 1
 									},
 								]
@@ -280,7 +346,6 @@
 								m_MotionFrames =
 								[
 									{
-										_class = "CMotionFrame"
 										m_nFrame = 0
 										m_bExtractTX = true
 										m_bExtractTY = true
@@ -302,7 +367,6 @@
 								m_pAlignAnimation = null
 								m_adjustAnimation =
 								{
-									_class = "CAdjustAnimation"
 									m_translation =
 									[
 										0.000000,
@@ -321,7 +385,6 @@
 								]
 								m_sequenceParams =
 								{
-									_class = "CVAnimResourceSequenceParams"
 									m_flFadeInTime = 0.200000
 									m_flFadeOutTime = 0.200000
 								}
@@ -394,16 +457,13 @@
 	]
 	m_pMaterialRemapList =
 	{
-		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "material_#47.vmat"
 				m_sReplaceMaterial = "materials/defencetower/tower2.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "01_-_default.vmat"
 				m_sReplaceMaterial = "materials/defencetower/tower1.vmat"
 			},

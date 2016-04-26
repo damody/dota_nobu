@@ -3,11 +3,9 @@
 	_class = "CVModel"
 	m_meshList =
 	{
-		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
-				_class = "CVmesh"
 				m_meshName = "towerb"
 				m_meshFile = "models/defencetowerb/towerb.fbx"
 				m_materialSearchPath = ""
@@ -42,7 +40,6 @@
 	}
 	m_physicsMeshList =
 	{
-		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -59,16 +56,13 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
-				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
-						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Root"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -103,13 +97,114 @@
 	]
 	m_pAttachmentLists =
 	[
+		{
+			_class = "CVattachmentListReference"
+			m_pObject =
+			{
+				m_name = ""
+				m_attachments =
+				[
+					{
+						m_name = "attach_origin"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_hitloc"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									74.192383,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack1"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									333.916107,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									333.182190,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
 	]
 	m_pAnimGroup =
 	{
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
-			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -132,7 +227,6 @@
 			m_Vanim =
 			[
 				{
-					_class = "CVanim"
 					m_Animationname = "towerb_ani_death"
 					m_Filepath = "models/defencetowerb/towerb_ani_death.fbx"
 					m_nStartframe = 0
@@ -140,7 +234,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -157,7 +250,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE"
 							m_nWeight = 1
 						},
@@ -168,7 +260,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -190,7 +281,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -209,7 +299,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -217,7 +306,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "towerb_ani_stand"
 					m_Filepath = "models/defencetowerb/towerb_ani_stand.fbx"
 					m_nStartframe = 0
@@ -225,7 +313,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -242,7 +329,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -259,7 +345,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -278,7 +363,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -339,28 +423,19 @@
 	]
 	m_pMaterialRemapList =
 	{
-		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "02_-_default.vmat"
 				m_sReplaceMaterial = "materials/defencetowerb/tower1.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "03_-_default.vmat"
 				m_sReplaceMaterial = "materials/defencetowerb/tower2.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "01_-_default.vmat"
 				m_sReplaceMaterial = "materials/defencetower/tower3.vmat"
-			},
-			{
-				_class = "CVMaterialRemap"
-				m_sSearchMaterial = ".vmat.vmat"
-				m_sReplaceMaterial = ""
 			},
 		]
 	}

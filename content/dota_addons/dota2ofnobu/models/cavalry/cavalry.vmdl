@@ -3,11 +3,9 @@
 	_class = "CVModel"
 	m_meshList =
 	{
-		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
-				_class = "CVmesh"
 				m_meshName = "cavalry"
 				m_meshFile = "models/cavalry/cavalry.fbx"
 				m_materialSearchPath = ""
@@ -42,7 +40,6 @@
 	}
 	m_physicsMeshList =
 	{
-		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -59,16 +56,13 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
-				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
-						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_ABDOMEN"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -95,7 +89,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_PELVIS"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -122,7 +115,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_CHEST"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -149,7 +141,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Chest"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -176,7 +167,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg1_Rear_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -203,7 +193,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg1_Rear_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -230,7 +219,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg1_Front_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -257,7 +245,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg1_Front_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -284,7 +271,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -311,7 +297,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_TAIL1"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -338,7 +323,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg2_Rear_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -365,7 +349,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg2_Rear_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -392,7 +375,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg2_Front_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -419,7 +401,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg2_Front_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -446,7 +427,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Pelvis"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -473,7 +453,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -500,7 +479,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -527,7 +505,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_TAIL2"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -554,7 +531,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg3_Rear_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -581,7 +557,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg3_Rear_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -608,7 +583,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg3_Front_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -635,7 +609,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Leg3_Front_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -662,7 +635,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_NECK"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -689,7 +661,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -716,7 +687,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -743,7 +713,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -770,7 +739,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -797,7 +765,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_TAIL3"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -824,7 +791,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Hoof_Rear_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -851,7 +817,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Hoof_Rear_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -878,7 +843,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Hoof_Front_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -905,7 +869,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBone_Hoof_Front_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -932,7 +895,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "BoneHorseBONE_HEAD"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -959,7 +921,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -986,7 +947,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1013,7 +973,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Flag03"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1040,7 +999,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Cape_01"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1067,7 +1025,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1094,7 +1051,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Head"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1121,7 +1077,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Weapon"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1148,7 +1103,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Flag02"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1175,7 +1129,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Flag01"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -1210,13 +1163,114 @@
 	]
 	m_pAttachmentLists =
 	[
+		{
+			_class = "CVattachmentListReference"
+			m_pObject =
+			{
+				m_name = ""
+				m_attachments =
+				[
+					{
+						m_name = "attach_origin"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_hitloc"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									105.927551,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack1"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									25.399315,
+									-75.826454,
+									66.542618,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000031,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									-0.000032,
+									-89.679314,
+									40.269394,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000020,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
 	]
 	m_pAnimGroup =
 	{
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
-			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -1239,7 +1293,6 @@
 			m_Vanim =
 			[
 				{
-					_class = "CVanim"
 					m_Animationname = "cavalry_ani_attack"
 					m_Filepath = "models/cavalry/cavalry_ani_attack.fbx"
 					m_nStartframe = 0
@@ -1247,7 +1300,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1264,7 +1316,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK2"
 							m_nWeight = 1
 						},
@@ -1275,7 +1326,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1297,7 +1347,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1316,7 +1365,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1324,7 +1372,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "cavalry_ani_death"
 					m_Filepath = "models/cavalry/cavalry_ani_death.fbx"
 					m_nStartframe = 0
@@ -1332,7 +1379,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1349,7 +1395,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE"
 							m_nWeight = 1
 						},
@@ -1360,7 +1405,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1382,7 +1426,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1401,7 +1444,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1409,7 +1451,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "cavalry_ani_stand"
 					m_Filepath = "models/cavalry/cavalry_ani_stand.fbx"
 					m_nStartframe = 0
@@ -1417,7 +1458,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1434,7 +1474,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -1451,7 +1490,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1470,7 +1508,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1478,7 +1515,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "cavalry_ani_walk"
 					m_Filepath = "models/cavalry/cavalry_ani_walk.fbx"
 					m_nStartframe = 0
@@ -1486,7 +1522,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1503,7 +1538,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_RUN"
 							m_nWeight = 1
 						},
@@ -1514,7 +1548,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1536,7 +1569,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1555,7 +1587,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1563,7 +1594,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "cavalry_ani_attack_2"
 					m_Filepath = "models/cavalry/cavalry_ani_attack.fbx"
 					m_nStartframe = 0
@@ -1571,7 +1601,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1588,7 +1617,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
@@ -1599,7 +1627,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1621,7 +1648,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1640,7 +1666,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1701,16 +1726,13 @@
 	]
 	m_pMaterialRemapList =
 	{
-		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "01_-_default.vmat"
 				m_sReplaceMaterial = "materials/ashigaru/version_01/ashigaru.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "cavalry1.vmat"
 				m_sReplaceMaterial = "materials/cavalry/cavalry.vmat"
 			},
