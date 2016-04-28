@@ -1632,6 +1632,94 @@
 		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	}
 
+// 服部半藏 忍法．風行步
+	"A11D"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"A11D"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"5"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"D"
+		"MaxLevel"	"4"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
+		"AbilityManaCost"	"0 0 0 0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"particle"	"particles/status_fx/status_effect_base.vpcf"
+			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A11D"
+				"Duration"	"20.0"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+				"Function"	"A11D"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A11D"
+			{
+				"Duration"	"%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+						"Function"	"A11D_End"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A11W_movement_speed"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A11W_Duration"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A11W_Damage"	"100 200 300 400"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A11W_movement_speed"	"0 5 10 15"
+			}
+		}
+	}
 	// 服部半藏 忍法．影惑之術
 	"A11W"
 	{
@@ -1647,7 +1735,7 @@
 		"MaxLevel"	"4"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityCastPoint"	"0.8 0.8 0.8 0.8"
+		"AbilityCastPoint"	"0.5"
 		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
 		"AbilityManaCost"	"0 0 0 0"
 		"precache"
@@ -1779,19 +1867,31 @@
 			}
 		}
 	}
-	// 服部半藏 忍法密傳．隱斬
+	// 服部半藏 伊賀忍術流
 	"A11R"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"caopi_tuxi"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"R"
 		"MaxLevel"	"4"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastPoint"	"0"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+				"Function"		"A11D_Levelup"
+			}
 		}
 		"Modifiers"
 		{
@@ -1875,6 +1975,8 @@
 			}
 		}
 	}
+	
+	
 	// 服部半藏 忍法密傳．隱斬
 	"A11T"
 	{
@@ -1882,160 +1984,89 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"riki_tricks_of_the_trade"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.4 0.4 0.4"
+		"AbilityCastPoint"	"0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"40.0"
+		"AbilityCooldown"	"0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"75 75 75"
-		"AbilityChannelTime"	"4.0 5.0 6.0"
-		// Precache
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"300"
+		// Data driven
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"soundfile"	"sounds/weapons/hero/riki/tricks_of_the_trade.vsnd"
-			"soundfile"	"sounds/weapons/hero/riki/tricks_of_the_trade_cast.vsnd"
-			"soundfile"	"sounds/weapons/hero/riki/riki_backstab.vsnd"
-			// "particle"		"particles/units/heroes/hero_riki/riki_tricks_dagger_parent.vpcf"
-			"particle"	"particles/units/heroes/hero_riki/riki_backstab.vpcf"
-			"particle"	"particles/units/heroes/hero_riki/riki_tricks_cast.vpcf"
-			"particle"	"particles/units/heroes/hero_riki/riki_tricks_end.vpcf"
-			"particle"	"particles/units/heroes/hero_riki/riki_tricks.vpcf"
+			"particle"	"particles/units/heroes/hero_tinker/tinker_machine.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Tinker.March_of_the_Machines.Cast"
+			}
 		}
 		"OnSpellStart"
 		{
-			"AttachEffect"
+			"FireSound"
 			{
-				"EffectName"	"particles/units/heroes/hero_riki/riki_tricks_cast.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"	"CASTER"
+				"Target"	"POINT"
+				"EffectName"	"Hero_Tinker.March_of_the_Machines"
 			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
 				"Function"	"A11T"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Riki.TricksOfTheTrade"
-				"Target"	"TARGET"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_banish"
-				"Target"	"CASTER"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_tricks_of_the_trade"
-				"Target"	"CASTER"
+				"Target"	"POINT"
 			}
 		}
-		"OnChannelFinish"
+		"OnProjectileHitUnit"
 		{
-			"AttachEffect"
+			"DeleteOnHit"	"1"
+			"ActOnTargets"
 			{
-				"EffectName"	"particles/units/heroes/hero_riki/riki_tricks_end.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"	"CASTER"
-			}
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_banish"
-				"Target"	"CASTER"
-			}
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_tricks_of_the_trade"
-				"Target"	"CASTER"
+				"Target"
+				{
+					"Center"	"TARGET"
+					"Radius"	"%splash_radius"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+				}
+				"Action"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Damage"	"%AbilityDamage"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+					}
+				}
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_banish"
+			"modifier_A11T"
 			{
-				"Duration"	"%duration"
-				"OnAttackLanded"
+				"States"
 				{
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/hero_riki/tricks_of_the_trade.lua"
-						"Function"	"ProcBackstab"
-						"particle"	"particles/units/heroes/hero_riki/riki_backstab.vpcf"
-						"sound"	"Hero_Riki.Backstab"
-					}
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnDestroy"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_riki/tricks_of_the_trade.lua"
-						"Function"	"DrawModel"
-					}
-				}
-				"States"
-				{
-					// "MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"	// Don't use these state for a channeling ability.
-					// "MODIFIER_STATE_OUT_OF_GAME"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_tricks_of_the_trade"
-			{
-				"Aura"	"modifier_tricks_of_the_trade_debuff"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO"
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-				"Duration"	"%duration"
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Riki.TricksOfTheTrade"
-						"Target"	"CASTER"
-					}
-					"AttachEffect"
-					{
-						// Dagger particle is not working for me for some reason.
-						"EffectName"	"particles/units/heroes/hero_riki/riki_tricks.vpcf"
-						"EffectAttachType"	"attach_origin"
-						"Target"	"CASTER"
-						"ControlPoints"
-						{
-							"00"	"0 0 0"
-							"01"	"%radius %radius %radius"
-							"02"	"%duration 0 0"
-						}
-					}
-				}
-			}
-			"modifier_tricks_of_the_trade_debuff"
-			{
-				"IsHidden"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/hero_riki/tricks_of_the_trade.lua"
-						"Function"	"PerformAttacks"
-					}
-				}
-				"ThinkInterval"	"%damage_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/hero_riki/tricks_of_the_trade.lua"
-						"Function"	"PerformAttacks"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+						"Function"	"A11T_End"
 					}
 				}
 			}
@@ -2047,75 +2078,190 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"500"
+				"radius"	"400"
 			}
 			"02"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"4.0 5.0 6.0"
+				"var_type"	"FIELD_INTEGER"
+				"collision_radius"	"100 100 100"
 			}
 			"03"
 			{
+				"var_type"	"FIELD_INTEGER"
+				"splash_radius"	"100 100 100"
+			}
+			"04"
+			{
 				"var_type"	"FIELD_FLOAT"
-				"damage_interval"	"1.0"
+				"duration"	"6.0 6.0 6.0"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"2000 2000 2000"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"machines_per_sec"	"72"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"1400"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance_scepter"	"1800"
 			}
 		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"75 100 125"
 	}
 
-
-	"C19T"
+	// 宮本武藏 奧義．弧月斬
+	"C19W"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"juggernaut_omni_slash2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"	"juggernaut_blade_fury"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"HotKeyOverride"	"T"
-		"AbilityCooldown"	"115 95 75"
-		"AbilityManaCost"	"210"
-		"AbilityCastRange"	"600"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"0"
+		"AbilityCastPoint"	"0.300"
+		"AbilityCooldown"	"22.0 17.0 12.00 7.00"
+		"AbilityManaCost"	"100 125 150 175"
+		"AbilityCastRange"	"700"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
 		"OnSpellStart"
 		{
 			"ApplyModifier"
 			{
+				"ModifierName"	"modifier_C19W"
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_C19T"
-				"Duration"	"100"
-			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
-				"Function"	"anyunitspellability"
-			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19_Miyamoto Musashi.lua"
-				"Function"	"Trig_C19TActions"
+				"Duration"	"%duration"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_C19T"
+			"modifier_C19W"
 			{
-				"IsBuff"	"1"
-				"IsHidden"	"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10000"
-				}
+				"OverrideAnimation"	"ACT_DOTA_VICTORY"
 				"States"
 				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Duration"	"10"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"	"CASTER"
+						"ControlPoints"
+						{
+							"05"	"%bladestorm_radius 0 0"
+						}
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStart"
+						"Target"	"CASTER"
+					}
+				}
+				"ThinkInterval"	"%bladestorm_damage_tick"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%bladestorm_radius"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+							}
+							// Custom Building Damage
+							"RunScript"
+							{
+								"ScriptFile"	"buildings/damage.lua"
+								"Function"	"DoBuildingDamage"
+								"Target"
+								{
+									"Center"	"TARGET"
+									"Radius"	"%radius"
+									"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Types"	"DOTA_UNIT_TARGET_BASIC"
+									"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+								}
+								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+							}
+							"FireSound"
+							{
+								"EffectName"	"Hero_Juggernaut.BladeFury.Impact"
+								"Target"	"TARGET"
+							}
+						}
+					}
+				}
+				"OnDestroy"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStop"
+						"Target"	"CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/blademaster/bladestorm.lua"
+						"Function"	"BladeFuryStop"
+					}
+				}
 			}
 		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bladestorm_damage_tick"	"0.2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bladestorm_radius"	"335"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2.0 2.0 2.0 2.0"
+			}
+		}
+		"AbilityDamage"	"225 275 325 375"
 	}
 
+	// 宮本武藏 奧義．連環鋼破
 	"C19E"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -2131,7 +2277,7 @@
 		"precache"
 		{
 			"particle"	"particles/c19r.vpcf"
-			"particle"	"particles/c19e/c19e.vpcf"
+			"particle"	"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_start.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -2147,16 +2293,10 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19_Miyamoto Musashi.lua"
 				"Function"	"Trig_C19EActions"
 			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
-				"Function"	"anyunitspellability"
-			}
 			"AttachEffect"
 			{
 				"Target"	"TARGET"
-				"EffectName"	"particles/c19e/c19e.vpcf"
+				"EffectName"	"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_start.vpcf"
 				"EffectAttachType"	"follow_attachment"
 				"ControlPointEntities"
 				{
@@ -2184,6 +2324,161 @@
 		}
 	}
 
+	// 宮本武藏 二天一流
+	"C19R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_blade_dance2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_C19R_critical_strike"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C19R_critical_strike_crit"
+						"Target"	"CASTER"
+					}
+					"Random"
+					{
+						"Chance"	"%crit_chance"
+						"OnSuccess"
+						{
+							"FireSound"
+							{
+								"EffectName"	"Hero_SkeletonKing.CriticalStrike"
+								"Target"	"CASTER"
+							}
+							"FireEffect"
+							{
+								"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+								"EffectAttachType"	"attach_sword"
+								"Target"	"CASTER"
+								"ControlPoints"	{}
+								"ControlPointEntities"	{}
+							}
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_C19R_critical_strike_crit"
+								"Target"	"CASTER"
+							}
+						}
+					}
+				}
+			}
+			"modifier_C19R_critical_strike_crit"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"	"TARGET"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C19R_critical_strike_crit"
+						"Target"	"CASTER"
+					}
+				}
+			}
+			"modifier_C19R"
+			{
+				"IsBuff"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%C19R_EVASION"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_bonus"	"130 150 170 190"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance"	"40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C19R_EVASION"	"15 19 23 27"
+			}
+		}
+	}
+
+	// 宮本武藏 祕奧義．飛翔烈震斬
+	"C19T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"juggernaut_omni_slash2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"AbilityCooldown"	"115 95 75"
+		"AbilityManaCost"	"210"
+		"AbilityCastRange"	"600"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C19T"
+				"Duration"	"100"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19_Miyamoto Musashi.lua"
+				"Function"	"Trig_C19TActions"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C19T"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10000"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"10"
+			}
+		}
+	}
 
 	"B08W"
 	{

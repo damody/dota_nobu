@@ -5,6 +5,130 @@ LinkLuaModifier( "A11E_followthrough", "scripts/vscripts/heroes/A_Oda/A11_Hattor
 
 LinkLuaModifier( "A11E_hook_back", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
+LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
+
+modifier_transparency = class({})
+
+function modifier_transparency:DeclareFunctions()
+	return { MODIFIER_EVENT_ON_ATTACK_LANDED,
+	MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+	MODIFIER_EVENT_ON_ABILITY_EXECUTED }
+end
+
+function modifier_transparency:OnAbilityExecuted(params)
+	if IsServer() then
+		self:Destroy()
+	end
+end
+
+function modifier_transparency:AttackProc(params)
+	local hAbility = self:GetAbility()
+	local hTarget = params.target
+	local nFXIndex = ParticleManager:CreateParticle( "particles/shadow_raze_gen/raze.vpcf", PATTACH_ABSORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( nFXIndex, 0, hTarget:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( nFXIndex, 15, Vector( 133, 0, 162 ) )
+	--local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), hTarget:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+end
+
+function modifier_transparency:GetModifierInvisibilityLevel()
+	return 50
+end
+
+function modifier_transparency:IsHidden()
+	return true
+end
+
+function modifier_transparency:CheckState()
+	local state = {
+	[MODIFIER_STATE_INVISIBLE] = true
+	}
+	return state
+end
+
+function modifier_transparency:OnAttackLanded( params )
+	if IsServer() then
+		if params.attacker == self:GetParent() then
+		EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Nevermore.Pick", self:GetCaster() )
+		self:AttackProc(params)
+		self:Destroy()
+		end
+	end
+end
+
+function modifier_transparency:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
+end
+
+function modifier_transparency:GetEffectName()
+	return "particles/items_fx/ghost.vpcf"
+end
+
+
+function A11W_Levelup( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("A11D")
+	local level = keys.ability:GetLevel()
+	
+	if (ability:GetLevel() < level) then
+		ability:SetLevel(level)
+	end
+end
+
+function A11E_Levelup( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("A11D")
+	local level = keys.ability:GetLevel()
+	
+	if (ability:GetLevel() < level) then
+		ability:SetLevel(level)
+	end
+end
+
+function A11R_Levelup( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("A11D")
+	local level = keys.ability:GetLevel()
+	
+	if (ability:GetLevel() < level) then
+		ability:SetLevel(level)
+	end
+end
+
+function A11D( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_transparency", {duration = 20} )
+end
+
+function A11D_End( keys )
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then		-- This is to fail check if it is item. If it is item, error is expected
+		-- Variables
+		local caster = keys.caster
+		local target = keys.target
+		local ability = keys.ability
+		local modifierName = "modifier_A11D"
+		local abilityDamage = ability:GetLevelSpecialValueFor( "A11W_Damage", ability:GetLevel() - 1 )
+		local abilityDamageType = ability:GetAbilityDamageType()
+		if (not target:IsBuilding()) then
+			-- Deal damage and show VFX
+			local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+			ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
+			ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
+			
+			StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
+			
+			local damageTable = {
+				victim = target,
+				attacker = caster,
+				damage = abilityDamage,
+				damage_type = abilityDamageType
+			}
+			ApplyDamage( damageTable )
+		end	
+		keys.caster:RemoveModifierByName( modifierName )
+	end
+end
+
 function A11W( event )
 	print("Conjure Image")
 	local caster = event.caster
@@ -96,9 +220,8 @@ A11E = class ({})
 
 function A11E:OnSpellStart()
 	local caster = self:GetCaster()
-	local target = self:GetCursorPosition()
 	local debuff_duraiton = self:GetSpecialValueFor("flux_duration")
-	local dir = target - caster:GetOrigin()
+	local dir = self:GetCursorPosition() - caster:GetOrigin()
 	caster:SetForwardVector(dir:Normalized())
 	caster:AddNewModifier(caster, self, "A11E_modifier", { duration = 2}) 
 	caster:AddNewModifier(caster, self, "A11E_followthrough", { duration = 0.3 } )
@@ -374,13 +497,19 @@ function A11T( keys )
 	local ability = keys.ability
 	local casterLoc = caster:GetAbsOrigin()
 	local targetLoc = keys.target_points[1]
+	local dir = caster:GetCursorPosition() - caster:GetOrigin()
+	caster:SetForwardVector(dir:Normalized())
 	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
 	local distance = ability:GetLevelSpecialValueFor( "distance", ability:GetLevel() - 1 )
-	local radius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
 	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
 	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
-	local machines_per_sec = ability:GetLevelSpecialValueFor ( "machines_per_sec", ability:GetLevel() - 1 )
-	local dummyModifierName = "modifier_march_of_the_machines_dummy_datadriven"
+	local right = caster:GetRightVector()
+	casterLoc = keys.target_points[1] - right:Normalized() * 300
+	Timers:CreateTimer( 0.3, function()
+		caster:AddNoDraw()
+		ability:ApplyDataDrivenModifier( caster, caster, "modifier_A11T", {duration = 3.7} )
+	end)
 	
 	-- Find forward vector
 	local forwardVec = targetLoc - casterLoc
@@ -399,61 +528,47 @@ function A11T( keys )
 	local dy = v.x
 	local perpendicularVec = Vector( dx, dy, v.z )
 	perpendicularVec = perpendicularVec:Normalized()
-	
-	-- Create dummy to store data in case of multiple instances are called
-	local dummy = CreateUnitByName( "npc_dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
-	ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
-	dummy.march_of_the_machines_num = 0
-	
+
+	local sumtime = 0
 	-- Create timer to spawn projectile
 	Timers:CreateTimer( function()
 			-- Get random location for projectile
-			local random_distance = RandomInt( -radius, radius )
-			local spawn_location = middlePoint + perpendicularVec * random_distance
-			
-			local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 )
-			
-			-- Spawn projectiles
-			local projectileTable = {
-				Ability = ability,
-				EffectName = "particles/units/heroes/hero_tinker/tinker_machine.vpcf",
-				vSpawnOrigin = spawn_location,
-				fDistance = distance,
-				fStartRadius = collision_radius,
-				fEndRadius = collision_radius,
-				Source = caster,
-				bHasFrontalCone = false,
-				bReplaceExisting = false,
-				bProvidesVision = false,
-				iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_MECHANICAL,
-				vVelocity = velocityVec * projectile_speed
-			}
-			ProjectileManager:CreateLinearProjectile( projectileTable )
-			
-			-- Increment the counter
-			dummy.march_of_the_machines_num = dummy.march_of_the_machines_num + 1
-			
+			for c = 1,4 do
+				local random_distance = RandomInt( -radius, radius )
+				local spawn_location = middlePoint + perpendicularVec * random_distance
+				
+				local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 )
+				
+				-- Spawn projectiles
+				local projectileTable = {
+					Ability = ability,
+					EffectName = "particles/a11t/a11t.vpcf",
+					vSpawnOrigin = spawn_location,
+					fDistance = distance,
+					fStartRadius = collision_radius,
+					fEndRadius = collision_radius,
+					Source = caster,
+					bHasFrontalCone = false,
+					bReplaceExisting = false,
+					bProvidesVision = false,
+					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_MECHANICAL,
+					vVelocity = velocityVec * projectile_speed
+				}
+				ProjectileManager:CreateLinearProjectile( projectileTable )
+			end
 			-- Check if the number of machines have been reached
-			if dummy.march_of_the_machines_num == machines_per_sec * duration then
-				dummy:Destroy()
+			if sumtime >= 4 then
 				return nil
 			else
-				return 1 / machines_per_sec
+				sumtime = sumtime + 0.125
+				return 0.125
 			end
 		end
 	)
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
+function A11T_End( keys )
+	local caster = keys.caster
+	caster:RemoveNoDraw()
+EndCooldown()
