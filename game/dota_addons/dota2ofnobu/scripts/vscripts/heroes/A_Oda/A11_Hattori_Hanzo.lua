@@ -74,16 +74,6 @@ function A11W_Levelup( keys )
 	end
 end
 
-function A11E_Levelup( keys )
-	local caster = keys.caster
-	local ability = caster:FindAbilityByName("A11D")
-	local level = keys.ability:GetLevel()
-	
-	if (ability:GetLevel() < level) then
-		ability:SetLevel(level)
-	end
-end
-
 function A11R_Levelup( keys )
 	local caster = keys.caster
 	local ability = caster:FindAbilityByName("A11D")
@@ -242,6 +232,15 @@ function A11E:OnOwnerDied()
 	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
 end
 
+function A11E:OnUpgrade()
+	local caster = self:GetCaster()
+	local ability = caster:FindAbilityByName("A11D")
+	local level = self:GetLevel()
+	
+	if (ability:GetLevel() < level) then
+		ability:SetLevel(level)
+	end
+end
 
 A11E_followthrough = class({})
 
@@ -571,4 +570,4 @@ end
 function A11T_End( keys )
 	local caster = keys.caster
 	caster:RemoveNoDraw()
-EndCooldown()
+end

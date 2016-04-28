@@ -66,6 +66,6 @@ function CameraTurnSlow(){
 
 (function()
 {
-	Init_Game_UI();
+	//Init_Game_UI();
 })();
 

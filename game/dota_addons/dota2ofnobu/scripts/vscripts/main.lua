@@ -28,7 +28,7 @@ function CEasyGameMode:InitGameMode()
 	-- 產生隨機數種子，主要是為了程序中的隨機數考慮
 	local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','') 
 	math.randomseed(tonumber(timeTxt))--GetSystemTime	string GetSystemTime()	獲取真實世界的時間
-	GameRules: GetGameModeEntity() :SetCameraDistanceOverride(1800)
+	--GameRules: GetGameModeEntity() :SetCameraDistanceOverride(1800)
 	SendToConsole("r_farz 60000")
     Timers:CreateTimer( 1, function()
   		SendToConsole("r_farz 60000")

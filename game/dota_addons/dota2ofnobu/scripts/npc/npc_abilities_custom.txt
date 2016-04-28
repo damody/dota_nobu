@@ -1641,7 +1641,7 @@
 		"AbilityTextureName"	"A11D"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"FightRecapLevel"	"5"
+		"FightRecapLevel"	"6"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"D"
 		"MaxLevel"	"4"
@@ -1751,6 +1751,14 @@
 				"Function"		"A11W"
 			}
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+				"Function"		"A11W_Levelup"
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -1778,7 +1786,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"pudge_meat_hook"
 		"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"	"1"
@@ -1794,12 +1802,21 @@
 		"AbilityCastRange"	"400 600 800 1200"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
+		
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
 			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook_chain.vpcf"
 			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
 			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook.vpcf"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
+				"Function"		"A11E_Levelup"
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -1822,48 +1839,13 @@
 			}
 			"04"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"vision_radius"	"500 500 500 500"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"vision_duration"	"4.0 4.0 4.0 4.0"
-			}
-			"06"
-			{
 				"var_type"	"FIELD_FLOAT"
 				"hook_followthrough_constant"	"0.65"
 			}
-			"07"
+			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"hook_damage"	"200 300 400 500"
-			}
-			"08"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"flux_damage_per_second"	"15 30 45 60"
-			}
-			"09"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"flux_duration"	"6"
-			}
-			"10"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"flux_mute_radius"	"225"
-			}
-			"11"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"flux_tick_interval"	"0.5"
-			}
-			"12"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"slow"	"500"
 			}
 		}
 	}
@@ -1890,7 +1872,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua"
-				"Function"		"A11D_Levelup"
+				"Function"		"A11R_Levelup"
 			}
 		}
 		"Modifiers"
