@@ -14,6 +14,11 @@ end
 function AMHCInit()
 
 require("amhc_library/KV")
+require("amhc_library/timers")
+require("amhc_library/ChainLightning")
+
+--载入modifier
+LinkLuaModifier("modifier_amhc_make_illusion","amhc_library/Modifiers/modifier_amhc_make_illusion.lua",LUA_MODIFIER_MOTION_NONE)
 
 --------------------
 --这里定义私有变量--
@@ -576,6 +581,23 @@ AMHC:Reload(AMHC,"SetCamera","number,table")
 --====================================================================================================
 
 
+--====================================================================================================
+--创建幻象
+function AMHC:Illusion( ... )
+	local hero,target,origin,duration,data = ...
+
+	local unit = CreateUnitByName(target:GetUnitName(), origin, true, nil, nil, hero:GetTeamNumber())
+	unit:SetOwner(hero)
+	unit:SetControllableByPlayer(hero:GetPlayerOwnerID(), true)
+	unit:SetPlayerID(hero:GetPlayerOwnerID())
+	unit:SetParent(hero, hero:GetUnitName())
+	unit:MakeIllusion()
+	unit:AddNewModifier(hero, unit, "modifier_illusion", {duration=duration})
+	unit:AddNewModifier(hero, unit, "modifier_amhc_make_illusion", {DamageOutgoing = data.DamageOutgoing, IncomingDamage = data.IncomingDamage})
+
+	return unit
+end
+AMHC:Reload(AMHC,"Illusion","table,table,userdata,number,table")
 --====================================================================================================
 --停止播放音效，两个接口，一个KV一个lua
 

@@ -67,3 +67,14 @@ function AddModelScale( keys )
 
 	AMHC:AddModelScale( target,tonumber(keys.Scale),tonumber(keys.Duration) )
 end
+
+----------------------------------------------------------------------------------------------------------
+--使用万能伤害系统
+function CallDamageSystem( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local damage_type = keys.damage_type
+	local damage = keys.damage
+
+	DamageSystem({unit=caster,victim=target,damage_type=damage_type},tostring(damage))
+end

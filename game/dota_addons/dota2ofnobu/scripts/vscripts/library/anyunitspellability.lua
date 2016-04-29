@@ -6,13 +6,20 @@ function test_of_ability(keys)
 end
 
 function anyunitspellability( keys )
+	local skill = keys.ability
 
 
+
+	if skill ~= nil then
+		GameRules:SendCustomMessage("是技能",DOTA_TEAM_GOODGUYS,0)
+		GameRules:SendCustomMessage(skill:GetAbilityName(),DOTA_TEAM_GOODGUYS,0)
+	else
+		GameRules:SendCustomMessage("不是技能",DOTA_TEAM_GOODGUYS,0)
+	end
 
 
 
 
  	-- test
- 	GameRules:SendCustomMessage("清CD",DOTA_TEAM_GOODGUYS,0)
  	test_of_ability(keys)
  end 
