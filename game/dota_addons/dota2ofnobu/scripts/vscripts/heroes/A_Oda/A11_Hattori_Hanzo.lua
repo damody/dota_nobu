@@ -97,7 +97,7 @@ function A11D_End( keys )
 		local target = keys.target
 		local ability = keys.ability
 		local modifierName = "modifier_A11D"
-		local abilityDamage = ability:GetLevelSpecialValueFor( "A11W_Damage", ability:GetLevel() - 1 )
+		local abilityDamage = ability:GetLevelSpecialValueFor( "A11D_Damage", ability:GetLevel() - 1 )
 		local abilityDamageType = ability:GetAbilityDamageType()
 		if (not target:IsBuilding()) then
 			-- Deal damage and show VFX
@@ -120,7 +120,6 @@ function A11D_End( keys )
 end
 
 function A11W( event )
-	print("Conjure Image")
 	local caster = event.caster
 	local player = caster:GetPlayerID()
 	local ability = event.ability
@@ -176,13 +175,16 @@ function A11W( event )
 			-- Set the unit as an illusion
 			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 			illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			
+			illusion[i]:SetBaseDamageMin(-1000)
+			illusion[i]:SetBaseDamageMax(-1000)
 			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 			illusion[i]:MakeIllusion()
+
+			illusion[i]:SetHealth(caster:GetHealth())
 			illusion[i]:SetRenderColor(255,0,255)
 		end
 	end
-
+	
 	Timers:CreateTimer( 0.1, 
 		function()
 			for i=1,people do
@@ -193,12 +195,14 @@ function A11W( event )
 					illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
 					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
 					illusion[i]:SetForwardVector(target_pos[i]:Normalized())
+					illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
 				else
 					ProjectileManager:ProjectileDodge(caster)
 					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
 					caster:SetAbsOrigin(origin_pos+target_pos[i])
 					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
 					caster:SetForwardVector(target_pos[i]:Normalized())
+					caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 				end
 			end
 			return nil
@@ -281,10 +285,11 @@ end
 function A11E_hook_back:OnIntervalThink()
 	if (self.path ~= nil) then
 		local target = self:GetParent()
-		if (self.interval_Count > 3) then
+		if (self.interval_Count > 1) then
 			target:SetOrigin(self.path[self.interval_Count])
 			self.interval_Count = self.interval_Count - 1
 		else
+			target:AddNewModifier(target,self:GetAbility(),"modifier_phased",{duration=0.1})
 			target:RemoveModifierByName("A11E_hook_back")
 		end
 	end
@@ -298,7 +303,7 @@ function A11E_hook_back:IsDebuff()
 end
 
 function A11E_hook_back:OnCreated( event )
-	self:StartIntervalThink(0.05) 
+	self:StartIntervalThink(0.07) 
 end
 
 
@@ -338,8 +343,8 @@ function A11E_modifier:OnIntervalThink()
 		local vDirection =  caster:GetForwardVector()
 		self.path[self.interval_Count] = self.hook_pos
 		local length = (20+angle*0.2) * self.interval_Count
-
-		hook_pts = {}
+		local next_hook_pos = 0
+		hook_pts = { self.hook_pos }
 		if (length > 100) then
 			local pts = length / 100 + 1
 			for i=1,pts do
@@ -374,7 +379,7 @@ function A11E_modifier:OnIntervalThink()
 	                              false)
 			if (table.getn(direUnits) == 0) then
 				local floorpos = hookpoint
-				floorpos.z = 0
+				floorpos.z = 100
 				direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
 	                              floorpos,
 	                              nil,
