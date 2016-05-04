@@ -30,6 +30,17 @@ function Pick_Hero(info)
   local point    = hero:GetAbsOrigin()
 
 
+  --<<英雄系統>>
+    --<<事件:任一單位施放技能>>
+    if hero: FindAbilityByName("EventForUnitSpellAbility") ~= nil then
+      local spell = hero: FindAbilityByName("EventForUnitSpellAbility")
+      spell:SetLevel(1)
+      --spell:SetActivated(true)  
+    end
+
+  --<<英雄系統>>
+
+
   --<<test>>
 
     --物品
@@ -99,6 +110,18 @@ local point    = hero:GetAbsOrigin()
       hero.HeroLevelUp(hero,true)
     end
 
+  end
+  if s == "CreatOOXX" then
+     local  u = CreateUnitByName("npc_dota_hero_magnataur",Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+     --u:SetOwner(p)                                         --設置u的擁有者
+     u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+
+    --等級
+    for i=1,25 do
+      u.HeroLevelUp(u,true)
+    end
+
+  --注意：DOTA2引擎與魔獸爭霸不同，單位被創建後並不能被玩家操控，必須分配操控玩家。
   end
 
   if s == "SetForwardVector" then
@@ -632,32 +655,30 @@ end
 
 function Ctest:InitGameMode()
 
---设置游戏准备时间
-GameRules:SetPreGameTime( 3.0)
+  --设置游戏准备时间
+  GameRules:SetPreGameTime( 3.0)
 
---监听游戏进度
---ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(Ctest,"OnGameRulesStateChange"), self)
+  --监听游戏进度
+  --ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(Ctest,"OnGameRulesStateChange"), self)
 
+  ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, 'OnEntityKilled' ), self )
 
-ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, 'OnEntityKilled' ), self )
+  --確認一下是不是成功賭取
+  UTIL_MessageTextAll("Init Success",255,0,0,255)--BUG點:不能發nil，要"nil"要不然會崩潰
 
---確認一下是不是成功賭取
-UTIL_MessageTextAll("Init Success",255,0,0,255)--BUG點:不能發nil，要"nil"要不然會崩潰
+  --監聽單位重生或者創建事件
+  ListenToGameEvent("npc_spawned", Dynamic_Wrap(Ctest, "OnNPCSpawned"), self)
 
---監聽單位重生或者創建事件
-ListenToGameEvent("npc_spawned", Dynamic_Wrap(Ctest, "OnNPCSpawned"), self)
-
---玩家死亡事件
---ListenToGameEvent("dota_player_killed",Death,nil)
+  --玩家死亡事件
+  --ListenToGameEvent("dota_player_killed",Death,nil)
   --监听器(Listener)
   ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, "OnEntityKilled" ), self )
 
---玩家選取事件
-ListenToGameEvent("dota_player_pick_hero",Pick_Hero,nil)
+  --玩家選取事件
+  ListenToGameEvent("dota_player_pick_hero",Pick_Hero,nil)
 
---玩家對話事件
-ListenToGameEvent("player_chat",Chat,nil)
-
+  --玩家對話事件
+  ListenToGameEvent("player_chat",Chat,nil)
 
 end
 
@@ -688,6 +709,7 @@ function Death(info)
 
   -- 储存被击杀的单位
   local killedUnit = EntIndexToHScript( info.entindex_killed )
+  
   -- 储存杀手单位
   local killerEntity = EntIndexToHScript( info.entindex_attacker )
 

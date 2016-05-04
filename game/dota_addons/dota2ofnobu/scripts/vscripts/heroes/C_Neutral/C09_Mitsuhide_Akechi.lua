@@ -17,8 +17,6 @@ function C09E_Mitsuhide_Akechi_Effect( keys, skillcount )
 		dmg = 100 
 	end
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, point, 300.0, 3.0, false)
-	--debug
-	GameRules: SendCustomMessage(tostring(dmg),DOTA_TEAM_GOODGUYS,0)
 
 	direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
                               point,
