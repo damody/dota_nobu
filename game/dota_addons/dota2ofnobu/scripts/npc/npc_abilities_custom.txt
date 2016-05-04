@@ -1990,7 +1990,7 @@
 		"FightRecapLevel"	"6"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"D"
-		"MaxLevel"	"4"
+		"MaxLevel"	"5"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
 		"AbilityManaCost"	"0 0 0 0"
@@ -2039,7 +2039,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A11W_movement_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A11D_movement_speed"
 				}
 				"States"
 				{
@@ -2051,18 +2051,13 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"A11W_Duration"	"20"
+				"var_type"	"FIELD_INTEGER"
+				"A11D_Damage"	"0 90 175 260 345"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A11W_Damage"	"100 200 300 400"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A11W_movement_speed"	"0 5 10 15"
+				"A11D_movement_speed"	"0 5 10 15 20"
 			}
 		}
 	}
