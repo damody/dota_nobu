@@ -26,11 +26,11 @@ end
 
 function A23W( keys )
 	local count = 0;
-	Timers:CreateTimer( 0.05, function()
+	Timers:CreateTimer( 0, function()
 		A23W_2(keys)
 		count = count + 1
-		if (count < 250) then
-			return 0.04
+		if (count < 100) then
+			return 0.1
 		else
 			return nil
 		end

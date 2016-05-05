@@ -4616,4 +4616,94 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"125 175 225 275"
 	}
+	
+	// 織田信長 壓切
+	"A17R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"caopi_tuxi"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A11R_critical_strike"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A07R_critical_strike_crit"
+						"Target"	"CASTER"
+					}
+					"Random"
+					{
+						"Chance"	"20"
+						"OnSuccess"
+						{
+							"FireSound"
+							{
+								"EffectName"	"Hero_SkeletonKing.CriticalStrike"
+								"Target"	"CASTER"
+							}
+							"FireEffect"
+							{
+								"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+								"EffectAttachType"	"attach_sword"
+								"Target"	"CASTER"
+								"ControlPoints"	{}
+								"ControlPointEntities"	{}
+							}
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_A07R_critical_strike_crit"
+								"Target"	"CASTER"
+							}
+						}
+					}
+				}
+			}
+			"modifier_A07R_critical_strike_crit"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_persent"
+				}
+				"OnAttackLanded"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"	"TARGET"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A07R_critical_strike_crit"
+						"Target"	"CASTER"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_persent"	"200 250 300 350"
+			}
+		}
+	}
 }
