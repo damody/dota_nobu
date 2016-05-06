@@ -1,126 +1,55 @@
 --global
-	C09E_B = {}
-	C09R_B = {}
+local A17R_noncrit_count = 0
+local A17R_level = 0
 --ednglobal
 
-function C09E_Mitsuhide_Akechi_Effect_first( keys, int,caster,level,point )
-	local dmg = 0
-	local SEARCH_RADIUS = 300
-		--判斷是不是第一波火焰
-		if int == 0 then
-			dmg = 100 + 100 * level
-		else
-			dmg = 100 
-		end
+LinkLuaModifier( "A17R_critical", "scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua",LUA_MODIFIER_MOTION_NONE )
 
-		direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-	                              point,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
+A17R_critical = class({})
 
-		--effect:傷害+暈眩
-		for _,it in pairs(direUnits) do
-			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09E",nil)
+--------------------------------------------------------------------------------
 
-			--debug
-			GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
-		end
+function A17R_critical:IsHidden()
+	return true
+end
 
-		--particle
-		local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",PATTACH_WORLDORIGIN,caster)
-		ParticleManager:SetParticleControl(particle,0,vec)
-		ParticleManager:SetParticleControl(particle,1,Vector(5,5,5))
-		ParticleManager:SetParticleControl(particle,3,vec)
-		ParticleManager:ReleaseParticleIndex(particle)
+function A17R_critical:DeclareFunctions()
+	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
+end
 
+function A17R_critical:GetModifierPreAttack_CriticalStrike()
+	return A17R_level*50 + 150
+end
+
+function A17R_critical:CheckState()
+	local state = {
+	}
+	return state
 end
 
 
-
-
--- 傳入單位盡量統一名稱用keys
-function C09E_Mitsuhide_Akechi ( keys )
-	local caster = keys.caster --unit
-	local caster_abs = caster:GetAbsOrigin() -- vectorv
-	local point = keys.target_points[1] 
-	local time = 1.40
-	local b = false --boolean
+function A11R_Levelup( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("A11D")
 	local level = keys.ability:GetLevel()
-	local int = 0
-
-		--判斷有沒有R技的modifier
-		if caster:HasModifier("modifier_C09R") == false then
-			b = true
-		else
-			b = false
-		end
-
-		--timer : 第一次火焰
-	    Timers:CreateTimer(time, function()
-	    	C09E_Mitsuhide_Akechi_Effect_first(int,caster,level,point)
-	        return nil -- 每秒再次调用
-	    end)
-
-		--timer : 第二次火焰
-	    Timers:CreateTimer(time, function()
-
-	    	if int >= 3 then
-	        	return nil -- 每秒再次调用
-	        else
-
-	        	--效果
-	        	C09E_Mitsuhide_Akechi_Effect_first(keys, int,caster,level,point)
-
-	        	--判斷是否通過機率
-	        	if RandomInt( 1 , 100 ) <= 15 + 10 * level then
-	        		int = int + 1
-	        	else
-	        		return nil
-	    		end
-	        end
-
-	    end)
-
+	A17R_level = level
 end
 
-
-function C09R( keys )
+function A17R( keys )
 	local caster = keys.caster
 	local skill = keys.ability
-	local time = 10.00
 	local id  = caster:GetPlayerID()
-
-	--debug
-	GameRules: SendCustomMessage(tostring(C09R_B[22]),DOTA_TEAM_GOODGUYS,0)
-
-	--debug
-	if C09R_B[id] == nil then
-
-		--timer
-	    Timers:CreateTimer(time, function()
-
-			--debug
-			GameRules: SendCustomMessage("Hello",DOTA_TEAM_GOODGUYS,0)
-
-			--如果沒有R技的modifier，就給予modifer
-	    	if caster:HasModifier("modifier_C09R") == false then
-	    		skill:ApplyDataDrivenModifier(caster,caster,"modifier_C09R",nil)
-	    	end
-	        return time -- 每秒再次调用
-	    end)
-
+	local ran =  RandomInt(0, 100)
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
+		if (ran > 20) then
+			A17R_noncrit_count = A17R_noncrit_count + 1
+		end
+		if (A17R_noncrit_count > 5 or ran <= 20) then
+			A17R_noncrit_count = 0
+			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
+			caster:AddNewModifier(caster, skill, "A17R_critical", { duration = 0.1 } )
+		end
 	end
-
-	--avoid
-	--避免二次創造計時器
-	C09R_B[id] = true
-
 end
 
 

@@ -95,7 +95,6 @@ function A23W_2( keys )
 	local modifierName = "modifier_freezing_field_debuff_datadriven"
 	local refModifierName = "modifier_freezing_field_ref_point_datadriven"
 	local particleName = "particles/a23w/a23w.vpcf"
-	local soundEventName = "hero_Crystal.freezingField.explosion"
 	
 	-- Get random point
 	local castDistance = RandomInt( 0, radius )

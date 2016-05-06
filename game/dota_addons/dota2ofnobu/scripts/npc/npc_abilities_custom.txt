@@ -4634,6 +4634,14 @@
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua"
+				"Function"	"A11R_Levelup"
+			}
+		}
 		"Modifiers"
 		{
 			"modifier_A11R_critical_strike"
@@ -4642,57 +4650,11 @@
 				"IsHidden"	"1"
 				"OnAttackStart"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"	"modifier_A07R_critical_strike_crit"
 						"Target"	"CASTER"
-					}
-					"Random"
-					{
-						"Chance"	"20"
-						"OnSuccess"
-						{
-							"FireSound"
-							{
-								"EffectName"	"Hero_SkeletonKing.CriticalStrike"
-								"Target"	"CASTER"
-							}
-							"FireEffect"
-							{
-								"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
-								"EffectAttachType"	"attach_sword"
-								"Target"	"CASTER"
-								"ControlPoints"	{}
-								"ControlPointEntities"	{}
-							}
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_A07R_critical_strike_crit"
-								"Target"	"CASTER"
-							}
-						}
-					}
-				}
-			}
-			"modifier_A07R_critical_strike_crit"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_persent"
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_A07R_critical_strike_crit"
-						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua"
+						"Function"	"A17R"
 					}
 				}
 			}
