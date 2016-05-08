@@ -17,6 +17,7 @@ end
 
 function modifier_transparency:OnAbilityExecuted(params)
 	if IsServer() then
+		self:GetParent():RemoveModifierByName( "modifier_A11D" )
 		self:Destroy()
 	end
 end
@@ -323,6 +324,7 @@ function A11E_modifier:OnCreated( event )
 	self.particle = {}
 	self.oriangle = self:GetParent():GetAnglesAsVector().y
 	self.hook_pos = self:GetParent():GetOrigin()
+	self.oripos = self:GetParent():GetOrigin()
 	self:StartIntervalThink(0.05) 
 
 end
@@ -343,8 +345,10 @@ function A11E_modifier:OnIntervalThink()
 		local vDirection =  caster:GetForwardVector()
 		self.path[self.interval_Count] = self.hook_pos
 		local length = (20+angle*0.2) * self.interval_Count
-		local next_hook_pos = 0
-		hook_pts = { self.hook_pos }
+		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length + (self:GetParent():GetOrigin() - self.oripos)
+		self.oripos = self:GetParent():GetOrigin()
+		length = (next_hook_pos - self.hook_pos):Length()
+		hook_pts = {}
 		if (length > 100) then
 			local pts = length / 100 + 1
 			for i=1,pts do
@@ -353,7 +357,6 @@ function A11E_modifier:OnIntervalThink()
 			end
 		end
 
-		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length
 		self.distance_sum = self.distance_sum + 20 * self.interval_Count
 		
 		local particle = ParticleManager:CreateParticle("particles/a11/_2pudge_meathook_whale2.vpcf",PATTACH_WORLDORIGIN,caster)
@@ -364,63 +367,12 @@ function A11E_modifier:OnIntervalThink()
 		ParticleManager:SetParticleControl(particle,3,self.hook_pos)
 		ParticleManager:ReleaseParticleIndex(particle)
 		self.particle[self.interval_Count] = particle
-
+		local SEARCH_RADIUS = self.hook_width
 		for _,hookpoint in pairs(hook_pts) do
 			-- 拉到敵人
-			local SEARCH_RADIUS = self.hook_width
-			direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-	                              hookpoint,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-			if (table.getn(direUnits) == 0) then
-				local floorpos = hookpoint
-				floorpos.z = 100
-				direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-	                              floorpos,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-			end
 			local hashook = false
-			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding())) then
-					ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
-						damage_type = self.damage_type, ability = self:GetAbility()})
-					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A11E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A11E_hook_back", it)
-					if (hModifier ~= nil) then
-						hModifier.path = self.path
-						hModifier.interval_Count = self.interval_Count
-						hModifier.particle = self.particle
-						break
-					end
-				end
-			end
-			if (hashook == true) then
-				self:StartIntervalThink( -1 )
-				return
-			end
-
-			-- 拉到中立怪
-			direUnits = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
-		                          hookpoint,
-		                          nil,
-		                          SEARCH_RADIUS,
-		                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		                          DOTA_UNIT_TARGET_ALL,
-		                          DOTA_UNIT_TARGET_FLAG_NONE,
-		                          FIND_ANY_ORDER,
-		                          false)
+			local direUnits = FindUnitsInRadius( caster:GetTeamNumber(), hookpoint, nil, SEARCH_RADIUS, 
+				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 
 			for _,it in pairs(direUnits) do
 				if (not(it:IsBuilding())) then

@@ -564,7 +564,7 @@
 			"modifier_majia"
 			{
 				"Passive"	"1"
-				"IsHidden"	"0"
+				"IsHidden"	"1"
 				"States"
 				{
 					// 隐藏血条
@@ -845,6 +845,7 @@
 			}
 			"modifier_C09R_4"
 			{
+				"IsHidden"	"1"
 				"Passive"	"1"
 				"OnCreated"
 				{
@@ -4616,7 +4617,137 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"125 175 225 275"
 	}
-	
+	// 織田信長 遠雷搖
+	"A17W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"BTNFire"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"1100"
+		"precache"
+		{
+			"soundfile"	"soundevents/a17w.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua"
+				"Function"	"A17W"
+				"Target"	"POINT"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A17W_damage"	"200 300 400 500"
+			}
+		}
+	}
+	// 織田信長 厄災之棘
+	"A17E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"BTNFire"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"1000"
+		"AOERadius"	"300"
+		"precache"
+		{
+			"soundfile"	"soundevents/a17e.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua"
+				"Function"	"A17E"
+				"Target"	"POINT"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17E_attack"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Lina.DragonSlave"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A17E_attack"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"4"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%A17E_attack"
+				}
+				"IsBuff"	"1"
+			}
+			"modifier_A17E"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%C09E_Duration"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A17E_Duration"	"1.1 1.4 1.7 2.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A17E_range"	"300 300 300 300"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A17E_attack"	"12 23 34 45"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A17E_damage"	"200 300 400 500"
+			}
+		}
+	}
 	// 織田信長 壓切
 	"A17R"
 	{
@@ -4639,7 +4770,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua"
-				"Function"	"A11R_Levelup"
+				"Function"	"A17R_Levelup"
 			}
 		}
 		"Modifiers"

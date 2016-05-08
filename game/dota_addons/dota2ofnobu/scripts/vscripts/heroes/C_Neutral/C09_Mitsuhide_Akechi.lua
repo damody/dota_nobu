@@ -245,7 +245,7 @@ function C09T_Mitsuhide_Akechi( keys )
 		if ( RandomInt(1, 10) > 3) then
 			C09T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(sk_radius))
 		else
-			C09T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(sk_radius*0.3))
+			C09T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(RandomInt(1, sk_radius*0.4)))
 		end
 
 		if  ( (skillcount < skillmax) and caster:IsChanneling() ) then

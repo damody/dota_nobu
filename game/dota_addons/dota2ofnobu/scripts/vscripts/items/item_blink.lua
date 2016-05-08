@@ -4,10 +4,11 @@
 	Called when Blink Dagger is cast.  Blinks the caster in the targeted direction.
 	Additional parameters: keys.MaxBlinkRange and keys.BlinkRangeClamp
 ================================================================================================================= ]]
+hasSet = {}
+
 function item_blink_datadriven_on_spell_start(keys)
 	ProjectileManager:ProjectileDodge(keys.caster)  --Disjoints disjointable incoming projectiles.
-	
-	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, keys.caster)
+		
 	keys.caster:EmitSound("DOTA_Item.BlinkDagger.Activate")
 	
 	local origin_point = keys.caster:GetAbsOrigin()
@@ -20,8 +21,22 @@ function item_blink_datadriven_on_spell_start(keys)
 	
 	keys.caster:SetAbsOrigin(target_point)
 	FindClearSpaceForUnit(keys.caster, target_point, false)
+
+	local caster = keys.caster
 	
-	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	if (hasSet[2] == nil) then
+		hasSet[2] = 1
+		Timers:CreateTimer(0, function()
+			caster:SetMana(caster:GetMaxMana())
+				for abilitySlot=0,15 do
+					local ability = caster:GetAbilityByIndex(abilitySlot)
+					if ability ~= nil then 
+						ability:EndCooldown()
+					end
+				end
+				return 0.1
+			end)
+	end
 end
 
 
