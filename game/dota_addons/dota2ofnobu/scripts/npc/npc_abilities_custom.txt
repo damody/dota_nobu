@@ -308,7 +308,7 @@
 		}
 		"AbilityDamage"	"150 300 450 600"
 	}
-
+	// 宮本武藏 
 	"C19W"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -4621,7 +4621,7 @@
 	"A17W"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"BTNFire"
+		"AbilityTextureName"	"A17W"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -4636,6 +4636,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/a17w.vsndevts"
+			"particle"	"particles/a17w/a17w.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -4659,7 +4660,7 @@
 	"A17E"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"BTNFire"
+		"AbilityTextureName"	"A17E"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -4752,7 +4753,7 @@
 	"A17R"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"caopi_tuxi"
+		"AbilityTextureName"	"A17R"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"R"
@@ -4798,5 +4799,138 @@
 				"crit_persent"	"200 250 300 350"
 			}
 		}
+	}
+	// 織田信長 深紅障壁
+	"A17T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"A17T"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"0"
+		"AbilityCastPoint"	"0.000"
+		"AbilityCooldown"	"22.0 17.0 12.00"
+		"AbilityManaCost"	"100 125 150 175"
+		"precache"
+		{
+			"particle"	"particles/a17t/a17_funnel.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A17T"
+				"Target"	"CASTER"
+				"Duration"	"%duration"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua"
+				"Function"		"A17T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A17T"
+			{
+				"OverrideAnimation"	"ACT_DOTA_VICTORY"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStart"
+						"Target"	"CASTER"
+					}
+				}
+				"ThinkInterval"	"%bladestorm_damage_tick"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%bladestorm_radius"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"	"DAMAGE_TYPE_PHYSICAL"
+								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+							}
+							// Custom Building Damage
+							"RunScript"
+							{
+								"ScriptFile"	"buildings/damage.lua"
+								"Function"	"DoBuildingDamage"
+								"Target"
+								{
+									"Center"	"TARGET"
+									"Radius"	"%radius"
+									"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Types"	"DOTA_UNIT_TARGET_BASIC"
+									"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+								}
+								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+							}
+							"FireSound"
+							{
+								"EffectName"	"Hero_Juggernaut.BladeFury.Impact"
+								"Target"	"TARGET"
+							}
+						}
+					}
+				}
+				"OnDestroy"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStop"
+						"Target"	"CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/blademaster/bladestorm.lua"
+						"Function"	"BladeFuryStop"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bladestorm_damage_tick"	"0.2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bladestorm_radius"	"400"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"7.0 7.0 7.0 7.0"
+			}
+		}
+		"AbilityDamage"	"290 400 510"
 	}
 }

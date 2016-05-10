@@ -13,9 +13,12 @@ function A17W( keys )
 	local ability = keys.ability
 	local id  = caster:GetPlayerID()
 	local casterLocation = keys.target_points[1]
+	local damage = ability:GetLevelSpecialValueFor( "A17W_damage", ability:GetLevel() - 1 )
 	local startAttackSound = "Ability.PowershotPull"
 	local startTraverseSound = "Ability.Powershot"
-	local forwardVec = casterLocation - caster:GetAbsOrigin()
+	local origin_pos = caster:GetAbsOrigin()
+	local forwardVec = casterLocation - origin_pos
+	local Distance = 2100
 	forwardVec = forwardVec:Normalized()
 	caster:EmitSound( "A17W.lagunablade_impact" )
 	-- Stop sound event and fire new one, can do this in datadriven but for continuous purpose, let's put it here
@@ -27,7 +30,7 @@ function A17W( keys )
 	local projectileTable = {
 		Ability = ability,
 		EffectName = "particles/a17w/a17w.vpcf",
-		vSpawnOrigin = caster:GetAbsOrigin(),
+		vSpawnOrigin = origin_pos,
 		fDistance = 2100,
 		fStartRadius = RADIUS,
 		fEndRadius = RADIUS,
@@ -42,10 +45,26 @@ function A17W( keys )
 	ProjectileManager:CreateLinearProjectile( projectileTable )
 	
 	-- Register units around caster
-	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, RADIUS,
-			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
-
-	
+	local elapsed_time = 0
+	Timers:CreateTimer( 0.1, 
+		function()
+			elapsed_time = elapsed_time + 0.1
+			local len = 2000 * elapsed_time
+			local pos = origin_pos + forwardVec * len
+			local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, RADIUS,
+				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false )
+			for _,it in pairs(enemies) do
+				if (not(it:IsBuilding())) then
+					ApplyDamage({ victim = it, attacker = caster, damage = damage, 
+						damage_type = ability:GetAbilityDamageType() , ability = ability})
+				end
+			end
+			if (len < Distance) then
+				return 0.1
+			else
+				return nil
+			end
+		end )
 end
 
 
@@ -134,7 +153,24 @@ function A17R( keys )
 	end
 end
 
-
-
-
+function A17T( keys )
+	local caster = keys.caster
+	local skill = keys.ability
+	local id  = caster:GetPlayerID()
+	local ran =  RandomInt(0, 100)
+	local tornado = ParticleManager:CreateParticle("particles/a17t/a17_funnel.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	local timecount = 0
+	Timers:CreateTimer(0, function()
+		local pos = caster:GetAbsOrigin()
+		ParticleManager:SetParticleControl(tornado, 3, pos)
+		timecount = timecount + 0.1
+		if (timecount < 7) then
+			return 0.1
+		else
+			ParticleManager:DestroyParticle(tornado, false)
+			return nil
+		end
+	end)
+	
+end
 
