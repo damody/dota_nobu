@@ -3,6 +3,27 @@
 	C09R_B = {}
 --ednglobal
 
+function C09W_sound( keys )
+	local caster = keys.caster
+	caster:EmitSound( "C09W.sound"..RandomInt(1, 3) )
+end
+
+function C09W( keys )
+	local caster = keys.caster
+	local skill = keys.ability
+
+	--判斷有沒有R技的modifier
+	if caster:HasModifier("modifier_C09R") then
+
+		--刪除血刃魔法特效
+		caster:RemoveModifierByName("modifier_C09R")
+
+		--給予攻速技能
+		skill:ApplyDataDrivenModifier(caster, caster,"modifier_C09W_2",nil)
+
+	end
+end
+
 function C09E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	local dmg = 0
 	local SEARCH_RADIUS = 300
@@ -51,7 +72,13 @@ function C09E_Mitsuhide_Akechi_Effect( keys, skillcount )
 		AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09E",nil)
 	end
-
+	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
+	dummy:EmitSound( "C09E.sound" )
+	Timers:CreateTimer( 0.5, function()
+					dummy:ForceKill( true )
+					return nil
+				end
+			)
 
 	--particle
 	local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",PATTACH_WORLDORIGIN,caster)
@@ -149,27 +176,6 @@ function C09R( keys )
 end
 
 
--- 可以在別的技能刪除另外一個技能的modifier
--- 問題可以洗 如何判斷每人一個計時器
-
-function C09W( keys )
-	local caster = keys.caster
-	local skill = keys.ability
-
-	--判斷有沒有R技的modifier
-	if caster:HasModifier("modifier_C09R") then
-
-		--刪除血刃魔法特效
-		caster:RemoveModifierByName("modifier_C09R")
-
-		--給予攻速技能
-		skill:ApplyDataDrivenModifier(caster, caster,"modifier_C09W_2",nil)
-
-	end
-
-end
-
-
 function C09T_Mitsuhide_Akechi_Effect( keys, point )
 	local dmg = 84
 	local SEARCH_RADIUS = 260
@@ -177,8 +183,13 @@ function C09T_Mitsuhide_Akechi_Effect( keys, point )
 	local level = keys.ability:GetLevel()
 
 	Timers:CreateTimer(0.45, function()
-		--debug
-		GameRules: SendCustomMessage(tostring(dmg),DOTA_TEAM_GOODGUYS,0)
+		local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
+		dummy:EmitSound( "C09T.sound" )
+		Timers:CreateTimer( 0.5, function()
+						dummy:ForceKill( true )
+						return nil
+					end
+				)
 		-- 砍樹
 		GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
 		direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,

@@ -312,6 +312,7 @@ A11E_modifier = class ({})
 
 function A11E_modifier:OnCreated( event )
 	local ability = self:GetAbility()
+	self:GetParent():EmitSound("A11E.sound")
 	self.hook_width = ability:GetSpecialValueFor("hook_width")
 	self.hook_distance = ability:GetSpecialValueFor("hook_distance")
 	self.hook_damage = ability:GetSpecialValueFor("hook_damage")

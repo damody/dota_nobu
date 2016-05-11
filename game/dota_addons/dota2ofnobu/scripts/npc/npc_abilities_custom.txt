@@ -308,7 +308,8 @@
 		}
 		"AbilityDamage"	"150 300 450 600"
 	}
-	// 宮本武藏 
+
+	// 宮本武藏
 	"C19W"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -597,6 +598,7 @@
 		"AbilityManaCost"	"80 105 125 145"
 		"precache"
 		{
+			"soundfile"	"soundevents/c09w.vsndevts"
 			"particle"	"particles/c09/xun_zhimingjiejie_damage.vpcf"
 			"particle"	"particles/c09/c09w_hide.vpcf"
 		}
@@ -633,6 +635,12 @@
 						}
 						"Action"
 						{
+							"RunScript"
+							{
+								"Target"	"CASTER"
+								"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09_Mitsuhide_Akechi.lua"
+								"Function"	"C09W_sound"
+							}
 							"Damage"
 							{
 								"Target"	"TARGET"
@@ -715,7 +723,7 @@
 		"AOERadius"	"300"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"soundfile"	"soundevents/c09e.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		"OnSpellStart"
@@ -725,11 +733,6 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09_Mitsuhide_Akechi.lua"
 				"Function"	"C09E_Mitsuhide_Akechi"
 				"Target"	"POINT"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Lina.DragonSlave"
-				"Target"	"CASTER"
 			}
 		}
 		"Modifiers"
@@ -892,7 +895,7 @@
 		"AOERadius"	"%C09T_Radius"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"soundfile"	"soundevents/c09t.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		"OnSpellStart"
@@ -2147,7 +2150,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
+			"soundfile"	"soundevents/a11e.vsndevts"
 			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook_chain.vpcf"
 			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
 			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook.vpcf"
@@ -2326,6 +2329,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
+			"particle"	"particles/a11t/a11t.vpcf"
 			"particle"	"particles/units/heroes/hero_tinker/tinker_machine.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
@@ -2384,6 +2388,7 @@
 					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnDestroy"
 				{
@@ -2898,17 +2903,7 @@
 		}
 	}
 
-	// Rewrite of Abaddon Borrowed Time
-	// Author: Noya
-	// Date: October 13, 2015
-	// Version: 6.78
-	// Type: Datadriven
-	// Notes: The damage isn't really prevented, just healed twice so it looks like every damage instance is a heal.
-	// 	  	  This is not consistent with the Dota 2 mechanics for damage absorb, which has effects like denying lifesteal
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_abaddon/borrowed_time.lua
+	// 本多忠勝 毫髮無傷
 	"A07W"
 	{
 		// General
@@ -3020,142 +3015,7 @@
 		}
 	}
 
-	// Rewrite of Abaddon Borrowed Time
-	// Author: Noya
-	// Date: October 13, 2015
-	// Version: 6.78
-	// Type: Datadriven
-	// Notes: The damage isn't really prevented, just healed twice so it looks like every damage instance is a heal.
-	// 	  	  This is not consistent with the Dota 2 mechanics for damage absorb, which has effects like denying lifesteal
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_abaddon/borrowed_time.lua
-	"A04R"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"cps_a07_1"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"HotKeyOverride"	"W"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.3"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0 0 0"
-		"AOERadius"	"400"
-		"precache"
-		{
-			"particle"	"particles/a07w5/a07w5.vpcf"
-			"particle"	"particles/a07e/a07e.vpcf"
-			"particle"	"particles/a07w3/a07w3.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
-			"particle"	"particles/a07w3/a07w3.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_A04R"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Abaddon.BorrowedTime"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-				"Function"	"A04R_spell_start"
-				"Target"	"TARGET"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_A04R"
-			{
-				"IsBuff"	"1"
-				"EffectName"	"particles/a07w3/a07w3.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-						"Function"	"A04R_damage_check"
-						"DamageTaken"	"%attack_damage"
-					}
-				}
-				"Properties"	{}
-				"States"	{}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"Target"	"CASTER"
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-						"Function"	"A04R_EndShieldParticle"
-					}
-				}
-				"Duration"	"10"
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"hp_threshold"	"400"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"3.0 4.0 5.0"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration_scepter"	"5.0 6.0 7.0"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"redirect"	"0.35"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"redirect_range_tooltip_scepter"	"900"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"shield_float"	"500"
-			}
-		}
-	}
-
-	// Rewrite of the Kunkka Tidebringer ability
-	// Author: kritth
-	// Date: February 24, 2016
-	// Version: 6.85
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_kunkka/tidebringer.lua
+	// 本多忠勝 碎擊槍
 	"A07R"
 	{
 		// General
@@ -3204,7 +3064,7 @@
 						{
 							"CleaveAttack"
 							{
-								"CleavePercent"	"45"
+								"CleavePercent"	"40"
 								"CleaveRadius"	"%radius"
 								"CleaveEffect"	"particles/a07r/a07r.vpcf"
 							}
@@ -3231,18 +3091,7 @@
 		}
 	}
 
-	// Rewrite of the Kunkka Torrent ability
-	// Author: kritth
-	// Date: February 24, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_kunkka/torrent.lua
-	//
-	// Unit files:
-	// scripts/npc/units/npc_dummy_unit.txt
+	// 本多忠勝 赤雷擊
 	"A07E"
 	{
 		// General
@@ -3415,18 +3264,7 @@
 		}
 	}
 
-	// Rewrite of the Dragon Knight Elder Dragon Form
-	// Author: chrislotix,Pizzalol
-	// Date: January 27, 2016
-	// Version: 6.86
-	// Type: Datadriven/Lua
-	// NOTES: #1 Dragon Form is always a Green Dragon
-	// #2 Autoattack projectile model will be the most recent dragon form AA model
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_dragon_knight/elder_dragon_form.lua
-	// scripts/vscripts/heroes/hero_dragon_knight/modifiers/modifier_elder_dragon_form_model_lua.lua
+	// 本多忠勝 戰國最強．啟動
 	"A07T"
 	{
 		// General
@@ -3506,9 +3344,10 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_movement_speed"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.1"
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%damage"
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"60"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.8"
 				}
 				"Duration"	"45"
 				"IsBuff"	"1"
@@ -3563,6 +3402,7 @@
 		"AbilityModifierSupportValue"	"0.35"
 	}
 
+	// 本多忠勝 奮起
 	"A07D"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -4617,7 +4457,8 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"125 175 225 275"
 	}
-	// 織田信長 遠雷搖
+
+	// 織田信長 遠雷遙
 	"A17W"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -4656,6 +4497,7 @@
 			}
 		}
 	}
+
 	// 織田信長 厄災之棘
 	"A17E"
 	{
@@ -4676,6 +4518,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/a17e.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		"OnSpellStart"
@@ -4740,15 +4583,16 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"A17E_attack"	"12 23 34 45"
+				"A17E_attack"	"30 50 70 90"
 			}
-			"03"
+			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"A17E_damage"	"200 300 400 500"
 			}
 		}
 	}
+
 	// 織田信長 壓切
 	"A17R"
 	{
@@ -4789,6 +4633,12 @@
 						"Function"	"A17R"
 					}
 				}
+				"States"	{}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%A11R_attack"
+				}
+				"IsBuff"	"0"
 			}
 		}
 		"AbilitySpecial"
@@ -4798,8 +4648,14 @@
 				"var_type"	"FIELD_INTEGER"
 				"crit_persent"	"200 250 300 350"
 			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A11R_attack"	"12 24 34 48"
+			}
 		}
 	}
+
 	// 織田信長 深紅障壁
 	"A17T"
 	{
@@ -4817,7 +4673,8 @@
 		"AbilityManaCost"	"100 125 150 175"
 		"precache"
 		{
-			"particle"	"particles/a17t/a17_funnel.vpcf"
+			"particle"	"particles/a17t/a17t_funnel.vpcf"
+			"particle"	"particles/a17t/a17t2_funnel.vpcf"
 			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
@@ -4834,7 +4691,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua"
-				"Function"		"A17T"
+				"Function"	"A17T"
 			}
 		}
 		"Modifiers"
@@ -4932,5 +4789,122 @@
 			}
 		}
 		"AbilityDamage"	"290 400 510"
+	}
+
+	// 竹中重治 霜之庇護
+	"A04R"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_a07_1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0 0 0"
+		"AOERadius"	"400"
+		"precache"
+		{
+			"particle"	"particles/a07w5/a07w5.vpcf"
+			"particle"	"particles/a07e/a07e.vpcf"
+			"particle"	"particles/a07w3/a07w3.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"particle"	"particles/a07w3/a07w3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A04R"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Abaddon.BorrowedTime"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
+				"Function"	"A04R_spell_start"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A04R"
+			{
+				"IsBuff"	"1"
+				"EffectName"	"particles/a07w3/a07w3.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
+						"Function"	"A04R_damage_check"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"Properties"	{}
+				"States"	{}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
+						"Function"	"A04R_EndShieldParticle"
+					}
+				}
+				"Duration"	"10"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hp_threshold"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"3.0 4.0 5.0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration_scepter"	"5.0 6.0 7.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"redirect"	"0.35"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"redirect_range_tooltip_scepter"	"900"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"shield_float"	"500"
+			}
+		}
 	}
 }

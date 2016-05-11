@@ -158,11 +158,47 @@ function A17T( keys )
 	local skill = keys.ability
 	local id  = caster:GetPlayerID()
 	local ran =  RandomInt(0, 100)
-	local tornado = ParticleManager:CreateParticle("particles/a17t/a17_funnel.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	local tornado = ParticleManager:CreateParticle("particles/a17t/a17t_funnel.vpcf", PATTACH_ABSORIGIN, keys.caster)
 	local timecount = 0
+	local small_tornado_count = 0
 	Timers:CreateTimer(0, function()
 		local pos = caster:GetAbsOrigin()
 		ParticleManager:SetParticleControl(tornado, 3, pos)
+		timecount = timecount + 0.1
+		small_tornado_count = small_tornado_count + 1
+		if (small_tornado_count % 4 == 0) then
+			A17T2(keys)
+		end
+		if (timecount < 7) then
+			return 0.1
+		else
+			ParticleManager:DestroyParticle(tornado, false)
+			return nil
+		end
+	end)
+	
+end
+
+function A17T2( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local id  = caster:GetPlayerID()
+	local ran =  RandomInt(0, 100)
+	local tornado = ParticleManager:CreateParticle("particles/a17t/a17t2_funnel.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	local timecount = 0
+	local movedir = RandomVector(10)
+	local pos = caster:GetAbsOrigin()
+
+	Timers:CreateTimer(0, function()
+		pos = pos + movedir
+		ParticleManager:SetParticleControl(tornado, 3, pos)
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, nil, 150, 
+			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, 0, 0, false )
+		for _,it in pairs(enemies) do
+			ApplyDamage({ victim = it, attacker = caster, damage = 6, 
+				damage_type = ability:GetAbilityDamageType() , ability = ability})
+		end
+
 		timecount = timecount + 0.1
 		if (timecount < 7) then
 			return 0.1
