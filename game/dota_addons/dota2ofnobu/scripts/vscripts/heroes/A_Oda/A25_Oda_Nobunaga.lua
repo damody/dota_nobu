@@ -1,26 +1,26 @@
 --global
-local A17R_noncrit_count = 0
-local A17R_level = 0
+local A25R_noncrit_count = 0
+local A25R_level = 0
 --ednglobal
 
-LinkLuaModifier( "A17R_critical", "scripts/vscripts/heroes/A_Oda/A17_Oda_Nobunaga.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "A25R_critical", "scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua",LUA_MODIFIER_MOTION_NONE )
 
 
 
 
-function A17W( keys )
+function A25W( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local id  = caster:GetPlayerID()
 	local casterLocation = keys.target_points[1]
-	local damage = ability:GetLevelSpecialValueFor( "A17W_damage", ability:GetLevel() - 1 )
+	local damage = ability:GetLevelSpecialValueFor( "A25W_damage", ability:GetLevel() - 1 )
 	local startAttackSound = "Ability.PowershotPull"
 	local startTraverseSound = "Ability.Powershot"
 	local origin_pos = caster:GetAbsOrigin()
 	local forwardVec = casterLocation - origin_pos
 	local Distance = 2100
 	forwardVec = forwardVec:Normalized()
-	caster:EmitSound( "A17W.lagunablade_impact" )
+	caster:EmitSound( "A25W.lagunablade_impact" )
 	-- Stop sound event and fire new one, can do this in datadriven but for continuous purpose, let's put it here
 	StopSoundEvent( startAttackSound, caster )
 	StartSoundEvent( startTraverseSound, caster )
@@ -73,14 +73,14 @@ end
 
 --EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-function A17E( keys )
+function A25E( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local id  = caster:GetPlayerID()
 	local casterLocation = keys.target_points[1]
-	local range = ability:GetLevelSpecialValueFor( "A17E_range", ability:GetLevel() - 1 )
-	local dura = ability:GetLevelSpecialValueFor( "A17E_Duration", ability:GetLevel() - 1 )
-	local damage = ability:GetLevelSpecialValueFor( "A17E_damage", ability:GetLevel() - 1 )
+	local range = ability:GetLevelSpecialValueFor( "A25E_range", ability:GetLevel() - 1 )
+	local dura = ability:GetLevelSpecialValueFor( "A25E_Duration", ability:GetLevel() - 1 )
+	local damage = ability:GetLevelSpecialValueFor( "A25E_damage", ability:GetLevel() - 1 )
 	for i=1,40 do
 		local pos = casterLocation + RandomVector(RandomInt(50 , range-50))
 		local spike = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit_spikes.vpcf", PATTACH_ABSORIGIN, keys.caster)
@@ -92,11 +92,11 @@ function A17E( keys )
 		if (not(it:IsBuilding())) then
 			ApplyDamage({ victim = it, attacker = caster, damage = damage, 
 				damage_type = ability:GetAbilityDamageType() , ability = ability})
-			ability:ApplyDataDrivenModifier( caster, it, "modifier_A17E", {duration = dura} )
+			ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
 		end
 	end
 	local dummy = CreateUnitByName( "npc_dummy", casterLocation, false, caster, caster, caster:GetTeamNumber() )
-	dummy:EmitSound( "A17E.spiked_carapace" )
+	dummy:EmitSound( "A25E.spiked_carapace" )
 	Timers:CreateTimer( 0.5, function()
 					dummy:ForceKill( true )
 					return nil
@@ -109,51 +109,51 @@ end
 
 --RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-A17R_critical = class({})
+A25R_critical = class({})
 
-function A17R_critical:IsHidden()
+function A25R_critical:IsHidden()
 	return true
 end
 
-function A17R_critical:DeclareFunctions()
+function A25R_critical:DeclareFunctions()
 	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
 end
 
-function A17R_critical:GetModifierPreAttack_CriticalStrike()
-	return A17R_level*50 + 150
+function A25R_critical:GetModifierPreAttack_CriticalStrike()
+	return A25R_level*50 + 150
 end
 
-function A17R_critical:CheckState()
+function A25R_critical:CheckState()
 	local state = {
 	}
 	return state
 end
 
 
-function A17R_Levelup( keys )
+function A25R_Levelup( keys )
 	local caster = keys.caster
 	local level = keys.ability:GetLevel()
-	A17R_level = level
+	A25R_level = level
 end
 
-function A17R( keys )
+function A25R( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local id  = caster:GetPlayerID()
 	local ran =  RandomInt(0, 100)
 	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
 		if (ran > 20) then
-			A17R_noncrit_count = A17R_noncrit_count + 1
+			A25R_noncrit_count = A25R_noncrit_count + 1
 		end
-		if (A17R_noncrit_count > 5 or ran <= 20) then
-			A17R_noncrit_count = 0
+		if (A25R_noncrit_count > 5 or ran <= 20) then
+			A25R_noncrit_count = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-			caster:AddNewModifier(caster, skill, "A17R_critical", { duration = 0.1 } )
+			caster:AddNewModifier(caster, skill, "A25R_critical", { duration = 0.1 } )
 		end
 	end
 end
 
-function A17T( keys )
+function A25T( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local id  = caster:GetPlayerID()
@@ -167,7 +167,7 @@ function A17T( keys )
 		timecount = timecount + 0.1
 		small_tornado_count = small_tornado_count + 1
 		if (small_tornado_count % 4 == 0) then
-			A17T2(keys)
+			A25T2(keys)
 		end
 		if (timecount < 7) then
 			return 0.1
@@ -179,7 +179,7 @@ function A17T( keys )
 	
 end
 
-function A17T2( keys )
+function A25T2( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local id  = caster:GetPlayerID()

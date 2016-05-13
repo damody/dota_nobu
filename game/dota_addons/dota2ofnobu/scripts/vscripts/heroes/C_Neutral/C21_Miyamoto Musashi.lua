@@ -1,9 +1,9 @@
 --global
-	udg_C19T_LV = {}
-	udg_C19T_Table  = {}
-	udg_C19T_Boolean = {}
-	udg_C19T_Index = {}
-	udg_C19T_LV = {}
+	udg_C21T_LV = {}
+	udg_C21T_Table  = {}
+	udg_C21T_Boolean = {}
+	udg_C21T_Index = {}
+	udg_C21T_LV = {}
 
 
 	bj_PI                            = 3.14159
@@ -11,7 +11,7 @@
 	bj_DEGTORAD                      = bj_PI/180.0
 --ednglobal
 
-function C19T_Effect(u,u2,i)
+function C21T_Effect(u,u2,i)
 	local  r = 0
 	local  point = u:GetAbsOrigin()
 	local  x = point.x
@@ -63,10 +63,10 @@ function C19T_Effect(u,u2,i)
 end
 
 
-function C19T_Copy(u,i)
+function C21T_Copy(u,i)
 	local  team  = u:GetTeamNumber()
 	local  point = u:GetAbsOrigin()
-	local  tu   = CreateUnitByName("C19T_SE",point,true,nil,nil,team)
+	local  tu   = CreateUnitByName("C21T_SE",point,true,nil,nil,team)
 
 	-- --播放動畫(透明度50%,顏色要改金),隨機播放攻擊動作	
 	tu: SetRenderColor(0,0,0)
@@ -74,11 +74,11 @@ function C19T_Copy(u,i)
 	-- call SetUnitAnimation(u,"Attack Slam")
 
 	-- --紀錄特效單位在群組
-	table.insert(udg_C19T_Table[i],tu)
+	table.insert(udg_C21T_Table[i],tu)
 
 end
 
-function Trig_C19TActions( keys )
+function Trig_C21TActions( keys )
 	local  u 	 = keys.caster --施法單位
 	local  u2 	 = keys.target --目標單位
     local  i 	 = u:GetPlayerID() --獲取玩家ID
@@ -87,25 +87,25 @@ function Trig_C19TActions( keys )
     local  ti 		= 0
 
     --global set
-    udg_C19T_Table[i]={}
-	udg_C19T_Index[i] = 1
-	udg_C19T_LV[i]  = keys.ability:GetLevel()--獲取技能等級
+    udg_C21T_Table[i]={}
+	udg_C21T_Index[i] = 1
+	udg_C21T_LV[i]  = keys.ability:GetLevel()--獲取技能等級
 
 	--call function
-	C19T_Copy(u,i)
-	C19T_Effect(u,u2,i)
+	C21T_Copy(u,i)
+	C21T_Effect(u,u2,i)
 
 	--斬擊次數判斷
-	if udg_C19T_LV[i] ==1 then
+	if udg_C21T_LV[i] ==1 then
 		ti=5
-	elseif udg_C19T_LV[i] ==2 then
+	elseif udg_C21T_LV[i] ==2 then
 		ti=6
-	elseif udg_C19T_LV[i] ==3 then
+	elseif udg_C21T_LV[i] ==3 then
 		ti=7
 	end	
 
 	--timer
-	AMHC:Timer( "C19T_T1"..tostring(i),function( )
+	AMHC:Timer( "C21T_T1"..tostring(i),function( )
 
     	ti = ti - 1 
 
@@ -127,21 +127,21 @@ function Trig_C19TActions( keys )
         	u2 = group[RandomInt(1,#group)]
 
         	--call function
-			C19T_Copy(u,i)
-			C19T_Effect(u,u2,i)
+			C21T_Copy(u,i)
+			C21T_Effect(u,u2,i)
 
 			return 0.33    
 		else 
 
 			--清理分身
-			for ii,unit in pairs(udg_C19T_Table[i]) do
+			for ii,unit in pairs(udg_C21T_Table[i]) do
 
             	--刪除單位
                 unit:ForceKill(false)
                 unit:Destroy()
 
                 --刪除無敵
-                u:RemoveModifierByName("modifier_C19T")
+                u:RemoveModifierByName("modifier_C21T")
 
             end
 
@@ -153,7 +153,7 @@ function Trig_C19TActions( keys )
 end
 
 
-function Trig_C19EActions(keys)
+function Trig_C21EActions(keys)
 	local  u 	 = keys.caster --施法單位
 	local  u2 	 = keys.target --目標單位
     local  id	 = u:GetPlayerID() --獲取玩家ID
@@ -162,11 +162,11 @@ function Trig_C19EActions(keys)
     local  time = keys.ability:GetLevel()--獲取技能等級
 
     --timer2
-	AMHC:Timer( "C19T_E1"..tostring(id),function( )
+	AMHC:Timer( "C21T_E1"..tostring(id),function( )
 
 			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
 				--刪除無敵
-                u:RemoveModifierByName("modifier_C19E")
+                u:RemoveModifierByName("modifier_C21E")
 				return nil 
 			else
 				point = u:GetAbsOrigin()
@@ -209,9 +209,9 @@ function Trig_C19EActions(keys)
 end
 
 
-function Trig_C19WActions(keys)
+function Trig_C21WActions(keys)
 	local caster = keys.caster --unit
-	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_C19W",nil)
+	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_C21W",nil)
 
 	--debug
 	GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)

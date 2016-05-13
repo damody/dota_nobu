@@ -1,30 +1,30 @@
 --global
-	C09E_B = {}
-	C09R_B = {}
+	C01E_B = {}
+	C01R_B = {}
 --ednglobal
 
-function C09W_sound( keys )
+function C01W_sound( keys )
 	local caster = keys.caster
-	caster:EmitSound( "C09W.sound"..RandomInt(1, 3) )
+	caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
 end
 
-function C09W( keys )
+function C01W( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 
 	--判斷有沒有R技的modifier
-	if caster:HasModifier("modifier_C09R") then
+	if caster:HasModifier("modifier_C01R") then
 
 		--刪除血刃魔法特效
-		caster:RemoveModifierByName("modifier_C09R")
+		caster:RemoveModifierByName("modifier_C01R")
 
 		--給予攻速技能
-		skill:ApplyDataDrivenModifier(caster, caster,"modifier_C09W_2",nil)
+		skill:ApplyDataDrivenModifier(caster, caster,"modifier_C01W_2",nil)
 
 	end
 end
 
-function C09E_Mitsuhide_Akechi_Effect( keys, skillcount )
+function C01E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	local dmg = 0
 	local SEARCH_RADIUS = 300
 	local caster = keys.caster
@@ -53,7 +53,7 @@ function C09E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsTower())) then
 			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09E",nil)
+			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E",nil)
 		end
 	end
 
@@ -70,10 +70,10 @@ function C09E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
 		AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09E",nil)
+		keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E",nil)
 	end
 	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
-	dummy:EmitSound( "C09E.sound" )
+	dummy:EmitSound( "C01E.sound" )
 	Timers:CreateTimer( 0.5, function()
 					dummy:ForceKill( true )
 					return nil
@@ -93,7 +93,7 @@ end
 
 
 -- 傳入單位盡量統一名稱用keys
-function C09E_Mitsuhide_Akechi ( keys )
+function C01E_Mitsuhide_Akechi ( keys )
 	local caster = keys.caster --unit
 	local caster_abs = caster:GetAbsOrigin() -- vectorv
 	local point = keys.target_points[1] 
@@ -103,10 +103,10 @@ function C09E_Mitsuhide_Akechi ( keys )
 	local skillcount = 0
 
 	--判斷有沒有R技的modifier
-	if caster:HasModifier("modifier_C09R") then
+	if caster:HasModifier("modifier_C01R") then
 
 		--刪除血刃魔法特效
-		caster:RemoveModifierByName("modifier_C09R")
+		caster:RemoveModifierByName("modifier_C01R")
 
 		b = true
 	else
@@ -115,7 +115,7 @@ function C09E_Mitsuhide_Akechi ( keys )
 
 	--timer : 第一次火焰
     Timers:CreateTimer(time, function()
-    	C09E_Mitsuhide_Akechi_Effect(keys, skillcount, caster,level,point)
+    	C01E_Mitsuhide_Akechi_Effect(keys, skillcount, caster,level,point)
         return nil -- 每秒再次调用
     end)
 
@@ -135,7 +135,7 @@ function C09E_Mitsuhide_Akechi ( keys )
         		b 	= false
 
         		--效果
-        		C09E_Mitsuhide_Akechi_Effect(keys, skillcount, caster,level,point)
+        		C01E_Mitsuhide_Akechi_Effect(keys, skillcount, caster,level,point)
 
         		return 0.7
         	else
@@ -148,21 +148,21 @@ function C09E_Mitsuhide_Akechi ( keys )
 end
 
 
-function C09R( keys )
+function C01R( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local time = 10.00
 	local id  = caster:GetPlayerID()
 
 	--debug
-	if C09R_B[id] == nil then
+	if C01R_B[id] == nil then
 
 		--timer
 	    Timers:CreateTimer(time, function()
 
 			--如果沒有R技的modifier，就給予modifer
-	    	if caster:HasModifier("modifier_C09R") == false then
-	    		skill:ApplyDataDrivenModifier(caster,caster,"modifier_C09R",nil)
+	    	if caster:HasModifier("modifier_C01R") == false then
+	    		skill:ApplyDataDrivenModifier(caster,caster,"modifier_C01R",nil)
 	    	end
 	        return time -- 每10秒再次调用
 	    end)
@@ -171,12 +171,12 @@ function C09R( keys )
 
 	--avoid
 	--避免二次創造計時器
-	C09R_B[id] = true
+	C01R_B[id] = true
 
 end
 
 
-function C09T_Mitsuhide_Akechi_Effect( keys, point )
+function C01T_Mitsuhide_Akechi_Effect( keys, point )
 	local dmg = 84
 	local SEARCH_RADIUS = 260
 	local caster = keys.caster
@@ -184,7 +184,7 @@ function C09T_Mitsuhide_Akechi_Effect( keys, point )
 
 	Timers:CreateTimer(0.45, function()
 		local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
-		dummy:EmitSound( "C09T.sound" )
+		dummy:EmitSound( "C01T.sound" )
 		Timers:CreateTimer( 0.5, function()
 						dummy:ForceKill( true )
 						return nil
@@ -206,7 +206,7 @@ function C09T_Mitsuhide_Akechi_Effect( keys, point )
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
 				AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09T",nil)
+				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01T",nil)
 			else
 				AMHC:Damage(caster,it,dmg*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
@@ -225,7 +225,7 @@ function C09T_Mitsuhide_Akechi_Effect( keys, point )
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
 			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09T",nil)
+			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01T",nil)
 		end
 		return nil
 	end)
@@ -240,23 +240,23 @@ function C09T_Mitsuhide_Akechi_Effect( keys, point )
 end
 
 
-function C09T_Mitsuhide_Akechi( keys )
+function C01T_Mitsuhide_Akechi( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
 	local level = keys.ability:GetLevel()
 	local skillcount = 0
-	local skillmax = keys.ability:GetLevelSpecialValueFor("C09T_Amount",level-1)
+	local skillmax = keys.ability:GetLevelSpecialValueFor("C01T_Amount",level-1)
 	--大絕直徑
-	local sk_radius = keys.ability:GetLevelSpecialValueFor("C09T_Radius",level-1)
+	local sk_radius = keys.ability:GetLevelSpecialValueFor("C01T_Radius",level-1)
 	sk_radius = sk_radius + 100
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, point, sk_radius+100, 6.0, false)
 	--轉半徑
 	sk_radius = sk_radius*0.5
 	Timers:CreateTimer(0.1, function()
 		if ( RandomInt(1, 10) > 3) then
-			C09T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(sk_radius))
+			C01T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(sk_radius))
 		else
-			C09T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(RandomInt(1, sk_radius*0.4)))
+			C01T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(RandomInt(1, sk_radius*0.4)))
 		end
 
 		if  ( (skillcount < skillmax) and caster:IsChanneling() ) then

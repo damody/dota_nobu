@@ -4,7 +4,7 @@
 	Called when Blink Dagger is cast.  Blinks the caster in the targeted direction.
 	Additional parameters: keys.MaxBlinkRange and keys.BlinkRangeClamp
 ================================================================================================================= ]]
-function A23E(keys)
+function A31E(keys)
 	ProjectileManager:ProjectileDodge(keys.caster)  --Disjoints disjointable incoming projectiles.
 	
 	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, keys.caster)
@@ -24,10 +24,10 @@ function A23E(keys)
 	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, keys.caster)
 end
 
-function A23W( keys )
+function A31W( keys )
 	local count = 0;
 	Timers:CreateTimer( 0, function()
-		A23W_2(keys)
+		A31W_2(keys)
 		count = count + 1
 		if (count < 100) then
 			return 0.1
@@ -47,7 +47,7 @@ function A23W( keys )
 	local damageType = ability:GetAbilityDamageType()
 	local second = 0
 	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
-	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_A23W", {duration = 10})
+	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_A31W", {duration = 10})
 	Timers:CreateTimer( 1, 
 		function()
 			second = second + 1
@@ -86,7 +86,7 @@ function A23W( keys )
 	
 end
 
-function A23W_2( keys )
+function A31W_2( keys )
 	local ability = keys.ability
 	local caster = keys.caster
 	local casterLocation = keys.target_points[1]
