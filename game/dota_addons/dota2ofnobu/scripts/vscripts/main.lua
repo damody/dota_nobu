@@ -74,7 +74,7 @@ function CEasyGameMode:InitGameMode()
   	GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 
   	--最大等級
-  	MaxLevel = 50
+  	MaxLevel = 100
 
 	-- 是否使用自定義的英雄經驗
   	GameRules:SetUseCustomHeroXPValues ( true )
@@ -112,7 +112,7 @@ function CEasyGameMode:OnGameRulesStateChange( keys )
 			local player = PlayerResource:GetPlayer(playerID)
 			if player then
 				if player:GetTeam() == DOTA_TEAM_BADGUYS then
-					player:SetTeam(DOTA_TEAM_GOODGUYS)
+					--player:SetTeam(DOTA_TEAM_GOODGUYS)
 				end
 			end
 		end

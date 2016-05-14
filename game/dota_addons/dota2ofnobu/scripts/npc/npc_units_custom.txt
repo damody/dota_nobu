@@ -1945,6 +1945,8 @@
 		// General
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/morphling/morphling.vmdl"
 		"ModelScale"	"1"
 		"Level"	"3"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
@@ -1963,23 +1965,23 @@
 		"AttackDamageMin"	"52.0"
 		"AttackDamageMax"	"62.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"0.95"
+		"AttackRate"	"1.25"
 		"AttackAnimationPoint"	"0.4"
 		"AttackAcquisitionRange"	"1000.00"
 		"AttackRange"	"475"
-		"ProjectileSpeed"	"1300,1300"
+		"ProjectileSpeed"	"1300"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"35.0"
-		"BountyGoldMax"	"35.0"
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
-		"GoldCost"	"35"
-		"LumberCost"	"35"
+		"GoldCost"	"25"
+		"LumberCost"	"25"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"460"
+		"MovementSpeed"	"400"
 		"MovementTurnRate"	"0.90"
 		// Status
 		// ----------------------------------------------------------------
@@ -2012,6 +2014,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"ProjectileModel"	"particles/a04w/a04w.vpcf"
 	}
 
 	// Creature: 熊

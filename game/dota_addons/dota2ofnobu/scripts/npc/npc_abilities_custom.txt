@@ -28,7 +28,6 @@
 		}
 	}
 
-
 	// =================================================================================================================
 	// Ability: Dummy
 	// =================================================================================================================
@@ -155,7 +154,8 @@
 			}
 		}
 	}
-		// 竹中重治 霜雀
+
+	// 竹中重治 霜雀
 	"A04D"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -198,15 +198,15 @@
 			}
 		}
 	}
-	
+
 	// 竹中重治 式神．水
-	"A04W" 
+	"A04W"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"morphling_full"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -233,7 +233,7 @@
 			}
 			"SpawnUnit"
 			{
-				"UnitName"	"A04W_SUMMEND_UNIT"
+				"UnitName"	"A04W_UNIT"
 				"UnitCount"	"%count"
 				"Duration"	"15"
 				"GrantsGold"	"35"
@@ -242,7 +242,7 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_A04R_summend"
+						"ModifierName"	"modifier_A04W_summend"
 					}
 					"ApplyModifier"
 					{
@@ -254,7 +254,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_A04R_summend"
+			"modifier_A04W_summend"
 			{
 				"IsHidden"	"1"
 				"OnCreated"
@@ -350,7 +350,7 @@
 			}
 		}
 	}
-	
+
 	// 竹中重治 凍結術
 	"A04E"
 	{
@@ -491,15 +491,16 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"0"
 	}
+
 	// 竹中重治 霜之庇護
 	"A04R"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"cps_a07_1"
+		"AbilityTextureName"	"crystal_maiden_crystal_nova"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -513,26 +514,27 @@
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0 0 0"
-		"AOERadius"	"400"
+		"AOERadius"	"435"
 		"precache"
 		{
 			"particle"	"particles/a07w5/a07w5.vpcf"
 			"particle"	"particles/a07e/a07e.vpcf"
 			"particle"	"particles/a07w3/a07w3.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
-			"particle"	"particles/a07w3/a07w3.vpcf"
+			"soundfile"	"sounds/weapons/hero/ancient_apparition/ice_vortex_cast.vsnd"
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts"
+			"particle"	"particles/a04r/a04r.vpcf"
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RemoveModifier"
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_A04R"
 			}
-			"FireSound"
+			"ApplyModifier"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Abaddon.BorrowedTime"
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A04R"
 			}
 			"RunScript"
 			{
@@ -540,13 +542,23 @@
 				"Function"	"A04R_spell_start"
 				"Target"	"TARGET"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Ancient_Apparition.Pick"
+			}
+			"Heal"
+			{
+				"Target"	"TARGET"
+				"HealAmount"	"150"
+			}
 		}
 		"Modifiers"
 		{
 			"modifier_A04R"
 			{
 				"IsBuff"	"1"
-				"EffectName"	"particles/a07w3/a07w3.vpcf"
+				"EffectName"	"particles/a04r/a04r.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"OnTakeDamage"
 				{
@@ -569,6 +581,7 @@
 					}
 				}
 				"Duration"	"10"
+				"ThinkInterval"	"0.03"
 			}
 		}
 		// Special
@@ -577,38 +590,13 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"hp_threshold"	"400"
-			}
-			"02"
-			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"3.0 4.0 5.0"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration_scepter"	"5.0 6.0 7.0"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"redirect"	"0.35"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"redirect_range_tooltip_scepter"	"900"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"shield_float"	"500"
+				"damage_absorb"	"250 375 500 625"
 			}
 		}
 	}
 
-	// 竹中重治 霜之庇護
+	// 竹中重治 霜之庇護HIDE
 	"A04R_HIDE"
 	{
 		// General
@@ -638,7 +626,7 @@
 			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
 			"particle"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
-			"particle"	"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"	"particles/a04e/a04e.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -662,10 +650,11 @@
 			{
 				"Target"
 				{
-					"Center"	"POINT"
+					"Center"	"CASTER"
 					"Radius"	"%radius"
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 					"Type"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_TREE"
 				}
 				"Action"
 				{
@@ -678,7 +667,7 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_crystal_nova_slow_datadriven"
+						"ModifierName"	"modifier_A04R_Freeze"
 					}
 				}
 			}
@@ -697,17 +686,16 @@
 		}
 		"Modifiers"
 		{
-			"modifier_crystal_nova_slow_datadriven"
+			"modifier_A04R_Freeze"
 			{
 				"Duration"	"%duration"
-				"EffectName"	"particles/generic_gameplay/generic_slowed_cold.vpcf"
-				"StatusEffectName"	"particles/status_fx/status_effect_frost_lich.vpcf"
-				"StatusEffectPriority"	"10"
-				"Properties"
+				"EffectName"	"particles/a04e/a04e.vpcf"
+				"Properties"	{}
+				"States"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed_slow"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_slow"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
+				"EffectAttachType"	"attach_origin"
 			}
 		}
 		// Special
@@ -717,39 +705,19 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"4.5"
+				"duration"	"0.5 0.7 0.9 1.1"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"movespeed_slow"	"-20 -30 -40 -50"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attackspeed_slow"	"-20 -30 -40 -50"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"vision_duration"	"6.0"
-			}
-			// Extra variable
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"vision_radius"	"900"
+				"radius"	"435"
 			}
 		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"100 150 200 250"
+		"AbilityDamage"	"250 375 500 625"
 	}
+
 	// 竹中重治 吹雪HIDE
 	"A04T_HIDE"
 	{
@@ -1016,6 +984,7 @@
 		// Primarily about the damage
 		"AbilityModifierSupportValue"	"0.35"
 	}
+
 	// 竹中重治 吹雪
 	"A04T"
 	{
@@ -1025,6 +994,9 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"0"
@@ -1033,6 +1005,11 @@
 		"AbilityChannelTime"	"8"
 		"AbilityChannelledManaCostPerSecond"	"0"
 		"AOERadius"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -1195,7 +1172,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dragon_knight_dragon_blood"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"FightRecapLevel"	"0"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -1428,7 +1405,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"huskar_life_break_alt"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"	"0"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"T"
@@ -1512,14 +1489,13 @@
 		"ItemDisassemblable"	"0"
 		"ItemDeclaresPurchase"	"0"
 	}
-	
 
 	// 本多忠勝 奮起
 	"A07D"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_a07_5"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"HotKeyOverride"	"D"
@@ -1937,11 +1913,14 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_a07_4"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -2068,8 +2047,6 @@
 		"AbilityModifierSupportValue"	"0.35"
 	}
 
-	
-
 	// 服部半藏 忍法．風行步
 	"A13D"
 	{
@@ -2153,7 +2130,7 @@
 			}
 		}
 	}
-	
+
 	// 服部半藏 忍法．影惑之術
 	"A13W"
 	{
@@ -2538,7 +2515,6 @@
 		"AbilityDamage"	"75 100 125"
 	}
 
-	
 	// 森蘭丸 響雨
 	"A31W"
 	{
@@ -2838,7 +2814,10 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"T"
 		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"	"0.4 0.4 0.4 0.4"
@@ -2847,6 +2826,7 @@
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_medusa/medusa_base_attack.vpcf"
+			"particle"	"particles/c09/necronomicon_archer_projectile.vpcf"
 			"particle"	"particles/c09/necronomicon_archer_projectile.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
 		}
@@ -2955,8 +2935,7 @@
 		}
 		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	}
-	
-	
+
 	// 織田信長 遠雷遙
 	"A25W"
 	{
@@ -3166,7 +3145,8 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"HotKeyOverride"	"T"
 		"MaxLevel"	"3"
-		"RequiredLevel"	"0"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0.000"
 		"AbilityCooldown"	"22.0 17.0 12.00"
 		"AbilityManaCost"	"100 125 150 175"
@@ -3289,7 +3269,7 @@
 		}
 		"AbilityDamage"	"290 400 510"
 	}
-	
+
 	// 本多正信 腐化靈光
 	"A33E"
 	{
@@ -3328,7 +3308,7 @@
 		}
 	}
 
-		// 真田幸村 真田勇士
+	// 真田幸村 真田勇士
 	"B06W"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -3486,7 +3466,7 @@
 		}
 		"AbilityDamage"	"100 180 260 340"
 	}
-		
+
 	// 真田幸村 連牙炎突HIDE
 	"B06E_HIDE"
 	{
@@ -3647,10 +3627,14 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_d06_4"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"particle"	"particles/b06t/b06t.vpcf"
@@ -3697,7 +3681,9 @@
 				}
 				"OnAttackLanded"
 				{
-					"FireSound"	{}
+					"FireSound"
+					{
+					}
 					"RunScript"
 					{
 						"Target"	"TARGET"
@@ -3736,7 +3722,7 @@
 			}
 		}
 	}
-	
+
 	// 淺井長政 一刀．牙
 	"B08W"
 	{
@@ -3870,6 +3856,7 @@
 		}
 		"AbilityDamage"	"150 300 450 600"
 	}
+
 	// 淺井長政 一刀．閃瞬
 	"B08E"
 	{
@@ -4027,6 +4014,7 @@
 			}
 		}
 	}
+
 	// 淺井長政 活心．魂
 	"B08R"
 	{
@@ -4108,6 +4096,10 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0.45 0.45 0.45 0.45"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		// Time
@@ -4228,7 +4220,6 @@
 		"AbilityDamage"	"800 1200 1600"
 	}
 
-	
 	// 明智光秀 血刃亂舞
 	"C01W"
 	{
@@ -4533,6 +4524,8 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"HotKeyOverride"	"T"
 		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"155"
 		"AbilityManaCost"	"275"
@@ -4620,7 +4613,7 @@
 			}
 		}
 	}
-	
+
 	// 宮本武藏
 	"C21W"
 	{
@@ -4766,7 +4759,7 @@
 		}
 		"AbilityDamage"	"225 275 325 375"
 	}
-	
+
 	// 宮本武藏 奧義．連環鋼破
 	"C21E"
 	{
@@ -4937,7 +4930,7 @@
 			}
 		}
 	}
-	
+
 	// 宮本武藏 祕奧義．飛翔烈震斬
 	"C21T"
 	{
@@ -4948,6 +4941,9 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"AbilityCooldown"	"115 95 75"
 		"AbilityManaCost"	"210"
 		"AbilityCastRange"	"600"
@@ -4985,7 +4981,7 @@
 			}
 		}
 	}
-	
+
 	// 佐佐木小次郎 嚴流
 	"C22D"
 	{
@@ -5035,7 +5031,7 @@
 			}
 		}
 	}
-	
+
 	// 佐佐木小次郎 祕劍．燕巢
 	"C22W"
 	{
@@ -5146,6 +5142,7 @@
 		}
 		"AbilityDamage"	"150 300 450 600"
 	}
+
 	// 佐佐木小次郎 祕劍．飛燕
 	"C22E"
 	{
@@ -5218,6 +5215,7 @@
 		}
 		"AbilityDamage"	"100 200 300 400"
 	}
+
 	// 佐佐木小次郎 祕劍．燕閃
 	"C22R"
 	{
@@ -5345,7 +5343,7 @@
 			}
 		}
 	}
-	
+
 	// 佐佐木小次郎 奧義．滅剎夢霞
 	"C22T"
 	{
@@ -5356,6 +5354,9 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"

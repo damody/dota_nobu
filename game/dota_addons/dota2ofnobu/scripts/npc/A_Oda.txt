@@ -76,7 +76,7 @@
 			}
 			"SpawnUnit"
 			{
-				"UnitName"	"A04W_SUMMEND_UNIT"
+				"UnitName"	"A04W_UNIT"
 				"UnitCount"	"%count"
 				"Duration"	"15"
 				"GrantsGold"	"35"
@@ -85,7 +85,7 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_A04R_summend"
+						"ModifierName"	"modifier_A04W_summend"
 					}
 					"ApplyModifier"
 					{
@@ -97,7 +97,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_A04R_summend"
+			"modifier_A04W_summend"
 			{
 				"IsHidden"	"1"
 				"OnCreated"
@@ -340,9 +340,9 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"cps_a07_1"
+		"AbilityTextureName"	"crystal_maiden_crystal_nova"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -356,26 +356,27 @@
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0 0 0"
-		"AOERadius"	"400"
+		"AOERadius"	"435"
 		"precache"
 		{
 			"particle"	"particles/a07w5/a07w5.vpcf"
 			"particle"	"particles/a07e/a07e.vpcf"
 			"particle"	"particles/a07w3/a07w3.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
-			"particle"	"particles/a07w3/a07w3.vpcf"
+			"soundfile"	"sounds/weapons/hero/ancient_apparition/ice_vortex_cast.vsnd"
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts"
+			"particle"	"particles/a04r/a04r.vpcf"
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RemoveModifier"
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_A04R"
 			}
-			"FireSound"
+			"ApplyModifier"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Abaddon.BorrowedTime"
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A04R"
 			}
 			"RunScript"
 			{
@@ -383,13 +384,23 @@
 				"Function"	"A04R_spell_start"
 				"Target"	"TARGET"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Ancient_Apparition.Pick"
+			}
+			"Heal"
+			{
+				"Target"	"TARGET"
+				"HealAmount"	"150"
+			}
 		}
 		"Modifiers"
 		{
 			"modifier_A04R"
 			{
 				"IsBuff"	"1"
-				"EffectName"	"particles/a07w3/a07w3.vpcf"
+				"EffectName"	"particles/a04r/a04r.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"OnTakeDamage"
 				{
@@ -412,6 +423,7 @@
 					}
 				}
 				"Duration"	"10"
+				"ThinkInterval"	"0.03"
 			}
 		}
 		// Special
@@ -420,38 +432,13 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"hp_threshold"	"400"
-			}
-			"02"
-			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"3.0 4.0 5.0"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration_scepter"	"5.0 6.0 7.0"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"redirect"	"0.35"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"redirect_range_tooltip_scepter"	"900"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"shield_float"	"500"
+				"damage_absorb"	"250 375 500 625"
 			}
 		}
 	}
 
-	// 竹中重治 霜之庇護
+	// 竹中重治 霜之庇護HIDE
 	"A04R_HIDE"
 	{
 		// General
@@ -481,7 +468,7 @@
 			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
 			"particle"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
-			"particle"	"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"	"particles/a04e/a04e.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -505,10 +492,11 @@
 			{
 				"Target"
 				{
-					"Center"	"POINT"
+					"Center"	"CASTER"
 					"Radius"	"%radius"
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 					"Type"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_TREE"
 				}
 				"Action"
 				{
@@ -521,7 +509,7 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_crystal_nova_slow_datadriven"
+						"ModifierName"	"modifier_A04R_Freeze"
 					}
 				}
 			}
@@ -540,17 +528,16 @@
 		}
 		"Modifiers"
 		{
-			"modifier_crystal_nova_slow_datadriven"
+			"modifier_A04R_Freeze"
 			{
 				"Duration"	"%duration"
-				"EffectName"	"particles/generic_gameplay/generic_slowed_cold.vpcf"
-				"StatusEffectName"	"particles/status_fx/status_effect_frost_lich.vpcf"
-				"StatusEffectPriority"	"10"
-				"Properties"
+				"EffectName"	"particles/a04e/a04e.vpcf"
+				"Properties"	{}
+				"States"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed_slow"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_slow"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
+				"EffectAttachType"	"attach_origin"
 			}
 		}
 		// Special
@@ -560,38 +547,17 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"4.5"
+				"duration"	"0.5 0.7 0.9 1.1"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"movespeed_slow"	"-20 -30 -40 -50"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attackspeed_slow"	"-20 -30 -40 -50"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"vision_duration"	"6.0"
-			}
-			// Extra variable
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"vision_radius"	"900"
+				"radius"	"435"
 			}
 		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"100 150 200 250"
+		"AbilityDamage"	"250 375 500 625"
 	}
 	// 竹中重治 吹雪HIDE
 	"A04T_HIDE"
@@ -876,6 +842,11 @@
 		"AbilityChannelTime"	"8"
 		"AbilityChannelledManaCostPerSecond"	"0"
 		"AOERadius"	"800"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
