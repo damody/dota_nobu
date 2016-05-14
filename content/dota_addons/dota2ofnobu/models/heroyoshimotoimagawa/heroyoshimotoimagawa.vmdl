@@ -3,11 +3,9 @@
 	_class = "CVModel"
 	m_meshList =
 	{
-		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
-				_class = "CVmesh"
 				m_meshName = "heroyoshimotoimagawa"
 				m_meshFile = "models/heroyoshimotoimagawa/heroyoshimotoimagawa.fbx"
 				m_materialSearchPath = ""
@@ -17,7 +15,19 @@
 				m_bExpensiveVertices = false
 				m_bIgnoreCloth = false
 				m_bGetSkinningFromLod0 = false
-				m_pMorphInfo = null
+				m_pMorphInfo =
+				{
+					m_bDisable = false
+					m_bBundleSpeed = true
+					m_bBundleWrinkle = true
+					m_nLookupType = 1
+					m_nEncodingType = 0
+					m_nWidthTarget = 64
+					m_nHeightTarget = 64
+					m_bFloatAtlas = false
+					m_bWriteAtlas = false
+					m_bBestFitAtlas = true
+				}
 			},
 		]
 	}
@@ -42,7 +52,6 @@
 	}
 	m_physicsMeshList =
 	{
-		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -59,16 +68,13 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
-				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
-						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Chest"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -95,7 +101,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -122,7 +127,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -149,7 +153,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -176,7 +179,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -203,7 +205,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -230,7 +231,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -257,7 +257,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -284,7 +283,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Weapon"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -311,7 +309,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -338,7 +335,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -365,7 +361,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -392,7 +387,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Weapon2"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -419,7 +413,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Head"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -446,7 +439,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "hips"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -473,7 +465,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -500,7 +491,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -535,13 +525,114 @@
 	]
 	m_pAttachmentLists =
 	[
+		{
+			_class = "CVattachmentListReference"
+			m_pObject =
+			{
+				m_name = ""
+				m_attachments =
+				[
+					{
+						m_name = "attach_origin"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_hitloc"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									77.569778,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack1"
+						m_influences =
+						[
+							{
+								m_influenceName = "Weapon"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences =
+						[
+							{
+								m_influenceName = "Weapon"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
 	]
 	m_pAnimGroup =
 	{
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
-			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -564,7 +655,6 @@
 			m_Vanim =
 			[
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_death"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_death.fbx"
 					m_nStartframe = 0
@@ -572,7 +662,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -589,7 +678,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE"
 							m_nWeight = 1
 						},
@@ -600,7 +688,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -622,7 +709,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -641,7 +727,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -649,7 +734,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_spell"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_spell.fbx"
 					m_nStartframe = 0
@@ -657,7 +741,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -674,7 +757,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_CAST_ABILITY_1"
 							m_nWeight = 1
 						},
@@ -691,7 +773,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -710,7 +791,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -718,7 +798,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_spell_throw"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_spell_throw.fbx"
 					m_nStartframe = 0
@@ -726,7 +805,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -743,8 +821,7 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
-							m_Name = "ACT_DOTA_CAST_ABILITY_1_END"
+							m_Name = "ACT_DOTA_CAST_ABILITY_4"
 							m_nWeight = 1
 						},
 					]
@@ -760,7 +837,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -779,7 +855,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -787,7 +862,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_stand"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_stand.fbx"
 					m_nStartframe = 0
@@ -795,7 +869,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -812,7 +885,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -829,7 +901,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -848,7 +919,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -856,7 +926,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_stand2"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_stand2.fbx"
 					m_nStartframe = 0
@@ -864,7 +933,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -881,7 +949,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -898,7 +965,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -917,7 +983,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -925,7 +990,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_walk"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_walk.fbx"
 					m_nStartframe = 0
@@ -933,7 +997,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -950,7 +1013,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_RUN"
 							m_nWeight = 1
 						},
@@ -961,7 +1023,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -983,7 +1044,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1002,7 +1062,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1010,7 +1069,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_attack"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_attack.fbx"
 					m_nStartframe = 0
@@ -1018,7 +1076,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1035,7 +1092,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK2"
 							m_nWeight = 1
 						},
@@ -1046,7 +1102,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1068,7 +1123,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1087,7 +1141,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1095,7 +1148,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_dissipate"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_dissipate.fbx"
 					m_nStartframe = 0
@@ -1103,7 +1155,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1120,7 +1171,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE_SPECIAL"
 							m_nWeight = 1
 						},
@@ -1137,7 +1187,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1156,7 +1205,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1164,7 +1212,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heroyoshimotoimagawa_ani_attack_2"
 					m_Filepath = "models/heroyoshimotoimagawa/heroyoshimotoimagawa_ani_attack.fbx"
 					m_nStartframe = 0
@@ -1172,7 +1219,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1189,7 +1235,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
@@ -1200,7 +1245,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1222,7 +1266,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1241,7 +1284,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1302,21 +1344,17 @@
 	]
 	m_pMaterialRemapList =
 	{
-		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "01_-_default.vmat"
 				m_sReplaceMaterial = "materials/heroyoshimotoimagawa/heroyoshimotoimagawa.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "03_-_default.vmat"
 				m_sReplaceMaterial = "materials/heroyoshimotoimagawa/heroranger.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "02_-_default.vmat"
 				m_sReplaceMaterial = "materials/heroyoshimotoimagawa/heroranger.vmat"
 			},

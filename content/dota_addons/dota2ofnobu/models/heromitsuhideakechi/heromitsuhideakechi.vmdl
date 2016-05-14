@@ -3,11 +3,9 @@
 	_class = "CVModel"
 	m_meshList =
 	{
-		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
-				_class = "CVmesh"
 				m_meshName = "heromitsuhideakechi"
 				m_meshFile = "models/heromitsuhideakechi/heromitsuhideakechi.fbx"
 				m_materialSearchPath = ""
@@ -42,7 +40,6 @@
 	}
 	m_physicsMeshList =
 	{
-		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -59,16 +56,13 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
-				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
-						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Chest"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -95,7 +89,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -122,7 +115,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Pelvis"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -149,7 +141,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -176,7 +167,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -203,7 +193,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Head"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -230,7 +219,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -257,7 +245,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -284,7 +271,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -311,7 +297,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -338,7 +323,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Hair01"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -365,7 +349,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -392,7 +375,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -419,7 +401,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Weapon"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -446,7 +427,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -473,7 +453,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Hair"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -500,7 +479,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Jaw"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -527,7 +505,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Cape"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -554,7 +531,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -581,7 +557,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -620,17 +595,14 @@
 			_class = "CVattachmentListReference"
 			m_pObject =
 			{
-				_class = "CVattachmentList"
 				m_name = ""
 				m_attachments =
 				[
 					{
-						_class = "CVattachment"
 						m_name = "attach_origin"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "Glow_Hero"
 								m_vTranslationOffset =
 								[
@@ -650,12 +622,10 @@
 						]
 					},
 					{
-						_class = "CVattachment"
 						m_name = "attach_hitloc"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "m3bone_root"
 								m_vTranslationOffset =
 								[
@@ -675,12 +645,10 @@
 						]
 					},
 					{
-						_class = "CVattachment"
 						m_name = "attach_attack1"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "Glow_Weapon_1"
 								m_vTranslationOffset =
 								[
@@ -700,12 +668,10 @@
 						]
 					},
 					{
-						_class = "CVattachment"
 						m_name = "attach_attack2"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "Glow_Weapon_2"
 								m_vTranslationOffset =
 								[
@@ -725,12 +691,10 @@
 						]
 					},
 					{
-						_class = "CVattachment"
 						m_name = "attach_sword"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "Glow_Weapon_1"
 								m_vTranslationOffset =
 								[
@@ -758,7 +722,6 @@
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
-			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -781,7 +744,6 @@
 			m_Vanim =
 			[
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_attack"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_attack.fbx"
 					m_nStartframe = 0
@@ -789,7 +751,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -806,7 +767,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
@@ -817,7 +777,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -839,7 +798,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -858,7 +816,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -866,7 +823,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_attack2"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_attack2.fbx"
 					m_nStartframe = 0
@@ -874,7 +830,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -891,7 +846,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK2"
 							m_nWeight = 1
 						},
@@ -902,7 +856,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -924,7 +877,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -943,7 +895,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -951,7 +902,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_attack2_slam"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_attack2_slam.fbx"
 					m_nStartframe = 0
@@ -959,7 +909,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -982,7 +931,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1004,7 +952,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1023,7 +970,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1031,7 +977,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_death"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_death.fbx"
 					m_nStartframe = 0
@@ -1039,7 +984,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1056,7 +1000,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE"
 							m_nWeight = 1
 						},
@@ -1067,7 +1010,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1089,7 +1031,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1108,7 +1049,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1116,7 +1056,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_dissipate"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_dissipate.fbx"
 					m_nStartframe = 0
@@ -1124,7 +1063,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1153,7 +1091,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1172,7 +1109,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1180,7 +1116,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_portrait"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_portrait.fbx"
 					m_nStartframe = 0
@@ -1188,7 +1123,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1217,7 +1151,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1236,7 +1169,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1244,7 +1176,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_spell"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_spell.fbx"
 					m_nStartframe = 0
@@ -1252,7 +1183,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1269,7 +1199,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_CAST_ABILITY_1"
 							m_nWeight = 1
 						},
@@ -1286,7 +1215,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1305,7 +1233,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1313,7 +1240,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_spell_channell"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_spell_channell.fbx"
 					m_nStartframe = 0
@@ -1321,7 +1247,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1338,7 +1263,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_CHANNEL_ABILITY_1"
 							m_nWeight = 1
 						},
@@ -1355,7 +1279,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1374,7 +1297,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1382,7 +1304,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "heromitsuhideakechi_ani_stand"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_stand.fbx"
 					m_nStartframe = 0
@@ -1390,140 +1311,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
-						m_bLoop = false
-						m_bSmoothLoop = false
-						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
-						m_StartLoop =
-						{
-							_class = "CVAnimCmdStartLoop"
-							m_bEnabled = false
-							m_nLoopRestart = 0
-						}
-					}
-					m_bHidden = false
-					m_bDisable = false
-					m_Activities =
-					[
-						{
-							_class = "CActivity"
-							m_Name = ""
-							m_nWeight = 1
-						},
-					]
-					m_AnimationEvents =
-					[
-					]
-					m_MotionFrames =
-					[
-					]
-					m_pIkRules =
-					[
-					]
-					m_pAlignAnimation = null
-					m_adjustAnimation =
-					{
-						_class = "CAdjustAnimation"
-						m_translation =
-						[
-							0.000000,
-							0.000000,
-							0.000000,
-						]
-						m_rotation =
-						[
-							0.000000,
-							0.000000,
-							0.000000,
-						]
-					}
-					m_Keywords =
-					[
-					]
-					m_sequenceParams =
-					{
-						_class = "CVAnimResourceSequenceParams"
-						m_flFadeInTime = 0.200000
-						m_flFadeOutTime = 0.200000
-					}
-					m_folderName = ""
-					m_MotionFramesRootBone = ""
-				},
-				{
-					_class = "CVanim"
-					m_Animationname = "heromitsuhideakechi_ani_stand_ready"
-					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_stand_ready.fbx"
-					m_nStartframe = 0
-					m_nEndframe = 44
-					m_flFps = 30.000000
-					m_Loop =
-					{
-						_class = "CAnimationLoop"
-						m_bLoop = false
-						m_bSmoothLoop = false
-						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
-						m_StartLoop =
-						{
-							_class = "CVAnimCmdStartLoop"
-							m_bEnabled = false
-							m_nLoopRestart = 0
-						}
-					}
-					m_bHidden = false
-					m_bDisable = false
-					m_Activities =
-					[
-					]
-					m_AnimationEvents =
-					[
-					]
-					m_MotionFrames =
-					[
-					]
-					m_pIkRules =
-					[
-					]
-					m_pAlignAnimation = null
-					m_adjustAnimation =
-					{
-						_class = "CAdjustAnimation"
-						m_translation =
-						[
-							0.000000,
-							0.000000,
-							0.000000,
-						]
-						m_rotation =
-						[
-							0.000000,
-							0.000000,
-							0.000000,
-						]
-					}
-					m_Keywords =
-					[
-					]
-					m_sequenceParams =
-					{
-						_class = "CVAnimResourceSequenceParams"
-						m_flFadeInTime = 0.200000
-						m_flFadeOutTime = 0.200000
-					}
-					m_folderName = ""
-					m_MotionFramesRootBone = ""
-				},
-				{
-					_class = "CVanim"
-					m_Animationname = "heromitsuhideakechi_ani_stand2"
-					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_stand2.fbx"
-					m_nStartframe = 0
-					m_nEndframe = 111
-					m_flFps = 30.000000
-					m_Loop =
-					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1540,7 +1327,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -1557,7 +1343,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1576,7 +1361,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1584,7 +1368,126 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
+					m_Animationname = "heromitsuhideakechi_ani_stand_ready"
+					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_stand_ready.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 44
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "heromitsuhideakechi_ani_stand2"
+					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_stand2.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 111
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
 					m_Animationname = "heromitsuhideakechi_ani_walk"
 					m_Filepath = "models/heromitsuhideakechi/heromitsuhideakechi_ani_walk.fbx"
 					m_nStartframe = 0
@@ -1592,7 +1495,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1609,7 +1511,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_RUN"
 							m_nWeight = 1
 						},
@@ -1620,7 +1521,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1642,7 +1542,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1661,7 +1560,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1722,21 +1620,17 @@
 	]
 	m_pMaterialRemapList =
 	{
-		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "02_-_default.vmat"
 				m_sReplaceMaterial = "materials/heromitsuhideakechi/heromitsuhideakechi.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "03_-_default.vmat"
 				m_sReplaceMaterial = "materials/heromitsuhideakechi/katana.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "01_-_default.vmat"
 				m_sReplaceMaterial = "materials/heromitsuhideakechi/herocloth.vmat"
 			},

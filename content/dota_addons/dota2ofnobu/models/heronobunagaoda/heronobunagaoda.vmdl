@@ -3,9 +3,11 @@
 	_class = "CVModel"
 	m_meshList =
 	{
+		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
+				_class = "CVmesh"
 				m_meshName = "heronobunagaoda"
 				m_meshFile = "models/heronobunagaoda/heronobunagaoda.fbx"
 				m_materialSearchPath = ""
@@ -40,6 +42,7 @@
 	}
 	m_physicsMeshList =
 	{
+		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -56,13 +59,16 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
+				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
+						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Chest"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -89,6 +95,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Arm1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -115,6 +122,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Arm1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -141,6 +149,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Cape_1"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -167,6 +176,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Pelvis"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -193,6 +203,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Arm2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -219,6 +230,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Arm2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -245,6 +257,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Cape_2"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -271,6 +284,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Leg1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -297,6 +311,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Leg1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -323,6 +338,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Hand_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -349,6 +365,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Hand_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -375,6 +392,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Cape_3"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -401,6 +419,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Leg2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -427,6 +446,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Leg2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -453,6 +473,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Harquebus"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -479,6 +500,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Sword"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -505,6 +527,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Head"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -531,6 +554,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Cape_4"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -557,6 +581,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Foot_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -583,6 +608,7 @@
 								]
 							},
 							{
+								_class = "CVhitBox"
 								m_name = "Bone_Foot_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -623,6 +649,7 @@
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
+			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -645,6 +672,7 @@
 			m_Vanim =
 			[
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_attack"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_attack.fbx"
 					m_nStartframe = 0
@@ -652,6 +680,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -668,6 +697,7 @@
 					m_Activities =
 					[
 						{
+							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK2"
 							m_nWeight = 1
 						},
@@ -678,6 +708,7 @@
 					m_MotionFrames =
 					[
 						{
+							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -699,6 +730,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -717,6 +749,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -724,6 +757,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_attack_walk_stand_spin"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_attack_walk_stand_spin.fbx"
 					m_nStartframe = 0
@@ -731,6 +765,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -746,10 +781,6 @@
 					m_bDisable = false
 					m_Activities =
 					[
-						{
-							m_Name = "ACT_DOTA_VICTORY"
-							m_nWeight = 1
-						},
 					]
 					m_AnimationEvents =
 					[
@@ -757,6 +788,7 @@
 					m_MotionFrames =
 					[
 						{
+							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -772,6 +804,7 @@
 							m_bDiscardRZ = false
 						},
 						{
+							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = false
 							m_bExtractTY = false
@@ -793,6 +826,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -811,6 +845,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -818,6 +853,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_attack2"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_attack2.fbx"
 					m_nStartframe = 0
@@ -825,6 +861,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -841,6 +878,7 @@
 					m_Activities =
 					[
 						{
+							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
@@ -851,6 +889,7 @@
 					m_MotionFrames =
 					[
 						{
+							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -872,6 +911,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -890,6 +930,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -897,6 +938,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_death"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_death.fbx"
 					m_nStartframe = 0
@@ -904,6 +946,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -920,6 +963,7 @@
 					m_Activities =
 					[
 						{
+							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE"
 							m_nWeight = 1
 						},
@@ -930,6 +974,7 @@
 					m_MotionFrames =
 					[
 						{
+							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -951,6 +996,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -969,6 +1015,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -976,6 +1023,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_slam"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_slam.fbx"
 					m_nStartframe = 0
@@ -983,6 +1031,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1011,6 +1060,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1029,6 +1079,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1036,6 +1087,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_spell"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_spell.fbx"
 					m_nStartframe = 0
@@ -1043,6 +1095,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1059,6 +1112,7 @@
 					m_Activities =
 					[
 						{
+							_class = "CActivity"
 							m_Name = "ACT_DOTA_CAST_ABILITY_1"
 							m_nWeight = 1
 						},
@@ -1075,6 +1129,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1093,6 +1148,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1100,6 +1156,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_spell_chancell"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_spell_chancell.fbx"
 					m_nStartframe = 0
@@ -1107,6 +1164,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1123,6 +1181,7 @@
 					m_Activities =
 					[
 						{
+							_class = "CActivity"
 							m_Name = "ACT_DOTA_CHANNEL_ABILITY_1"
 							m_nWeight = 1
 						},
@@ -1139,6 +1198,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1157,6 +1217,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1164,6 +1225,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_stand"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_stand.fbx"
 					m_nStartframe = 0
@@ -1171,6 +1233,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1199,6 +1262,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1217,6 +1281,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1224,6 +1289,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_stand2"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_stand2.fbx"
 					m_nStartframe = 0
@@ -1231,6 +1297,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1247,6 +1314,7 @@
 					m_Activities =
 					[
 						{
+							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -1263,6 +1331,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1281,6 +1350,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1288,6 +1358,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
+					_class = "CVanim"
 					m_Animationname = "heronobunagaoda_ani_walk"
 					m_Filepath = "models/heronobunagaoda/heronobunagaoda_ani_walk.fbx"
 					m_nStartframe = 0
@@ -1295,6 +1366,7 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
+						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1311,6 +1383,7 @@
 					m_Activities =
 					[
 						{
+							_class = "CActivity"
 							m_Name = "ACT_DOTA_RUN"
 							m_nWeight = 1
 						},
@@ -1321,6 +1394,7 @@
 					m_MotionFrames =
 					[
 						{
+							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1342,6 +1416,7 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
+						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1360,6 +1435,7 @@
 					]
 					m_sequenceParams =
 					{
+						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1420,21 +1496,26 @@
 	]
 	m_pMaterialRemapList =
 	{
+		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
+				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "07_-_default.vmat"
 				m_sReplaceMaterial = "materials/heromitsuhideakechi/katana.vmat"
 			},
 			{
+				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "01_-_default.vmat"
 				m_sReplaceMaterial = "materials/heronobunagaoda/heronobunagaoda.vmat"
 			},
 			{
+				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "02_-_default.vmat"
 				m_sReplaceMaterial = "materials/heronobunagaoda/herovest.vmat"
 			},
 			{
+				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "03_-_default.vmat"
 				m_sReplaceMaterial = "materials/arquebusier/harquebus.vmat"
 			},
