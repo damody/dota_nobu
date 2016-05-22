@@ -3,11 +3,9 @@
 	_class = "CVModel"
 	m_meshList =
 	{
-		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
-				_class = "CVmesh"
 				m_meshName = "a23_2_model"
 				m_meshFile = "models/a23/a23_2_model.fbx"
 				m_materialSearchPath = ""
@@ -42,7 +40,6 @@
 	}
 	m_physicsMeshList =
 	{
-		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -59,16 +56,13 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
-				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
-						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Root"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -95,7 +89,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Chest"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -122,7 +115,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -149,7 +141,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -176,7 +167,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -203,7 +193,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Pelvis"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -230,7 +219,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -257,7 +245,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -284,7 +271,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -311,7 +297,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -338,7 +323,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -365,7 +349,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Sword"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -392,7 +375,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -419,7 +401,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -446,7 +427,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Arrow"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -473,7 +453,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Line"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -500,7 +479,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Head"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -527,7 +505,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -554,7 +531,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -593,17 +569,14 @@
 			_class = "CVattachmentListReference"
 			m_pObject =
 			{
-				_class = "CVattachmentList"
 				m_name = ""
 				m_attachments =
 				[
 					{
-						_class = "CVattachment"
 						m_name = "attach_attack1"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "Sword"
 								m_vTranslationOffset =
 								[
@@ -623,12 +596,10 @@
 						]
 					},
 					{
-						_class = "CVattachment"
 						m_name = "attach_attack2"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "Sword"
 								m_vTranslationOffset =
 								[
@@ -648,12 +619,10 @@
 						]
 					},
 					{
-						_class = "CVattachment"
 						m_name = "attach_hitloc"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "Bone_Chest"
 								m_vTranslationOffset =
 								[
@@ -673,12 +642,10 @@
 						]
 					},
 					{
-						_class = "CVattachment"
 						m_name = "attach_origin"
 						m_influences =
 						[
 							{
-								_class = "CVattachmentInfluence"
 								m_influenceName = "m3bone_root"
 								m_vTranslationOffset =
 								[
@@ -706,7 +673,6 @@
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
-			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -729,7 +695,6 @@
 			m_Vanim =
 			[
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_attack"
 					m_Filepath = "models/a23/a23_2_model_ani_attack.fbx"
 					m_nStartframe = 0
@@ -737,7 +702,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -754,7 +718,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK2"
 							m_nWeight = 1
 						},
@@ -765,7 +728,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -787,7 +749,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -806,7 +767,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -814,7 +774,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_dead"
 					m_Filepath = "models/a23/a23_2_model_ani_dead.fbx"
 					m_nStartframe = 0
@@ -822,7 +781,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -839,7 +797,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE"
 							m_nWeight = 1
 						},
@@ -856,7 +813,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -875,7 +831,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -883,7 +838,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_dissipate"
 					m_Filepath = "models/a23/a23_2_model_ani_dissipate.fbx"
 					m_nStartframe = 0
@@ -891,7 +845,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -920,7 +873,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -939,7 +891,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -947,7 +898,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_portrait"
 					m_Filepath = "models/a23/a23_2_model_ani_portrait.fbx"
 					m_nStartframe = 0
@@ -955,7 +905,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -984,7 +933,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1003,7 +951,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1011,7 +958,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_run"
 					m_Filepath = "models/a23/a23_2_model_ani_run.fbx"
 					m_nStartframe = 0
@@ -1019,7 +965,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1036,7 +981,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_RUN"
 							m_nWeight = 1
 						},
@@ -1047,7 +991,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1069,7 +1012,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1088,7 +1030,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1096,7 +1037,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_spell"
 					m_Filepath = "models/a23/a23_2_model_ani_spell.fbx"
 					m_nStartframe = 0
@@ -1104,7 +1044,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1121,7 +1060,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "\tACT_DOTA_CAST_ABILITY_1"
 							m_nWeight = 1
 						},
@@ -1138,7 +1076,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1157,7 +1094,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1165,7 +1101,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_stand"
 					m_Filepath = "models/a23/a23_2_model_ani_stand.fbx"
 					m_nStartframe = 0
@@ -1173,7 +1108,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1190,7 +1124,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -1207,7 +1140,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1226,7 +1158,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1234,7 +1165,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_stand_ready"
 					m_Filepath = "models/a23/a23_2_model_ani_stand_ready.fbx"
 					m_nStartframe = 0
@@ -1242,7 +1172,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1271,7 +1200,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1290,7 +1218,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1298,7 +1225,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "a23_2_model_ani_attack_2"
 					m_Filepath = "models/a23/a23_2_model_ani_attack.fbx"
 					m_nStartframe = 0
@@ -1306,7 +1232,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1323,7 +1248,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
@@ -1334,7 +1258,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1356,7 +1279,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1375,7 +1297,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1436,22 +1357,18 @@
 	]
 	m_pMaterialRemapList =
 	{
-		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "02_-_default.vmat"
 				m_sReplaceMaterial = "materials/c09/c09_3.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "03_-_default.vmat"
 				m_sReplaceMaterial = "materials/c09/c09_4.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
-				m_sSearchMaterial = "daiti25.vmat"
+				m_sSearchMaterial = "*"
 				m_sReplaceMaterial = "materials/c09/c09_4.vmat"
 			},
 		]

@@ -6,9 +6,9 @@
 	m_flConstantLifespan = 10.000000
 	m_ConstantColor =
 	[
-		255,
-		255,
-		255,
+		61,
+		26,
+		50,
 		100,
 	]
 	m_Renderers =
@@ -40,6 +40,7 @@
 		},
 		{
 			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.056000
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
@@ -71,6 +72,7 @@
 				160,
 				255,
 			]
+			m_bDisableOperator = true
 		},
 	]
 	m_Initializers =
@@ -163,6 +165,7 @@
 				124,
 				255,
 			]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RandomColor"
@@ -180,6 +183,7 @@
 				99,
 				255,
 			]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RemapScalarToVector"
@@ -196,6 +200,7 @@
 				0.500000,
 				0.500000,
 			]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_GlobalScale"
@@ -230,6 +235,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/a17t/a17t2_trail_b.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a17t/a17t2_wake.vpcf"

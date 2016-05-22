@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 16
-	m_flConstantRadius = 2.000000
+	m_flConstantRadius = 0.180500
 	m_bShouldSort = false
 	m_flMaxRecreationTime = -1.000000
 	m_Renderers =
@@ -14,7 +14,7 @@
 			m_ModelList =
 			[
 				{
-					m_model = resource:"models/projectiles/windrunner_arrow.vmdl"
+					m_model = resource:"models/props_nature/river_rocks005.vmdl"
 				},
 			]
 			m_bAnimated = true
@@ -103,6 +103,7 @@
 				0.000000,
 				0.000000,
 			]
+			m_bDisableOperator = true
 		},
 	]
 	m_Emitters =
@@ -116,6 +117,10 @@
 	[
 		{
 			m_ChildRef = resource:"particles/a17w/a17w_base.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/a25w2/a25w2.vpcf"
+			m_bDisableChild = true
 		},
 	]
 }

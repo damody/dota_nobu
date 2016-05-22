@@ -5,9 +5,9 @@
 	m_nMaxParticles = 256
 	m_ConstantColor =
 	[
-		94,
-		168,
-		80,
+		131,
+		96,
+		66,
 		55,
 	]
 	m_Renderers =
@@ -31,7 +31,6 @@
 	[
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 2.000000
 		},
 		{
 			_class = "C_OP_Decay"
@@ -55,8 +54,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 132.000000
-			m_flRadiusMin = 132.000000
+			m_flRadiusMax = 35.378000
+			m_flRadiusMin = 30.504500
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -118,6 +117,7 @@
 				0.500000,
 				0.500000,
 			]
+			m_bDisableOperator = true
 		},
 	]
 	m_Emitters =
@@ -132,4 +132,5 @@
 			m_ChildRef = resource:"particles/a17w/a17w_trail_e.vpcf"
 		},
 	]
+	m_flConstantRadius = 1.624500
 }

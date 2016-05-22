@@ -1,0 +1,1915 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CVModel"
+	m_meshList =
+	{
+		m_meshList =
+		[
+			{
+				m_meshName = "maori_model"
+				m_meshFile = "models/maori/maori_model.fbx"
+				m_materialSearchPath = ""
+				m_bSkinParentedObjects = true
+				m_bLegacySkinParentedTransforms = false
+				m_bExpensiveTangents = false
+				m_bExpensiveVertices = false
+				m_bIgnoreCloth = false
+				m_bGetSkinningFromLod0 = false
+				m_pMorphInfo = null
+			},
+		]
+	}
+	m_clothProxyMeshList =
+	{
+		_class = "CVClothProxyMeshList"
+		m_flClothEnableThreshold = 0.050000
+		m_bCreateStaticBone = false
+		m_nMaxBonesPerVertex = 4
+		m_bRemoveUnusedBonesEnabled = false
+		m_bDriveMeshesWithBacksolvedJointsOnly = true
+		m_flMatchProxiesToMeshes = 1.000000
+		m_flReservedFloat = 0.000000
+		m_nReservedInt = 0
+		m_bReservedBool1 = false
+		m_bReservedBool2 = false
+		m_bReservedBool3 = false
+		m_bReservedBool4 = false
+		m_clothProxyMeshList =
+		[
+		]
+	}
+	m_physicsMeshList =
+	{
+		m_meshList =
+		[
+		]
+	}
+	m_pModelInfo = null
+	m_pBoneFlagList =
+	{
+		_class = "CVBoneFlagListReference"
+		m_pObject = null
+	}
+	m_pHitBoxSetLists =
+	[
+		{
+			_class = "CVhitBoxSetListReference"
+			m_pObject =
+			{
+				m_HitBoxSets =
+				[
+					{
+						m_name = "default"
+						m_HitBoxes =
+						[
+							{
+								m_name = "ObjectId 1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 1"
+								m_vMinBounds =
+								[
+									-17.280983,
+									-10.973920,
+									-8.587997,
+								]
+								m_vMaxBounds =
+								[
+									17.312408,
+									13.781978,
+									33.851517,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 17"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 17"
+								m_vMinBounds =
+								[
+									-11.651283,
+									-8.196499,
+									-15.201889,
+								]
+								m_vMaxBounds =
+								[
+									11.651512,
+									12.633780,
+									0.037109,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 2"
+								m_vMinBounds =
+								[
+									-15.889196,
+									-8.205878,
+									-28.819611,
+								]
+								m_vMaxBounds =
+								[
+									0.793600,
+									7.676202,
+									6.221992,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 6"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 6"
+								m_vMinBounds =
+								[
+									-1.728100,
+									-8.205878,
+									-21.022110,
+								]
+								m_vMaxBounds =
+								[
+									12.092399,
+									7.676201,
+									5.912987,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 10"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 10"
+								m_vMinBounds =
+								[
+									-10.182396,
+									-10.404608,
+									-27.133495,
+								]
+								m_vMaxBounds =
+								[
+									6.573683,
+									11.311769,
+									2.274406,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 13"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 13"
+								m_vMinBounds =
+								[
+									-6.573694,
+									-10.404608,
+									-27.133495,
+								]
+								m_vMaxBounds =
+								[
+									10.182426,
+									11.311769,
+									2.274406,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 3"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 3"
+								m_vMinBounds =
+								[
+									-26.555599,
+									-32.761307,
+									-90.989105,
+								]
+								m_vMaxBounds =
+								[
+									3.776197,
+									33.910385,
+									1.343307,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 7"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 7"
+								m_vMinBounds =
+								[
+									-3.744698,
+									-5.281110,
+									-22.546188,
+								]
+								m_vMaxBounds =
+								[
+									8.672703,
+									5.169950,
+									1.343307,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 9"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 9"
+								m_vMinBounds =
+								[
+									-13.344183,
+									-12.504158,
+									-6.844994,
+								]
+								m_vMaxBounds =
+								[
+									13.205313,
+									12.283890,
+									29.595016,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 11"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 11"
+								m_vMinBounds =
+								[
+									-8.692617,
+									-10.000579,
+									-34.323204,
+								]
+								m_vMaxBounds =
+								[
+									8.063463,
+									10.908448,
+									6.529198,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 14"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 14"
+								m_vMinBounds =
+								[
+									-8.063474,
+									-10.000579,
+									-34.323204,
+								]
+								m_vMaxBounds =
+								[
+									8.692647,
+									10.908448,
+									6.529198,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 4"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 4"
+								m_vMinBounds =
+								[
+									-3.882299,
+									-4.453479,
+									-11.650810,
+								]
+								m_vMaxBounds =
+								[
+									3.337400,
+									4.083749,
+									0.151894,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 8"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 8"
+								m_vMinBounds =
+								[
+									-5.735897,
+									-6.502360,
+									-13.190308,
+								]
+								m_vMaxBounds =
+								[
+									12.302399,
+									9.379719,
+									32.774887,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Head"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 24"
+								m_vMinBounds =
+								[
+									-2.362746,
+									-1.962871,
+									-2.579971,
+								]
+								m_vMaxBounds =
+								[
+									2.369493,
+									1.231389,
+									-0.077957,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 12"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 12"
+								m_vMinBounds =
+								[
+									-6.196501,
+									-18.132948,
+									-9.901899,
+								]
+								m_vMaxBounds =
+								[
+									4.584999,
+									5.200231,
+									0.002403,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 15"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 15"
+								m_vMinBounds =
+								[
+									-4.585008,
+									-18.132948,
+									-9.901899,
+								]
+								m_vMaxBounds =
+								[
+									6.196422,
+									5.200231,
+									0.002403,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 18"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 18"
+								m_vMinBounds =
+								[
+									12.554218,
+									-8.768229,
+									-18.619003,
+								]
+								m_vMaxBounds =
+								[
+									29.449894,
+									14.932768,
+									-11.820709,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 19"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 19"
+								m_vMinBounds =
+								[
+									-29.210094,
+									-7.698360,
+									-18.864815,
+								]
+								m_vMaxBounds =
+								[
+									-13.331227,
+									15.037369,
+									-12.410507,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 21"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 21"
+								m_vMinBounds =
+								[
+									-16.566498,
+									-22.192596,
+									-18.864807,
+								]
+								m_vMaxBounds =
+								[
+									16.114891,
+									-17.985626,
+									-12.963409,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "m3bone_root"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "m3bone_root"
+								m_vMinBounds =
+								[
+									-2.000000,
+									-2.000000,
+									-2.000000,
+								]
+								m_vMaxBounds =
+								[
+									2.000000,
+									2.000000,
+									2.000000,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 1"
+								m_vMinBounds =
+								[
+									-17.280983,
+									-10.973920,
+									-8.587997,
+								]
+								m_vMaxBounds =
+								[
+									17.312408,
+									13.781978,
+									33.851517,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 17"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 17"
+								m_vMinBounds =
+								[
+									-11.651283,
+									-8.196499,
+									-15.201889,
+								]
+								m_vMaxBounds =
+								[
+									11.651512,
+									12.633780,
+									0.037109,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 2"
+								m_vMinBounds =
+								[
+									-15.889196,
+									-8.205878,
+									-28.819611,
+								]
+								m_vMaxBounds =
+								[
+									0.793600,
+									7.676202,
+									6.221992,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 6"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 6"
+								m_vMinBounds =
+								[
+									-1.728100,
+									-8.205878,
+									-21.022110,
+								]
+								m_vMaxBounds =
+								[
+									12.092399,
+									7.676201,
+									5.912987,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 10"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 10"
+								m_vMinBounds =
+								[
+									-10.182396,
+									-10.404608,
+									-27.133495,
+								]
+								m_vMaxBounds =
+								[
+									6.573683,
+									11.311769,
+									2.274406,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 13"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 13"
+								m_vMinBounds =
+								[
+									-6.573694,
+									-10.404608,
+									-27.133495,
+								]
+								m_vMaxBounds =
+								[
+									10.182426,
+									11.311769,
+									2.274406,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 3"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 3"
+								m_vMinBounds =
+								[
+									-26.555599,
+									-32.761307,
+									-90.989105,
+								]
+								m_vMaxBounds =
+								[
+									3.776197,
+									33.910385,
+									1.343307,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 7"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 7"
+								m_vMinBounds =
+								[
+									-3.744698,
+									-5.281110,
+									-22.546188,
+								]
+								m_vMaxBounds =
+								[
+									8.672703,
+									5.169950,
+									1.343307,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 9"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 9"
+								m_vMinBounds =
+								[
+									-13.344183,
+									-12.504158,
+									-6.844994,
+								]
+								m_vMaxBounds =
+								[
+									13.205313,
+									12.283890,
+									29.595016,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 11"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 11"
+								m_vMinBounds =
+								[
+									-8.692617,
+									-10.000579,
+									-34.323204,
+								]
+								m_vMaxBounds =
+								[
+									8.063463,
+									10.908448,
+									6.529198,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 14"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 14"
+								m_vMinBounds =
+								[
+									-8.063474,
+									-10.000579,
+									-34.323204,
+								]
+								m_vMaxBounds =
+								[
+									8.692647,
+									10.908448,
+									6.529198,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 4"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 4"
+								m_vMinBounds =
+								[
+									-3.882299,
+									-4.453479,
+									-11.650810,
+								]
+								m_vMaxBounds =
+								[
+									3.337400,
+									4.083749,
+									0.151894,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 8"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 8"
+								m_vMinBounds =
+								[
+									-5.735897,
+									-6.502360,
+									-13.190308,
+								]
+								m_vMaxBounds =
+								[
+									12.302399,
+									9.379719,
+									32.774887,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Head"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 24"
+								m_vMinBounds =
+								[
+									-2.362746,
+									-1.962871,
+									-4.524480,
+								]
+								m_vMaxBounds =
+								[
+									2.369493,
+									1.231389,
+									-0.136713,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 12"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 12"
+								m_vMinBounds =
+								[
+									-6.196501,
+									-18.132948,
+									-9.901899,
+								]
+								m_vMaxBounds =
+								[
+									4.584999,
+									5.200231,
+									0.002403,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 15"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 15"
+								m_vMinBounds =
+								[
+									-4.585008,
+									-18.132948,
+									-9.901899,
+								]
+								m_vMaxBounds =
+								[
+									6.196422,
+									5.200231,
+									0.002403,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 18"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 18"
+								m_vMinBounds =
+								[
+									12.554218,
+									-8.768229,
+									-18.619003,
+								]
+								m_vMaxBounds =
+								[
+									29.449894,
+									14.932768,
+									-11.820709,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 19"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 19"
+								m_vMinBounds =
+								[
+									-29.210094,
+									-7.698360,
+									-18.864815,
+								]
+								m_vMaxBounds =
+								[
+									-13.331227,
+									15.037369,
+									-12.410507,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "ObjectId 21"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId 21"
+								m_vMinBounds =
+								[
+									-16.566498,
+									-22.192596,
+									-18.864807,
+								]
+								m_vMaxBounds =
+								[
+									16.114891,
+									-17.985626,
+									-12.963409,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+						]
+					},
+				]
+				m_AutoCreateSetName = ""
+			}
+		},
+	]
+	m_pAttachmentLists =
+	[
+		{
+			_class = "CVattachmentListReference"
+			m_pObject =
+			{
+				m_name = ""
+				m_attachments =
+				[
+					{
+						m_name = "attach_origin"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_hitloc"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									96.440369,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack1"
+						m_influences =
+						[
+							{
+								m_influenceName = "ObjectId 1"
+								m_vTranslationOffset =
+								[
+									-27.382334,
+									-52.700081,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									-0.000000,
+									0.000000,
+									-0.000001,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences =
+						[
+							{
+								m_influenceName = "ObjectId 1"
+								m_vTranslationOffset =
+								[
+									-32.467110,
+									-40.406704,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									-0.000000,
+									0.000000,
+									-0.000001,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
+	]
+	m_pAnimGroup =
+	{
+		_class = "CVanimGroupReference"
+		m_pObject =
+		{
+			m_Name = ""
+			m_pReferenceSkeleton =
+			{
+				_class = "CVReferenceSkeletonReference"
+				m_pObject = null
+			}
+			m_pBoneFlagList =
+			{
+				_class = "CVBoneFlagListReference"
+				m_pObject = null
+			}
+			m_pSeqGroup =
+			{
+				_class = "CVseqGroupReference"
+				m_pObject = null
+			}
+			m_pAnimGroups =
+			[
+			]
+			m_Vanim =
+			[
+				{
+					m_Animationname = "maori_model_attack"
+					m_Filepath = "models/maori/maori_model_attack.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 37
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+						{
+							m_Name = "ACT_DOTA_ATTACK"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+						{
+							m_nFrame = 0
+							m_bExtractTX = true
+							m_bExtractTY = true
+							m_bExtractTZ = false
+							m_bExtractRX = false
+							m_bExtractRY = false
+							m_bExtractRZ = false
+							m_bDiscardTX = false
+							m_bDiscardTY = false
+							m_bDiscardTZ = false
+							m_bDiscardRX = false
+							m_bDiscardRY = false
+							m_bDiscardRZ = false
+						},
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "maori_model_death"
+					m_Filepath = "models/maori/maori_model_death.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 60
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+						{
+							m_Name = "ACT_DOTA_DIE"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+						{
+							m_nFrame = 0
+							m_bExtractTX = true
+							m_bExtractTY = true
+							m_bExtractTZ = false
+							m_bExtractRX = false
+							m_bExtractRY = false
+							m_bExtractRZ = false
+							m_bDiscardTX = false
+							m_bDiscardTY = false
+							m_bDiscardTZ = false
+							m_bDiscardRX = false
+							m_bDiscardRY = false
+							m_bDiscardRZ = false
+						},
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "maori_model_stand"
+					m_Filepath = "models/maori/maori_model_stand.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 37
+					m_flFps = 0.000000
+					m_Loop =
+					{
+						m_bLoop = true
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "maori_model_stand_ready"
+					m_Filepath = "models/maori/maori_model_stand_ready.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 47
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "maori_model_stand_walk"
+					m_Filepath = "models/maori/maori_model_stand_walk.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 30
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = true
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+						{
+							m_Name = "ACT_DOTA_RUN"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+						{
+							m_nFrame = 0
+							m_bExtractTX = true
+							m_bExtractTY = true
+							m_bExtractTZ = false
+							m_bExtractRX = false
+							m_bExtractRY = false
+							m_bExtractRZ = false
+							m_bDiscardTX = false
+							m_bDiscardTY = false
+							m_bDiscardTZ = false
+							m_bDiscardRX = false
+							m_bDiscardRY = false
+							m_bDiscardRZ = false
+						},
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "maori_model_attack2"
+					m_Filepath = "models/maori/maori_model_attack.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 37
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+						{
+							m_Name = "ACT_DOTA_ATTACK2"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+						{
+							m_nFrame = 0
+							m_bExtractTX = true
+							m_bExtractTY = true
+							m_bExtractTZ = false
+							m_bExtractRX = false
+							m_bExtractRY = false
+							m_bExtractRZ = false
+							m_bDiscardTX = false
+							m_bDiscardTY = false
+							m_bDiscardTZ = false
+							m_bDiscardRX = false
+							m_bDiscardRY = false
+							m_bDiscardRZ = false
+						},
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "maori_model_spell"
+					m_Filepath = "models/maori/maori_model_attack.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 37
+					m_flFps = 60.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+						{
+							m_Name = "ACT_DOTA_CAST_ABILITY_1"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+						{
+							m_nFrame = 0
+							m_bExtractTX = true
+							m_bExtractTY = true
+							m_bExtractTZ = false
+							m_bExtractRX = false
+							m_bExtractRY = false
+							m_bExtractRZ = false
+							m_bDiscardTX = false
+							m_bDiscardTY = false
+							m_bDiscardTZ = false
+							m_bDiscardRX = false
+							m_bDiscardRY = false
+							m_bDiscardRZ = false
+						},
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "maori_model_spell4"
+					m_Filepath = "models/maori/maori_model_attack.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 37
+					m_flFps = 30.000000
+					m_Loop =
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop =
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities =
+					[
+						{
+							m_Name = "ACT_DOTA_CAST_ABILITY_4"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents =
+					[
+					]
+					m_MotionFrames =
+					[
+						{
+							m_nFrame = 0
+							m_bExtractTX = true
+							m_bExtractTY = true
+							m_bExtractTZ = false
+							m_bExtractRX = false
+							m_bExtractRY = false
+							m_bExtractRZ = false
+							m_bDiscardTX = false
+							m_bDiscardTY = false
+							m_bDiscardTZ = false
+							m_bDiscardRX = false
+							m_bDiscardRY = false
+							m_bDiscardRZ = false
+						},
+					]
+					m_pIkRules =
+					[
+					]
+					m_pAlignAnimation = null
+					m_adjustAnimation =
+					{
+						m_translation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+						m_rotation =
+						[
+							0.000000,
+							0.000000,
+							0.000000,
+						]
+					}
+					m_Keywords =
+					[
+					]
+					m_sequenceParams =
+					{
+						m_flFadeInTime = 0.200000
+						m_flFadeOutTime = 0.200000
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+			]
+			m_sScripts =
+			[
+			]
+			m_folderNames =
+			[
+			]
+		}
+	}
+	m_pMaterialGroupList =
+	{
+		_class = "CVNodeMaterialGroupListReference"
+		m_pObject = null
+	}
+	m_pMeshGroupList =
+	{
+		_class = "CVMeshGroupListReference"
+		m_pObject = null
+	}
+	m_pLodGroupList =
+	{
+		_class = "CVLODGroupListReference"
+		m_pObject = null
+	}
+	m_pPropBreakableList =
+	{
+		_class = "CVpropBreakableListReference"
+		m_pObject = null
+	}
+	m_pPropDataList =
+	{
+		_class = "CVpropDataListReference"
+		m_pObject = null
+	}
+	m_pConstraintLists =
+	[
+	]
+	m_collision = ""
+	m_softbody = ""
+	m_sMDLFilename = ""
+	m_sOffsetHitboxSets =
+	[
+	]
+	m_vHitboxSetOffset =
+	[
+		0.000000,
+		0.000000,
+		0.000000,
+	]
+	m_scriptFiles =
+	[
+	]
+	m_pMaterialRemapList =
+	{
+		m_vMaterialRemapList =
+		[
+			{
+				m_sSearchMaterial = "02_-_default.vmat"
+				m_sReplaceMaterial = "materials/maori/maoria.vmat"
+			},
+			{
+				m_sSearchMaterial = "08_-_default.vmat"
+				m_sReplaceMaterial = "materials/maori/maorib.vmat"
+			},
+			{
+				m_sSearchMaterial = "01_-_default.vmat"
+				m_sReplaceMaterial = "materials/maori/maoric.vmat"
+			},
+			{
+				m_sSearchMaterial = "07_-_default.vmat"
+				m_sReplaceMaterial = "materials/maori/maoric.vmat"
+			},
+			{
+				m_sSearchMaterial = "*"
+				m_sReplaceMaterial = "materials/maori/maorib.vmat"
+			},
+		]
+	}
+	m_flFbxScale = 1.000000
+	m_flQCScale = 1.000000
+	m_vOrigin =
+	[
+		0.000000,
+		0.000000,
+		0.000000,
+	]
+	m_pPsfList = null
+	m_keyValueText = ""
+	m_bStaticProp = false
+	m_bEnableClothProcessing = true
+	m_flClothEnableThreshold = 0.050000
+	m_nMaxClothVertsPerMesh = 2048
+	m_bBuildClothBoneHierarchy = false
+	m_nNavType = "AUTH_NAV_MESH"
+	m_bMakeUniqueVMeshes = false
+	m_bMakeImplicitBindPoseSequence = false
+	m_bAdjustSkeletonFromBoneFlags = false
+	m_pAnimGroups =
+	[
+	]
+}

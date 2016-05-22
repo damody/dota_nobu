@@ -3,11 +3,9 @@
 	_class = "CVModel"
 	m_meshList =
 	{
-		_class = "CVmeshList"
 		m_meshList =
 		[
 			{
-				_class = "CVmesh"
 				m_meshName = "ashigaru"
 				m_meshFile = "models/ashigaru/ashigaru.fbx"
 				m_materialSearchPath = ""
@@ -42,7 +40,6 @@
 	}
 	m_physicsMeshList =
 	{
-		_class = "CVphysicsMeshList"
 		m_meshList =
 		[
 		]
@@ -59,16 +56,13 @@
 			_class = "CVhitBoxSetListReference"
 			m_pObject =
 			{
-				_class = "CVhitBoxSetList"
 				m_HitBoxSets =
 				[
 					{
-						_class = "CVhitBoxSet"
 						m_name = "default"
 						m_HitBoxes =
 						[
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Chest"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -95,7 +89,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -122,7 +115,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -149,7 +141,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -176,7 +167,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -203,7 +193,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg1_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -230,7 +219,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -257,7 +245,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Arm2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -284,7 +271,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -311,7 +297,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Leg2_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -338,7 +323,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Weapon_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -365,7 +349,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Hand_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -392,7 +375,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Head"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -419,7 +401,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Flag03"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -446,7 +427,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Flag02"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -473,7 +453,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Flag01"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -500,7 +479,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "ObjectId25"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -527,7 +505,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "hips"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -554,7 +531,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_R"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -581,7 +557,6 @@
 								]
 							},
 							{
-								_class = "CVhitBox"
 								m_name = "Bone_Foot_L"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
@@ -622,7 +597,6 @@
 		_class = "CVanimGroupReference"
 		m_pObject =
 		{
-			_class = "CVanimGroup"
 			m_Name = ""
 			m_pReferenceSkeleton =
 			{
@@ -645,7 +619,6 @@
 			m_Vanim =
 			[
 				{
-					_class = "CVanim"
 					m_Animationname = "ashigaru_ani_attack"
 					m_Filepath = "models/ashigaru/ashigaru_ani_attack.fbx"
 					m_nStartframe = 0
@@ -653,7 +626,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -670,7 +642,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK2"
 							m_nWeight = 1
 						},
@@ -681,7 +652,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -703,7 +673,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -722,7 +691,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -730,7 +698,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "ashigaru_ani_death"
 					m_Filepath = "models/ashigaru/ashigaru_ani_death.fbx"
 					m_nStartframe = 0
@@ -738,7 +705,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -755,7 +721,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_DIE"
 							m_nWeight = 1
 						},
@@ -766,7 +731,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -788,7 +752,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -807,7 +770,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -815,7 +777,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "ashigaru_ani_stand2"
 					m_Filepath = "models/ashigaru/ashigaru_ani_stand2.fbx"
 					m_nStartframe = 0
@@ -823,7 +784,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -840,7 +800,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_IDLE"
 							m_nWeight = 1
 						},
@@ -857,7 +816,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -876,7 +834,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -884,7 +841,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "ashigaru_ani_walk"
 					m_Filepath = "models/ashigaru/ashigaru_ani_walk.fbx"
 					m_nStartframe = 0
@@ -892,7 +848,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = true
 						m_nSmoothLoopStart = 0
@@ -909,7 +864,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_RUN"
 							m_nWeight = 1
 						},
@@ -920,7 +874,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -942,7 +895,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -961,7 +913,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -969,7 +920,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "ashigaru_ani_walk2"
 					m_Filepath = "models/ashigaru/ashigaru_ani_walk2.fbx"
 					m_nStartframe = 0
@@ -977,7 +927,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = true
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1000,7 +949,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1022,7 +970,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1041,7 +988,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1049,7 +995,6 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					_class = "CVanim"
 					m_Animationname = "ashigaru_ani_attack_2"
 					m_Filepath = "models/ashigaru/ashigaru_ani_attack.fbx"
 					m_nStartframe = 0
@@ -1057,7 +1002,6 @@
 					m_flFps = 30.000000
 					m_Loop =
 					{
-						_class = "CAnimationLoop"
 						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
@@ -1074,7 +1018,6 @@
 					m_Activities =
 					[
 						{
-							_class = "CActivity"
 							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
@@ -1085,7 +1028,6 @@
 					m_MotionFrames =
 					[
 						{
-							_class = "CMotionFrame"
 							m_nFrame = 0
 							m_bExtractTX = true
 							m_bExtractTY = true
@@ -1107,7 +1049,6 @@
 					m_pAlignAnimation = null
 					m_adjustAnimation =
 					{
-						_class = "CAdjustAnimation"
 						m_translation =
 						[
 							0.000000,
@@ -1126,7 +1067,6 @@
 					]
 					m_sequenceParams =
 					{
-						_class = "CVAnimResourceSequenceParams"
 						m_flFadeInTime = 0.200000
 						m_flFadeOutTime = 0.200000
 					}
@@ -1187,26 +1127,21 @@
 	]
 	m_pMaterialRemapList =
 	{
-		_class = "CVMaterialRemapList"
 		m_vMaterialRemapList =
 		[
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "01_-_default.vmat"
 				m_sReplaceMaterial = "materials/ashigaru/version_01/ashigaru.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
-				m_sSearchMaterial = ".vmat.vmat"
+				m_sSearchMaterial = "*"
 				m_sReplaceMaterial = "materials/ashigaru/ashigaru.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "02_-_default.vmat"
 				m_sReplaceMaterial = "materials/ashigaru/ashigaru.vmat"
 			},
 			{
-				_class = "CVMaterialRemap"
 				m_sSearchMaterial = "ashigaru1.vmat"
 				m_sReplaceMaterial = "materials/ashigaru/ashigaru.vmat"
 			},
