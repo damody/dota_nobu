@@ -3,6 +3,7 @@
 	bj_DEGTORAD                      = bj_PI/180.0
 --ednglobal
 
+LinkLuaModifier( "C22R_critical", "scripts/vscripts/heroes/C_Neutral/C22_Sasaki_Kojiro.lua",LUA_MODIFIER_MOTION_NONE )
 
 function C22W_Damage( keys )
 	local caster = keys.caster
@@ -58,12 +59,65 @@ end
 
 function C22R__ATTACK_SE( keys )
 	local caster = keys.caster
-	local rate = caster:GetAttackSpeed()/2
+	local rate = caster:GetAttackSpeed()
 	--print(tostring(rate))
 
 	--播放動畫
-    caster:StartGesture( ACT_DOTA_ECHO_SLAM )
+    --caster:StartGesture( ACT_DOTA_ECHO_SLAM )
     caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+end
+
+C22R_critical = class({})
+
+function C22R_critical:IsHidden()
+	return true
+end
+
+function C22R_critical:DeclareFunctions()
+	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
+end
+
+function C22R_critical:GetModifierPreAttack_CriticalStrike()
+	return self.C22R_level*50 + 100
+end
+
+function C22R_critical:CheckState()
+	local state = {
+	}
+	return state
+end
+
+
+function C22R_Levelup( keys )
+	local caster = keys.caster
+	caster.C22R_noncrit_count = 0
+end
+
+function C22R( keys )
+	local caster = keys.caster
+	local skill = keys.ability
+	local id  = caster:GetPlayerID()
+	local ran =  RandomInt(0, 100)
+	local crit_percent = 25
+	local attack_time = 100/crit_percent + 1
+	if  caster.C22R_noncrit_count ~= nil then
+			print("@@@UF_SUCCESS")
+		if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
+			print("@@@UF_SUCCESS")
+			if (ran > crit_percent) then
+				caster.C22R_noncrit_count  = caster.C22R_noncrit_count + 1
+			end
+			if (caster.C22R_noncrit_count > attack_time or ran <= crit_percent) then
+				caster.C22R_noncrit_count = 0
+				StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
+				caster:AddNewModifier(caster, skill, "C22R_critical", { duration = 0.1 } )
+				local hModifier = caster:FindModifierByNameAndCaster("C22R_critical", caster)
+				if (hModifier ~= nil) then
+					hModifier.C22R_level = keys.ability:GetLevel()
+				end
+			end
+		end
+	end
 end
 
 function C22D_GetAbility( keys )

@@ -1,11 +1,6 @@
 print ('[Nobu] main lua script Starting..' )
 
 --global
-	----------------------------------------
-	--game
-	--
-
-	--game
 	STARTING_GOLD = 500--650
 
 	DEBUG = true
@@ -18,12 +13,12 @@ print ('[Nobu] main lua script Starting..' )
 
 --endglobal
 
-if CEasyGameMode == nil then
-	CEasyGameMode = class({})
+if NobuGameMode == nil then
+	NobuGameMode = class({})
 end
 
-function CEasyGameMode:InitGameMode()
-	print( "[Nobu] CEasyGameMode:InitGameMode is loaded." )
+function NobuGameMode:InitGameMode()
+	print( "[Nobu] NobuGameMode:InitGameMode is loaded." )
 
 	-- 產生隨機數種子，主要是為了程序中的隨機數考慮
 	local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','') 
@@ -42,13 +37,13 @@ function CEasyGameMode:InitGameMode()
 	GameRules: GetGameModeEntity() :SetBuybackEnabled(true)--test mode
 
 	--設置遊戲準備時間
-	GameRules:SetPreGameTime( 0.00 )
+	GameRules:SetPreGameTime( 3.00 )
 
 	-- 設定選擇英雄時間
-	GameRules:SetHeroSelectionTime(0) --原版是15秒
+	GameRules:SetHeroSelectionTime(15) --原版是15秒
 
 	-- 设置砍倒的树木重生时间
-	GameRules:SetTreeRegrowTime(1.0)
+	GameRules:SetTreeRegrowTime(150)
 
 	-- 开启/关闭全地图商店模式
 	GameRules:SetUseUniversalShopMode(false)
@@ -94,29 +89,29 @@ function CEasyGameMode:InitGameMode()
 
 	
 	--監聽遊戲進度
-	ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(CEasyGameMode,"OnGameRulesStateChange"), self)
+	ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(NobuGameMode,"OnGameRulesStateChange"), self)
 
-	--監聽單位被擊殺的事件,用於刷怪
-	ListenToGameEvent("entity_killed", Dynamic_Wrap(CEasyGameMode, "OnEntityKilled"), self)
+	-- --監聽單位被擊殺的事件,用於刷怪
+	-- ListenToGameEvent("entity_killed", Dynamic_Wrap(NobuGameMode, "OnEntityKilled"), self)
 end
 
-function CEasyGameMode:OnGameRulesStateChange( keys )
-	print("[Nobu] CEasyGameMode:OnGameRulesStateChange is loaded.")
+function NobuGameMode:OnGameRulesStateChange( keys )
+	print("[Nobu] NobuGameMode:OnGameRulesStateChange is loaded.")
 
 	--獲取遊戲進度
 	local newState = GameRules:State_Get()
 
-	--選擇英雄階段
-	if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-		for playerID=0,(DOTA_MAX_TEAM_PLAYERS - 1) do
-			local player = PlayerResource:GetPlayer(playerID)
-			if player then
-				if player:GetTeam() == DOTA_TEAM_BADGUYS then
-					--player:SetTeam(DOTA_TEAM_GOODGUYS)
-				end
-			end
-		end
-	end
+	-- --選擇英雄階段
+	-- if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
+	-- 	for playerID=0,(DOTA_MAX_TEAM_PLAYERS - 1) do
+	-- 		local player = PlayerResource:GetPlayer(playerID)
+	-- 		if player then
+	-- 			if player:GetTeam() == DOTA_TEAM_BADGUYS then
+	-- 				player:SetTeam(DOTA_TEAM_GOODGUYS)
+	-- 			end
+	-- 		end
+	-- 	end
+	-- end
 
 	--遊戲在準備階段
 	if newState == DOTA_GAMERULES_STATE_PRE_GAME then
@@ -137,7 +132,7 @@ end
 
 
 --CP
-function CEasyGameMode:OnEntityKilled( keys )
+function NobuGameMode:OnEntityKilled( keys )
 	--print("OnEntityKilled")
 	--DeepPrintTable(keys)
 
@@ -160,5 +155,5 @@ function CEasyGameMode:OnEntityKilled( keys )
 end
 
 function Lua_of_main()
-	CEasyGameMode:InitGameMode()
+	NobuGameMode:InitGameMode()
 end

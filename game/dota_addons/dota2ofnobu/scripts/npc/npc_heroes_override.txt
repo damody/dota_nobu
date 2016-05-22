@@ -1,0 +1,341 @@
+// Dota Heroes File
+"DOTAHeroes"
+{
+	"Version"		"1"
+	//=================================================================================================================
+	// HERO: Base 
+	// Note: This is loaded and overriden/added to by values in the specific heroes chunks.
+	//=================================================================================================================
+	"npc_dota_hero_base"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"		"npc_dota_hero"
+		"Model"		"models/error.vmdl"
+		"SoundSet"		"0"
+		"Enabled"		"0"
+		"Level"		"1"
+		"BotImplemented"		"0"
+		"NewHero"		"0"
+		"HeroPool1"		"0"
+		"HeroUnlockOrder"		"1"
+		"CMEnabled"		"0"
+		"CMTournamentIgnore"		"0"
+		"new_player_enable"		"0"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"					""										// Ability 1.
+		"Ability2"					""										// Ability 2.
+		"Ability3"					""										// Ability 3.
+		"Ability4"					""										// Ability 4.
+		"Ability5"					"attribute_bonus"
+		"Ability6"					""										// Ability 6 - Extra.
+		"Ability7"					""										// Ability 7 - Extra.
+		"Ability8"					""										// Ability 8 - Extra.
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"		"-1"
+		"MagicalResistance"		"25"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"		"1"
+		"AttackDamageMax"		"1"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"		"1.700000"
+		"AttackAnimationPoint"		"0.750000"
+		"AttackAcquisitionRange"		"800"
+		"AttackRange"		"600"
+		"ProjectileModel"		"particles/base_attacks/ranged_hero.vpcf"
+		"ProjectileSpeed"		"900"
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"0"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"		"0"
+		"AttributeAgilityGain"		"0"
+
+		// Bounty
+		//-------------------------------------------------------------------------------------------------------------
+		"BountyXP"		"62"
+		"BountyGoldMin"		"0"
+		"BountyGoldMax"		"0"
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"RingRadius"		"70"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"		"300"
+		"MovementTurnRate"		"0.500000"
+		"HasAggressiveStance"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"		"150"
+		"StatusHealthRegen"		"0.250000"
+		"StatusMana"		"0"
+		"StatusManaRegen"		"0.010000"
+
+		// Team
+		//-------------------------------------------------------------------------------------------------------------
+		"TeamName"		"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+
+		//Inventory
+		"HasInventory"		"1"
+
+		//Voice
+		"VoiceBackgroundSound"		""
+				
+		"HealthBarOffset"		"-1"
+		"IdleExpression"		"scenes/default_idle.vcd"
+		"IdleSoundLoop"				""
+		"AbilityDraftDisabled"		"0"
+		"ARDMDisabled"		"0"
+		"HUD"
+		{
+			"StatusHUD"
+			{
+				"StatusStrength"
+				{
+					"LocalizeToken"		"#DOTA_StrengthStatus"
+					"Parameters"		"Traits:Strength"
+					"HUDName"		"unitstrength"
+				}
+				"StatusAgility"
+				{
+					"LocalizeToken"		"#DOTA_AgilityStatus"
+					"Parameters"		"Traits:Agility"
+					"HUDName"		"unitagility"
+				}
+				"StatusIntellect"
+				{
+					"LocalizeToken"		"#DOTA_IntellectStatus"
+					"Parameters"		"Traits:Intellect"
+					"HUDName"		"unitintellect"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	"npc_dota_hero_keeper_of_the_light"
+	{
+		"Model"		"models/heroes/keeper_of_the_light/keeper_of_the_light.vmdl"
+		"Portrait"		"vgui/hud/heroportraits/portrait_keeper_of_the_light"
+		"IdleExpression"		"scenes/keeper_of_the_light/keeper_of_the_light_exp_idle_01.vcd"
+		"SoundSet"		"Hero_KeeperOfTheLight"
+		"Enabled"		"1"
+		"Role"			"Support,Nuker,Disabler,Jungler"
+		"Rolelevels"	"3,2,1,1"
+		"Team"		"Good"
+		"HeroID"		"90"
+		"ModelScale"		"0.800000"
+		"LoadoutScale"		"0.750000"
+		"NameAliases"		"keeper;ezalor"
+		"url"		"Keeper_of_the_Light"
+		"PickSound"		"keeper_of_the_light_keep_spawn_01"
+		"BanSound"		"keeper_of_the_light_keep_anger_05"
+		"CMEnabled"		"1"
+		"LastHitChallengeRival"		"npc_dota_hero_chaos_knight"
+		"AbilityDraftDisabled"		"1"
+		"HeroSelectSoundEffect"		"Hero_KeeperOfTheLight.Pick"
+		"AbilityLayout"		"6"
+		"Ability1"		"keeper_of_the_light_illuminate"
+		"Ability2"		"keeper_of_the_light_mana_leak"
+		"Ability3"		"keeper_of_the_light_chakra_magic"
+		"Ability4"		"keeper_of_the_light_recall"
+		"Ability5"		"keeper_of_the_light_blinding_light"
+		"Ability6"		"keeper_of_the_light_spirit_form"
+		"Ability7"		"keeper_of_the_light_illuminate_end"
+		"Ability8"		"keeper_of_the_light_spirit_form_illuminate"
+		"Ability9"		"keeper_of_the_light_spirit_form_illuminate_end"
+		"Ability10"		"attribute_bonus"
+		"ArmorPhysical"		"-1.000000"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"		"18"
+		"AttackDamageMax"		"32"
+		"AttackRate"		"1.700000"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackAcquisitionRange"		"800"
+		"AttackRange"		"600"
+		"ProjectileModel"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_base_attack.vpcf"
+		"ProjectileSpeed"		"900"
+		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"14"
+		"AttributeStrengthGain"		"1.800000"
+		"AttributeBaseAgility"		"15"
+		"AttributeAgilityGain"		"1.600000"
+		"AttributeBaseIntelligence"		"22"
+		"AttributeIntelligenceGain"		"2.800000"
+		"MovementSpeed"		"315"
+		"MovementTurnRate"		"0.500000"
+		"HealthBarOffset"		"230"
+		"particle_folder"		"particles/units/heroes/hero_keeper_of_the_light"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_keeper_of_the_light.vsndevts"
+		"RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_keeper_of_the_light/keeper_loadout.vpcf"
+				{
+					"0"
+					{
+						"type"		"follow_origin"
+						"location"		"attach_hitloc"
+					}
+				}
+			}
+		}
+		"ItemSlots"
+		{
+			"0"
+			{
+				"SlotIndex"		"0"
+				"SlotName"		"weapon"
+				"SlotText"		"#LoadoutSlot_Weapon"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"750"
+				"MaxPolygonsLOD1"		"400"
+			}
+			"1"
+			{
+				"SlotIndex"		"1"
+				"SlotName"		"head"
+				"SlotText"		"#LoadoutSlot_Head_Accessory"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"800"
+				"MaxPolygonsLOD1"		"450"
+			}
+			"2"
+			{
+				"SlotIndex"		"2"
+				"SlotName"		"belt"
+				"SlotText"		"#LoadoutSlot_Belt"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"250"
+				"MaxPolygonsLOD1"		"200"
+			}
+			"3"
+			{
+				"SlotIndex"		"3"
+				"SlotName"		"mount"
+				"SlotText"		"#LoadoutSlot_Mount"
+				"TextureWidth"		"256"
+				"TextureHeight"		"128"
+				"MaxPolygonsLOD0"		"1800"
+				"MaxPolygonsLOD1"		"1250"
+			}
+			"4"
+			{
+				"SlotIndex"		"4"
+				"SlotName"		"armor"
+				"SlotText"		"#LoadoutSlot_Armor"
+				"TextureWidth"		"256"
+				"TextureHeight"		"128"
+				"MaxPolygonsLOD0"		"1400"
+				"MaxPolygonsLOD1"		"700"
+			}
+			"5"
+			{
+				"SlotIndex"		"5"
+				"SlotName"		"taunt"
+				"SlotText"		"#LoadoutSlot_Taunt"
+				"DisplayInLoadout" "0"
+			}
+			"6"
+			{
+				"SlotIndex"		"6"
+				"SlotName"		"ambient_effects"
+				"SlotText"		"#LoadoutSlot_Ambient_Effects"
+				"DisplayInLoadout"		"0"
+			}
+		}
+		"Bot"
+		{
+			"Loadout"
+			{
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_flask"		"ITEM_CORE | ITEM_SELLABLE"
+				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
+				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
+				"item_boots"		"ITEM_CORE"
+				"item_magic_stick"		"ITEM_CORE"
+				"item_bracer"		"ITEM_DERIVED | ITEM_SELLABLE"
+				"item_circlet"		"ITEM_EXTENSION"
+				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
+				"item_ring_of_regen"		"ITEM_CORE"
+				"item_branches"		"ITEM_CORE"
+				"item_recipe_headdress"		"ITEM_CORE"
+				"item_headdress"		"ITEM_DERIVED"
+				"item_chainmail"		"ITEM_CORE"
+				"item_branches"		"ITEM_CORE"
+				"item_recipe_buckler"		"ITEM_CORE"
+				"item_buckler"		"ITEM_DERIVED"
+				"item_recipe_mekansm"		"ITEM_CORE"
+				"item_mekansm"		"ITEM_DERIVED"
+			}
+			"Build"
+			{
+				"1"		"keeper_of_the_light_chakra_magic"
+				"2"		"keeper_of_the_light_illuminate"
+				"3"		"keeper_of_the_light_chakra_magic"
+				"4"		"keeper_of_the_light_illuminate"
+				"5"		"keeper_of_the_light_chakra_magic"
+				"6"		"keeper_of_the_light_spirit_form"
+				"7"		"keeper_of_the_light_chakra_magic"
+				"8"		"keeper_of_the_light_illuminate"
+				"9"		"keeper_of_the_light_illuminate"
+				"10"		"keeper_of_the_light_mana_leak"
+				"11"		"keeper_of_the_light_spirit_form"
+				"12"		"keeper_of_the_light_mana_leak"
+				"13"		"keeper_of_the_light_mana_leak"
+				"14"		"keeper_of_the_light_mana_leak"
+				"15"		"attribute_bonus"
+				"16"		"keeper_of_the_light_spirit_form"
+				"17"		"attribute_bonus"
+				"18"		"attribute_bonus"
+				"19"		"attribute_bonus"
+				"20"		"attribute_bonus"
+				"21"		"attribute_bonus"
+				"22"		"attribute_bonus"
+				"23"		"attribute_bonus"
+				"24"		"attribute_bonus"
+				"25"		"attribute_bonus"
+			}
+			"HeroType"		"DOTA_BOT_PUSH_SUPPORT | DOTA_BOT_PURE_SUPPORT"
+			"LaningInfo"
+			{
+				"SoloDesire"		"0"
+				"RequiresBabysit"		"0"
+				"ProvidesBabysit"		"2"
+				"SurvivalRating"		"1"
+				"RequiresFarm"		"1"
+				"ProvidesSetup"		"0"
+				"RequiresSetup"		"2"
+			}
+		}
+	}
+}

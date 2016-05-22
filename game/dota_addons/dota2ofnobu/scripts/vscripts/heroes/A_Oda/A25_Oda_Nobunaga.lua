@@ -1,5 +1,4 @@
 --global
-local A25R_noncrit_count = 0
 local A25R_level = 0
 --ednglobal
 
@@ -10,61 +9,18 @@ LinkLuaModifier( "A25R_critical", "scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunag
 
 function A25W( keys )
 	local caster = keys.caster
-	local ability = keys.ability
-	local id  = caster:GetPlayerID()
-	local casterLocation = keys.target_points[1]
-	local damage = ability:GetLevelSpecialValueFor( "A25W_damage", ability:GetLevel() - 1 )
-	local startAttackSound = "Ability.PowershotPull"
-	local startTraverseSound = "Ability.Powershot"
-	local origin_pos = caster:GetAbsOrigin()
-	local forwardVec = casterLocation - origin_pos
-	local Distance = 2100
-	forwardVec = forwardVec:Normalized()
-	caster:EmitSound( "A25W.lagunablade_impact" )
-	-- Stop sound event and fire new one, can do this in datadriven but for continuous purpose, let's put it here
-	StopSoundEvent( startAttackSound, caster )
-	StartSoundEvent( startTraverseSound, caster )
-	local RADIUS = 100
-	-- Create projectile
-	-- Spawn projectiles
-	local projectileTable = {
-		Ability = ability,
-		EffectName = "particles/a17w/a17w.vpcf",
-		vSpawnOrigin = origin_pos,
-		fDistance = 2100,
-		fStartRadius = RADIUS,
-		fEndRadius = RADIUS,
-		Source = caster,
-		bHasFrontalCone = false,
-		bReplaceExisting = true,
-		bProvidesVision = false,
-		iUnitTargetTeam = 0,
-		iUnitTargetType = 0,
-		vVelocity = forwardVec * 2000
-	}
-	ProjectileManager:CreateLinearProjectile( projectileTable )
-	
-	-- Register units around caster
-	local elapsed_time = 0
-	Timers:CreateTimer( 0.1, 
-		function()
-			elapsed_time = elapsed_time + 0.1
-			local len = 2000 * elapsed_time
-			local pos = origin_pos + forwardVec * len
-			local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, caster, RADIUS,
-				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false )
-			for _,it in pairs(enemies) do
-				if (not(it:IsBuilding())) then
-					ApplyDamage({ victim = it, attacker = caster, damage = damage, 
-						damage_type = ability:GetAbilityDamageType() , ability = ability})
-				end
-			end
-			if (len < Distance) then
-				return 0.1
-			else
+	local ability	= keys.ability
+	local point = ability:GetCursorPosition()
+
+	--AMHC:CreateParticle(particleName,PATTACH_CUSTOMORIGIN,false,caster,3,nil)
+	local particle = ParticleManager:CreateParticle("particles/a25w2/a25w2.vpcf", PATTACH_POINT, caster)
+	ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_attack3", Vector(0,0,0), true)
+
+	Timers:CreateTimer( 0.1, function()
+				ParticleManager:DestroyParticle(particle,false)
 				return nil
 			end
-		end )
+		)
 end
 
 
@@ -79,12 +35,19 @@ function A25E( keys )
 	local id  = caster:GetPlayerID()
 	local casterLocation = keys.target_points[1]
 	local range = ability:GetLevelSpecialValueFor( "A25E_range", ability:GetLevel() - 1 )
+	local randonint = 5
 	local dura = ability:GetLevelSpecialValueFor( "A25E_Duration", ability:GetLevel() - 1 )
 	local damage = ability:GetLevelSpecialValueFor( "A25E_damage", ability:GetLevel() - 1 )
-	for i=1,40 do
-		local pos = casterLocation + RandomVector(RandomInt(50 , range-50))
-		local spike = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit_spikes.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	local spike_amount = ability:GetLevelSpecialValueFor( "A25E_spike_amount", ability:GetLevel() - 1 )
+	for i=1,spike_amount do
+		local pos = casterLocation + RandomVector(RandomInt(randonint , range-randonint))
+		local spike = ParticleManager:CreateParticle("particles/a25e/a25e.vpcf", PATTACH_ABSORIGIN, keys.caster)
 		ParticleManager:SetParticleControl(spike, 0, pos)
+		-- Timers:CreateTimer( 0.0, function()
+		-- 	ParticleManager:DestroyParticle(spike,false)
+		-- 	return nil
+		-- end
+		-- )
 	end
 	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), casterLocation, nil, range+50, 
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
@@ -105,6 +68,64 @@ function A25E( keys )
 	
 end
 
+--[[
+	Author: kritth
+	Date: 9.1.2015.
+	Bubbles seen only to ally as pre-effect
+]]
+function torrent_bubble_allies( keys )
+	local caster = keys.caster
+	
+	local allHeroes = HeroList:GetAllHeroes()
+	local delay = keys.ability:GetLevelSpecialValueFor( "delay", keys.ability:GetLevel() - 1 )
+	local particleName = "particles/a25e3/a25e3.vpcf"  --"particles/units/heroes/hero_kunkka/kunkka_spell_torrent_bubbles.vpcf"
+	local target = keys.target_points[1]
+	
+	for k, v in pairs( allHeroes ) do
+		if v:GetPlayerID() and v:GetTeam() == caster:GetTeam() then
+			local fxIndex = ParticleManager:CreateParticleForPlayer( particleName, PATTACH_ABSORIGIN, v, PlayerResource:GetPlayer( v:GetPlayerID() ) )
+			ParticleManager:SetParticleControl( fxIndex, 0, target )
+			
+			EmitSoundOnClient( "Ability.pre.Torrent", PlayerResource:GetPlayer( v:GetPlayerID() ) )
+			
+			-- Destroy particle after delay
+			Timers:CreateTimer( delay, function()
+					ParticleManager:DestroyParticle( fxIndex, false )
+					return nil
+				end
+			)
+		end
+	end
+
+	A25E( keys )
+end
+
+--[[
+	Author: kritth
+	Date: 9.1.2015.
+	Emit sound at location
+]]
+function torrent_emit_sound( keys )
+	local dummy = CreateUnitByName( "hide_unit", keys.target_points[1], false, keys.caster, keys.caster, keys.caster:GetTeamNumber() )
+	EmitSoundOn( "Ability.Torrent", dummy )
+	dummy:ForceKill( true )
+end
+
+--[[
+	Author: kritth, Pizzalol
+	Date: February 24, 2016
+	Provides obstructed vision of the area
+]]
+function torrent_vision( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target_points[1]
+	local radius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
+	local duration = ability:GetLevelSpecialValueFor( "vision_duration", ability:GetLevel() - 1 )
+	
+	AddFOWViewer(caster:GetTeamNumber(),target,radius,duration,true)
+end
+
 
 
 --RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
@@ -120,7 +141,7 @@ function A25R_critical:DeclareFunctions()
 end
 
 function A25R_critical:GetModifierPreAttack_CriticalStrike()
-	return A25R_level*50 + 150
+	return self.A25R_level*50 + 150
 end
 
 function A25R_critical:CheckState()
@@ -132,8 +153,9 @@ end
 
 function A25R_Levelup( keys )
 	local caster = keys.caster
-	local level = keys.ability:GetLevel()
-	A25R_level = level
+	caster.A25R_noncrit_count = 0
+			-- 	local particle = ParticleManager:CreateParticle("particles/a25r/a25r.vpcf", PATTACH_POINT, caster)
+			-- ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_attack2", Vector(0,0,0), true)
 end
 
 function A25R( keys )
@@ -143,12 +165,31 @@ function A25R( keys )
 	local ran =  RandomInt(0, 100)
 	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
 		if (ran > 20) then
-			A25R_noncrit_count = A25R_noncrit_count + 1
+			caster.A25R_noncrit_count = caster.A25R_noncrit_count + 1
 		end
-		if (A25R_noncrit_count > 5 or ran <= 20) then
-			A25R_noncrit_count = 0
+		if (caster.A25R_noncrit_count > 5 or ran <= 20) then
+			caster.A25R_noncrit_count = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 			caster:AddNewModifier(caster, skill, "A25R_critical", { duration = 0.1 } )
+			local hModifier = caster:FindModifierByNameAndCaster("A25R_critical", caster)
+			--SE
+			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
+			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
+			--動作
+				local rate = caster:GetAttackSpeed()
+				--print(tostring(rate))
+
+				--播放動畫
+			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
+				if rate < 1.00 then
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1.00)
+				else
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+				end
+
+			if (hModifier ~= nil) then
+				hModifier.A25R_level = keys.ability:GetLevel()
+			end
 		end
 	end
 end
@@ -192,12 +233,12 @@ function A25T2( keys )
 	Timers:CreateTimer(0, function()
 		pos = pos + movedir
 		ParticleManager:SetParticleControl(tornado, 3, pos)
-		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, nil, 150, 
-			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, 0, 0, false )
-		for _,it in pairs(enemies) do
-			ApplyDamage({ victim = it, attacker = caster, damage = 6, 
-				damage_type = ability:GetAbilityDamageType() , ability = ability})
-		end
+		-- local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, nil, 150, 
+		-- 	DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, 0, 0, false )
+		-- for _,it in pairs(enemies) do
+		-- 	ApplyDamage({ victim = it, attacker = caster, damage = 6, 
+		-- 		damage_type = ability:GetAbilityDamageType() , ability = ability})
+		-- end
 
 		timecount = timecount + 0.1
 		if (timecount < 7) then

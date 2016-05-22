@@ -40,10 +40,34 @@ loadModule ( 'library/chetcodeselfmode' )
 loadModule ( 'computer_system/chubing' )
 loadModule ( 'main' )
 loadModule ( 'amhc_library/amhc' )
+loadModule ( 'library/events/eventfororder' )
 --
 
 -- Create the game mode when we activate
 function Activate()
 	Lua_of_main()
 	AMHCInit()
+
+	--<< ↓ ↓ ↓ 05.09.16更新 ↓ ↓ ↓ >>
+	Nobu:InitGameMode()
+	--<< ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ >>
+
+	--test
+	--GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)
 end
+
+--<< ↓ ↓ ↓ 05.09.16更新 ↓ ↓ ↓ >>   
+--事件:OnOrder
+Nobu = class({})
+
+function Nobu:FilterExecuteOrder( filterTable )
+	eventfororder( filterTable )
+	return true --一定要true 要不然單位接收不到命令
+end
+
+function Nobu:InitGameMode()
+  GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap(Nobu, "FilterExecuteOrder" ), self )
+end
+--<<↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑>>
+
+

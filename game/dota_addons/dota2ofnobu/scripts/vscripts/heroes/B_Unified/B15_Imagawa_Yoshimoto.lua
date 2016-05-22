@@ -1,128 +1,81 @@
---global
-	C09E_B = {}
-	C09R_B = {}
---ednglobal
+function B15W_on_spell_start(keys)
+	-- keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_black_king_bar_datadriven_active", nil)
+	keys.caster:EmitSound("DOTA_Item.BlackKingBar.Activate")
+	
+	local final_model_scale = (30 / 100) + 1  --This will be something like 1.3.
+	local model_scale_increase_per_interval = 100 / (final_model_scale - 1)
+	local duration = keys.ability:GetLevelSpecialValueFor("duration", keys.ability:GetLevel() - 1 )
 
-function C09E_Mitsuhide_Akechi_Effect_first( keys, int,caster,level,point )
-	local dmg = 0
-	local SEARCH_RADIUS = 300
-		--判斷是不是第一波火焰
-		if int == 0 then
-			dmg = 100 + 100 * level
-		else
-			dmg = 100 
-		end
-
-		direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-	                              point,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-
-		--effect:傷害+暈眩
-		for _,it in pairs(direUnits) do
-			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C09E",nil)
-
-			--debug
-			GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
-		end
-
-		--particle
-		local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",PATTACH_WORLDORIGIN,caster)
-		ParticleManager:SetParticleControl(particle,0,vec)
-		ParticleManager:SetParticleControl(particle,1,Vector(5,5,5))
-		ParticleManager:SetParticleControl(particle,3,vec)
-		ParticleManager:ReleaseParticleIndex(particle)
-
-end
-
-
-
-
--- 傳入單位盡量統一名稱用keys
-function C09E_Mitsuhide_Akechi ( keys )
-	local caster = keys.caster --unit
-	local caster_abs = caster:GetAbsOrigin() -- vectorv
-	local point = keys.target_points[1] 
-	local time = 1.40
-	local b = false --boolean
-	local level = keys.ability:GetLevel()
-	local int = 0
-
-		--判斷有沒有R技的modifier
-		if caster:HasModifier("modifier_C09R") == false then
-			b = true
-		else
-			b = false
-		end
-
-		--timer : 第一次火焰
-	    Timers:CreateTimer(time, function()
-	    	C09E_Mitsuhide_Akechi_Effect_first(int,caster,level,point)
-	        return nil -- 每秒再次调用
-	    end)
-
-		--timer : 第二次火焰
-	    Timers:CreateTimer(time, function()
-
-	    	if int >= 3 then
-	        	return nil -- 每秒再次调用
-	        else
-
-	        	--效果
-	        	C09E_Mitsuhide_Akechi_Effect_first(keys, int,caster,level,point)
-
-	        	--判斷是否通過機率
-	        	if RandomInt( 1 , 100 ) <= 15 + 10 * level then
-	        		int = int + 1
-	        	else
-	        		return nil
-	    		end
-	        end
-
-	    end)
-
-end
-
-
-function C09R( keys )
-	local caster = keys.caster
-	local skill = keys.ability
-	local time = 10.00
-	local id  = caster:GetPlayerID()
-
-	--debug
-	GameRules: SendCustomMessage(tostring(C09R_B[22]),DOTA_TEAM_GOODGUYS,0)
-
-	--debug
-	if C09R_B[id] == nil then
-
-		--timer
-	    Timers:CreateTimer(time, function()
-
-			--debug
-			GameRules: SendCustomMessage("Hello",DOTA_TEAM_GOODGUYS,0)
-
-			--如果沒有R技的modifier，就給予modifer
-	    	if caster:HasModifier("modifier_C09R") == false then
-	    		skill:ApplyDataDrivenModifier(caster,caster,"modifier_C09R",nil)
-	    	end
-	        return time -- 每秒再次调用
-	    end)
-
+	--Scale the model up over time.
+	for i=1,100 do
+		Timers:CreateTimer(i/75, 
+		function()
+			keys.caster:SetModelScale(1 + i/model_scale_increase_per_interval)
+		end)
 	end
 
-	--avoid
-	--避免二次創造計時器
-	C09R_B[id] = true
-
+	--Scale the model back down around the time the duration ends.
+	for i=1,100 do
+		Timers:CreateTimer(duration - 1 + (i/50),
+		function()
+			keys.caster:SetModelScale(final_model_scale - i/model_scale_increase_per_interval)
+		end)
+	end
 end
 
+--[[Author: Pizzalol
+	Date: 04.03.2015.
+	Creates additional attack projectiles for units within the specified radius around the caster]]
+function SplitShotLaunch( keys )
+	local caster = keys.caster
+	local caster_location = caster:GetAbsOrigin()
+	local ability = keys.ability
+	local ability_level = ability:GetLevel() - 1
 
--- 可以在別的技能刪除另外一個技能的modifier
--- 問題可以洗 如何判斷每人一個計時器
+	print("@@@@@222222222222222")
+	-- Targeting variables
+	local target_type = ability:GetAbilityTargetType()
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_flags = ability:GetAbilityTargetFlags()
+	local attack_target = caster:GetAttackTarget()
+
+	-- Ability variables
+	local projectile_speed = 1800
+	local split_shot_projectile = "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+
+	local projectile_info = 
+	{
+		EffectName = split_shot_projectile,
+		Ability = ability,
+		vSpawnOrigin = caster_location,
+		Target = attack_target,
+		Source = caster,
+		bHasFrontalCone = false,
+		iMoveSpeed = projectile_speed,
+		bReplaceExisting = false,
+		bProvidesVision = false
+	}
+	ProjectileManager:CreateTrackingProjectile(projectile_info)
+end
+
+-- Apply the auto attack damage to the hit unit
+function SplitShotDamage( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local damage_table = {}
+
+	damage_table.attacker = caster
+	damage_table.victim = target
+	damage_table.damage_type = ability:GetAbilityDamageType()
+	--damage_table.damage = caster:GetAttackDamage()
+	damage_table.damage = 12000
+
+	ApplyDamage(damage_table)
+end
+
+-- Apply the auto attack damage to the hit unit
+function test( keys )
+print("@@@@@1111")
+end

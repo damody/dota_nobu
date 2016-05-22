@@ -1,5 +1,9 @@
-	print("@@@ : Cheats.lua Init ")
+print("@@@ : Cheats.lua Init ")
 
+--------------------------------------------------------------------------------
+--                                    global                                  --
+--------------------------------------------------------------------------------
+--model_lookup["npc_dota_hero_brewmaster"] = "models/heroes/brewmaster/brewmaster.vmdl"
 --------------------------------------------------------------------------------
 --                                    測試                                    --
 --------------------------------------------------------------------------------
@@ -8,36 +12,37 @@ if Ctest == nil then
     GameMode = class({})
 end
 
-
---GameMode = GameRules: GetGameModeEntity()
-
-
-
-function Ctest:OnNPCSpawned(info)
+function Ctest:OnNPCSpawned(keys)
 end
 
-function Pick_Hero(info)
-  print("@@@@ : Pick Hero Init")
-  DeepPrintTable(info)    --[[
-  player                            = 1 (number)
-  hero                              = "npc_dota_hero_alchemist" (string)
-  1heroindex                         = 109 (number)
-  splitscreenplayer                 = -1 (number)]]
 
-  local id       = info.player  --info.userid --BUG:會1.2的調換，不知道為甚麼
+
+function Ctest:Pick_Hero(keys)
+  local id       = keys.player  
   local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-  local hero     = p: GetAssignedHero() --获取该玩家的英雄
+  local hero     = p: GetAssignedHero() 
   local point    = hero:GetAbsOrigin()
 
+  --<<英雄名稱判別>>
+  local name = hero:GetUnitName()
+  if name == "npc_dota_hero_ancient_apparition"  then
+    local ability = hero:FindAbilityByName("A04D")
+    ability:SetLevel(1)
+  elseif name == "npc_dota_hero_jakiro"  then
+    hero:FindAbilityByName("C22D"):SetLevel(1)
+  elseif name == "npc_dota_hero_templar_assassin"  then
+    hero:FindAbilityByName("C15D"):SetLevel(1)
+  end  
+  --<<英雄名稱判別>>
 
   --<<英雄系統>>
     --<<事件:任一單位施放技能>>
-    if hero: FindAbilityByName("EventForUnitSpellAbility") ~= nil then
-      local spell = hero: FindAbilityByName("EventForUnitSpellAbility")
-      spell:SetLevel(1)
-      --spell:SetActivated(true)  
-    end
-
+    --hero:AddAbility("EventForUnitSpellAbility"):SetLevel(1)
+    --<<事件:命令事件>>
+    --hero:AddAbility("EventForOrder"):SetLevel(1)
+    --<<全能力點數>>
+    hero:AddAbility("attribute_bonus")
+    
   --<<英雄系統>>
 
 
@@ -46,6 +51,11 @@ function Pick_Hero(info)
     --物品
   item = CreateItem("item_RRRRRRRRRRRR",nil,nil)
   CreateItemOnPositionSync(point, item)
+
+  item = CreateItem("item_sphere",nil,nil)
+  CreateItemOnPositionSync(point, item)
+
+  --debug
   GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
 
   --金錢
@@ -56,18 +66,60 @@ function Pick_Hero(info)
     hero.HeroLevelUp(hero,true)
   end
 
-  --<<test>>
+  --刪除建築物無敵
+  --building_handle:RemoveModifierByName("modifier_invulnerable")
+   local hero2 = Entities:FindAllByClassname("npc_dota_*")
+   print("Heroes: "..#hero2)         --取得表中元素数量
+
+  for _,it in pairs(hero2) do
+    -- if it:IsBuilding() then
+    --   it:RemoveModifierByName("modifier_invulnerable")
+    -- end
+  end
 end
 
+function RemoveWearables( hero )
+  local name = hero:GetUnitName()
+  local bol  = false
 
-function Chat(info)
+  -- if name == "npc_dota_hero_keeper_of_the_light" then
+  --   bol  = true
+  -- end
+
+
+
+  if bol == false then
+    local children = hero:GetChildren()
+    for k,child in pairs(children) do
+       if child:GetClassname() == "dota_item_wearable" then
+           child:RemoveSelf()
+       end
+    end
+  end
+    -- if model_lookup[ hero:GetName() ] ~= nil and hero:GetModelName() ~= model_lookup[ hero:GetName() ] then
+    --   --fix arcana model
+    --   Timers:CreateTimer(0.1, function ()
+    --     hero:SetModel(model_lookup[ hero:GetName() ])
+    --     hero:SetOriginalModel(model_lookup[ hero:GetName() ])
+    --     hero:MoveToPosition(hero:GetAbsOrigin())
+    --   end)
+    -- end
+end
+
+function Ctest:OnHeroIngame(unit)
+  local spawnedUnit = EntIndexToHScript( unit.entindex )
+
+  RemoveWearables( spawnedUnit )
+end
+
+function Chat(keys)
   print("@@@@ : Chat Init")
-  DeepPrintTable(info)    --详细打印传递进来的表
+  DeepPrintTable(keys)    --详细打印传递进来的表
 
 --測試創造單位
---local id    = info.player --BUG:在講話事件裡，讀取不到玩家，是整數。
-local s   	   = info.text	
-local id  	   = 1 --info.userid --BUG:會1.2的調換，不知道為甚麼
+--local id    = keys.player --BUG:在講話事件裡，讀取不到玩家，是整數。
+local s   	   = keys.text	
+local id  	   = 1 --keys.userid --BUG:會1.2的調換，不知道為甚麼
 local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
 local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 local point    = hero:GetAbsOrigin()
@@ -98,16 +150,23 @@ local point    = hero:GetAbsOrigin()
   end  
 
   if s == "test" then
-    --物品
-    item = CreateItem("item_RRRRRRRRRRRR",nil,nil)
-    CreateItemOnPositionSync(point, item)
-    GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
 
-
-
+    local  u = CreateUnitByName("npc_dota_hero_magnataur",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+    --u:SetOwner(p)                                         --設置u的擁有者
+    u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+    u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
     --等級
-    for i=1,25 do
-      hero.HeroLevelUp(hero,true)
+    for i=1,30 do
+      u.HeroLevelUp(u,true)
+    end
+
+    u = CreateUnitByName("npc_dota_hero_centaur",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+    --u:SetOwner(p)                                         --設置u的擁有者
+    u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+    u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+    --等級
+    for i=1,30 do
+      u.HeroLevelUp(u,true)
     end
 
   end
@@ -451,12 +510,12 @@ local point    = hero:GetAbsOrigin()
   剑圣：models/heroes/juggernaut/juggernaut.vmdl
   敌法：models/heroes/antimage/antimage.vmdl
 
-  function Morph(info)
+  function Morph(keys)
          local model = {"models/heroes/sven/sven.vmdl","models/heroes/juggernaut/juggernaut.vmdl","models/heroes/antimage/antimage.vmdl"}
-         local type = string.sub(info.txt,0,6)
+         local type = string.sub(keys.txt,0,6)
          if type == "-morph" then
-               local index = tonumber(string.sub(info.txt,8,9))
-               local id = info.userid
+               local index = tonumber(string.sub(keys.txt,8,9))
+               local id = keys.userid
                local p = PlayerResource: GetPlayer(id)
                local hero = p: GetAssignedHero()
                if hero ~= nil then
@@ -481,21 +540,21 @@ local point    = hero:GetAbsOrigin()
 
   验证：玩家输入-render+r+g+b 三组数值，将所控制英雄模型渲染成对应颜色。
 
-  function Morph(info)
+  function Morph(keys)
   local r = 255
   local g = 255
   local b = 255
-  if info.text == "-red" then
+  if keys.text == "-red" then
     g=0
     b=0
-  elseif info.text == "-green" then
+  elseif keys.text == "-green" then
     r=0
     b=0
-  elseif info.text == "-blue" then
+  elseif keys.text == "-blue" then
     r=0
     g=0
   end
-  local id = info.userid-1
+  local id = keys.userid-1
   local p = PlayerResource: GetPlayer(id)
   local hero = p: GetAssignedHero()
   if hero ~= nil then
@@ -653,6 +712,42 @@ function Ctest:OnEntityKilled( event )
     end  
 end
 
+function unitspell( keys )
+  -- body
+end
+
+function Ctest:FilterExecuteOrder( filterTable )
+--DeepPrintTable(filterTable)  --多用这个来print各种表，能学会挺多，下面比如什么position_x 都在这个filterTable里，print一下就知道这里面有什么了
+print("@@@@@")
+        local f = filterTable
+        --对lua不熟悉的人注意一下，“=”并不是“复制粘贴”，这里我们更改了f这个table的值，其实也就更改了filterTable，在c语言里面来说大概就是复制了一个指针，而不是复制了一个数组，这里这样写只是为了少打几个字 -_-||
+        local unit = EntIndexToHScript(f.units["0"]) --单位
+ 
+        if f.order_type ==  DOTA_UNIT_ORDER_MOVE_TO_POSITION then --如果下达的指令类型是移动到某个地点（这个常量表也在一楼的wiki上能查到，网页按Ctrl + F是搜索）
+                if unit:FindModifierByName("raoluan") then --在这种情况下这个单位就是移动的单位，查找他是否有上面那个技能的debuff
+                        local v = Vector(f.position_x,f.position_y,f.position_z)
+                        local r_v = RotatePosition(unit:GetAbsOrigin(),QAngle(0,180,0),v) --把v这个坐标围绕unit的位置坐标在水平面上旋转180°
+                        --以下这些是防止新生成的坐标超出了地图的界限
+                        if r_v.x > GetWorldMaxX() then
+                                r_v.x = GetWorldMaxX()
+                        end
+                        if r_v.x < GetWorldMinX() then
+                                r_v.x = GetWorldMinX()
+                        end
+                        if r_v.y > GetWorldMaxY() then
+                                r_v.y = GetWorldMaxY()
+                        end
+                        if r_v.y < GetWorldMinY() then
+                                r_v.y = GetWorldMinY()
+                        end
+--更改原来的指令指向的坐标
+                        f.position_x = r_v.x
+                        f.position_y = r_v.y
+                end
+        end
+        return true--对于return有三种情况，一种false，就等于指令被过滤不生效（本例子情况下就是点击了移动但是不移动），一种是true，并且不做更改，等于没有过滤器一样，还有一种就是上面那样更改了表中的几个值再返回true，那么生效的就是更改后的指令（本例子情况下就是移动了，但是移动的目的地变了）
+end
+
 function Ctest:InitGameMode()
 
   --设置游戏准备时间
@@ -675,10 +770,17 @@ function Ctest:InitGameMode()
   ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, "OnEntityKilled" ), self )
 
   --玩家選取事件
-  ListenToGameEvent("dota_player_pick_hero",Pick_Hero,nil)
+  ListenToGameEvent("dota_player_pick_hero",Dynamic_Wrap( Ctest, "Pick_Hero" ), self)
 
   --玩家對話事件
   ListenToGameEvent("player_chat",Chat,nil)
+
+  --玩家施法事件
+  ListenToGameEvent("dota_player_used_ability",unitspell,nil)
+
+  --單位出生
+  ListenToGameEvent('npc_spawned', Dynamic_Wrap(Ctest, 'OnHeroIngame'), self)
+
 
 end
 
@@ -703,15 +805,15 @@ end
 -- end
 
 
-function Death(info)
+function Death(keys)
   print("@@@@ : Death Event Run")
-  DeepPrintTable(info)    --详细打印传递进来的表
+  DeepPrintTable(keys)    --详细打印传递进来的表
 
   -- 储存被击杀的单位
-  local killedUnit = EntIndexToHScript( info.entindex_killed )
+  local killedUnit = EntIndexToHScript( keys.entindex_killed )
   
   -- 储存杀手单位
-  local killerEntity = EntIndexToHScript( info.entindex_attacker )
+  local killerEntity = EntIndexToHScript( keys.entindex_attacker )
 
   --EntIndexToHScript handle EntIndexToHScript(int a) 把一个实体的整数索引转化为表达该实体脚本实例的HScript
 
