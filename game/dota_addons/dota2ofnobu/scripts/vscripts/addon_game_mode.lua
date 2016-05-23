@@ -41,6 +41,7 @@ loadModule ( 'computer_system/chubing' )
 loadModule ( 'main' )
 loadModule ( 'amhc_library/amhc' )
 loadModule ( 'library/events/eventfororder' )
+loadModule ( 'physics' )
 --
 
 -- Create the game mode when we activate
