@@ -227,12 +227,5 @@ function B25T_start( keys )
 	-- )
 end
 
-
-function B25T_stop( keys )
-		--如果停止施法就殺掉單位
-	local caster = keys.caster
-	local id 	= caster:GetPlayerID() --獲取玩家ID
-end
-
 function B25_add_hand( )
 end

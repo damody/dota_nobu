@@ -10686,7 +10686,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"skywrath_mage_mystic_flare"
-		"AOERadius"						"400 450 500"
+		"AOERadius"						"%radius"
 		"AbilityChannelTime"			"4"
 
 		// Casting
@@ -10709,7 +10709,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"400 450 500"
+				"radius"				"400 450 1500"
 			}
 			"02"
 			{
@@ -10743,26 +10743,6 @@
 				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
 				"Function"			"B25T_start"
 				"Target"			"POINT"
-			}
-		}
-
-		"OnChannelInterrupted"
-		{
-			"RunScript"
-			{
-				"Target"	"CASTER"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
-				"Function"	"B25T_stop"
-			}
-		}
-
-		"OnChannelFinish"
-		{
-			"RunScript"
-			{
-				"Target"	"CASTER"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
-				"Function"	"B25T_stop"
 			}
 		}
 
