@@ -131,59 +131,47 @@ function B25T_start( keys )
 	-- -- Get random point
 	local directionConstraint = 0
 	local dummyCount = 0
-	Timers:CreateTimer(interval, function()
-			if dummyCount < dummyMaximum then
-				directionConstraint = (directionConstraint + 1) % 4
-				dummyCount = dummyCount + 1
-				local castDistance = RandomInt( 0, radius )
-				local angle = RandomInt( 0, 90 )
-				local dy = castDistance * math.sin( angle )
-				local dx = castDistance * math.cos( angle )
-				local attackPoint = Vector( 0, 0, 0 )
-				
-				if directionConstraint == 0 then			-- NW
-					attackPoint = Vector( target.x - dx, target.y + dy, target.z )
-				elseif directionConstraint == 1 then		-- NE
-					attackPoint = Vector( target.x + dx, target.y + dy, target.z )
-				elseif directionConstraint == 2 then		-- SE
-					attackPoint = Vector( target.x + dx, target.y - dy, target.z )
-				else										-- SW
-					attackPoint = Vector( target.x - dx, target.y - dy, target.z )
-				end
-
-				local dummy = CreateUnitByName( "B25T_dummy", attackPoint, false, caster, caster, caster:GetTeamNumber() )
-				local DummyAbility=dummy:AddAbility("majia")
-				DummyAbility:SetLevel(1)
-				ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
-				Timers:CreateTimer( 0.8, function()
-					dummy:ForceKill( true )
-					dummyCount = dummyCount - 1
-				end )
+	allparticle = {}
+	local handcount = 0
+	tradius = 10
+	Timers:CreateTimer(0, function()
+		handcount = handcount + 1
+		if (handcount < 40) then
+			tradius = tradius + 10
+			for i = 1, 10 do
+				local point = target + RandomVector(RandomInt(tradius,radius))
+				local particle=ParticleManager:CreateParticle("particles/b15t/b15t_fiends_grip.vpcf",PATTACH_WORLDORIGIN,caster)
+				ParticleManager:SetParticleControl(particle,0,point)
+				--ParticleManager:ReleaseParticleIndex(particle)
+				table.insert(allparticle, particle)
 			end
-
-			local units = FindUnitsInRadius(
+		end
+		local units = FindUnitsInRadius(
 				caster:GetTeamNumber(), target, caster, radius, targetTeam,
 				targetType, targetFlag, FIND_ANY_ORDER, false
 			)
-			if #units > 0 then
-				for k, v in pairs( units ) do
-					-- Apply damage
-					local damageTable = {
-						victim = v,
-						attacker = caster,
-						damage = damagePerSec * interval,
-						damage_type = damageType
-					}
-					ApplyDamage( damageTable )
-				end
+		if #units > 0 then
+			for k, v in pairs( units ) do
+				-- Apply damage
+				local damageTable = {
+					victim = v,
+					attacker = caster,
+					damage = damagePerSec * interval,
+					damage_type = damageType
+				}
+				ApplyDamage( damageTable )
 			end
-			
-			-- Check if maximum instances reached
-			if caster:IsChanneling() == false then
-				return nil
-			else
-				return interval
+		end
+		
+		-- Check if maximum instances reached
+		if caster:IsChanneling() == false then
+			for k,v in pairs(allparticle) do
+				ParticleManager:DestroyParticle(v, false)
 			end
+			return nil
+		else
+			return interval
+		end
 		end)
 
 	-- ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {radius = 700} )
