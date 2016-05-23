@@ -109,7 +109,7 @@ function B25T_start( keys )
 	local caster = keys.caster
 	local id 	= caster:GetPlayerID()
 	-- local current_instance = 0
-	local dummyModifierName = "modifier_bane_fiends_grip"
+	local dummyModifierName = "modifier_fiends_grip_datadriven"
 	-- local dummyModifierName = "modifier_enigma_midnight_pulse_thinker"
 	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
 	local interval = ability:GetLevelSpecialValueFor( "damage_interval", ability:GetLevel() - 1 )
@@ -155,7 +155,7 @@ function B25T_start( keys )
 				local DummyAbility=dummy:AddAbility("majia")
 				DummyAbility:SetLevel(1)
 				ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
-				Timers:CreateTimer( 0.5, function()
+				Timers:CreateTimer( 0.8, function()
 					dummy:ForceKill( true )
 					dummyCount = dummyCount - 1
 				end )

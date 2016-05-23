@@ -10765,5 +10765,34 @@
 				"Function"	"B25T_stop"
 			}
 		}
+
+		"Modifiers"
+		{
+			"modifier_fiends_grip_datadriven"
+			{
+				"IsDebuff"	"1"
+				"EffectName"	"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"OverrideAnimation"	"ACT_DOTA_FLAIL"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Bane.FiendsGrip"
+						"Target"	"TARGET"
+					}
+				}
+				"ThinkInterval"	"%fiend_grip_tick_interval"
+				"States"	{}
+			}
+			"modifier_fiends_grip_caster_datadriven"
+			{
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
 	}
 }
