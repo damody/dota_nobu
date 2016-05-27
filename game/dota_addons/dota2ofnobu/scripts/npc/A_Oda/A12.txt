@@ -1,0 +1,389 @@
+"DOTAAbilities"
+{
+	"A12W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"A12W"
+		"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"precache"
+		{
+			"particle"	"particles/a12w/a12w.vpcf"
+			"particle"	"particles/a12w2/a12w2.vpcf"
+			"particle"	"particles/a12w/a12w.vpcf"
+			"particle"	"particles/a12w2/a12w2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"CASTER"
+					"Radius"	"485"
+				}
+				"Action"
+				{
+					"Knockback"
+					{
+						"Target"	"TARGET"
+						"Center"	"CASTER"
+						"Duration"	"0.3"
+						"Distance"	"500"
+						"Height"	"0"
+						"IsFixedDistance"	"1"
+						"ShouldStun"	"0"
+					}
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"0.3"
+					}
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"ControlPoints"	{}
+						"ControlPointEntities"	{}
+						"EffectName"	"particles/a12w/a12w.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+				"Function"	"A12W"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A12W"
+			{
+				"OnCreated"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%wufadongdan"
+					}
+				}
+				"IsDebuff"	"0"
+				"IsPurgable"	"0"
+				"Duration"	"%wufadongdan"
+				"IsHidden"	"1"
+				"EffectName"	"particles/a12w2/a12w2.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"wufadongdan"	"1.0 1.5 2.0 2.5"
+			}
+		}
+	}
+
+	"A12D"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_quas"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+	}
+
+	"A12D_HIDE"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"1"
+		"Modifiers"
+		{
+			"modifier_A12D_HIDE"
+			{
+				"Passive"	"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+						"Function"	"A12D_HIDE"
+					}
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"Function"	"A12D_HIDE_Learn"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+					}
+				}
+				"IsHidden"	"1"
+			}
+		}
+	}
+
+	"A12E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"storm_spirit_static_remnant"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+				"Function"	"A12E"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A12E"
+			{
+				"Duration"	"%Time"
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%SpeedBonus"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+						"Function"	"A12E_Attack"
+					}
+				}
+			}
+			"modifier_A12E_2"
+			{
+				"Duration"	"%Time"
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%SpeedBonus"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+						"Function"	"A12E_Attack"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"SpeedBonus"	"30 50 70 90"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Time"	"10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"CureMana"	"2 4 6 8"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Chance"	"30"
+			}
+		}
+	}
+
+	"A12R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lone_druid_savage_roar_bear"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"	"0.3"
+		"AOERadius"	"%radius"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/razor/razor_attack_crit_02.vsnd"
+			"particle"	"particles/a12r2/a12r2.vpcf"
+			"particle"	"particles/a12r/a12r.vpcf"
+			"particle"	"particles/units/heroes/hero_stormspirit/stormspirit_electric_vortex_owner.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+				"Function"	"A12R"
+			}
+			"FireSound"	{}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"POINT"
+					"Radius"	"%radius"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_A12R"
+						"Duration"	"%duration"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A12R"
+			{
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+				"EffectName"	"particles/units/heroes/hero_stormspirit/stormspirit_electric_vortex_owner.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"150 250 350 450"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow"	"-15 -20 -25 -30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"3"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Special_damage"	"12"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+		}
+	}
+
+	"A12T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"storm_spirit_overload"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"precache"
+		{
+			"particle"	"particles/a12t2/a12t2.vpcf"
+		}
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A12T"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A12T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A12T"
+			{
+				"Passive"	"0"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/a12t2/a12t2.vpcf"
+				}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+						"Function"	"A12T"
+					}
+				}
+				"OnOrbFire"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+						"Function"	"A12T_Start"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Special_Damage"	"19 26 27"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"SpendMana"	"85 135 185"
+			}
+		}
+	}	
+}

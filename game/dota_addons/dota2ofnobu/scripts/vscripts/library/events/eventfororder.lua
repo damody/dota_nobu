@@ -32,6 +32,7 @@ end
 function EventForAttackTarget( filterTable )
 	local f = filterTable
 	local caster = EntIndexToHScript(f.units["0"]) 
+	local ability = EntIndexToHScript(f.entindex_ability)
 	-- local rate = caster:GetAttackSpeed()
 	--print(tostring(rate))
 
@@ -44,38 +45,108 @@ function EventForAttackTarget( filterTable )
     -- end
     -- print("@@ Attack")
 
-    DeepPrintTable(filterTable)
+	 --    DeepPrintTable(filterTable)
+	 --    [   VScript                ]: {
+	-- [   VScript                ]:    entindex_ability                	= 0 (number)
+	-- [   VScript                ]:    sequence_number_const           	= 13 (number)
+	-- [   VScript                ]:    queue                           	= 0 (number)
+	-- [   VScript                ]:    units                           	= table: 0x039c9948 (table)
+	-- [   VScript                ]:    {
+	-- [   VScript                ]:       0                               	= 331 (number)
+	-- [   VScript                ]:    }
+	-- [   VScript                ]:    entindex_target                 	= 444 (number)
+	-- [   VScript                ]:    position_z                      	= 0 (number)
+	-- [   VScript                ]:    position_x                      	= 0 (number)
+	-- [   VScript                ]:    order_type                      	= 4 (number)
+	-- [   VScript                ]:    position_y                      	= 0 (number)
+	-- [   VScript                ]:    issuer_player_id_const          	= 0 (number)
+	-- [   VScript                ]: }
 end
 
 
-function eventfororder( filterTable )
-	local ordertype = filterTable.order_type 
-	print("@@@"..tostring(ordertype))
 
-	if ordertype == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
+
+
+
+function test_of_spell( filterTable )
+	local f = filterTable
+	local keys = f
+	local caster = EntIndexToHScript(f.units["0"]) 
+	
+	-- Reset cooldown for abilities that is not rearm
+	for i = 0, caster:GetAbilityCount() - 1 do
+		local ability = caster:GetAbilityByIndex( i )
+		if ability and ability ~= EntIndexToHScript(f.units["0"]) then
+			ability:EndCooldown()
+		end
+	end
+	
+	-- Put item exemption in here
+	local exempt_table = {}
+	
+	-- Reset cooldown for items
+	for i = 0, 5 do
+		local item = caster:GetItemInSlot( i )
+		if item then--if item and not exempt_table( item:GetAbilityName() ) then
+			item:EndCooldown()
+		end
+	end
+end
+
+
+
+
+
+function GameRules.Nobu:eventfororder( filterTable )
+	local ordertype = filterTable.order_type 
+	--print("@@@"..tostring(ordertype))
+
+	if ordertype >= 5 and ordertype <= 9 then
+		local f = filterTable
+		local caster = EntIndexToHScript(f.units["0"]) 
+		local ability = EntIndexToHScript(f.entindex_ability)
+		caster.abilityName = ability:GetAbilityName()	
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET then
 		EventForSpellTarget( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_ATTACK_TARGET then
 		--test 5.21 更新
 		EventForAttackTarget( filterTable )
+	elseif ordertype == 10 then	
+		--test
+		test_of_spell( filterTable )
 	end
 
 
-
-	--test 5.15.16 更新
-	local f 		 = filterTable
-	local caster     = EntIndexToHScript(f.units["0"]) 
-	local skill 	 = EntIndexToHScript(f.entindex_ability)
-
-	Timers:CreateTimer(1, 
-	function()
-		caster:SetMana(caster:GetMaxMana())
-		for abilitySlot=0,15 do
-			local ability = caster:GetAbilityByIndex(abilitySlot)
-			if ability ~= nil then 
-				ability:EndCooldown()
-			end
-		end
-		return nil
-    end)
+	return true 
 end 
+
+
+-- DOTA_UNIT_ORDERS
+-- Name	Value	Description
+-- DOTA_UNIT_ORDER_NONE	0	
+-- DOTA_UNIT_ORDER_MOVE_TO_POSITION	1	
+-- DOTA_UNIT_ORDER_MOVE_TO_TARGET	2	
+-- DOTA_UNIT_ORDER_ATTACK_MOVE	3	
+-- DOTA_UNIT_ORDER_ATTACK_TARGET	4	
+-- DOTA_UNIT_ORDER_CAST_POSITION	5	
+-- DOTA_UNIT_ORDER_CAST_TARGET	6	
+-- DOTA_UNIT_ORDER_CAST_TARGET_TREE	7	
+-- DOTA_UNIT_ORDER_CAST_NO_TARGET	8	
+-- DOTA_UNIT_ORDER_CAST_TOGGLE	9	
+-- DOTA_UNIT_ORDER_HOLD_POSITION	10	
+-- DOTA_UNIT_ORDER_TRAIN_ABILITY	11	
+-- DOTA_UNIT_ORDER_DROP_ITEM	12	
+-- DOTA_UNIT_ORDER_GIVE_ITEM	13	
+-- DOTA_UNIT_ORDER_PICKUP_ITEM	14	
+-- DOTA_UNIT_ORDER_PICKUP_RUNE	15	
+-- DOTA_UNIT_ORDER_PURCHASE_ITEM	16	
+-- DOTA_UNIT_ORDER_SELL_ITEM	17	
+-- DOTA_UNIT_ORDER_DISASSEMBLE_ITEM	18	
+-- DOTA_UNIT_ORDER_MOVE_ITEM	19	
+-- DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	20	
+-- DOTA_UNIT_ORDER_STOP	21	
+-- DOTA_UNIT_ORDER_TAUNT	22	
+-- DOTA_UNIT_ORDER_BUYBACK	23	
+-- DOTA_UNIT_ORDER_GLYPH	24	
+-- DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH	25	
+-- DOTA_UNIT_ORDER_CAST_RUNE	26	

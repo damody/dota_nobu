@@ -1,0 +1,658 @@
+"DOTAAbilities"
+{
+	// 石田三成 袖毒矢
+	"A29W"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		// "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"viper_viper_strike"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AOERadius"						"300"
+		"HotKeyOverride"				"W"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike.vpcf" // Wonky projectile
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf" // ?
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_warmup.vpcf" //- Seems to be like a "link" meaning it needs the caster #0 and target #1
+			"particle"		"particles/status_fx/status_effect_poison_viper.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"9 8 7 6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120 145 170 195"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.1 4.1 4.1 4.1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_damage"				"20 25 30 35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"-15 -20 -25 -30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"-15 -20 -25 -30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_cost_scepter"		"120 145 170 195"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_scepter"		"9 8 7 6"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_scepter"	"900"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"1800"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"110 210 310 410"
+			}
+			
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_viper/viper_viper_strike_warmup.vpcf"
+				"EffectAttachType"	"attach_origin"
+
+				"ControlPointEntities"
+				{
+					"CASTER"	"attach_attack1"
+					"CASTER"	"attach_attack1"
+				}
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"POINT"
+					"Radius"	"300"
+				}
+				"Action"
+				{
+					"TrackingProjectile"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/units/heroes/hero_viper/viper_viper_strike.vpcf"
+						"MoveSpeed"	"%projectile_speed"
+						"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					}
+				}
+			}
+			
+			"FireSound"
+			{
+				"EffectName"	"Hero_Viper.viperStrike"
+				"Target"		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+				"Function"		"A29W_init_damage"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%damage"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Hero_Viper.viperStrikeImpact"
+				"Target"		"TARGET"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_viper_strike_debuff_datadriven"
+				"Target"		"TARGET"
+			}
+
+		}
+
+		"Modifiers"
+		{
+			"modifier_viper_strike_debuff_datadriven"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%duration"
+				"StatusEffectName"		"particles/status_fx/status_effect_poison_viper.vpcf"
+				"StatusEffectPriority"	"15"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movement_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+						"EffectAttachType"	"attach_hitloc"	
+						"Target"			"TARGET"
+					}
+
+				}		
+
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"A29W_debuff"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%debuff_damage"
+					}
+				}
+			}
+		}
+	}
+
+	// 石田三成 深淵之握
+	"A29E"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"treant_overgrowth"
+		"HotKeyOverride"				"E"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 130 160 190"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{	
+			"particle" 		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1.10 1.35 1.60 1.85"
+			}
+			
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"75 150 225 300"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"damage_interval"				"0.05"
+			}
+		}
+
+		"OnSpellStart"
+		{
+
+			"ApplyModifier"
+			{
+				"ModifierName"    	"modifier_treant_overgrowth"
+				"Target"			"TARGET"
+				"Duration"			"%duration"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A29E_damage_datadriven"
+				"Target" 		"TARGET"
+				"Duration"		"%duration"
+			}
+			
+			"FireSound"
+			{
+				"EffectName"	"Hero_Viper.viperStrike"
+				// "EffectName" "Hero_Treant.overgrowth"
+				"Target"		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A29E_damage_datadriven"
+			{
+				"IsHidden"		"0"
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
+				
+				"Duration"		"%duration"
+				"ThinkInterval"	"%damage_interval"
+				
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage * %damage_interval"
+					}
+				}
+			}
+		}
+	}
+
+
+	// 石田三成 衰心靈光
+	"A29R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"enchantress_natures_attendants"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"mana_reduction"				"-8 -11 -14 -17"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"mana_lost"						"0 7 14 21"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A29R"
+			{
+				"Aura"	"modifier_A29R_2"
+				"Aura_Radius"	"650"
+				// for testing using:
+				// "Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CUSTOM"
+				// for testing using:
+				// "Aura_ApplyToCaster"	"1" 
+				"Aura_ApplyToCaster"	"0"
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"TextureName"	"enigma_black_hole"
+			}
+
+			"modifier_A29R_2"
+			{
+				"Duration"	"1.00"
+				"IsBuff"	"1"
+				"EffectName"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"3"
+					//"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"3"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mana_reduction"
+				}
+				"OnSpentMana"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"A29R_mana_lost"
+					}
+
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_A29R_3"
+						"Target" 		"CASTER"
+						"Duration"		"2.5"
+					}
+				}
+				"TextureName"	"enigma_black_hole"
+				"IsHidden"	"0"
+			}
+
+			"modifier_A29R_3"
+			{
+				"IsDebuff"		"1"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
+				"StatusEffectPriority"	"10"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-25"
+				}
+			}
+		}
+	}
+
+	// 石田三成 邪靈大陣
+	"A29T"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"death_prophet_exorcism"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5 0.5 0.5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"160 140 120"
+		"AbilityDuration"				"50 50 50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"300 300 300"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"700 700 700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spirits"				"10 14 15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spirit_speed"			"500 500 500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_distance"			"2000 2000 2000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"give_up_distance"		"1200 1200 1200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_damage"			"53 53 53"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"58 58 58"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_percent"			"25 25 25"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"average_damage"		"55 55 55"
+			}
+			// Extra
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"35"	//Always have a duration AbilitySpecial, don't believe Valves lies.
+			}
+			"11"	
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay_between_spirits"		"0.3"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"min_time_between_attacks"	"3.0"
+			}
+			"13"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal"						"350 550 750"
+			}
+		}
+
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_death_prophet/death_prophet_spirit_model.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack_building.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				// scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua
+				// "ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+				"Function"		"ExorcismDeath"
+			}
+
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_exorcism"
+				"Target" 		"CASTER"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_exorcism"
+				"Target" 		"CASTER"
+				"Duration"		"%AbilityDuration"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Hero_DeathProphet.Exorcism.Cast"
+				"Target" 		"CASTER"
+			}
+			"Heal"
+			{
+				"Target"	"CASTER"
+				"HealAmount"	"%heal"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_exorcism"
+			{	
+				"OnCreated"
+				{
+					
+					"RunScript"
+					{
+						// "ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"ExorcismStart"
+					}
+
+					"FireSound"
+					{
+						"EffectName"	"Hero_DeathProphet.Exorcism"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						//"ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"ExorcismAttack"
+					}
+				}
+
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						//"ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
+						"ScriptFile"	"scripts/vscripts/heroes/hero_death_prophet/exorcism.lua"
+						"Function"		"ExorcismDeath"
+					}
+
+					"FireSound"
+					{
+						"EffectName"	"Hero_DeathProphet.Death"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						//"ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"ExorcismEnd"
+					}
+				}
+			}
+
+			"modifier_exorcism_spirit"
+			{	
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						//"ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"ExorcismPhysics"
+					}
+
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"CASTER"	"attach_origin"
+						}
+					}
+
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_death_prophet/death_prophet_spirit_model.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_origin"
+						}
+					}
+				}
+		
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+}

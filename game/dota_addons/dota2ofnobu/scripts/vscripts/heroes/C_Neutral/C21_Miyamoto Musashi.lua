@@ -58,7 +58,7 @@ function C21T_Effect(u,u2,i)
     ExecuteOrderFromTable(order_target)
 
     --播放動畫
-    u:StartGesture( ACT_DOTA_ECHO_SLAM )
+    u:StartGesture( ACT_DOTA_CAST_ABILITY_4 )	
 
 end
 
@@ -69,12 +69,15 @@ function C21T_Copy(u,i)
 	local  tu   = CreateUnitByName("C21T_SE",point,true,nil,nil,team)
 
 	-- --播放動畫(透明度50%,顏色要改金),隨機播放攻擊動作	
-	tu: SetRenderColor(0,0,0)
+	tu: SetRenderColor(255,255,122)
 	-- call SetUnitTimeScale(u,3)
 	-- call SetUnitAnimation(u,"Attack Slam")
 
 	-- --紀錄特效單位在群組
 	table.insert(udg_C21T_Table[i],tu)
+
+    --播放動畫
+    tu:StartGesture( ACT_DOTA_CAST_ABILITY_4 )	
 
 end
 

@@ -22,21 +22,21 @@ function item_blink_datadriven_on_spell_start(keys)
 	keys.caster:SetAbsOrigin(target_point)
 	FindClearSpaceForUnit(keys.caster, target_point, false)
 
-	local caster = keys.caster
+	-- local caster = keys.caster
 	
-	if (hasSet[2] == nil) then
-		hasSet[2] = 1
-		Timers:CreateTimer(0, function()
-			caster:SetMana(caster:GetMaxMana())
-				for abilitySlot=0,15 do
-					local ability = caster:GetAbilityByIndex(abilitySlot)
-					if ability ~= nil then 
-						ability:EndCooldown()
-					end
-				end
-				return 0.1
-			end)
-	end
+	-- -- if (hasSet[2] == nil) then
+	-- -- 	hasSet[2] = 1
+	-- -- 	Timers:CreateTimer(0, function()
+	-- -- 		caster:SetMana(caster:GetMaxMana())
+	-- -- 			for abilitySlot=0,15 do
+	-- -- 				local ability = caster:GetAbilityByIndex(abilitySlot)
+	-- -- 				if ability ~= nil then 
+	-- -- 					ability:EndCooldown()
+	-- -- 				end
+	-- -- 			end
+	-- -- 			return 0.1
+	-- -- 		end)
+	-- -- end
 end
 
 

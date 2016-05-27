@@ -69,7 +69,7 @@ function NobuGameMode:InitGameMode()
   	GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 
   	--最大等級
-  	MaxLevel = 100
+  	MaxLevel = 25
 
 	-- 是否使用自定義的英雄經驗
   	GameRules:SetUseCustomHeroXPValues ( true )

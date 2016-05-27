@@ -12,99 +12,7 @@ if Ctest == nil then
     GameMode = class({})
 end
 
-function Ctest:OnNPCSpawned(keys)
-end
 
-
-
-function Ctest:Pick_Hero(keys)
-  local id       = keys.player  
-  local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-  local hero     = p: GetAssignedHero() 
-  local point    = hero:GetAbsOrigin()
-
-  --<<英雄名稱判別>>
-  local name = hero:GetUnitName()
-  if name == "npc_dota_hero_ancient_apparition"  then
-    local ability = hero:FindAbilityByName("A04D")
-    ability:SetLevel(1)
-  elseif name == "npc_dota_hero_jakiro"  then
-    hero:FindAbilityByName("C22D"):SetLevel(1)
-  elseif name == "npc_dota_hero_templar_assassin"  then
-    hero:FindAbilityByName("C15D"):SetLevel(1)
-  end  
-  --<<英雄名稱判別>>
-
-  --<<英雄系統>>
-    --<<事件:任一單位施放技能>>
-    --hero:AddAbility("EventForUnitSpellAbility"):SetLevel(1)
-    --<<事件:命令事件>>
-    --hero:AddAbility("EventForOrder"):SetLevel(1)
-    --<<全能力點數>>
-    hero:AddAbility("attribute_bonus")
-    
-  --<<英雄系統>>
-
-
-  --<<test>>
-
-    --物品
-  item = CreateItem("item_RRRRRRRRRRRR",nil,nil)
-  CreateItemOnPositionSync(point, item)
-
-  item = CreateItem("item_sphere",nil,nil)
-  CreateItemOnPositionSync(point, item)
-
-  --debug
-  GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
-
-  --金錢
-  PlayerResource:SetGold(id-1,99999,false)--玩家ID需要減一
-
-  --等級
-  for i=1,25 do
-    hero.HeroLevelUp(hero,true)
-  end
-
-  --刪除建築物無敵
-  --building_handle:RemoveModifierByName("modifier_invulnerable")
-   local hero2 = Entities:FindAllByClassname("npc_dota_*")
-   print("Heroes: "..#hero2)         --取得表中元素数量
-
-  for _,it in pairs(hero2) do
-    -- if it:IsBuilding() then
-    --   it:RemoveModifierByName("modifier_invulnerable")
-    -- end
-  end
-end
-
-function RemoveWearables( hero )
-  local name = hero:GetUnitName()
-  local bol  = false
-
-  -- if name == "npc_dota_hero_keeper_of_the_light" then
-  --   bol  = true
-  -- end
-
-
-
-  if bol == false then
-    local children = hero:GetChildren()
-    for k,child in pairs(children) do
-       if child:GetClassname() == "dota_item_wearable" then
-           child:RemoveSelf()
-       end
-    end
-  end
-    -- if model_lookup[ hero:GetName() ] ~= nil and hero:GetModelName() ~= model_lookup[ hero:GetName() ] then
-    --   --fix arcana model
-    --   Timers:CreateTimer(0.1, function ()
-    --     hero:SetModel(model_lookup[ hero:GetName() ])
-    --     hero:SetOriginalModel(model_lookup[ hero:GetName() ])
-    --     hero:MoveToPosition(hero:GetAbsOrigin())
-    --   end)
-    -- end
-end
 
 function Ctest:OnHeroIngame(unit)
   local spawnedUnit = EntIndexToHScript( unit.entindex )
@@ -113,8 +21,8 @@ function Ctest:OnHeroIngame(unit)
 end
 
 function Chat(keys)
-  print("@@@@ : Chat Init")
-  DeepPrintTable(keys)    --详细打印传递进来的表
+  --print("@@@@ : Chat Init")
+  --DeepPrintTable(keys)    --详细打印传递进来的表
 
 --測試創造單位
 --local id    = keys.player --BUG:在講話事件裡，讀取不到玩家，是整數。
@@ -124,6 +32,46 @@ local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方�
 local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
 local point    = hero:GetAbsOrigin()
 
+  -- if s == "error" then
+  --   error("class definition missing or not a table")    
+  -- end
+
+  if s == "test" then
+    local table = {}
+    table["ssssssssss"] = "5"
+    print(  table["ssssssssss"])
+  end
+
+
+  if s == "Create1" then
+    for i=1,10 do
+     local  u = CreateUnitByName("test",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+     --u:SetOwner(p)                                         --設置u的擁有者
+     u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+     u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+    end
+  end
+
+  if s == "Create2" then
+    for i=1,10 do
+     local  u = CreateUnitByName("com_archer",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+     --u:SetOwner(p)                                         --設置u的擁有者
+     u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+     u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+    end
+  end
+
+  if s == "mana2" then
+    hero:SetMana(10)
+  end
+
+  if s == "hp100" then
+    hero:SetHealth(100)
+  end  
+
+  if s == "fog" then
+    AddFOWViewer( 1, Vector(0,0,0), 99999, 99999 , 99999)
+  end
   if s == "add ability" then
     --
     hero:AddAbility("tinker_rearm")
@@ -149,27 +97,27 @@ local point    = hero:GetAbsOrigin()
 
   end  
 
-  if s == "test" then
+  -- if s == "test" then
 
-    local  u = CreateUnitByName("npc_dota_hero_magnataur",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-    --u:SetOwner(p)                                         --設置u的擁有者
-    u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
-    u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-    --等級
-    for i=1,30 do
-      u.HeroLevelUp(u,true)
-    end
+  --   -- local  u = CreateUnitByName("npc_dota_hero_magnataur",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+  --   -- --u:SetOwner(p)                                         --設置u的擁有者
+  --   -- u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+  --   -- u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+  --   --等級
+  --   for i=1,30 do
+  --     hero.HeroLevelUp(hero,true)
+  --   end
 
-    u = CreateUnitByName("npc_dota_hero_centaur",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-    --u:SetOwner(p)                                         --設置u的擁有者
-    u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
-    u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-    --等級
-    for i=1,30 do
-      u.HeroLevelUp(u,true)
-    end
+  --   -- u = CreateUnitByName("npc_dota_hero_centaur",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+  --   -- --u:SetOwner(p)                                         --設置u的擁有者
+  --   -- u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+  --   -- u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+  --   -- --等級
+  --   -- for i=1,30 do
+  --   --   u.HeroLevelUp(u,true)
+  --   -- end
 
-  end
+  -- end
   if s == "CreatOOXX" then
      local  u = CreateUnitByName("npc_dota_hero_magnataur",Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
      --u:SetOwner(p)                                         --設置u的擁有者
@@ -761,25 +709,16 @@ function Ctest:InitGameMode()
   --確認一下是不是成功賭取
   UTIL_MessageTextAll("Init Success",255,0,0,255)--BUG點:不能發nil，要"nil"要不然會崩潰
 
-  --監聽單位重生或者創建事件
-  ListenToGameEvent("npc_spawned", Dynamic_Wrap(Ctest, "OnNPCSpawned"), self)
-
   --玩家死亡事件
   --ListenToGameEvent("dota_player_killed",Death,nil)
   --监听器(Listener)
   ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, "OnEntityKilled" ), self )
 
-  --玩家選取事件
-  ListenToGameEvent("dota_player_pick_hero",Dynamic_Wrap( Ctest, "Pick_Hero" ), self)
-
   --玩家對話事件
   ListenToGameEvent("player_chat",Chat,nil)
 
   --玩家施法事件
-  ListenToGameEvent("dota_player_used_ability",unitspell,nil)
-
-  --單位出生
-  ListenToGameEvent('npc_spawned', Dynamic_Wrap(Ctest, 'OnHeroIngame'), self)
+  --ListenToGameEvent("dota_player_used_ability",unitspell,nil)
 
 
 end

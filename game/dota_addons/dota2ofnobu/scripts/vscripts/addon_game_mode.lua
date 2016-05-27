@@ -1,5 +1,9 @@
 print ( '[Nobu] ADDON INIT EXECUTED' )
 
+--global
+	GameRules.Nobu = class({})
+--endglobal
+
 --require
     -------------------------------------------------------------------------
     --
@@ -22,16 +26,15 @@ print ( '[Nobu] ADDON INIT EXECUTED' )
 --endrequire
 
 function Precache( context )
-	--[[
-		Precache things we know we'll use.  Possible file types include (but not limited to):
-			PrecacheResource( "model", "*.vmdl", context )
-			PrecacheResource( "soundfile", "*.vsndevts", context )
-			PrecacheResource( "particle", "*.vpcf", context )
-			PrecacheResource( "particle_folder", "particles/folder", context )
-	]]
-	PrecacheResource( "particle", "particles/base_attacks/ranged_badguy.vpcf", context )
-	PrecacheResource( "particle", "particles/neutral_fx/black_dragon_attack.vpcf", context )
-	PrecacheResource( "particle", "particles/units/heroes/hero_crystalmaiden/maiden_base_attack.vpcf", context )
+	local zr={
+    "models/items/death_prophet/corset_of_the_mortal_coil/corset_of_the_mortal_coil.vmdl",
+    }
+     
+	local t=#zr;
+	for i=1,t do
+      PrecacheResource( "model", zr[i], context)
+    end
+    print("done loading shiping")
 end
 
 -- 載入項目所有文件
@@ -40,8 +43,11 @@ loadModule ( 'library/chetcodeselfmode' )
 loadModule ( 'computer_system/chubing' )
 loadModule ( 'main' )
 loadModule ( 'amhc_library/amhc' )
+loadModule ( 'library/events/eventfordamage' )
 loadModule ( 'library/events/eventfororder' )
-loadModule ( 'physics' )
+loadModule ( 'library/events/eventforlevelup' )
+loadModule ( 'library/events/eventforpichero' )
+loadModule ( 'library/events/eventforspawned' )
 --
 
 -- Create the game mode when we activate
@@ -50,25 +56,26 @@ function Activate()
 	AMHCInit()
 
 	--<< ↓ ↓ ↓ 05.09.16更新 ↓ ↓ ↓ >>
-	Nobu:InitGameMode()
+	GameRules.Nobu:InitGameMode()
 	--<< ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ >>
 
 	--test
 	--GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)
 end
+  
+function GameRules.Nobu:InitGameMode()
+  --<< ↓ ↓ ↓ 05.09.16更新 ↓ ↓ ↓ >> 
+  GameRules:GetGameModeEntity():SetExecuteOrderFilter( GameRules.Nobu.eventfororder, self )
 
---<< ↓ ↓ ↓ 05.09.16更新 ↓ ↓ ↓ >>   
---事件:OnOrder
-Nobu = class({})
+  --<< ↓ ↓ ↓ 05.23更新 ↓ ↓ ↓ >> 
+  GameRules:GetGameModeEntity():SetDamageFilter( GameRules.Nobu.DamageFilterEvent, self )
 
-function Nobu:FilterExecuteOrder( filterTable )
-	eventfororder( filterTable )
-	return true --一定要true 要不然單位接收不到命令
-end
+  --<< ↓ ↓ ↓ 05.24更新 ↓ ↓ ↓ >> 
+  ListenToGameEvent('dota_player_gained_level', GameRules.Nobu.LevelUP, self)
 
-function Nobu:InitGameMode()
-  GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap(Nobu, "FilterExecuteOrder" ), self )
+  ListenToGameEvent("dota_player_pick_hero",GameRules.Nobu.PickHero, self)
+
+  ListenToGameEvent('npc_spawned', GameRules.Nobu.OnHeroIngame, self)  
 end
 --<<↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑>>
-
 

@@ -1,12 +1,4 @@
 
-function test( keys )
-	local caster = keys.caster
-
-	DeepPrintTable(keys)
-
-end
-
-
 function C15W( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -29,8 +21,8 @@ function C15E( keys )
 	if caster == target then
 		caster:Heal(heal,caster)
 		--AMHC:CreateNumberEffect(caster,miss,2,AMHC.MSG_MISS ,"red",10)
-		PopupNumbers(target, "miss", Vector(255, 0, 0), 1.0, nil, POPUP_SYMBOL_PRE_MISS, nil ,true)
-		--AMHC:CreateNumberEffect(caster,heal,2,AMHC.MSG_HEAL,"green",0)
+		--PopupNumbers(target, "miss", Vector(255, 0, 0), 1.0, nil, POPUP_SYMBOL_PRE_MISS, nil ,true)
+		AMHC:CreateNumberEffect(caster,heal,2,AMHC.MSG_HEAL,"green",0)
 	else
 		target:Heal(heal,caster)
 		AMHC:CreateNumberEffect(target,heal,2,AMHC.MSG_HEAL,"green",0)

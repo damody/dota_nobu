@@ -1,0 +1,533 @@
+"DOTAAbilities"
+{
+	// 本多忠勝 奮起
+	"A07D"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_a07_5"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"HotKeyOverride"	"D"
+		"MaxLevel"	"5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"precache"
+		{
+			"particle"	"particles/a07d/a07d.vpcf"
+			"particle"	"particles/a07d2/a07d2.vpcf"
+			"particle"	"particles/a07d/a07d.vpcf"
+			"particle"	"particles/a07d2/a07d2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A07D"
+			}
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"Function"	"A07D_HealHP"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+			}
+			"AttachEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/a07d/a07d.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A07D"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"60"
+				}
+				"IsBuff"	"1"
+				"AllowIllusionDuplicate"	"1"
+				"Duration"	"3"
+				"EffectName"	"particles/a07d2/a07d2.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+			}
+		}
+	}
+
+	// 本多忠勝 毫髮無傷
+	"A07W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_a07_1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0 0 0"
+		"precache"
+		{
+			"particle"	"particles/a07w5/a07w5.vpcf"
+			"particle"	"particles/a07e/a07e.vpcf"
+			"particle"	"particles/a07w3/a07w3.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"particle"	"particles/a07w3/a07w3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_a07w_borrowed_time"
+				"Duration"	"%duration"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Abaddon.BorrowedTime"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+				"Function"	"A07W_SE"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_a07w_borrowed_time"
+			{
+				"IsBuff"	"1"
+				"EffectName"	"particles/a07w3/a07w3.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+						"Function"	"A07W_BorrowedTimeHeal"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-300"
+				}
+				"States"	{}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+						"Function"	"A07W_EndShieldParticle"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hp_threshold"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"3.0 4.0 5.0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration_scepter"	"5.0 6.0 7.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"redirect"	"0.35"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"redirect_range_tooltip_scepter"	"900"
+			}
+		}
+	}
+
+	// 本多忠勝 碎擊槍
+	"A07R"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"weiyan_fenlie"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"HotKeyOverride"	"R"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"13.0 10.0 7.0 4.0"
+		"precache"
+		{
+			"particle"	"particles/a07r/a07r.vpcf"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+				"Function"	"A07R_Learn_Skill"
+			}
+		}
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_A07R_tidebringer_splash_datadriven"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsPurgable"	"0"
+				"OnAttackLanded"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+						}
+						"Action"
+						{
+							"CleaveAttack"
+							{
+								"CleavePercent"	"40"
+								"CleaveRadius"	"%radius"
+								"CleaveEffect"	"particles/a07r/a07r.vpcf"
+							}
+						}
+					}
+				}
+				"Properties"	{}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"245 285 325 365"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_bonus"	"15 30 45 60"
+			}
+		}
+	}
+
+	// 本多忠勝 赤雷擊
+	"A07E"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_a07_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ITEM | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"HotKeyOverride"	"E"
+		"AbilityCastPoint"	"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate"	"1.0"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1500"
+		"AOERadius"	"%radius"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+			"particle"	"particles/units/heroes/hero_kunkka/kunkka_spell_torrent_bubbles.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"DelayedAction"
+			{
+				"Delay"	"0"
+				"Action"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Damage"	"%AbilityDamage"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+							}
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_torrent_slow_debuff_datadriven"
+							}
+						}
+					}
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+						"Function"	"A07E_SE"
+					}
+				}
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_EarthShaker.Gravelmaw"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_torrent_slow_debuff_datadriven"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%slow_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-75"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"425"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespeed_bonus"	"-100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"slow_duration"	"5.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"1.53 1.53 1.53 1.53"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"delay"	"1.6 1.6 1.6 1.6"
+			}
+			// Extra variables
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tick_count"	"10"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				// delay time + 3.13 sec vision time
+				"vision_duration"	"4.73"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"torrent_height"	"400"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"150 250 350 450"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// applies 2 modifiers
+		"AbilityModifierSupportValue"	"0.5"
+	}
+
+	// 本多忠勝 戰國最強．啟動
+	"A07T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_a07_4"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf"
+			"model"	"models/heroes/dragon_knight/dragon_knight_dragon.vmdl"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			"soundfile"	"soundevents/voscripts/game_sounds_vo_stormspirit.vsndevts"
+			"particle"	"particles/a07t2/a07t2.vpcf"
+			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A07T"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_StormSpirit.ElectricVortex"
+			}
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+				"Function"	"A07T_Transform"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A07T"
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+						}
+						"EffectName"	"particles/a07t2/a07t2.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_movement_speed"
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%damage"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"60"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.8"
+				}
+				"Duration"	"45"
+				"IsBuff"	"1"
+				"OnIntervalThink"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+						"EffectAttachType"	"follow_head"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+						}
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Brewmaster_Storm.Attack"
+					}
+				}
+				"ThinkInterval"	"1"
+				"States"	{}
+				"OnDestroy"	{}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"10.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_movement_speed"	"115"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"60"
+			}
+		}
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Attacks are primarily about the damage
+		"AbilityModifierSupportValue"	"0.35"
+	}	
+}

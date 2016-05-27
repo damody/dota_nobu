@@ -1,9 +1,49 @@
-﻿// Dota2 Editor
+// Dota2 Editor
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 
 "DOTAUnits"
 {
 	"Version"		"1"
+
+	// =================================================================================================================
+	// HERO: Antimage
+	// =================================================================================================================
+	"test"
+	{
+		"BaseClass"	"npc_dota_creature"
+		// 攻击速度
+		"AttackRate"	"0.5"
+		// 技能1
+		"Ability1"	""
+		// 技能2
+		"Ability2"	""
+		// 技能3
+		"Ability3"	""
+		// 技能4
+		"Ability4"	""
+		// 夜晚视野
+		"VisionNighttimeRange"	"1800"
+		"Model"	"models/heroes/siren/siren.vmdl"
+		"AttachWearables"
+		{
+			"Wearable1"
+			{
+				"ItemDef"	"5781"
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
 
 	"npc_dummy"
 	{
@@ -78,7 +118,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
-		"MovementSpeed"	"1"
+		"MovementSpeed"	"100"
 		"MovementTurnRate"	"0.5"
 		// Status
 		// ----------------------------------------------------------------
@@ -544,7 +584,7 @@
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_building"
 		// Add model
-		"Model"	"models/tent/newtent.vmdl"
+		"Model"	"models/soildecamp/soildercamp.vmdl"
 		"ModelScale"	"2"
 		"Level"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
@@ -615,7 +655,7 @@
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_building"
 		// Add model
-		"Model"	"models/tent/newtent.vmdl"
+		"Model"	"models/soildecamp/soildercamp.vmdl"
 		"ModelScale"	"3"
 		"Level"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
@@ -852,7 +892,7 @@
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_building"
 		// Add model
-		"Model"	"models/tent/newtent.vmdl"
+		"Model"	"models/soildecamp/soildercamp.vmdl"
 		"ModelScale"	"1.5"
 		"Level"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
@@ -2754,17 +2794,5 @@
 		"Ability15"	""
 		"Ability16"	""
 		"Model"	"models/hero14/hero14.vmdl"
-	}
-
-	"A29T_dummy"
-	{
-		"BaseClass"	"npc_dota_creature"
-		// "Model"	"models/hero14/hero14.vmdl"
-	}
-
-	"B25T_dummy"
-	{
-		"BaseClass"	"npc_dota_creature"
-		// "Model"	"models/hero14/hero14.vmdl"
 	}
 }

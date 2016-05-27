@@ -467,26 +467,6 @@
 				"BlinkRangeClamp"	"%blink_range_clamp"
 			}
 		}
-		"Modifiers"
-		{
-			// When the unit takes damage, Blink Dagger is put on cooldown.
-			"modifier_item_blink_datadriven_damage_cooldown"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/item_blink.lua"
-						"Function"	"modifier_item_blink_datadriven_damage_cooldown_on_take_damage"
-						"BlinkDamageCooldown"	"%blink_damage_cooldown"
-						"Damage"	"%attack_damage"
-					}
-				}
-			}
-		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"

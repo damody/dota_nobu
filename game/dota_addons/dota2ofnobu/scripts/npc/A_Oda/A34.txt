@@ -1,0 +1,542 @@
+"DOTAAbilities"
+{
+		// 阿松 寒霜彈
+	"A34W"
+	{
+				// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"crystal_maiden_frostbite"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.3 0.3 0.3 0.3"
+		"HotKeyOverride"	"W"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10.0 10.0 10.0 10.0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 125 150 175"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"825"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+				"MoveSpeed"	"2000"
+			}
+			"Stun"
+			{
+				"Target"	"TARGET"
+				"Duration"	"%stun_duration"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"hero_Crystal.frostbite"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_frost_bite_root_datadriven"
+			}
+
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%A34W_Damage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_frost_bite_root_datadriven"
+			{
+				"IsPurgable"	"1"
+				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
+					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%duration"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			// Extra variable
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.0 1.5 2.0 2.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A34W_Damage"	"100 200 300 400"
+			}
+		}
+	}
+
+	// 阿松 冰山之襲
+	"A34E"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"lich_frost_nova"
+		"HotKeyOverride"				"E"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+
+		"AoERadius"						"%radius"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14.0 12.0 10.0 8.0"
+		"AbilityDuration"				"5.0 5.0 5.0 5.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 100 100 100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 145 165 185"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.3"	// Primarily about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200 200 200 200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_movement_speed"	"-30 -30 -30 -30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_attack_speed"		"-20 -20 -20 -20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_damage"			"100 200 300 400"
+			}
+		}
+
+		"precache"
+		{
+			// "particle" 	"particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+			"particle"	"particles/status_fx/status_effect_frost_lich.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+		
+
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"			"TARGET"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Ability.FrostNova"
+				"Target"		"TARGET"
+			}
+
+			"Damage"
+			{
+				"Type"		"DAMAGE_TYPE_MAGICAL"
+				"Target"	"TARGET"
+				"Damage"	"%AbilityDamage"
+			}
+
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  				"TARGET"
+					"Radius" 				"%radius"
+					"Teams" 				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				}
+
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"    	"modifier_frost_nova_slow"
+						"Target"			"TARGET"
+						"Duration"			"%AbilityDuration"
+					}
+
+					"Damage"
+					{
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Target"	"TARGET"
+						"Damage"	"%aoe_damage"
+					}
+
+				}
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_frost_nova_slow"
+			{
+				"IsDebuff"		"1"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
+				"StatusEffectPriority"	"10"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_movement_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%slow_attack_speed"
+				}
+			}
+		}
+	}
+
+
+	// 阿松 冰霜之息
+	"A34R"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"				   
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	   
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"dragon_knight_breathe_fire"
+		"HotKeyOverride"	"R"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+			// "particle"		"particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
+			"particle"  	"particles/a34e/a34e.vpcf"
+			"particle"	"particles/status_fx/status_effect_frost_lich.vpcf"
+		}
+
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0 12.0 12.0 12.0"
+		
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 200 300 400"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 110 120 130"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"start_radius"			"150 150 150 150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"end_radius"			"200 200 200 200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"650 650 650 650"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1050"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_duration"		"6.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_interval"		"0.1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_damage"			"30 40 50 60"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target" "POINT"
+				// "EffectName" "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+				// "EffectName" "particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
+				"EffectName" "particles/a34e/a34e.vpcf"
+				"MoveSpeed" "%speed"
+				"StartRadius" "%start_radius"
+				"StartPosition" "attach_origin"
+				"EndRadius" "%end_radius"
+				"FixedDistance" "%range"
+				"TargetTeams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNITY_TARGET_MECHANICAL"
+				"TargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone" "1"
+				"ProvidesVision" "0"
+			}
+			"FireSound"
+			{
+				"EffectName" "Hero_DragonKnight.BreathFire"
+				"Target" "CASTER"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit" "0"
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A34R_datadriven"
+				"Target" 		"TARGET"
+				"Duration"		"%damage_duration"
+			}
+
+			"Damage"
+			{
+				"Target" "TARGET"
+				"Type" "DAMAGE_TYPE_MAGICAL"
+				"Damage" "%AbilityDamage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A34R_datadriven"
+			{
+				"IsHidden"		"0"
+				"IsDebuff"		"1"
+				"IsPurgable"	"1"
+				
+				"Duration"		"%AbilityDuration"
+				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
+				"ThinkInterval"	"%damage_interval"
+				
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%debuff_damage * %damage_interval"
+					}
+				}
+			}
+		}
+	}
+
+	// 阿松 急速冷卻
+	"A34T"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"tinker_rearm"
+		"HotKeyOverride"	"T"
+		// "AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0 0 0"
+		"AbilityChannelTime"			"0.5 0.5 0.5"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 45 30"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 150 200"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"channel_tooltip"			"0.5 0.5 0.5"
+			}
+		}
+		
+		// Data Driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"particle"				"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"Hero_Tinker.RearmStart"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"Hero_Tinker.Rearm"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A34_Matsu.lua"
+				"Function"			"rearm_start"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_rearm_level_1_datadriven"
+			}
+			
+			"RemoveModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_rearm_level_2_datadriven"
+			}
+			
+			"RemoveModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_rearm_level_3_datadriven"
+			}
+		}
+		
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A34_Matsu.lua"
+				"Function"			"rearm_refresh_cooldown"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_rearm_level_1_datadriven"
+			{
+				"IsHidden"			"0"
+			
+				"Duration"			"%channel_tooltip"
+				
+				"EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				// "OverrideAnimation"	"ACT_DOTA_TINKER_REARM1"
+			}
+			
+			"modifier_rearm_level_2_datadriven"
+			{
+				"IsHidden"			"0"
+			
+				"Duration"			"%channel_tooltip"
+				
+				"EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				// "OverrideAnimation"	"ACT_DOTA_TINKER_REARM2"
+			}
+			
+			"modifier_rearm_level_3_datadriven"
+			{
+				"IsHidden"			"0"
+			
+				"Duration"			"%channel_tooltip"
+				
+				"EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				// "OverrideAnimation"	"ACT_DOTA_TINKER_REARM3"
+			}
+		}
+	}
+}
