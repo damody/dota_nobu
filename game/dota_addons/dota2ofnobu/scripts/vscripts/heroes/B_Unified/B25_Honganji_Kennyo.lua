@@ -97,11 +97,80 @@ function heat_seeking_missile_seek_targets( keys )
 			break
 		end
 	end
+end
+
+
+function B25E_old( keys )
+	-- Variables
+	local caster = keys.caster
+	local ability = keys.ability
+	local casterLoc = caster:GetAbsOrigin()
+	local targetLoc = keys.target_points[1]
+	local dir = caster:GetCursorPosition() - caster:GetOrigin()
+	caster:SetForwardVector(dir:Normalized())
+	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
+	local distance = ability:GetLevelSpecialValueFor( "distance", ability:GetLevel() - 1 )
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
+	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
+	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
+	local right = caster:GetRightVector()
+	--casterLoc = keys.target_points[1] - right:Normalized() * 300
 	
-	-- If no unit is found, fire dud
-	-- if count == 0 then
-	-- 	ability:ApplyDataDrivenModifier( caster, caster, modifierDudName, {} )
-	-- end
+	-- Find forward vector
+	local forwardVec = targetLoc - casterLoc
+	forwardVec = forwardVec:Normalized()
+	
+	-- Find backward vector
+	local backwardVec = casterLoc - targetLoc
+	backwardVec = backwardVec:Normalized()
+	
+	-- Find middle point of the spawning line
+	local middlePoint = casterLoc + ( distance * 0.5 * backwardVec )
+	
+	-- Find perpendicular vector
+	local v = middlePoint - casterLoc
+	local dx = -v.y
+	local dy = v.x
+	local perpendicularVec = Vector( dx, dy, v.z )
+	perpendicularVec = perpendicularVec:Normalized()
+
+	local sumtime = 0
+	-- Create timer to spawn projectile
+	Timers:CreateTimer( function()
+			-- Get random location for projectile
+			for c = 1,1 do
+				local random_distance = RandomInt( -radius, radius )
+				local spawn_location = middlePoint + perpendicularVec * random_distance
+				
+				local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 )
+				
+				-- Spawn projectiles
+				local projectileTable = {
+					Ability = ability,
+					EffectName = "particles/b25e_old/b25e_enemy.vpcf",
+					vSpawnOrigin = spawn_location,
+					fDistance = distance,
+					fStartRadius = collision_radius,
+					fEndRadius = collision_radius,
+					Source = caster,
+					bHasFrontalCone = false,
+					bReplaceExisting = false,
+					bProvidesVision = false,
+					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_MECHANICAL,
+					vVelocity = velocityVec * projectile_speed
+				}
+				ProjectileManager:CreateLinearProjectile( projectileTable )
+			end
+			-- Check if the number of machines have been reached
+			if caster:IsChanneling() == false then
+				return nil
+			else
+				sumtime = sumtime + 0.14
+				return 0.14
+			end
+		end
+	)
 end
 
 function B25T_start( keys )
@@ -134,18 +203,32 @@ function B25T_start( keys )
 	allparticle = {}
 	local handcount = 0
 	tradius = 10
+	local disstep = 80
+	local loopnum = 5
+	local particle=ParticleManager:CreateParticle("particles/b25t/b25t_fiendsgrip_ground_2.vpcf",PATTACH_WORLDORIGIN,caster)
+	ParticleManager:SetParticleControl(particle,0,target)
+	table.insert(allparticle, particle)
 	Timers:CreateTimer(0, function()
 		handcount = handcount + 1
-		if (handcount < 40) then
-			tradius = tradius + 10
-			for i = 1, 10 do
-				local point = target + RandomVector(RandomInt(tradius,radius))
-				local particle=ParticleManager:CreateParticle("particles/b15t/b15t_fiends_grip.vpcf",PATTACH_WORLDORIGIN,caster)
+		if (handcount < 12 and caster:IsChanneling() ~= false) then
+			disstep = disstep 
+			loopnum = loopnum + 1
+			tradius = tradius + disstep
+			for i = 1, loopnum do
+				local point = target + RandomVector(tradius)
+				local particle=ParticleManager:CreateParticle("particles/b25t/b25t_fiends_grip.vpcf",PATTACH_WORLDORIGIN,caster)
 				ParticleManager:SetParticleControl(particle,0,point)
 				--ParticleManager:ReleaseParticleIndex(particle)
 				table.insert(allparticle, particle)
 			end
+
+			return 0.05
+		else
+			return nil
 		end
+		end)
+	Timers:CreateTimer(0, function()
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, target, 1000, interval+0.1, false)
 		local units = FindUnitsInRadius(
 				caster:GetTeamNumber(), target, caster, radius, targetTeam,
 				targetType, targetFlag, FIND_ANY_ORDER, false
@@ -214,6 +297,8 @@ function B25T_start( keys )
 	-- 	end
 	-- )
 end
+
+
 
 function B25_add_hand( )
 end
