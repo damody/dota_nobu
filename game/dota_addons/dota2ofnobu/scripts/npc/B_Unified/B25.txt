@@ -162,11 +162,15 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"tinker_heat_seeking_missile"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityChannelTime"			"3.5"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"FightRecapLevel"				"2"
+		"AbilityChannelTime"			"2.5"
+		
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		
 		"AbilityCastPoint"	"0"
 		// Time
@@ -192,6 +196,11 @@
 				"Function"	"B25E_old"
 				"Target"	"POINT"
 			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B25E_old"
+			}
 		}
 		"OnProjectileHitUnit"
 		{
@@ -214,6 +223,24 @@
 						"Type"	"DAMAGE_TYPE_MAGICAL"
 					}
 				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B25E_old"
+			{
+				"OnAbilityEndChannel"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_B25E_old"
+					}
+				}
+				"Duration"	"2.5"
+				"OverrideAnimation" "ACT_DOTA_CAST_ABILITY_4"
+				"Properties"	{}
+				"States"	{}
 			}
 		}
 		// Special
@@ -253,7 +280,7 @@
 		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"75 100 125"
+		"AbilityDamage"	"90 160 220 300"
 	}
 	// 本願寺顯如 死之手指
 	"B25R_old"
@@ -269,7 +296,7 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"lion_finger_of_death"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-
+		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -281,7 +308,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"4500"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -302,12 +329,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"200 300 400 500"
+				"damage"					"200 400 600 800"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_delay"				"0.25"
+				"damage_delay"				"0.1"
 			}
 			"03"
 			{
@@ -412,7 +439,7 @@
 		"AbilityCastRange"	"4500"
 		"precache"
 		{
-			"particle"	"particles/a23r/necronomicon_archer_projectile_2.vpcf"
+			"particle"	"particles/a12t2/a12t2.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
 			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
@@ -423,10 +450,10 @@
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
-				"EffectName"	"particles/a23r/necronomicon_archer_projectile_2.vpcf"
+				"EffectName"	"particles/a12t2/a12t2.vpcf"
 				"Dodgeable"	"1"
 				"ProvidesVision"	"1"
-				"MoveSpeed"	"1800"
+				"MoveSpeed"	"2800"
 				"VisionRadius"	"225"
 				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
 			}
@@ -503,7 +530,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A31R_Damage"	"100 200 300 400"
+				"A31R_Damage"	"150 300 450 600"
 			}
 		}
 	}
@@ -540,6 +567,10 @@
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/b25t.vsndevts"
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -644,6 +675,10 @@
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/b25t.vsndevts"
+		}
 		"AbilitySpecial"
 		{
 			"01"

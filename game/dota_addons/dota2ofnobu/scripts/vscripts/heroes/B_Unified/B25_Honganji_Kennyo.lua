@@ -99,7 +99,6 @@ function heat_seeking_missile_seek_targets( keys )
 	end
 end
 
-
 function B25E_old( keys )
 	-- Variables
 	local caster = keys.caster
@@ -133,10 +132,12 @@ function B25E_old( keys )
 	local dy = v.x
 	local perpendicularVec = Vector( dx, dy, v.z )
 	perpendicularVec = perpendicularVec:Normalized()
-
+	
 	local sumtime = 0
 	-- Create timer to spawn projectile
 	Timers:CreateTimer( function()
+
+		
 			-- Get random location for projectile
 			for c = 1,1 do
 				local random_distance = RandomInt( -radius, radius )
@@ -178,7 +179,6 @@ function B25T_start( keys )
 	local caster = keys.caster
 	local id 	= caster:GetPlayerID()
 	-- local current_instance = 0
-	local dummyModifierName = "modifier_fiends_grip_datadriven"
 	-- local dummyModifierName = "modifier_enigma_midnight_pulse_thinker"
 	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
 	local interval = ability:GetLevelSpecialValueFor( "damage_interval", ability:GetLevel() - 1 )
@@ -227,6 +227,24 @@ function B25T_start( keys )
 			return nil
 		end
 		end)
+
+
+	Timers:CreateTimer( function()
+			local dummy = CreateUnitByName( "npc_dummy", target + RandomVector(500), false, caster, caster, caster:GetTeamNumber() )
+			dummy:EmitSound( "B25T.sound"..RandomInt(1, 4) )
+			Timers:CreateTimer( 1, function()
+							dummy:ForceKill( true )
+							return nil
+						end
+					)
+			if caster:IsChanneling() == false then
+				return nil
+			else
+				return 0.7
+			end
+		end)
+
+
 	Timers:CreateTimer(0, function()
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, target, 1000, interval+0.1, false)
 		local units = FindUnitsInRadius(
@@ -296,9 +314,4 @@ function B25T_start( keys )
 	-- 		end
 	-- 	end
 	-- )
-end
-
-
-
-function B25_add_hand( )
 end
