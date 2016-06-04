@@ -37,19 +37,59 @@ local point    = hero:GetAbsOrigin()
   -- end
 
   if s == "test" then
-    local table = {}
-    table["ssssssssss"] = "5"
-    print(  table["ssssssssss"])
+
+
+    --HideWearables( hero )
+    local wearable =  hero:FirstMoveChild()
+    if wearable:GetClassname() == "dota_item_wearable" then
+      wearable:SetModel( "models/development/invisiblebox.vmdl" )
+    end
+     wearable:RemoveEffects(EF_NODRAW)
+     wearable = wearable:NextMovePeer()
+     
+     for i=1,50 do
+        if wearable ~= nil then
+          wearable:RemoveEffects(EF_NODRAW)
+          wearable = wearable:NextMovePeer()
+        end  
+        if wearable ~= nil then
+          if wearable:GetClassname() == "dota_item_wearable" then
+            print(i)
+            wearable:SetModel( "models/development/invisiblebox.vmdl" )
+          end    
+        end   
+     end
+
+    --  local  u = CreateUnitByName(hero:GetUnitName(),Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+    --  --u:SetOwner(p)                                         --設置u的擁有者
+    --  u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+
+    -- --等級
+    -- for i=1,25 do
+    --   u.HeroLevelUp(u,true)
+    -- end
+
+
+
+    --hero:SetRenderAlpha(0)
+   --hero:SetRenderColor(250,250,250)
+    -- local table = {}
+    -- table["ssssssssss"] = "5"
+    -- print(  table["ssssssssss"])
   end
 
 
   if s == "Create1" then
-    for i=1,10 do
-     local  u = CreateUnitByName("test",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+    for i=1,1 do
+     local  u = CreateUnitByName(hero:GetUnitName(),hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
      --u:SetOwner(p)                                         --設置u的擁有者
      u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
      u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
     end
+    -- --等級
+    -- for i=1,25 do
+    --   u.HeroLevelUp(u,true)
+    -- end    
   end
 
   if s == "Create2" then
@@ -70,7 +110,7 @@ local point    = hero:GetAbsOrigin()
   end  
 
   if s == "fog" then
-    AddFOWViewer( 1, Vector(0,0,0), 99999, 99999 , 99999)
+    AddFOWViewer(2,Vector(0,0),100000,500,false)
   end
   if s == "add ability" then
     --
@@ -119,7 +159,7 @@ local point    = hero:GetAbsOrigin()
 
   -- end
   if s == "CreatOOXX" then
-     local  u = CreateUnitByName("npc_dota_hero_magnataur",Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+     local  u = CreateUnitByName(hero:GetUnitName(),Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
      --u:SetOwner(p)                                         --設置u的擁有者
      u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
 
@@ -699,12 +739,10 @@ end
 function Ctest:InitGameMode()
 
   --设置游戏准备时间
-  GameRules:SetPreGameTime( 3.0)
+  --GameRules:SetPreGameTime( 3.0)
 
   --监听游戏进度
   --ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(Ctest,"OnGameRulesStateChange"), self)
-
-  ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, 'OnEntityKilled' ), self )
 
   --確認一下是不是成功賭取
   UTIL_MessageTextAll("Init Success",255,0,0,255)--BUG點:不能發nil，要"nil"要不然會崩潰
@@ -712,7 +750,7 @@ function Ctest:InitGameMode()
   --玩家死亡事件
   --ListenToGameEvent("dota_player_killed",Death,nil)
   --监听器(Listener)
-  ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, "OnEntityKilled" ), self )
+  --ListenToGameEvent( "entity_killed", Dynamic_Wrap( Ctest, "OnEntityKilled" ), self )
 
   --玩家對話事件
   ListenToGameEvent("player_chat",Chat,nil)

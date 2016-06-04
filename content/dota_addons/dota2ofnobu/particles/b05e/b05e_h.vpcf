@@ -33,7 +33,6 @@
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 3.000000
 		},
 		{
 			_class = "C_OP_OscillateVector"
@@ -182,9 +181,11 @@
 		},
 		{
 			m_ChildRef = resource:"particles/b05e/b05e_g0.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/b05e/b05e_h0.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/b05e/b05e_g1.vpcf"

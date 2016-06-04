@@ -15,7 +15,9 @@ function GameRules.Nobu:PickHero( keys )
   elseif name == "npc_dota_hero_templar_assassin"  then
     hero:FindAbilityByName("C15D"):SetLevel(1) 
   elseif name == "npc_dota_hero_storm_spirit"  then
-    hero:FindAbilityByName("A12D_HIDE"):SetLevel(1)     
+    hero:FindAbilityByName("A12D_HIDE"):SetLevel(1)    
+  elseif name ==  "npc_dota_hero_silencer"  then
+    hero:FindAbilityByName("C07D"):SetLevel(1) 
   end  
   --<<英雄名稱判別>>
 
@@ -25,7 +27,7 @@ function GameRules.Nobu:PickHero( keys )
     --<<事件:命令事件>>
     --hero:AddAbility("EventForOrder"):SetLevel(1)
     --<<全能力點數>>
-    hero:AddAbility("attribute_bonus")
+    hero:AddAbility("attribute_bonus_Data")
     
   --<<英雄系統>>
 
@@ -33,17 +35,17 @@ function GameRules.Nobu:PickHero( keys )
   --<<test>>
 
     --物品
-  item = CreateItem("item_RRRRRRRRRRRR",nil,nil)
+  item = CreateItem("item_blink_datadriven",nil,nil)
   CreateItemOnPositionSync(point, item)
 
-  item = CreateItem("item_sphere",nil,nil)
-  CreateItemOnPositionSync(point, item)
+  -- item = CreateItem("item_sphere",nil,nil)
+  -- CreateItemOnPositionSync(point, item)
 
-  item = CreateItem("item_manta_datadriven",nil,nil)
-  CreateItemOnPositionSync(point, item)
+  -- item = CreateItem("item_manta_datadriven",nil,nil)
+  -- CreateItemOnPositionSync(point, item)
 
   --debug
-  GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
+  --GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
 
   --金錢
   PlayerResource:SetGold(id-1,99999,false)--玩家ID需要減一

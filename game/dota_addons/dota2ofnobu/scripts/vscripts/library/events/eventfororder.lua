@@ -91,6 +91,8 @@ function test_of_spell( filterTable )
 			item:EndCooldown()
 		end
 	end
+
+	caster:SetMana(caster:GetMaxMana())
 end
 
 

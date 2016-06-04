@@ -78,25 +78,25 @@
 		"AbilityName"	"dota_ability_dummy"
 	}
 
-	// 屬性附加
-	"attribute_bonus"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"HotKeyOverride"	"B"
-		"MaxLevel"	"5"
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
-				"Function"	"attribute_bonus"
-			}
-		}
-	}
+	// // 屬性附加
+	// "attribute_bonus"
+	// {
+	// 	// General
+	// 	// -------------------------------------------------------------------------------------------------------------
+	// 	"BaseClass"	"ability_datadriven"
+	// 	"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	// 	"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	// 	"HotKeyOverride"	"B"
+	// 	"MaxLevel"	"6"
+	// 	"OnUpgrade"
+	// 	{
+	// 		"RunScript"
+	// 		{
+	// 			"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
+	// 			"Function"	"attribute_bonus"
+	// 		}
+	// 	}
+	// }
 
 	// 帳棚 再生光氣
 	"A0BM"
@@ -149,30 +149,4 @@
 		}
 	}
 
-	// 馬甲 施法輔助用
-	"majia"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"Modifiers"
-		{
-			"modifier_majia"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"States"
-				{
-					// 隐藏血条
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-					// 魔法免疫
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					// 不可选择
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
 }

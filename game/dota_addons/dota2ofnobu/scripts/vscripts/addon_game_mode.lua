@@ -48,6 +48,9 @@ loadModule ( 'library/events/eventfororder' )
 loadModule ( 'library/events/eventforlevelup' )
 loadModule ( 'library/events/eventforpichero' )
 loadModule ( 'library/events/eventforspawned' )
+loadModule ( 'library/events/eventforkill' )
+loadModule ( 'library/math' )
+loadModule ( 'library/common/dummy' )
 --
 
 -- Create the game mode when we activate
@@ -76,6 +79,8 @@ function GameRules.Nobu:InitGameMode()
   ListenToGameEvent("dota_player_pick_hero",GameRules.Nobu.PickHero, self)
 
   ListenToGameEvent('npc_spawned', GameRules.Nobu.OnHeroIngame, self)  
+
+  ListenToGameEvent( "entity_killed", GameRules.Nobu.OnUnitKill, self )
 end
 --<<↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑>>
 

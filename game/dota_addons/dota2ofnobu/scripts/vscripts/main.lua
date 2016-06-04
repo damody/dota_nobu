@@ -37,7 +37,7 @@ function NobuGameMode:InitGameMode()
 	GameRules: GetGameModeEntity() :SetBuybackEnabled(true)--test mode
 
 	--設置遊戲準備時間
-	GameRules:SetPreGameTime( 3.00 )
+	GameRules:SetPreGameTime( 1.00 )
 
 	-- 設定選擇英雄時間
 	GameRules:SetHeroSelectionTime(15) --原版是15秒

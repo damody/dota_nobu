@@ -1,3 +1,4 @@
+
 --單位創建也會運行
 
 model_lookup = {}
@@ -10,12 +11,12 @@ model_lookup["npc_dota_hero_huskar"] = true
 model_lookup["npc_dota_hero_beastmaster"] = true
 model_lookup["npc_dota_hero_antimage"] = true
 model_lookup["npc_dota_hero_silencer"] = true
-model_lookup["npc_dota_hero_pugna"] = true
 model_change_wearable = {}
 model_change_wearable["npc_dota_hero_antimage"]= true
 
 
 function GameRules.Nobu:OnHeroIngame( keys )
+  print("porn")
   local hero = EntIndexToHScript( keys.entindex )
   if hero:IsHero() then  
     RemoveWearables( hero )

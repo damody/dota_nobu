@@ -2,25 +2,25 @@ function B15W_on_spell_start(keys)
 	-- keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_black_king_bar_datadriven_active", nil)
 	keys.caster:EmitSound("DOTA_Item.BlackKingBar.Activate")
 	
-	local final_model_scale = (30 / 100) + 1  --This will be something like 1.3.
+	local final_model_scale = (30 / 100) + 1.2  --This will be something like 1.3.
 	local model_scale_increase_per_interval = 100 / (final_model_scale - 1)
 	local duration = keys.ability:GetLevelSpecialValueFor("duration", keys.ability:GetLevel() - 1 )
 
-	--Scale the model up over time.
-	for i=1,100 do
-		Timers:CreateTimer(i/75, 
-		function()
-			keys.caster:SetModelScale(1 + i/model_scale_increase_per_interval)
-		end)
-	end
+	-- --Scale the model up over time.
+	-- for i=1,100 do
+	-- 	Timers:CreateTimer(i/75, 
+	-- 	function()
+	-- 		keys.caster:SetModelScale(1.2 + i/model_scale_increase_per_interval)
+	-- 	end)
+	-- end
 
-	--Scale the model back down around the time the duration ends.
-	for i=1,100 do
-		Timers:CreateTimer(duration - 1 + (i/50),
-		function()
-			keys.caster:SetModelScale(final_model_scale - i/model_scale_increase_per_interval)
-		end)
-	end
+	-- --Scale the model back down around the time the duration ends.
+	-- for i=1,100 do
+	-- 	Timers:CreateTimer(duration - 1 + (i/50),
+	-- 	function()
+	-- 		keys.caster:SetModelScale(final_model_scale - i/model_scale_increase_per_interval)
+	-- 	end)
+	-- end
 end
 
 function B15R(keys)

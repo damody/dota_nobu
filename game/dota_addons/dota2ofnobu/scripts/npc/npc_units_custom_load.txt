@@ -1,0 +1,1397 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAUnits"
+{
+	"Version"		"1"
+
+	"TestUnit_normal"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/cavalry/cavalry.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	"test3333"
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1"
+		"AttackAnimationPoint"	"0.56"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"105"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"5.0"
+		"BountyGoldMax"	"5.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"5"
+		"LumberCost"	"5"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"150"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"9000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"9000"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"BountyXP"	"160"
+		"StatusManaRegen"	"0"
+	}
+
+	"npc_dummy_unit_Ver2"
+	{
+		// General
+		//
+		// Class of entity of link to.
+		"BaseClass"	"npc_dota_creature"
+		// Model.
+		"Model"	"models/development/invisiblebox.vmdl"
+		// Name of sound set.
+		"SoundSet"	"Creep_Good_Range"
+		"Level"	"0"
+		"UnitLabel"	"healing_ward"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1.
+		"Ability1"	"majia"
+		// Ability 2.
+		"Ability2"	""
+		// Ability 3.
+		"Ability3"	""
+		// Ability 4.
+		"Ability4"	""
+		// Ability 5.
+		"Ability5"	""
+		// Ability 6 - Extra.
+		"Ability6"	""
+		// Ability 7 - Extra.
+		"Ability7"	""
+		// Ability 8 - Extra.
+		"Ability8"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"0"
+		// Magical protection.
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		// Type of attack - melee, ranged, etc.
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"0"
+		// Damage range max.
+		"AttackDamageMax"	"0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		// Speed of attack.
+		"AttackRate"	"1"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.5"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"800"
+		// Range within a target can be attacked.
+		"AttackRange"	"500"
+		// Speed of projectile.
+		"ProjectileSpeed"	"900"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		// Base strength
+		"AttributeBaseStrength"	"0"
+		// Strength bonus per level.
+		"AttributeStrengthGain"	"0"
+		// Base intelligence
+		"AttributeBaseIntelligence"	"0"
+		// Intelligence bonus per level.
+		"AttributeIntelligenceGain"	"0"
+		// Base agility
+		"AttributeBaseAgility"	"0"
+		// Agility bonus per level.
+		"AttributeAgilityGain"	"0"
+		// Bounty
+		// ----------------------------------------------------------------
+		// Experience earn.
+		"BountyXP"	"0"
+		// Gold earned min.
+		"BountyGoldMin"	"0"
+		// Gold earned max.
+		"BountyGoldMax"	"0"
+		// Bounds
+		// ----------------------------------------------------------------
+		// Hull type used for navigation/locomotion.
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		// Movement
+		// ----------------------------------------------------------------
+		// Type of locomotion - ground, air
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Speed
+		"MovementSpeed"	"450"
+		// Turning rate.
+		"MovementTurnRate"	"10"
+		// Distance to keep when following
+		"FollowRange"	"250"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"1"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"0"
+		// Base mana.
+		"StatusMana"	"0"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"200"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"0"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"0"
+		// Bots
+		// ----------------------------------------------------------------
+		// How much bots want to attack them vs other non-hero things
+		"AttackDesire"	"1.5"
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"UseNeutralCreepBehavior"	"0"
+		"StatusStartingMana"	"200"
+	}
+
+	"Dummy_Ver1"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/development/invisiblebox.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	"majia"
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1"
+		"AttackAnimationPoint"	"0.56"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"105"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"5.0"
+		"BountyGoldMax"	"5.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"5"
+		"LumberCost"	"5"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"100"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"9000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"9000"
+		"StatusStartingMana"	"20000"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"BountyXP"	"160"
+		"StatusManaRegen"	"0"
+	}
+
+	"Dummy_B34E"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/b34e/b34e.vmdl"
+		"ModelScale"	"0.8"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	"majia"
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"5.0"
+		"BountyGoldMax"	"5.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"5"
+		"LumberCost"	"5"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"9000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"9000"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"BountyXP"	"160"
+		"StatusManaRegen"	"0"
+	}
+
+	// 地靈石碑
+	"B24W_DUMMY"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/items/earthshaker/totem_dragon_wall/fissure_body.vmdl"
+		"ModelScale"	"2.5"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: ACmi
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"4.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"ProjectileSpeed"	"900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"61.0"
+		"BountyGoldMax"	"65.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"800"
+		"StatusHealthRegen"	"3.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1200"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"144"
+	}
+
+	// 巨石
+	"B24T_HIDE"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/particle/earth_spirit_rockspikesphy.vmdl"
+		"ModelScale"	"0.1"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: ACmi
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"20.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"ProjectileSpeed"	"2500,900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"0"
+		"MovementTurnRate"	"0.10"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"700"
+		"StatusHealthRegen"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"300"
+		"VisionNighttimeRange"	"300"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	// =================================================================================
+	// Creature: 巨
+	// Description:
+	// =================================================================================
+	"B33T_UNIT"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"ability_dummy_unit"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/broodmother/spiderling.vmdl"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"MovementSpeed"	"522"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"StatusHealth"	"5555"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+	}
+
+	"npc_dummy"
+	{
+		"model"	"models/empty.vmdl"
+		// "model"           "models/courier/greevil/greevil.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"ability_dummy_unit"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusMana"	"5000"
+		"VisionDaytimeRange"	"0"
+		"VisionNighttimeRange"	"0"
+		"HasInventory"	"1"
+		"WakesNeutrals"	"0"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"C21T_SE"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"majia"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/c19/c19_model.vmdl"
+		"VisionDaytimeRange"	"600"
+		"VisionNighttimeRange"	"600"
+	}
+
+	// 守衛大將
+	"com_general"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/samurai_harquebus/samurai_harquebus.vmdl"
+		"ModelScale"	"1.46"
+		"Level"	"10"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Adt1
+		"Ability1"	""
+		// Reference: Amim
+		"Ability2"	""
+		// Reference: Aoar
+		"Ability3"	""
+		// Reference: A0BN
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"35.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"370.0"
+		"AttackDamageMax"	"375.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.96"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"900.00"
+		"AttackRange"	"900"
+		"ProjectileSpeed"	"1800"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"1300.0"
+		"BountyGoldMax"	"1300.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"215"
+		"LumberCost"	"215"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"0"
+		"MovementTurnRate"	"3.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"4000"
+		"StatusHealthRegen"	"50.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	// 騎兵精英
+	"com_h015"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/cavalry/cavalry.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	""
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"90.0"
+		"AttackDamageMax"	"98.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.05"
+		"AttackAnimationPoint"	"0.56"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"105"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"5.0"
+		"BountyGoldMax"	"5.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"5"
+		"LumberCost"	"5"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"522"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"2000"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"BountyXP"	"160"
+	}
+
+	// 弓箭手
+	"com_archer"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/archer/archer.vmdl"
+		"ModelScale"	"1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	""
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"49.0"
+		"AttackDamageMax"	"55.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.67"
+		"AttackAnimationPoint"	"0.72"
+		"AttackAcquisitionRange"	"600.00"
+		"AttackRange"	"500"
+		"ProjectileSpeed"	"1800"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"26.0"
+		"BountyGoldMax"	"28.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"34"
+		"LumberCost"	"34"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"750"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AttackRangeBuffer"	"250"
+		"BountyXP"	"120"
+		"ProjectileModel"	"particles/items2_fx/necronomicon_archer_projectile.vpcf"
+	}
+
+	// 鐵砲兵
+	"com_gunner"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/arquebusier/arquebusier.vmdl"
+		"ModelScale"	"1"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0NH
+		"Ability1"	""
+		// Reference: A0GD
+		"Ability2"	""
+		// Reference: A0GW
+		"Ability3"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"77.0"
+		"AttackDamageMax"	"85.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"2.00"
+		"AttackAnimationPoint"	"0.17"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"650"
+		"ProjectileSpeed"	"99999"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"61.0"
+		"BountyGoldMax"	"63.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"60"
+		"LumberCost"	"60"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"290"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"780"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"200"
+		"StatusManaRegen"	"0.00"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AutoAttacksByDefault"	"1"
+		"ProjectileModel"	"particles/items2_fx/necronomicon_archer_projectile.vpcf"
+	}
+
+	// 騎兵
+	"com_cavalry"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/cavalry/cavalry.vmdl"
+		"ModelScale"	"1"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	""
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"4.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"60.0"
+		"AttackDamageMax"	"68.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.00"
+		"AttackAnimationPoint"	"0.56"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"100"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"61.0"
+		"BountyGoldMax"	"63.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"60"
+		"LumberCost"	"60"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"340"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"880"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"BountyXP"	"160"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+	}
+
+	// 軍營
+	"com_soildercamp_2"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"2"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference:
+		"Ability1"	"A0BM"
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"25.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"500"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"750.0"
+		"BountyGoldMax"	"750.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"20.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	// 大本營
+	"com_soildercamp_3"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"3"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Adt1
+		"Ability1"	"A0BM"
+		// Reference: A00W
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"41.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"0"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"10000"
+		"StatusHealthRegen"	"20.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"ConsideredHero"	"0"
+		"HasInventory"	"0"
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	// 織田軍 箭塔
+	"com_towera"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_tower"
+		// Add model
+		"Model"	"models/defencetower/defense_tower_ver2.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"500"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Adt1
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"16.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"377.0"
+		"AttackDamageMax"	"379.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.30"
+		"AttackAnimationPoint"	"0.3"
+		"AttackAcquisitionRange"	"900"
+		"AttackRange"	"800"
+		// Add projectile
+		"ProjectileModel"	"particles/items2_fx/necronomicon_archer_projectile.vpcf"
+		"ProjectileSpeed"	"1800"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"150.0"
+		"BountyGoldMax"	"150.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"110"
+		"LumberCost"	"110"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"3250"
+		"StatusHealthRegen"	"1.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"SoundSet"	"Tower.Water"
+		"MinimapIconSize"	"320"
+		"AttackRangeBuffer"	"250.00"
+		"AutoAttacksByDefault"	"1"
+		"CanBeDominated"	"0"
+		"ShouldDoFlyHeightVisual"	"0"
+		"MinimapIcon"	"minimap_tower90"
+		"RingRadius"	"288"
+	}
+
+	// 足輕
+	"com_ashigaru_spearmen"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/ashigaru/ashigaru.vmdl"
+		"ModelScale"	"1"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	""
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"58.0"
+		"AttackDamageMax"	"59.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.58"
+		"AttackAnimationPoint"	"0.33"
+		"AttackAcquisitionRange"	"600.00"
+		"AttackRange"	"128"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"285"
+		"MovementTurnRate"	"0.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"700"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"1"
+	}
+
+	// 帳篷
+	"com_soildercamp"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0BN
+		"Ability1"	"A0BM"
+		// Reference: A0BM
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"150.0"
+		"BountyGoldMax"	"150.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"140"
+		"LumberCost"	"140"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1800"
+		"StatusHealthRegen"	"15.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"900"
+		"VisionNighttimeRange"	"600"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"192"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"160"
+	}
+
+	"hide_unit"
+	{
+		"BaseClass"	"npc_dota_thinker"
+		"Ability1"	"majia"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/empty.vmdl"
+		"HasInventory"	"1"
+		"ArmorPhysical"	"10000"
+		"MagicalResistance"	"100"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"1000"
+		"StatusMana"	"10000"
+		"StatusManaRegen"	"100"
+		"StatusStartingMana"	"10000"
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		"Level"	"5"
+		"ConsideredHero"	"0"
+	}
+}

@@ -205,7 +205,7 @@ function B25T_start( keys )
 	tradius = 10
 	local disstep = 80
 	local loopnum = 5
-	local particle=ParticleManager:CreateParticle("particles/b25t/b25t_fiendsgrip_ground_2.vpcf",PATTACH_WORLDORIGIN,caster)
+	local particle=ParticleManager:CreateParticle("particles/b15t/b15t_fiendsgrip_ground.vpcf",PATTACH_WORLDORIGIN,caster)
 	ParticleManager:SetParticleControl(particle,0,target)
 	table.insert(allparticle, particle)
 	Timers:CreateTimer(0, function()

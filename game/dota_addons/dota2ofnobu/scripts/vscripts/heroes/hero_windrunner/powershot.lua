@@ -101,60 +101,60 @@ function powershot_start_traverse( keys )
 	}
 	caster.powershot_projectileID = ProjectileManager:CreateLinearProjectile( projectileTable )
 	
-	-- Register units around caster
-	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, ability.powershot_radius,
-			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
-	for k, v in pairs( units ) do
-		local index = v:entindex()
-		ability.powershot_units_array[ index ] = v
-		ability.powershot_units_hit[ index ] = false
-	end
+	-- -- Register units around caster
+	-- local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, ability.powershot_radius,
+	-- 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+	-- for k, v in pairs( units ) do
+	-- 	local index = v:entindex()
+	-- 	ability.powershot_units_array[ index ] = v
+	-- 	ability.powershot_units_hit[ index ] = false
+	-- end
 	
-	-- Traverse
-	Timers:CreateTimer( function()
-			-- Traverse the point
-			ability.powershot_currentPos = ability.powershot_currentPos + ( ability.powershot_direction * ability.powershot_percent_movespeed/100 * ability.powershot_max_movespeed * 1/30 )
-			ability.powershot_traveled = ability.powershot_traveled + ability.powershot_max_movespeed * 1/30
+	-- -- Traverse
+	-- Timers:CreateTimer( function()
+	-- 		-- Traverse the point
+	-- 		ability.powershot_currentPos = ability.powershot_currentPos + ( ability.powershot_direction * ability.powershot_percent_movespeed/100 * ability.powershot_max_movespeed * 1/30 )
+	-- 		ability.powershot_traveled = ability.powershot_traveled + ability.powershot_max_movespeed * 1/30
 			
-			-- Loop through the units array
-			for k, v in pairs( ability.powershot_units_array ) do
-				-- Check if it never got hit and is in radius
-				if ability.powershot_units_hit[ k ] == false and powershot_distance( v:GetAbsOrigin(), ability.powershot_currentPos ) <= ability.powershot_radius then
-					-- Deal damage
-					local damageTable =
-					{
-						victim = v,
-						attacker = caster,
-						damage = ability:GetAbilityDamage() * ability.powershot_damage_percent,
-						damage_type = ability:GetAbilityDamageType()
-					}
-					ApplyDamage( damageTable )
-					-- Reduction
-					ability.powershot_damage_percent = ability.powershot_damage_percent * ( 1.0 - ability.powershot_damage_reduction )
-					ability.powershot_percent_movespeed = ability.powershot_percent_movespeed * ( 1.0 - ability.powershot_speed_reduction )
-					-- Change flag
-					ability.powershot_units_hit[ k ] = true
-					-- Fire sound
-					StartSoundEvent( "Hero_Windrunner.PowershotDamage", v )
-				end
-			end
+	-- 		-- Loop through the units array
+	-- 		for k, v in pairs( ability.powershot_units_array ) do
+	-- 			-- Check if it never got hit and is in radius
+	-- 			if ability.powershot_units_hit[ k ] == false and powershot_distance( v:GetAbsOrigin(), ability.powershot_currentPos ) <= ability.powershot_radius then
+	-- 				-- Deal damage
+	-- 				local damageTable =
+	-- 				{
+	-- 					victim = v,
+	-- 					attacker = caster,
+	-- 					damage = ability:GetAbilityDamage() * ability.powershot_damage_percent,
+	-- 					damage_type = ability:GetAbilityDamageType()
+	-- 				}
+	-- 				ApplyDamage( damageTable )
+	-- 				-- Reduction
+	-- 				ability.powershot_damage_percent = ability.powershot_damage_percent * ( 1.0 - ability.powershot_damage_reduction )
+	-- 				ability.powershot_percent_movespeed = ability.powershot_percent_movespeed * ( 1.0 - ability.powershot_speed_reduction )
+	-- 				-- Change flag
+	-- 				ability.powershot_units_hit[ k ] = true
+	-- 				-- Fire sound
+	-- 				StartSoundEvent( "Hero_Windrunner.PowershotDamage", v )
+	-- 			end
+	-- 		end
 			
-			-- Check for nearby trees, destroy them if they exist
-			if GridNav:IsNearbyTree( ability.powershot_currentPos, ability.powershot_radius, true ) then
-				GridNav:DestroyTreesAroundPoint(ability.powershot_currentPos, ability.powershot_tree_width, false)
-			end
+	-- 		-- Check for nearby trees, destroy them if they exist
+	-- 		if GridNav:IsNearbyTree( ability.powershot_currentPos, ability.powershot_radius, true ) then
+	-- 			GridNav:DestroyTreesAroundPoint(ability.powershot_currentPos, ability.powershot_tree_width, false)
+	-- 		end
 			
-			-- Create visibility node
-			AddFOWViewer(caster:GetTeamNumber(), ability.powershot_currentPos, ability.powershot_vision_radius, ability.powershot_vision_duration, false)
+	-- 		-- Create visibility node
+	-- 		AddFOWViewer(caster:GetTeamNumber(), ability.powershot_currentPos, ability.powershot_vision_radius, ability.powershot_vision_duration, false)
 			
-			-- Check if damage point reach the maximum range, if so, delete the timer
-			if ability.powershot_traveled < ability.powershot_max_range then
-				return 1/30
-			else
-				return nil
-			end
-		end
-	)
+	-- 		-- Check if damage point reach the maximum range, if so, delete the timer
+	-- 		if ability.powershot_traveled < ability.powershot_max_range then
+	-- 			return 1/30
+	-- 		else
+	-- 			return nil
+	-- 		end
+	-- 	end
+	-- )
 end
 
 --[[
