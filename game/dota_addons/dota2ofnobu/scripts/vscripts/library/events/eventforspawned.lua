@@ -4,13 +4,16 @@
 model_lookup = {}
 model_lookup["npc_dota_hero_storm_spirit"] = true
 model_lookup["npc_dota_hero_drow_ranger"] = true
-model_lookup["npc_dota_hero_windrunner"] = true
+--model_lookup["npc_dota_hero_windrunner"] = true
 model_lookup["npc_dota_hero_earthshaker"] = true
 model_lookup["npc_dota_hero_sniper"] = true
 model_lookup["npc_dota_hero_huskar"] = true
 model_lookup["npc_dota_hero_beastmaster"] = true
 model_lookup["npc_dota_hero_antimage"] = true
 model_lookup["npc_dota_hero_silencer"] = true
+model_lookup["npc_dota_hero_brewmaster"] = true
+model_lookup["npc_dota_hero_crystal_maiden"] = true
+model_lookup["npc_dota_hero_mirana"] = true
 model_change_wearable = {}
 model_change_wearable["npc_dota_hero_antimage"]= true
 

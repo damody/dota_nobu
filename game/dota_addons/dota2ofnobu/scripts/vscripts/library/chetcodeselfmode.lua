@@ -36,29 +36,32 @@ local point    = hero:GetAbsOrigin()
   --   error("class definition missing or not a table")    
   -- end
 
-  if s == "test" then
 
+
+  if s == "test" then
+    local table = {222,"fdokfodk"}
+    PrintTable(keys)
 
     --HideWearables( hero )
-    local wearable =  hero:FirstMoveChild()
-    if wearable:GetClassname() == "dota_item_wearable" then
-      wearable:SetModel( "models/development/invisiblebox.vmdl" )
-    end
-     wearable:RemoveEffects(EF_NODRAW)
-     wearable = wearable:NextMovePeer()
+    -- local wearable =  hero:FirstMoveChild()
+    -- if wearable:GetClassname() == "dota_item_wearable" then
+    --   wearable:SetModel( "models/development/invisiblebox.vmdl" )
+    -- end
+    --  wearable:RemoveEffects(EF_NODRAW)
+    --  wearable = wearable:NextMovePeer()
      
-     for i=1,50 do
-        if wearable ~= nil then
-          wearable:RemoveEffects(EF_NODRAW)
-          wearable = wearable:NextMovePeer()
-        end  
-        if wearable ~= nil then
-          if wearable:GetClassname() == "dota_item_wearable" then
-            print(i)
-            wearable:SetModel( "models/development/invisiblebox.vmdl" )
-          end    
-        end   
-     end
+    --  for i=1,50 do
+    --     if wearable ~= nil then
+    --       wearable:RemoveEffects(EF_NODRAW)
+    --       wearable = wearable:NextMovePeer()
+    --     end  
+    --     if wearable ~= nil then
+    --       if wearable:GetClassname() == "dota_item_wearable" then
+    --         print(i)
+    --         wearable:SetModel( "models/development/invisiblebox.vmdl" )
+    --       end    
+    --     end   
+    --  end
 
     --  local  u = CreateUnitByName(hero:GetUnitName(),Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
     --  --u:SetOwner(p)                                         --設置u的擁有者
@@ -80,11 +83,11 @@ local point    = hero:GetAbsOrigin()
 
 
   if s == "Create1" then
-    for i=1,1 do
-     local  u = CreateUnitByName(hero:GetUnitName(),hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+    for i=1,5 do
+     local  u = CreateUnitByName("TestUnit_nomagicresist",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
      --u:SetOwner(p)                                         --設置u的擁有者
-     u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
-     u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+     --u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+     --u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
     end
     -- --等級
     -- for i=1,25 do

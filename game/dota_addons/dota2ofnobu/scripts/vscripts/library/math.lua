@@ -34,6 +34,10 @@ function nobu_radtodeg( rad)
 	return rad * bj_RADTODEG 
 end 
 
+function nobu_degtorad( deg)
+	return deg * bj_DEGTORAD 
+end 
+
 function nobu_Normalized(point, point2)
 	return (point2 - point):Normalized()
 end

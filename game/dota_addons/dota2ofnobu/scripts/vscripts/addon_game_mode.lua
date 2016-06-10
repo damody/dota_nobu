@@ -42,6 +42,7 @@ loadModule ( 'library/timers' )
 loadModule ( 'library/chetcodeselfmode' )
 loadModule ( 'computer_system/chubing' )
 loadModule ( 'main' )
+loadModule ( 'util' )
 loadModule ( 'amhc_library/amhc' )
 loadModule ( 'library/events/eventfordamage' )
 loadModule ( 'library/events/eventfororder' )
@@ -51,6 +52,8 @@ loadModule ( 'library/events/eventforspawned' )
 loadModule ( 'library/events/eventforkill' )
 loadModule ( 'library/math' )
 loadModule ( 'library/common/dummy' )
+loadModule ( 'library/common/word' )
+loadModule ( 'library/common/api' )
 --
 
 -- Create the game mode when we activate

@@ -5,7 +5,7 @@ function GameRules.Nobu:PickHero( keys )
   local hero     = p: GetAssignedHero() 
   local point    = hero:GetAbsOrigin()
 
-  --<<英雄名稱判別>>
+  --【英雄名稱判別】
   local name = hero:GetUnitName()
   if name == "npc_dota_hero_ancient_apparition"  then
     local ability = hero:FindAbilityByName("A04D")
@@ -13,15 +13,17 @@ function GameRules.Nobu:PickHero( keys )
   elseif name == "npc_dota_hero_jakiro"  then
     hero:FindAbilityByName("C22D"):SetLevel(1)
   elseif name == "npc_dota_hero_templar_assassin"  then
-    hero:FindAbilityByName("C15D"):SetLevel(1) 
+    hero:FindAbilityByName("C19D"):SetLevel(1) 
   elseif name == "npc_dota_hero_storm_spirit"  then
     hero:FindAbilityByName("A12D_HIDE"):SetLevel(1)    
   elseif name ==  "npc_dota_hero_silencer"  then
     hero:FindAbilityByName("C07D"):SetLevel(1) 
+  elseif name ==  "npc_dota_hero_windrunner"  then
+    hero:FindAbilityByName("C17D"):SetLevel(1)     
   end  
-  --<<英雄名稱判別>>
+  --【英雄名稱判別】
 
-  --<<英雄系統>>
+  --【英雄系統】
     --<<事件:任一單位施放技能>>
     --hero:AddAbility("EventForUnitSpellAbility"):SetLevel(1)
     --<<事件:命令事件>>
@@ -29,11 +31,12 @@ function GameRules.Nobu:PickHero( keys )
     --<<全能力點數>>
     hero:AddAbility("attribute_bonus_Data")
     
-  --<<英雄系統>>
+  --【英雄系統】
 
+  --【御守系統】
+  hero.yushou = false 
 
-  --<<test>>
-
+  --【test】
     --物品
   item = CreateItem("item_blink_datadriven",nil,nil)
   CreateItemOnPositionSync(point, item)
@@ -63,4 +66,9 @@ function GameRules.Nobu:PickHero( keys )
         building:RemoveModifierByName('modifier_invulnerable')
      end
   end
+
+
+
+
+
 end

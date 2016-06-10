@@ -117,9 +117,10 @@ function C07T( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local point = caster:GetAbsOrigin()
-	local level = ability:GetLevel()
+	local level = ability:GetLevel() - 1
 	local height = 0
 	local distance = 100
+	local life_time = ability:GetLevelSpecialValueFor("duration",level)
 
 	local dummy = CreateUnitByName("Dummy_Ver1",point ,false,nil,nil,caster:GetTeam())	
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
@@ -132,18 +133,25 @@ function C07T( keys )
 		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	end		
 
-	for i=1,1 do 
-		local point2 = 100 
-		print(point2)
-		local particle = ParticleManager:CreateParticle( "particles/07t/c07t.vpcf", PATTACH_POINT, dummy )
-		-- ParticleManager:SetParticleControl(particle,0,point+Vector(0,0,height*i))	
-		-- ParticleManager:SetParticleControl(particle,1,point+Vector(0,0,height*i))
-		-- ParticleManager:SetParticleControl(particle,2,point+Vector(0,0,height*i))			
-		ParticleManager:SetParticleControlEnt(particle,0, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2 ,point2,height*i), true)	
-		ParticleManager:SetParticleControlEnt(particle,1, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2,point2,height*i), true)
-		ParticleManager:SetParticleControlEnt(particle,2, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2,point2,height*i), true)	
-		--print(particle)	
-	end		
+	local point2 = 4000
+	print("@@@@")
+	print(life_time)
+	local particle = ParticleManager:CreateParticle( "particles/07t/c07t.vpcf", PATTACH_POINT, dummy )		
+	ParticleManager:SetParticleControlEnt(particle,0, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2 ,point2,height), true)	
+	ParticleManager:SetParticleControlEnt(particle,1, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2,point2,height), true)
+	ParticleManager:SetParticleControlEnt(particle,2, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2,point2,height), true)	
+
+	local particle2 = ParticleManager:CreateParticle( "particles/07t/c07t_zc.vpcf", PATTACH_POINT, dummy )		
+	ParticleManager:SetParticleControlEnt(particle2,0, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2 ,point2,height), true)	
+	ParticleManager:SetParticleControlEnt(particle2,1, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2,point2,height), true)
+	ParticleManager:SetParticleControlEnt(particle2,2, dummy, PATTACH_POINT_FOLLOW,"attach_hitloc",point+Vector(point2,point2,height), true)	
+
+	Timers:CreateTimer(life_time,function()
+		ParticleManager:DestroyParticle(particle,false)	
+		ParticleManager:DestroyParticle(particle2,true)		
+		dummy:ForceKill(true)
+		print("@@@@".."dead")
+	end	)	
 end
 
 
@@ -159,6 +167,7 @@ function C07_Effect( keys )
 	local point = dummy:GetAbsOrigin()
 	local point2 
 	local dmg = keys.C07_dmg
+	local height = 700
 	print(dmg)
 	local group = {}
    	group = FindUnitsInRadius(dummy:GetTeamNumber(), point, nil, 1000,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
@@ -170,7 +179,7 @@ function C07_Effect( keys )
 			point2 = v:GetAbsOrigin()
 			local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN , v)
 			-- Raise 1000 if you increase the camera height above 1000
-			ParticleManager:SetParticleControl(particle, 0, point + Vector(0,0,500))
+			ParticleManager:SetParticleControl(particle, 0, point + Vector(0,0,height))
 			ParticleManager:SetParticleControl(particle, 1, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 			ParticleManager:SetParticleControl(particle, 2, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 

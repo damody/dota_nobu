@@ -17,6 +17,15 @@ end
 ]]
 function rearm_refresh_cooldown( keys )
 	local caster = keys.caster
+
+	local particle = ParticleManager:CreateParticle( "particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/cm_arcana_pup_lvlup_godray.vpcf", PATTACH_POINT, caster )
+	ParticleManager:SetParticleControl( particle, 0, caster:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( particle, 1, caster:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( particle, 2, caster:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( particle, 3, caster:GetAbsOrigin() )
+	-- Timers:CreateTimer( 0.5, function()
+	-- 		ParticleManager:DestroyParticle(particle,false)
+	-- 	end)
 	
 	-- Reset cooldown for abilities that is not rearm
 	for i = 0, caster:GetAbilityCount() - 1 do
@@ -37,3 +46,5 @@ function rearm_refresh_cooldown( keys )
 		end
 	end
 end
+
+

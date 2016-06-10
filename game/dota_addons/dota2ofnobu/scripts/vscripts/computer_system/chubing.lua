@@ -58,56 +58,53 @@ function ShuaGuai( )
 end
 
 function ShuaGuai_Of_A( )
-	print("[nobu]Run ShuaGuaiA")
+	-- print("[nobu]Run ShuaGuaiA")
 
-	for i=1,6 do --總共六個出發點
-		--獲取物體位子
-		local ent = ShuaGuai_entity[i]
+	-- for i=1,6 do --總共六個出發點 6
+	-- 	--獲取物體位子
+	-- 	local ent = ShuaGuai_entity[i]
 
-		--DOTA_TEAM_GOODGUYS = 2
-		--DOTA_TEAM_BADGUYS = 3
-		--超過三的時候出兵變為聯合軍
-		local s = 2	
-		if i > 3 then
-			s = 3			
-		end
+	-- 	--DOTA_TEAM_GOODGUYS = 2
+	-- 	--DOTA_TEAM_BADGUYS = 3
+	-- 	--超過三的時候出兵變為聯合軍
+	-- 	local s = 2	
+	-- 	if i > 3 then
+	-- 		s = 3			
+	-- 	end
 
-		--武士	
-		for k=1,GameRules.ShuaGuai_Of_Walker_num do
+	-- 	--武士	
+	-- 	for k=1,GameRules.ShuaGuai_Of_Walker_num do
 
-			--創建單位
-			local unit = CreateUnitByName("com_ashigaru_spearmen", ent:GetAbsOrigin() , false, nil, nil, s)
+	-- 		--創建單位
+	-- 		local unit = CreateUnitByName("com_ashigaru_spearmen", ent:GetAbsOrigin() , false, nil, nil, s)
 
-			--禁止單位尋找最短路徑
-			unit:SetMustReachEachGoalEntity(true)
+	-- 		--禁止單位尋找最短路徑
+	-- 		unit:SetMustReachEachGoalEntity(true)
 
-			--讓單位沿著設置好的路線開始行動
-			unit:SetInitialGoalEntity(ent)
+	-- 		--讓單位沿著設置好的路線開始行動
+	-- 		unit:SetInitialGoalEntity(ent)
 
-			--添加相位移動的modifier，持續時間0.2秒
-			--當相位移動的modifier消失，系統會自動計算碰撞，這樣就避免了卡位
-			unit:AddNewModifier(nil, nil, "modifier_phased", {duration=0.2})
-		end	
+	-- 		--添加相位移動的modifier，持續時間0.2秒
+	-- 		--當相位移動的modifier消失，系統會自動計算碰撞，這樣就避免了卡位
+	-- 		unit:AddNewModifier(nil, nil, "modifier_phased", {duration=0.2})
+	-- 	end	
 
-		--弓箭手
-		for k=1,GameRules.ShuaGuai_Of_Archer_num do
-			--創建單位
-			local unit = CreateUnitByName("com_archer", ent:GetAbsOrigin() , false, nil, nil, s)
+	-- 	--弓箭手
+	-- 	for k=1,GameRules.ShuaGuai_Of_Archer_num do
+	-- 		--創建單位
+	-- 		local unit = CreateUnitByName("com_archer", ent:GetAbsOrigin() , false, nil, nil, s)
 
-			--禁止單位尋找最短路徑
-			unit:SetMustReachEachGoalEntity(true)
+	-- 		--禁止單位尋找最短路徑
+	-- 		unit:SetMustReachEachGoalEntity(true)
 
-			--讓單位沿著設置好的路線開始行動
-			unit:SetInitialGoalEntity(ent)
+	-- 		--讓單位沿著設置好的路線開始行動
+	-- 		unit:SetInitialGoalEntity(ent)
 
-			--添加相位移動的modifier，持續時間0.2秒
-			--當相位移動的modifier消失，系統會自動計算碰撞，這樣就避免了卡位
-			unit:AddNewModifier(nil, nil, "modifier_phased", {duration=0.2})
-		end	
-	end	
-
-
-
+	-- 		--添加相位移動的modifier，持續時間0.2秒
+	-- 		--當相位移動的modifier消失，系統會自動計算碰撞，這樣就避免了卡位
+	-- 		unit:AddNewModifier(nil, nil, "modifier_phased", {duration=0.2})
+	-- 	end	
+	-- end	
 
 end
 

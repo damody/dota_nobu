@@ -16,13 +16,14 @@ function GameRules.Nobu:DamageFilterEvent( filterTable )
 	-- [   VScript                ]:    entindex_attacker_const         	= 232 (number)
 	-- [   VScript                ]:    damagetype_const                	= 2 (number)
 	-- [   VScript                ]: }
-	if EntIndexToHScript(filterTable.entindex_attacker_const):IsHero() then
-		local attacker = EntIndexToHScript(filterTable.entindex_attacker_const)
+	if EntIndexToHScript(filterTable.entindex_victim_const):IsHero() then
+		--local attacker = EntIndexToHScript(filterTable.entindex_attacker_const)
 		local victim = EntIndexToHScript(filterTable.entindex_victim_const)
 		local damagetype_const =  filterTable.damagetype_const
 		--紀錄傷害類型
-		attacker.damagetype = damagetype_const 
+		--attacker.damagetype = damagetype_const 
 		victim.damagetype = damagetype_const 
+		--print(victim:GetUnitName())
 	end 
 	return true 
 end

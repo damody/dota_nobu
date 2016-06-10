@@ -49,6 +49,14 @@
 		{
 			_class = "C_OP_PositionLock"
 		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 20.000000
+			m_bDisableOperator = true
+		},
 	]
 	m_Initializers =
 	[
@@ -78,8 +86,8 @@
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 30
-			m_nAlphaMax = 40
+			m_nAlphaMin = 5
+			m_nAlphaMax = 5
 		},
 		{
 			_class = "C_INIT_RandomColor"
@@ -107,8 +115,8 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 1.000000
-			m_fLifetimeMax = 1.000000
+			m_fLifetimeMin = 20.000000
+			m_fLifetimeMax = 20.000000
 		},
 		{
 			_class = "C_INIT_RandomRotation"
@@ -119,13 +127,13 @@
 			[
 				0.000000,
 				0.000000,
-				512.000000,
+				700.000000,
 			]
 			m_OffsetMin =
 			[
 				0.000000,
 				0.000000,
-				512.000000,
+				700.000000,
 			]
 		},
 	]
