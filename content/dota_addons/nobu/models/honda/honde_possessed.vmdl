@@ -1,0 +1,2043 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CVModel"
+	m_meshList =
+	{
+		m_meshList =
+		[
+			{
+				m_meshName = "honde"
+				m_meshFile = "models/honda/honde.fbx"
+				m_materialSearchPath = ""
+				m_bSkinParentedObjects = true
+				m_bLegacySkinParentedTransforms = false
+				m_bExpensiveTangents = false
+				m_bExpensiveVertices = false
+				m_bIgnoreCloth = false
+				m_bGetSkinningFromLod0 = false
+				m_pMorphInfo = null
+			},
+		]
+	}
+	m_clothProxyMeshList =
+	{
+		_class = "CVClothProxyMeshList"
+		m_flClothEnableThreshold = 0.050000
+		m_bCreateStaticBone = false
+		m_nMaxBonesPerVertex = 4
+		m_bRemoveUnusedBonesEnabled = false
+		m_bDriveMeshesWithBacksolvedJointsOnly = true
+		m_flMatchProxiesToMeshes = 1.000000
+		m_flReservedFloat = 0.000000
+		m_nReservedInt = 0
+		m_bReservedBool1 = false
+		m_bReservedBool2 = false
+		m_bReservedBool3 = false
+		m_bReservedBool4 = false
+		m_clothProxyMeshList =
+		[
+		]
+	}
+	m_physicsMeshList =
+	{
+		m_meshList =
+		[
+		]
+	}
+	m_pModelInfo = null
+	m_pBoneFlagList =
+	{
+		_class = "CVBoneFlagListReference"
+		m_pObject = null
+	}
+	m_pHitBoxSetLists =
+	[
+		{
+			_class = "CVhitBoxSetListReference"
+			m_pObject =
+			{
+				m_HitBoxSets =
+				[
+					{
+						m_name = "default"
+						m_HitBoxes =
+						[
+							{
+								m_name = "m3bone_root"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "m3bone_root"
+								m_vMinBounds =
+								[
+									-2.000000,
+									-2.000000,
+									-2.000000,
+								]
+								m_vMaxBounds =
+								[
+									2.000000,
+									2.000000,
+									2.000000,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Chest"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Chest"
+								m_vMinBounds =
+								[
+									-49.824593,
+									-30.874775,
+									-28.980207,
+								]
+								m_vMaxBounds =
+								[
+									50.163094,
+									24.367817,
+									44.246796,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Arm0_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm0_R"
+								m_vMinBounds =
+								[
+									-35.078995,
+									-12.799500,
+									-19.388603,
+								]
+								m_vMaxBounds =
+								[
+									0.552101,
+									20.020897,
+									12.049995,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Arm1_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm1_R"
+								m_vMinBounds =
+								[
+									-23.610796,
+									-17.258717,
+									-17.483391,
+								]
+								m_vMaxBounds =
+								[
+									5.121801,
+									15.101178,
+									16.041008,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Arm0_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm0_L"
+								m_vMinBounds =
+								[
+									0.130402,
+									-12.799500,
+									-19.388603,
+								]
+								m_vMaxBounds =
+								[
+									35.417496,
+									20.020897,
+									12.049995,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Arm2_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm2_R"
+								m_vMinBounds =
+								[
+									-20.323204,
+									-19.973967,
+									-20.192513,
+								]
+								m_vMaxBounds =
+								[
+									7.327791,
+									6.633200,
+									6.136192,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Pelvis"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Pelvis"
+								m_vMinBounds =
+								[
+									-34.276680,
+									-21.129799,
+									-28.750797,
+								]
+								m_vMaxBounds =
+								[
+									34.746300,
+									20.602898,
+									9.203812,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Arm1_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm1_L"
+								m_vMinBounds =
+								[
+									-4.311001,
+									-17.258717,
+									-17.483391,
+								]
+								m_vMaxBounds =
+								[
+									23.949297,
+									15.101178,
+									16.041008,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Hand_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Hand_R"
+								m_vMinBounds =
+								[
+									-12.634899,
+									-19.159775,
+									-16.184811,
+								]
+								m_vMaxBounds =
+								[
+									14.149998,
+									6.594021,
+									1.482292,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Leg1_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg1_L"
+								m_vMinBounds =
+								[
+									-24.611595,
+									-26.180157,
+									-26.320301,
+								]
+								m_vMaxBounds =
+								[
+									21.675995,
+									7.211842,
+									7.310608,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Leg1_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg1_R"
+								m_vMinBounds =
+								[
+									-21.206291,
+									-26.180157,
+									-26.320301,
+								]
+								m_vMaxBounds =
+								[
+									24.283897,
+									7.211842,
+									7.310608,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Head"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Head"
+								m_vMinBounds =
+								[
+									-28.846199,
+									-16.754768,
+									-5.003006,
+								]
+								m_vMaxBounds =
+								[
+									28.759697,
+									17.646927,
+									54.872993,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Arm2_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm2_L"
+								m_vMinBounds =
+								[
+									-9.194197,
+									-17.312037,
+									-20.900322,
+								]
+								m_vMaxBounds =
+								[
+									18.398598,
+									10.627798,
+									6.136192,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Weapon"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Weapon"
+								m_vMinBounds =
+								[
+									-5.505703,
+									-154.014862,
+									-21.872311,
+								]
+								m_vMaxBounds =
+								[
+									5.505699,
+									84.798920,
+									21.938091,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Leg2_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg2_L"
+								m_vMinBounds =
+								[
+									-12.710527,
+									-9.084219,
+									-46.982391,
+								]
+								m_vMaxBounds =
+								[
+									14.299599,
+									23.218279,
+									7.414291,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Leg2_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg2_R"
+								m_vMinBounds =
+								[
+									-14.402498,
+									-9.084240,
+									-46.982391,
+								]
+								m_vMaxBounds =
+								[
+									12.157127,
+									23.218258,
+									7.414291,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Jaw"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Jaw"
+								m_vMinBounds =
+								[
+									-2.210592,
+									-4.072392,
+									-5.156998,
+								]
+								m_vMaxBounds =
+								[
+									2.413667,
+									-2.171593,
+									-0.250999,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Hand_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Hand_L"
+								m_vMinBounds =
+								[
+									-14.498997,
+									-16.211878,
+									-17.004711,
+								]
+								m_vMaxBounds =
+								[
+									12.772598,
+									9.545219,
+									0.705894,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Glow_Weapon1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Glow_Weapon1"
+								m_vMinBounds =
+								[
+									-2.000000,
+									-2.000000,
+									-2.000000,
+								]
+								m_vMaxBounds =
+								[
+									2.000000,
+									2.000000,
+									2.000000,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Glow_Weapon2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Glow_Weapon2"
+								m_vMinBounds =
+								[
+									-2.000000,
+									-2.000000,
+									-2.000000,
+								]
+								m_vMaxBounds =
+								[
+									2.000000,
+									2.000000,
+									2.000000,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Foot_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Foot_L"
+								m_vMinBounds =
+								[
+									-13.108158,
+									-25.584335,
+									-13.164089,
+								]
+								m_vMaxBounds =
+								[
+									13.296299,
+									14.612260,
+									2.388792,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								m_name = "Bone_Foot_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Foot_R"
+								m_vMinBounds =
+								[
+									-14.069593,
+									-25.584404,
+									-13.164089,
+								]
+								m_vMaxBounds =
+								[
+									12.475149,
+									14.612190,
+									2.388792,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+						]
+					},
+				]
+				m_AutoCreateSetName = ""
+			}
+		},
+	]
+	m_pAttachmentLists =
+	[
+		{
+			_class = "CVattachmentListReference"
+			m_pObject =
+			{
+				m_name = ""
+				m_attachments =
+				[
+					{
+						m_name = "attach_origin"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_hitloc"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									84.755646,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack1"
+						m_influences =
+						[
+							{
+								m_influenceName = "Glow_Weapon1"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences =
+						[
+							{
+								m_influenceName = "Glow_Weapon2"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_head"
+						m_influences =
+						[
+							{
+								m_influenceName = "Bone_Head"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
+	]
+	m_pAnimGroup =
+	{
+		_class = "CVanimGroupReference"
+		m_pObject =
+		{
+			m_Name = ""
+			m_pReferenceSkeleton =
+			{
+				_class = "CVReferenceSkeletonReference"
+				m_pObject = null
+			}
+			m_pBoneFlagList =
+			{
+				_class = "CVBoneFlagListReference"
+				m_pObject = null
+			}
+			m_pSeqGroup =
+			{
+				_class = "CVseqGroupReference"
+				m_pObject = null
+			}
+			m_pAnimGroups =
+			[
+				{
+					_class = "CVanimGroupReference"
+					m_pObject =
+					{
+						m_Name = "ani_g"
+						m_pReferenceSkeleton =
+						{
+							_class = "CVReferenceSkeletonReference"
+							m_pObject = null
+						}
+						m_pBoneFlagList =
+						{
+							_class = "CVBoneFlagListReference"
+							m_pObject = null
+						}
+						m_pSeqGroup =
+						{
+							_class = "CVseqGroupReference"
+							m_pObject = null
+						}
+						m_pAnimGroups =
+						[
+						]
+						m_Vanim =
+						[
+							{
+								m_Animationname = "honde_ani_attack"
+								m_Filepath = "models/honda/honde_ani_attack.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 30
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_ATTACK"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_walk"
+								m_Filepath = "models/honda/honde_ani_walk.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 24
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_RUN"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_attack2"
+								m_Filepath = "models/honda/honde_ani_attack2.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 37
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_ATTACK2"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_death"
+								m_Filepath = "models/honda/honde_ani_death.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 47
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_DIE"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_stand"
+								m_Filepath = "models/honda/honde_ani_stand.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 105
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_slam"
+								m_Filepath = "models/honda/honde_ani_attack2_alternate.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 37
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_CAST_ABILITY_1"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_die"
+								m_Filepath = "models/honda/honde_ani_die.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 166
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_idle"
+								m_Filepath = "models/honda/honde_ani_idle.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 320
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_run"
+								m_Filepath = "models/honda/honde_ani_run.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 12
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_stand_alternate"
+								m_Filepath = "models/honda/honde_ani_stand_alternate.fbx"
+								m_nStartframe = 20
+								m_nEndframe = 20
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_IDLE"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_stand_ready"
+								m_Filepath = "models/honda/honde_ani_stand_ready.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 32
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_stand_ready_alternate"
+								m_Filepath = "models/honda/honde_ani_stand_ready_alternate.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 32
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_stand2"
+								m_Filepath = "models/honda/honde_ani_stand2.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 209
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_stand3"
+								m_Filepath = "models/honda/honde_ani_stand3.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 209
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_CAST_ABILITY_4"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_walkalternate"
+								m_Filepath = "models/honda/honde_ani_walkalternate.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 0
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								m_Animationname = "honde_ani_cast2"
+								m_Filepath = "models/honda/honde_ani_attack.fbx"
+								m_nStartframe = 0
+								m_nEndframe = 30
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										m_Name = "ACT_DOTA_CAST_ABILITY_2"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+									{
+										m_nFrame = 0
+										m_bExtractTX = true
+										m_bExtractTY = true
+										m_bExtractTZ = false
+										m_bExtractRX = false
+										m_bExtractRY = false
+										m_bExtractRZ = false
+										m_bDiscardTX = false
+										m_bDiscardTY = false
+										m_bDiscardTZ = false
+										m_bDiscardRX = false
+										m_bDiscardRY = false
+										m_bDiscardRZ = false
+									},
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+						]
+						m_sScripts =
+						[
+						]
+						m_folderNames =
+						[
+						]
+					}
+				},
+			]
+			m_Vanim =
+			[
+			]
+			m_sScripts =
+			[
+			]
+			m_folderNames =
+			[
+			]
+		}
+	}
+	m_pMaterialGroupList =
+	{
+		_class = "CVNodeMaterialGroupListReference"
+		m_pObject = null
+	}
+	m_pMeshGroupList =
+	{
+		_class = "CVMeshGroupListReference"
+		m_pObject = null
+	}
+	m_pLodGroupList =
+	{
+		_class = "CVLODGroupListReference"
+		m_pObject = null
+	}
+	m_pPropBreakableList =
+	{
+		_class = "CVpropBreakableListReference"
+		m_pObject = null
+	}
+	m_pPropDataList =
+	{
+		_class = "CVpropDataListReference"
+		m_pObject = null
+	}
+	m_pConstraintLists =
+	[
+	]
+	m_collision = ""
+	m_softbody = ""
+	m_sMDLFilename = ""
+	m_sOffsetHitboxSets =
+	[
+	]
+	m_vHitboxSetOffset =
+	[
+		0.000000,
+		0.000000,
+		0.000000,
+	]
+	m_scriptFiles =
+	[
+	]
+	m_pMaterialRemapList =
+	{
+		m_vMaterialRemapList =
+		[
+			{
+				m_sSearchMaterial = "*"
+				m_sReplaceMaterial = "materials/honda/herotadakatsuhonda.vmat"
+			},
+		]
+	}
+	m_flFbxScale = 1.000000
+	m_flQCScale = 1.000000
+	m_vOrigin =
+	[
+		0.000000,
+		0.000000,
+		0.000000,
+	]
+	m_pPsfList = null
+	m_keyValueText = ""
+	m_bStaticProp = false
+	m_bEnableClothProcessing = true
+	m_flClothEnableThreshold = 0.050000
+	m_nMaxClothVertsPerMesh = 2048
+	m_bBuildClothBoneHierarchy = false
+	m_nNavType = "AUTH_NAV_MESH"
+	m_bMakeUniqueVMeshes = true
+	m_bMakeImplicitBindPoseSequence = false
+	m_bAdjustSkeletonFromBoneFlags = false
+	m_pAnimGroups =
+	[
+	]
+}

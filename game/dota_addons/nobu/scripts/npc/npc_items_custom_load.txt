@@ -1,0 +1,87 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	// Rewrite of Blink Dagger
+	// Author: Rook
+	// Date: January 25, 2015
+	// Known bugs:
+	//     Double-tapping the item currently does not blink the unit toward their fountain.
+	//     When damage is taken, the value before reductions is used to determine whether the item should be put on a brief cooldown, not the value after reductions like it should be.
+	"item_blink_datadriven"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_blink"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"12.0"
+		"AbilityManaCost"	"0"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1500"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"2250"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/nobu_test.lua"
+				"Function"	"item_blink_datadriven_on_spell_start"
+				"Target"	"POINT"
+				"MaxBlinkRange"	"%max_blink_range"
+				"BlinkRangeClamp"	"%blink_range_clamp"
+				"BlinkRangeOnBroken"	"%blink_range_broken"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_blink_datadriven"
+			{
+				"Properties"	{}
+				"Passive"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_blink_range"	"1200"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				// When attempting to blink a distance greater than max_blink_range, the caster blinks this distance in the targeted direction.
+				"blink_range_clamp"	"960"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blink_damage_cooldown"	"3"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blink_range_broken"	"300"
+			}
+		}
+	}
+}

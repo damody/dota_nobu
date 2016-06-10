@@ -1,0 +1,41 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "global_lit_simple.vfx"
+
+	//---- 2-Sided Rendering ----
+	F_RENDER_BACKFACES 1
+
+	//---- Normal Maps ----
+	F_NORMAL_MAP 1
+
+	//---- Specular ----
+	F_SPECULAR 1
+
+	//---- Translucent ----
+	F_ALPHA_TEST 1
+
+	//---- Color ----
+	g_vColorTint "[0.992157 0.992157 0.482353 1.000000]"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[12.973 44.108]"
+	TextureColor "materials/default/default_color.tga"
+
+	//---- Normal Map ----
+	g_flBumpStrength "0.000"
+	TextureNormal "materials/b08/firering1a.tga"
+
+	//---- Self Illum ----
+	TextureSelfIllumMask "materials/b08/yellow_glow.tga"
+
+	//---- Specular ----
+	g_flSpecularBloom "1.818"
+	g_flSpecularIntensity "7.000"
+	TextureBloom "materials/b08/star2_32.tga"
+	TextureReflectance "materials/b08/yellow_glow.tga"
+
+	//---- Translucent ----
+	g_flAlphaTestReference "0.010"
+	TextureTranslucency "materials/b08/star2_32.tga"
+}
