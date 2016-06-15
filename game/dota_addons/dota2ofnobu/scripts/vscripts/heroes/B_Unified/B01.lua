@@ -235,5 +235,5 @@ end
 
 function C01W_sound( keys )
 	local caster = keys.caster
-	caster:EmitSound( "B01W.sound"..RandomInt(1, 3) )
+	caster:EmitSound( "B01W.sound"..1)
 end
