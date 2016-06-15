@@ -5,6 +5,204 @@
 {
 	"Version"		"1"
 
+	// 雜賀孫市
+	"B01"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_nevermore"
+		"Model"	"models/b01/b01.vmdl"
+		"ModelScale"	"1.20"
+		"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"B01W"
+		// Reference: Aamk
+		"Ability2"	"B01E"
+		// Reference: A0VS
+		"Ability3"	"B01R"
+		// Reference: A088
+		"Ability4"	"B01_DATA"
+		// Reference: A041
+		"Ability5"	"B01T"
+		// Reference: A043
+		"Ability6"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"62.0"
+		"AttackDamageMax"	"78.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.17"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"700"
+		// Add projectile
+		"ProjectileModel"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+		"ProjectileSpeed"	"3000"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"34"
+		"AttributeStrengthGain"	"2.20"
+		"AttributeBaseIntelligence"	"21"
+		"AttributeIntelligenceGain"	"2.00"
+		"AttributeBaseAgility"	"28"
+		"AttributeAgilityGain"	"2.70"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		}
+		"DisableWearables"	"1"
+		"SoundSet"	"Hero_Sniper"
+		"PickSound"	"sniper_snip_spawn_01"
+		"BanSound"	"sniper_snip_anger_01"
+		"HeroSelectSoundEffect"	"Hero_Sniper.Pick"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_sniper.vsndevts"
+		"AbilityLayout"	"4"
+	}
+
+	// 風魔小太郎
+	"B02"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_faceless_void"
+		// Add model
+		"Model"	"models/b02/b02.vmdl"
+		"ModelScale"	"1.1"
+		"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"B02W"
+		// Reference: A01E
+		"Ability2"	"B02E"
+		// Reference: Aamk
+		"Ability3"	"B02R"
+		// Reference: A04I
+		"Ability4"	"B02D"
+		// Reference: A08C
+		"Ability5"	"B02T"
+		// Reference: A04J
+		"Ability6"	""
+		// Reference: A089
+		"Ability7"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"1"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"67.0"
+		"AttackDamageMax"	"81.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"645.00"
+		"AttackRange"	"645"
+		// Add projectile
+		"ProjectileModel"	"particles/b02p/b02p.vpcf"
+		"ProjectileSpeed"	"1200"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"26"
+		"AttributeStrengthGain"	"2.00"
+		"AttributeBaseIntelligence"	"23"
+		"AttributeIntelligenceGain"	"2.00"
+		"AttributeBaseAgility"	"32"
+		"AttributeAgilityGain"	"2.85"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"1.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AbilityLayout"	"5"
+		"DisableWearables"	"1"
+	}
+
 	// 阿市
 	"C17"
 	{

@@ -20,6 +20,8 @@ function GameRules.Nobu:PickHero( keys )
     hero:FindAbilityByName("C07D"):SetLevel(1) 
   elseif name ==  "npc_dota_hero_windrunner"  then
     hero:FindAbilityByName("C17D"):SetLevel(1)     
+  elseif name ==  "npc_dota_hero_faceless_void"  then--風魔
+    hero:FindAbilityByName("B02D"):SetLevel(1)      
   end  
   --【英雄名稱判別】
 
@@ -41,6 +43,11 @@ function GameRules.Nobu:PickHero( keys )
   item = CreateItem("item_blink_datadriven",nil,nil)
   CreateItemOnPositionSync(point, item)
 
+  item = CreateItem("item_invis_sword",nil,nil)
+  CreateItemOnPositionSync(point, item)
+
+  CreateItemOnPositionSync(point, CreateItem("item_D09",nil,nil))
+ -- CreateItemOnPositionSync(point, CreateItem("item_test",nil,nil))
   -- item = CreateItem("item_sphere",nil,nil)
   -- CreateItemOnPositionSync(point, item)
 

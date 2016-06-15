@@ -153,10 +153,6 @@ function A07T_Transform( keys )
 	caster:AddNewModifier(caster,ability,"A07T",{duration = duration})--變身
 end
 
-function function_name( ... )
-	-- body
-end
-
 function A07T_SE( keys )
 	local caster = keys.caster
 	local target = keys.target

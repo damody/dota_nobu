@@ -39,8 +39,17 @@ local point    = hero:GetAbsOrigin()
 
 
   if s == "test" then
-    local table = {222,"fdokfodk"}
-    PrintTable(keys)
+    -- local caster = event.caster
+    -- local player = caster:GetPlayerID()
+    local XP = hero:GetCurrentXP() 
+    local unit_name = "B01"
+    local gold = hero:GetGold()
+    local pID = hero:GetPlayerID()
+
+    PlayerResource:ReplaceHeroWith(pID, "B01", gold, XP)   
+
+    -- local table = {222,"fdokfodk"}
+    -- PrintTable(keys)
 
     --HideWearables( hero )
     -- local wearable =  hero:FirstMoveChild()

@@ -1,6 +1,5 @@
-	bj_PI                            = 3.14159
-	bj_RADTODEG                      = 180.0/bj_PI
-	bj_DEGTORAD                      = bj_PI/180.0
+	bj_RADTODEG                      = 180.0/3.14159
+	bj_DEGTORAD                      = 3.14159/180.0
 
 
 function nobu_atan2( point,point2 )

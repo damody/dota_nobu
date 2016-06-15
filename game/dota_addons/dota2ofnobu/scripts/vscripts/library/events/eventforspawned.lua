@@ -19,11 +19,11 @@ model_change_wearable["npc_dota_hero_antimage"]= true
 
 
 function GameRules.Nobu:OnHeroIngame( keys )
-  print("porn")
-  local hero = EntIndexToHScript( keys.entindex )
-  if hero:IsHero() then  
-    RemoveWearables( hero )
-  end
+  --PrintTable(keys)
+  -- local hero = EntIndexToHScript( keys.entindex )
+  -- if hero:IsHero() then  
+  --   RemoveWearables( hero )
+  -- end
 end
 
 
@@ -36,7 +36,7 @@ function RemoveWearables( hero )
     end
   else 
     for k,child in pairs(children) do
-        print("Wearable"..child:GetClassname())
+       --print("Wearable"..child:GetClassname())
        if child:GetClassname() == "dota_item_wearable" then
           child:RemoveSelf()
        end 
