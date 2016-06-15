@@ -569,7 +569,7 @@ function A13T( keys )
 				return 0.125
 			end
 		end
-	)
+	)caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
 end
 
 function A13T_End( keys )

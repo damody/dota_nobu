@@ -14,6 +14,7 @@ model_lookup["npc_dota_hero_silencer"] = true
 model_lookup["npc_dota_hero_brewmaster"] = true
 model_lookup["npc_dota_hero_crystal_maiden"] = true
 model_lookup["npc_dota_hero_mirana"] = true
+model_lookup["npc_dota_hero_dragon_knight"] = true
 model_change_wearable = {}
 model_change_wearable["npc_dota_hero_antimage"]= true
 
