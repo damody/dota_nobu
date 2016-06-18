@@ -4,6 +4,7 @@ function GameRules.Nobu:PickHero( keys )
   local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
   local hero     = p: GetAssignedHero() 
   local point    = hero:GetAbsOrigin()
+  local owner = hero:GetPlayerOwner()
 
   --【英雄名稱判別】
   local name = hero:GetUnitName()
@@ -47,6 +48,14 @@ function GameRules.Nobu:PickHero( keys )
   CreateItemOnPositionSync(point, item)
 
   CreateItemOnPositionSync(point, CreateItem("item_D09",nil,nil))
+  CreateItemOnPositionSync(point, CreateItem("item_D0"..2,nil,nil))
+  CreateItemOnPositionSync(point, CreateItem("item_S01",nil,nil))
+
+
+  --print(bj_CELLWIDTH)
+
+
+
  -- CreateItemOnPositionSync(point, CreateItem("item_test",nil,nil))
   -- item = CreateItem("item_sphere",nil,nil)
   -- CreateItemOnPositionSync(point, item)

@@ -36,6 +36,11 @@ print ( '[Nobu] ADDON INIT EXECUTED' )
 --endrequire
 
 function Precache( context )
+  -- Sounds can precached here like anything else
+  PrecacheResource("soundfile", "soundevents/ITEMS/D09.vsndevts", context)
+  --PrecacheResource("particle_folder","particles/item/d02/d02.vpcf",context)
+
+
                           --【6/14】 
                           --[[
                             This function is used to precache resources/units/items/abilities that will be needed
@@ -78,23 +83,28 @@ function Precache( context )
 end 
 
 -- 載入項目所有文件
+------------------
+loadModule ( 'varible_of_globals' )
 loadModule ( 'library/timers' )
-loadModule ( 'library/chetcodeselfmode' )
-loadModule ( 'computer_system/chubing' )
-loadModule ( 'main' )
 loadModule ( 'util' )
 loadModule ( 'amhc_library/amhc' )
+loadModule ( 'library/math' )
+loadModule ( 'library/common/api' )
+loadModule ( 'utilities' ) --6/14增加
+------------------
+loadModule ( 'computer_system/Game_Init' ) --6/17增加
+loadModule ( 'main' )
+------------------
+loadModule ( 'library/chetcodeselfmode' )
+loadModule ( 'computer_system/chubing' )
 loadModule ( 'library/events/eventfordamage' )
 loadModule ( 'library/events/eventfororder' )
 loadModule ( 'library/events/eventforlevelup' )
 loadModule ( 'library/events/eventforpichero' )
 loadModule ( 'library/events/eventforspawned' )
 loadModule ( 'library/events/eventforkill' )
-loadModule ( 'library/math' )
 loadModule ( 'library/common/dummy' )
 loadModule ( 'library/common/word' )
-loadModule ( 'library/common/api' )
-loadModule ( 'utilities' ) --6/14增加
 --
 
 -- Create the game mode when we activate
@@ -129,6 +139,22 @@ function GameRules.Nobu:InitGameMode()
   ListenToGameEvent('npc_spawned', GameRules.Nobu.OnHeroIngame, self)  
 
   ListenToGameEvent( "entity_killed", GameRules.Nobu.OnUnitKill, self )
+
+  --ListenToGameEvent( "dota_item_picked_up", test, self )
+
+  --ListenToGameEvent( "item_purchased", test, self ) --false
+
+  --ListenToGameEvent( "dota_item_purchased", test, self ) 
+
+  --ListenToGameEvent( "dota_item_used", test, self ) --false
+
+  ListenToGameEvent( "dota_inventory_item_changed", test, self )
+
+  
+  
 end
 --<<↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑>>
 
+function test( ... )
+  print("@@@@@@")
+end

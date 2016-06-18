@@ -5,174 +5,6 @@
 {
 	"Version"		"1"
 
-	"item_containers_lua_pack"
-	{
-		"BaseClass"	"item_lua"
-		"AbilityTextureName"	"item_present"
-		"ScriptFile"	"libraries/abilities/item_containers_lua_pack.lua"
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"MaxLevel"	"1"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0 0 0 0"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"0"
-		"ID"	"1835"
-		"ItemCost"	"0"
-		"ItemDroppable"	"0"
-		"ItemSellable"	"0"
-		"ItemPurchasable"	"0"
-		"ItemKillable"	"0"
-		"ItemCanChangeContainer"	"0"
-	}
-
-	// Shield
-	"item_example_item"
-	{
-		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_example_item"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityCastPoint"	"0.2"
-		"AbilityCastAnimation"	"ACT_DOTA_DISABLED"
-		"AbilityCooldown"	"13.0"
-		// Item Info
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100"
-		// Stats
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"900"
-		"ID"	"1836"
-		"ItemCost"	"750"
-		"ItemDroppable"	"1"
-		"ItemSellable"	"1"
-		"ItemShareability"	"ITEM_NOT_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequiresCharges"	"0"
-		"ItemInitialCharges"	"0"
-		"MaxUpgradeLevel"	"1"
-		"ItemBaseLevel"	"1"
-		"precache"
-		{
-			"particle_folder"	"particles/test_particle"
-			"particle"	"particles/frostivus_herofx/queen_shadow_strike_linear_parent.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
-			"particle"	"particles/test_particle/damage_immunity.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"LinearProjectile"
-			{
-				"EffectName"	"particles/frostivus_herofx/queen_shadow_strike_linear_parent.vpcf"
-				"MoveSpeed"	"%speed"
-				// "StartPosition"   "attach_attack1"
-				"FixedDistance"	"%distance"
-				"StartRadius"	"%radius"
-				"EndRadius"	"%radius"
-				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"TargetTypes"	"DOTA_UNIT_TARGET_HERO"
-				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
-				"HasFrontalCone"	"0"
-				"ProvidesVision"	"0"
-				"VisionRadius"	"0"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Abaddon.AphoticShield.Cast"
-				"Target"	"CASTER"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_shield"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_PURE"
-				"Damage"	"%damage"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_item_shield"
-			{
-				"EffectName"	"particles/test_particle/damage_immunity.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Target"	"CASTER"
-				"Duration"	"%duration"
-				"TextureName"	"abaddon_aphotic_shield"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduction"
-				}
-			}
-			"modifier_item_ex"
-			{
-				"Passive"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"33"
-				}
-			}
-			"modifier_item_ex2"
-			{
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"3"
-				}
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"4.0"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_reduction"	"-50"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"150"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"speed"	"1800"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"distance"	"900"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"125"
-			}
-		}
-	}
-
 	// Rewrite of Blink Dagger
 	// Author: Rook
 	// Date: January 25, 2015
@@ -254,46 +86,243 @@
 		}
 	}
 
+	"item_D02"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_D02_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"26"
+		"AbilityManaCost"	"100"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1501"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"785"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d02/d02.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_ITEM_D02"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ITEM_D02"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus"
+				}
+				"Passive"	"0"
+				"Duration"	"%duration"
+				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5"
+			}
+		}
+	}
+
+	"item_D01"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_D01"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"125"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1503"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"600"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d02/d02.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"	"CASTER"
+				"OnSpawn"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_ITEM_D01"
+					}
+				}
+				"UnitCount"	"1"
+				"UnitName"	"npc_dummy_unit"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ITEM_D01"
+			{
+				"Properties"	{}
+				"Passive"	"0"
+				"Duration"	"%duration"
+				"Aura"	"modifier_item_D01_2"
+				"Aura_Radius"	"%radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"1"
+				"ThinkInterval"	"1"
+			}
+			"modifier_item_D01_2"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsBuff"	"1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_D01_3"
+					}
+				}
+				"OnCreated"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_D01_3"
+					}
+				}
+			}
+			"modifier_item_D01_3"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"Duration"	"%duration_ver2"
+				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsBuff"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"22"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration_ver2"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"1500.00"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"15"
+			}
+		}
+	}
+
 	"item_D09"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"bottle_doubledamage"
+		"AbilityTextureName"	"item_D09_3"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.3 0.3 0.3 0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"8.0 8.0 8.0 8.0"
+		"AbilityCooldown"	"20"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"600"
+		"AbilityCastRange"	"%cast_distance"
 		"ID"	"1502"
 		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"ItemCost"	"750"
 		"ItemRequirements"	{}
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+			"particle"	"particles/item/d09/d09.vpcf"
+			"soundfile"	"sounds/weapons/hero/shadowshaman/shock01.vsnd"
+			"soundfile"	"soundevents/ITEMS/D09.vsndevts"
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_ShadowShaman.EtherShock"
-				"Target"	"CASTER"
-			}
 			"RunScript"
 			{
-				"ScriptFile"	"heroes/hero_shadow_shaman/shock.lua"
+				"ScriptFile"	"items/Addon_Items/D09.lua"
 				"Function"	"Shock"
 			}
 		}
@@ -304,27 +333,84 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"start_radius"	"125.00"
+				"cast_distance"	"510"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"end_radius"	"30"
+				"start_radius"	"125"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"end_distance"	"900.00"
+				"end_radius"	"300"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"targets"	"6"
+				"end_distance"	"720"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
+				"targets"	"6"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
 				"damage"	"310.00"
+			}
+		}
+	}
+
+	"item_S01"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_S01_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"26"
+		"AbilityManaCost"	"100"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1501"
+		"ItemQuality"	"component"
+		"Model"	"models/props_structures/barrel_oct.vmdl"
+		"Effect"	"particles/item_s01/s01.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"785"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item_s01/s01.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_ITEM_D02"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5"
 			}
 		}
 	}

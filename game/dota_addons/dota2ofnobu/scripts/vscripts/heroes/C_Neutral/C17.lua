@@ -85,7 +85,7 @@ function new_C17R( keys )
 	-- local modifier_T = {damage_per_second = 10,radius = 200,duration = 18 ,tick_interval = 0.1 , tree_radius = 100}
 	-- caster:AddNewModifier(caster,caster,modifier_S,modifier_T)
 
-	--【Timer】
+	----【Timer】
 	-- local num = 0
 	-- Timers:CreateTimer(0.03,function()
 	-- 	if num == 60 then

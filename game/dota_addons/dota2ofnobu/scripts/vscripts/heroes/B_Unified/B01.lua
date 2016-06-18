@@ -167,14 +167,18 @@ function B01E(keys)
 	if caster.B01E ~= nil then
 		print(caster.B01E)
 		for i,v in ipairs(caster.B01E) do
-			local tem_point = v:GetAbsOrigin()
-			--【Particle】
-			local particle = ParticleManager:CreateParticle("particles/b01e2/b01e2.vpcf",PATTACH_POINT,caster)
-			ParticleManager:SetParticleControl(particle,0, tem_point)
-			--【KV】			
-			print("KILL")
-			v:ForceKill(true)
-			v:Destroy()
+			if v ~= nil then
+				if v:IsAlive() then
+					local tem_point = v:GetAbsOrigin()
+					--【Particle】
+					local particle = ParticleManager:CreateParticle("particles/b01e2/b01e2.vpcf",PATTACH_POINT,caster)
+					ParticleManager:SetParticleControl(particle,0, tem_point)
+					--【KV】			
+					print("KILL")
+					v:ForceKill(true)
+					v:Destroy()
+				end
+			end
 		end
 	end
 	caster.B01E = nil
@@ -210,6 +214,29 @@ function B01E_CHECK(keys)
 
 end
 
+-- function B01R(keys)
+-- 	--【Basic】
+-- 	local caster = keys.caster
+-- 	local target = keys.target
+-- 	local ability = keys.ability
+-- 	local level = ability:GetLevel() - 1
+-- 	local dmg = keys.dmg
+-- 	local per_atk = 0
+-- 	if target:IsHero() then	
+-- 		per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
+-- 		print("hero")
+-- 	elseif  target:IsBuilding() then
+-- 		per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+-- 		print("building")
+-- 	else
+-- 		per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+-- 		print("unit")
+-- 	end
+-- 	dmg = dmg * per_atk  / 100
+-- 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+-- 	print(dmg)
+-- end
+
 function B01R(keys)
 	--【Basic】
 	local caster = keys.caster
@@ -218,19 +245,25 @@ function B01R(keys)
 	local level = ability:GetLevel() - 1
 	local dmg = keys.dmg
 	local per_atk = 0
-	if target:IsHero() then	
+	local targetArmor = target:GetPhysicalArmorValue()
+	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
+	local dmg = dmg / (1 - damageReduction)
+	if target:IsHero() then 
 		per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
 		print("hero")
 	elseif  target:IsBuilding() then
 		per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+		dmg = dmg / (1 - damageReduction)
 		print("building")
 	else
 		per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+		dmg = dmg / (1 - damageReduction)
 		print("unit")
 	end
+	local dmgori = dmg
 	dmg = dmg * per_atk  / 100
+	print(dmgori, damageReduction, dmg)
 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-	print(dmg)
 end
 
 function C01W_sound( keys )
