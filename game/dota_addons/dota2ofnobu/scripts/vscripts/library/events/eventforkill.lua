@@ -36,4 +36,5 @@ function GameRules.Nobu:OnUnitKill( keys )
       end
       --Tutorial: AddQuest("quest_1",1,"破塔成功","ssssssssss")     
     end  
+    print("dead")
 end
