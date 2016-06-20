@@ -1279,6 +1279,29 @@
 							},
 						]
 					},
+					{
+						m_name = "attach_attack3"
+						m_influences =
+						[
+							{
+								m_influenceName = "m3bone_root"
+								m_vTranslationOffset =
+								[
+									-0.000019,
+									-108.272644,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									-0.000000,
+									-0.000010,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
 				]
 			}
 		},
@@ -2008,8 +2031,8 @@
 					m_Animationname = "b08_ani_stand2"
 					m_Filepath = "models/b08/b08_ani_stand2.fbx"
 					m_nStartframe = 0
-					m_nEndframe = 111
-					m_flFps = 30.000000
+					m_nEndframe = 0
+					m_flFps = 5.000000
 					m_Loop =
 					{
 						m_bLoop = true

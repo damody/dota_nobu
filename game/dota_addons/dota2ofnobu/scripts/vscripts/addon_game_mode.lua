@@ -38,6 +38,8 @@ print ( '[Nobu] ADDON INIT EXECUTED' )
 function Precache( context )
   -- Sounds can precached here like anything else
   PrecacheResource("soundfile", "soundevents/ITEMS/D09.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/ITEMS/D03.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
   --PrecacheResource("particle_folder","particles/item/d02/d02.vpcf",context)
 
 

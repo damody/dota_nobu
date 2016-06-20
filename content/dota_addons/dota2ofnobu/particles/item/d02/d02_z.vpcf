@@ -3,8 +3,8 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 4
-	m_flConstantRadius = 40.000000
-	m_flConstantLifespan = 5.000000
+	m_flConstantRadius = 20.000000
+	m_flConstantLifespan = 0.500000
 	m_ConstantColor =
 	[
 		193,
@@ -41,18 +41,15 @@
 			_class = "C_OP_Decay"
 		},
 		{
-			_class = "C_OP_FadeInSimple"
-			m_bDisableOperator = true
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.250000
+			m_flEndScale = 1.200000
 		},
 		{
-			_class = "C_OP_FadeOutSimple"
-			m_bDisableOperator = true
-		},
-		{
-			_class = "C_OP_LerpEndCapScalar"
-			m_flLerpTime = 0.250000
-			m_flOutput = 0.000000
-			m_bDisableOperator = true
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.250000
+			m_flEndTime = 8.000000
+			m_flEndScale = 0.000000
 		},
 	]
 	m_Initializers =
@@ -60,17 +57,28 @@
 		{
 			_class = "C_INIT_CreateWithinSphere"
 		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 12.000000
+			m_fLifetimeMax = 12.000000
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_VelocityRadialRandom"
+			m_fSpeedMin = 22.000000
+			m_fSpeedMax = 222.000000
+			m_bDisableOperator = true
+		},
 	]
 	m_Emitters =
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 10.000000
-			m_bDisableOperator = true
+			m_flEmitRate = 2.000000
 		},
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 4
+			m_nParticlesToEmit = 2
 		},
 		{
 			_class = "C_OP_ContinuousEmitter"

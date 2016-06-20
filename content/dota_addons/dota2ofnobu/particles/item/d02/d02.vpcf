@@ -17,8 +17,7 @@
 			m_ChildRef = resource:"particles/item/d02/d02_z.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/item/d02/d02_b.vpcf"
-			m_bDisableChild = true
+			m_ChildRef = resource:"particles/item/d02/d02_z.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/item/d02/d02_e.vpcf"
@@ -30,6 +29,10 @@
 		},
 		{
 			m_ChildRef = resource:"particles/a04r/a04r_a.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/item/d02/d02_z.vpcf"
 			m_bDisableChild = true
 		},
 	]

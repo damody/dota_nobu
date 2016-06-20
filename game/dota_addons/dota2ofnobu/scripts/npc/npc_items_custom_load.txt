@@ -16,7 +16,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_blink"
+		"AbilityTextureName"	"item_C05"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCastPoint"	"0.0"
@@ -86,6 +86,95 @@
 		}
 	}
 
+	// Rewrite of Blink Dagger
+	// Author: Rook
+	// Date: January 25, 2015
+	// Known bugs:
+	//     Double-tapping the item currently does not blink the unit toward their fountain.
+	//     When damage is taken, the value before reductions is used to determine whether the item should be put on a brief cooldown, not the value after reductions like it should be.
+	"item_c05"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_C05"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"70"
+		"AbilityManaCost"	"205"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%max_blink_range"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1508"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"2250"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/C05.lua"
+				"Function"	"item_blink_datadriven_on_spell_start"
+				"Target"	"POINT"
+				"MaxBlinkRange"	"%max_blink_range"
+				"BlinkRangeClamp"	"%blink_range_clamp"
+				"BlinkRangeOnBroken"	"%blink_range_broken"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_QueenOfPain.Pick"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_c05"
+			{
+				"Properties"	{}
+				"Passive"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_blink_range"	"1200"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				// When attempting to blink a distance greater than max_blink_range, the caster blinks this distance in the targeted direction.
+				"blink_range_clamp"	"960"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blink_damage_cooldown"	"3"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blink_range_broken"	"300"
+			}
+		}
+	}
+
 	"item_D02"
 	{
 		// General
@@ -99,7 +188,7 @@
 		// Valve's version of this item uses the ID "1".
 		"ID"	"1501"
 		"ItemQuality"	"component"
-		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
@@ -111,19 +200,30 @@
 		"ItemRequirements"	{}
 		"precache"
 		{
-			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d01/d01.vpcf"
+			"particle"	"particles/item/d02_4/d02_4_f.vpcf"
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"ITEM_D02_SOUND"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_ITEM_D02"
+				"ModifierName"	"modifier_item_D02"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_D02_2"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_ITEM_D02"
+			"modifier_item_D02"
 			{
 				"Properties"
 				{
@@ -131,8 +231,15 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectName"	"particles/item/d01/d01.vpcf"
 				"EffectAttachType"	"follow_overhead"
+				"IsHidden"	"1"
+			}
+			"modifier_item_D02_2"
+			{
+				"EffectAttachType"	"attach_origin"
+				"EffectName"	"particles/item/d02_4/d02_4_f.vpcf"
+				"Duration"	"%duration"
 			}
 		}
 		// Special
@@ -152,6 +259,222 @@
 		}
 	}
 
+	// 火之卷
+	"item_D03"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_D03"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"26"
+		"AbilityManaCost"	"100"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1504"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q02/q02.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"785"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d03/d03.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_D03"
+					}
+				}
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/D03.lua"
+				"Function"	"item_D03"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_D03"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"Duration"	"%duration"
+				"EffectName"	"particles/item/d03/d03.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"8.000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500.00"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"40"
+			}
+		}
+	}
+
+	// 火之卷
+	"item_Q02"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Q02"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"26"
+		"AbilityManaCost"	"100"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1505"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q02/q02.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"785"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d03/d03.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_Q02"
+					}
+				}
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/D03.lua"
+				"Function"	"item_D03"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_Q02"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"Duration"	"%duration"
+				"EffectName"	"particles/item/d03/d03.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Aura"	"modifier_item_Q02_2"
+				"IsHidden"	"0"
+			}
+			"modifier_item_Q02_2"
+			{
+				"Passive"	"1"
+				"Aura"	"modifier_item_Q02_3"
+				"Aura_Radius"	"%radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_ApplyToCaster"	"1"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus2"
+				}
+				"IsHidden"	"1"
+			}
+			"modifier_item_Q02_3"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus3"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus2"	"14"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"8.000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500.00"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus3"	"15"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"40"
+			}
+		}
+	}
+
 	"item_D01"
 	{
 		// General
@@ -165,8 +488,8 @@
 		// Valve's version of this item uses the ID "1".
 		"ID"	"1503"
 		"ItemQuality"	"component"
-		"Model"	"models/props_gameplay/red_box.vmdl"
-		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q03_2/q03_2.vpcf"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
 		"ItemCost"	"600"
@@ -178,6 +501,7 @@
 		"precache"
 		{
 			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d01_2/d01_2.vpcf"
 			"particle"	"particles/item/d02/d02.vpcf"
 			"particle"	"particles/item/d02/d02.vpcf"
 		}
@@ -193,10 +517,14 @@
 						"Target"	"TARGET"
 						"ModifierName"	"modifier_ITEM_D01"
 					}
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/D01.lua"
+						"Function"	"item_D01"
+					}
 				}
 				"UnitCount"	"1"
 				"UnitName"	"npc_dummy_unit"
-				"Duration"	"%duration"
 			}
 		}
 		"Modifiers"
@@ -206,6 +534,8 @@
 				"Properties"	{}
 				"Passive"	"0"
 				"Duration"	"%duration"
+				"EffectName"	"particles/item/d01_2/d01_2.vpcf"
+				"EffectAttachType"	"attach_origin"
 				"Aura"	"modifier_item_D01_2"
 				"Aura_Radius"	"%radius"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -216,7 +546,15 @@
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"IsBuff"	"1"
-				"ThinkInterval"	"1"
+				"ThinkInterval"	"%duration"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/D01.lua"
+						"Function"	"item_D01_END"
+					}
+				}
 			}
 			"modifier_item_D01_2"
 			{
@@ -285,13 +623,394 @@
 		}
 	}
 
+	"item_Q03"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Q03"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"125"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1506"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q03_2/q03_2.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"600"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d01_2/d01_2.vpcf"
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item_d01_3/d01_3_c.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"	"CASTER"
+				"OnSpawn"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_Q03"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/D01.lua"
+						"Function"	"item_D01"
+					}
+				}
+				"UnitCount"	"1"
+				"UnitName"	"npc_dummy_unit"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_Q03"
+			{
+				"Properties"	{}
+				"Passive"	"0"
+				"Duration"	"%duration"
+				"EffectName"	"particles/item/d01_2/d01_2.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"Aura"	"modifier_item_Q03_2"
+				"Aura_Radius"	"%radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_ApplyToCaster"	"1"
+				"States"	{}
+				"IsBuff"	"1"
+				"ThinkInterval"	"%duration"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/D01.lua"
+						"Function"	"item_D01_END"
+					}
+				}
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			}
+			"modifier_item_Q03_2"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsBuff"	"1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_Q03_3"
+					}
+				}
+				"OnCreated"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_Q03_3"
+					}
+				}
+			}
+			"modifier_item_Q03_3"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"Duration"	"%duration_ver2"
+				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsBuff"	"1"
+			}
+			"modifier_item_Q03_4"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus3"
+				}
+				"Passive"	"1"
+				"EffectName"	"particles/item_d01_3/d01_3_c.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"Aura"	"modifier_item_Q03_5"
+				"Aura_Radius"	"%radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_ApplyToCaster"	"1"
+				"States"	{}
+				"IsBuff"	"0"
+				"ThinkInterval"	"%duration"
+				"IsHidden"	"1"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			}
+			"modifier_item_Q03_5"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus2"
+				}
+				"Passive"	"0"
+				"IsBuff"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus3"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"22"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration_ver2"	"5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius2"	"850"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"1500.00"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus2"	"7"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"15"
+			}
+		}
+	}
+
+	"item_Q04"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Q04"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"125"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1507"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q03_2/q03_2.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"600"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d01_2/d01_2.vpcf"
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item_d01_3/d01_3_c.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"	"CASTER"
+				"UnitCount"	"1"
+				"UnitName"	"nwiz"
+				"SpawnRadius"	"?30 100"
+				"Duration"	"%duration"
+				"UnitLimit"	"1"
+			}
+			"SpawnUnit"
+			{
+				"Target"	"CASTER"
+				"UnitName"	"ndrp"
+				"UnitCount"	"1"
+				"UnitLimit"	"2"
+				"SpawnRadius"	"?30 100"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_Q04"
+			{
+				"Properties"	{}
+				"Passive"	"0"
+				"Duration"	"%duration"
+				"EffectName"	"particles/item/d01_2/d01_2.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"Aura"	"modifier_item_Q03_2"
+				"Aura_Radius"	"%radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_ApplyToCaster"	"1"
+				"States"	{}
+				"IsBuff"	"1"
+				"ThinkInterval"	"%duration"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/D01.lua"
+						"Function"	"item_D01_END"
+					}
+				}
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			}
+			"modifier_item_Q04_2"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsBuff"	"1"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_Q03_3"
+					}
+				}
+				"OnCreated"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_item_Q03_3"
+					}
+				}
+			}
+			"modifier_item_Q04_3"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
+				}
+				"Passive"	"0"
+				"Duration"	"%duration_ver2"
+				"EffectName"	"particles/item/d02/d02.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsBuff"	"1"
+			}
+			"modifier_item_Q04_4"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus3"
+				}
+				"Passive"	"1"
+				"EffectName"	"particles/item_d01_3/d01_3_c.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"Aura"	"modifier_item_Q03_5"
+				"Aura_Radius"	"%radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_ApplyToCaster"	"1"
+				"States"	{}
+				"IsBuff"	"0"
+				"ThinkInterval"	"%duration"
+				"IsHidden"	"1"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			}
+			"modifier_item_Q04_5"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus2"
+				}
+				"Passive"	"0"
+				"IsBuff"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus3"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"22"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration_ver2"	"5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius2"	"850"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"1500.00"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus2"	"7"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"15"
+			}
+		}
+	}
+
 	"item_D09"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_D09_3"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -308,8 +1027,8 @@
 		"AbilityCastRange"	"%cast_distance"
 		"ID"	"1502"
 		"ItemQuality"	"component"
-		"Model"	"models/props_gameplay/red_box.vmdl"
-		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"750"
 		"ItemRequirements"	{}
 		"precache"

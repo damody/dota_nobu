@@ -24,7 +24,7 @@ local function Test( ... )
 	for i,v in ipairs(Test_ITEM) do
 		local item = CreateItem(v,nil, nil)
 		--local vec =( RandomInt(1,100) , RandomInt(1,100) )
-		CreateItemOnPositionSync(item_point, item)
+		CreateItemOnPositionSync(item_point+Vector(i*100,0), item)
 	end
 
 end
@@ -114,7 +114,14 @@ local InitTrig_Game_Init  = function ( )
 	test_ent = Entities:FindByName(nil,"Test_QQQ")
 	item_point = test_ent:GetAbsOrigin()
 	Test_ITEM ={
-	"item_D01"
+	"item_c05",
+	"item_D01",
+	"item_D02",
+	"item_D03",
+	"item_D09",
+	"item_Q02",
+	"item_Q03",
+	"item_Q04"
 	}
 
 

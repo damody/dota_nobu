@@ -1,0 +1,44 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+m_flConstantRadius = 86.4
+	m_flConstantLifespan = 0.500000
+	m_ConstantColor =
+[
+255,
+255,
+255,
+		90,
+	]
+	m_flStopSimulationAfterTime = 10000000000.000000
+	m_Children =
+	[
+		{
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f3.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f5.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f6.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/item/d02_4/d02_4_f7.vpcf"
+		},
+	]
+}

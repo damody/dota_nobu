@@ -1,0 +1,57 @@
+"ITEM_D03.sound"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/weapons/hero/zuus/righteous_cast.vsnd"
+							//"sounds/battleroar.vsnd"
+                        }
+                    }
+                    "volume_min"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "volume_max"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "pitch_min"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "pitch_max"
+                    {
+                        "value"     "100.000000"
+                    }
+                    "chan_type"
+                    {
+                        "value"     "60"
+                    }
+                    "memory_type"
+                    {
+                        "value"     "0"
+                    }
+                    "soundlevel_min"
+                    {
+                        "value"     "1000.000000"
+                    }
+                    "soundlevel_max"
+                    {
+                        "value"     "1000.000000"
+                    }
+                }
+            }
+        }
+    }
+}

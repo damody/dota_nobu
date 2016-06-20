@@ -39,14 +39,21 @@ local point    = hero:GetAbsOrigin()
 
 
   if s == "test" then
+
+
+  local test_ent = Entities:FindByName(nil,"test_porn_of_creep")
+  local item_point = test_ent:GetAbsOrigin()
+  for i=1,5 do
+    local  u = CreateUnitByName("com_ashigaru_spearmen",item_point,true,nil,nil,DOTA_TEAM_BADGUYS)
+  end
     -- local caster = event.caster
     -- local player = caster:GetPlayerID()
-    local XP = hero:GetCurrentXP() 
-    local unit_name = "B01"
-    local gold = hero:GetGold()
-    local pID = hero:GetPlayerID()
+    -- local XP = hero:GetCurrentXP() 
+    -- local unit_name = "B01"
+    -- local gold = hero:GetGold()
+    -- local pID = hero:GetPlayerID()
 
-    PlayerResource:ReplaceHeroWith(pID, "B01", gold, XP)   
+    -- PlayerResource:ReplaceHeroWith(pID, "B01", gold, XP)   
 
     -- local table = {222,"fdokfodk"}
     -- PrintTable(keys)
@@ -72,9 +79,9 @@ local point    = hero:GetAbsOrigin()
     --     end   
     --  end
 
-    --  local  u = CreateUnitByName(hero:GetUnitName(),Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-    --  --u:SetOwner(p)                                         --設置u的擁有者
-    --  u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
+     -- local  u = CreateUnitByName("creature_19",Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+     -- --u:SetOwner(p)                                         --設置u的擁有者
+     -- u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
 
     -- --等級
     -- for i=1,25 do

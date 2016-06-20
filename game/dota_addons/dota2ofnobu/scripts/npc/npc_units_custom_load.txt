@@ -5,6 +5,161 @@
 {
 	"Version"		"1"
 
+	// 下級伏兵先鋒
+	"ndrp"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"
+		"ModelScale"	"1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: ACen
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"3.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"41.0"
+		"AttackDamageMax"	"62.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.38"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"55.0"
+		"BountyGoldMax"	"55.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"380"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1060"
+		"StatusHealthRegen"	"3.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Creature"
+		{
+			"AttachWearables"	{}
+		}
+	}
+
+	// 下級伏兵軍師
+	"nwiz"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
+		"ModelScale"	"1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Amnb
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"1.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"58.0"
+		"AttackDamageMax"	"67.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.40"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"1300"
+		// Add projectile
+		"ProjectileModel"	"particles/base_attacks/ranged_goodguy.vpcf"
+		"ProjectileSpeed"	"900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"40.0"
+		"BountyGoldMax"	"40.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"40"
+		"LumberCost"	"40"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"415"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"765"
+		"StatusHealthRegen"	"1.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
 	// 雜賀眾
 	"B01W_UNIT"
 	{
@@ -96,7 +251,7 @@
 		// Class of entity of link to.
 		"BaseClass"	"npc_dota_base_additive"
 		// Model.
-		"Model"	"models/arquebusier/arquebusier.vmdl"
+		"Model"	"models/development/invisiblebox.vmdl"
 		// Name of sound set.
 		"SoundSet"	"Creep_Good_Range"
 		"Level"	"10"
