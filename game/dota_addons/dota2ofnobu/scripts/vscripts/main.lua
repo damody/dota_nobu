@@ -21,7 +21,7 @@ end
 
 
 
-function SendHTTPRequest(method, values, callback)
+function SendHTTPRequestBan(method, values, callback)
 	local req = CreateHTTPRequest( method, "http://218.161.33.54/dota2" )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
@@ -37,7 +37,7 @@ function NobuGameMode:OnPlayerConnectFull(keys)
 	local steamID = PlayerResource:GetSteamAccountID(pID)
     print("steamID "..steamID)
 	
-	SendHTTPRequest("POST",
+	SendHTTPRequestBan("POST",
 		{
 			id = tostring(steamID),
 		}, 

@@ -176,58 +176,10 @@ end
 
 
 
-function SendHTTPRequest(method, values, callback)
-
-	local req = CreateHTTPRequest( method, "http://192.168.1.105/dota2" )
-	for key, value in pairs(values) do
-		req:SetHTTPRequestGetOrPostParameter(key, value)
-	end
-	req:Send(function(result)
-		callback(result.Body)
-	end)
-end
-
 function B25T_start( keys )
 	local ability = keys.ability
 	local caster = keys.caster
 	local id 	= caster:GetPlayerID()
-
-
-	local pID = caster:GetPlayerOwner():GetPlayerID()
-	local steamID = PlayerResource:GetSteamAccountID(pID)
-	 print( pID )
-    local steamID = PlayerResource:GetSteamAccountID( pID )
-    print(steamID)
-	SendHTTPRequest("POST",
-		{
-			api_key = "本願你好帥",
-		}, 
-
-		function(result)
-			print(result)
-			-- Decode response into a lua table
-			local resultTable = {}
-			if not pcall(function()
-				resultTable = JSON:decode(result)
-			end) then
-				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
-			end
-
-			-- If we get an error response, successBool should be false
-			if resultTable ~= nil and resultTable["errors"] ~= nil then
-				callback(resultTable["errors"], false)
-				return
-			end
-
-			-- If we get a success response, successBool should be true
-			if resultTable ~= nil and resultTable["data"] ~= nil  then
-				callback(resultTable["data"], true)
-				return
-			end
-		end
-	)
-
-	
 	-- local current_instance = 0
 	-- local dummyModifierName = "modifier_enigma_midnight_pulse_thinker"
 	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
