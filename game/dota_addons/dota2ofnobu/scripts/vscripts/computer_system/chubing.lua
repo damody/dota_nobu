@@ -50,17 +50,17 @@ function ShuaGuai( )
 	    return 26 --26
 	 end)
 
-	-- --出兵觸發:火槍兵
- -- 	Timers:CreateTimer( 143.0, function()
- --  		ShuaGuai_Of_B()
-	--     return 143.00
-	-- end)
+	--出兵觸發:火槍兵
+ 	Timers:CreateTimer( 143.0, function()
+  		ShuaGuai_Of_B()
+	    return 143.00
+	end)
 
-	-- --出兵觸發:騎兵
- -- 	Timers:CreateTimer( 98.0, function()
- --  		ShuaGuai_Of_C()
-	--     return 98.00
-	-- end)
+	--出兵觸發:騎兵
+ 	Timers:CreateTimer( 98.0, function()
+  		ShuaGuai_Of_C()
+	    return 98.00
+	end)
 end
 
 function ShuaGuai_Of_A( )
