@@ -4,7 +4,7 @@ print ( '[Nobu] ADDON INIT EXECUTED' )
 if Nobu == nil then
   _G.Nobu = class({})
 end
-_G.nobu_debug =  false
+_G.nobu_debug =  true
 
 
 -- 這個函數其實就是一個pcall，通過這個函數載入lua文件，就可以在載入的時候通過報錯發現程序哪裡錯誤了
@@ -94,9 +94,9 @@ end
 
 function Nobu:OnGameRulesStateChange( keys )
   print("[Nobu] Nobu:OnGameRulesStateChange is loaded.")
-
   --獲取遊戲進度
   local newState = GameRules:State_Get()
+  print(newState)
 
   --選擇英雄階段
   if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
@@ -177,7 +177,7 @@ end
 --【初始化】
 function Activate()
   AMHCInit()
-  Nobu.Server() --Server Init
+  --Nobu.Server() --Server Init
   Nobu.InitGameMode() 
   Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
 end

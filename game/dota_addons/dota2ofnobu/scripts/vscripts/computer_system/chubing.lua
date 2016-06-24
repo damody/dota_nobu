@@ -3,7 +3,8 @@
 --[[
 IDEA:
 先把秒數用全局紀錄下來
-	可以作成動態管理出兵秒數
+	O可以作成動態管理出兵秒數
+	O中路尋路用攻擊指令，不用自動尋路
 BUG
 	o問題超多
 	O移動速度會莫名其妙lag
@@ -44,22 +45,22 @@ function ShuaGuai( )
 
 	--出兵觸發:武士+弓箭手
 	--50秒出第一波，之後每26秒出一波
- 	Timers:CreateTimer( 2.0, function()--50
+ 	Timers:CreateTimer( 50, function()--50
 	  	ShuaGuai_Of_A()
-	    return 10 --26
+	    return 26 --26
 	 end)
 
-	--出兵觸發:火槍兵
- 	Timers:CreateTimer( 143.0, function()
-  		ShuaGuai_Of_B()
-	    return 143.00
-	end)
+	-- --出兵觸發:火槍兵
+ -- 	Timers:CreateTimer( 143.0, function()
+ --  		ShuaGuai_Of_B()
+	--     return 143.00
+	-- end)
 
-	--出兵觸發:騎兵
- 	Timers:CreateTimer( 98.0, function()
-  		ShuaGuai_Of_C()
-	    return 98.00
-	end)
+	-- --出兵觸發:騎兵
+ -- 	Timers:CreateTimer( 98.0, function()
+ --  		ShuaGuai_Of_C()
+	--     return 98.00
+	-- end)
 end
 
 function ShuaGuai_Of_A( )
@@ -81,11 +82,12 @@ function ShuaGuai_Of_A( )
 				local team = nil	
 				local unit_name = nil
 				if i > 3 then team = 3 else team = 2 end			
-				if tem_count > 3 then
-					unit_name = "com_archer"
-				else	
-					unit_name = "com_ashigaru_spearmen"
+				if tem_count > 3 then 
+					unit_name = "com_archer" 
+				else	 
+					unit_name = "com_ashigaru_spearmen" 
 				end
+				--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
 				--【武士 、 弓箭手】
 				--創建單位
@@ -103,12 +105,12 @@ function ShuaGuai_Of_A( )
 				unit:SetInitialGoalEntity(ShuaGuai_entity[i])
 
 				--碰撞面積
-				unit:SetHullRadius(40)
+				--unit:SetHullRadius(40)
 
 				--?
-				FindClearSpaceForUnit(unit,unit:GetAbsOrigin(), false)			
+				--FindClearSpaceForUnit(unit,unit:GetAbsOrigin(), false)			
 			end
-			return 1
+			return 0.5
 		end	
 	end	
 	Timers:CreateTimer(ltt)

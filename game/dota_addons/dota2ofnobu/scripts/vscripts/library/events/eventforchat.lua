@@ -33,6 +33,11 @@ local function chat_of_test(keys)
 			GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 	end	
+
+	if s == "ShuaGuai" then
+		print("nobu ShuaGuai")
+		ShuaGuai( )
+	end
 end
 
 function Nobu:Chat( keys )
