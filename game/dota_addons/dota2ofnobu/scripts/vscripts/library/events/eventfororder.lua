@@ -99,7 +99,7 @@ end
 
 
 
-function GameRules.Nobu:eventfororder( filterTable )
+function Nobu:eventfororder( filterTable )
 	local ordertype = filterTable.order_type 
 	--print("@@@"..tostring(ordertype))
 
@@ -108,6 +108,7 @@ function GameRules.Nobu:eventfororder( filterTable )
 		local caster = EntIndexToHScript(f.units["0"]) 
 		local ability = EntIndexToHScript(f.entindex_ability)
 		caster.abilityName = ability:GetAbilityName()	
+		print("Ability")
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET then
 		EventForSpellTarget( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_ATTACK_TARGET then

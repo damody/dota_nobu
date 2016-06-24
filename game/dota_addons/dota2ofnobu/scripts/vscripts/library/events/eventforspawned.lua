@@ -19,17 +19,17 @@ model_change_wearable = {}
 model_change_wearable["npc_dota_hero_antimage"]= true
 
 
-function GameRules.Nobu:OnHeroIngame( keys )
+function Nobu:OnHeroIngame( keys )
   --PrintTable(keys)
   -- local hero = EntIndexToHScript( keys.entindex )
   -- if hero:IsHero() then  
   --   RemoveWearables( hero )
   -- end
   local hero = EntIndexToHScript( keys.entindex )
-  if hero:IsHero() then
-    AddAFKTimer(hero)
-    hero.start_afk()
-  end
+  -- if hero:IsHero() then
+  --   AddAFKTimer(hero)
+  --   hero.start_afk()
+  -- end
 end
 
 

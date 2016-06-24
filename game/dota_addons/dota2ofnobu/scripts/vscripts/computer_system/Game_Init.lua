@@ -40,7 +40,7 @@ local meat = nil
 
 local BarBQ_check  = function ( )
 
-	print("v.BarBQ")
+	--print("v.BarBQ")
 	local debug = true
 	for i,v in ipairs(meat) do
 		local temp_ent = v.BarBQ
@@ -121,7 +121,8 @@ local InitTrig_Game_Init  = function ( )
 	"item_D09",
 	"item_Q02",
 	"item_Q03",
-	"item_Q04"
+	"item_Q04",
+	"item_gem_2"
 	}
 
 

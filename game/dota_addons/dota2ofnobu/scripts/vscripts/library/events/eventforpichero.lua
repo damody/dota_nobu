@@ -1,5 +1,5 @@
 
-function GameRules.Nobu:PickHero( keys )
+function Nobu:PickHero( keys )
   local id       = keys.player  
   local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
   local hero     = p: GetAssignedHero() 

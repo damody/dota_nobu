@@ -1,5 +1,5 @@
 
-function GameRules.Nobu:OnUnitKill( keys )
+function Nobu:OnUnitKill( keys )
 --每当单位死亡，检查其是否符合条件，如果符合就刷新任务
   ------------------------------------------------------------------
    --  local killedUnit = EntIndexToHScript( keys.entindex_killed )
@@ -36,5 +36,5 @@ function GameRules.Nobu:OnUnitKill( keys )
       end
       --Tutorial: AddQuest("quest_1",1,"破塔成功","ssssssssss")     
     end  
-    print("dead")
+    --print("dead")
 end

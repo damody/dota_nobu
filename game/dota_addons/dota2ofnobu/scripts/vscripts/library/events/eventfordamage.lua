@@ -1,4 +1,4 @@
-function GameRules.Nobu:DamageFilterEvent( filterTable )
+function Nobu:DamageFilterEvent( filterTable )
 	 --DeepPrintTable(filterTable) 
 
 	-- [   VScript                ]: {

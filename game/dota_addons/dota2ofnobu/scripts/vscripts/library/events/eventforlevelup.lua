@@ -1,5 +1,5 @@
 
-function GameRules.Nobu:LevelUP( keys )
+function Nobu:LevelUP( keys )
 	--DeepPrintTable(keys)
 	-- [   VScript              ]: {
 	-- [   VScript              ]:    player                          	= 1 (number)

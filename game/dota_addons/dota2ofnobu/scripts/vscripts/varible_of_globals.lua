@@ -12,6 +12,7 @@ print ( '[Nobu] varible_of_globals' )
 --     end
 -- end
 
+--【BJ函數】
 _G.bj_PI = 3.14159
 _G.bj_E = 2.71828
 _G.bj_CELLWIDTH = 128.0

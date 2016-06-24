@@ -36,16 +36,39 @@ local point    = hero:GetAbsOrigin()
   --   error("class definition missing or not a table")    
   -- end
 
+  -- if string.match(s,"test") then
+  --     local pID = tonumber(string.match(s, '%d+'))
+  --     local steamID = PlayerResource:GetSteamAccountID(pID)
+  --     GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+  -- end
 
+  -- if string.match(s,"test") then
+  --     local pID = tonumber(string.match(s, '%d+'))
+  --     local steamID = PlayerResource:GetSteamAccountID(pID)
+  --     GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+  --     local res = PlayerResource:GetConnectionState(pID)
+  --     if (res == 0) then
+  --       GameRules: SendCustomMessage("no connection",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+  --     elseif (res == 1) then
+  --       GameRules: SendCustomMessage("bot connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+  --     elseif (res == 2) then
+  --       GameRules: SendCustomMessage("player connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+  --     elseif (res == 3) then
+  --       GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+  --     end
+  -- end
 
   if s == "test" then
+    --UnitSilenceTarget( hero,hero,10)
+    UnitMagicImmune( hero,hero,10)
 
+    --hero:AddNewModifier(hero,nil,"modifier_item_gem_of_true_sight",{duration = 120, radius = 1100})
 
-  local test_ent = Entities:FindByName(nil,"test_porn_of_creep")
-  local item_point = test_ent:GetAbsOrigin()
-  for i=1,5 do
-    local  u = CreateUnitByName("com_ashigaru_spearmen",item_point,true,nil,nil,DOTA_TEAM_BADGUYS)
-  end
+  -- local test_ent = Entities:FindByName(nil,"test_porn_of_creep")
+  -- local item_point = test_ent:GetAbsOrigin()
+  -- for i=1,5 do
+  --   local  u = CreateUnitByName("com_ashigaru_spearmen",item_point,true,nil,nil,DOTA_TEAM_BADGUYS)
+  -- end
     -- local caster = event.caster
     -- local player = caster:GetPlayerID()
     -- local XP = hero:GetCurrentXP() 
@@ -129,7 +152,8 @@ local point    = hero:GetAbsOrigin()
   end  
 
   if s == "fog" then
-    AddFOWViewer(2,Vector(0,0),100000,500,false)
+    AddFOWViewer( 2 , Vector(0,0), 50000, 50000, true)
+    --AddFOWViewer(2,Vector(0,0),10000000,50000,false)
   end
   if s == "add ability" then
     --
