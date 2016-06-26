@@ -66,6 +66,28 @@ function Nobu:OnPlayerConnectFull(keys)
 		}, 
 		function(result)
 			print(result)
+			if (result == "error") then
+				player:Destroy()
+			end
+			-- Decode response into a lua table
+			local resultTable = {}
+			if not pcall(function()
+				resultTable = JSON:decode(result)
+			end) then
+				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+			end
+
+			-- If we get an error response, successBool should be false
+			if resultTable ~= nil and resultTable["errors"] ~= nil then
+				callback(resultTable["errors"], false)
+				return
+			end
+
+			-- If we get a success response, successBool should be true
+			if resultTable ~= nil and resultTable["data"] ~= nil  then
+				callback(resultTable["data"], true)
+				return
+			end
 		end
 	)
 end
@@ -97,6 +119,18 @@ function Nobu:Server()
 				resultTable = JSON:decode(result)
 			end) then
 				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+			end
+
+			-- If we get an error response, successBool should be false
+			if resultTable ~= nil and resultTable["errors"] ~= nil then
+				callback(resultTable["errors"], false)
+				return
+			end
+
+			-- If we get a success response, successBool should be true
+			if resultTable ~= nil and resultTable["data"] ~= nil  then
+				callback(resultTable["data"], true)
+				return
 			end
 		end )
 
