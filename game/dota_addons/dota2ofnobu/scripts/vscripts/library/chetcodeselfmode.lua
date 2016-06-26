@@ -35,28 +35,27 @@ local point    = hero:GetAbsOrigin()
   -- if s == "error" then
   --   error("class definition missing or not a table")    
   -- end
-
-  -- if string.match(s,"test") then
-  --     local pID = tonumber(string.match(s, '%d+'))
-  --     local steamID = PlayerResource:GetSteamAccountID(pID)
-  --     GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-  -- end
-
-  -- if string.match(s,"test") then
-  --     local pID = tonumber(string.match(s, '%d+'))
-  --     local steamID = PlayerResource:GetSteamAccountID(pID)
-  --     GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-  --     local res = PlayerResource:GetConnectionState(pID)
-  --     if (res == 0) then
-  --       GameRules: SendCustomMessage("no connection",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-  --     elseif (res == 1) then
-  --       GameRules: SendCustomMessage("bot connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-  --     elseif (res == 2) then
-  --       GameRules: SendCustomMessage("player connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-  --     elseif (res == 3) then
-  --       GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-  --     end
-  -- end
+  if string.match(s,"test") then
+      local pID = tonumber(string.match(s, '%d+'))
+      local steamID = PlayerResource:GetSteamAccountID(pID)
+      GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+  end
+  
+  if string.match(s,"test") then
+      local pID = tonumber(string.match(s, '%d+'))
+      local steamID = PlayerResource:GetSteamAccountID(pID)
+      GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+      local res = PlayerResource:GetConnectionState(pID)
+      if (res == 0) then
+        GameRules: SendCustomMessage("no connection",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+      elseif (res == 1) then
+        GameRules: SendCustomMessage("bot connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+      elseif (res == 2) then
+        GameRules: SendCustomMessage("player connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+      elseif (res == 3) then
+        GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+      end
+  end
 
   if s == "test" then
     --UnitSilenceTarget( hero,hero,10)

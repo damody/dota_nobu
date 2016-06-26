@@ -26,10 +26,10 @@ function Nobu:OnHeroIngame( keys )
   --   RemoveWearables( hero )
   -- end
   local hero = EntIndexToHScript( keys.entindex )
-  -- if hero:IsHero() then
-  --   AddAFKTimer(hero)
-  --   hero.start_afk()
-  -- end
+  if hero:IsHero() then
+    AddAFKTimer(hero)
+    hero.start_afk()
+  end
 end
 
 

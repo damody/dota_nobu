@@ -42,7 +42,6 @@ loadModule ( 'library/timers' )
 loadModule ( 'utilities' ) --6/14增加
 ------------------
 loadModule ( 'computer_system/Game_Init' ) --6/17增加
-loadModule ( 'server' ) --6/24增加
 ------------------
 --loadModule ( 'library/chetcodeselfmode' )
 loadModule ( 'library/events/eventfordamage' )
@@ -56,6 +55,7 @@ loadModule ( 'library/common/dummy' ) --馬甲系統
 loadModule ( 'library/common/word' )  --漂浮字系統
 ------電腦系統-----
 loadModule ( 'computer_system/chubing' ) --出兵
+loadModule ( 'server' ) --6/24增加
 --
 -- require ( "util/damage" )
 -- require ( "util/stun" )
@@ -110,6 +110,11 @@ function Nobu:OnGameRulesStateChange( keys )
       GameRules:SendCustomMessage("#author_line5", DOTA_TEAM_GOODGUYS, 0)
       GameRules:SendCustomMessage("#author_line4", DOTA_TEAM_GOODGUYS, 0)
   end
+  ShowMessage("跳狗")
+  Msg("就是你")
+  GameRules:SendCustomMessage("#別再跳了", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+  UTIL_MessageTextAll("你媽媽", 255, 0, 0, 0)
+  UTIL_MessageTextAll("#會傷心的", 255, 0, 0, 255)
 
   --遊戲開始
   if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -177,8 +182,8 @@ end
 --【初始化】
 function Activate()
   AMHCInit()
-  --Nobu.Server() --Server Init
-  Nobu.InitGameMode() 
+  Nobu:Server() --Server Init
+  Nobu:InitGameMode() 
   Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
 end
 
