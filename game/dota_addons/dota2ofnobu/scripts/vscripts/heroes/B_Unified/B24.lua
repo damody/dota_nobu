@@ -1,8 +1,3 @@
-	bj_PI                            = 3.14159
-	bj_RADTODEG                      = 180.0/bj_PI
-	bj_DEGTORAD                      = bj_PI/180.0
-
-
 function B24T( keys )
 	print("B24T")
 	--DeepPrintTable(keys)
@@ -27,7 +22,7 @@ function B24T( keys )
 	local particle=ParticleManager:CreateParticle("particles/b24t3/b24t3.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle,0,point)		
 
-	--獲取攻擊範圍
+	--【Group】
     local group = {}
 
    	group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 800, 3, 63, 80, 0, false)
@@ -120,12 +115,18 @@ end
 
 --bug = T再使用W 會把敵人彈出外圍
 function B24W( keys )
+	--【Basic】
 	local caster = keys.caster
 	local dummy	= keys.target
-	local point = dummy:GetAbsOrigin()
 	local ability = keys.ability
+	--local player = caster:GetPlayerID()
+	local point = caster:GetAbsOrigin()
+	local point2 = dummy:GetAbsOrigin() 
+	--local point2 = ability:GetCursorPosition()
+	local level = ability:GetLevel() - 1
+	--local vec = caster:GetForwardVector():Normalized()	
 
-	caster.B24WUNIT = dummy
+	caster.B24WUNIT = dummy --擊退次數完 刪除單位用
 
 	--紀錄次數
 	dummy.B24W_NUM = ability:GetLevelSpecialValueFor("time",ability:GetLevel()-1)
@@ -133,8 +134,18 @@ function B24W( keys )
 	--一定要放紀錄次數下面
 	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24W",nil)
 
-	print(tostring(dummy.B24W_NUM))
-
+	--【Group】
+	local teams = DOTA_UNIT_TARGET_TEAM_BOTH
+	local types =DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	local group = FindUnitsInRadius(caster:GetTeam(),point2,nil, 500, teams, types, flags, FIND_CLOSEST, true)	
+	for i,v in ipairs(group) do
+		if v ~= dummy then
+			print("nobu"..v:GetUnitName())
+			--FindClearSpaceForUnit(v,v:GetAbsOrigin(), true)
+			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		end
+	end		
 end
 
 function B24W2( keys )
@@ -160,15 +171,28 @@ function B24W2( keys )
 end
 
 function B24W3( keys )
+	--【Basic】
 	local dummy = keys.caster
+	local target = keys.target
 	local ability = keys.ability
+	--local player = caster:GetPlayerID()
+	--local point = caster:GetAbsOrigin()
+	--local point2 = target:GetAbsOrigin() 
+	local point2 = ability:GetCursorPosition()
+	local level = ability:GetLevel() - 1
+	--local vec = caster:GetForwardVector():Normalized()
 
-	print(tostring(dummy.B24W_NUM))
-	print(dummy:GetUnitName())
+	--【判斷有沒有卡牆】
+	if not target:HasModifier("modifier_B24T_3") then
+		ability:ApplyDataDrivenModifier(dummy,target,"modifier_B24W_2",nil)
+	else
+		ability:ApplyDataDrivenModifier(dummy,target,"modifier_B24W_3",nil)
+	end
 	
+	--【判斷擊退次數】
 	dummy.B24W_NUM = dummy.B24W_NUM - 1
 	if dummy.B24W_NUM == 0 then
-		dummy:RemoveModifierByName("modifier_B24W")
+		dummy:RemoveModifierByName("modifier_B24W") --刪除modifier 就會殺死單位
 	end
 end
 

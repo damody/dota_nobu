@@ -1,3 +1,9 @@
+--[[
+Bug:
+  O阿市R可以打建築物
+  O阿市W沒有特效
+]]
+
 print ( '[Nobu] ADDON INIT EXECUTED' )
 
 --【全局變量】
@@ -5,7 +11,6 @@ if Nobu == nil then
   _G.Nobu = class({})
 end
 _G.nobu_debug =  true
-
 
 -- 這個函數其實就是一個pcall，通過這個函數載入lua文件，就可以在載入的時候通過報錯發現程序哪裡錯誤了
 -- 避免遊戲直接崩潰的情況
@@ -25,6 +30,9 @@ end
 function Precache( context )
   -- 【KV資源預載】
   --PrecacheEveryThingFromKV(context)   --有問題:會超lag
+
+  -- 【特效預載】
+  PrecacheResource("particle", "particles/c17w/c17w.vpcf", context)
 
   -- 【聲音預載】
   PrecacheResource("soundfile", "soundevents/ITEMS/D09.vsndevts", context)
@@ -94,6 +102,7 @@ end
 
 function Nobu:OnGameRulesStateChange( keys )
   print("[Nobu] Nobu:OnGameRulesStateChange is loaded.")
+
   --獲取遊戲進度
   local newState = GameRules:State_Get()
   print(newState)
@@ -104,18 +113,10 @@ function Nobu:OnGameRulesStateChange( keys )
 
   --當英雄選擇結束
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-      GameRules:SendCustomMessage("#author_line1", DOTA_TEAM_GOODGUYS, 0)
-      GameRules:SendCustomMessage("#author_line2", DOTA_TEAM_GOODGUYS, 0)
-      GameRules:SendCustomMessage("#author_line3", DOTA_TEAM_GOODGUYS, 0)
-      GameRules:SendCustomMessage("#author_line5", DOTA_TEAM_GOODGUYS, 0)
-      GameRules:SendCustomMessage("#author_line4", DOTA_TEAM_GOODGUYS, 0)
+      GameRules:SendCustomMessage("歡迎來到 信長之野望", DOTA_TEAM_GOODGUYS, 0)
+      GameRules:SendCustomMessage("作者: David Hund & Damody & 螺絲  | 美工：阿荒老師 | 顧問：FN" , DOTA_TEAM_GOODGUYS, 0)
+      GameRules:SendCustomMessage("dota2信長目前還在測試階段 請多見諒", DOTA_TEAM_GOODGUYS, 0)
   end
-  ShowMessage("跳狗")
-  Msg("就是你")
-  GameRules:SendCustomMessage("#別再跳了", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  UTIL_MessageTextAll("你媽媽", 255, 0, 0, 0)
-  UTIL_MessageTextAll("#會傷心的", 255, 0, 0, 255)
-
   --遊戲開始
   if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     --出兵觸發
@@ -125,8 +126,8 @@ end
 
 function Nobu:InitGameMode()
   print( "[Nobu] Nobu:InitGameMode is loaded." )
-    --【Varible】
-    local GameMode = GameRules:GetGameModeEntity()
+  --【Varible】
+  local GameMode = GameRules:GetGameModeEntity()
 
   --【Setup rules】
   -- --LimitPathingSearchDepth(0.5)
@@ -166,6 +167,7 @@ function Nobu:InitGameMode()
   GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
   GameMode:SetStashPurchasingDisabled( true )-- 是否关闭/开启储藏处购买功能
   GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
+  --GameMode:SetCustomGameForceHero("npc_dota_hero_dragon_knight") --強迫選擇英雄 (可以跳過選角畫面)
 
   --【經驗值設定】
     MaxLevel = 25 --最大等級
@@ -182,7 +184,7 @@ end
 --【初始化】
 function Activate()
   AMHCInit()
-  Nobu:Server() --Server Init
+  --Nobu:Server() --Server Init
   Nobu:InitGameMode() 
   Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
 end

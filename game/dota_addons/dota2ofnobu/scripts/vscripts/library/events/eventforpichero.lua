@@ -9,8 +9,7 @@ function Nobu:PickHero( keys )
   --【英雄名稱判別】
   local name = hero:GetUnitName()
   if name == "npc_dota_hero_ancient_apparition"  then
-    local ability = hero:FindAbilityByName("A04D")
-    ability:SetLevel(1)
+    hero:FindAbilityByName("A04D"):SetLevel(1)
   elseif name == "npc_dota_hero_jakiro"  then
     hero:FindAbilityByName("C22D"):SetLevel(1)
   elseif name == "npc_dota_hero_templar_assassin"  then
@@ -32,7 +31,7 @@ function Nobu:PickHero( keys )
     --<<事件:命令事件>>
     --hero:AddAbility("EventForOrder"):SetLevel(1)
     --<<全能力點數>>
-    hero:AddAbility("attribute_bonus_Data")
+    --hero:AddAbility("attribute_bonus")
     
   --【英雄系統】
 

@@ -2,6 +2,36 @@
 {
 	"Version"		"1"
 
+	"models/ashigaru/ashigaru.vmdl"
+	{
+		"PortraitLightPosition"			"-18.80 4.09 274.40"
+		"PortraitLightAngles"			"29.44 356.43 0.00"
+		"PortraitLightFOV"				"76"
+		"PortraitLightDistance"			"116"
+		"PortraitLightColor"			"55 55 55"
+		"PortraitShadowColor"			"56 56 56"
+		"PortraitShadowScale"			"5.000000"
+		"PortraitAmbientColor"			"155 155 155"
+		"PortraitAmbientScale"			"5.000000"
+		"PortraitSpecularColor"			"255 255 255"
+		"PortraitBackgroundTexture"		"materials/vgui/hud/heroportraits/portraitbackground_visage.vmat" //materials/vgui/hud/heroportraits/portraitbackground_gradient_top.vmat"
+		"PortraitBackgroundColor1"		".47 .34 .16"
+		"PortraitBackgroundColor2"		".47 .34 .16"
+		"PortraitBackgroundColor3"		".61 .20 1"
+		"PortraitLightScale"			"5.000000"
+		"PortraitGroundShadowScale"		"1.500000"
+		"PortraitAmbientDirection"		"40.770 37.280 -13.510"
+		"PortraitAnimationActivity"		"ACT_DOTA_ATTACK"
+		"cameras"
+		{
+			"default"
+			{
+				"PortraitPosition"		"230 0 100"
+				"PortraitAngles"		"0 180 0"
+				"PortraitFOV"			"14"
+			}
+		}
+	}
 
 	"models/b08/b08.vmdl"
 	{

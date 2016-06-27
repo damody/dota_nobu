@@ -38,6 +38,9 @@ local function chat_of_test(keys)
 		print("nobu ShuaGuai")
 		ShuaGuai( )
 	end
+
+	if s == "Test" then
+	end
 end
 
 function Nobu:Chat( keys )

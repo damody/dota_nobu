@@ -1248,7 +1248,7 @@
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
-		"Model"	"models/ashigaru/ashigaru.vmdl"
+		"Model"	"models/ashigaru/ashigaru_b.vmdl"
 		"ModelScale"	"1"
 		"Level"	"3"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
@@ -1256,7 +1256,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: A0GD
-		"Ability1"	""
+		"Ability1"	"test3333"
 		// Reference: A0GW
 		"Ability2"	""
 		// Armor
@@ -1595,6 +1595,80 @@
 		"AutoAttacksByDefault"	"1"
 	}
 
+	// 弓箭手
+	"com_archer_B"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/archer/archer.vmdl"
+		"ModelScale"	"1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	""
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"49.0"
+		"AttackDamageMax"	"55.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.67"
+		"AttackAnimationPoint"	"0.72"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"500"
+		"ProjectileSpeed"	"1800"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"26.0"
+		"BountyGoldMax"	"28.0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"750"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AttackRangeBuffer"	"250"
+		"BountyXP"	"120"
+		"ProjectileModel"	"particles/items2_fx/necronomicon_archer_projectile.vpcf"
+		"AutoAttacksByDefault"	"1"
+	}
+
 	// =================================================================================
 	// Creeps: Good Melee
 	// =================================================================================
@@ -1725,7 +1799,7 @@
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/arquebusier/arquebusier.vmdl"
 		"ModelScale"	"1"
@@ -1806,7 +1880,7 @@
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/cavalry/cavalry.vmdl"
 		"ModelScale"	"1"

@@ -5,33 +5,35 @@
 {
 	"Version"		"1"
 
-	// 淺井長政
-	"B08"
+	// 秋山信友
+	"秋山信友"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"override_hero"	"npc_dota_hero_magnataur"
-		"Model"	"models/b08/b08.vmdl"
-		"ModelScale"	"1.30"
+		"Model"	"models/heroes/earthshaker/earthshaker.vmdl"
+		"Portrait"	"vgui/hud/heroportraits/portrait_earthshaker"
+		"IdleExpression"	"scenes/earthshaker/earthshaker_exp_idle_01.vcd"
+		"SoundSet"	"Hero_Earthshaker"
+		"PickSound"	"earthshaker_erth_spawn_01"
+		"BanSound"	"earthshaker_erth_anger_02"
+		"ModelScale"	"1.3"
 		"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: AInv
-		"Ability1"	"B08W"
-		// Reference: A0D2
-		"Ability2"	"B08E"
+		"Ability1"	"B24W"
 		// Reference: Aamk
-		"Ability3"	"B08R"
-		// Reference: A054
-		"Ability4"	"test3333"
-		// Reference: A0EP
-		"Ability5"	""
-		// Reference: A056
+		"Ability2"	"B24E"
+		// Reference: A0JC
+		"Ability3"	"B24R"
+		// Reference: A0JD
+		"Ability4"	"B24T"
+		// Reference: A0JE
+		"Ability5"	"attribute_bonus"
+		// Reference: A0L8
 		"Ability6"	""
-		// Reference: A057
-		"Ability7"	""
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"3.00"
@@ -39,23 +41,23 @@
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"77.0"
-		"AttackDamageMax"	"93.0"
+		"AttackDamageMin"	"122.0"
+		"AttackDamageMax"	"132.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.60"
-		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"900.00"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.47"
+		"AttackAcquisitionRange"	"500"
 		"AttackRange"	"128"
 		"ProjectileSpeed"	"10000"
 		// Attributes
 		// ----------------------------------------------------------------
-		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"	"34"
-		"AttributeStrengthGain"	"2.10"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"	"41"
+		"AttributeStrengthGain"	"2.90"
 		"AttributeBaseIntelligence"	"25"
-		"AttributeIntelligenceGain"	"2.00"
-		"AttributeBaseAgility"	"27"
-		"AttributeAgilityGain"	"2.70"
+		"AttributeIntelligenceGain"	"2.20"
+		"AttributeBaseAgility"	"24"
+		"AttributeAgilityGain"	"2.50"
 		// Bounty
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"0.0"
@@ -67,7 +69,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"300"
+		"MovementSpeed"	"315"
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------
@@ -86,6 +88,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability7"	""
 		"Ability8"	""
 		"Ability9"	""
 		"Ability10"	""
@@ -95,8 +98,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"AbilityLayout"	"4"
-		"DisableWearables"	"1"
+		"override_hero"	"npc_dota_hero_earthshaker"
 	}
 
 	// 雜賀孫市
@@ -123,7 +125,7 @@
 		// Reference: A041
 		"Ability5"	"B01T"
 		// Reference: A043
-		"Ability6"	""
+		"Ability6"	"attribute_bonus"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"2"
@@ -200,6 +202,100 @@
 		"AbilityLayout"	"4"
 	}
 
+	// 淺井長政
+	"B08"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_magnataur"
+		"Model"	"models/b08/b08.vmdl"
+		"ModelScale"	"1.30"
+		"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"B08W"
+		// Reference: A0D2
+		"Ability2"	"B08E"
+		// Reference: Aamk
+		"Ability3"	"B08R"
+		// Reference: A054
+		"Ability4"	"B08T"
+		// Reference: A0EP
+		"Ability5"	"attribute_bonus"
+		// Reference: A056
+		"Ability6"	""
+		// Reference: A057
+		"Ability7"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"3.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"77.0"
+		"AttackDamageMax"	"93.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.60"
+		"AttackAnimationPoint"	"0.33"
+		"AttackAcquisitionRange"	"900.00"
+		"AttackRange"	"128"
+		"ProjectileSpeed"	"10000"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"34"
+		"AttributeStrengthGain"	"2.10"
+		"AttributeBaseIntelligence"	"25"
+		"AttributeIntelligenceGain"	"2.00"
+		"AttributeBaseAgility"	"27"
+		"AttributeAgilityGain"	"2.70"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AbilityLayout"	"4"
+		"DisableWearables"	"1"
+	}
+
 	// 風魔小太郎
 	"B02"
 	{
@@ -225,7 +321,7 @@
 		// Reference: A08C
 		"Ability5"	"B02T"
 		// Reference: A04J
-		"Ability6"	""
+		"Ability6"	"attribute_bonus"
 		// Reference: A089
 		"Ability7"	""
 		// Armor
@@ -322,7 +418,7 @@
 		// Reference: A09L
 		"Ability5"	"C17T"
 		// Reference: A0GL
-		"Ability6"	""
+		"Ability6"	"attribute_bonus"
 		// Reference: A09P
 		"Ability7"	""
 		// Armor
@@ -438,7 +534,7 @@
 		// Reference: A0DK
 		"Ability5"	"B26T"
 		// Reference: A0EQ
-		"Ability6"	""
+		"Ability6"	"attribute_bonus"
 		// Reference: A0XK
 		"Ability7"	""
 		// Armor
@@ -545,7 +641,7 @@
 		// Reference: A0BL
 		"Ability4"	"C15T"
 		// Reference: A0D5
-		"Ability5"	""
+		"Ability5"	"attribute_bonus"
 		// Reference: A09A
 		"Ability6"	""
 		// Reference: A0DH
@@ -639,7 +735,7 @@
 		// Reference: A0E7
 		"Ability5"	"C19T"
 		// Reference: A09R
-		"Ability6"	""
+		"Ability6"	"attribute_bonus"
 		// Reference: A09T
 		"Ability7"	""
 		// Armor
@@ -728,7 +824,7 @@
 		// Reference: A03R
 		"Ability4"	"A34T"
 		// Reference: A0JG
-		"Ability5"	""
+		"Ability5"	"attribute_bonus"
 		// Reference: A0D7
 		"Ability6"	""
 		// Armor
@@ -829,7 +925,7 @@
 		// Reference: A01Z
 		"Ability4"	"A17T"
 		// Reference: A020
-		"Ability5"	""
+		"Ability5"	"attribute_bonus"
 		// Reference: A021
 		"Ability6"	""
 		// Armor
@@ -937,7 +1033,7 @@
 		// Reference: A0IS
 		"Ability5"	"C07T"
 		// Reference: A0AY
-		"Ability6"	""
+		"Ability6"	"attribute_bonus"
 		// Reference: A0AZ
 		"Ability7"	""
 		// Armor
@@ -1043,7 +1139,7 @@
 		// Reference: A0LR
 		"Ability4"	"C10T"
 		// Reference: A0AX
-		"Ability5"	""
+		"Ability5"	"attribute_bonus"
 		// Reference: A0UF
 		"Ability6"	""
 		// Armor
@@ -1150,7 +1246,7 @@
 		// Reference: A0EZ
 		"Ability4"	"B34T"
 		// Reference: A0F3
-		"Ability5"	""
+		"Ability5"	"attribute_bonus"
 		// Reference: A0F5
 		"Ability6"	""
 		// Armor
@@ -1257,7 +1353,7 @@
 		// Reference: A0HF
 		"Ability4"	"A16T"
 		// Reference: A0LF
-		"Ability5"	""
+		"Ability5"	"attribute_bonus"
 		// Reference: A0LQ
 		"Ability6"	""
 		// Armor
@@ -1326,101 +1422,5 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AbilityLayout"	"4"
-	}
-
-	// 秋山信友
-	"秋山信友"
-	{
-		// General
-		// ----------------------------------------------------------------
-		"Model"	"models/heroes/earthshaker/earthshaker.vmdl"
-		"Portrait"	"vgui/hud/heroportraits/portrait_earthshaker"
-		"IdleExpression"	"scenes/earthshaker/earthshaker_exp_idle_01.vcd"
-		"SoundSet"	"Hero_Earthshaker"
-		"PickSound"	"earthshaker_erth_spawn_01"
-		"BanSound"	"earthshaker_erth_anger_02"
-		"ModelScale"	"1.3"
-		"Level"	"5"
-		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"HealthBarOffset"	"140"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference: AInv
-		"Ability1"	"B24W"
-		// Reference: Aamk
-		"Ability2"	"B24E"
-		// Reference: A0JC
-		"Ability3"	"B24R"
-		// Reference: A0JD
-		"Ability4"	"B24T"
-		// Reference: A0JE
-		"Ability5"	""
-		// Reference: A0L8
-		"Ability6"	""
-		// Armor
-		// ----------------------------------------------------------------
-		"ArmorPhysical"	"3.00"
-		"MagicalResistance"	"0"
-		// Attack
-		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"	"122.0"
-		"AttackDamageMax"	"132.0"
-		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.80"
-		"AttackAnimationPoint"	"0.47"
-		"AttackAcquisitionRange"	"500"
-		"AttackRange"	"128"
-		"ProjectileSpeed"	"10000"
-		// Attributes
-		// ----------------------------------------------------------------
-		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"	"41"
-		"AttributeStrengthGain"	"2.90"
-		"AttributeBaseIntelligence"	"25"
-		"AttributeIntelligenceGain"	"2.20"
-		"AttributeBaseAgility"	"24"
-		"AttributeAgilityGain"	"2.50"
-		// Bounty
-		// ----------------------------------------------------------------
-		"BountyGoldMin"	"0.0"
-		"BountyGoldMax"	"0.0"
-		// Gold and Lumber
-		// ----------------------------------------------------------------
-		"GoldCost"	"0"
-		"LumberCost"	"0"
-		// Movement
-		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"315"
-		"MovementTurnRate"	"1.50"
-		// Status
-		// ----------------------------------------------------------------
-		"StatusHealth"	"400"
-		"StatusHealthRegen"	"0.25"
-		"StatusMana"	"0"
-		"StatusManaRegen"	"0.01"
-		"StatusStartingMana"	"100"
-		// Vision
-		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"1800"
-		"VisionNighttimeRange"	"800"
-		// Team
-		// ----------------------------------------------------------------
-		"TeamName"	"DOTA_TEAM_NEUTRALS"
-		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
-		"override_hero"	"npc_dota_hero_earthshaker"
 	}
 }
