@@ -63,9 +63,20 @@ local function chat_of_test(keys)
 					item:EndCooldown()
 				end
 			end
-			return 2	
+			return 1	
 		end)
 	end
+
+	if s == "shps" then
+		print("shps")
+	end
+
+	-- if s == "stop_event" then
+	-- 	--StopListeningToGameEvent(Nobu.Event)
+	-- 	print(Nobu.Event[5])
+	-- 	StopListeningToGameEvent(Nobu.Event[5])
+	-- 	--StopListeningToAllGameEvents(Nobu.Event[5])
+	-- end
 end
 
 function Nobu:Chat( keys )

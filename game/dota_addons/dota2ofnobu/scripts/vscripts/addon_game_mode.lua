@@ -9,7 +9,19 @@ print ( '[Nobu] ADDON INIT EXECUTED' )
 --【全局變量】
 if Nobu == nil then
   _G.Nobu = class({})
+else
+  --先Stop事件，為了reload script用
+  for i=1,6 do
+    StopListeningToGameEvent(Nobu.Event[i])
+  end        
+  --重新註冊
+  Nobu = nil
+  _G.Nobu = class({})
+
+  --重新註冊用
+  Script_reload_B = true 
 end
+
 _G.nobu_debug =  true
 
 -- 這個函數其實就是一個pcall，通過這個函數載入lua文件，就可以在載入的時候通過報錯發現程序哪裡錯誤了
@@ -74,17 +86,19 @@ function Nobu:Init_Event_and_Filter_GameMode()
   GameRules:GetGameModeEntity():SetDamageFilter( Nobu.DamageFilterEvent, self )
 
   --【Evnet】
-  ListenToGameEvent('dota_player_gained_level', Nobu.LevelUP, self)
-  ListenToGameEvent("dota_player_pick_hero",Nobu.PickHero, self)
-  ListenToGameEvent('npc_spawned', Nobu.OnHeroIngame, self)  
-  ListenToGameEvent( "entity_killed", Nobu.OnUnitKill, self )
-  ListenToGameEvent("player_chat",Nobu.Chat,self) --玩家對話事件
+  Nobu.Event ={
+  ListenToGameEvent('dota_player_gained_level', Nobu.LevelUP, self),
+  ListenToGameEvent("dota_player_pick_hero",Nobu.PickHero, self),
+  ListenToGameEvent('npc_spawned', Nobu.OnHeroIngame, self)  ,
+  ListenToGameEvent( "entity_killed", Nobu.OnUnitKill, self ),
+  ListenToGameEvent("player_chat",Nobu.Chat,self), --玩家對話事件
   --ListenToGameEvent( "dota_item_picked_up", test, self )
   --ListenToGameEvent( "item_purchased", test, self ) --false
   --ListenToGameEvent( "dota_item_purchased", test, self ) 
   --ListenToGameEvent( "dota_item_used", test, self ) --false
   --ListenToGameEvent( "dota_inventory_item_changed", test, self )
   ListenToGameEvent("game_rules_state_change", Nobu.OnGameRulesStateChange , self)  --監聽遊戲進度
+  }
 end
 
 function Nobu:OnGameRulesStateChange( keys )
@@ -220,6 +234,9 @@ end
 
 --【Timer】
 -- Script_reload_B = false
--- Timers:CreateTimer(1,function() 
---   Activate()
--- end)    
+if Script_reload_B then
+  print("Script_reload_B")
+  Timers:CreateTimer(1,function() 
+    Activate()
+  end)   
+end 
