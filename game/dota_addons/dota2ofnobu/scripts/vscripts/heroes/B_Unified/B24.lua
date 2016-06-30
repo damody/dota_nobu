@@ -1,18 +1,16 @@
 function B24T( keys )
-	print("B24T")
-	--DeepPrintTable(keys)
-	local caster		= keys.caster
-	local ability	= keys.ability
-	local point = caster:GetAbsOrigin() --ability:GetCursorPosition()
-	local pointx = point.x
-	local pointy = point.y
-	local pointz = point.z
-	local team  = caster:GetTeamNumber()
-	local pointx2
-	local pointy2
-	local a
+	--【Basic】
+	local caster = keys.caster
+	--local target = keys.target
+	local ability = keys.ability
+	--local player = caster:GetPlayerID()
+	local point = caster:GetAbsOrigin()
+	--local point2 = target:GetAbsOrigin() 
+	--local point2 = ability:GetCursorPosition()
+	--local level = ability:GetLevel() - 1
+	--local vec = caster:GetForwardVector():Normalized()	
 
-	--se
+	--【Particle】
 	local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle,0,point)
 
@@ -20,37 +18,32 @@ function B24T( keys )
 	ParticleManager:SetParticleControl(particle,0,point)	
 
 	local particle=ParticleManager:CreateParticle("particles/b24t3/b24t3.vpcf",PATTACH_POINT,caster)
-	ParticleManager:SetParticleControl(particle,0,point)		
+	ParticleManager:SetParticleControl(particle,0,point)
 
-	--【Group】
-    local group = {}
-
-   	group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 800, 3, 63, 80, 0, false)
-
-	--group = FindUnitsInRadius(caster:GetTeamNumber(),point,nil,radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
-
-	-- print(caster:GetTeamNumber())
-	-- print(ability:GetAbilityTargetTeam())
-	-- print(ability:GetAbilityTargetType())
-	-- print(ability:GetAbilityTargetFlags())
-    --獲取周圍的單位
-	-- group = FindUnitsInRadius(caster:GetTeamNumber(),
- --                              point,
- --                              nil,
- --                              600,
- --                              DOTA_UNIT_TARGET_TEAM_BOTH,
- --                              DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP,
- --                              DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
- --                              FIND_ANY_ORDER,
- --                              false)
-
-
+	--【Group_radius】
+	local radius = 800
+   	local group = FindUnitsInRadius(
+   		caster:GetTeamNumber(), 
+   		caster:GetAbsOrigin(), 
+   		nil, 
+   		radius ,
+   		DOTA_UNIT_TARGET_TEAM_BOTH, 
+   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+   		FIND_ANY_ORDER, 
+   		false)
 	for _,v in ipairs(group) do
-		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
+		--print("nobu"..v:GetUnitName())
 	end
 
-
-
+	--【For】
+	local pointx = point.x
+	local pointy = point.y
+	local pointz = point.z
+	local pointx2
+	local pointy2
+	local a	
 	for i=1,16 do
 		a	=	(	22.5	*	i	)* bj_DEGTORAD
 		pointx2 	=  	pointx 	+ 	420.00 	* 	math.cos(a)
@@ -62,46 +55,16 @@ function B24T( keys )
 		ParticleManager:SetParticleControl(particle,1,point)
 		ParticleManager:SetParticleControl(particle,2,Vector(6,6,6))
 
-		local dummy = CreateUnitByName("B24T_HIDE",point,true,nil,nil,team)
+		local dummy = CreateUnitByName("B24T_HIDE",point,false,nil,nil,caster:GetTeam())
 		ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24T",nil)
-		dummy:SetOrigin(point)--不加會卡點
+		--dummy:SetOrigin(point)--不加會卡點
 		
 		--紀錄
 		dummy.B24Tparticle = particle
 
-		dummy:EmitSound("Creep_Siege_Dire.Destruction") 
-
-
-		-- local dummy = CreateUnitByName("B24T_HIDE",point,true,nil,nil,team)
-		-- dummy:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		--dummy:EmitSound("Creep_Siege_Dire.Destruction") 
 	end
-
-
-	-- for i=1,48 do
-	-- 	a	=	(	7.5	*	i	)* bj_DEGTORAD
-	-- 	pointx2 	=  	pointx 	+ 	420.00 	* 	math.cos(a)
-	-- 	pointy2 	=  	pointy 	+ 	420.00 	*	math.sin(a)
-	-- 	point = Vector(pointx2 ,pointy2 , pointz)
-
-	-- 	local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,caster)
-	-- 	ParticleManager:SetParticleControl(particle,0,point)
-	-- 	ParticleManager:SetParticleControl(particle,1,point)
-	-- 	ParticleManager:SetParticleControl(particle,2,Vector(6,6,6))
-
-	-- 	local dummy = CreateUnitByName("B24T_HIDE",point,true,nil,nil,DOTA_TEAM_BADGUYS)
-	-- 	dummy:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-
-	-- 	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24T",nil)
-		
-	-- 	--紀錄
-	-- 	dummy.B24Tparticle = particle
-
-
-	-- 	-- local dummy = CreateUnitByName("B24T_HIDE",point,true,nil,nil,team)
-	-- 	-- dummy:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-	-- end
 end
-
 
 function B24T2_Death( keys )
 	local dummy	= keys.caster
@@ -113,7 +76,6 @@ function B24T2_Kill( keys )
 	dummy:ForceKill(true)
 end
 
---bug = T再使用W 會把敵人彈出外圍
 function B24W( keys )
 	--【Basic】
 	local caster = keys.caster
@@ -141,7 +103,7 @@ function B24W( keys )
 	local group = FindUnitsInRadius(caster:GetTeam(),point2,nil, 500, teams, types, flags, FIND_CLOSEST, true)	
 	for i,v in ipairs(group) do
 		if v ~= dummy then
-			print("nobu"..v:GetUnitName())
+			----print("nobu"..v:GetUnitName())
 			--FindClearSpaceForUnit(v,v:GetAbsOrigin(), true)
 			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 		end
@@ -172,33 +134,102 @@ end
 
 function B24W3( keys )
 	--【Basic】
-	local dummy = keys.caster
+	local caster = keys.caster
 	local target = keys.target
+	local ability = keys.ability
+	--local player = caster:GetPlayerID()
+	local point = caster:GetAbsOrigin()
+	local point2 = target:GetAbsOrigin() 
+	--local point2 = ability:GetCursorPosition()
+	local level = ability:GetLevel() - 1
+	--local vec = caster:GetForwardVector():Normalized()
+	local check_boolean = false
+
+	--【判斷有沒有卡牆】
+	--判斷背後有沒有碰撞單位
+	--【Group_Line】
+	local vec = (point2 - point) :Normalized()
+	local vStartPos = point2 + 50 * vec
+	local vEndPos = point2 + 100 * vec
+	local width = 50
+	local group = FindUnitsInLine(
+		target:GetTeam(), 
+		vStartPos, 
+		vEndPos, 
+		target, 
+		width, 
+		DOTA_UNIT_TARGET_TEAM_BOTH, 
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES)
+	-- Make the found units move to (0, 0, 0)
+	for i,v in pairs(group) do
+		if v ~= caster and v ~= target then
+			if v:GetUnitName() == "B24T_HIDE" then
+			   --print("nobu"..v:GetUnitName())
+			   check_boolean = true
+			   break
+			end
+		end
+	end
+
+	--【DEBUG】
+	if nobu_debug then
+		local start_point = vStartPos
+		local end_point = vEndPos
+		local radius = 50 --可以獲取單位碰撞面積
+		DebugDrawLine(start_point, end_point, 0, 0, 255, true, 5)
+		DebugDrawCircle(point, Vector(0,255,0), 100, 150, true, 5)
+		DebugDrawCircle(start_point, Vector(255,0,0), 100, radius, true, 5)
+		DebugDrawCircle(end_point, Vector(255,0,0), 100, radius, true, 5)
+	end			
+
+	if check_boolean == true then
+		--print("nobu".."true")
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B24W_3",nil)	--原地擊退
+	else
+		--print("nobu".."false")
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B24W_2",nil)
+	end
+	
+	--【判斷擊退次數】
+	caster.B24W_NUM = caster.B24W_NUM - 1
+	if caster.B24W_NUM == 0 then
+		caster:RemoveModifierByName("modifier_B24W") --刪除modifier 就會殺死單位
+	end
+end
+
+function B24E_START( keys )
+	--【Basic】
+	local caster = keys.caster
+	--local target = keys.target
 	local ability = keys.ability
 	--local player = caster:GetPlayerID()
 	--local point = caster:GetAbsOrigin()
 	--local point2 = target:GetAbsOrigin() 
 	local point2 = ability:GetCursorPosition()
-	local level = ability:GetLevel() - 1
+	--local level = ability:GetLevel() - 1
 	--local vec = caster:GetForwardVector():Normalized()
 
-	--【判斷有沒有卡牆】
-	if not target:HasModifier("modifier_B24T_3") then
-		ability:ApplyDataDrivenModifier(dummy,target,"modifier_B24W_2",nil)
-	else
-		ability:ApplyDataDrivenModifier(dummy,target,"modifier_B24W_3",nil)
-	end
-	
-	--【判斷擊退次數】
-	dummy.B24W_NUM = dummy.B24W_NUM - 1
-	if dummy.B24W_NUM == 0 then
-		dummy:RemoveModifierByName("modifier_B24W") --刪除modifier 就會殺死單位
-	end
+	--【Group_radius】
+	local radius = ability:GetLevelSpecialValueFor("radius",ability:GetLevel() - 1)
+	--local radius = 800
+   	local group = FindUnitsInRadius(
+   		caster:GetTeamNumber(), 
+   		point2, 
+   		nil, 
+   		radius ,
+   		DOTA_UNIT_TARGET_TEAM_ENEMY, --DOTA_UNIT_TARGET_TEAM_ENEMY --DOTA_UNIT_TARGET_TEAM_FRIENDLY
+   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,  --DOTA_UNIT_TARGET_BUILDING --DOTA_UNIT_TARGET_ALL
+   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+   		FIND_ANY_ORDER,  --FIND_CLOSEST --FIND_FARTHEST --FIND_UNITS_EVERYWHERE
+   		false)
+	for _,v in ipairs(group) do
+		--v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
+		--print("nobu"..v:GetUnitName())
+		ability:ApplyDataDrivenModifier(caster,v,"modifier_B24E",nil)
+	end			
 end
 
---[[Author: Pizzalol
-	Date: 09.02.2015.
-	Forces the target to attack the caster]]
 function B24E( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -208,6 +239,7 @@ function B24E( keys )
 
 	-- Give the attack order if the caster is alive
 	-- otherwise forces the target to sit and do nothing
+	--【ExecuteOrder】
 	if caster:IsAlive() then
 		local order = 
 		{
@@ -226,12 +258,10 @@ function B24E( keys )
 end
 
 -- Clears the force attack target upon expiration
-function BerserkersCallEnd( keys )
+function B24E_END( keys )
 	local target = keys.target
-
 	target:SetForceAttackTarget(nil)
 end
-
 
 function B24R( keys )
 	local ability = keys.ability
@@ -263,33 +293,13 @@ function B24R( keys )
 			caster.B24R_B = false
 		end)
 
-		-- local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche_projectile.vpcf",PATTACH_POINT,target)
-		-- ParticleManager:SetParticleControl(particle,0,point)
-		-- ParticleManager:SetParticleControl(particle,1,point2)
-
-		-- local projectile_info = 
-		-- {
-		-- 	EffectName = "particles/units/heroes/hero_tiny/tiny_avalanche_projectile.vpcf",
-		-- 	Ability = ability,
-		-- 	vSpawnOrigin = point,
-		-- 	Target = target,
-		-- 	Source = caster,
-		-- 	bHasFrontalCone = false,
-		-- 	iMoveSpeed = 1000,
-		-- 	bReplaceExisting = false,
-		-- 	bProvidesVision = false
-		-- }
-		-- ProjectileManager:CreateTrackingProjectile(projectile_info)
-
-		-- local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche.vpcf",PATTACH_POINT,caster)
-		-- ParticleManager:SetParticleControl(particle,1,Vector(100,100,100))
-
-
+		--【particle】		
 		local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche.vpcf",PATTACH_POINT,caster)
 		ParticleManager:SetParticleControl(particle,0,point)
 		ParticleManager:SetParticleControl(particle,1,Vector(100,100,100))
 
-		Timers:CreateTimer(0.0,function ()
+		--【Timer】
+		Timers:CreateTimer(function ()
 			if not target:IsAlive() then
 				ParticleManager:DestroyParticle(particle,false)
 				return nil
@@ -300,35 +310,49 @@ function B24R( keys )
 			point = Vector(x1,y1,z1)
 			point2 = target:GetAbsOrigin()
 
+			--【particle】
 			ParticleManager:SetParticleControl(particle,0,point)
 
 			local distance = nobu_distance( point,point2 )
 			if distance <100 then
+				--【particle】
 				ParticleManager:DestroyParticle(particle,false)
-
 				particle=ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche.vpcf",PATTACH_POINT,target)
 				ParticleManager:SetParticleControl(particle,0,point)
 				ParticleManager:SetParticleControl(particle,1,Vector(100,100,100))	
-
-				Timers:CreateTimer(0.3,function ()
+				Timers:CreateTimer(0.3,function() 
 					ParticleManager:DestroyParticle(particle,false)	
 				end)	
 
-				--effect
-				--獲取攻擊範圍
-			    local group = {}
-		        local radius = 225
+				--【Group_radius】
+				local radius = 225
+			   	local group = FindUnitsInRadius(
+			   		caster:GetTeamNumber(), 
+			   		point2, 
+			   		nil, 
+			   		radius ,
+			   		DOTA_UNIT_TARGET_TEAM_ENEMY, 
+			   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+			   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+			   		FIND_ANY_ORDER, 
+			   		false)
+				for _,v in ipairs(group) do
+					ability:ApplyDataDrivenModifier(caster,v,"modifier_B24R_2",nil)
+				end
 
-		        --獲取周圍的單位
-		        group = FindUnitsInRadius(caster:GetTeamNumber(),point2,nil,radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
-		        for i,v in ipairs(group) do
-		        	print(i,v)
-		        	ability:ApplyDataDrivenModifier(caster,v,"modifier_B24R_2",nil)
-		        end
+				--【DEBUG】
+				if nobu_debug then
+					local start_point = point
+					local end_point = point2
+					--local radius = 50 --可以獲取單位碰撞面積
+					--DebugDrawLine(start_point, end_point, 0, 0, 255, true, 5)
+					DebugDrawCircle(start_point, Vector(0,0,255), 100, radius, true, 5)
+					DebugDrawCircle(end_point, Vector(255,0,0), 100, radius, true, 5)
+				end		
 
 				return nil
 			else
-				--print(tostring(distance))
+				------print(tostring(distance))
 				return 0.03
 			end
 
@@ -336,12 +360,4 @@ function B24R( keys )
 	end
 end
 
-function B24R2( keys )
-	local caster = keys.target
-	local point2 = target:GetAbsOrigin()
-
-	local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche.vpcf",PATTACH_POINT,target)
-	ParticleManager:SetParticleControl(particle,0,point2)
-	ParticleManager:SetParticleControl(particle,1,Vector(100,100,100))
-end
 

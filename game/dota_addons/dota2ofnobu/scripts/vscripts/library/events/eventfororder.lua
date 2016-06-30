@@ -107,8 +107,7 @@ function Nobu:eventfororder( filterTable )
 		local f = filterTable
 		local caster = EntIndexToHScript(f.units["0"]) 
 		local ability = EntIndexToHScript(f.entindex_ability)
-		caster.abilityName = ability:GetAbilityName()	
-		print("Ability")
+		caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET then
 		EventForSpellTarget( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_ATTACK_TARGET then

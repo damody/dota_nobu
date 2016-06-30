@@ -5,67 +5,6 @@
 {
 	"Version"		"1"
 
-	// =================================================================================================================
-	// Gem
-	// =================================================================================================================
-	"item_gem_2"
-	{
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"ID"	"30"
-		"ItemQuality"	"component"
-		"Model"	"models/props_gameplay/gem01.vmdl"
-		"Effect"	"particles/generic_gameplay/dropped_gem.vpcf"
-		// Item Info
-		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"900"
-		"ItemSellable"	"0"
-		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemKillable"	"0"
-		"ItemShopTags"	"see_invis"
-		"ItemAliases"	"gem of true sight"
-		"ItemStockMax"	"1"
-		"ItemStockTime"	"600.0"
-		"OnEquip"	{}
-		"Modifiers"
-		{
-			"modifier_item_gem_2"
-			{
-				"Passive"	"1"
-				"OnCreated"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_item_gem_of_true_sight"
-						"Radius"	"%radius"
-					}
-				}
-				"OnDestroy"	{}
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"1100"
-			}
-		}
-		"ItemSupport"	"1"
-		"ItemContributesToNetWorthWhenDropped"	"0"
-		// Sound
-		// -------------------------------------------------------------------------------------------------------------
-		"UIPickupSound"	"Item.PickUpGemShop"
-		"UIDropSound"	"Item.DropGemShop"
-		"WorldDropSound"	"Item.DropGemWorld"
-	}
-
 	// Rewrite of Blink Dagger
 	// Author: Rook
 	// Date: January 25, 2015
@@ -1191,26 +1130,6 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"5"
-			}
-		}
-	}
-
-	"newAbility"
-	{
-		// General
-		"BaseClass"	"item_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityCooldown"	"6.0 5.0 4.0 3.0"
-		"Modifiers"
-		{
-			"modifier_newAbility"
-			{
-				"Orb"	{}
-				"States"
-				{
-					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
 			}
 		}
 	}

@@ -1,0 +1,551 @@
+"DOTAAbilities"
+{
+	"B24W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"earthshaker_fissure_alt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"19 17 15 13"
+		"AbilityManaCost"	"105 135 165 195"
+		"AbilityCastRange"	"%cast_dis"
+		"AOERadius"	"%range"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/elder_titan/earth_split_cast.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+			"particle"	"particles/b24t/b01t.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"	"POINT"
+				"OnSpawn"
+				{
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+						"Function"	"B24W"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_ElderTitan.EarthSplitter.Cast"
+					}
+				}
+				"UnitCount"	"1"
+				"UnitLimit"	"1"
+				"UnitName"	"B24W_DUMMY"
+				"Duration"	"%life_duration"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+				"Function"	"B24W2"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_ElderTitan.EarthSplitter.Cast"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B24W"
+			{
+				"EffectName"	"particles/b24t/b01t.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+						"Function"	"B24T2_Death"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"CASTER"
+							"Radius"	"%range"
+						}
+						"Action"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+								"Function"	"B24W3"
+							}
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%Damage"
+							}
+						}
+					}
+				}
+				"ThinkInterval"	"0.30"
+				"OnCreated"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"CASTER"
+							"Radius"	"%range"
+						}
+						"Action"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+								"Function"	"B24W3"
+							}
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%Damage"
+							}
+						}
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+						"Function"	"B24T2_Kill"
+					}
+				}
+				"Duration"	"%life_duration"
+			}
+			"modifier_B24W_2"
+			{
+				"OnCreated"
+				{
+					"Knockback"
+					{
+						"Target"	"TARGET"
+						"Center"	"CASTER"
+						"Duration"	"0.2"
+						"Distance"	"%distance"
+						"ShouldStun"	"1"
+					}
+				}
+				"Duration"	"0"
+			}
+			"modifier_B24W_3"
+			{
+				"OnCreated"
+				{
+					"Knockback"
+					{
+						"Target"	"TARGET"
+						"Center"	"CASTER"
+						"Duration"	"0.2"
+						"Distance"	"1"
+						"ShouldStun"	"0"
+						"Height"	"50"
+					}
+				}
+				"Duration"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_dis"	"1000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"150"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"life_duration"	"12"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"time"	"6 8 10 12"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"160"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Damage"	"100"
+			}
+		}
+	}
+
+	"B24E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"earthshaker_enchant_totem"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate"	"1.5"
+		"AbilityCooldown"	"21"
+		"AbilityManaCost"	"100 130 160 190"
+		"AbilityCastRange"	"%cast_dis"
+		"AOERadius"	"%radius"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/elder_titan/earth_split_cast.vsnd"
+			"particle"	"particles/b24e/b24e.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+			"particle"	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_target_c.vpcf"
+			"particle"	"particles/b24e/b24e.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+				"Function"	"B24E_START"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B24E_2"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_ElderTitan.EarthSplitter.Cast"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B24E"
+			{
+				"Duration"	"%duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"ThinkInterval"	"0.1"
+				"EffectName"	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_target_c.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Function"	"B24E_END"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+						"Function"	"B24E"
+					}
+				}
+			}
+			"modifier_B24E_2"
+			{
+				"Duration"	"%duration_str"
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str"
+				}
+				"EffectName"	"particles/b24e/b24e.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_dis"	"650.00"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"290"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.2 1.8 2.4 3.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration_str"	"10"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"str"	"10 20 30 40"
+			}
+		}
+	}
+
+	"B24R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"earthshaker_echo_slam"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/tiny/tiny_avalanche.vsnd"
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_B24R"
+			{
+				"Passive"	"1"
+				"OnAttacked"
+				{
+					"Random"
+					{
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+								"Function"	"B24R"
+							}
+							"FireSound"
+							{
+								"EffectName"	"Hero_Tiny.Pick"
+							}
+						}
+						"Chance"	"%chance"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%def_bonus"
+				}
+				"IsHidden"	"0"
+			}
+			"modifier_B24R_2"
+			{
+				"States"	{}
+				"OnCreated"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%stun_duration"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+				"Duration"	"0"
+				"IsHidden"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"33"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"85 135 185 235"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.2"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"def_bonus"	"0 2 4 6"
+			}
+		}
+	}
+
+	"B24T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"earthshaker_fissure"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC  | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"15.0 15.0 15.0 15.0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"125 140 155 170"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1400"
+		"precache"
+		{
+			"soundfile"	"sounds/physics/damage/engines/dire_engine_destruction_03.vsnd"
+			"particle"	"particles/b24t/b01t.vpcf"
+			"particle"	"particles/b24w/b24w.vpcf"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+				"Function"	"B24T"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_ALL  | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"%effect_range"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_B24T_2"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+				}
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Creep_Siege_Dire.Destruction"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Creep_Siege_Dire.Destruction"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Creep_Siege_Dire.Destruction"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B24T"
+			{
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+						"Function"	"B24T2_Death"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+						"Function"	"B24T2_Kill"
+					}
+				}
+				"Duration"	"6"
+				"IsHidden"	"1"
+				"States"	{}
+				"Aura"	"modifier_B24T_3"
+				"Aura_Radius"	"200"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO"
+			}
+			"modifier_B24T_2"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%silence_duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
+			"modifier_B24T_3"	{}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"life_duration"	"6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"effect_range"	"600"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"silence_duration"	"2.5"
+			}
+		}
+		"AbilityDuration"	"1.0 1.25 1.5 1.75"
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"500 700 1000"
+	}
+
+
+}

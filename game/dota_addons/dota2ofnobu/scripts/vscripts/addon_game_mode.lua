@@ -27,19 +27,6 @@ local function loadModule(name)
     end
 end
 
-function Precache( context )
-  -- 【KV資源預載】
-  --PrecacheEveryThingFromKV(context)   --有問題:會超lag
-
-  -- 【特效預載】
-  PrecacheResource("particle", "particles/c17w/c17w.vpcf", context)
-
-  -- 【聲音預載】
-  PrecacheResource("soundfile", "soundevents/ITEMS/D09.vsndevts", context)
-  PrecacheResource("soundfile", "soundevents/ITEMS/D03.vsndevts", context)
-  PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
-end 
-
 -- 載入項目所有文件
 ------------------
 loadModule ( 'varible_of_globals' )
@@ -183,12 +170,56 @@ end
 
 --【初始化】
 function Activate()
-  AMHCInit()
-  --Nobu:Server() --Server Init
-  Nobu:InitGameMode() 
-  Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
+  -- if Script_reload_B == false then
+    print("[Nobu] Activate")
+    -- Script_reload_B = true
+    -- StopListeningToAllGameEvents(Nobu:GetEntityHandle())
+
+    AMHCInit()
+    Nobu:Server() --Server Init
+    Nobu:InitGameMode() 
+    Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
+  -- end
 end
 
-function test() --單純測試用
-  print("test")
-end
+--【資源預載】
+function Precache( context )
+  -- 【KV資源預載】
+  --PrecacheEveryThingFromKV(context)   --有問題:會超lag
+
+  -- 【特效預載】
+    local particle_Precache_Table = {
+    --阿市
+    "particles/c17w/c17w.vpcf",
+    --秋山
+    "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf",
+    "particles/b24t/b01t.vpcf",
+    "particles/b24w/b24w.vpcf" ,
+    "particles/units/heroes/hero_tiny/tiny_avalanche.vpcf",
+    "particles/b24t3/b24t3.vpcf"
+
+    }
+    for i,v in ipairs(particle_Precache_Table) do
+      PrecacheResource("particle", v, context)
+    end
+
+  -- 【聲音預載】
+    local sound_Precache_Table = {
+    "soundevents/ITEMS/D09.vsndevts",
+    "soundevents/ITEMS/D03.vsndevts",
+    "soundevents/custom_sounds.vsndevts",
+    }
+    for i,v in ipairs(sound_Precache_Table) do
+      PrecacheResource("soundfile", v, context)
+    end  
+end 
+
+--【特別】
+-- Script_reload_B = true --專門做給Script_reload用
+-- Activate()
+
+--【Timer】
+-- Script_reload_B = false
+-- Timers:CreateTimer(1,function() 
+--   Activate()
+-- end)    

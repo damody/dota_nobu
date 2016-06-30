@@ -1,6 +1,6 @@
 --[[
 BUG
-	O大廳裡面也可以捕捉到，這時候hero值為nil
+	O大廳裡面也可以捕捉到，這時候caster值為nil
 ]]
 
 local function chat_of_test(keys)
@@ -9,9 +9,8 @@ local function chat_of_test(keys)
 	local s   	   = keys.text	
 	local id  	   = 1 --keys.userid --BUG:會1.2的調換，不知道為甚麼
 	local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-	local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
-	local point    = hero:GetAbsOrigin()	
-
+	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄 
+	local point    = caster:GetAbsOrigin()	
 	-- if string.match(s,"test") then
 	-- 	local pID = tonumber(string.match(s, '%d+'))
 	-- 	local steamID = PlayerResource:GetSteamAccountID(pID)
@@ -34,12 +33,38 @@ local function chat_of_test(keys)
 		end
 	end	
 
+	--【測試指令】
 	if s == "ShuaGuai" then
-		print("nobu ShuaGuai")
-		ShuaGuai( )
-	end
-
-	if s == "Test" then
+		print("ShuaGuai")
+		ShuaGuai_Of_A( )	
+		ShuaGuai_Of_B( )
+		ShuaGuai_Of_C( )
+	elseif s == "hp" then
+		print("nobu"..id)
+		caster:SetHealth(caster:GetMaxHealth())
+	elseif s == "mp" then
+		print("nobu"..id)
+		caster:SetMana(caster:GetMaxMana())	
+	elseif s == "cd" then	
+		--【Timer】
+		Timers:CreateTimer(function()
+			print("cd3")
+			-- Reset cooldown for abilities that is not rearm
+			for i = 0, 15 do
+				if caster:GetAbilityByIndex( i ) ~= nil then
+					local ability = caster:GetAbilityByIndex( i )
+					ability:EndCooldown()
+				end
+			end
+			-- Reset cooldown for items
+			for i = 0, 5 do
+				local item = caster:GetItemInSlot( i )
+				if item ~= nil then
+					item:EndCooldown()
+				end
+			end
+			return 2	
+		end)
 	end
 end
 
@@ -50,10 +75,12 @@ function Nobu:Chat( keys )
 	local s   	   = keys.text	
 	local id  	   = 1 --keys.userid --BUG:會1.2的調換，不知道為甚麼
 	local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-	local hero 	   = p: GetAssignedHero() --获取该玩家的英雄
-	local point    = hero:GetAbsOrigin()
+	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄
+	local point    = caster:GetAbsOrigin()
 
-	if nobu_debug then
+	--【測試模式】
+	if nobu_debug then 
 		chat_of_test(keys)
 	end
 end
+
