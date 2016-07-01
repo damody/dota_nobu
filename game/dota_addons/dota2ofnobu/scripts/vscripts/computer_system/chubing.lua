@@ -47,19 +47,19 @@ function ShuaGuai( )
 
 	--出兵觸發:武士+弓箭手
 	--50秒出第一波，之後每26秒出一波
- 	Timers:CreateTimer( 50, function()--50
+ 	Timers:CreateTimer( function()--50
 	  	ShuaGuai_Of_A()
 	    return 26 --26
 	 end)
 
 	--出兵觸發:火槍兵
- 	Timers:CreateTimer( 143.0, function()
+ 	Timers:CreateTimer( 93,function()
   		ShuaGuai_Of_B()
 	    return 143.00
 	end)
 
 	--出兵觸發:騎兵
- 	Timers:CreateTimer( 98.0, function()
+ 	Timers:CreateTimer( 48, function()
   		ShuaGuai_Of_C()
 	    return 98.00
 	end)

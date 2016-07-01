@@ -100,8 +100,22 @@ end
 
 
 function Nobu:eventfororder( filterTable )
+	-- DeepPrintTable(filterTable)
+	-- [   VScript   ]:    entindex_ability                	= 0 (number)
+	-- [   VScript   ]:    sequence_number_const           	= 3 (number)
+	-- [   VScript   ]:    queue                           	= 0 (number)
+	-- [   VScript   ]:    units                           	= table: 0x03d8a638 (table)
+	-- [   VScript   ]:    {
+	-- [   VScript   ]:       0                               	= 319 (number)
+	-- [   VScript   ]:    }
+	-- [   VScript   ]:    entindex_target                 	= 0 (number)
+	-- [   VScript   ]:    position_z                      	= 128 (number)
+	-- [   VScript   ]:    position_x                      	= -330.15841674805 (number)
+	-- [   VScript   ]:    order_type                      	= 1 (number)
+	-- [   VScript   ]:    position_y                      	= -505.69201660156 (number)
+	-- [   VScript   ]:    issuer_player_id_const          	= 0 (number)
+	--print(EntIndexToHScript(filterTable.units["0"]):GetPlayerID())	
 	local ordertype = filterTable.order_type 
-	--print("@@@"..tostring(ordertype))
 
 	if ordertype >= 5 and ordertype <= 9 then
 		local f = filterTable

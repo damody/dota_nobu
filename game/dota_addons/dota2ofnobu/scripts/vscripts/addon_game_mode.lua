@@ -7,13 +7,24 @@ Bug:
 print ( '[Nobu] ADDON INIT EXECUTED' )
 
 --【全局變量】
+_G.nobu_debug =  IsInToolsMode() --是否在測試模式
+
 if Nobu == nil then
   _G.Nobu = class({})
 else
   --先Stop事件，為了reload script用
-  for i=1,6 do
-    StopListeningToGameEvent(Nobu.Event[i])
-  end        
+  for i,v in ipairs(Nobu.Event) do
+    StopListeningToGameEvent(v)
+  end
+  -- print(#Nobu.Event)
+
+  --停止filter
+  --GameRules:GetGameModeEntity():ClearDamageFilter()
+  GameRules:GetGameModeEntity():ClearExecuteOrderFilter()
+  GameRules:GetGameModeEntity():ClearModifyGoldFilter()
+  GameRules:GetGameModeEntity():ClearDamageFilter()
+  --GameRules:GetGameModeEntity():ClearAbilityTuningValueFilter()
+
   --重新註冊
   Nobu = nil
   _G.Nobu = class({})
@@ -21,8 +32,6 @@ else
   --重新註冊用
   Script_reload_B = true 
 end
-
-_G.nobu_debug =  true
 
 -- 這個函數其實就是一個pcall，通過這個函數載入lua文件，就可以在載入的時候通過報錯發現程序哪裡錯誤了
 -- 避免遊戲直接崩潰的情況
@@ -79,26 +88,185 @@ require ( "util/Precache" )
 -- require ( "util/nodamage" )
 -- require ( "util/CheckItemModifies")
 --
+
+function Nobu:LevelUP( keys )
+  -- DeepPrintTable(keys)
+  -- [   VScript   ]:    player                            = 1 (number)
+  -- [   VScript   ]:    level                             = 24 (number)
+  -- [   VScript   ]:    splitscreenplayer                 = -1 (number)  
+end
+
+function Nobu:Learn_Ability( keys )
+  -- DeepPrintTable(keys)
+  -- [   VScript          ]:    player                           = 1 (number)
+  -- [   VScript          ]:    abilityname                      = "A06W" (string)
+  -- [   VScript          ]:    splitscreenplayer                = -1 (number)  
+end
+
+function Nobu:Connect_Full( keys )
+  -- DeepPrintTable(keys)
+  -- [   VScript              ]:    PlayerID                         = 0 (number)
+  -- [   VScript              ]:    index                            = 0 (number)
+  -- [   VScript              ]:    userid                           = 1 (number)
+  -- [   VScript              ]:    splitscreenplayer                = -1 (number)  
+end
   
+function Nobu:OnDisconnect( keys ) --代測試
+
+  DeepPrintTable(keys)
+end
+
+function Nobu:OnItemPurchased( keys )
+  -- DeepPrintTable(keys)
+  -- [   VScript              ]:    itemcost                         = 50 (number)
+  -- [   VScript              ]:    itemname                         = "item_tpscroll" (string)
+  -- [   VScript              ]:    PlayerID                         = 0 (number)
+  -- [   VScript              ]:    splitscreenplayer                = -1 (number)  
+end
+
+function Nobu:OnItemPickedUp( keys )
+  -- DeepPrintTable(keys) 
+  -- O 購買物品不會觸發
+  -- [   VScript              ]:    itemname                         = "item_invis_sword" (string)
+  -- [   VScript              ]:    PlayerID                         = 0 (number)
+  -- [   VScript              ]:    splitscreenplayer                = -1 (number)
+  -- [   VScript              ]:    ItemEntityIndex                  = 2529 (number)
+  -- [   VScript              ]:    HeroEntityIndex                  = 2548 (number)  
+end
+
+function Nobu:OnEntityHurt( keys )
+  -- DeepPrintTable(keys)
+  -- O為甚麼要filter外 還有這個傷害事件
+  -- [   VScript              ]:    damagebits                       = 0 (number)
+  -- [   VScript              ]:    entindex_killed                  = 2548 (number)
+  -- [   VScript              ]:    damage                           = 41.65344619751 (number)
+  -- [   VScript              ]:    entindex_attacker                = 306 (number)
+  -- [   VScript              ]:    splitscreenplayer                = -1 (number)     
+end
+
+function Nobu:PlayerConnect( keys )
+  --print("Nobu PlayerConnect")
+  --DeepPrintTable(keys)  
+  -- [   VScript              ]:    address                          = "none" (string)
+  -- [   VScript              ]:    bot                              = 1 (number)
+  -- [   VScript              ]:    userid                           = 2 (number)
+  -- [   VScript              ]:    index                            = 1 (number)
+  -- [   VScript              ]:    xuid                             = 0 (userdata)
+  -- [   VScript              ]:    networkid                        = "BOT" (string)
+  -- [   VScript              ]:    name                             = "Louie Bot" (string)
+  -- [   VScript              ]:    splitscreenplayer                = -1 (number)
+end
+
+function Nobu:PlayerSay( keys ) --代測試
+  
+  DeepPrintTable(keys)     
+end
+
+function Nobu:Item_Changed( keys ) --代測試
+  
+  DeepPrintTable(keys)     
+end
+
+function Nobu:ModifyGoldFilter(filterTable)
+  -- DeepPrintTable(filterTable)
+  -- [   VScript              ]:    reason_const                     = 13 (number)
+  -- [   VScript              ]:    reliable                         = 0 (number)
+  -- [   VScript              ]:    player_id_const                  = 0 (number)
+  -- [   VScript              ]:    gold                             = 61 (number)
+
+  -- Disable gold gain from hero kills
+  -- if filterTable["reason_const"] == DOTA_ModifyGold_HeroKill then
+  --     filterTable["gold"] = 0
+  --     return false
+  -- end
+
+  return true
+end
+
+function Nobu:AbilityTuningValueFilter(filterTable)
+  --DeepPrintTable(filterTable)
+  -- [   VScript              ]:    value                            = 6 (number)
+  -- [   VScript              ]:    entindex_ability_const           = 799 (number)
+  -- [   VScript              ]:    value_name_const                 = "A06W_Duration" (string)
+  -- [   VScript              ]:    entindex_caster_const            = 798 (number)
+
+  -- [   VScript              ]:    value                            = 5 (number)
+  -- [   VScript              ]:    entindex_ability_const           = 786 (number)
+  -- [   VScript              ]:    value_name_const                 = "A06R_SPEED" (string)
+  -- [   VScript              ]:    entindex_caster_const            = 798 (number)
+  --print("Nobu:AbilityTuningValueFilter")
+  return true
+end
+
+function Nobu:SetItemAddedToInventoryFilter(filterTable)
+  --DeepPrintTable(filterTable)
+  -- [   VScript ]:    item_entindex_const               = 830 (number)
+  -- [   VScript ]:    inventory_parent_entindex_const   = 798 (number)
+  -- [   VScript ]:    suggested_slot                    = -1 (number)
+  -- [   VScript ]:    item_parent_entindex_const        = -1 (number)
+  --print("SetItemAddedToInventoryFilter")
+  return true
+end
+
+function Nobu:SetModifyExperienceFilter(filterTable)
+  -- DeepPrintTable(filterTable)
+  -- [   VScript              ]:    reason_const                     = 2 (number)
+  -- [   VScript              ]:    experience                       = 120 (number)
+  -- [   VScript              ]:    player_id_const                  = 0 (number)  
+
+  return true
+end
+
+function Nobu:SetTrackingProjectileFilter(filterTable)
+  --DeepPrintTable(filterTable)
+  -- [   VScript          ]:    is_attack                        = 0 (number)
+  -- [   VScript          ]:    entindex_ability_const           = 330 (number)
+  -- [   VScript          ]:    max_impact_time                  = 0 (number)
+  -- [   VScript          ]:    entindex_target_const            = 495 (number)
+  -- [   VScript          ]:    move_speed                       = 1100 (number)
+  -- [   VScript          ]:    entindex_source_const            = 328 (number)
+  -- [   VScript          ]:    dodgeable                        = 1 (number)
+  -- [   VScript          ]:    expire_time                      = 0 (number)  
+  
+  return true
+end
+
 function Nobu:Init_Event_and_Filter_GameMode()
   --【Filter】
   GameRules:GetGameModeEntity():SetExecuteOrderFilter( Nobu.eventfororder, self )
   GameRules:GetGameModeEntity():SetDamageFilter( Nobu.DamageFilterEvent, self )
+  GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Nobu, "ModifyGoldFilter"), Nobu)
+  GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Nobu, "AbilityTuningValueFilter"), Nobu)
+  GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Nobu, "SetItemAddedToInventoryFilter"), Nobu)  --用来控制物品被放入物品栏时的行为
+  GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Nobu, "SetModifyExperienceFilter"), Nobu)  --經驗值
+  GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Nobu, "SetTrackingProjectileFilter"), Nobu)  --投射物
+
 
   --【Evnet】
   Nobu.Event ={
   ListenToGameEvent('dota_player_gained_level', Nobu.LevelUP, self),
   ListenToGameEvent("dota_player_pick_hero",Nobu.PickHero, self),
   ListenToGameEvent('npc_spawned', Nobu.OnHeroIngame, self)  ,
-  ListenToGameEvent( "entity_killed", Nobu.OnUnitKill, self ),
+  ListenToGameEvent("entity_killed", Nobu.OnUnitKill, self ),
   ListenToGameEvent("player_chat",Nobu.Chat,self), --玩家對話事件
-  --ListenToGameEvent( "dota_item_picked_up", test, self )
   --ListenToGameEvent( "item_purchased", test, self ) --false
-  --ListenToGameEvent( "dota_item_purchased", test, self ) 
   --ListenToGameEvent( "dota_item_used", test, self ) --false
-  --ListenToGameEvent( "dota_inventory_item_changed", test, self )
-  ListenToGameEvent("game_rules_state_change", Nobu.OnGameRulesStateChange , self)  --監聽遊戲進度
+  --ListenToGameEvent("dota_inventory_item_changed", Nobu.Item_Changed, self ), --false
+  ListenToGameEvent("game_rules_state_change", Nobu.OnGameRulesStateChange , self),  --監聽遊戲進度
+  ListenToGameEvent("dota_player_gained_level", Nobu.LevelUP, self),   --升等事件
+  ListenToGameEvent('dota_player_learned_ability', Nobu.Learn_Ability, self),  --學習技能
+  ListenToGameEvent('player_connect_full', Nobu.Connect_Full, self) , --連結完成(遊戲內大廳)
+  ListenToGameEvent('player_disconnect', Dynamic_Wrap(Nobu, 'OnDisconnect'), self)  , 
+  ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Nobu, 'OnItemPurchased'), self) , --購買物品事件 
+  ListenToGameEvent('dota_item_picked_up', Dynamic_Wrap(Nobu, 'OnItemPickedUp'), self) ,
+  ListenToGameEvent('player_changename', Dynamic_Wrap(Nobu, 'OnPlayerChangedName'), self), --?
+  ListenToGameEvent('player_connect', Dynamic_Wrap(Nobu, 'PlayerConnect'), self), --?
+  --ListenToGameEvent('player_say', Dynamic_Wrap(Nobu, 'PlayerSay'), self), --?
+  --ListenToGameEvent('dota_pause_event', Dynamic_Wrap(Nobu, 'Pause'), self), --無效
+
+  ListenToGameEvent('entity_hurt', Dynamic_Wrap(Nobu, 'OnEntityHurt'), self) --傷害事件
   }
+
 end
 
 function Nobu:OnGameRulesStateChange( keys )
@@ -127,22 +295,32 @@ end
 
 function Nobu:InitGameMode()
   print( "[Nobu] Nobu:InitGameMode is loaded." )
+
   --【Varible】
-  local GameMode = GameRules:GetGameModeEntity()
+  _G.GameMap = GetMapName()
+  local GameMode = GameRules:GetGameModeEntity()   
+
+  --【模式判斷】  
+  if _G.GameMap == "" then
+  end
 
   --【Setup rules】
   -- --LimitPathingSearchDepth(0.5)
   -- --GameRules:SetHeroRespawnEnabled( false )
   GameRules:SetUseUniversalShopMode( false ) --开启/关闭全地图商店模式
   -- GameRules:SetSameHeroSelectionEnabled( true )
-  GameRules:SetHeroSelectionTime( 15 )--設定選擇英雄時間
-  GameRules:SetPreGameTime( 1 )--設置遊戲準備時間
+  GameRules:SetHeroSelectionTime( 0 )--設定選擇英雄時間
+  GameRules:SetPreGameTime( 50 )--設置遊戲準備時間
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
   GameRules:SetGoldPerTick(6)-- 設置金錢
   GameRules:SetGoldTickTime(1)--金錢跳錢秒數
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
+  GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
+  GameRules:SetCustomGameEndDelay(30) --遊戲結束時間
+  GameRules:SetCustomVictoryMessageDuration(30)  --遊戲結束發送訊息時間
+  -- GameRules:SetCustomGameSetupTimeout(20)   
   -- GameRules:SetHeroMinimapIconScale( 1 )
   -- GameRules:SetCreepMinimapIconScale( 1 )
   -- GameRules:SetRuneMinimapIconScale( 1 )
@@ -150,25 +328,54 @@ function Nobu:InitGameMode()
   -- GameRules:SetHideKillMessageHeaders( true )
   -- GameRules:EnableCustomGameSetupAutoLaunch( false )
 
-  --【Set game mode rules】
+  --【Set game GameMode rules】
   -- GameMode = GameRules:GetGameModeEntity()        
   GameMode:SetRecommendedItemsDisabled( true )--禁止推薦
   GameMode:SetBuybackEnabled( false ) --關閉英雄買活功能
   -- GameMode:SetTopBarTeamValuesOverride ( true )
-  -- GameMode:SetTopBarTeamValuesVisible( true )
+  --GameMode:SetTopBarTeamValuesVisible( true ) --?
   -- GameMode:SetUnseenFogOfWarEnabled( UNSEEN_FOG_ENABLED ) 
   GameMode:SetTowerBackdoorProtectionEnabled( false )--關閉偷塔保護
   -- GameMode:SetGoldSoundDisabled( false )
   GameMode:SetRemoveIllusionsOnDeath( true )--死亡會不會有陰影
   --GameMode:SetAnnouncerDisabled( true )
   GameMode:SetLoseGoldOnDeath( false )--死亡會不會掉錢
-  GameMode:SetCameraDistanceOverride( 1234 )--攝像頭距離
+  --GameMode:SetCameraDistanceOverride( 1234 )--攝像頭距離
   GameMode:SetUseCustomHeroLevels ( true )-- 允許自定義英雄等級
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
-  GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
+  if _G.nobu_debug then
+    GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
+  end
   GameMode:SetStashPurchasingDisabled( true )-- 是否关闭/开启储藏处购买功能
   GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
-  --GameMode:SetCustomGameForceHero("npc_dota_hero_dragon_knight") --強迫選擇英雄 (可以跳過選角畫面)
+  GameMode:SetAnnouncerDisabled(false) --禁止播音員
+  GameMode:SetFountainConstantManaRegen(-1) --溫泉回魔(固定值)
+  GameMode:SetFountainPercentageHealthRegen(-1) --溫泉回血(百分比)
+  GameMode:SetFountainPercentageManaRegen(-1) --溫泉回魔(百分比)
+  GameMode:SetMaximumAttackSpeed(400) --最大攻擊速度
+  GameMode:SetMinimumAttackSpeed(0) --最小攻擊速度
+  GameMode:SetGoldSoundDisabled( false ) 
+  GameMode:SetStashPurchasingDisabled ( false ) --倉庫
+  GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢
+  --GameMode:SetCustomGameForceHero("npc_dota_hero_dragon_knight") --強迫選擇英雄 (可以跳過選角畫面)  
+
+  --【HUD】
+  -- GameMode:SetHUDVisible(0,  false) --Clock
+  -- GameMode:SetHUDVisible(1,  false)
+  -- GameMode:SetHUDVisible(2,  false)
+  -- GameMode:SetHUDVisible(3,  false) --Action Panel
+  -- GameMode:SetHUDVisible(4,  false) --Minimap
+  -- GameMode:SetHUDVisible(5,  false) --Inventory 
+  -- GameMode:SetHUDVisible(6,  false)
+  -- GameMode:SetHUDVisible(7,  false) 
+  -- GameMode:SetHUDVisible(8,  false) 
+  -- GameMode:SetHUDVisible(9,  false)
+  -- GameMode:SetHUDVisible(11, false)
+  -- GameMode:SetHUDVisible(12, false)
+ 
+  --【隨機種子】Random seed for RNG
+  local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
+  math.randomseed(tonumber(timeTxt))  
 
   --【經驗值設定】
     MaxLevel = 25 --最大等級
@@ -190,7 +397,7 @@ function Activate()
     -- StopListeningToAllGameEvents(Nobu:GetEntityHandle())
 
     AMHCInit()
-    Nobu:Server() --Server Init
+    --Nobu:Server() --Server Init
     Nobu:InitGameMode() 
     Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
   -- end

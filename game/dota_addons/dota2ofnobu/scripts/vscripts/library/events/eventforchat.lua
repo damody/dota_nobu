@@ -5,10 +5,17 @@ BUG
 
 local function chat_of_test(keys)
 	print("[Nobu] Test")
+	--DeepPrintTable(keys)
+	-- [   VScript ]:    playerid                        	= 0 (number)
+	-- [   VScript ]:    text                            	= "3" (string)
+	-- [   VScript ]:    teamonly                        	= 1 (number)
+	-- [   VScript ]:    userid                          	= 1 (number)
+	-- [   VScript ]:    splitscreenplayer               	= -1 (number)	
+
 	--local id    = keys.player --BUG:在講話事件裡，讀取不到玩家，是整數。
 	local s   	   = keys.text	
 	local id  	   = 1 --keys.userid --BUG:會1.2的調換，不知道為甚麼
-	local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
+	local p 	     = PlayerResource:GetPlayer(keys.playerid)--可以用索引轉換玩家方式，來捕捉玩家
 	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄 
 	local point    = caster:GetAbsOrigin()	
 	-- if string.match(s,"test") then
@@ -68,8 +75,10 @@ local function chat_of_test(keys)
 	end
 
 	if s == "shps" then
-		print("shps")
+		print(IsInToolsMode())
 	end
+
+
 
 	-- if s == "stop_event" then
 	-- 	--StopListeningToGameEvent(Nobu.Event)
