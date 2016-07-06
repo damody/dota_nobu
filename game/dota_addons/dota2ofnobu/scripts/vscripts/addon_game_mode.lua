@@ -87,13 +87,25 @@ require ( "util/Precache" )
 -- require ( "util/collision" )
 -- require ( "util/nodamage" )
 -- require ( "util/CheckItemModifies")
+
+--require('internal/util')
+require('gamemode')
 --
 
 function Nobu:LevelUP( keys )
   -- DeepPrintTable(keys)
   -- [   VScript   ]:    player                            = 1 (number)
   -- [   VScript   ]:    level                             = 24 (number)
-  -- [   VScript   ]:    splitscreenplayer                 = -1 (number)  
+  -- [   VScript   ]:    splitscreenplayer                 = -1 (number)
+  local p     = PlayerResource:GetPlayer(keys.player-1)
+  local caster     = p:GetAssignedHero()
+  local name = caster:GetUnitName()
+  if name == "npc_dota_hero_bristleback"  then
+    if keys.level == 8 then
+      local ability = caster:FindAbilityByName("B15D")
+      ability:SetLevel(1)
+    end
+  end 
 end
 
 function Nobu:Learn_Ability( keys )
@@ -227,9 +239,33 @@ function Nobu:SetTrackingProjectileFilter(filterTable)
   -- [   VScript          ]:    entindex_source_const            = 328 (number)
   -- [   VScript          ]:    dodgeable                        = 1 (number)
   -- [   VScript          ]:    expire_time                      = 0 (number)  
-  
+
   return true
 end
+
+
+function Nobu:Attachment_UpdateUnit(args)
+  --DebugPrint('Attachment_UpdateUnit')
+  --DebugPrintTable(args)
+
+  local unit = EntIndexToHScript(args.index)
+  print("args")
+  -- if not unit then
+  --   --Notify(args.PlayerID, "Invalid Unit.")
+  --   return
+  -- end
+
+  -- local cosmetics = {}
+  -- for i,child in ipairs(unit:GetChildren()) do
+  --   if child:GetClassname() == "dota_item_wearable" and child:GetModelName() ~= "" then
+  --     table.insert(cosmetics, child:GetModelName())
+  --   end
+  -- end
+
+  -- --DebugPrintTable(cosmetics)
+  -- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "attachment_cosmetic_list", cosmetics )
+end
+
 
 function Nobu:Init_Event_and_Filter_GameMode()
   --【Filter】
@@ -240,7 +276,6 @@ function Nobu:Init_Event_and_Filter_GameMode()
   GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Nobu, "SetItemAddedToInventoryFilter"), Nobu)  --用来控制物品被放入物品栏时的行为
   GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Nobu, "SetModifyExperienceFilter"), Nobu)  --經驗值
   GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Nobu, "SetTrackingProjectileFilter"), Nobu)  --投射物
-
 
   --【Evnet】
   Nobu.Event ={
@@ -267,6 +302,9 @@ function Nobu:Init_Event_and_Filter_GameMode()
   ListenToGameEvent('entity_hurt', Dynamic_Wrap(Nobu, 'OnEntityHurt'), self) --傷害事件
   }
 
+  --【Js Evnet】
+  -- CustomGameEventManager:RegisterListener("Attachment_UpdateUnit", Dynamic_Wrap(Nobu, "Attachment_UpdateUnit"))
+  
 end
 
 function Nobu:OnGameRulesStateChange( keys )
@@ -286,6 +324,7 @@ function Nobu:OnGameRulesStateChange( keys )
       GameRules:SendCustomMessage("作者: David Hund & Damody & 螺絲  | 美工：阿荒老師 | 顧問：FN" , DOTA_TEAM_GOODGUYS, 0)
       GameRules:SendCustomMessage("dota2信長目前還在測試階段 請多見諒", DOTA_TEAM_GOODGUYS, 0)
   end
+
   --遊戲開始
   if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
     --出兵觸發
@@ -332,7 +371,7 @@ function Nobu:InitGameMode()
   -- GameMode = GameRules:GetGameModeEntity()        
   GameMode:SetRecommendedItemsDisabled( true )--禁止推薦
   GameMode:SetBuybackEnabled( false ) --關閉英雄買活功能
-  -- GameMode:SetTopBarTeamValuesOverride ( true )
+  GameMode:SetTopBarTeamValuesOverride ( true )
   --GameMode:SetTopBarTeamValuesVisible( true ) --?
   -- GameMode:SetUnseenFogOfWarEnabled( UNSEEN_FOG_ENABLED ) 
   GameMode:SetTowerBackdoorProtectionEnabled( false )--關閉偷塔保護
@@ -343,6 +382,7 @@ function Nobu:InitGameMode()
   --GameMode:SetCameraDistanceOverride( 1234 )--攝像頭距離
   GameMode:SetUseCustomHeroLevels ( true )-- 允許自定義英雄等級
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
+
   if _G.nobu_debug then
     GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
   end
@@ -397,7 +437,7 @@ function Activate()
     -- StopListeningToAllGameEvents(Nobu:GetEntityHandle())
 
     AMHCInit()
-    --Nobu:Server() --Server Init
+    -- Nobu:Server() --Server Init
     Nobu:InitGameMode() 
     Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
   -- end
@@ -417,7 +457,8 @@ function Precache( context )
     "particles/b24t/b01t.vpcf",
     "particles/b24w/b24w.vpcf" ,
     "particles/units/heroes/hero_tiny/tiny_avalanche.vpcf",
-    "particles/b24t3/b24t3.vpcf"
+    "particles/b24t3/b24t3.vpcf",
+    "particles/b13e/b13e.vpcf"
 
     }
     for i,v in ipairs(particle_Precache_Table) do

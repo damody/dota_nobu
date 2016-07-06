@@ -1,61 +1,43 @@
 function B15W_on_spell_start(keys)
-	-- keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_item_black_king_bar_datadriven_active", nil)
-	keys.caster:EmitSound("DOTA_Item.BlackKingBar.Activate")
-	
-	local final_model_scale = (30 / 100) + 1.2  --This will be something like 1.3.
-	local model_scale_increase_per_interval = 100 / (final_model_scale - 1)
-	local duration = keys.ability:GetLevelSpecialValueFor("duration", keys.ability:GetLevel() - 1 )
-
-	-- --Scale the model up over time.
-	-- for i=1,100 do
-	-- 	Timers:CreateTimer(i/75, 
-	-- 	function()
-	-- 		keys.caster:SetModelScale(1.2 + i/model_scale_increase_per_interval)
-	-- 	end)
-	-- end
-
-	-- --Scale the model back down around the time the duration ends.
-	-- for i=1,100 do
-	-- 	Timers:CreateTimer(duration - 1 + (i/50),
-	-- 	function()
-	-- 		keys.caster:SetModelScale(final_model_scale - i/model_scale_increase_per_interval)
-	-- 	end)
-	-- end
 end
 
-function B15R(keys)
+function B15E( keys )
+	--【Basic】
 	local caster = keys.caster
-	local level  = keys.ability:GetLevel()
-	print("@@ B15R")
-	print(caster:GetUnitName())
-	caster:AddNewModifier(caster, keys.ability, "modifier_item_stout_shield", { damage_reduction=1000, damage_cleanse=600, damage_reset_interval=6.0 })
-	-- caster:AddNewModifier(caster,self,"modifier_tidehunter_kraken_shell",{damage_reduction=100})
-	if caster:FindModifierByName("modifier_item_stout_shield") ~= nil then
-		print("@@ B15R2")
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local spe_value = ability:GetManaCost(level + 1)
+
+	--【扣魔】
+	if caster:GetMana() < spe_value then
+		caster:CastAbilityToggle(ability,-1)		
+		caster:SetMana(0)
+	else
+		caster:SetMana(caster:GetMaxMana() - spe_value)
 	end
 end
 
+function B15R(keys)
+end
 
 function B15R_Damage(keys)
+	--【Basic】	
 	local caster = keys.caster
 	local level  = keys.ability:GetLevel()
 	local damage = keys.DamageTaken
-	local damagetype = caster.damagetype
 	local block_dmg = keys.ability:GetLevelSpecialValueFor("Damage_Income", keys.ability:GetLevel() - 1 )
 
-	print("damage2")
-
+	--【Damage】
+	local damagetype = caster.damagetype
 	if damagetype == 1 then
 		if damage < caster:GetHealth() then
-			--物理傷害
+			--物理傷害減免
 			AMHC:CreateNumberEffect(caster,block_dmg,1,AMHC.MSG_BLOCK ,{124,124,124},7)
 
 			if block_dmg < damage then
-				--caster:Heal(block_dmg,caster)
 				caster:SetHealth(caster:GetHealth() + block_dmg)
 			else
 				caster:SetHealth(caster:GetHealth() + damage)
-				--caster:Heal(damage,caster)
 			end
 		end
 	end
@@ -65,7 +47,7 @@ end
 --[[Author: Pizzalol
 	Date: 04.03.2015.
 	Creates additional attack projectiles for units within the specified radius around the caster]]
-function SplitShotLaunch( keys )
+function B15D_SplitShotLaunch( keys )
 	local caster = keys.caster
 	local caster_location = caster:GetAbsOrigin()
 	local ability = keys.ability
@@ -109,7 +91,7 @@ function SplitShotLaunch( keys )
 end
 
 -- Apply the auto attack damage to the hit unit
-function SplitShotDamage( keys )
+function B15D_SplitShotDamage( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
@@ -125,7 +107,7 @@ function SplitShotDamage( keys )
 end
 
 
-function create_illusion(keys, illusion_origin, illusion_incoming_damage, illusion_outgoing_damage, illusion_duration)	
+function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, illusion_outgoing_damage, illusion_duration)	
 	local player_id = keys.caster:GetPlayerID()
 	local caster_team = keys.caster:GetTeam()
 	
@@ -210,9 +192,9 @@ function B15T(keys)
 				end
 
 				if keys.caster:IsRangedAttacker() then  --We don't have to worry about illusions switching from melee to ranged or vice versa because they can't use abilities.
-					local illusion1 = create_illusion(keys, illusion1_origin, keys.IllusionIncomingDamageRanged, keys.IllusionOutgoingDamageRanged, keys.IllusionDuration)
+					local illusion1 = B15D_create_illusion(keys, illusion1_origin, keys.IllusionIncomingDamageRanged, keys.IllusionOutgoingDamageRanged, keys.IllusionDuration)
 				else  --keys.caster is melee.
-					local illusion1 = create_illusion(keys, illusion1_origin, keys.IllusionIncomingDamageMelee, keys.IllusionOutgoingDamageMelee, keys.IllusionDuration)
+					local illusion1 = B15D_create_illusion(keys, illusion1_origin, keys.IllusionIncomingDamageMelee, keys.IllusionOutgoingDamageMelee, keys.IllusionDuration)
 				end	
 
 				if num < 0 or not keys.caster:IsAlive() then
