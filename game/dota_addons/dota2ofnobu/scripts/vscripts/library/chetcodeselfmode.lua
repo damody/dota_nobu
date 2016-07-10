@@ -57,6 +57,12 @@ local point    = hero:GetAbsOrigin()
       end
   end
 
+  if s == "gg" then
+    GameRules:SetCustomGameEndDelay(1)
+    GameRules:SetCustomVictoryMessage("贏三小啦幹")
+    GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+  end
+
   if s == "test" then
     --UnitSilenceTarget( hero,hero,10)
     UnitMagicImmune( hero,hero,10)
@@ -146,8 +152,11 @@ local point    = hero:GetAbsOrigin()
     hero:SetMana(10)
   end
 
-  if s == "hp100" then
-    hero:SetHealth(100)
+   if string.match(s,"hp") then
+      local hp = tonumber(string.match(s, '%d+'))
+      if (hp ~= nil and hp > 0) then
+        hero:SetHealth(hp)
+      end
   end  
 
   if s == "fog" then

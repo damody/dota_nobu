@@ -26,7 +26,7 @@
 
 ]]
 
-if GetMapName() == GetMapName() then
+if GetMapName() == "" then
   print("GetMapName")
 
   if not PlayGround then

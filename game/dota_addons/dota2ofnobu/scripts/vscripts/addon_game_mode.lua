@@ -313,7 +313,9 @@ function Nobu:OnGameRulesStateChange( keys )
   --獲取遊戲進度
   local newState = GameRules:State_Get()
   print(newState)
-
+  if newState == DOTA_GAMERULES_STATE_POST_GAME then
+    --Nobu:CloseRoom()
+  end
   --選擇英雄階段
   if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
   end
@@ -349,7 +351,7 @@ function Nobu:InitGameMode()
   GameRules:SetUseUniversalShopMode( false ) --开启/关闭全地图商店模式
   -- GameRules:SetSameHeroSelectionEnabled( true )
   GameRules:SetHeroSelectionTime( 0 )--設定選擇英雄時間
-  GameRules:SetPreGameTime( 50 )--設置遊戲準備時間
+  GameRules:SetPreGameTime( 10 )--設置遊戲準備時間
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
@@ -358,7 +360,7 @@ function Nobu:InitGameMode()
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
   GameRules:SetCustomGameEndDelay(30) --遊戲結束時間
-  GameRules:SetCustomVictoryMessageDuration(30)  --遊戲結束發送訊息時間
+  GameRules:SetCustomVictoryMessageDuration(5)  --遊戲結束發送訊息時間
   -- GameRules:SetCustomGameSetupTimeout(20)   
   -- GameRules:SetHeroMinimapIconScale( 1 )
   -- GameRules:SetCreepMinimapIconScale( 1 )
@@ -437,7 +439,7 @@ function Activate()
     -- StopListeningToAllGameEvents(Nobu:GetEntityHandle())
 
     AMHCInit()
-    -- Nobu:Server() --Server Init
+    --Nobu:OpenRoom() --Server Init
     Nobu:InitGameMode() 
     Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
   -- end

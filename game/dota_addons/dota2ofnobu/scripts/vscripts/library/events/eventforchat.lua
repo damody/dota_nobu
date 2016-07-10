@@ -40,6 +40,11 @@ local function chat_of_test(keys)
 		end
 	end	
 
+	if s == "gg" then
+		GameRules:SetCustomGameEndDelay(1)
+		GameRules:SetCustomVictoryMessage("贏三小啦幹")
+		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+	end
 	--【測試指令】
 	if s == "ShuaGuai" then
 		print("ShuaGuai")
@@ -48,10 +53,16 @@ local function chat_of_test(keys)
 		ShuaGuai_Of_C( )
 	elseif s == "hp" then
 		print("nobu"..id)
-		caster:SetHealth(caster:GetMaxHealth())
+		Timers:CreateTimer(function()
+			caster:SetHealth(caster:GetMaxHealth())
+			return 0.1
+		end)
 	elseif s == "mp" then
 		print("nobu"..id)
-		caster:SetMana(caster:GetMaxMana())	
+		Timers:CreateTimer(function()
+			caster:SetMana(caster:GetMaxMana())	
+			return 0.1
+		end)
 	elseif s == "cd" then	
 		--【Timer】
 		Timers:CreateTimer(function()
@@ -70,7 +81,7 @@ local function chat_of_test(keys)
 					item:EndCooldown()
 				end
 			end
-			return 1	
+			return 0.1	
 		end)
 	end
 

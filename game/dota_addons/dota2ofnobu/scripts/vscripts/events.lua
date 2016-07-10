@@ -13,6 +13,7 @@ function GameMode:OnDisconnect(keys)
 end
 -- The overall game state has changed
 function GameMode:OnGameRulesStateChange(keys)
+  print("GameRules State Changed")
   DebugPrint("[BAREBONES] GameRules State Changed")
   DebugPrintTable(keys)
 

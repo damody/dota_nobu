@@ -1,7 +1,9 @@
 print ('[Nobu] main lua script Starting..' )
 
-function SendHTTPRequestBan(method, values, callback)
-	local req = CreateHTTPRequest( method, "http://218.161.33.54/dota2" )
+localplayerID = 0
+
+function SendHTTPRequest(path, method, values, callback)
+	local req = CreateHTTPRequest( method, "http://192.168.1.105/"..path )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end
@@ -10,89 +12,81 @@ function SendHTTPRequestBan(method, values, callback)
 	end)
 end
 
-
-function SendHTTPRequestOpenRoom(method, values, callback)
-	local req = CreateHTTPRequest( method, "http://218.161.33.54/open_room" )
-	for key, value in pairs(values) do
-		req:SetHTTPRequestGetOrPostParameter(key, value)
+function PlayerCanPlay(callback)
+	local pID = localplayerID
+	local steamID = PlayerResource:GetSteamAccountID(pID)
+	if (steamID ~= 0) then
+		steamID = tostring(steamID)
+		SendHTTPRequest("check_can_play", "POST",
+			{id = steamID}, function(res)
+				if (string.match(res, "error")) then
+					callback()
+				end
+			end)
 	end
-	req:Send(function(result)
-		callback(result.Body)
-	end)
+    return true
 end
 
-function SendHTTPRequestCloseRoom(method, values, callback)
-	local req = CreateHTTPRequest( method, "http://218.161.33.54/close_room" )
-	for key, value in pairs(values) do
-		req:SetHTTPRequestGetOrPostParameter(key, value)
-	end
-	req:Send(function(result)
-		callback(result.Body)
-	end)
+function GameCanPlay(callback)
+	for pID = 0, 9 do
+    	local steamID = PlayerResource:GetSteamAccountID(pID)
+    	if (steamID ~= 0) then
+	    	steamID = tostring(steamID)
+	    	SendHTTPRequest("check_can_play", "POST",
+				{id = steamID}, function(res)
+					if (string.match(res, "error")) then
+						callback(steamID)
+					end
+				end)
+	    end
+    end
+    return true
 end
 
-function SendHTTPRequestAddOnlineUser(method, values, callback)
-	local req = CreateHTTPRequest( method, "http://218.161.33.54/add_online_user" )
-	for key, value in pairs(values) do
-		req:SetHTTPRequestGetOrPostParameter(key, value)
-	end
-	req:Send(function(result)
-		callback(result.Body)
-	end)
-end
-
+local cannotplay = {}
 function Nobu:OnPlayerConnectFull(keys)
     local player = PlayerInstanceFromIndex(keys.index + 1)
 	local pID = keys.index
+	localplayerID = pID
 	local steamID = PlayerResource:GetSteamAccountID(pID)
-    print("steamID "..steamID)
-
-    ShowMessage("跳狗")
-	Msg("就是你")
-	GameRules:SendCustomMessage("#別再跳了", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-	GameRules:SendCustomMessage("#你媽媽", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-	GameRules:SendCustomMessage("#會傷心的", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-	SendHTTPRequestAddOnlineUser("POST",
-		{
-			id = tostring(steamID),
-		},
-		function(result)
-			print(result)
+    print("keys.index"..keys.index.." steamID "..steamID)
+    PlayerCanPlay(function()
+	    	player:Destroy()
+	    end)
+    
+	local canplay = GameCanPlay(function(sid)
+			table.insert(cannotplay, sid)
+		end)
+	Timers:CreateTimer( 5, function()
+		if (#cannotplay > 0) then
+		    GameRules:SetCustomGameEndDelay(1)
+		    GameRules:SetCustomVictoryMessage("贏三小啦幹")
+		    GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end
-		)
-	SendHTTPRequestBan("POST",
-		{
-			id = tostring(steamID),
-		}, 
-		function(result)
-			print(result)
-			if (result == "error") then
-				player:Destroy()
-			end
-			-- Decode response into a lua table
-			local resultTable = {}
-			if not pcall(function()
-				resultTable = JSON:decode(result)
-			end) then
-				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
-			end
-
-			-- If we get an error response, successBool should be false
-			if resultTable ~= nil and resultTable["errors"] ~= nil then
-				callback(resultTable["errors"], false)
-				return
-			end
-
-			-- If we get a success response, successBool should be true
-			if resultTable ~= nil and resultTable["data"] ~= nil  then
-				callback(resultTable["data"], true)
-				return
-			end
-		end
-	)
+		end)
 end
 
-function Nobu:Server()
+function Nobu:CloseRoom()
+	local steamID = PlayerResource:GetSteamAccountID(0)
+	steamID = tostring(steamID)
+	local indata = {id = steamID, winteam = "15"}
+	for i = 1, 10 do
+		local player = PlayerInstanceFromIndex(i)
+		if (player ~= nil) then
+			local hero = player:GetAssignedHero()
+			indata["id_"..i.."_k"] = tostring(hero:GetKills())
+			indata["id_"..i.."_d"] = tostring(hero:GetDeaths())
+			indata["id_"..i.."_a"] = tostring(hero:GetAssists())
+		end
+	end
+
+	SendHTTPRequest("close_room", "POST",
+		indata, function(res)
+			print(res)
+		end)
+end
+
+function Nobu:OpenRoom()
 	
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(Nobu, 'OnPlayerConnectFull'), self)
 	-- 產生隨機數種子，主要是為了程序中的隨機數考慮
@@ -100,40 +94,37 @@ function Nobu:Server()
 	math.randomseed(tonumber(timeTxt))--GetSystemTime	string GetSystemTime()	獲取真實世界的時間
 	SendToConsole("r_farz 60000")
 
-    Timers:CreateTimer( 5, function()
-    	local ids = {}
-    	for pID = 0, 9 do
-	    	local steamID = PlayerResource:GetSteamAccountID(pID)
-	    	ids["id_"..(pID+1)] = tostring(steamID)
-	    end
-  		SendHTTPRequestOpenRoom("POST",
-		ids, 
-		function(result)
-			print(result)
-			if (result == "error") then
-				player:Destroy()
-			end
-			-- Decode response into a lua table
-			local resultTable = {}
-			if not pcall(function()
-				resultTable = JSON:decode(result)
-			end) then
-				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
-			end
+    Timers:CreateTimer( 10, function()
+    	if (#cannotplay == 0) then
+	    	local ids = {}
+	    	for pID = 0, 9 do
+		    	local steamID = PlayerResource:GetSteamAccountID(pID)
+		    	ids["id_"..(pID+1)] = tostring(steamID)
+		    end
+	  		SendHTTPRequest("open_room", "POST",
+			ids, 
+			function(result)
+				-- Decode response into a lua table
+				local resultTable = {}
+				if not pcall(function()
+					resultTable = JSON:decode(result)
+				end) then
+					Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+				end
 
-			-- If we get an error response, successBool should be false
-			if resultTable ~= nil and resultTable["errors"] ~= nil then
-				callback(resultTable["errors"], false)
-				return
-			end
+				-- If we get an error response, successBool should be false
+				if resultTable ~= nil and resultTable["errors"] ~= nil then
+					callback(resultTable["errors"], false)
+					return
+				end
 
-			-- If we get a success response, successBool should be true
-			if resultTable ~= nil and resultTable["data"] ~= nil  then
-				callback(resultTable["data"], true)
-				return
-			end
-		end )
-
+				-- If we get a success response, successBool should be true
+				if resultTable ~= nil and resultTable["data"] ~= nil  then
+					callback(resultTable["data"], true)
+					return
+				end
+			end )
+		end
       return nil
     end)
 end
