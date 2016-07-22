@@ -3,7 +3,7 @@ print ('[Nobu] main lua script Starting..' )
 localplayerID = 0
 
 function SendHTTPRequest(path, method, values, callback)
-	local req = CreateHTTPRequest( method, "http://192.168.1.105/"..path )
+	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end
@@ -74,6 +74,8 @@ function Nobu:CloseRoom()
 		local player = PlayerInstanceFromIndex(i)
 		if (player ~= nil) then
 			local hero = player:GetAssignedHero()
+			DeepPrintTable(hero)
+			print("DeepPrintTable(hero)")
 			indata["id_"..i.."_k"] = tostring(hero:GetKills())
 			indata["id_"..i.."_d"] = tostring(hero:GetDeaths())
 			indata["id_"..i.."_a"] = tostring(hero:GetAssists())

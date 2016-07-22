@@ -266,7 +266,6 @@ function Nobu:Attachment_UpdateUnit(args)
   -- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "attachment_cosmetic_list", cosmetics )
 end
 
-
 function Nobu:Init_Event_and_Filter_GameMode()
   --【Filter】
   GameRules:GetGameModeEntity():SetExecuteOrderFilter( Nobu.eventfororder, self )
@@ -314,7 +313,7 @@ function Nobu:OnGameRulesStateChange( keys )
   local newState = GameRules:State_Get()
   print(newState)
   if newState == DOTA_GAMERULES_STATE_POST_GAME then
-    --Nobu:CloseRoom()
+    Nobu:CloseRoom()
   end
   --選擇英雄階段
   if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
@@ -439,7 +438,7 @@ function Activate()
     -- StopListeningToAllGameEvents(Nobu:GetEntityHandle())
 
     AMHCInit()
-    --Nobu:OpenRoom() --Server Init
+    Nobu:OpenRoom() --Server Init
     Nobu:InitGameMode() 
     Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
   -- end

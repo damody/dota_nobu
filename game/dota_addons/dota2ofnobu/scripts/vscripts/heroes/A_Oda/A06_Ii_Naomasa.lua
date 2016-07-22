@@ -1,4 +1,4 @@
---global
+
 	A06E_B = {}
 
 function A06R_OnAttack(keys)
@@ -23,7 +23,7 @@ function A06R_OnAttack(keys)
 			ability:SetActivated(true)
 		end
 	end
-	
+	print(_VERSION)
 	A06E_B[id] = true
 end
 
