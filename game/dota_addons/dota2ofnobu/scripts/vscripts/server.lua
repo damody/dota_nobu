@@ -51,7 +51,7 @@ function Nobu:OnPlayerConnectFull(keys)
 	local pID = keys.index
 	localplayerID = pID
 	local steamID = PlayerResource:GetSteamAccountID(pID)
-	if (steamID == PlayerResource:GetSteamAccountID(0))
+	if (steamID == PlayerResource:GetSteamAccountID(0)) then
 		_G.homeisme = true
 	end
     print("keys.index"..keys.index.." steamID "..steamID)
@@ -76,22 +76,24 @@ for pID = 0, 9 do
 		if (_G.homeisme) then
 			for pID = 0, 9 do
 				local steamID = PlayerResource:GetSteamAccountID(pID)
-				GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-				local res = PlayerResource:GetConnectionState(pID)
-				if (res == 3) then
-					_G.afkcount[pID] = _G.afkcount[pID] + 1
-				end
-				if (_G.afkcount[pID] > 10) then
-					_G.afkcount[pID] = 0
-					GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
-					SendHTTPRequest("afk", "POST",
-			            {
-			              id = tostring(steamID),
-			            }, 
-			            function(result)
-			              --print(result)
-			            end
-			          )
+				if steamID ~= 0 then
+					--GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+					local res = PlayerResource:GetConnectionState(pID)
+					if (res == 3) then
+						_G.afkcount[pID] = _G.afkcount[pID] + 1
+					end
+					if (_G.afkcount[pID] > 10) then
+						_G.afkcount[pID] = 0
+						GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
+						SendHTTPRequest("afk", "POST",
+				            {
+				              id = tostring(steamID),
+				            }, 
+				            function(result)
+				              --print(result)
+				            end
+				          )
+					end
 				end
 			end
 			return 1
