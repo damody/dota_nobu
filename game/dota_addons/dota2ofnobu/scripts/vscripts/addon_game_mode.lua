@@ -8,7 +8,7 @@ print ( '[Nobu] ADDON INIT EXECUTED' )
 
 --【全局變量】
 _G.nobu_debug =  true--IsInToolsMode() --是否在測試模式
-_G.nobu_server_b = false
+_G.nobu_server_b = true
 
 if Nobu == nil then
   _G.Nobu = class({})
@@ -148,6 +148,10 @@ function Nobu:OnGameRulesStateChange( keys )
   --獲取遊戲進度
   local newState = GameRules:State_Get()
   print(newState)
+
+  if newState == DOTA_GAMERULES_STATE_POST_GAME and _G.nobu_server_b then
+    Nobu:CloseRoom()
+  end
 
   --選擇英雄階段
   if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then

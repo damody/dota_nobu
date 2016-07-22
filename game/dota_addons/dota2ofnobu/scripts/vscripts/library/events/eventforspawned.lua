@@ -35,15 +35,14 @@ function Nobu:OnHeroIngame( keys )
   end
 end
 
-
-function SendHTTPRequestAFK(method, values, callback)
-  local req = CreateHTTPRequest( method, "http://140.114.235.19/afk" )
-  for key, value in pairs(values) do
-    req:SetHTTPRequestGetOrPostParameter(key, value)
-  end
-  req:Send(function(result)
-    callback(result.Body)
-  end)
+function SendHTTPRequest(path, method, values, callback)
+	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
+	for key, value in pairs(values) do
+		req:SetHTTPRequestGetOrPostParameter(key, value)
+	end
+	req:Send(function(result)
+		callback(result.Body)
+	end)
 end
 
 function AddAFKTimer( hero )
@@ -63,7 +62,7 @@ function AddAFKTimer( hero )
           local steamID = PlayerResource:GetSteamAccountID(pID)
           print("steamID "..steamID)
 
-          SendHTTPRequestAFK("POST",
+          SendHTTPRequest("afk", "POST",
             {
               id = tostring(steamID),
             },

@@ -1,6 +1,8 @@
 print ('[Nobu] main lua script Starting..' )
 
 localplayerID = 0
+_G.afkcount = {}
+winmsg = ""
 
 function SendHTTPRequest(path, method, values, callback)
 	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
@@ -49,6 +51,9 @@ function Nobu:OnPlayerConnectFull(keys)
 	local pID = keys.index
 	localplayerID = pID
 	local steamID = PlayerResource:GetSteamAccountID(pID)
+	if (steamID == PlayerResource:GetSteamAccountID(0))
+		_G.homeisme = true
+	end
     print("keys.index"..keys.index.." steamID "..steamID)
     PlayerCanPlay(function()
 	    	player:Destroy()
@@ -60,10 +65,40 @@ function Nobu:OnPlayerConnectFull(keys)
 	Timers:CreateTimer( 5, function()
 		if (#cannotplay > 0) then
 		    GameRules:SetCustomGameEndDelay(1)
-		    GameRules:SetCustomVictoryMessage("贏三小啦幹")
+		    GameRules:SetCustomVictoryMessage("有跳狗啦幹")
 		    GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end
 		end)
+for pID = 0, 9 do
+		_G.afkcount[pID] = 0
+	end
+	Timers:CreateTimer(20, function()
+		if (_G.homeisme) then
+			for pID = 0, 9 do
+				local steamID = PlayerResource:GetSteamAccountID(pID)
+				GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+				local res = PlayerResource:GetConnectionState(pID)
+				if (res == 3) then
+					_G.afkcount[pID] = _G.afkcount[pID] + 1
+				end
+				if (_G.afkcount[pID] > 10) then
+					_G.afkcount[pID] = 0
+					GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
+					SendHTTPRequest("afk", "POST",
+			            {
+			              id = tostring(steamID),
+			            }, 
+			            function(result)
+			              --print(result)
+			            end
+			          )
+				end
+			end
+			return 1
+		else
+			return nil
+		end
+	end)
 end
 
 function Nobu:CloseRoom()
