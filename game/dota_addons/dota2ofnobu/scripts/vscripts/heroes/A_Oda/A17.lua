@@ -59,7 +59,6 @@ function shrapnel_fire( keys )
 					dummy2:ForceKill( true )
 					--StopSoundEvent("Hero_Sniper.ShrapnelShatter",dummy)
 					--dummy:Destroy()
-					print("JIJIJIJI")
 					return nil
 				end
 			)

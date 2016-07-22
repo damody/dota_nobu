@@ -1,6 +1,3 @@
-
-
-
 require('heroes/B_Unified/B06_Sanada_Yukimura')
 
 --idea test
@@ -9,7 +6,7 @@ require('heroes/B_Unified/B06_Sanada_Yukimura')
 --已知BUG:沒辦法捕捉非英雄單位order事件
 function EventForSpellTarget( filterTable )
 	local f = filterTable
-	local caster = EntIndexToHScript(f.units["0"]) 
+	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability) --技能在dota2也是ent
 	local target = EntIndexToHScript(f.entindex_target)
 	local unitname = caster:GetUnitName()
@@ -22,16 +19,16 @@ function EventForSpellTarget( filterTable )
 		if casterplayerNum ~= targetplayerNum then --概念:不是一樣ID就是敵方
 			if target.B06R_Buff ~=nil and target.B06R_Buff then
 				B06R_BeSpelled(target,ability)
-			end	
+			end
 		end
-	end 
+	end
 
 end
 
 --已知BUG:沒辦法捕捉非英雄單位order事件
 function EventForAttackTarget( filterTable )
 	local f = filterTable
-	local caster = EntIndexToHScript(f.units["0"]) 
+	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability)
 	-- local rate = caster:GetAttackSpeed()
 	--print(tostring(rate))
@@ -71,8 +68,8 @@ end
 function test_of_spell( filterTable )
 	local f = filterTable
 	local keys = f
-	local caster = EntIndexToHScript(f.units["0"]) 
-	
+	local caster = EntIndexToHScript(f.units["0"])
+
 	-- Reset cooldown for abilities that is not rearm
 	for i = 0, caster:GetAbilityCount() - 1 do
 		local ability = caster:GetAbilityByIndex( i )
@@ -80,10 +77,10 @@ function test_of_spell( filterTable )
 			ability:EndCooldown()
 		end
 	end
-	
+
 	-- Put item exemption in here
 	local exempt_table = {}
-	
+
 	-- Reset cooldown for items
 	for i = 0, 5 do
 		local item = caster:GetItemInSlot( i )
@@ -96,73 +93,277 @@ function test_of_spell( filterTable )
 end
 
 
+function spell_ability ( filterTable )
+	local f = filterTable
+	local ordertype = filterTable.order_type
+	local caster = EntIndexToHScript(f.units["0"])
+	local ability = EntIndexToHScript(f.entindex_ability)
+	caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
 
+	if ordertype == DOTA_UNIT_ORDER_CAST_POSITION then --5
+		-- [   VScript             ]: {
+		-- [   VScript             ]:    entindex_ability                	= 461 (number)
+		-- [   VScript             ]:    sequence_number_const           	= 25 (number)
+		-- [   VScript             ]:    queue                           	= 0 (number)
+		-- [   VScript             ]:    units                           	= table: 0x0399cdb8 (table)
+		-- [   VScript             ]:    {
+		-- [   VScript             ]:       0                               	= 451 (number)
+		-- [   VScript             ]:    }
+		-- [   VScript             ]:    entindex_target                 	= 0 (number)
+		-- [   VScript             ]:    position_z                      	= 128 (number)
+		-- [   VScript             ]:    position_x                      	= 6182.5732421875 (number)
+		-- [   VScript             ]:    order_type                      	= 5 (number)
+		-- [   VScript             ]:    position_y                      	= -6421.2026367188 (number)
+		-- [   VScript             ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript             ]: }
+	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET then --6
+		-- [   VScript             ]: {
+		-- [   VScript             ]:    entindex_ability                	= 453 (number)
+		-- [   VScript             ]:    sequence_number_const           	= 34 (number)
+		-- [   VScript             ]:    queue                           	= 0 (number)
+		-- [   VScript             ]:    units                           	= table: 0x03966540 (table)
+		-- [   VScript             ]:    {
+		-- [   VScript             ]:       0                               	= 451 (number)
+		-- [   VScript             ]:    }
+		-- [   VScript             ]:    entindex_target                 	= 429 (number)
+		-- [   VScript             ]:    position_z                      	= 0 (number)
+		-- [   VScript             ]:    position_x                      	= 0 (number)
+		-- [   VScript             ]:    order_type                      	= 6 (number)
+		-- [   VScript             ]:    position_y                      	= 0 (number)
+		-- [   VScript             ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript             ]: }
+	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET_TREE then -- 7
+	elseif ordertype == DOTA_UNIT_ORDER_CAST_NO_TARGET then -- 8
+		-- [   VScript              ]: {
+		-- [   VScript              ]:    entindex_ability                	= 333 (number)
+		-- [   VScript              ]:    sequence_number_const           	= 8 (number)
+		-- [   VScript              ]:    queue                           	= 0 (number)
+		-- [   VScript              ]:    units                           	= table: 0x03e04d18 (table)
+		-- [   VScript              ]:    {
+		-- [   VScript              ]:       0                               	= 332 (number)
+		-- [   VScript              ]:    }
+		-- [   VScript              ]:    entindex_target                 	= 0 (number)
+		-- [   VScript              ]:    position_z                      	= 0 (number)
+		-- [   VScript              ]:    position_x                      	= 0 (number)
+		-- [   VScript              ]:    order_type                      	= 8 (number)
+		-- [   VScript              ]:    position_y                      	= 0 (number)
+		-- [   VScript              ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript              ]: }
+		-- [   VScript              ]: Spell hahahhaa   :8
 
+	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE then -- 9
+	end
+end
 
+--[[
+	發現:
+	O命令取第一時間
+]]
 function Nobu:eventfororder( filterTable )
-	-- DeepPrintTable(filterTable)
-	-- [   VScript   ]:    entindex_ability                	= 0 (number)
-	-- [   VScript   ]:    sequence_number_const           	= 3 (number)
-	-- [   VScript   ]:    queue                           	= 0 (number)
-	-- [   VScript   ]:    units                           	= table: 0x03d8a638 (table)
-	-- [   VScript   ]:    {
-	-- [   VScript   ]:       0                               	= 319 (number)
-	-- [   VScript   ]:    }
-	-- [   VScript   ]:    entindex_target                 	= 0 (number)
-	-- [   VScript   ]:    position_z                      	= 128 (number)
-	-- [   VScript   ]:    position_x                      	= -330.15841674805 (number)
-	-- [   VScript   ]:    order_type                      	= 1 (number)
-	-- [   VScript   ]:    position_y                      	= -505.69201660156 (number)
-	-- [   VScript   ]:    issuer_player_id_const          	= 0 (number)
-	--print(EntIndexToHScript(filterTable.units["0"]):GetPlayerID())	
-	local ordertype = filterTable.order_type 
+	--DeepPrintTable(filterTable)
+	--print("ordertype = "..tostring(ordertype))
 
-	if ordertype >= 5 and ordertype <= 9 then
-		local f = filterTable
-		local caster = EntIndexToHScript(f.units["0"]) 
-		local ability = EntIndexToHScript(f.entindex_ability)
-		caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
-	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET then
-		EventForSpellTarget( filterTable )
-	elseif ordertype == DOTA_UNIT_ORDER_ATTACK_TARGET then
-		--test 5.21 更新
-		EventForAttackTarget( filterTable )
-	elseif ordertype == 10 then	
-		--test
-		test_of_spell( filterTable )
+
+	local ordertype = filterTable.order_type
+	if ordertype == DOTA_UNIT_ORDER_MOVE_TO_POSITION then --1
+
+	elseif ordertype == DOTA_UNIT_ORDER_MOVE_TO_TARGET then --2
+		-- [   VScript       ]: {
+		-- [   VScript       ]:    entindex_ability                	= 0 (number)
+		-- [   VScript       ]:    sequence_number_const           	= 12 (number)
+		-- [   VScript       ]:    queue                           	= 0 (number)
+		-- [   VScript       ]:    units                           	= table: 0x03940710 (table)
+		-- [   VScript       ]:    {
+		-- [   VScript       ]:       0                               	= 336 (number)
+		-- [   VScript       ]:    }
+		-- [   VScript       ]:    entindex_target                 	= 154 (number)
+		-- [   VScript       ]:    position_z                      	= 0 (number)
+		-- [   VScript       ]:    position_x                      	= 0 (number)
+		-- [   VScript       ]:    order_type                      	= 2 (number)
+		-- [   VScript       ]:    position_y                      	= 0 (number)
+		-- [   VScript       ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript       ]: }
+	elseif ordertype == DOTA_UNIT_ORDER_ATTACK_MOVE then --3
+		-- [   VScript       ]: ordertype = 3
+		-- [   VScript       ]: {
+		-- [   VScript       ]:    entindex_ability                	= 0 (number)
+		-- [   VScript       ]:    sequence_number_const           	= 15 (number)
+		-- [   VScript       ]:    queue                           	= 0 (number)
+		-- [   VScript       ]:    units                           	= table: 0x039c5f00 (table)
+		-- [   VScript       ]:    {
+		-- [   VScript       ]:       0                               	= 336 (number)
+		-- [   VScript       ]:    }
+		-- [   VScript       ]:    entindex_target                 	= 0 (number)
+		-- [   VScript       ]:    position_z                      	= 128 (number)
+		-- [   VScript       ]:    position_x                      	= 2176 (number)
+		-- [   VScript       ]:    order_type                      	= 3 (number)
+		-- [   VScript       ]:    position_y                      	= -5990.3994140625 (number)
+		-- [   VScript       ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript       ]: }
+	elseif ordertype == DOTA_UNIT_ORDER_ATTACK_TARGET then --4
+		-- [   VScript       ]: ordertype = 4
+		-- [   VScript       ]: {
+		-- [   VScript       ]:    entindex_ability                	= 0 (number)
+		-- [   VScript       ]:    sequence_number_const           	= 13 (number)
+		-- [   VScript       ]:    queue                           	= 0 (number)
+		-- [   VScript       ]:    units                           	= table: 0x03998c90 (table)
+		-- [   VScript       ]:    {
+		-- [   VScript       ]:       0                               	= 336 (number)
+		-- [   VScript       ]:    }
+		-- [   VScript       ]:    entindex_target                 	= 85 (number)
+		-- [   VScript       ]:    position_z                      	= 0 (number)
+		-- [   VScript       ]:    position_x                      	= 0 (number)
+		-- [   VScript       ]:    order_type                      	= 4 (number)
+		-- [   VScript       ]:    position_y                      	= 0 (number)
+		-- [   VScript       ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript       ]: }
+	elseif ordertype >= 5 and ordertype <= 9 then --技能類
+		spell_ability(filterTable)
+	elseif ordertype == DOTA_UNIT_ORDER_HOLD_POSITION then --10
+		if _G.nobu_debug then
+			test_of_spell( filterTable )
+		end
+		-- DeepPrintTable(filterTable)
+		-- [   VScript              ]: {
+		-- [   VScript              ]:    entindex_ability                	= 0 (number)
+		-- [   VScript              ]:    sequence_number_const           	= 1 (number)
+		-- [   VScript              ]:    queue                           	= 0 (number)
+		-- [   VScript              ]:    units                           	= table: 0x03e04118 (table)
+		-- [   VScript              ]:    {
+		-- [   VScript              ]:       0                               	= 144 (number)
+		-- [   VScript              ]:    }
+		-- [   VScript              ]:    entindex_target                 	= 0 (number)
+		-- [   VScript              ]:    position_z                      	= 0 (number)
+		-- [   VScript              ]:    position_x                      	= 0 (number)
+		-- [   VScript              ]:    order_type                      	= 10 (number)
+		-- [   VScript              ]:    position_y                      	= 0 (number)
+		-- [   VScript              ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript              ]: }
+	elseif ordertype == DOTA_UNIT_ORDER_TRAIN_ABILITY then --11 --學習技能
+		-- DeepPrintTable(filterTable)
+		-- [   VScript              ]: {
+		-- [   VScript              ]:    entindex_ability                	= 415 (number)
+		-- [   VScript              ]:    sequence_number_const           	= 1 (number)
+		-- [   VScript              ]:    queue                           	= 0 (number)
+		-- [   VScript              ]:    units                           	= table: 0x03f03520 (table)
+		-- [   VScript              ]:    {
+		-- [   VScript              ]:       0                               	= 414 (number)
+		-- [   VScript              ]:    }
+		-- [   VScript              ]:    entindex_target                 	= 0 (number)
+		-- [   VScript              ]:    position_z                      	= 0 (number)
+		-- [   VScript              ]:    position_x                      	= 0 (number)
+		-- [   VScript              ]:    order_type                      	= 11 (number)
+		-- [   VScript              ]:    position_y                      	= 0 (number)
+		-- [   VScript              ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript              ]: }
+	elseif ordertype == DOTA_UNIT_ORDER_DROP_ITEM then --12
+		-- DeepPrintTable(filterTable)
+		-- [   VScript              ]: {
+		-- [   VScript              ]:    entindex_ability                	= 212 (number)
+		-- [   VScript              ]:    sequence_number_const           	= 7 (number)
+		-- [   VScript              ]:    queue                           	= 0 (number)
+		-- [   VScript              ]:    units                           	= table: 0x039caa50 (table)
+		-- [   VScript              ]:    {
+		-- [   VScript              ]:       0                               	= 286 (number)
+		-- [   VScript              ]:    }
+		-- [   VScript              ]:    entindex_target                 	= 0 (number)
+		-- [   VScript              ]:    position_z                      	= 128 (number)
+		-- [   VScript              ]:    position_x                      	= 6905.3413085938 (number)
+		-- [   VScript              ]:    order_type                      	= 12 (number)
+		-- [   VScript              ]:    position_y                      	= -7083.51171875 (number)
+		-- [   VScript              ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript              ]: }
+	elseif ordertype == DOTA_UNIT_ORDER_GIVE_ITEM then --13
+	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_ITEM then --14
+	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_RUNE then --15
+	elseif ordertype == DOTA_UNIT_ORDER_PURCHASE_ITEM then --16
+	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17
+	elseif ordertype == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM then --18
+	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19
+	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	 then --20
+	elseif ordertype == DOTA_UNIT_ORDER_STOP	 then --21 --出生時會有三次
+		print("stop")
+	elseif ordertype == DOTA_UNIT_ORDER_TAUNT	 then --22
+	elseif ordertype == DOTA_UNIT_ORDER_BUYBACK	 then --23
+	elseif ordertype == DOTA_UNIT_ORDER_GLYPH	 then --24
+	elseif ordertype == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH	 then --25
+	elseif ordertype == DOTA_UNIT_ORDER_CAST_RUNE	 then --26
+	elseif ordertype ==	33	 then --案s一開始
+		-- DeepPrintTable(filterTable)
+		-- [   VScript              ]: {
+		-- [   VScript              ]:    entindex_ability                	= 0 (number)
+		-- [   VScript              ]:    sequence_number_const           	= 2 (number)
+		-- [   VScript              ]:    queue                           	= 0 (number)
+		-- [   VScript              ]:    units                           	= table: 0x039c7768 (table)
+		-- [   VScript              ]:    {
+		-- [   VScript              ]:       0                               	= 1283 (number)
+		-- [   VScript              ]:    }
+		-- [   VScript              ]:    entindex_target                 	= 0 (number)
+		-- [   VScript              ]:    position_z                      	= 0 (number)
+		-- [   VScript              ]:    position_x                      	= 0 (number)
+		-- [   VScript              ]:    order_type                      	= 33 (number)
+		-- [   VScript              ]:    position_y                      	= 0 (number)
+		-- [   VScript              ]:    issuer_player_id_const          	= 0 (number)
+		-- [   VScript              ]: }
 	end
 
-
-	return true 
-end 
+	-- DOTA_UNIT_ORDER_NONE	0
+	-- DOTA_UNIT_ORDER_MOVE_TO_POSITION	1
+	-- DOTA_UNIT_ORDER_MOVE_TO_TARGET	2
+	-- DOTA_UNIT_ORDER_ATTACK_MOVE	3
+	-- DOTA_UNIT_ORDER_ATTACK_TARGET	4
+	-- DOTA_UNIT_ORDER_CAST_POSITION	5
+	-- DOTA_UNIT_ORDER_CAST_TARGET	6
+	-- DOTA_UNIT_ORDER_CAST_TARGET_TREE	7
+	-- DOTA_UNIT_ORDER_CAST_NO_TARGET	8
+	-- DOTA_UNIT_ORDER_CAST_TOGGLE	9
+	-- DOTA_UNIT_ORDER_HOLD_POSITION	10
+	-- DOTA_UNIT_ORDER_TRAIN_ABILITY	11
+	-- DOTA_UNIT_ORDER_DROP_ITEM	12
+	-- DOTA_UNIT_ORDER_GIVE_ITEM	13
+	-- DOTA_UNIT_ORDER_PICKUP_ITEM	14
+	-- DOTA_UNIT_ORDER_PICKUP_RUNE	15
+	-- DOTA_UNIT_ORDER_PURCHASE_ITEM	16
+	-- DOTA_UNIT_ORDER_SELL_ITEM	17
+	-- DOTA_UNIT_ORDER_DISASSEMBLE_ITEM	18
+	-- DOTA_UNIT_ORDER_MOVE_ITEM	19
+	-- DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	20
+	-- DOTA_UNIT_ORDER_STOP	21
+	-- DOTA_UNIT_ORDER_TAUNT	22
+	-- DOTA_UNIT_ORDER_BUYBACK	23
+	-- DOTA_UNIT_ORDER_GLYPH	24
+	-- DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH	25
+	-- DOTA_UNIT_ORDER_CAST_RUNE	26
+	return true
+end
 
 
 -- DOTA_UNIT_ORDERS
 -- Name	Value	Description
--- DOTA_UNIT_ORDER_NONE	0	
--- DOTA_UNIT_ORDER_MOVE_TO_POSITION	1	
--- DOTA_UNIT_ORDER_MOVE_TO_TARGET	2	
--- DOTA_UNIT_ORDER_ATTACK_MOVE	3	
--- DOTA_UNIT_ORDER_ATTACK_TARGET	4	
--- DOTA_UNIT_ORDER_CAST_POSITION	5	
--- DOTA_UNIT_ORDER_CAST_TARGET	6	
--- DOTA_UNIT_ORDER_CAST_TARGET_TREE	7	
--- DOTA_UNIT_ORDER_CAST_NO_TARGET	8	
--- DOTA_UNIT_ORDER_CAST_TOGGLE	9	
--- DOTA_UNIT_ORDER_HOLD_POSITION	10	
--- DOTA_UNIT_ORDER_TRAIN_ABILITY	11	
--- DOTA_UNIT_ORDER_DROP_ITEM	12	
--- DOTA_UNIT_ORDER_GIVE_ITEM	13	
--- DOTA_UNIT_ORDER_PICKUP_ITEM	14	
--- DOTA_UNIT_ORDER_PICKUP_RUNE	15	
--- DOTA_UNIT_ORDER_PURCHASE_ITEM	16	
--- DOTA_UNIT_ORDER_SELL_ITEM	17	
--- DOTA_UNIT_ORDER_DISASSEMBLE_ITEM	18	
--- DOTA_UNIT_ORDER_MOVE_ITEM	19	
--- DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	20	
--- DOTA_UNIT_ORDER_STOP	21	
--- DOTA_UNIT_ORDER_TAUNT	22	
--- DOTA_UNIT_ORDER_BUYBACK	23	
--- DOTA_UNIT_ORDER_GLYPH	24	
--- DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH	25	
--- DOTA_UNIT_ORDER_CAST_RUNE	26	
+-- DOTA_UNIT_ORDER_NONE	0
+-- DOTA_UNIT_ORDER_MOVE_TO_POSITION	1
+-- DOTA_UNIT_ORDER_MOVE_TO_TARGET	2
+-- DOTA_UNIT_ORDER_ATTACK_MOVE	3
+-- DOTA_UNIT_ORDER_ATTACK_TARGET	4
+-- DOTA_UNIT_ORDER_CAST_POSITION	5
+-- DOTA_UNIT_ORDER_CAST_TARGET	6
+-- DOTA_UNIT_ORDER_CAST_TARGET_TREE	7
+-- DOTA_UNIT_ORDER_CAST_NO_TARGET	8
+-- DOTA_UNIT_ORDER_CAST_TOGGLE	9
+-- DOTA_UNIT_ORDER_HOLD_POSITION	10
+-- DOTA_UNIT_ORDER_TRAIN_ABILITY	11
+-- DOTA_UNIT_ORDER_DROP_ITEM	12
+-- DOTA_UNIT_ORDER_GIVE_ITEM	13
+-- DOTA_UNIT_ORDER_PICKUP_ITEM	14
+-- DOTA_UNIT_ORDER_PICKUP_RUNE	15
+-- DOTA_UNIT_ORDER_PURCHASE_ITEM	16
+-- DOTA_UNIT_ORDER_SELL_ITEM	17
+-- DOTA_UNIT_ORDER_DISASSEMBLE_ITEM	18
+-- DOTA_UNIT_ORDER_MOVE_ITEM	19
+-- DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	20
+-- DOTA_UNIT_ORDER_STOP	21
+-- DOTA_UNIT_ORDER_TAUNT	22
+-- DOTA_UNIT_ORDER_BUYBACK	23
+-- DOTA_UNIT_ORDER_GLYPH	24
+-- DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH	25
+-- DOTA_UNIT_ORDER_CAST_RUNE	26

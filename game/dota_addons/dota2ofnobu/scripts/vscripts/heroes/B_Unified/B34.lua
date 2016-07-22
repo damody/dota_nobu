@@ -68,11 +68,11 @@ function B34E( keys )
 	ParticleManager:SetParticleControl(particle,0,point2)
 	ParticleManager:SetParticleControl(particle,1,point2)
 	--紀錄
-	dummy.B34E_P = particle	
+	dummy.B34E_P = particle
 
 	particle = ParticleManager:CreateParticle("particles/b34e/b34e2.vpcf",PATTACH_POINT,dummy)
 	ParticleManager:SetParticleControl(particle,0,point2)
-	
+
 	local x1 = point2.x
 	local y1 = point2.y
 	local x2
@@ -91,24 +91,24 @@ function B34E( keys )
 			--modifier
 			ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B34E_2",nil)
 			--sound
-			dummy:EmitSound("Hero_Alchemist.Attack") 
-		
+			dummy:EmitSound("Hero_Alchemist.Attack")
+
 			particle = ParticleManager:CreateParticle("particles/b34e/b34e2.vpcf",PATTACH_POINT,dummy)
-			ParticleManager:SetParticleControl(particle,0,Vector(x2,y2))		
+			ParticleManager:SetParticleControl(particle,0,Vector(x2,y2))
 
 			particle = ParticleManager:CreateParticle("particles/b34e/b34e.vpcf",PATTACH_POINT,dummy)
 			ParticleManager:SetParticleControl(particle,0,Vector(x2,y2))
 			ParticleManager:SetParticleControl(particle,1,Vector(x2,y2))
 
 			--紀錄
-			dummy.B34E_P = particle	
+			dummy.B34E_P = particle
 
 		dummy = CreateUnitByName("Dummy_B34E",Vector(x3,y3) ,false,nil,nil,caster:GetTeam())
 		dummy:FindAbilityByName("majia"):SetLevel(1)
 		--modifier
 		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B34E_2",nil)
 		--sound
-		dummy:EmitSound("Hero_Alchemist.Attack") 
+		dummy:EmitSound("Hero_Alchemist.Attack")
 
 		particle = ParticleManager:CreateParticle("particles/b34e/b34e2.vpcf",PATTACH_POINT,dummy)
 		ParticleManager:SetParticleControl(particle,0,Vector(x3,y3))
@@ -118,12 +118,12 @@ function B34E( keys )
 		ParticleManager:SetParticleControl(particle,1,Vector(x3,y3))
 
 		--紀錄
-		dummy.B34E_P = particle	
+		dummy.B34E_P = particle
 	end
 end
 
 function B34E_END( keys )
-	ParticleManager:DestroyParticle(keys.target.B34E_P,false)	
+	ParticleManager:DestroyParticle(keys.target.B34E_P,false)
 	keys.target:ForceKill(true)
 	keys.target:Destroy()
 end

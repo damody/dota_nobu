@@ -10,14 +10,14 @@ local function chat_of_test(keys)
 	-- [   VScript ]:    text                            	= "3" (string)
 	-- [   VScript ]:    teamonly                        	= 1 (number)
 	-- [   VScript ]:    userid                          	= 1 (number)
-	-- [   VScript ]:    splitscreenplayer               	= -1 (number)	
+	-- [   VScript ]:    splitscreenplayer               	= -1 (number)
 
 	--local id    = keys.player --BUG:在講話事件裡，讀取不到玩家，是整數。
-	local s   	   = keys.text	
+	local s   	   = keys.text
 	local id  	   = 1 --keys.userid --BUG:會1.2的調換，不知道為甚麼
 	local p 	     = PlayerResource:GetPlayer(keys.playerid)--可以用索引轉換玩家方式，來捕捉玩家
-	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄 
-	local point    = caster:GetAbsOrigin()	
+	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄
+	local point    = caster:GetAbsOrigin()
 	-- if string.match(s,"test") then
 	-- 	local pID = tonumber(string.match(s, '%d+'))
 	-- 	local steamID = PlayerResource:GetSteamAccountID(pID)
@@ -38,7 +38,7 @@ local function chat_of_test(keys)
 		elseif (res == 3) then
 			GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
-	end	
+	end
 
 	if s == "gg" then
 		GameRules:SetCustomGameEndDelay(1)
@@ -48,7 +48,7 @@ local function chat_of_test(keys)
 	--【測試指令】
 	if s == "ShuaGuai" then
 		print("ShuaGuai")
-		ShuaGuai_Of_A( )	
+		ShuaGuai_Of_A( )
 		ShuaGuai_Of_B( )
 		ShuaGuai_Of_C( )
 	elseif s == "hp" then
@@ -60,10 +60,10 @@ local function chat_of_test(keys)
 	elseif s == "mp" then
 		print("nobu"..id)
 		Timers:CreateTimer(function()
-			caster:SetMana(caster:GetMaxMana())	
+			caster:SetMana(caster:GetMaxMana())
 			return 0.1
 		end)
-	elseif s == "cd" then	
+	elseif s == "cd" then
 		--【Timer】
 		Timers:CreateTimer(function()
 			print("cd3")
@@ -81,37 +81,16 @@ local function chat_of_test(keys)
 					item:EndCooldown()
 				end
 			end
-			return 0.1	
+			return 0.1
 		end)
 	end
-
-	if s == "shps" then
-		print(IsInToolsMode())
-	end
-
-
-
-	-- if s == "stop_event" then
-	-- 	--StopListeningToGameEvent(Nobu.Event)
-	-- 	print(Nobu.Event[5])
-	-- 	StopListeningToGameEvent(Nobu.Event[5])
-	-- 	--StopListeningToAllGameEvents(Nobu.Event[5])
-	-- end
 end
 
 function Nobu:Chat( keys )
 	print("[Nobu] Chat Init")
-	--DeepPrintTable(keys)    --详细打印传递进来的表
-	--local id    = keys.player --BUG:在講話事件裡，讀取不到玩家，是整數。
-	local s   	   = keys.text	
-	local id  	   = 1 --keys.userid --BUG:會1.2的調換，不知道為甚麼
-	local p 	     = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄
-	local point    = caster:GetAbsOrigin()
 
 	--【測試模式】
-	if nobu_debug then 
+	if nobu_debug then
 		chat_of_test(keys)
 	end
 end
-

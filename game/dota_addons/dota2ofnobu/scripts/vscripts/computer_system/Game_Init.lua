@@ -110,25 +110,28 @@ local Trig_BarBQ  = function ( )
 end
 
 local InitTrig_Game_Init  = function ( )
-	--【Test】
-	test_ent = Entities:FindByName(nil,"Test_QQQ")
-	item_point = test_ent:GetAbsOrigin()
-	Test_ITEM ={
-	"item_c05",
-	"item_D01",
-	"item_D02",
-	"item_D03",
-	"item_D09",
-	"item_Q02",
-	"item_Q03",
-	"item_Q04",
-	"item_gem_2"
-	}
+	if _G.GameMap == "test_map_ver2" then --如果是測試地圖才運行測試模式
+
+		--【Test】
+		test_ent = Entities:FindByName(nil,"Test_QQQ")
+		item_point = test_ent:GetAbsOrigin()
+		Test_ITEM ={
+		"item_c05",
+		"item_D01",
+		"item_D02",
+		"item_D03",
+		"item_D09",
+		"item_Q02",
+		"item_Q03",
+		"item_Q04",
+		"item_gem_2"
+		}
 
 
-	meat = Entities:FindAllByName("item_meat*")
-	Trig_BarBQ ( )
-	Test ( )
+		meat = Entities:FindAllByName("item_meat*")
+		Trig_BarBQ ( )
+		Test ( )
+	end
 end
 
 --【Init】

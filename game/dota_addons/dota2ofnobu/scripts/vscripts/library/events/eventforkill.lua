@@ -28,13 +28,30 @@ function Nobu:OnUnitKill( keys )
     --         end
     -- end
 
+    -- DeepPrintTable(keys)
+    -- [   VScript              ]: {
+    -- [   VScript              ]:    entindex_killed                 	= 259 (number)
+    -- [   VScript              ]:    damagebits                      	= 0 (number)
+    -- [   VScript              ]:    splitscreenplayer               	= -1 (number)
+    -- [   VScript              ]: }
+
+
     ------------------------------------------------------------------
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
     if killedUnit:IsRealHero() then
-      for i=1,10 do
-        GameRules: SendCustomMessage("   ",DOTA_TEAM_GOODGUYS,0)
-      end
-      --Tutorial: AddQuest("quest_1",1,"破塔成功","ssssssssss")     
-    end  
+      killedUnit:RespawnUnit() --[[Returns:void
+      Respawns the target unit if it can be respawned.
+      ]]
+
+      -- for i=1,10 do
+      --   GameRules: SendCustomMessage("   ",DOTA_TEAM_GOODGUYS,0)
+      -- end
+      --Tutorial: AddQuest("quest_1",1,"破塔成功","ssssssssss")
+    end
+
+    print(killedUnit:GetUnitName() )
+    if killedUnit  == _G.TestUnit then
+      killedUnit:RespawnUnit()
+    end
     --print("dead")
 end

@@ -22,20 +22,20 @@ end
 function nobu_move( point, point2 , distance )
 	local rad = math.atan2(point2.y-point.y,point2.x-point.x)
 	return Vector(point.x+distance*math.cos(rad) ,  point.y+distance*math.sin(rad) , point.z)
-end 
+end
 
 
 function nobu_move_ver2( point, distance ,rad)
 	return Vector(point.x+distance*math.cos(rad) ,  point.y+distance*math.sin(rad) , point.z)
-end 
+end
 
 function nobu_radtodeg( rad)
-	return rad * bj_RADTODEG 
-end 
+	return rad * bj_RADTODEG
+end
 
 function nobu_degtorad( deg)
-	return deg * bj_DEGTORAD 
-end 
+	return deg * bj_DEGTORAD
+end
 
 function nobu_Normalized(point, point2)
 	return (point2 - point):Normalized()
@@ -55,7 +55,7 @@ end
 
 function GetDistance(ent1,ent2)
      local pos_1=ent1:GetOrigin()
-     local pos_2=ent2:GetOrigin() 
+     local pos_2=ent2:GetOrigin()
      local x_=(pos_1[1]-pos_2[1])^2
      local y_=(pos_1[2]-pos_2[2])^2
      local dis=(x_+y_)^(0.5)
@@ -141,10 +141,10 @@ function  ApplyProjectile(keys,castvec,endvec,File)
     --local testtable = FindAllByModel("juggernaut.vmdl")
 --  sven_soul:SetAnimation("ACT_DOTA_ATTACK")
     local caster = keys.caster
-    local vecCaster = caster:GetOrigin() 
+    local vecCaster = caster:GetOrigin()
     local point = 1/#endvec*endvec
     local targetPoint = endvec
-    local forwardVec = caster:GetForwardVector() 
+    local forwardVec = caster:GetForwardVector()
     local knifeTable = {
     Ability = keys.ability,
     fDistance = keys.DamageRadius,

@@ -22,19 +22,22 @@ model_change_wearable["npc_dota_hero_antimage"]= true
 function Nobu:OnHeroIngame( keys )
   --PrintTable(keys)
   -- local hero = EntIndexToHScript( keys.entindex )
-  -- if hero:IsHero() then  
+  -- if hero:IsHero() then
   --   RemoveWearables( hero )
   -- end
-  -- local hero = EntIndexToHScript( keys.entindex )
-  -- if hero:IsHero() then
-  --   AddAFKTimer(hero)
-  --   hero.start_afk()
-  -- end
+
+  if _G.nobu_server_b then
+    local hero = EntIndexToHScript( keys.entindex )
+    if hero:IsHero() then
+      AddAFKTimer(hero)
+      hero.start_afk()
+    end
+  end
 end
 
 
 function SendHTTPRequestAFK(method, values, callback)
-  local req = CreateHTTPRequest( method, "http://218.161.33.54/afk" )
+  local req = CreateHTTPRequest( method, "http://140.114.235.19/afk" )
   for key, value in pairs(values) do
     req:SetHTTPRequestGetOrPostParameter(key, value)
   end
@@ -59,11 +62,11 @@ function AddAFKTimer( hero )
           local pID = hero:GetPlayerOwner():GetPlayerID()
           local steamID = PlayerResource:GetSteamAccountID(pID)
           print("steamID "..steamID)
-          
+
           SendHTTPRequestAFK("POST",
             {
               id = tostring(steamID),
-            }, 
+            },
             function(result)
               print(result)
               if (result == "error") then
@@ -103,12 +106,12 @@ function RemoveWearables( hero )
   if model_lookup[name]  == true then
     if model_change_wearable[name] == true then
     end
-  else 
+  else
     for k,child in pairs(children) do
        --print("Wearable"..child:GetClassname())
        if child:GetClassname() == "dota_item_wearable" then
           child:RemoveSelf()
-       end 
+       end
     end
   end
 end

@@ -11,7 +11,7 @@
 		// General
 		// --------------------------------------------------------------
 		"ModelScale"	"1.35"
-		"Level"	"1"
+		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		"override_hero"	"npc_dota_hero_bristleback"
@@ -96,6 +96,7 @@
 		"ProjectileModel"	"particles/b13e/b13e.vpcf"
 		"AbilityLayout"	"5"
 		"DisableWearables"	"1"
+		"heroname"	"lallalalal"
 	}
 
 	// 雜賀孫市
@@ -106,7 +107,7 @@
 		"override_hero"	"npc_dota_hero_nevermore"
 		"Model"	"models/b01/b01.vmdl"
 		"ModelScale"	"1.20"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -207,7 +208,7 @@
 		"override_hero"	"npc_dota_hero_magnataur"
 		"Model"	"models/b08/b08.vmdl"
 		"ModelScale"	"1.30"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -302,7 +303,7 @@
 		// Add model
 		"Model"	"models/b02/b02.vmdl"
 		"ModelScale"	"1.1"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -398,7 +399,7 @@
 		// Add model
 		"Model"	"models/c17/c17.vmdl"
 		"ModelScale"	"1.23"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		"override_hero"	"npc_dota_hero_windrunner"
@@ -495,14 +496,14 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_brewmaster"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		"Model"	"models/heroes/brewmaster/brewmaster.vmdl"
 		"Portrait"	"vgui/hud/heroportraits/portrait_brewmaster"
 		"IdleExpression"	"scenes/brewmaster/brewmaster_exp_idle_01.vcd"
 		"SoundSet"	"Hero_Brewmaster"
-		// "Enabled"	"1"
+		// //"Enabled"	"1"
 		// "HeroUnlockOrder"	"2"
 		"Role"	"Carry,Initiator,Durable,Disabler,Nuker"
 		"Rolelevels"	"1,3,2,2,1"
@@ -606,7 +607,7 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_mirana"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		"Model"	"models/heroes/mirana/mirana.vmdl"
@@ -615,7 +616,7 @@
 		"SoundSet"	"Hero_Mirana"
 		"PickSound"	"mirana_mir_spawn_01"
 		"BanSound"	"mirana_mir_anger_01"
-		// "Enabled"		"1"
+		// //"Enabled"		"1"
 		// "HeroUnlockOrder"		"1"
 		// "Role"			"Carry,Support,Escape,Nuker,Disabler"
 		// "Rolelevels"	"1,1,2,1,1"
@@ -716,7 +717,7 @@
 		// Add model
 		"Model"	"models/new/c19/c19_model.vmdl"
 		"ModelScale"	"1.11"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -807,7 +808,7 @@
 	"A34"
 	{
 		"ModelScale"	"1"
-		"Level"	"1"
+		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -900,7 +901,7 @@
 		"Portrait"	"vgui/hud/heroportraits/portrait_sniper"
 		"IdleExpression"	"scenes/sniper/sniper_exp_idle_01.vcd"
 		"SoundSet"	"Hero_Sniper"
-		"Enabled"	"1"
+		//"Enabled"	"1"
 		"HeroPool1"	"1"
 		"HeroUnlockOrder"	"0"
 		"Role"	"Carry,Nuker"
@@ -908,7 +909,7 @@
 		"Team"	"Good"
 		"override_hero"	"npc_dota_hero_sniper"
 		"ModelScale"	"1"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -1002,7 +1003,7 @@
 		"Portrait"	"vgui/hud/heroportraits/portrait_silencer"
 		"IdleExpression"	"scenes/silencer/silencer_exp_idle_01.vcd"
 		"SoundSet"	"Hero_Silencer"
-		"Enabled"	"1"
+		// //"Enabled"	"1"
 		"HeroUnlockOrder"	"3"
 		"Role"	"Carry,Support,Disabler,Initiator,Nuker"
 		"Rolelevels"	"1,1,2,2,1"
@@ -1014,7 +1015,7 @@
 		"CMEnabled"	"1"
 		"LastHitChallengeRival"	"npc_dota_hero_zuus"
 		"HeroSelectSoundEffect"	"Hero_Silencer.Pick"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -1122,7 +1123,7 @@
 		"url"	"Anti-Mage"
 		"LastHitChallengeRival"	"npc_dota_hero_bounty_hunter"
 		"HeroSelectSoundEffect"	"Hero_Antimage.Pick"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -1215,7 +1216,7 @@
 		"Portrait"	"vgui/hud/heroportraits/portrait_beastmaster"
 		"IdleExpression"	"scenes/beastmaster/beastmaster_exp_idle_01.vcd"
 		"SoundSet"	"Hero_Beastmaster"
-		"Enabled"	"1"
+		// //"Enabled"	"1"
 		"HeroUnlockOrder"	"1"
 		"Role"	"Initiator,Disabler,Durable,Nuker"
 		"Rolelevels"	"2,2,2,1"
@@ -1229,7 +1230,7 @@
 		"LastHitChallengeRival"	"npc_dota_hero_skeleton_king"
 		"AbilityDraftDisabled"	"1"
 		"HeroSelectSoundEffect"	"Hero_Beastmaster.Pick"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
@@ -1323,7 +1324,7 @@
 		"Portrait"	"vgui/hud/heroportraits/portrait_huskar"
 		"IdleExpression"	"scenes/huskar/huskar_exp_idle_01.vcd"
 		"SoundSet"	"Hero_Huskar"
-		"Enabled"	"1"
+		//"Enabled"	"1"
 		"HeroUnlockOrder"	"1"
 		"Role"	"Carry,Durable,Initiator"
 		"Rolelevels"	"2,2,1"
@@ -1336,7 +1337,7 @@
 		"url"	"Huskar"
 		"LastHitChallengeRival"	"npc_dota_hero_dazzle"
 		"HeroSelectSoundEffect"	"Hero_Huskar.Pick"
-		"Level"	"5"
+		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities

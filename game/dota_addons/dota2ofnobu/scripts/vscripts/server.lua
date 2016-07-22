@@ -53,7 +53,7 @@ function Nobu:OnPlayerConnectFull(keys)
     PlayerCanPlay(function()
 	    	player:Destroy()
 	    end)
-    
+
 	local canplay = GameCanPlay(function(sid)
 			table.insert(cannotplay, sid)
 		end)
@@ -89,10 +89,10 @@ function Nobu:CloseRoom()
 end
 
 function Nobu:OpenRoom()
-	
+
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(Nobu, 'OnPlayerConnectFull'), self)
 	-- 產生隨機數種子，主要是為了程序中的隨機數考慮
-	local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','') 
+	local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
 	math.randomseed(tonumber(timeTxt))--GetSystemTime	string GetSystemTime()	獲取真實世界的時間
 	SendToConsole("r_farz 60000")
 
@@ -104,7 +104,7 @@ function Nobu:OpenRoom()
 		    	ids["id_"..(pID+1)] = tostring(steamID)
 		    end
 	  		SendHTTPRequest("open_room", "POST",
-			ids, 
+			ids,
 			function(result)
 				-- Decode response into a lua table
 				local resultTable = {}
