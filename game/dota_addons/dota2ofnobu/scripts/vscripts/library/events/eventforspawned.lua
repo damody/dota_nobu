@@ -26,8 +26,17 @@ function Nobu:OnHeroIngame( keys )
   --   RemoveWearables( hero )
   -- end
 
+  local hero = EntIndexToHScript( keys.entindex )
+  if hero:IsHero() then
+    --等級
+    for i=1,25 do
+      hero:HeroLevelUp(false)
+      -- caster.HeroLevelUp(caster,true)
+    end
+  end
+
+
   if _G.nobu_server_b then
-    local hero = EntIndexToHScript( keys.entindex )
     if hero:IsHero() then
       AddAFKTimer(hero)
       hero.start_afk()

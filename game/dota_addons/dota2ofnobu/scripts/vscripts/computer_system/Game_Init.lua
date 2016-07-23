@@ -1,4 +1,4 @@
-print ( '[Nobu] GAME INIT' )
+print ( '[Nobu-lua] GAME INIT' )
 
 
 --【GLOBAL】

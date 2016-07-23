@@ -1,4 +1,4 @@
-print ('[Nobu] main lua script Starting..' )
+print ('[Nobu-lua] main lua script Starting..' )
 
 localplayerID = 0
 _G.afkcount = {}
@@ -88,7 +88,7 @@ for pID = 0, 9 do
 						SendHTTPRequest("afk", "POST",
 				            {
 				              id = tostring(steamID),
-				            }, 
+				            },
 				            function(result)
 				              --print(result)
 				            end
@@ -126,44 +126,43 @@ function Nobu:CloseRoom()
 end
 
 function Nobu:OpenRoom()
+	Timers:CreateTimer( 5, function()
+		if (#cannotplay == 0) then
+			local ids = {}
+			for pID = 0, 9 do
+				local steamID = PlayerResource:GetSteamAccountID(pID)
+				ids["id_"..(pID+1)] = tostring(steamID)
+			end
+			SendHTTPRequest("open_room", "POST",
+		ids,
+		function(result)
+			-- Decode response into a lua table
+			local resultTable = {}
+			if not pcall(function()
+				resultTable = JSON:decode(result)
+			end) then
+				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+			end
+
+			-- If we get an error response, successBool should be false
+			if resultTable ~= nil and resultTable["errors"] ~= nil then
+				callback(resultTable["errors"], false)
+				return
+			end
+
+			-- If we get a success response, successBool should be true
+			if resultTable ~= nil and resultTable["data"] ~= nil  then
+				callback(resultTable["data"], true)
+				return
+			end
+		end )
+	end
+		return nil
+	end)
+end
+
+function Nobu:CheckAFK()
 
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(Nobu, 'OnPlayerConnectFull'), self)
-	-- 產生隨機數種子，主要是為了程序中的隨機數考慮
-	local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
-	math.randomseed(tonumber(timeTxt))--GetSystemTime	string GetSystemTime()	獲取真實世界的時間
-	SendToConsole("r_farz 60000")
 
-    Timers:CreateTimer( 10, function()
-    	if (#cannotplay == 0) then
-	    	local ids = {}
-	    	for pID = 0, 9 do
-		    	local steamID = PlayerResource:GetSteamAccountID(pID)
-		    	ids["id_"..(pID+1)] = tostring(steamID)
-		    end
-	  		SendHTTPRequest("open_room", "POST",
-			ids,
-			function(result)
-				-- Decode response into a lua table
-				local resultTable = {}
-				if not pcall(function()
-					resultTable = JSON:decode(result)
-				end) then
-					Warning("[dota2.tools.Storage] Can't decode result: " .. result)
-				end
-
-				-- If we get an error response, successBool should be false
-				if resultTable ~= nil and resultTable["errors"] ~= nil then
-					callback(resultTable["errors"], false)
-					return
-				end
-
-				-- If we get a success response, successBool should be true
-				if resultTable ~= nil and resultTable["data"] ~= nil  then
-					callback(resultTable["data"], true)
-					return
-				end
-			end )
-		end
-      return nil
-    end)
 end

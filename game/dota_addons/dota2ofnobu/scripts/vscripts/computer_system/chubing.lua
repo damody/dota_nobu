@@ -1,4 +1,4 @@
---print ('[Nobu] chubing lua script Starting..' )
+--print ('[Nobu-lua] chubing lua script Starting..' )
 if _G.GameMap == "Nobu" then
 
 	--[[
@@ -67,7 +67,7 @@ if _G.GameMap == "Nobu" then
 	end
 
 	function ShuaGuai_Of_A( )
-		--print("[nobu]Run ShuaGuaiA")
+		--print("[Nobu-lua]Run ShuaGuaiA")
 		local tem_count = 0
 		--總共六個出發點 6
 		local function ltt()

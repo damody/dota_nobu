@@ -172,3 +172,53 @@ function Nobu:Attachment_UpdateUnit(args)
   -- --DebugPrintTable(cosmetics)
   -- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "attachment_cosmetic_list", cosmetics )
 end
+
+
+function Nobu:Init_Event_and_Filter_GameMode()
+  local self =  _G.Nobu
+
+  --【測試模式】
+  if nobu_debug then
+    Test_main(self)
+  end
+
+  print(self)
+
+  --【Filter】
+  GameRules:GetGameModeEntity():SetExecuteOrderFilter( Nobu.eventfororder, self )
+  GameRules:GetGameModeEntity():SetDamageFilter( Nobu.DamageFilterEvent, self )
+  GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Nobu, "ModifyGoldFilter"), Nobu)
+  GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Nobu, "AbilityTuningValueFilter"), Nobu)
+  GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Nobu, "SetItemAddedToInventoryFilter"), Nobu)  --用来控制物品被放入物品栏时的行为
+  GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Nobu, "SetModifyExperienceFilter"), Nobu)  --經驗值
+  GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Nobu, "SetTrackingProjectileFilter"), Nobu)  --投射物
+
+  --【Evnet】
+  Nobu.Event ={
+  ListenToGameEvent('dota_player_gained_level', Nobu.LevelUP, self),
+  ListenToGameEvent("dota_player_pick_hero",Nobu.PickHero, self),
+  ListenToGameEvent('npc_spawned', Nobu.OnHeroIngame, self)  ,
+  ListenToGameEvent("entity_killed", Nobu.OnUnitKill, self ),
+  ListenToGameEvent("player_chat",Nobu.Chat,self), --玩家對話事件
+  --ListenToGameEvent( "item_purchased", test, self ) --false
+  --ListenToGameEvent( "dota_item_used", test, self ) --false
+  --ListenToGameEvent("dota_inventory_item_changed", Nobu.Item_Changed, self ), --false
+  ListenToGameEvent("game_rules_state_change", Nobu.OnGameRulesStateChange , self),  --監聽遊戲進度
+  ListenToGameEvent("dota_player_gained_level", Nobu.LevelUP, self),   --升等事件
+  ListenToGameEvent('dota_player_learned_ability', Nobu.Learn_Ability, self),  --學習技能
+  ListenToGameEvent('player_connect_full', Nobu.Connect_Full, self) , --連結完成(遊戲內大廳)
+  ListenToGameEvent('player_disconnect', Dynamic_Wrap(Nobu, 'OnDisconnect'), self)  ,
+  ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Nobu, 'OnItemPurchased'), self) , --購買物品事件
+  ListenToGameEvent('dota_item_picked_up', Dynamic_Wrap(Nobu, 'OnItemPickedUp'), self) ,
+  ListenToGameEvent('player_changename', Dynamic_Wrap(Nobu, 'OnPlayerChangedName'), self), --?
+  ListenToGameEvent('player_connect', Dynamic_Wrap(Nobu, 'PlayerConnect'), self), --?
+  --ListenToGameEvent('player_say', Dynamic_Wrap(Nobu, 'PlayerSay'), self), --?
+  --ListenToGameEvent('dota_pause_event', Dynamic_Wrap(Nobu, 'Pause'), self), --無效
+
+  ListenToGameEvent('entity_hurt', Dynamic_Wrap(Nobu, 'OnEntityHurt'), self) --傷害事件
+  }
+
+  --【Js Evnet】
+  -- CustomGameEventManager:RegisterListener("Attachment_UpdateUnit", Dynamic_Wrap(Nobu, "Attachment_UpdateUnit"))
+
+end

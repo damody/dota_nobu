@@ -54,11 +54,6 @@ function Test_main(self)
 	DeepPrintTable(self)
 end
 
-
-
-
-
-
 --[[ ============================================================================================================
 	Author: Rook, with help from some of Pizzalol's SpellLibrary code
 	Date: January 25, 2015

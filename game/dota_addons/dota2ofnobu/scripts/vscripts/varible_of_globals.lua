@@ -1,4 +1,4 @@
-print ( '[Nobu] varible_of_globals' )
+print ( '[Nobu-lua] varible_of_globals' )
 
 -- local _mt_number = { __index = function() return 0 end }
 -- local _mt_boolean = { __index = function() return false end }

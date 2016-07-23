@@ -114,9 +114,9 @@ function pickherotest (keys)
   --金錢
   PlayerResource:SetGold(id-1,99999,false)--玩家ID需要減一
 
-  --等級
-  for i=1,25 do
-    caster:HeroLevelUp(false)
-    -- caster.HeroLevelUp(caster,true)
-  end
+  -- --等級
+  -- for i=1,25 do
+  --   caster:HeroLevelUp(false)
+  --   -- caster.HeroLevelUp(caster,true)
+  -- end
 end

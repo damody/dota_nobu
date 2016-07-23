@@ -4,7 +4,7 @@ BUG
 ]]
 
 local function chat_of_test(keys)
-	print("[Nobu] Test")
+	print("[Nobu-lua] Test")
 	--DeepPrintTable(keys)
 	-- [   VScript ]:    playerid                        	= 0 (number)
 	-- [   VScript ]:    text                            	= "3" (string)
@@ -87,7 +87,7 @@ local function chat_of_test(keys)
 end
 
 function Nobu:Chat( keys )
-	print("[Nobu] Chat Init")
+	print("[Nobu-lua] Chat Init")
 
 	--【測試模式】
 	if nobu_debug then

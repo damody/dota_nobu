@@ -1,10 +1,4 @@
---[[
-Bug:
-  O阿市R可以打建築物
-  O阿市W沒有特效
-]]
-
-print ( '[Nobu] ADDON INIT EXECUTED' )
+print ( '[Nobu-lua] ADDON INIT EXECUTED' )
 
 --【全局變量】
 _G.nobu_debug =  true--IsInToolsMode() --是否在測試模式
@@ -35,146 +29,80 @@ else
   Script_reload_B = true
 end
 
-local function loadModule(name)
-    local status, err = pcall(function()
-        -- Load the module
-        require(name)
-    end)
+require('require')
 
-    if not status then
-        -- Tell the user about it
-        print('WARNING: '..name..' failed to load!')
-        print(err)
-    end
-end
+gamestates =
+{
+	[0] = "DOTA_GAMERULES_STATE_INIT",
+	[1] = "DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD",
+	[2] = "DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP",
+	[3] = "DOTA_GAMERULES_STATE_HERO_SELECTION",
+	[4] = "DOTA_GAMERULES_STATE_STRATEGY_TIME",
+	[5] = "DOTA_GAMERULES_STATE_TEAM_SHOWCASE",
+	[6] = "DOTA_GAMERULES_STATE_PRE_GAME",
+	[7] = "DOTA_GAMERULES_STATE_GAME_IN_PROGRESS",
+	[8] = "DOTA_GAMERULES_STATE_POST_GAME",
+	[9] = "DOTA_GAMERULES_STATE_DISCONNECT"
+}
 
--- 載入項目所有文件
-------------------
-loadModule ( 'varible_of_globals' )
-loadModule ( 'util' )
-loadModule ( 'amhc_library/amhc' )
-loadModule ( 'library/math' )
-loadModule ( 'library/timers' )
-loadModule ( 'utilities' ) --6/14增加
-loadModule ( 'util_of_nobu') --自訂義的api
-------------------
-loadModule ( 'computer_system/Game_Init' ) --6/17增加
-------------------
---loadModule ( 'library/chetcodeselfmode' )
-loadModule ( 'library/events/eventfordamage' )
-loadModule ( 'library/events/eventfororder' )
-loadModule ( 'library/events/eventforlevelup' )
-loadModule ( 'library/events/eventforpichero' )
-loadModule ( 'library/events/eventforspawned' )
-loadModule ( 'library/events/eventforchat' )
-loadModule ( 'library/events/eventforkill' )
-loadModule ( 'library/common/dummy' ) --馬甲系統
-loadModule ( 'library/common/word' )  --漂浮字系統
-------電腦系統-----
-loadModule ( 'computer_system/chubing' ) --出兵
-loadModule ( 'server' ) --6/24增加
-------test-------
-loadModule ( 'test' ) --6/24增加
-loadModule ( 'events' ) --6/24增加
---
--- require ( "util/damage" )
--- require ( "util/stun" )
--- require ( "util/pauseunit" )
-require ( "util/silence" )
-require ( "util/magic_immune" )
-require ( "util/Precache" )
--- require ( "util/timers" )
--- require ( "util/util" )
--- require ( "util/disarmed" )
--- require ( "util/invulnerable" )
--- require ( "util/graveunit" )
--- require ( "util/collision" )
--- require ( "util/nodamage" )
--- require ( "util/CheckItemModifies")
-
---require('internal/util')
-require('gamemode')
---
-
-
-function Nobu:Init_Event_and_Filter_GameMode()
-  --【測試模式】
-  if nobu_debug then
-    Test_main(self)
-  end
-
-  --【Filter】
-  GameRules:GetGameModeEntity():SetExecuteOrderFilter( Nobu.eventfororder, self )
-  GameRules:GetGameModeEntity():SetDamageFilter( Nobu.DamageFilterEvent, self )
-  GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Nobu, "ModifyGoldFilter"), Nobu)
-  GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Nobu, "AbilityTuningValueFilter"), Nobu)
-  GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Nobu, "SetItemAddedToInventoryFilter"), Nobu)  --用来控制物品被放入物品栏时的行为
-  GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Nobu, "SetModifyExperienceFilter"), Nobu)  --經驗值
-  GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Nobu, "SetTrackingProjectileFilter"), Nobu)  --投射物
-
-  --【Evnet】
-  Nobu.Event ={
-  ListenToGameEvent('dota_player_gained_level', Nobu.LevelUP, self),
-  ListenToGameEvent("dota_player_pick_hero",Nobu.PickHero, self),
-  ListenToGameEvent('npc_spawned', Nobu.OnHeroIngame, self)  ,
-  ListenToGameEvent("entity_killed", Nobu.OnUnitKill, self ),
-  ListenToGameEvent("player_chat",Nobu.Chat,self), --玩家對話事件
-  --ListenToGameEvent( "item_purchased", test, self ) --false
-  --ListenToGameEvent( "dota_item_used", test, self ) --false
-  --ListenToGameEvent("dota_inventory_item_changed", Nobu.Item_Changed, self ), --false
-  ListenToGameEvent("game_rules_state_change", Nobu.OnGameRulesStateChange , self),  --監聽遊戲進度
-  ListenToGameEvent("dota_player_gained_level", Nobu.LevelUP, self),   --升等事件
-  ListenToGameEvent('dota_player_learned_ability', Nobu.Learn_Ability, self),  --學習技能
-  ListenToGameEvent('player_connect_full', Nobu.Connect_Full, self) , --連結完成(遊戲內大廳)
-  ListenToGameEvent('player_disconnect', Dynamic_Wrap(Nobu, 'OnDisconnect'), self)  ,
-  ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Nobu, 'OnItemPurchased'), self) , --購買物品事件
-  ListenToGameEvent('dota_item_picked_up', Dynamic_Wrap(Nobu, 'OnItemPickedUp'), self) ,
-  ListenToGameEvent('player_changename', Dynamic_Wrap(Nobu, 'OnPlayerChangedName'), self), --?
-  ListenToGameEvent('player_connect', Dynamic_Wrap(Nobu, 'PlayerConnect'), self), --?
-  --ListenToGameEvent('player_say', Dynamic_Wrap(Nobu, 'PlayerSay'), self), --?
-  --ListenToGameEvent('dota_pause_event', Dynamic_Wrap(Nobu, 'Pause'), self), --無效
-
-  ListenToGameEvent('entity_hurt', Dynamic_Wrap(Nobu, 'OnEntityHurt'), self) --傷害事件
-  }
-
-  --【Js Evnet】
-  -- CustomGameEventManager:RegisterListener("Attachment_UpdateUnit", Dynamic_Wrap(Nobu, "Attachment_UpdateUnit"))
-
-end
-
+--[[
+[Nobu-lua] GameRules State Changed: 	DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP
+think:
+Q1.測試模式不會有state_init & DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD
+Q2.每一個玩家進入事件異步，還是同步呢?
+]]
 function Nobu:OnGameRulesStateChange( keys )
-  print("[Nobu] Nobu:OnGameRulesStateChange is loaded.")
-
   --獲取遊戲進度
   local newState = GameRules:State_Get()
-  print(newState)
+  print("[Nobu-lua] GameRules State Changed: ",gamestates[newState])
 
-  if newState == DOTA_GAMERULES_STATE_POST_GAME and _G.nobu_server_b then
-    Nobu:CloseRoom()
-  end
+  if(newState == DOTA_GAMERULES_STATE_INIT) then
 
-  --選擇英雄階段
-  if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-  end
+	elseif(newState == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD) then
+		--self.bSeenWaitForPlayers = true
+	elseif(newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP) then
 
-  --當英雄選擇結束
-  if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-      GameRules:SendCustomMessage("歡迎來到 信長之野望", DOTA_TEAM_GOODGUYS, 0)
-      GameRules:SendCustomMessage("作者: David & Damody & 螺絲  | 美術：阿荒老師 | 顧問：FN" , DOTA_TEAM_GOODGUYS, 0)
-      GameRules:SendCustomMessage("dota2信長目前還在測試階段 請多見諒", DOTA_TEAM_GOODGUYS, 0)
-  end
+	elseif(newState == DOTA_GAMERULES_STATE_HERO_SELECTION) then --選擇英雄階段
+		-- self:PostLoadPrecache()
+		-- self:OnAllPlayersLoaded()
+	elseif(newState == DOTA_GAMERULES_STATE_STRATEGY_TIME) then
 
-  --遊戲開始
-  if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+	elseif(newState == DOTA_GAMERULES_STATE_TEAM_SHOWCASE) then --選擇英雄階段
+
+	elseif(newState == DOTA_GAMERULES_STATE_PRE_GAME) then --當英雄選擇結束 --6
+    if _G.nobu_server_b then
+      Nobu:OpenRoom()
+    end
+    GameRules:SendCustomMessage("歡迎來到 信長之野望", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("作者: David & Damody & 螺絲  | 美術：阿荒老師 | 顧問：FN" , DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("dota2信長目前還在測試階段 請多見諒", DOTA_TEAM_GOODGUYS, 0)
+	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
     --出兵觸發
     if _G.GameMap == "Nobu" then
       ShuaGuai()
     end
-  end
+	elseif(newState == DOTA_GAMERULES_STATE_POST_GAME) then
+    if _G.nobu_server_b then
+        Nobu:CloseRoom()
+    end
+	elseif(newState == DOTA_GAMERULES_STATE_DISCONNECT) then
+
+	end
+
+  -- DOTA_GAMERULES_STATE_INIT	0
+  -- DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD	1
+  -- DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP	2
+  -- DOTA_GAMERULES_STATE_HERO_SELECTION	3
+  -- DOTA_GAMERULES_STATE_STRATEGY_TIME	4
+  -- DOTA_GAMERULES_STATE_TEAM_SHOWCASE	5
+  -- DOTA_GAMERULES_STATE_PRE_GAME	6
+  -- DOTA_GAMERULES_STATE_GAME_IN_PROGRESS	7
+  -- DOTA_GAMERULES_STATE_POST_GAME	8
+  -- DOTA_GAMERULES_STATE_DISCONNECT	9
 end
 
 function Nobu:InitGameMode()
-  print( "[Nobu] Nobu:InitGameMode is loaded." )
+  print( "[Nobu-lua] Nobu:InitGameMode is loaded." )
 
   --【Varible】
   _G.GameMap = GetMapName()
@@ -198,8 +126,8 @@ function Nobu:InitGameMode()
   GameRules:SetGoldTickTime(1)--金錢跳錢秒數
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
-  GameRules:SetCustomGameEndDelay(30) --遊戲結束時間
-  GameRules:SetCustomVictoryMessageDuration(30)  --遊戲結束發送訊息時間
+  GameRules:SetCustomGameEndDelay(1) --遊戲結束時間 --正常30
+  GameRules:SetCustomVictoryMessageDuration(1)  --遊戲結束發送訊息時間
   -- GameRules:SetCustomGameSetupTimeout(20)
   -- GameRules:SetHeroMinimapIconScale( 1 )
   -- GameRules:SetCreepMinimapIconScale( 1 )
@@ -273,13 +201,13 @@ end
 --【初始化】
 function Activate()
   -- if Script_reload_B == false then
-    print("[Nobu] Activate")
+    print("[Nobu-lua] Activate")
     -- Script_reload_B = true
     -- StopListeningToAllGameEvents(Nobu:GetEntityHandle())
 
     AMHCInit()
     if _G.nobu_server_b then
-      Nobu:OpenRoom() --Server Init
+      Nobu:CheckAFK() --Server Init
     end
     Nobu:InitGameMode()
     Nobu:Init_Event_and_Filter_GameMode() --管理事件、Filter
