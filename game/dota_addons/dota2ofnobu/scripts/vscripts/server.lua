@@ -77,14 +77,13 @@ for pID = 0, 9 do
 			for pID = 0, 9 do
 				local steamID = PlayerResource:GetSteamAccountID(pID)
 				if steamID ~= 0 then
-					--GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 					local res = PlayerResource:GetConnectionState(pID)
 					if (res == 3) then
 						_G.afkcount[pID] = _G.afkcount[pID] + 1
 					end
 					if (_G.afkcount[pID] > 10) then
-						_G.afkcount[pID] = 0
-						GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
+						_G.afkcount[pID] = -10000
+						GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 						SendHTTPRequest("afk", "POST",
 				            {
 				              id = tostring(steamID),
@@ -96,6 +95,14 @@ for pID = 0, 9 do
 					end
 				end
 			end
+			SendHTTPRequest("keep_alive", "POST",
+				{
+					id = tostring(steamID),
+				},
+					function(result)
+						--print(result)
+					end
+				)
 			return 1
 		else
 			return nil
