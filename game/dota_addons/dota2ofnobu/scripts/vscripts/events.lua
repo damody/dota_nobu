@@ -4,15 +4,15 @@ function Nobu:LevelUP( keys )
   -- [   VScript   ]:    player                            = 1 (number)
   -- [   VScript   ]:    level                             = 24 (number)
   -- [   VScript   ]:    splitscreenplayer                 = -1 (number)
-  local p     = PlayerResource:GetPlayer(keys.player-1)
-  local caster     = p:GetAssignedHero()
-  local name = caster:GetUnitName()
-  if name == "npc_dota_hero_bristleback"  then
-    if keys.level == 8 then
-      local ability = caster:FindAbilityByName("B15D")
-      ability:SetLevel(1)
-    end
-  end
+  -- local p     = PlayerResource:GetPlayer(keys.player-1)
+  -- local caster     = p:GetAssignedHero()
+  -- local name = caster:GetUnitName()
+  -- if name == "npc_dota_hero_bristleback"  then
+  --   if keys.level == 8 then
+  --     local ability = caster:FindAbilityByName("B15D")
+  --     ability:SetLevel(1)
+  --   end
+  -- end
 end
 
 function Nobu:Learn_Ability( keys )

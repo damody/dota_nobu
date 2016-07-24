@@ -1,6 +1,6 @@
 --print ('[Nobu-lua] chubing lua script Starting..' )
-if _G.GameMap == "Nobu" then
-
+if _G.nobu_chubing_b then --"Nobu" then
+	print("[Nobu-lua]".."_G.nobu_chubing_b")
 	--[[
 	IDEA:
 		O先把秒數用全局紀錄下來，可以作成動態管理出兵秒數
@@ -8,8 +8,8 @@ if _G.GameMap == "Nobu" then
 		O記得換足輕兩個單位
 	BUG
 		o問題超多
-		O移動速度會莫名其妙lag
-		O尋路系統效能耗超大
+		O移動速度會莫名其妙lag --解決
+		O尋路系統效能耗超大 --解決
 	]]
 
 
