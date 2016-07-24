@@ -1,3 +1,4 @@
+-- 閃光輪
 --[[ ============================================================================================================
 	Author: Rook, with help from some of Pizzalol's SpellLibrary code
 	Date: January 25, 2015

@@ -1,3 +1,12 @@
+local special = {
+  128732954, -- damody
+  292642709, -- 蘿絲
+  334794913, -- 蘿絲2
+  160191755, -- 揚智
+  235963145, -- Madrid
+  340558013, -- jackylee
+  86765515,  -- Roxas_K
+}
 
 print ('[Nobu-lua] main lua script Starting..' )
 
@@ -71,6 +80,50 @@ function Nobu:OnPlayerConnectFull(keys)
 		end
 		end)
 
+	for pID = 0, 9 do
+		_G.afkcount[pID] = 0
+	end
+	Timers:CreateTimer(20, function()
+		if (_G.homeisme) then
+			for pID = 0, 9 do
+				local steamID = PlayerResource:GetSteamAccountID(pID)
+				if steamID ~= 0 then
+					local res = PlayerResource:GetConnectionState(pID)
+					if (res == 3) then
+						_G.afkcount[pID] = _G.afkcount[pID] + 1
+					end
+					if (_G.afkcount[pID] > 10) then
+						_G.afkcount[pID] = -10000
+						GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
+						SendHTTPRequest("afk", "POST",
+		            {
+		              id = tostring(steamID),
+		            },
+		            function(result)
+		              --print(result)
+		            end
+		          )
+					end
+				end
+			end
+			return 1
+		else
+			return nil
+		end
+	end)
+	Timers:CreateTimer(20, function()
+		if (_G.homeisme) then
+			SendHTTPRequest("keep_alive", "POST",
+				{
+					id = tostring(steamID),
+				},
+					function(result)
+						--print(result)
+					end
+				)
+		end
+		return 20
+	end)
 end
 
 function Nobu:CloseRoom()
@@ -130,50 +183,6 @@ function Nobu:OpenRoom()
 		return nil
 	end)
 
-	for pID = 0, 9 do
-		_G.afkcount[pID] = 0
-	end
-	Timers:CreateTimer(20, function()
-		if (_G.homeisme) then
-			for pID = 0, 9 do
-				local steamID = PlayerResource:GetSteamAccountID(pID)
-				if steamID ~= 0 then
-					local res = PlayerResource:GetConnectionState(pID)
-					if (res == 3) then
-						_G.afkcount[pID] = _G.afkcount[pID] + 1
-					end
-					if (_G.afkcount[pID] > 10) then
-						_G.afkcount[pID] = -10000
-						GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
-						SendHTTPRequest("afk", "POST",
-		            {
-		              id = tostring(steamID),
-		            },
-		            function(result)
-		              --print(result)
-		            end
-		          )
-					end
-				end
-			end
-			return 1
-		else
-			return nil
-		end
-	end)
-	Timers:CreateTimer(20, function()
-		if (_G.homeisme) then
-			SendHTTPRequest("keep_alive", "POST",
-				{
-					id = tostring(steamID),
-				},
-					function(result)
-						--print(result)
-					end
-				)
-		end
-		return 20
-	end)
 end
 
 function Nobu:CheckAFK()

@@ -12,6 +12,29 @@ gamestates =
 	[9] = "DOTA_GAMERULES_STATE_DISCONNECT"
 }
 
+-- 測試模式送裝
+function for_test_equiment()
+  Timers:CreateTimer ( 1, function ()
+        local test_ent = PlayerResource:GetPlayer(0):GetAssignedHero()
+        if (test_ent == nil) then
+          return 1
+        end
+        local item_point = test_ent:GetAbsOrigin()
+        Test_ITEM ={
+          "item_c05",
+          "item_D01",
+          "item_D02",
+          "item_D03",
+          "item_D09"
+        }
+        for i,v in ipairs(Test_ITEM) do
+          local item = CreateItem(v,nil, nil)
+          print(v)
+          CreateItemOnPositionSync(item_point+Vector(i*100,0), item)
+        end
+        return nil
+      end)
+end
 
 --[[
 [Nobu-lua] GameRules State Changed: 	DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP
@@ -38,6 +61,9 @@ function Nobu:OnGameRulesStateChange( keys )
 	elseif(newState == DOTA_GAMERULES_STATE_TEAM_SHOWCASE) then --選擇英雄階段
 
 	elseif(newState == DOTA_GAMERULES_STATE_PRE_GAME) then --當英雄選擇結束 --6
+    if (_G.nobu_debug) then -- 測試模式給裝
+      for_test_equiment()
+    end
     if _G.nobu_server_b then
       Nobu:OpenRoom()
     end

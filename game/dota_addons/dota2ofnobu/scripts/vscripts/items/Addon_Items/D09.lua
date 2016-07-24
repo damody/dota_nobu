@@ -1,3 +1,4 @@
+-- 雷之卷
 --[[
 	Author: Noya
 	Date: April 4, 2015.
@@ -42,6 +43,7 @@ function Shock( keys )
 	-- ParticleManager:SetParticleControl(lightningBolt,1,Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z + target:GetBoundingMaxs().z ))
 	--【DMG】
 	ApplyDamage({ victim = target, attacker = caster, damage = damage, damage_type = AbilityDamageType})
+	target.has_D09 = true
 	-- target:EmitSound("Hero_ShadowShaman.EtherShock.Target")
 
 	--【Varible Of Tem】
@@ -52,7 +54,8 @@ function Shock( keys )
 	local targets_shocked = 1 --Is targets=extra targets or total?
 	for _,unit in pairs(cone_units) do
 		if targets_shocked < targets then
-			if unit ~= target then
+			if unit.has_D09 ~= true then
+				unit.has_D09 = true
 				-- Particle
 				local tem_point = unit:GetAbsOrigin()
 
@@ -70,6 +73,10 @@ function Shock( keys )
 		else
 			break
 		end
+	end
+
+	for _,unit in pairs(cone_units) do
+		unit.has_D09 = nil
 	end
 
 	--【SOUND】

@@ -1,3 +1,5 @@
+-- 風之卷
+
 function item_D01( keys )
 	--【Basic】
 	local caster = keys.caster

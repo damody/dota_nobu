@@ -1,3 +1,4 @@
+-- 火之卷
 function item_D03( keys )
 	--【Basic】
 	local caster = keys.caster
