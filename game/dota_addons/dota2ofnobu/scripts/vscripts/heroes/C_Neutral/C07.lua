@@ -87,6 +87,15 @@ function C07R( keys )
 	local point = caster:GetAbsOrigin()
 	local point2 = target:GetAbsOrigin()
 	local vec   = (point2 - point):Normalized()
+	
+	-- 扣10%血
+	if not caster:HasModifier("modifier_C07D") then
+		if (caster:GetHealth() < caster:GetMaxHealth()*0.1) then
+			caster:SetHealth(1)
+		else
+			AMHC:Damage( caster, caster, caster:GetMaxHealth()*0.1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
+	end
 
 	local level = ability:GetLevel() - 1
 	local radius = ability:GetLevelSpecialValueFor("radius",level)
@@ -183,9 +192,9 @@ function C07_Effect( keys )
 			ParticleManager:SetParticleControl(particle, 1, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 			ParticleManager:SetParticleControl(particle, 2, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 
-		   	group2 = FindUnitsInRadius(dummy:GetTeamNumber(), point2, nil, 300,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+		   	group2 = FindUnitsInRadius(dummy:GetTeamNumber(), point2, nil, 300,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 			for i2,v2 in ipairs(group2) do
-				AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
 		end
 		if not v:IsBuilding() then
