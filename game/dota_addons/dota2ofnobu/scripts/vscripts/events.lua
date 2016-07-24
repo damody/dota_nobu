@@ -198,6 +198,7 @@ function Nobu:Init_Event_and_Filter_GameMode()
   ListenToGameEvent('dota_player_gained_level', Nobu.LevelUP, self),
   ListenToGameEvent("dota_player_pick_hero",Nobu.PickHero, self),
   ListenToGameEvent('npc_spawned', Nobu.OnHeroIngame, self)  ,
+  ListenToGameEvent('dota_player_used_ability', Nobu.CountUsedAbility, self)  ,
   ListenToGameEvent("entity_killed", Nobu.OnUnitKill, self ),
   ListenToGameEvent("player_chat",Nobu.Chat,self), --玩家對話事件
   --ListenToGameEvent( "item_purchased", test, self ) --false

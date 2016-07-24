@@ -18,6 +18,8 @@ model_lookup["npc_dota_hero_dragon_knight"] = true
 model_change_wearable = {}
 model_change_wearable["npc_dota_hero_antimage"]= true
 
+_G.CountUsedAbility_Table = {}
+
 
 function Nobu:OnHeroIngame( keys )
   --PrintTable(keys)
@@ -43,6 +45,21 @@ function Nobu:OnHeroIngame( keys )
     end
   end
 end
+
+-- 統計英雄使用情況
+function Nobu:CountUsedAbility( keys )
+  if (_G.CountUsedAbility_Table[keys.PlayerID] == nil) then
+    _G.CountUsedAbility_Table[keys.PlayerID]  = {}
+  end
+  if (_G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] == nil) then
+    _G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] = 1
+  else
+    _G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] =
+      _G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] + 1
+  end
+  --DeepPrintTable(_G.CountUsedAbility_Table)
+end
+
 
 function SendHTTPRequest(path, method, values, callback)
 	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
@@ -123,8 +140,6 @@ function RemoveWearables( hero )
     end
   end
 end
-
-
 
 -- [   VScript   ]: Wearableelder_titan_echo_stomp
 -- [   VScript   ]: Wearableelder_titan_ancestral_spirit

@@ -34,6 +34,14 @@ function Nobu:PickHero( keys )
   elseif name == "npc_dota_hero_storm_spirit"  then
     caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
   elseif name ==  "npc_dota_hero_silencer"  then
+    -- 這隻角色天生會帶一個modifier我們需要砍掉他
+    Timers:CreateTimer(0.1, function ()
+      if (caster:GetModifierNameByIndex(0) ~= nil) then
+        caster:RemoveModifierByName(caster:GetModifierNameByIndex(0))
+      end
+      return nil
+    end)
+    
     caster:FindAbilityByName("C07D"):SetLevel(1)
 
     -- local t = caster:FindAllModifiers()

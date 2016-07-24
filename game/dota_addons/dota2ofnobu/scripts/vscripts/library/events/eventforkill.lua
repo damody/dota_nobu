@@ -34,12 +34,31 @@ function Nobu:OnUnitKill( keys )
     -- [   VScript              ]:    damagebits                      	= 0 (number)
     -- [   VScript              ]:    splitscreenplayer               	= -1 (number)
     -- [   VScript              ]: }
-
+	
 
     ------------------------------------------------------------------
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
+  	local name = killedUnit:GetUnitName()
+  	if name == "npc_dota_hero_silencer" then
+  		-- 這隻角色天生會帶一個modifier我們需要砍掉他
+      -- 一般是立花道雪在用他
+      local count = 0
+  		Timers:CreateTimer(0.01, function ()
+  		  if (killedUnit:GetModifierNameByIndex(0) ~= nil) then
+    			killedUnit:RemoveModifierByName(killedUnit:GetModifierNameByIndex(0))
+  		  end
+        count = count + 1
+        if count > 3 then
+          return nil
+        end
+  		  return 0.01
+  		end)
+  		print("npc_dota_hero_silencer_dead")
+  	end
+	
     if killedUnit:IsRealHero() then
-      killedUnit:RespawnUnit() --[[Returns:void
+      killedUnit:RespawnUnit() 
+	  --[[Returns:void
       Respawns the target unit if it can be respawned.
       ]]
 
