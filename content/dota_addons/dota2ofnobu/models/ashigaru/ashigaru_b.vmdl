@@ -12,7 +12,6 @@
 				m_bSkinParentedObjects = true
 				m_bLegacySkinParentedTransforms = false
 				m_bExpensiveTangents = false
-				m_bExpensiveVertices = false
 				m_bHighPrecisionTexCoords = false
 				m_bIgnoreCloth = false
 				m_bGetSkinningFromLod0 = false
@@ -47,7 +46,225 @@
 		_class = "CVBoneFlagListReference"
 		m_pObject = null
 	}
-	m_pHitBoxSetLists = [  ]
+	m_pHitBoxSetLists = 
+	[
+		{
+			_class = "CVhitBoxSetListReference"
+			m_pObject = 
+			{
+				m_HitBoxSets = 
+				[
+					{
+						m_name = "default"
+						m_HitBoxes = 
+						[
+							{
+								m_name = "Bone_Chest"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Chest"
+								m_vMinBounds = [ -23.457253, -39.965675, -10.659206 ]
+								m_vMaxBounds = [ 25.312042, 52.81292, 122.488403 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Arm1_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm1_R"
+								m_vMinBounds = [ -16.303898, -14.966698, -20.338493 ]
+								m_vMaxBounds = [ 1.9847, 4.339371, 8.553902 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Arm2_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm2_R"
+								m_vMinBounds = [ -13.414598, -9.67505, -17.41571 ]
+								m_vMaxBounds = [ 3.331898, 5.320807, 1.779991 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Arm1_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm1_L"
+								m_vMinBounds = [ -1.6285, -14.966827, -20.392601 ]
+								m_vMaxBounds = [ 16.691198, 4.339371, 8.487892 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg1_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg1_R"
+								m_vMinBounds = [ -15.610317, -13.077389, -23.359413 ]
+								m_vMaxBounds = [ 6.821517, 11.99131, 15.859295 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg1_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg1_L"
+								m_vMinBounds = [ -8.86496, -13.077389, -23.359413 ]
+								m_vMaxBounds = [ 16.375546, 11.991508, 15.859295 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Hand_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Hand_R"
+								m_vMinBounds = [ -6.768303, -5.713952, -7.326115 ]
+								m_vMaxBounds = [ 6.291695, 6.357277, 3.70929 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Arm2_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm2_L"
+								m_vMinBounds = [ -2.6577, -9.65004, -17.346703 ]
+								m_vMaxBounds = [ 14.086998, 5.345729, 1.849304 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg2_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg2_R"
+								m_vMinBounds = [ -8.2919, -5.521897, -20.901712 ]
+								m_vMaxBounds = [ 5.515388, 8.93504, 1.353291 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg2_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg2_L"
+								m_vMinBounds = [ -5.693739, -5.521878, -21.040117 ]
+								m_vMaxBounds = [ 8.123999, 8.93504, 1.214886 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Weapon_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Weapon_R"
+								m_vMinBounds = [ -0.557396, -132.162018, -7.515308 ]
+								m_vMaxBounds = [ 3.037302, 72.510345, 0.090797 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Hand_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Hand_L"
+								m_vMinBounds = [ -7.002396, -5.624903, -7.069698 ]
+								m_vMaxBounds = [ 6.057701, 6.440567, 3.899506 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Head"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Head"
+								m_vMinBounds = [ -15.256844, -20.087776, -0.244995 ]
+								m_vMaxBounds = [ 16.352551, 11.572121, 19.859001 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Flag03"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Flag03"
+								m_vMinBounds = [ -2.0, -2.0, -2.0 ]
+								m_vMaxBounds = [ 2.0, 2.0, 2.0 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Flag02"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Flag02"
+								m_vMinBounds = [ -2.0, -2.0, -2.0 ]
+								m_vMaxBounds = [ 2.0, 2.0, 2.0 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Flag01"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Flag01"
+								m_vMinBounds = [ -2.0, -2.0, -2.0 ]
+								m_vMaxBounds = [ 2.0, 2.0, 2.0 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "ObjectId25"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "ObjectId25"
+								m_vMinBounds = [ -46.308792, 9.376453, 57.413383 ]
+								m_vMaxBounds = [ 17.942198, 26.921593, 116.195992 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hips"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hips"
+								m_vMinBounds = [ -22.427032, -40.855743, -23.166012 ]
+								m_vMaxBounds = [ 22.701759, 51.922852, 8.296585 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Foot_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Foot_R"
+								m_vMinBounds = [ -6.894298, -19.516495, -8.762079 ]
+								m_vMaxBounds = [ 4.6038, 6.10667, 1.258083 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Foot_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Foot_L"
+								m_vMinBounds = [ -5.4573, -19.529095, -8.749578 ]
+								m_vMaxBounds = [ 6.051098, 6.0941, 1.270584 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+						]
+					},
+				]
+				m_AutoCreateSetName = ""
+			}
+		},
+	]
 	m_pAttachmentLists = [  ]
 	m_pAnimGroup = 
 	{

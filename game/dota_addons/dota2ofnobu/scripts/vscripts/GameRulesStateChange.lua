@@ -71,6 +71,15 @@ function Nobu:OnGameRulesStateChange( keys )
     GameRules:SendCustomMessage("作者: David & Damody & 螺絲  | 美術：阿荒老師 | 顧問：FN" , DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("dota2信長目前還在測試階段 請多見諒", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
+		--刪除建築物無敵
+	  -- local allBuildings = Entities:FindAllByClassname('npc_dota_building')
+	  -- for i = 1, #allBuildings, 1 do
+	  --    local building = allBuildings[i]
+	  --    if building:HasModifier('modifier_invulnerable') then
+	  --       building:RemoveModifierByName('modifier_invulnerable')
+	  --    end
+	  -- end
+
     --出兵觸發
     if _G.nobu_chubing_b then
       ShuaGuai()

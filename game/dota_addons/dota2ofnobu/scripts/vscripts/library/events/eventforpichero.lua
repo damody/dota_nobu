@@ -41,7 +41,7 @@ function Nobu:PickHero( keys )
       end
       return nil
     end)
-    
+
     caster:FindAbilityByName("C07D"):SetLevel(1)
 
     -- local t = caster:FindAllModifiers()
@@ -96,35 +96,4 @@ function Nobu:PickHero( keys )
   --debug
   --GameRules: SendCustomMessage("Hello World",DOTA_TEAM_GOODGUYS,0)
 
-  --刪除建築物無敵
-  local allBuildings = Entities:FindAllByClassname('npc_dota_building')
-  for i = 1, #allBuildings, 1 do
-     local building = allBuildings[i]
-     if building:HasModifier('modifier_invulnerable') then
-        building:RemoveModifierByName('modifier_invulnerable')
-     end
-  end
-
-  -- if _G.nobu_debug then
-    pickherotest (keys)
-  -- end
-
-
-
-end
-
-function pickherotest (keys)
-  local id       = keys.player
-  local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-  local caster     = p: GetAssignedHero()
-  local point    = caster:GetAbsOrigin()
-  local owner = caster:GetPlayerOwner()
-  --金錢
-  PlayerResource:SetGold(id-1,99999,false)--玩家ID需要減一
-
-  -- --等級
-  -- for i=1,25 do
-  --   caster:HeroLevelUp(false)
-  --   -- caster.HeroLevelUp(caster,true)
-  -- end
 end
