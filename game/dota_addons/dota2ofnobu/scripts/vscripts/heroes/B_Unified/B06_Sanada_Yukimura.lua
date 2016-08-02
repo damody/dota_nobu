@@ -31,7 +31,7 @@ function b06e_Shot( keys )
     local group = {}
     local radius = 400
     local teams = DOTA_UNIT_TARGET_TEAM_ENEMY
-    local types = DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_MECHANICAL     --+DOTA_UNIT_TARGET_BUILDING
+    local types = DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO     --+DOTA_UNIT_TARGET_BUILDING
     local flags = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE
 
     --獲取周圍的單位

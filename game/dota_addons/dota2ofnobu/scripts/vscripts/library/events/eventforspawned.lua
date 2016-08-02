@@ -74,6 +74,7 @@ end
 function AddAFKTimer( hero )
   hero.afkcount = 0
   hero.start_afk = function()
+	  local hasafk = false
       local pos = hero:GetAbsOrigin()
       Timers:CreateTimer( 1, function()
         if (hero:IsAlive() and pos == hero:GetAbsOrigin()) then
@@ -82,8 +83,9 @@ function AddAFKTimer( hero )
           pos = hero:GetAbsOrigin()
           hero.afkcount = 0
         end
-        if (hero.afkcount > 30) then
-          hero.afkcount = -10000
+        if (hero.afkcount > 180 and not hasafk) then
+    		  hero.afkcount = 0
+    		  hasafk = true
           local pID = hero:GetPlayerOwner():GetPlayerID()
           local steamID = PlayerResource:GetSteamAccountID(pID)
           print("steamID "..steamID)

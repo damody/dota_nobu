@@ -51,11 +51,11 @@ function A31W( keys )
 	Timers:CreateTimer( 1, 
 		function()
 			second = second + 1
-			local units = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+			local units = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              casterLocation,
 	                              nil,
 	                              radius,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
@@ -64,18 +64,6 @@ function A31W( keys )
 				if (not(it:IsBuilding())) then
 					AMHC:Damage(caster, it, abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				end
-			end
-			local units = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
-	                              casterLocation,
-	                              nil,
-	                              radius,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-			for _, it in pairs( units ) do
-				AMHC:Damage(caster, it, abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 			if (second <= 10) then
 				return 1

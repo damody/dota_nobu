@@ -100,7 +100,7 @@ function FireEffect_IcePath( event )
 			bReplaceExisting	= false,
 			iUnitTargetTeam		= DOTA_UNIT_TARGET_TEAM_ENEMY,
 			iUnitTargetFlags	= DOTA_UNIT_TARGET_FLAG_NONE,
-			iUnitTargetType		= DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP + DOTA_UNIT_TARGET_MECHANICAL,
+			iUnitTargetType		= DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
 			fExpireTime			= ability.ice_path_stunEnd,
 			bDeleteOnHit		= false,
 			vVelocity			= Vector( 0, 0, 0 ),	-- Don't move!
@@ -143,7 +143,7 @@ function B32R( keys )
 	if (caster.hasB32R == nil) then
 	 	local group = FindUnitsInRadius(
 					caster:GetTeamNumber(), point, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
-					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_MECHANICAL, 0, FIND_ANY_ORDER, false)
+					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false)
 		for i,v in ipairs(group) do
 			point2 = v:GetAbsOrigin()
 			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW , v)

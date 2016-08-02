@@ -96,13 +96,13 @@ function Nobu:OnPlayerConnectFull(keys)
 						_G.afkcount[pID] = -10000
 						GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
 						SendHTTPRequest("afk", "POST",
-		            {
-		              id = tostring(steamID),
-		            },
-		            function(result)
-		              --print(result)
-		            end
-		          )
+						{
+						  id = tostring(steamID),
+						},
+						function(result)
+						  --print(result)
+						end
+					  )
 					end
 				end
 			end

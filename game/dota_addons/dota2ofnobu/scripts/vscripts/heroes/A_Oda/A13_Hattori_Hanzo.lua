@@ -368,11 +368,11 @@ function A13E_modifier:OnIntervalThink()
 		for _,hookpoint in pairs(hook_pts) do
 			-- 拉到敵人
 			local SEARCH_RADIUS = self.hook_width
-			direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              hookpoint,
 	                              nil,
 	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
@@ -380,11 +380,11 @@ function A13E_modifier:OnIntervalThink()
 			if (table.getn(direUnits) == 0) then
 				local floorpos = hookpoint
 				floorpos.z = 100
-				direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+				direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              floorpos,
 	                              nil,
 	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
@@ -411,40 +411,8 @@ function A13E_modifier:OnIntervalThink()
 				return
 			end
 
-			-- 拉到中立怪
-			direUnits = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
-		                          hookpoint,
-		                          nil,
-		                          SEARCH_RADIUS,
-		                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		                          DOTA_UNIT_TARGET_ALL,
-		                          DOTA_UNIT_TARGET_FLAG_NONE,
-		                          FIND_ANY_ORDER,
-		                          false)
-
-			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding())) then
-					ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
-						damage_type = self.damage_type, ability = self:GetAbility()})
-					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
-					if (hModifier ~= nil) then
-						hModifier.path = self.path
-						hModifier.interval_Count = self.interval_Count
-						hModifier.particle = self.particle
-						break
-					end
-					break
-				end
-			end
-			if (hashook == true) then
-				self:StartIntervalThink( -1 )
-				return
-			end
-
 			-- 拉到友軍
-			direUnits = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
+			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		                          hookpoint,
 		                          nil,
 		                          SEARCH_RADIUS,
@@ -556,7 +524,7 @@ function A13T( keys )
 					bReplaceExisting = false,
 					bProvidesVision = false,
 					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_MECHANICAL,
+					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 					vVelocity = velocityVec * projectile_speed
 				}
 				ProjectileManager:CreateLinearProjectile( projectileTable )
