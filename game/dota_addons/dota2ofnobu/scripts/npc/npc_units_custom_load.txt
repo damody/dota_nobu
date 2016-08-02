@@ -5,6 +5,84 @@
 {
 	"Version"		"1"
 
+	// 鳳凰
+	"a28_phoenix"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/phoenix/phoenix_bird.vmdl"
+		"ModelScale"	"1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Amnb
+		"Ability1"	"A28TE"
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10.00"
+		"MagicalResistance"	"75"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"200.0"
+		"AttackDamageMax"	"250.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"700"
+		"StatusMana"	"400"
+		"StatusStartingMana"	"400"
+		// Add projectile
+		"ProjectileModel"	"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge.vpcf"
+		"ProjectileSpeed"	"900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"100.0"
+		"BountyGoldMax"	"100.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"	"415"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"2000"
+		"StatusHealthRegen"	"1.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"2000"
+		"VisionNighttimeRange"	"1400"
+		// Team
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
 	// 下級伏兵先鋒
 	"ndrp"
 	{

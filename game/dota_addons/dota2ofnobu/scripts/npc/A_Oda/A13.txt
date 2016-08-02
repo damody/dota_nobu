@@ -98,8 +98,6 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
-		"RequiredLevel"	"6"
-		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0.5"
 		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
 		"AbilityManaCost"	"0 0 0 0"
@@ -223,8 +221,6 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"R"
 		"MaxLevel"	"4"
-		"RequiredLevel"	"6"
-		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0"
 		"precache"
 		{
@@ -385,7 +381,7 @@
 					"Center"	"TARGET"
 					"Radius"	"%splash_radius"
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				}
 				"Action"
 				{
