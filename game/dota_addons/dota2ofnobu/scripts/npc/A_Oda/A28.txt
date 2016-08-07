@@ -476,4 +476,81 @@
 			}
 		}
 	}
+	// 鳳凰 本能寺炎上
+	"A28TE"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"btnhero02d"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"275"
+		"AbilityCastRange"	"1100"
+		"AbilityChannelTime"	"%A28T_Skill_Duration"
+		"AOERadius"	"%A28T_Radius"
+		"precache"
+		{
+			"soundfile"	"soundevents/c01t.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
+				"Function"	"A28TE"
+				"Target"	"POINT"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A28TE_Channel"
+			}
+		}
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A28TE_Channel"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A28TE_Channel"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A28TE_Channel"
+			{
+				"ThinkInterval"	"10"
+				"OnIntervalThink"	{}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A28T_Radius"	"700 800 900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A28T_Skill_Duration"	"10 15 20"
+			}
+		}
+	}	
 }

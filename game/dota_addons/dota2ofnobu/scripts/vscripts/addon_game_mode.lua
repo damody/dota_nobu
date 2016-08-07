@@ -63,7 +63,7 @@ function Precache( context )
     "particles/b34e/b34e.vpcf",
     "particles/b34e/b34e2.vpcf",
 
-    --道雪
+    --立花道雪
     "particles/c07w/c07w.vpcf",
     "particles/c07e3/c07e3.vpcf",
     "particles/econ/items/razor/razor_punctured_crest/razor_static_link_blade.vpcf",
@@ -75,7 +75,7 @@ function Precache( context )
     --阿市
     "particles/c17w/c17w.vpcf",
 
-    --秋山
+    --秋山信友
     "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf",
     "particles/b24t/b01t.vpcf",
     "particles/b24w/b24w.vpcf" ,
@@ -83,7 +83,9 @@ function Precache( context )
     "particles/b24t3/b24t3.vpcf",
     "particles/b13e/b13e.vpcf",
 
-    --鳥居
+    --羽柴秀吉
+    "particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge.vpcf",
+    --鳥居元宗
     "particles/generic_gameplay/generic_hit_blood.vpcf",
     "particles/a16r3/a16r3.vpcf"
 

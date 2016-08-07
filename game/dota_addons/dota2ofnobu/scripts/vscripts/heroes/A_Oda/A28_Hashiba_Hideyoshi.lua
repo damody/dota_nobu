@@ -253,6 +253,7 @@ function A28T(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	local level = keys.ability:GetLevel()
 	--local player = caster:GetPlayerID()
 	local point = caster:GetAbsOrigin()
 	--local point2 = target:GetAbsOrigin() 
@@ -267,9 +268,14 @@ function A28T(keys)
 	--【Special】
  	--【Dummy Kv】
  	local player = caster:GetPlayerID()
- 	local phoenix = CreateUnitByName("a28_phoenix",point2 ,false,caster,caster,caster:GetTeam())	
+ 	local phoenix = CreateUnitByName("a28_phoenix",point2 ,false,caster,caster,caster:GetTeam())
+ 	phoenix:FindAbilityByName("A28TE"):SetLevel(level+1)
  	--phoenix:SetPlayerID(player)
 	phoenix:SetControllableByPlayer(player, true)
+	phoenix:SetBaseMaxHealth(2000+level*1000)
+	phoenix:SetHealth(phoenix:GetMaxHealth())
+	phoenix:SetBaseDamageMax(250+level*100)
+	phoenix:SetBaseDamageMin(200+level*110)
  	--dummy:SetControllableByPlayer(player,false)
  	--ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
 		
@@ -278,7 +284,7 @@ function A28T(keys)
  	-- ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET, AbilityIndex = dummy_ability:GetEntityIndex(), Queue = false}) 
  	-- Execute the attack order for the caster
  	--dummy:SetForwardVector(vec)
- 	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 40})
+ 	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 40+level*20})
 				
 end
 
@@ -287,3 +293,68 @@ function A28T_dead(keys)
 	local caster = keys.caster
 	caster:ForceKill(true)
 end
+
+
+
+function A28TE_Effect( keys, point )
+	local dmg = 84
+	local SEARCH_RADIUS = 260
+	local caster = keys.caster
+	local level = keys.ability:GetLevel()
+	--particle
+	local chaos_meteor_fly_particle_effect = ParticleManager:CreateParticle("particles/invoker_chaos_meteor_fly2.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 0, point + Vector (0, 0, 10000))
+	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 1, point)
+	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 2, Vector(0.5, 0, 0))
+
+end
+
+
+function A28TE( keys )
+	local caster = keys.caster
+	local point = keys.target_points[1] 
+	local level = keys.ability:GetLevel()
+	local skillcount = 0
+	local skillmax = 3
+	--大絕直徑
+	local radius = keys.ability:GetLevelSpecialValueFor( "A28T_Radius", ( keys.ability:GetLevel() - 1 ) )
+	sk_radius = radius + 100
+	
+	--轉半徑
+	Timers:CreateTimer(0.1, function()
+		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 1.0, false)
+		for i=1,30 do
+			if ( RandomInt(1, 10) > 5) then
+				A28TE_Effect(keys, point + RandomVector(radius))
+			else
+				A28TE_Effect(keys, point + RandomVector(RandomInt(1, radius*0.8)))
+			end
+		end
+		caster:StartGesture( ACT_DOTA_CAST_ABILITY_1 )
+		Timers:CreateTimer(0.45, 
+			function ()
+			GridNav:DestroyTreesAroundPoint(point, radius, false)
+			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+		                          point,
+		                          nil,
+		                          radius,
+		                          DOTA_UNIT_TARGET_TEAM_ENEMY,
+		                          DOTA_UNIT_TARGET_ALL,
+		                          DOTA_UNIT_TARGET_FLAG_NONE,
+		                          FIND_ANY_ORDER,
+		                          false)
+
+			--effect:傷害+暈眩
+			for _,it in pairs(direUnits) do
+				AMHC:Damage(caster,it,100,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+			end)
+
+		if  (caster:IsChanneling() ) then
+			return 1
+		else
+			return nil
+		end
+	end)
+end
+
