@@ -49,12 +49,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"650 650 650 650"
+				"radius"	"500 500 500 500"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 1.0 1.5 2.0"
+				"duration"				"1.0 1.5 2.0 2.5"
 			}
 		}
 
@@ -345,17 +345,13 @@
 		"AbilityManaCost"	"120 120 120 120"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"1800"
+		"AbilityCastRange"	"800"
 		"AOERadius"	"%radius"
 		// Data driven
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
-			"particle"	"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
-			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+			"particle"	"particles/a28r/a28r.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -385,7 +381,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"700 800 900 1000"
+				"radius"	"500 500 500 500"
 			}
 			"02"
 			{
