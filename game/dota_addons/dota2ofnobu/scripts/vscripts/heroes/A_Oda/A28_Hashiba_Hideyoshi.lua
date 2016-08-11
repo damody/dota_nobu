@@ -232,16 +232,15 @@ function A28R( keys )
 			end
 		end)
 
-	local particleName = "particles/units/heroes/hero_warlock/warlock_upheaval.vpcf"
-	local particleName2 = "particles/a28r.vpcf"
+	local particleName = "particles/a28r/a28r.vpcf"
+	
 	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster )
 	ParticleManager:SetParticleControl( fxIndex, 0, casterLocation )
-	local fxIndex2 = ParticleManager:CreateParticle( particleName2, PATTACH_CUSTOMORIGIN, caster )
-	ParticleManager:SetParticleControl( fxIndex2, 0, casterLocation )
-	Timers:CreateTimer( 4, 
+	
+	Timers:CreateTimer( 40, 
 		function ()
 			ParticleManager:DestroyParticle(fxIndex, false)
-			ParticleManager:DestroyParticle(fxIndex2, false)
+			
 		end)
 
 end
@@ -291,7 +290,28 @@ end
 
 function A28T_dead(keys)
 	local caster = keys.caster
-	caster:ForceKill(true)
+	local dead_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_sphere_model.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	ParticleManager:SetParticleControl(dead_effect, 0, caster:GetAbsOrigin())
+
+	Timers:CreateTimer(0.5, function()
+		local dead_effect2 = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_shockwave.vpcf", PATTACH_ABSORIGIN, keys.caster)
+		ParticleManager:SetParticleControl(dead_effect2, 0, caster:GetAbsOrigin() + Vector (0, 0, 100))
+		end)
+	caster:ForceKill(false)
+	Timers:CreateTimer(1.5, function()
+		caster:Destroy()
+		end)
+	local count = 0
+	Timers:CreateTimer(function()
+		count = count + 1
+		caster:SetAbsOrigin(caster:GetAbsOrigin() - Vector (0, 0, 10))
+		if (count < 30) then
+			return 0.05
+		else
+			return nil
+		end
+		end)
+	
 end
 
 
