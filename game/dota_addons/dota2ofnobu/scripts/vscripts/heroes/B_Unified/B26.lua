@@ -43,17 +43,29 @@ end
 function B26T( keys )
 	local caster = keys.caster
 	--local target = keys.target
-	--local ability = keys.ability
+	local ability = keys.ability
 	local point = caster:GetAbsOrigin()
 	--local point2 = target:GetAbsOrigin()
-	--local level = ability:GetLevel() - 1
+	local level = ability:GetLevel() - 1
 	local particle = ParticleManager:CreateParticle("particles/b26t/b26t.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle,0, point)
 	ParticleManager:SetParticleControl(particle,1, point+Vector(0,0,299))
 
 	local particle2 = ParticleManager:CreateParticle("particles/b26t4/b26t4.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle2,0, point+Vector(0,0,200))
-	--ParticleManager:SetParticleControl(particle2,1, point+Vector(0,0,299))	
+	ParticleManager:SetParticleControl(particle2,1, point+Vector(0,0,299))	
+
+	local wings = ParticleManager:CreateParticle("particles/b26t/b26t_wings.vpcf",PATTACH_OVERHEAD_FOLLOW,caster)
+	ParticleManager:SetParticleControl(wings,5, caster:GetAbsOrigin()+Vector(0,0,100))
+	Timers:CreateTimer(0,function()
+		if caster:HasModifier("modifier_B26T") then
+			ParticleManager:SetParticleControlOrientation(wings,1,caster:GetForwardVector(),caster:GetRightVector(),caster:GetUpVector())
+			return 0
+		end
+		ParticleManager:DestroyParticle(wings,true)
+		return nil		
+		end)
+
 	Timers:CreateTimer(0.5,function()
 		ParticleManager:DestroyParticle(particle2,false)
 	end)	

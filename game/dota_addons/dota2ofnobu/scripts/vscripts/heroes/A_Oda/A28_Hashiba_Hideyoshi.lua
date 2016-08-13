@@ -237,7 +237,7 @@ function A28R( keys )
 	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster )
 	ParticleManager:SetParticleControl( fxIndex, 0, casterLocation )
 	
-	Timers:CreateTimer( 40, 
+	Timers:CreateTimer( 4, 
 		function ()
 			ParticleManager:DestroyParticle(fxIndex, false)
 			

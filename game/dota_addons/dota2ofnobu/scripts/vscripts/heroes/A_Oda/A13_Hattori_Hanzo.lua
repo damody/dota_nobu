@@ -323,6 +323,7 @@ function A13E_modifier:OnCreated( event )
 	self.particle = {}
 	self.oriangle = self:GetParent():GetAnglesAsVector().y
 	self.hook_pos = self:GetParent():GetOrigin()
+	self.oripos = self:GetParent():GetOrigin()
 	self:StartIntervalThink(0.05) 
 
 end
@@ -343,7 +344,9 @@ function A13E_modifier:OnIntervalThink()
 		local vDirection =  caster:GetForwardVector()
 		self.path[self.interval_Count] = self.hook_pos
 		local length = (20+angle*0.2) * self.interval_Count
-		local next_hook_pos = 0
+		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length + (self:GetParent():GetOrigin() - self.oripos)
+		self.oripos = self:GetParent():GetOrigin()
+		length = (next_hook_pos - self.hook_pos):Length()
 		hook_pts = { self.hook_pos }
 		if (length > 100) then
 			local pts = length / 100 + 1

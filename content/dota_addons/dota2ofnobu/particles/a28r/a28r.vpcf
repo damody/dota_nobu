@@ -12,6 +12,10 @@
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_hTexture = resource:"materials/particle/impact/fleks_ember.vtex"
 			m_nOrientationType = 2
+			m_flFinalTextureScaleU = 3.0
+			m_flFinalTextureScaleV = 3.0
+			m_bOutline = true
+			m_OutlineColor = [ 255, 0, 4, 255 ]
 		},
 	]
 	m_Operators = 
@@ -88,7 +92,7 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 5.0
+			m_fLifetimeMax = 2.0
 			m_fLifetimeMin = 1.0
 		},
 		{
@@ -102,8 +106,7 @@
 	m_Emitters = 
 	[
 		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 200
+			_class = "C_OP_ContinuousEmitter"
 		},
 	]
 }

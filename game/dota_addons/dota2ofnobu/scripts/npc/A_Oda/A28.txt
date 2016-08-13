@@ -14,7 +14,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"viper_viper_strike"
+		"AbilityTextureName"			"icon_128x128_92"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AOERadius"						"%radius"
 		"HotKeyOverride"				"W"
@@ -74,7 +74,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"zuus_arc_lightning"
+		"AbilityTextureName"	"icon_128x128_68"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -213,12 +213,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"jump_delay"	"0.1 0.1 0.1 0.1"
+				"jump_delay"	"0.2 0.2 0.1 0.1"
 			}
 		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"150 300 450 600"
+		"AbilityDamage"	"100 135 170 205"
 	}
 	// 羽柴秀吉 袖毒矢
 	"A28E_Old"
@@ -333,7 +333,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"mirana_starfall"
+		"AbilityTextureName"	"icon_128x128_72"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
@@ -421,7 +421,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"cps_d01_2 (Copy)"
+		"AbilityTextureName"	"phoenix"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
