@@ -1,0 +1,105 @@
+"DOTAAbilities"
+{	
+	// B17 佐佐成政
+	"A17"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"Model"	"models/heroes/sniper/sniper.vmdl"
+		"Portrait"	"vgui/hud/heroportraits/portrait_sniper"
+		"IdleExpression"	"scenes/sniper/sniper_exp_idle_01.vcd"
+		"SoundSet"	"Hero_Sniper"
+		//"Enabled"	"1"
+		"HeroPool1"	"1"
+		"HeroUnlockOrder"	"0"
+		"Role"	"Carry,Nuker"
+		"Rolelevels"	"3,1"
+		"Team"	"Good"
+		"override_hero"	"npc_dota_hero_sniper"
+		"ModelScale"	"1"
+		//"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"A17W"
+		// Reference: Aamk
+		"Ability2"	"A17E"
+		// Reference: A022
+		"Ability3"	"A17R"
+		// Reference: A01Z
+		"Ability4"	"A17T"
+		// Reference: A020
+		"Ability5"	"attribute_bonus"
+		// Reference: A021
+		"Ability6"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"63.0"
+		"AttackDamageMax"	"79.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.17"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"700"
+		"ProjectileSpeed"	"3000"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"34"
+		"AttributeStrengthGain"	"2.00"
+		"AttributeBaseIntelligence"	"22"
+		"AttributeIntelligenceGain"	"2.00"
+		"AttributeBaseAgility"	"28"
+		"AttributeAgilityGain"	"2.70"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"3.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AbilityLayout"	"4"
+	}
+
+	
+}	

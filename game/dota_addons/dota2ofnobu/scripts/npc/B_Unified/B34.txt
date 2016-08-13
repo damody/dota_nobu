@@ -1,0 +1,397 @@
+"DOTAAbilities"
+{
+"B34W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_wild_axes"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"100/120/140/160"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/beastmaster/wild_axes.vsnd"
+			"soundfile"	"sounds/weapons/hero/beastmaster/attack03.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+				"Function"	"B34W"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Beastmaster.Wild_Axes"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B34W"
+			{
+				"OnCreated"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%duration"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Beastmaster.Attack"
+					}
+				}
+				"Duration"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"0.5 1.0 1.5 2.0"
+			}
+		}
+		"AbilityDamage"	"100 200 300 400"
+	}
+
+	"B34E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"sandking_burrowstrike_alt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"28 25 22 19"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/earthshaker/fist_swing_impact1.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+				"Function"	"B34E"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Alchemist.Attack"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B34E_2"
+			{
+				"Aura"	"modifier_B34E_3"
+				"Aura_Radius"	"%range"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Duration"	"%duration"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+						"Function"	"B34E_END"
+					}
+				}
+			}
+			"modifier_B34E_3"
+			{
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+				}
+				"ThinkInterval"	"1"
+				"IsDebuff"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
+				}
+				"IsPurgable"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"140"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"16"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed"	"-20 -30 -40 -50"
+			}
+		}
+		"AbilityDamage"	"50 70 90 110"
+	}
+
+	"B34R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_inner_beast"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"100 125 150 175"
+		"precache"
+		{
+			"soundfile"	"sounds/vo/beastmaster/beas_win_03.vsnd"
+			"soundfile"	"soundevents/voscripts/game_sounds_vo_beastmaster.vsndevts"
+			"particle"	"particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B34R"
+			}
+			"FireSound"
+			{
+				"EffectName"	"beastmaster_beas_win_03"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+				"Function"	"B34R_limit"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B34R"
+			{
+				"Duration"	"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%criticalstrike"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+						"Function"	"B34R"
+					}
+				}
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"StatusEffectName"	"particles/b34r/b34r.vpcf"
+				"StatusEffectPriority"	"10"
+				"EffectName"	"particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"15"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"criticalstrike"	"160 200 240 280"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_limit"	"5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_bonus"	"10 15 20 25"
+			}
+		}
+	}
+
+	"B34T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_primal_roar"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"particle"	"particles/b34t/b34t.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_B34T"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%speed_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%attack_bonus"
+				}
+				"Duration"	"%duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
+			"modifier_B34T_2"
+			{
+				"Passive"	"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+						"Function"	"B34T"
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Roshan.Slam"
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%AbilityDamage"
+							}
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_B34T"
+							}
+						}
+					}
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"particles/b34t/b34t.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"365"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonus"	"-30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"-30"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"4.0 4.5 5.0"
+			}
+		}
+		"AbilityDamage"	"85 130 170"
+	}
+
+	"test3333"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_gem_of_true_sight"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_test3333"
+			{
+				"Passive"	"1"
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"StatusEffectName"	"particles/a16e2/a16e2.vpcf"
+				"StatusEffectPriority"	"10"
+			}
+			"modifier_test3333_2"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
+				}
+				"Properties"	{}
+				"ThinkInterval"	"0.1"
+				"OnCreated"	{}
+			}
+			"modifier_test3333_3"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
+}	

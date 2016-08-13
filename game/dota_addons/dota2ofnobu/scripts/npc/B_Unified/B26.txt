@@ -1,0 +1,348 @@
+"DOTAAbilities"
+{
+	"B26W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"brewmaster_fire_permanent_immolation"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"15 14 13 12"
+		"AbilityManaCost"	"100 120 140 160"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_fire_ambient_fire_explode.vpcf"
+			"particle"	"particles/b26w3/b26w3.vpcf"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B26.lua"
+				"Function"	"B26W"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26W"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B26W"
+			{
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"CASTER"
+							"Radius"	"%dmg_radius"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%AbilityDamage"
+							}
+							"FireEffect"
+							{
+								"Target"	"TARGET"
+								"ControlPoints"	{}
+								"ControlPointEntities"	{}
+								"EffectName"	"particles/units/heroes/hero_brewmaster/brewmaster_fire_ambient_fire_explode.vpcf"
+								"EffectAttachType"	"follow_hitloc"
+							}
+						}
+					}
+					"FireEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"particles/b26w3/b26w3.vpcf"
+						"EffectAttachType"	"follow_hitloc"
+					}
+				}
+				"ThinkInterval"	"1"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B26.lua"
+						"Function"	"B26D"
+					}
+				}
+			}
+			"modifier_B26W_2"
+			{
+				"OnCreated"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"TARGET"
+							"Radius"	"%dmg_radius"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_B26W_3"
+							}
+						}
+					}
+				}
+				"Duration"	"0"
+				"IsHidden"	"1"
+			}
+			"modifier_B26W_3"
+			{
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%spd"
+				}
+				"EffectName"	"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"%slow_duration"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"12"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg_radius"	"500"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spd"	"-40"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"slow_duration"	"2 3 4 5"
+			}
+		}
+		"AbilityDamage"	"40 60 80 120"
+	}
+
+	"B26E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ember_spirit_sleight_of_fist"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"29"
+		"AbilityManaCost"	"105 135 165 195"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26E"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26E_2"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B26E"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atk_spd"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%spd"
+				}
+				"States"	{}
+				"Duration"	"%drt"
+				"IsBuff"	"1"
+				"IsPurgable"	"0"
+				"StatusEffectName"	"particles/b26w4/b264.vpcf"
+				"StatusEffectPriority"	"10"
+			}
+			"modifier_B26E_2"
+			{
+				"Duration"	"%imm_drt"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"TextureName"	"neutral_spell_immunity"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spd"	"16"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_spd"	"50 75 100 125"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"imm_drt"	"8"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"drt"	"18"
+			}
+		}
+	}
+
+	"B26R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"brewmaster_drunken_brawler_miss"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_B26R"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%per_att"
+				}
+				"OnTakeDamage"
+				{
+					"Random"
+					{
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B26.lua"
+								"Function"	"B26R"
+								"dmg"	"%attack_damage"
+							}
+						}
+						"Chance"	"%chance"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"5 9 13 17"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"per_att"	"9 16 23 30"
+			}
+		}
+	}
+
+	"B26T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"brewmaster_drunken_haze"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"120 110 100"
+		"AbilityManaCost"	"125 165 205"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/creep/neutral/thunderlizard_roar.vsnd"
+			"particle"	"particles/b26t/b26t.vpcf"
+			"particle"	"particles/b26t4/b26t4.vpcf"
+			"particle"	"particles/b26t2/b26t2.vpcf"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"particle"	"particles/b26t2/b26t2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26T"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26T_2"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"n_creep_Thunderlizard_Big.Roar"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B26.lua"
+				"Function"	"B26T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B26T"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%per_att"
+				}
+				"Duration"	"%duration"
+				"EffectName"	"particles/b26t2/b26t2.vpcf"
+			}
+			"modifier_B26T_2"
+			{
+				"Properties"
+				{}
+				"EffectName"	"particles/econ/items/skywrath_mage/hero_skywrath_dpits3_wings/skywrath_dpits3_backwing_p.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Duration"	"%duration"
+				"IsDebuff"	"1"	
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"11 15 19"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"per_att"	"200"
+			}
+		}
+	}
+}

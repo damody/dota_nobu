@@ -1,0 +1,407 @@
+"DOTAAbilities"
+{
+"A17E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"80 100 120 140"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17E"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A17E"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
+				}
+				"Duration"	"%duration"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed"	"150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed"	"0 5 10 15"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"5.5 7.0 8.5 10.0"
+			}
+		}
+	}
+
+	"A17R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_skyhigh_call_down"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"precache"
+		{
+			"particle"	"particles/generic_gameplay/generic_stunned_old.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A17R_passive"
+			{
+				"Passive"	"1"
+				"OnAttack"
+				{
+					"Random"
+					{
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"Function"	"A17R"
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+								"dmg"	"%AbilityDamage"
+							}
+						}
+						"Chance"	"%chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_CHAOS_CRIT"
+					}
+				}
+				"IsBuff"	"0"
+				"IsHidden"	"1"
+			}
+			"modifier_A17R"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%stun_duration"
+				"IsDebuff"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned_old.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.1 0.2 0.3 0.4"
+			}
+		}
+		"AbilityDamage"	"65 95 125 155"
+	}
+
+	"A17T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_skyhigh_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING   "
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	"6 3 0"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+		}
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17T"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A17T"
+			{
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T"
+					}
+				}
+				"States"	{}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_sight"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+				}
+				"IsBuff"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T_Succes_Attack"
+						"dmg"	"%attack_damage"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"night_sight"	"1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_range_bonus"	"450"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attacked_range"	"250"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"80 100 120"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_bonus"	"-100"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_bonus"	"-100"
+			}
+		}
+	}
+
+	"A17W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"sniper_shrapnel"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.3 0.3 0.3 0.3"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120 120 120 120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1800"
+		"AOERadius"	"%radius"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+			"particle"	"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+			"particle"	"particles/units/heroes/hero_ancient_apparition/ancient_apparition_generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+				"Function"	"shrapnel_fire"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_shrapnel_stack_counter_datadriven"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsPurgable"	"0"
+				"IsDebuff"	"0"
+			}
+			"modifier_shrapnel_dummy_datadriven"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"EffectRadius"	"%radius"
+					}
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"EffectRadius"	"%radius"
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Radius"	"%radius"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING "
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Damage"	"%AbilityDamage"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+							}
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_shrapnel_stun_datadriven"
+							}
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+								"Function"	"A17W2"
+							}
+						}
+					}
+				}
+				"ThinkInterval"	"%tick_interval"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Radius"	"%radius"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING "
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Damage"	"%AbilityDamage"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+							}
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_shrapnel_stun_datadriven"
+							}
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+								"Function"	"A17W2"
+							}
+						}
+					}
+				}
+				"Properties"	{}
+				"Passive"	"0"
+			}
+			"modifier_A17W"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_A17W_2"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/units/heroes/hero_ancient_apparition/ancient_apparition_generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"%stun_duration"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage_delay"	"0.8 0.8 0.8 0.8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300 360 420 480"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.0 1.3 1.6 1.9"
+			}
+			// Extra variables
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"tick_interval"	"0.1"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.1"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"15 20 21 24"
+	}
+}
