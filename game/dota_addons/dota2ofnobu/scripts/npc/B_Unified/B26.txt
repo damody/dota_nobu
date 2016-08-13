@@ -294,11 +294,6 @@
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_B26T"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_B26T_2"
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -320,15 +315,6 @@
 				}
 				"Duration"	"%duration"
 				"EffectName"	"particles/b26t2/b26t2.vpcf"
-			}
-			"modifier_B26T_2"
-			{
-				"Properties"
-				{}
-				"EffectName"	"particles/econ/items/skywrath_mage/hero_skywrath_dpits3_wings/skywrath_dpits3_backwing_p.vpcf"
-				"EffectAttachType"	"follow_hitloc"
-				"Duration"	"%duration"
-				"IsDebuff"	"1"	
 			}
 		}
 		"AbilitySpecial"
