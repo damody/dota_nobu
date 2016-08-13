@@ -1,0 +1,108 @@
+// 香宗我部親
+	"C10"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_antimage"
+		"Model"	"models/heroes/antimage/antimage.vmdl"
+		"SoundSet"	"Hero_Antimage"
+		"IdleExpression"	"scenes/antimage/antimage_exp_idle_01.vcd"
+		"HeroUnlockOrder"	"1"
+		"Role"	"Carry,Escape,Nuker"
+		"Rolelevels"	"3,3,1"
+		"Team"	"Good"
+		"Portrait"	"vgui/hud/heroportraits/portrait_antimage"
+		"ModelScale"	"0.900000"
+		"HeroGlowColor"	"120 64 148"
+		"PickSound"	"antimage_anti_spawn_01"
+		"BanSound"	"antimage_anti_anger_04"
+		"CMEnabled"	"1"
+		"NameAliases"	"am"
+		"url"	"Anti-Mage"
+		"LastHitChallengeRival"	"npc_dota_hero_bounty_hunter"
+		"HeroSelectSoundEffect"	"Hero_Antimage.Pick"
+		//"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"C10W"
+		// Reference: Aamk
+		"Ability2"	"C10E"
+		// Reference: A0B7
+		"Ability3"	"C10R"
+		// Reference: A0LR
+		"Ability4"	"C10T"
+		// Reference: A0AX
+		"Ability5"	"attribute_bonus"
+		// Reference: A0UF
+		"Ability6"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"74.0"
+		"AttackDamageMax"	"92.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.60"
+		"AttackAnimationPoint"	"0.3"
+		"AttackAcquisitionRange"	"500.00"
+		"AttackRange"	"128"
+		"ProjectileSpeed"	"10000"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"37"
+		"AttributeStrengthGain"	"2.65"
+		"AttributeBaseIntelligence"	"22"
+		"AttributeIntelligenceGain"	"2.00"
+		"AttributeBaseAgility"	"34"
+		"AttributeAgilityGain"	"2.70"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"314"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	
+	

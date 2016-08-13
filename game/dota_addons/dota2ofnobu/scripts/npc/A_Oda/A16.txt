@@ -1,0 +1,411 @@
+"DOTAAbilities"
+{
+	"A16W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"shadow_demon_shadow_poison"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"9"
+		"AbilityManaCost"	"85 105 125 145"
+		"AbilityCastRange"	"700"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/witch_doctor/attack.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"particle"	"particles/a16w/a16w.vpcf"
+			"particle"	"particles/a16w/a16w.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A16W"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A16W_2"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Furion.Attack"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"sounds/weapons/hero/witch_doctor/attack.vsnd"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A16W"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus"
+				}
+				"EffectName"	"particles/a16w/a16w.vpcf"
+				"EffectAttachType"	"follow_chest"
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+			}
+			"modifier_A16W_2"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus2"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus2"
+				}
+				"Duration"	"%duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"EffectName"	"particles/a16w/a16w.vpcf"
+				"EffectAttachType"	"follow_chest"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonusn"	"20 28 36 44"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"20 30 40 50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonus2"	"-20 -28 -36 -44"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus2"	"-20 -30 -40 -50"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"6"
+			}
+		}
+	}
+
+	"A16R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ursa_enrage"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"precache"
+		{
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A16R"
+			{
+				"Passive"	"1"
+				"OnTakeDamage"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+							"Center"	"CASTER"
+							"Radius"	"%effect_range"
+						}
+						"Action"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A16.lua"
+								"Function"	"A16R"
+								"dmg"	"%attack_damage * %damage_percent"
+							}
+						}
+					}
+				}
+				"EffectName"	"particles/items_fx/aura_assault.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"effect_range"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage_percent"	"0.15 0.25 0.35 0.45"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_bonus"	"20 30 40 50"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_bonus"	"8"
+			}
+		}
+	}
+
+	// Rewrite of the Huskar Inner Vitality ability
+	// Author: Bude
+	// Date: February 14, 2016
+	// Version: 6.86
+	// Type: Datadriven/Lua
+	//
+	// ----- FILE REQUIREMENTS -----
+	// Script files:
+	// scripts/vscripts/heroes/hero_huskar/inner_vitality.lua
+	// scripts/vscripts/heroes/hero_huskar/modifiers/modifier_inner_vitality_lua.lua
+	"A16E"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"shadow_demon_demonic_purge"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.3 0.3 0.3 0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"80 100 120 140"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"650"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/a16e2/a16e2.vpcf"
+			"soundfile"	"sounds/weapons/hero/huskar/inner_vitality.vsnd"
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Huskar.Inner_Vitality"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A16E"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A16E_2"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A16E"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%resist_damage"
+				}
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"Duration"	"%duration"
+				"EffectName"	"particles/items_fx/aura_assault.vpcf"
+				"EffectAttachType"	"follow_chest"
+				"StatusEffectName"	"particles/a16e2/a16e2.vpcf"
+				"StatusEffectPriority"	"10"
+			}
+			"modifier_A16E_2"
+			{
+				"OnTakeDamage"
+				{
+					"Heal"
+					{
+						"Target"	"CASTER"
+						"HealAmount"	"%attack_damage * %heal_percent / 100"
+					}
+				}
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				"Duration"	"%duration"
+				"EffectName"	"particles/items_fx/aura_assault.vpcf"
+				"EffectAttachType"	"follow_chest"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal_percent"	"20 35 50 65"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"resist_damage"	"-5 -10 -15 -20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"8"
+			}
+		}
+	}
+
+	"A16T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"earthshaker_fissure_egset"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.4 0.4 0.4"
+		"AbilityCastAnimation"	"ACT_DOTA_SPAWN"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"135 120 105"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"175 175 175"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1000.00"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+			"soundfile"	"sounds/weapons/hero/ursa/ursa_earthssounds/weapons/hero/leshrac/split_earth_tormented.vsndhock.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Leshrac.Split_Earth.Tormented"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A16.lua"
+				"Function"	"A16T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A16T"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Damage"	"%AbilityDamage"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+					}
+				}
+				"Duration"	"%stun_duration"
+				"IsDebuff"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+			"modifier_A16T_2"
+			{
+				"OnCreated"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+							"Center"	"CASTER"
+							"Radius"	"300"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_A16T"
+							}
+						}
+					}
+				}
+				"IsHidden"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"crack_time"	".18"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crack_width"	"300"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crack_distance"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"1.5 2.1 2.7"
+			}
+		}
+		"AbilityDamage"	"400 600 800"
+	}
+}

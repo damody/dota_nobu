@@ -1,0 +1,113 @@
+"DOTAAbilities"
+{
+	// 大熊朝秀
+	"B26"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_brewmaster"
+		//"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		"Model"	"models/heroes/brewmaster/brewmaster.vmdl"
+		"Portrait"	"vgui/hud/heroportraits/portrait_brewmaster"
+		"IdleExpression"	"scenes/brewmaster/brewmaster_exp_idle_01.vcd"
+		"SoundSet"	"Hero_Brewmaster"
+		// //"Enabled"	"1"
+		// "HeroUnlockOrder"	"2"
+		"Role"	"Carry,Initiator,Durable,Disabler,Nuker"
+		"Rolelevels"	"1,3,2,2,1"
+		// "Team"	"Good"
+		// "HeroID"	"78"
+		"ModelScale"	"0.8"
+		"LoadoutScale"	"0.850000"
+		// "HeroGlowColor"	"139 1 1"
+		// "NameAliases"	"bm"
+		// "CMEnabled"	"1"
+		// "PickSound"	"brewmaster_brew_spawn_01"
+		// "BanSound"	"brewmaster_brew_anger_01"
+		// "url"	"Brewmaster"
+		// "LastHitChallengeRival"	"npc_dota_hero_kunkka"
+		// "HeroSelectSoundEffect"	"Hero_Brewmaster.Pick"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"B26W"
+		// Reference: A0NG
+		"Ability2"	"B26E"
+		// Reference: Aamk
+		"Ability3"	"B26R"
+		// Reference: A0NF
+		"Ability4"	"B26D"
+		// Reference: A0DK
+		"Ability5"	"B26T"
+		// Reference: A0EQ
+		"Ability6"	"attribute_bonus"
+		// Reference: A0XK
+		"Ability7"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"6.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"95.0"
+		"AttackDamageMax"	"115.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.60"
+		"AttackAnimationPoint"	"0.35"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"148"
+		"ProjectileSpeed"	"10000"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"	"43"
+		"AttributeStrengthGain"	"3"
+		"AttributeBaseIntelligence"	"22"
+		"AttributeIntelligenceGain"	"1.80"
+		"AttributeBaseAgility"	"28"
+		"AttributeAgilityGain"	"1.90"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"335"
+		"MovementTurnRate"	"3.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"600"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AbilityLayout"	"5"
+	}
+}	
