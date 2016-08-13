@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 100
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
@@ -12,38 +12,32 @@
 			m_hTexture = resource:"materials/particle/particle_heroring_6.vtex"
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_FadeInSimple"
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 0.750000
+			m_flFadeOutTime = 0.75
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 1.500000
+			m_flEndScale = 1.5
 		},
 		{
 			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				142,
-				30,
-				0,
-				255,
-			]
+			m_ColorFade = [ 142, 30, 0, 255 ]
 		},
 		{
 			_class = "C_OP_PositionLock"
 			m_nControlPointNumber = 1
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -56,57 +50,35 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 1.000000
-			m_fLifetimeMax = 2.000000
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 2.0
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 100.000000
-			m_flRadiusMax = 100.000000
+			m_flRadiusMin = 100.0
+			m_flRadiusMax = 100.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"
-			m_flDegrees = 180.000000
-			m_flDegreesMax = 0.000000
+			m_flDegrees = 180.0
+			m_flDegreesMax = 0.0
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin =
-			[
-				255,
-				242,
-				169,
-				255,
-			]
-			m_ColorMax =
-			[
-				255,
-				236,
-				189,
-				255,
-			]
+			m_ColorMin = [ 255, 242, 169, 255 ]
+			m_ColorMax = [ 255, 236, 189, 255 ]
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMax =
-			[
-				0.000000,
-				0.000000,
-				100.000000,
-			]
-			m_OffsetMin =
-			[
-				0.000000,
-				0.000000,
-				100.000000,
-			]
+			m_OffsetMax = [ 0.0, 0.0, 100.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 100.0 ]
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 30.000000
+			m_flEmitRate = 30.0
 		},
 	]
 }
