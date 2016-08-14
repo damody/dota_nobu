@@ -1,132 +1,12 @@
 
-LinkLuaModifier( "A11E_modifier", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "A11E_followthrough", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "A11E_hook_back", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
-
-LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/A_Oda/A11_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
-
-modifier_transparency = class({})
-
-function modifier_transparency:DeclareFunctions()
-	return { MODIFIER_EVENT_ON_ATTACK_LANDED,
-	MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
-	MODIFIER_EVENT_ON_ABILITY_EXECUTED }
-end
-
-function modifier_transparency:OnAbilityExecuted(params)
-	if IsServer() then
-		self:Destroy()
-	end
-end
-
-function modifier_transparency:AttackProc(params)
-	local hAbility = self:GetAbility()
-	local hTarget = params.target
-	local nFXIndex = ParticleManager:CreateParticle( "particles/shadow_raze_gen/raze.vpcf", PATTACH_ABSORIGIN, self:GetCaster() )
-	ParticleManager:SetParticleControl( nFXIndex, 0, hTarget:GetAbsOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 15, Vector( 133, 0, 162 ) )
-	--local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), hTarget:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
-end
-
-function modifier_transparency:GetModifierInvisibilityLevel()
-	return 50
-end
-
-function modifier_transparency:IsHidden()
-	return true
-end
-
-function modifier_transparency:CheckState()
-	local state = {
-	[MODIFIER_STATE_INVISIBLE] = true
-	}
-	return state
-end
-
-function modifier_transparency:OnAttackLanded( params )
-	if IsServer() then
-		if params.attacker == self:GetParent() then
-		EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Nevermore.Pick", self:GetCaster() )
-		self:AttackProc(params)
-		self:Destroy()
-		end
-	end
-end
-
-function modifier_transparency:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
-end
-
-function modifier_transparency:GetEffectName()
-	return "particles/items_fx/ghost.vpcf"
-end
-
-
-function A11W_Levelup( keys )
-	local caster = keys.caster
-	local ability = caster:FindAbilityByName("A11D")
-	local level = keys.ability:GetLevel()
-	
-	if (ability:GetLevel() < level) then
-		ability:SetLevel(level)
-	end
-end
-
-function A11R_Levelup( keys )
-	local caster = keys.caster
-	local ability = caster:FindAbilityByName("A11D")
-	local level = keys.ability:GetLevel()
-	
-	if (ability:GetLevel() < level) then
-		ability:SetLevel(level)
-	end
-end
-
-function A11D( keys )
-	local caster = keys.caster
-	local ability = keys.ability
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_transparency", {duration = 20} )
-end
-
-function A11D_End( keys )
-	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then		-- This is to fail check if it is item. If it is item, error is expected
-		-- Variables
-		local caster = keys.caster
-		local target = keys.target
-		local ability = keys.ability
-		local modifierName = "modifier_A11D"
-		local abilityDamage = ability:GetLevelSpecialValueFor( "A11D_Damage", ability:GetLevel() - 1 )
-		local abilityDamageType = ability:GetAbilityDamageType()
-		if (not target:IsBuilding()) then
-			-- Deal damage and show VFX
-			local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
-			ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
-			ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
-			
-			StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
-			
-			local damageTable = {
-				victim = target,
-				attacker = caster,
-				damage = abilityDamage,
-				damage_type = abilityDamageType
-			}
-			ApplyDamage( damageTable )
-		end	
-		keys.caster:RemoveModifierByName( modifierName )
-	end
-end
-
-function A11W( event )
+function A27W( event )
 	local caster = event.caster
 	local player = caster:GetPlayerID()
 	local ability = event.ability
 	local unit_name = caster:GetUnitName()
 	local origin = caster:GetAbsOrigin() + RandomVector(100)
-	local duration = ability:GetLevelSpecialValueFor( "A11W_Duration", ability:GetLevel() - 1 )
-	local outgoingDamage = ability:GetLevelSpecialValueFor( "A11W_attack", ability:GetLevel() - 1 )
+	local duration = ability:GetLevelSpecialValueFor( "A27W_Duration", ability:GetLevel() - 1 )
+	local outgoingDamage = ability:GetLevelSpecialValueFor( "A27W_attack", ability:GetLevel() - 1 )
 	local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_incoming_damage", ability:GetLevel() - 1 )
 
 	local people = ability:GetLevel() + 1
@@ -134,12 +14,10 @@ function A11W( event )
 	local illusion = {}
 	local target_pos = {}
 	local radius = 700
-	local origin_go_index = RandomInt(1, people)
-	local random_angle = RandomInt(-20, 20) * 0.1
+	local people = 1
 	local origin_pos = caster:GetOrigin()
 
 	for i=1,people do
-		if (i ~= origin_go_index) then
 			-- handle_UnitOwner needs to be nil, else it will crash the game.
 			illusion[i] = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
 			illusion[i]:SetPlayerID(caster:GetPlayerID())
@@ -174,71 +52,52 @@ function A11W( event )
 			end
 			-- Set the unit as an illusion
 			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			illusion[i]:SetBaseDamageMin(-1000)
-			illusion[i]:SetBaseDamageMax(-1000)
+			illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = -75, incoming_damage = incomingDamage })
+
 			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 			illusion[i]:MakeIllusion()
 
 			illusion[i]:SetHealth(caster:GetHealth())
-			illusion[i]:SetRenderColor(255,0,255)
-		end
+			--illusion[i]:SetRenderColor(255,0,255)
+
 	end
+	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	
-	Timers:CreateTimer( 0.1, 
-		function()
-			for i=1,people do
-				target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
-				if (i ~= origin_go_index) then
-					ProjectileManager:ProjectileDodge(illusion[i])
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
-					illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
-					illusion[i]:SetForwardVector(target_pos[i]:Normalized())
-					illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
-				else
-					ProjectileManager:ProjectileDodge(caster)
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
-					caster:SetAbsOrigin(origin_pos+target_pos[i])
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
-					caster:SetForwardVector(target_pos[i]:Normalized())
-					caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
-				end
-			end
-			return nil
-		end )
+	for i=1,people do
+		illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
+	end
 end
 
 
-A11E = class ({})
+A27E = class ({})
 
-function A11E:OnSpellStart()
+function A27E:OnSpellStart()
 	local caster = self:GetCaster()
 	local debuff_duraiton = self:GetSpecialValueFor("flux_duration")
 	local dir = self:GetCursorPosition() - caster:GetOrigin()
 	caster:SetForwardVector(dir:Normalized())
-	caster:AddNewModifier(caster, self, "A11E_modifier", { duration = 2}) 
-	caster:AddNewModifier(caster, self, "A11E_followthrough", { duration = 0.3 } )
+	caster:AddNewModifier(caster, self, "A27E_modifier", { duration = 2}) 
+	caster:AddNewModifier(caster, self, "A27E_followthrough", { duration = 0.3 } )
 end
 
-function A11E:OnAbilityPhaseStart()
+function A27E:OnAbilityPhaseStart()
 	self:GetCaster():StartGesture( ACT_DOTA_CAST_ABILITY_1 )
 	return true
 end
 
 --------------------------------------------------------------------------------
 
-function A11E:OnAbilityPhaseInterrupted()
+function A27E:OnAbilityPhaseInterrupted()
 	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
 end
 
-function A11E:OnOwnerDied()
+function A27E:OnOwnerDied()
 	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
 end
 
-function A11E:OnUpgrade()
+function A27E:OnUpgrade()
 	local caster = self:GetCaster()
-	local ability = caster:FindAbilityByName("A11D")
+	local ability = caster:FindAbilityByName("A27D")
 	local level = self:GetLevel()
 	
 	if (ability:GetLevel() < level) then
@@ -246,18 +105,18 @@ function A11E:OnUpgrade()
 	end
 end
 
-A11E_followthrough = class({})
+A27E_followthrough = class({})
 
 --------------------------------------------------------------------------------
 
-function A11E_followthrough:IsHidden()
+function A27E_followthrough:IsHidden()
 	return true
 end
 
 
 --------------------------------------------------------------------------------
 
-function A11E_followthrough:CheckState()
+function A27E_followthrough:CheckState()
 	local state = {
 	[MODIFIER_STATE_STUNNED] = true,
 	}
@@ -265,24 +124,24 @@ function A11E_followthrough:CheckState()
 end
 
 
-A11E_hook_back = class({})
+A27E_hook_back = class({})
 
 --------------------------------------------------------------------------------
 
-function A11E_hook_back:IsHidden()
+function A27E_hook_back:IsHidden()
 	return true
 end
 
 
 --------------------------------------------------------------------------------
 
-function A11E_hook_back:CheckState()
+function A27E_hook_back:CheckState()
 	local state = {
 	[MODIFIER_STATE_STUNNED] = true,
 	}
 	return state
 end
-function A11E_hook_back:OnIntervalThink()
+function A27E_hook_back:OnIntervalThink()
 	if (self.path ~= nil) then
 		local target = self:GetParent()
 		if (self.interval_Count > 1) then
@@ -290,26 +149,26 @@ function A11E_hook_back:OnIntervalThink()
 			self.interval_Count = self.interval_Count - 1
 		else
 			target:AddNewModifier(target,self:GetAbility(),"modifier_phased",{duration=0.1})
-			target:RemoveModifierByName("A11E_hook_back")
+			target:RemoveModifierByName("A27E_hook_back")
 		end
 	end
 end
-function A11E_hook_back:IsHidden()
+function A27E_hook_back:IsHidden()
 	return true
 end
 
-function A11E_hook_back:IsDebuff()
+function A27E_hook_back:IsDebuff()
 	return true
 end
 
-function A11E_hook_back:OnCreated( event )
+function A27E_hook_back:OnCreated( event )
 	self:StartIntervalThink(0.07) 
 end
 
 
-A11E_modifier = class ({})
+A27E_modifier = class ({})
 
-function A11E_modifier:OnCreated( event )
+function A27E_modifier:OnCreated( event )
 	local ability = self:GetAbility()
 	self.hook_width = ability:GetSpecialValueFor("hook_width")
 	self.hook_distance = ability:GetSpecialValueFor("hook_distance")
@@ -323,11 +182,12 @@ function A11E_modifier:OnCreated( event )
 	self.particle = {}
 	self.oriangle = self:GetParent():GetAnglesAsVector().y
 	self.hook_pos = self:GetParent():GetOrigin()
+	self.oripos = self:GetParent():GetOrigin()
 	self:StartIntervalThink(0.05) 
 
 end
 
-function A11E_modifier:OnIntervalThink()
+function A27E_modifier:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetParent()
 		self.interval_Count = self.interval_Count + 1
@@ -343,7 +203,9 @@ function A11E_modifier:OnIntervalThink()
 		local vDirection =  caster:GetForwardVector()
 		self.path[self.interval_Count] = self.hook_pos
 		local length = (20+angle*0.2) * self.interval_Count
-		local next_hook_pos = 0
+		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length + (self:GetParent():GetOrigin() - self.oripos)
+		self.oripos = self:GetParent():GetOrigin()
+		length = (next_hook_pos - self.hook_pos):Length()
 		hook_pts = { self.hook_pos }
 		if (length > 100) then
 			local pts = length / 100 + 1
@@ -368,11 +230,11 @@ function A11E_modifier:OnIntervalThink()
 		for _,hookpoint in pairs(hook_pts) do
 			-- 拉到敵人
 			local SEARCH_RADIUS = self.hook_width
-			direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              hookpoint,
 	                              nil,
 	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
@@ -380,11 +242,11 @@ function A11E_modifier:OnIntervalThink()
 			if (table.getn(direUnits) == 0) then
 				local floorpos = hookpoint
 				floorpos.z = 100
-				direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+				direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              floorpos,
 	                              nil,
 	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
@@ -396,46 +258,14 @@ function A11E_modifier:OnIntervalThink()
 					ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
 						damage_type = self.damage_type, ability = self:GetAbility()})
 					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A11E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A11E_hook_back", it)
+					it:AddNewModifier(it, self:GetCaster(), "A27E_hook_back", { duration = 2}) 
+					local hModifier = it:FindModifierByNameAndCaster("A27E_hook_back", it)
 					if (hModifier ~= nil) then
 						hModifier.path = self.path
 						hModifier.interval_Count = self.interval_Count
 						hModifier.particle = self.particle
 						break
 					end
-				end
-			end
-			if (hashook == true) then
-				self:StartIntervalThink( -1 )
-				return
-			end
-
-			-- 拉到中立怪
-			direUnits = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
-		                          hookpoint,
-		                          nil,
-		                          SEARCH_RADIUS,
-		                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		                          DOTA_UNIT_TARGET_ALL,
-		                          DOTA_UNIT_TARGET_FLAG_NONE,
-		                          FIND_ANY_ORDER,
-		                          false)
-
-			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding())) then
-					ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
-						damage_type = self.damage_type, ability = self:GetAbility()})
-					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A11E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A11E_hook_back", it)
-					if (hModifier ~= nil) then
-						hModifier.path = self.path
-						hModifier.interval_Count = self.interval_Count
-						hModifier.particle = self.particle
-						break
-					end
-					break
 				end
 			end
 			if (hashook == true) then
@@ -444,7 +274,7 @@ function A11E_modifier:OnIntervalThink()
 			end
 
 			-- 拉到友軍
-			direUnits = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
+			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		                          hookpoint,
 		                          nil,
 		                          SEARCH_RADIUS,
@@ -457,8 +287,8 @@ function A11E_modifier:OnIntervalThink()
 			for _,it in pairs(direUnits) do
 				if (not(it:IsBuilding()) and it ~= caster) then
 					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A11E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A11E_hook_back", it)
+					it:AddNewModifier(it, self:GetCaster(), "A27E_hook_back", { duration = 2}) 
+					local hModifier = it:FindModifierByNameAndCaster("A27E_hook_back", it)
 					if (hModifier ~= nil) then
 						hModifier.path = self.path
 						hModifier.interval_Count = self.interval_Count
@@ -479,23 +309,23 @@ function A11E_modifier:OnIntervalThink()
 	end
 end
 
-function A11E_modifier:GetStatusEffectName()
+function A27E_modifier:GetStatusEffectName()
 	return "particles/status_fx/status_effect_disruptor_kinetic_fieldslow.vpcf"
 end
 
-function A11E_modifier:IsHidden()
+function A27E_modifier:IsHidden()
 	return true
 end
 
-function A11E_modifier:IsDebuff()
+function A27E_modifier:IsDebuff()
 	return false
 end
 
-function A11E_modifier:GetAttributes()
+function A27E_modifier:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
-function A11T( keys )
+function A27T( keys )
 	-- Variables
 	local caster = keys.caster
 	local ability = keys.ability
@@ -512,7 +342,7 @@ function A11T( keys )
 	casterLoc = keys.target_points[1] - right:Normalized() * 300
 	Timers:CreateTimer( 0.3, function()
 		caster:AddNoDraw()
-		ability:ApplyDataDrivenModifier( caster, caster, "modifier_A11T", {duration = 3.7} )
+		ability:ApplyDataDrivenModifier( caster, caster, "modifier_A27T", {duration = 3.7} )
 	end)
 	
 	-- Find forward vector
@@ -556,7 +386,7 @@ function A11T( keys )
 					bReplaceExisting = false,
 					bProvidesVision = false,
 					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_MECHANICAL,
+					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 					vVelocity = velocityVec * projectile_speed
 				}
 				ProjectileManager:CreateLinearProjectile( projectileTable )
@@ -569,10 +399,10 @@ function A11T( keys )
 				return 0.125
 			end
 		end
-	)
+	)caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
 end
 
-function A11T_End( keys )
+function A27T_End( keys )
 	local caster = keys.caster
 	caster:RemoveNoDraw()
 end

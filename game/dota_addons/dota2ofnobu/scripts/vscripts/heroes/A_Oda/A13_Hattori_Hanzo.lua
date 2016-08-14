@@ -181,7 +181,7 @@ function A13W( event )
 			illusion[i]:MakeIllusion()
 
 			illusion[i]:SetHealth(caster:GetHealth())
-			illusion[i]:SetRenderColor(255,0,255)
+			--illusion[i]:SetRenderColor(255,0,255)
 		end
 	end
 	
