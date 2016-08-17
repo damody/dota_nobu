@@ -1,97 +1,112 @@
 "DOTAAbilities"
 {
 
-	// 柴田勝家
-	"A27D"
+	// 柴田勝家 暴虐之鎚
+	"A27D" 
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"A27D"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"FightRecapLevel"	"6"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"HotKeyOverride"	"D"
-		"MaxLevel"	"5"
-		"AbilityCastPoint"	"0.0"
-		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
-		"AbilityManaCost"	"0 0 0 0"
+		"AbilityTextureName"	"icon_128x128_85"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"1"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"100"
+		"AbilityCastRange"	"950"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
-			"particle"	"particles/status_fx/status_effect_base.vpcf"
-			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_huskar/huskar_base_attack.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"800"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"FireSound"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_A27D"
-				"Duration"	"20.0"
+				"EffectName"	"Hero_Sven.StormBolt"
 			}
-			"RunScript"
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"FireSound"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
-				"Function"	"A27D"
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+			"FireEffect"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"ControlPointEntities"
+				{
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+				}
+			}
+			"ActOnTargets"
+			{
+				"Target"	"TARGET"
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_A27W"
+					}
+				}
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_A27D"
+			"modifier_A27W"
 			{
-				"Duration"	"%duration"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
-						"EffectAttachType"	"start_at_origin"
-					}
-				}
-				"OnAttack"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
-						"Function"	"A27D_End"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A27D_movement_speed"
-				}
+				"Duration"	"3"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 				"States"
 				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A27D_Damage"	"0 90 175 260 345"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A27D_movement_speed"	"0 5 10 15 20"
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			}
 		}
 	}
 
-	// 柴田勝家
+	// 柴田勝家 破竹之勢
 	"A27W"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"A27W"
+		"AbilityTextureName"	"icon_128x128_49"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"FightRecapLevel"	"0"
@@ -99,7 +114,7 @@
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
 		"AbilityCastPoint"	"0.5"
-		"AbilityCooldown"	"13"
+		"AbilityCooldown"	"8"
 		"AbilityManaCost"	"40 60 80 100"
 		"precache"
 		{
@@ -114,6 +129,54 @@
 				"Function"	"A27W"
 			}
 		}
+		"Modifiers"
+		{
+			"modifier_A27T"
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+						}
+						"EffectName"	"particles/A07t2/A07t2.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"600"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.55"
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "%healthb"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"OnIntervalThink"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"particles/a16t/a16t_b1.vpcf"
+						"EffectAttachType"	"follow_head"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+						}
+					}
+				}
+				"ThinkInterval"	"1"
+				"States"	{}
+				"OnDestroy"	{}
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -124,7 +187,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"250 250 250 250"
+				"illusion_incoming_damage"	"150 150 150 150"
 			}
 			"03"
 			{
@@ -134,16 +197,16 @@
 		}
 	}
 
-	// 柴田勝家
+	// 柴田勝家 柴田家戰旗
 	"A27E"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"phoenix"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"	"xunyu_jiejie"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -151,28 +214,45 @@
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100 120 140 160"
+		"AOERadius"		"%radius"
+		"AbilityCastRange"	"2000"
 
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-				"Function"	"A28T"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
+				"Function"	"A27E"
+				"Target"	"POINT"
 			}
 		}
 		"Modifiers"
 		{
 			// modifier_shadow_shaman_serpent_ward is the Built-In, to give green damage to the wards
-			"modifier_A28T"
+			"modifier_A27E"
 			{
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"OnDestroy"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-						"Function"	"A28T_dead"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
+						"Function"	"A27E_dead"
 					}
 				}
+			}
+			"modifier_A27EE"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"50"
+				}
+				"EffectName"	"particles/items_fx/aegis_lvl_1000_ambient_gold_shine.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+				"Duration"	"20"
 			}
 		}
 		// Special
@@ -182,31 +262,34 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"cast"	"0.3"
+				"radius"	"500 600 700 800"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"count"	"2 4 6 8"
+				"A27EE_cd"	"10 7 4 1"
 			}
 		}
 	}
 
-	// 柴田勝家
+
+	// 柴田勝家 武者之道
 	"A27R"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"caopi_tuxi"
+		"AbilityTextureName"	"icon_128x128_36"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"R"
 		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
 		"AbilityCastPoint"	"0"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+			"particle"	"particles/A27r/A27r.vpcf"
 		}
 		"OnUpgrade"
 		{
@@ -224,69 +307,23 @@
 				"IsHidden"	"1"
 				"OnAttackStart"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"	"modifier_A27R_critical_strike_crit"
 						"Target"	"CASTER"
-					}
-					"Random"
-					{
-						"Chance"	"%crit_chance"
-						"OnSuccess"
-						{
-							"FireSound"
-							{
-								"EffectName"	"Hero_SkeletonKing.CriticalStrike"
-								"Target"	"CASTER"
-							}
-							"FireEffect"
-							{
-								"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
-								"EffectAttachType"	"attach_sword"
-								"Target"	"CASTER"
-								"ControlPoints"	{}
-								"ControlPointEntities"	{}
-							}
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_A27R_critical_strike_crit"
-								"Target"	"CASTER"
-							}
-						}
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
+						"Function"	"A27R"
 					}
 				}
-			}
-			"modifier_A27R_critical_strike_crit"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"300"
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_A27R_critical_strike_crit"
-						"Target"	"CASTER"
-					}
-				}
+				"States"	{}
+				"IsBuff"	"0"
 			}
 			"modifier_A27R"
 			{
-				"IsBuff"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"11"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%addmove"
 				}
 				"Passive"	"1"
-				"IsHidden"	"1"
 			}
 		}
 		"AbilitySpecial"
@@ -294,7 +331,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"crit_chance"	"10 14 18 22"
+				"crit_persent"	"5 10 15 20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"addmove"	"25 31 37 43"
 			}
 		}
 	}
@@ -305,53 +347,87 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"riki_tricks_of_the_trade"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"	"icon_128x128_56"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"300"
-		// Data driven
+		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-		}
-		"OnAbilityPhaseStart"
-		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Tinker.March_of_the_Machines.Cast"
-			}
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			"soundfile"	"soundevents/voscripts/game_sounds_vo_stormspirit.vsndevts"
+			"particle"	"particles/A07t2/A07t2.vpcf"
+			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
 		}
 		"OnSpellStart"
 		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A27T"
+			}
 			"FireSound"
 			{
-				"Target"	"POINT"
-				"EffectName"	"Hero_Tinker.March_of_the_Machines"
+				"Target"	"CASTER"
+				"EffectName"	"Hero_StormSpirit.ElectricVortex"
 			}
 			"RunScript"
 			{
+				"Target"	"CASTER"
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
 				"Function"	"A27T"
-				"Target"	"POINT"
 			}
-		}
-		"OnProjectileHitUnit"
-		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
 		}
 		"Modifiers"
 		{
+			"modifier_A27T"
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+						}
+						"EffectName"	"particles/A07t2/A07t2.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"600"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.55"
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "%healthb"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"States"	{}
+				"OnDestroy"	{}
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -359,47 +435,19 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"20 24 28"
 			}
 			"02"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"collision_radius"	"100 100 100"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"splash_radius"	"100 100 100"
-			}
-			"04"
-			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"6.0 6.0 6.0"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"speed"	"2000 2000 2000"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"machines_per_sec"	"72"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"distance"	"1400"
-			}
-			"08"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"distance_scepter"	"1800"
+				"healthb"	"400 600 800"
 			}
 		}
-		// Damage.
+		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"75 100 125"
+		// Attacks are primarily about the damage
+		"AbilityModifierSupportValue"	"0.35"
 	}
+
 }

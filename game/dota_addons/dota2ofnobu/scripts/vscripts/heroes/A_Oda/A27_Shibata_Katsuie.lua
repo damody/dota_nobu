@@ -1,4 +1,6 @@
 
+LinkLuaModifier( "A27R_critical", "scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua",LUA_MODIFIER_MOTION_NONE )
+
 function A27W( event )
 	local caster = event.caster
 	local player = caster:GetPlayerID()
@@ -65,264 +67,156 @@ function A27W( event )
 	
 	for i=1,people do
 		illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
+		if (caster:HasModifier("modifier_A27T")) then
+			ability:ApplyDataDrivenModifier(illusion[i],illusion[i],"modifier_A27T",{duration = 200})
+			break
+		end
 	end
 end
 
+function A27E(keys)
+	--【Basic】
+	local caster = keys.caster
+	local targetLoc = keys.target_points[1]
+	local ability = keys.ability
+	local level = keys.ability:GetLevel()
+	local point = caster:GetAbsOrigin()
+	local cd = ability:GetLevelSpecialValueFor( "A27EE_cd", level - 1 )
+	local radius = ability:GetLevelSpecialValueFor( "radius", level - 1 )
 
-A27E = class ({})
-
-function A27E:OnSpellStart()
-	local caster = self:GetCaster()
-	local debuff_duraiton = self:GetSpecialValueFor("flux_duration")
-	local dir = self:GetCursorPosition() - caster:GetOrigin()
-	caster:SetForwardVector(dir:Normalized())
-	caster:AddNewModifier(caster, self, "A27E_modifier", { duration = 2}) 
-	caster:AddNewModifier(caster, self, "A27E_followthrough", { duration = 0.3 } )
-end
-
-function A27E:OnAbilityPhaseStart()
-	self:GetCaster():StartGesture( ACT_DOTA_CAST_ABILITY_1 )
-	return true
-end
-
---------------------------------------------------------------------------------
-
-function A27E:OnAbilityPhaseInterrupted()
-	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
-end
-
-function A27E:OnOwnerDied()
-	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
-end
-
-function A27E:OnUpgrade()
-	local caster = self:GetCaster()
-	local ability = caster:FindAbilityByName("A27D")
-	local level = self:GetLevel()
-	
-	if (ability:GetLevel() < level) then
-		ability:SetLevel(level)
-	end
-end
-
-A27E_followthrough = class({})
-
---------------------------------------------------------------------------------
-
-function A27E_followthrough:IsHidden()
-	return true
-end
-
-
---------------------------------------------------------------------------------
-
-function A27E_followthrough:CheckState()
-	local state = {
-	[MODIFIER_STATE_STUNNED] = true,
-	}
-	return state
-end
-
-
-A27E_hook_back = class({})
-
---------------------------------------------------------------------------------
-
-function A27E_hook_back:IsHidden()
-	return true
-end
-
-
---------------------------------------------------------------------------------
-
-function A27E_hook_back:CheckState()
-	local state = {
-	[MODIFIER_STATE_STUNNED] = true,
-	}
-	return state
-end
-function A27E_hook_back:OnIntervalThink()
-	if (self.path ~= nil) then
-		local target = self:GetParent()
-		if (self.interval_Count > 1) then
-			target:SetOrigin(self.path[self.interval_Count])
-			self.interval_Count = self.interval_Count - 1
+ 	local player = caster:GetPlayerID()
+ 	local roubang = CreateUnitByName("a27_weapon",targetLoc ,false,caster,caster,caster:GetTeam())
+ 	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 300, 3, true)
+ 	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 300, 3, true)
+	roubang:SetControllableByPlayer(player, true)
+	roubang:SetBaseMaxHealth(600+level*300)
+	roubang:SetHealth(roubang:GetMaxHealth())
+	roubang:AddNewModifier(roubang,ability,"modifier_phased",{duration=0.1})
+ 	ability:ApplyDataDrivenModifier(roubang,roubang,"modifier_A27E",{duration = 20})
+ 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A27EE",{duration = 20})
+ 	Timers:CreateTimer(0, function()
+ 		local units = FindUnitsInRadius(caster:GetTeamNumber(), targetLoc, nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, FIND_ANY_ORDER, 0, false)
+ 		for i,unit in ipairs(units) do
+			unit:SetHealth(unit:GetMaxHealth()*0.01*level + unit:GetHealth())
+		end
+		if roubang:IsAlive() then
+			print("roubang:IsAlive()"..radius)
+			return 1
 		else
-			target:AddNewModifier(target,self:GetAbility(),"modifier_phased",{duration=0.1})
-			target:RemoveModifierByName("A27E_hook_back")
+			return nil
 		end
-	end
+ 	end)
+ 	Timers:CreateTimer(cd, function()
+ 		local units = FindUnitsInRadius(caster:GetTeamNumber(), targetLoc, nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, FIND_ANY_ORDER, 0, false)
+ 		for i,unit in ipairs(units) do
+			if (not unit:HasModifier("modifier_A27EE")) then
+				ability:ApplyDataDrivenModifier(unit,unit,"modifier_A27EE",{duration = 20})
+				break
+			end
+		end
+ 		if roubang:IsAlive() then
+			return cd
+		else
+			return nil
+		end
+ 	end)
+				
 end
-function A27E_hook_back:IsHidden()
+
+
+function A27E_dead(keys)
+	local caster = keys.caster
+	local dead_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_sphere_model.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	ParticleManager:SetParticleControl(dead_effect, 0, caster:GetAbsOrigin())
+
+	Timers:CreateTimer(0.5, function()
+		local dead_effect2 = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_shockwave.vpcf", PATTACH_ABSORIGIN, keys.caster)
+		ParticleManager:SetParticleControl(dead_effect2, 0, caster:GetAbsOrigin() + Vector (0, 0, 100))
+		end)
+	caster:ForceKill(false)
+	Timers:CreateTimer(1.5, function()
+		caster:Destroy()
+		end)
+	local count = 0
+	Timers:CreateTimer(function()
+		count = count + 1
+		caster:SetAbsOrigin(caster:GetAbsOrigin() - Vector (0, 0, 10))
+		if (count < 30) then
+			return 0.05
+		else
+			return nil
+		end
+		end)
+	
+end
+
+
+A27R_critical = class({})
+
+function A27R_critical:IsHidden()
 	return true
 end
 
-function A27E_hook_back:IsDebuff()
-	return true
+function A27R_critical:DeclareFunctions()
+	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
 end
 
-function A27E_hook_back:OnCreated( event )
-	self:StartIntervalThink(0.07) 
+function A27R_critical:GetModifierPreAttack_CriticalStrike()
+	return self.A27R_level*50 + 150
+end
+
+function A27R_critical:CheckState()
+	local state = {
+	}
+	return state
 end
 
 
-A27E_modifier = class ({})
-
-function A27E_modifier:OnCreated( event )
-	local ability = self:GetAbility()
-	self.hook_width = ability:GetSpecialValueFor("hook_width")
-	self.hook_distance = ability:GetSpecialValueFor("hook_distance")
-	self.hook_damage = ability:GetSpecialValueFor("hook_damage")
-	if IsServer() then
-		self.damage_type = ability:GetAbilityDamageType()
-	end
-	self.distance_sum = 0
-	self.interval_Count = 0
-	self.path = {}
-	self.particle = {}
-	self.oriangle = self:GetParent():GetAnglesAsVector().y
-	self.hook_pos = self:GetParent():GetOrigin()
-	self.oripos = self:GetParent():GetOrigin()
-	self:StartIntervalThink(0.05) 
-
+function A27R_Levelup( keys )
+	local caster = keys.caster
+	caster.A27R_noncrit_count = 0
+			-- 	local particle = ParticleManager:CreateParticle("particles/A27r/A27r.vpcf", PATTACH_POINT, caster)
+			-- ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_attack2", Vector(0,0,0), true)
 end
 
-function A27E_modifier:OnIntervalThink()
-	if IsServer() then
-		local caster = self:GetParent()
-		self.interval_Count = self.interval_Count + 1
-		local angle = math.abs(caster:GetAnglesAsVector().y - self.oriangle)
-		print("angle: "..(angle))
-		if (angle > 45) then
-			if (angle > 80) then
-				angle = angle * 4
-			else
-				angle = angle * 2
-			end
+function A27R( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local id  = caster:GetPlayerID()
+	local ran =  RandomInt(0, 100)
+	local level = keys.ability:GetLevel()
+	local point = caster:GetAbsOrigin()
+	local crit = ability:GetLevelSpecialValueFor( "crit_persent", level - 1 )
+
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
+		if (ran > crit) then
+			caster.A27R_noncrit_count = caster.A27R_noncrit_count + 1
 		end
-		local vDirection =  caster:GetForwardVector()
-		self.path[self.interval_Count] = self.hook_pos
-		local length = (20+angle*0.2) * self.interval_Count
-		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length + (self:GetParent():GetOrigin() - self.oripos)
-		self.oripos = self:GetParent():GetOrigin()
-		length = (next_hook_pos - self.hook_pos):Length()
-		hook_pts = { self.hook_pos }
-		if (length > 100) then
-			local pts = length / 100 + 1
-			for i=1,pts do
-				hook_pts[i] = self.hook_pos + vDirection:Normalized() * 100 * i
-				print("pts: ".. hook_pts[i].x.." "..hook_pts[i].y.." "..hook_pts[i].z)
-			end
-		end
+		if (caster.A27R_noncrit_count > (100/crit) or ran <= crit) then
+			caster.A27R_noncrit_count = 0
+			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
+			caster:AddNewModifier(caster, ability, "A27R_critical", { duration = 0.1 } )
+			local hModifier = caster:FindModifierByNameAndCaster("A27R_critical", caster)
+			--SE
+			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
+			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
+			--動作
+				local rate = caster:GetAttackSpeed()
+				--print(tostring(rate))
 
-		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length
-		self.distance_sum = self.distance_sum + 20 * self.interval_Count
-		
-		local particle = ParticleManager:CreateParticle("particles/a11/_2pudge_meathook_whale2.vpcf",PATTACH_WORLDORIGIN,caster)
-		ParticleManager:SetParticleControl(particle,0, next_hook_pos)
-		ParticleManager:SetParticleControl(particle,1,Vector(1.11 - self.interval_Count*0.1,0,0))
-		ParticleManager:SetParticleControl(particle,4,Vector(1,0,0))
-		ParticleManager:SetParticleControl(particle,5,Vector(1,0,0))
-		ParticleManager:SetParticleControl(particle,3,self.hook_pos)
-		ParticleManager:ReleaseParticleIndex(particle)
-		self.particle[self.interval_Count] = particle
-
-		for _,hookpoint in pairs(hook_pts) do
-			-- 拉到敵人
-			local SEARCH_RADIUS = self.hook_width
-			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-	                              hookpoint,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-			if (table.getn(direUnits) == 0) then
-				local floorpos = hookpoint
-				floorpos.z = 100
-				direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-	                              floorpos,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-			end
-			local hashook = false
-			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding())) then
-					ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
-						damage_type = self.damage_type, ability = self:GetAbility()})
-					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A27E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A27E_hook_back", it)
-					if (hModifier ~= nil) then
-						hModifier.path = self.path
-						hModifier.interval_Count = self.interval_Count
-						hModifier.particle = self.particle
-						break
-					end
+				--播放動畫
+			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
+				if rate < 1.00 then
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1.00)
+				else
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
 				end
-			end
-			if (hashook == true) then
-				self:StartIntervalThink( -1 )
-				return
-			end
 
-			-- 拉到友軍
-			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-		                          hookpoint,
-		                          nil,
-		                          SEARCH_RADIUS,
-		                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		                          DOTA_UNIT_TARGET_ALL,
-		                          DOTA_UNIT_TARGET_FLAG_NONE,
-		                          FIND_ANY_ORDER,
-		                          false)
-
-			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding()) and it ~= caster) then
-					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A27E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A27E_hook_back", it)
-					if (hModifier ~= nil) then
-						hModifier.path = self.path
-						hModifier.interval_Count = self.interval_Count
-						hModifier.particle = self.particle
-						break
-					end
-					break
-				end
-			end
-			-- 拉到或距離到上限了
-			if (self.distance_sum > self.hook_distance or hashook == true) then
-				self:StartIntervalThink( -1 )
-				return
+			if (hModifier ~= nil) then
+				hModifier.A27R_level = keys.ability:GetLevel()
 			end
 		end
-		
-		self.hook_pos = next_hook_pos
 	end
-end
-
-function A27E_modifier:GetStatusEffectName()
-	return "particles/status_fx/status_effect_disruptor_kinetic_fieldslow.vpcf"
-end
-
-function A27E_modifier:IsHidden()
-	return true
-end
-
-function A27E_modifier:IsDebuff()
-	return false
-end
-
-function A27E_modifier:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 function A27T( keys )
@@ -331,78 +225,18 @@ function A27T( keys )
 	local ability = keys.ability
 	local casterLoc = caster:GetAbsOrigin()
 	local targetLoc = keys.target_points[1]
-	local dir = caster:GetCursorPosition() - caster:GetOrigin()
-	caster:SetForwardVector(dir:Normalized())
-	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
-	local distance = ability:GetLevelSpecialValueFor( "distance", ability:GetLevel() - 1 )
-	local radius =  ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
-	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
-	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
-	local right = caster:GetRightVector()
-	casterLoc = keys.target_points[1] - right:Normalized() * 300
-	Timers:CreateTimer( 0.3, function()
-		caster:AddNoDraw()
-		ability:ApplyDataDrivenModifier( caster, caster, "modifier_A27T", {duration = 3.7} )
-	end)
-	
-	-- Find forward vector
-	local forwardVec = targetLoc - casterLoc
-	forwardVec = forwardVec:Normalized()
-	
-	-- Find backward vector
-	local backwardVec = casterLoc - targetLoc
-	backwardVec = backwardVec:Normalized()
-	
-	-- Find middle point of the spawning line
-	local middlePoint = casterLoc + ( radius * backwardVec )
-	
-	-- Find perpendicular vector
-	local v = middlePoint - casterLoc
-	local dx = -v.y
-	local dy = v.x
-	local perpendicularVec = Vector( dx, dy, v.z )
-	perpendicularVec = perpendicularVec:Normalized()
-
-	local sumtime = 0
-	-- Create timer to spawn projectile
-	Timers:CreateTimer( function()
-			-- Get random location for projectile
-			for c = 1,4 do
-				local random_distance = RandomInt( -radius, radius )
-				local spawn_location = middlePoint + perpendicularVec * random_distance
-				
-				local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 )
-				
-				-- Spawn projectiles
-				local projectileTable = {
-					Ability = ability,
-					EffectName = "particles/a11t/a11t.vpcf",
-					vSpawnOrigin = spawn_location,
-					fDistance = distance,
-					fStartRadius = collision_radius,
-					fEndRadius = collision_radius,
-					Source = caster,
-					bHasFrontalCone = false,
-					bReplaceExisting = false,
-					bProvidesVision = false,
-					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-					vVelocity = velocityVec * projectile_speed
-				}
-				ProjectileManager:CreateLinearProjectile( projectileTable )
-			end
-			-- Check if the number of machines have been reached
-			if sumtime >= 4 then
-				return nil
-			else
-				sumtime = sumtime + 0.125
-				return 0.125
-			end
+	local level = keys.ability:GetLevel()
+	local hp = ability:GetLevelSpecialValueFor( "healthb", level - 1 )
+	local ability = caster:FindAbilityByName("A27D")
+	ability:SetLevel(1)
+	ability:SetActivated(true)
+	Timers:CreateTimer(0, function()
+		if (not caster:HasModifier("modifier_A27T")) then
+			ability:SetActivated(false)
+			return nil
 		end
-	)caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
+		return 1
+	end)
+	caster:SetHealth(caster:GetHealth()+hp)
 end
 
-function A27T_End( keys )
-	local caster = keys.caster
-	caster:RemoveNoDraw()
-end

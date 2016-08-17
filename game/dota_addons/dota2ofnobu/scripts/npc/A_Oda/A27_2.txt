@@ -36,11 +36,11 @@
 		"AttackDamageMin"	"72.0"
 		"AttackDamageMax"	"88.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.60"
+		"AttackRate"	"1.80"
 		"AttackAnimationPoint"	"0.33"
 		"AttackAcquisitionRange"	"500"
 		"AttackRange"	"128"
-		"ProjectileSpeed"	"10000"
+		"ProjectileSpeed"	"1000"
 		// Attributes
 		// ----------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
@@ -89,6 +89,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"ProjectileModel"	"particles/units/heroes/hero_huskar/huskar_base_attack.vpcf"
 		"override_hero"	"npc_dota_hero_omniknight"
 		"AbilityLayout"	"6"
 	}	
