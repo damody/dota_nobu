@@ -1,392 +1,254 @@
+//雜賀孫市
 "DOTAAbilities"
 {
-// Rewrite of Zeus Arc Lightning
-	// Author: YOLOSPAGHETTI
-	// Date: March 24, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_zuus/arc_lightning.lua
-	//
-	// Notes: Missing some particles
-	"B01W"
+//雜賀孫市 三段
+"B01T"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"zuus_arc_lightning"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"	"cps_d01_4 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_DEAD | DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastPoint"	"0.2"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"7 6 6 5"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"120 140 160 180"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"750"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"135 123 111"
+		"AbilityManaCost"	"200 200 200"
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
-			"soundfile"	"sounds/weapons/hero/zuus/arc_lightning.vsnd"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
+			"soundfile"	"soundevents/b01.vsndevts"
+			"particle"	"particles/b26t2/b26t2.vpcf"
 		}
 		"OnSpellStart"
 		{
 			"ApplyModifier"
 			{
-				"ModifierName"	"modifier_arc_lightning_datadriven"
-				"Target"	"TARGET"
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26T"
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Zuus.ArcLightning.Cast"
 				"Target"	"CASTER"
+				"EffectName"	"C01W.sound1"
 			}
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01_Moari.lua"
-				"Function"	"NewInstance"
-				"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-			}
-			"AttachEffect"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
-				"EffectAttachType"	"start_at_customorigin"
-				"ControlPointEntities"
-				{
-					"CASTER"	"attach_attack1"
-				}
+				"Function"	"C01W_sound"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_arc_lightning_datadriven"
+			"modifier_B26T"
 			{
-				"IsHidden"	"1"
-				"OnCreated"
+				"Properties"
 				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01_Moari.lua"
-						"Function"	"LightningJump"
-						"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-					}
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%per_att"
 				}
+				"Duration"	"%duration"
+				"EffectName"	"particles/b26t2/b26t2.vpcf"
 			}
 		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"500 500 500 500"
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"11 15 19"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"jump_count"	"5"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"jump_delay"	"0.25 0.25 0.25 0.25"
+				"per_att"	"200"
 			}
 		}
-		// Damage.
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"150 300 450 600"
 	}
 
-	// Rewrite of Zeus Thundergods Wrath
-	// Author: YOLOSPAGHETTI
-	// Date: March 24, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_zuus/thundergods_wrath.lua
-	//
-	// Notes: Does not reveal wards, wonky particles
-	"B01E"
+	
+
+	// Rewrite of the Mirana Sacred Arrow ability
+	// Author: Pizzalol
+	// Date: 26.09.2015.
+	
+
+	//雜賀孫市 狙擊模式
+	
+	"B01W"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"zuus_thundergods_wrath"
+		"AbilityTextureName"	"cps_d01_1 (Copy)"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.4 0.4 0.4 0.4"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"90.0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"225 325 450"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCooldown"	"19"
+		"AbilityManaCost"	"40 60 80 100"
 		"precache"
 		{
-			"soundfile"	"sounds/weapons/hero/zuus/gods_wrath_precast.vsnd"
-			"soundfile"	"sounds/weapons/hero/zuus/gods_wrath_cast.vsnd"
-			"soundfile"	"sounds/weapons/hero/zuus/gods_wrath_target.vsnd"
-			"particle"	"particles/B01e/B01e.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-		}
-		"OnAbilityPhaseStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Zuus.GodsWrath.PreCast"
-				"Target"	"CASTER"
-			}
+			"particle"	"particles/b01w/b01w.vpcf"
 		}
 		"OnSpellStart"
 		{
-			"ActOnTargets"
+			"ApplyModifier"
 			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Center"	"CASTER"
-					"Radius"	"1000.00"
-				}
-				"Action"
-				{
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"sound"	"Hero_Zuus.GodsWrath.Target"
-						"particle"	"particles/B01e/B01e.vpcf"
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01_Moari.lua"
-						"Function"	"ThundergodsWrath"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_thundergods_wrath_datadriven"
-					}
-				}
-			}
-			"AttachEffect"
-			{
-				"EffectName"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
-				"EffectAttachType"	"follow_overhead"
 				"Target"	"CASTER"
+				"ModifierName"	"modifier_B01W"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+				"Function"	"B01W"
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Zuus.GodsWrath"
 				"Target"	"CASTER"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_thundergods_wrath_datadriven"
+			"modifier_B01W"
 			{
-				"Duration"	"%sight_duration"
-				"IsDebuff"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%decrease_attack_speed"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_atk_rng"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_atk"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_atk_rng"
 				}
+				"Duration"	"%duration"
 			}
 		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"true_sight_radius"	"900 900 900"
+				"bonus_atk"	"0 10 20 30"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"sight_radius"	"500 500 500 500"
+				"bonus_atk_rng"	"250 500 750 1000"
 			}
 			"03"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"true_sight_duration"	"3.5 3.5 3.5 3.5"
+				"var_type"	"FIELD_INTEGER"
+				"bonus_sight_rng"	"250 500 750 1000"
 			}
 			"04"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"sight_duration"	"3.0 3.0 3.0 3.0"
-			}
-			"05"
-			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"225 350 475"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage_scepter"	"440 540 640"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"decrease_attack_speed"	"50 80 110 140"
+				"duration"	"8"
 			}
 		}
-		"AbilityTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTargetType"	"DOTA_UNIT_TARGET_HERO"
-		// Damage.
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"225 350 475"
 	}
-
-	// Rewrite of Zeus Lightning Bolt
-	// Author: YOLOSPAGHETTI
-	// Date: March 24, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_zuus/lightning_bolt.lua
-	//
-	// Notes: Does not reveal wards
+	//雜賀孫市 雨鐵炮
 	"B01R"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"zuus_lightning_bolt"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.4 0.4 0.4 0.4"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"6.0 6.0 6.0 6.0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"75 95 115 135"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"700"
-		"AOERadius"	"375"
-		"precache"
-		{
-			"particle"	"particles/B01r/B01r.vpcf"
-			"soundfile"	"sounds/weapons/hero/zuus/lightning_bolt.vsnd"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
-			"particle"	"particles/B01r2/B01r2.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01_Moari.lua"
-				"Function"	"SearchArea"
-				"particle"	"particles/B01r/B01r.vpcf"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Radius"	"%true_sight_radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_OTHER"
-				}
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_truesight"
-						"Target"	"TARGET"
-						"Duration"	"%true_sight_duration"
-					}
-				}
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"	"POINT"
-					"Radius"	"%true_sight_radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL		}
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_truesight"
-						"Target"	"TARGET"
-						"Duration"	"%true_sight_duration"
-					}
-				}
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Zuus.LightningBolt"
-				"Target"	"CASTER"
-			}
-			"AttachEffect"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
-				"EffectAttachType"	"start_at_customorigin"
-				"ControlPointEntities"
-				{
-					"CASTER"	"attach_attack1"
-				}
-			}
-		}
+		"AbilityTextureName"	"cps_d01_3 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"Modifiers"
 		{
 			"modifier_B01R"
 			{
 				"Passive"	"1"
-				"Aura"	"modifier_B01R_2"
-				"Aura_Radius"	"99999"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_ApplyToCaster"	"1"
-				"Properties"	{}
-				"IsHidden"	"1"
-			}
-			"modifier_B01R_2"
-			{
-				"Properties"
+				"Orb"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%def"
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"	"0"
 				}
-				"IsBuff"	"1"
-				"EffectName"	"particles/B01r2/B01r2.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"States"
+				"OnOrbImpact"
 				{
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"
+					"RunScript"
+					{
+						"dmg"	"%attack_damage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01R"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_hero"	"10 15 20 25"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_building"	"20 30 40 50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_unit"	"34 46 58 70"
+			}
+		}
+	}
+
+	"B01_DATA"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	//雜賀孫市 雜賀眾
+	"B01E"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_2 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"16 15 14 13"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 120 140 160"
+		"precache"
+		{
+			"particle"	"particles/b01e2/b01e2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+				"Function"	"B01E"
+			}
+		}
+		"Modifiers"
+		{
+			// modifier_shadow_shaman_serpent_ward is the Built-In, to give green damage to the wards
+			"modifier_B01E"
+			{
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"SpawnUnit"
+					{
+						"UnitName"	"B01W_UNIT"
+						"Target"	"TARGET"
+						"UnitCount"	"%count"
+						"SpawnRadius"	"?10 100"
+						"GrantsGold"	"1"
+						"GrantsXP"	"1"
+						"OnSpawn"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_phased"
+								"Target"	"TARGET"
+								"Duration"	"0.03"
+							}
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+								"Function"	"B01E_CHECK"
+							}
+						}
+					}
 				}
 			}
 		}
@@ -396,151 +258,16 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"true_sight_radius"	"375"
+				"var_type"	"FIELD_FLOAT"
+				"cast"	"0.3"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"sight_radius"	"375"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"true_sight_duration"	"5.0"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"sight_duration"	"4.5"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"spread_aoe"	"375"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"def"	"1 2 3 4"
+				"count"	"2 4 6 8"
 			}
 		}
-		// Damage.
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"100 175 275 350"
-		// Stats
-		// -------------------------------------------------------------------------------------------------------------
-		// just a ministun
-		"AbilityModifierSupportValue"	"0.1"
 	}
 
-	"B01T"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"greevil_purification"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastRange"	"900"
-		"AOERadius"	"600"
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"sound"	"Hero_Zuus.GodsWrath.Target"
-				"particle"	"particles/B01t2/B01t2.vpcf"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01_Moari.lua"
-				"Function"	"OnDestroyEgg"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Center"	"POINT"
-					"Radius"	"600"
-				}
-				"Action"
-				{
-					"Stun"
-					{
-						"Target"	"TARGET"
-						"Duration"	"2"
-					}
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_PURE"
-						"Damage"	"%AbilityDamage"
-					}
-				}
-			}
-			"DestroyTrees"
-			{
-				"Target"	"POINT"
-				"Radius"	"600"
-			}
-		}
-		"AbilityDamage"	"700 900 1100"
-	}
-
-	"B01T_clone"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"greevil_purification"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.5"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastRange"	"900"
-		"AOERadius"	"600"
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"sound"	"Hero_Zuus.GodsWrath.Target"
-				"particle"	"particles/B01t2/B01t2.vpcf"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01_Moari.lua"
-				"Function"	"OnDestroyEgg_clone"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Center"	"POINT"
-					"Radius"	"600"
-				}
-				"Action"
-				{
-					"Stun"
-					{
-						"Target"	"TARGET"
-						"Duration"	"2"
-					}
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_PURE"
-						"Damage"	"%AbilityDamage"
-					}
-				}
-			}
-			"DestroyTrees"
-			{
-				"Target"	"POINT"
-				"Radius"	"600"
-			}
-		}
-		"AbilityDamage"	"700 900 1100"
-	}
-}	
+}
+	

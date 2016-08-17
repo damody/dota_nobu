@@ -1,99 +1,111 @@
-// "DOTAHeroes"
-// {
-// 	// Creature: 松
-// 	// Description: |r|n|cffffdead織田信忠小時候，曾經與武田信玄么女松姬訂婚，但後來因武田與織田兩家作罷而取消婚事。不過在兩人婚約期間，時有書信往來，也有訂情之物；傳說二人雖取消婚約多年，在武田家滅亡後，信忠得知松姬尚在，有意迎娶，信忠卻不幸遇害，兩人終生沒有緣份。 |n|n|cffC0C0C0英雄主屬性:靈
-// 	// =================================================================================
-// 	"松"
-// 	{
-// 		// General
-// 		// ----------------------------------------------------------------
-// 		// Add model
-// 		"Model"	"models/new/c19/c19_model.vmdl"
-// 		"ModelScale"	"1"
-// 		//"Level"	"5"
-// 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-// 		"HealthBarOffset"	"140"
-// 		// Abilities
-// 		// ----------------------------------------------------------------
-// 		// Reference: AInv
-// 		"Ability1"	"C15W"
-// 		// Reference: A09S
-// 		"Ability2"	"C15E"
-// 		// Reference: Aamk
-// 		"Ability3"	"C15R"
-// 		// Reference: A05M
-// 		"Ability4"	"C15D"
-// 		// Reference: A0E7
-// 		"Ability5"	"C15T"
-// 		// Reference: A09R
-// 		"Ability6"	""
-// 		// Reference: A09T
-// 		"Ability7"	""
-// 		// Armor
-// 		// ----------------------------------------------------------------
-// 		"ArmorPhysical"	"1.00"
-// 		"MagicalResistance"	"0"
-// 		// Attack
-// 		// ----------------------------------------------------------------
-// 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-// 		"AttackDamageMin"	"73.0"
-// 		"AttackDamageMax"	"85.0"
-// 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-// 		"AttackRate"	"1.80"
-// 		"AttackAnimationPoint"	"0.55"
-// 		"AttackAcquisitionRange"	"700.00"
-// 		"AttackRange"	"625"
-// 		// Add projectile
-// 		"ProjectileModel"	"particles/c19_projectile/c19_projectile.vpcf"
-// 		"ProjectileSpeed"	"1800"
-// 		// Attributes
-// 		// ----------------------------------------------------------------
-// 		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
-// 		"AttributeBaseStrength"	"32"
-// 		"AttributeStrengthGain"	"1.90"
-// 		"AttributeBaseIntelligence"	"25"
-// 		"AttributeIntelligenceGain"	"2.00"
-// 		"AttributeBaseAgility"	"33"
-// 		"AttributeAgilityGain"	"3.00"
-// 		// Bounty
-// 		// ----------------------------------------------------------------
-// 		"BountyGoldMin"	"0.0"
-// 		"BountyGoldMax"	"0.0"
-// 		// Gold and Lumber
-// 		// ----------------------------------------------------------------
-// 		"GoldCost"	"0"
-// 		"LumberCost"	"0"
-// 		// Movement
-// 		// ----------------------------------------------------------------
-// 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-// 		"MovementSpeed"	"310"
-// 		"MovementTurnRate"	"1.50"
-// 		// Status
-// 		// ----------------------------------------------------------------
-// 		"StatusHealth"	"400"
-// 		"StatusHealthRegen"	"0.25"
-// 		"StatusMana"	"0"
-// 		"StatusManaRegen"	"0.01"
-// 		"StatusStartingMana"	"100"
-// 		// Vision
-// 		// ----------------------------------------------------------------
-// 		"VisionDaytimeRange"	"1800"
-// 		"VisionNighttimeRange"	"800"
-// 		// Team
-// 		// ----------------------------------------------------------------
-// 		"TeamName"	"DOTA_TEAM_NEUTRALS"
-// 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
-// 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
-// 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-// 		"Ability8"	""
-// 		"Ability9"	""
-// 		"Ability10"	""
-// 		"Ability11"	""
-// 		"Ability12"	""
-// 		"Ability13"	""
-// 		"Ability14"	""
-// 		"Ability15"	""
-// 		"Ability16"	""
-// 		"override_hero"	"npc_dota_hero_templar_assassin"
-// 	}	
-// }
+ "DOTAHeroes"
+ {
+// 玉子
+	"C15"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_mirana"
+		//"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		"Model"	"models/heroes/mirana/mirana.vmdl"
+		"Portrait"	"vgui/hud/heroportraits/portrait_mirana"
+		"IdleExpression"	"scenes/mirana/mirana_exp_idle_01.vcd"
+		"SoundSet"	"Hero_Mirana"
+		"PickSound"	"mirana_mir_spawn_01"
+		"BanSound"	"mirana_mir_anger_01"
+		// //"Enabled"		"1"
+		// "HeroUnlockOrder"		"1"
+		// "Role"			"Carry,Support,Escape,Nuker,Disabler"
+		// "Rolelevels"	"1,1,2,1,1"
+		// "Team"		"Good"
+		// "HeroID"		"9"
+		"ModelScale"	"0.790000"
+		"HeroGlowColor"	"220 194 248"
+		"CMEnabled"	"1"
+		"url"	"Mirana"
+		"LastHitChallengeRival"	"npc_dota_hero_luna"
+		"HeroSelectSoundEffect"	"Hero_Mirana.Pick"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"C15W"
+		// Reference: A0IN
+		"Ability2"	"C15E"
+		// Reference: Aamk
+		"Ability3"	"C15R"
+		// Reference: A0BL
+		"Ability4"	"C15T"
+		// Reference: A0D5
+		"Ability5"	"attribute_bonus"
+		// Reference: A09A
+		"Ability6"	""
+		// Reference: A0DH
+		"Ability7"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"59.0"
+		"AttackDamageMax"	"71.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"700"
+		"ProjectileSpeed"	"1800"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"28"
+		"AttributeStrengthGain"	"1.60"
+		"AttributeBaseIntelligence"	"29"
+		"AttributeIntelligenceGain"	"2.40"
+		"AttributeBaseAgility"	"30"
+		"AttributeAgilityGain"	"2.90"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"310"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+}
