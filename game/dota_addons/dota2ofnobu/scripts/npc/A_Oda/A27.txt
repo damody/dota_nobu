@@ -142,10 +142,11 @@
 					{
 						"Target"	"CASTER"
 						"ControlPointEntities"
-						{
-							"CASTER"	"attach_hitloc"
+						{"CASTER"	"attach_origin"
+						"CASTER"	"attach_origin"
+						"CASTER"	"attach_origin"
 						}
-						"EffectName"	"particles/A07t2/A07t2.vpcf"
+						"EffectName"	"particles/a27t/a27t.vpcf"
 						"EffectAttachType"	"follow_origin"
 					}
 				}
@@ -157,22 +158,6 @@
 				}
 				"Duration"	"%duration"
 				"IsBuff"	"1"
-				"OnIntervalThink"
-				{
-					"AttachEffect"
-					{
-						"Target"	"CASTER"
-						"EffectName"	"particles/a16t/a16t_b1.vpcf"
-						"EffectAttachType"	"follow_head"
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_head"
-							"CASTER"	"attach_head"
-							"CASTER"	"attach_head"
-						}
-					}
-				}
-				"ThinkInterval"	"1"
 				"States"	{}
 				"OnDestroy"	{}
 			}
@@ -411,9 +396,9 @@
 						"Target"	"CASTER"
 						"ControlPointEntities"
 						{
-							"CASTER"	"attach_hitloc"
+							"CASTER"	"attach_origin"
 						}
-						"EffectName"	"particles/A07t2/A07t2.vpcf"
+						"EffectName"	"particles/a27t/a27t.vpcf"
 						"EffectAttachType"	"follow_origin"
 					}
 				}
