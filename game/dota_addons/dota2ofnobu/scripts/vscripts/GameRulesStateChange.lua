@@ -21,11 +21,11 @@ function for_test_equiment()
         end
         local item_point = test_ent:GetAbsOrigin()
         Test_ITEM ={
-          "item_c05",
-          "item_D01",
-          "item_D02",
-          "item_D03",
-          "item_D09"
+          "item_flash_ring",
+          "item_wind_scroll",
+          "item_mountain_scroll",
+          "item_fire_scroll",
+          "item_lightning_scroll"
         }
         for i,v in ipairs(Test_ITEM) do
           local item = CreateItem(v,nil, nil)

@@ -167,7 +167,7 @@ function B01E(keys)
 	if caster.B01E ~= nil then
 		print(caster.B01E)
 		for i,v in ipairs(caster.B01E) do
-			if v ~= nil then
+			if v ~= nil and not v:IsNull() then
 				if v:IsAlive() then
 					local tem_point = v:GetAbsOrigin()
 					--【Particle】

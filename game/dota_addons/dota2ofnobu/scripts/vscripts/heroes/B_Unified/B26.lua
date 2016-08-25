@@ -15,12 +15,29 @@ function B26D( keys )
 	local point = caster:GetAbsOrigin()
 	--local point2 = target:GetAbsOrigin()
 	local level = ability:GetLevel() - 1
+	local radius = ability:GetLevelSpecialValueFor("dmg_radius",level)
 
+	if caster:HasModifier("modifier_B26W") then
+		caster:RemoveModifierByName("modifier_B26W")
+		return
+	end
 	if caster:FindAbilityByName("B26D"):GetLevel() == 1 then
 		StartSoundEvent( "Hero_Brewmaster.ThunderClap", caster )
 		caster:FindAbilityByName("B26D"):SetLevel(0)
-		caster:FindAbilityByName("B26W"):ApplyDataDrivenModifier(caster,caster,"modifier_B26W_2",nil)
-		caster:RemoveModifierByName("modifier_B26W")
+		local group = FindUnitsInRadius(
+	   		caster:GetTeamNumber(), 
+	   		caster:GetAbsOrigin(), 
+	   		nil, 
+	   		radius ,
+	   		DOTA_UNIT_TARGET_TEAM_ENEMY, 
+	   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+	   		DOTA_UNIT_TARGET_FLAG_NONE, 
+	   		FIND_ANY_ORDER, 
+   			false)
+		for _,v in ipairs(group) do
+			ability:ApplyDataDrivenModifier(v,v,"modifier_B26W_2",nil)
+		end
+		
 		local particle = ParticleManager:CreateParticle("particles/b26w2/b26w2.vpcf",PATTACH_POINT,caster)
 		ParticleManager:SetParticleControl(particle,0,point)
 	end
