@@ -1,0 +1,408 @@
+"DOTAAbilities"
+{
+//阿市
+//阿市 光鍊罰則
+"C17W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"enchantress_untouchable"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"140 165 190 215"
+		"AbilityCastRange"	"750.00"
+		"precache"
+		{
+			"particle"	"particles/c17w/c17w.vpcf"
+			"particle"	"particles/c17w3/c17w3.vpcf"
+			"soundfile"	"sounds/weapons/hero/ember_spirit/searing_chains_target02.vsnd"
+			"soundfile"	"sounds/weapons/hero/lich/chain_frost_impact.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+			"particle"	"particles/c17w4/c17w4.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_EmberSpirit.SearingChains.Target"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_EmberSpirit.SearingChains.Target"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+				"Function"	"C17W"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C17W"
+			{
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/c17w4/c17w4.vpcf"
+				"IsDebuff"	"1"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Hero_Lich.ChainFrostImpact.Creep"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Lich.ChainFrostImpact.Creep"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast"	"0.3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"rng"	"750.00"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2.5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"1.5 2.5 3.5 4.5"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg_special"	"0.35 0.52 0.69 0.86"
+			}
+		}
+	}
+	//阿市 祈勝光輝
+	"C17E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"legion_commander_duel"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"7"
+		"AbilityManaCost"	"10 70 130 190"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/omniknight/purification.vsnd"
+			"particle"	"particles/c17e2/c17e2.vpcf"
+			"soundfile"	"soundevents/game_sounds_greevils.vsndevts"
+			"soundfile"	"soundevents/game_sounds_greevils.vsndevts"
+			"particle"	"particles/c17e2/c17e2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Greevil.Purification"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Greevil.Purification"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+				"Function"	"C17E"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_C17E"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C17E"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%atk"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%def"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%cure"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"EffectName"	"particles/c17e2/c17e2.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"spell_time"	"0.3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"12"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"def"	"5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk"	"20 40 60 80"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cure"	"5 10 15 20"
+			}
+		}
+	}
+	//阿市 神助一擊
+	"C17R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"chen_penitence"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"3"
+		"AbilityManaCost"	"55 80 105 130"
+		"AbilityCastRange"	"825.00"
+		"AOERadius"	"195.00"
+		"precache"
+		{
+			"particle"	"particles/c17r/c17r.vpcf"
+			"soundfile"	"sounds/weapons/hero/lina/lightstrikearray.vsnd"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+				"Function"	"new_C17R"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"POINT"
+					"Radius"	"%aoe"
+				}
+				"Action"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%dmg"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"	"new_C17R_dmg"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast_time"	"0.3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dis"	"825.00"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aoe"	"195.00"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"100 160 220 280"
+			}
+		}
+	}
+	//阿市 自我奉獻
+	"C17D"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"keeper_of_the_light_spirit_form_illuminate"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"MaxLevel"	"1"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/creep/neutral/troll_priest_heal.vsnd"
+			"particle"	"particles/c17d/c17d.vpcf"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_C17D"
+			{
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"	"new_C17D"
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"n_creep_ForestTrollHighPriest.Heal"
+					}
+				}
+				"Passive"	"1"
+				"Properties"	{}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"	"new_C17D_DMG"
+						"dmg"	"%attack_damage"
+					}
+				}
+			}
+			"modifier_C17D_2"
+			{
+				"Passive"	"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"	"new_C17D_OnCreated"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cure"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana"	"4"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hp"	"5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+			}
+		}
+	}
+	//阿市 極光守護
+	"C17T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"luna_lucent_beam_alt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"1"
+		"AnimationPlaybackRate"	"0.3"
+		"AbilityCooldown"	"90"
+		"AbilityManaCost"	"400 400 400"
+		"AbilityCastRange"	"1050.00"
+		"AOERadius"	"650.00"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/antimage/mana_void_cast.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+				"Function"	"C17T"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Antimage.ManaVoidCast"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast"	"1.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"rng"	"1050.00"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"aoe"	"650.00"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg"	"500 650 800"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cure"	"30 40 50"
+			}
+		}
+	}
+}
