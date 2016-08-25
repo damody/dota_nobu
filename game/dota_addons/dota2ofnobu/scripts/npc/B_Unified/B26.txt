@@ -74,7 +74,7 @@
 					{
 						"Target"
 						{
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 							"Center"	"CASTER"
 							"Radius"	"%dmg_radius"
@@ -115,32 +115,6 @@
 				}
 			}
 			"modifier_B26W_2"
-			{
-				"OnCreated"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Center"	"TARGET"
-							"Radius"	"%dmg_radius"
-						}
-						"Action"
-						{
-							"ApplyModifier"
-							{
-								"Target"	"TARGET"
-								"ModifierName"	"modifier_B26W_3"
-							}
-						}
-					}
-				}
-				"Duration"	"0"
-				"IsHidden"	"1"
-			}
-			"modifier_B26W_3"
 			{
 				"IsDebuff"	"1"
 				"Properties"

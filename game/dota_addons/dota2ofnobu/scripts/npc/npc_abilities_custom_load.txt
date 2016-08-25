@@ -1,6 +1,7 @@
 // Dota2 Editor
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
-
+"DOTAAbilities"
+{
 
 	// 屬性附加
 	"attribute_bonus"
@@ -11,7 +12,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"HotKeyOverride"	"B"
-		"MaxLevel"	"6"
+		"MaxLevel"	"10"
 		"OnUpgrade"
 		{
 			"RunScript"
@@ -615,5 +616,5 @@
 		}
 	}
 
-	
+}
 	

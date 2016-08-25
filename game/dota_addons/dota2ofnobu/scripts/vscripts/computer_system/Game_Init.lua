@@ -116,11 +116,11 @@ local InitTrig_Game_Init  = function ( )
 		test_ent = Entities:FindByName(nil,"Test_QQQ")
 		item_point = test_ent:GetAbsOrigin()
 		Test_ITEM ={
-		"item_c05",
-		"item_D01",
-		"item_D02",
-		"item_D03",
-		"item_D09",
+		"item_lightning_scroll",
+		"item_wind_scroll",
+		"item_forest_scroll",
+		"item_fire_scroll",
+		"item_mountain_scroll",
 		"item_Q02",
 		"item_Q03",
 		"item_Q04",
