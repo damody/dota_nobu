@@ -143,7 +143,7 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 	end
 	
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle 
-	illusion:AddNewModifier(keys.caster, keys.ability, "modifier_illusion", {duration = 10, outgoing_damage = 30, incoming_damage = 300})
+	illusion:AddNewModifier(keys.caster, keys.ability, "modifier_illusion", {duration = 10, outgoing_damage = -70, incoming_damage = 200})
 	
 	illusion:MakeIllusion()  --Without MakeIllusion(), the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.  Without it, IsIllusion() returns false and IsRealHero() returns true.
 
@@ -192,9 +192,9 @@ function B15T(keys)
 				end
 
 				if keys.caster:IsRangedAttacker() then  --We don't have to worry about illusions switching from melee to ranged or vice versa because they can't use abilities.
-					local illusion1 = B15D_create_illusion(keys, illusion1_origin, keys.IllusionIncomingDamageRanged, keys.IllusionOutgoingDamageRanged, keys.IllusionDuration)
+					local illusion1 = B15D_create_illusion(keys, illusion1_origin)
 				else  --keys.caster is melee.
-					local illusion1 = B15D_create_illusion(keys, illusion1_origin, keys.IllusionIncomingDamageMelee, keys.IllusionOutgoingDamageMelee, keys.IllusionDuration)
+					local illusion1 = B15D_create_illusion(keys, illusion1_origin)
 				end	
 
 				if num < 0 or not keys.caster:IsAlive() then
