@@ -202,7 +202,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"10"
 			}
@@ -224,67 +224,31 @@
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
 			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
+				"Function"	"A21R_Levelup"
+			}
+		}
 		"Modifiers"
 		{
-			"modifier_C21R_critical_strike"
+			"modifier_A21R_critical_strike"
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"OnAttackStart"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"	"modifier_C21R_critical_strike_crit"
 						"Target"	"CASTER"
-					}
-					"Random"
-					{
-						"Chance"	"%crit_chance"
-						"OnSuccess"
-						{
-							"FireSound"
-							{
-								"EffectName"	"Hero_SkeletonKing.CriticalStrike"
-								"Target"	"CASTER"
-							}
-							"FireEffect"
-							{
-								"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
-								"EffectAttachType"	"attach_sword"
-								"Target"	"CASTER"
-								"ControlPoints"	{}
-								"ControlPointEntities"	{}
-							}
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_C21R_critical_strike_crit"
-								"Target"	"CASTER"
-							}
-						}
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
+						"Function"	"A21R"
 					}
 				}
-			}
-			"modifier_C21R_critical_strike_crit"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"	"TARGET"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_C21R_critical_strike_crit"
-						"Target"	"CASTER"
-					}
-				}
+				"States"	{}
+				"IsBuff"	"0"
 			}
 			"modifier_C21R"
 			{
@@ -302,14 +266,9 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"crit_bonus"	"130 150 170 190"
+				"crit_persent"	"130 150 170 190"
 			}
 			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"crit_chance"	"40"
-			}
-			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"C21R_EVASION"	"15 19 23 27"
@@ -339,7 +298,7 @@
 			{
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_C21T"
-				"Duration"	"100"
+				"Duration"	"10"
 			}
 			"RunScript"
 			{
@@ -360,8 +319,8 @@
 				}
 				"States"
 				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"10"
 			}

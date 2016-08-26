@@ -1,8 +1,8 @@
+//阿市
 "DOTAAbilities"
 {
-//阿市
-//阿市 光鍊罰則
-"C17W"
+	//阿市 光鍊罰則
+	"C17W"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"enchantress_untouchable"
@@ -222,12 +222,6 @@
 				}
 				"Action"
 				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%dmg"
-					}
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"

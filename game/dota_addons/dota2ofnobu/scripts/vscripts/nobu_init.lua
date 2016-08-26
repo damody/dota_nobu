@@ -54,7 +54,7 @@ function _G.Nobu:InitGameMode()
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
 
   if _G.nobu_debug then
-    GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
+    GameRules:GetGameModeEntity():SetFogOfWarDisabled(false)--地圖視野
   end
   GameMode:SetStashPurchasingDisabled( true )-- 是否关闭/开启储藏处购买功能
   GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
@@ -88,7 +88,7 @@ function _G.Nobu:InitGameMode()
   math.randomseed(tonumber(timeTxt))
 
   -- --【經驗值設定】
-  MaxLevel = 20 --最大等級
+  MaxLevel = 30 --最大等級
   XpTable = {} --升級所需經驗
   local xp = 50
   for i=1,MaxLevel do

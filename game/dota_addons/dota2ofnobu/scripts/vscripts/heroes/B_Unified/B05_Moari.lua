@@ -144,6 +144,7 @@ function ThundergodsWrath(keys)
 	ParticleManager:SetParticleControl(particle, 2, Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z + target:GetBoundingMaxs().z ))
 	-- Plays the sound on the target
 	EmitSoundOn(keys.sound, target)
+	AddFOWViewer(caster:GetTeamNumber(), target:GetAbsOrigin(), 100.0, 2.0, false)
 end
 
 --[[Author: YOLOSPAGHETTI
@@ -382,6 +383,7 @@ function OnDestroyEgg_clone( event )
 	local caster		= event.caster
 	local ability	= event.ability
 	local point = ability:GetCursorPosition()
+	AddFOWViewer(caster:GetTeamNumber(), point, 1500.0, 3.0, false)
 	-- if isDead then
 
 	-- 	hero:Kill( ability, egg.supernova_lastAttacker )
