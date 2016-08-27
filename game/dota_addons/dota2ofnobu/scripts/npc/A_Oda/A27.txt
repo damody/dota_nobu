@@ -113,9 +113,9 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"8"
-		"AbilityManaCost"	"40 60 80 100"
+		"AbilityManaCost"	"20 40 60 80"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
@@ -197,7 +197,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.3"
+		"AbilityCastPoint"	"0.5"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"16 15 14 13"
@@ -349,7 +349,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"110 100 90"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"

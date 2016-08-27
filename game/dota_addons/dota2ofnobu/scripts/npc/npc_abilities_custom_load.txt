@@ -12,7 +12,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"HotKeyOverride"	"B"
-		"MaxLevel"	"10"
+		"MaxLevel"	"100"
+		"LevelsBetweenUpgrades"	"0"
 		"OnUpgrade"
 		{
 			"RunScript"
@@ -577,7 +578,24 @@
 		}
 	}
 
-	
+	// 大將魔免
+	"for_magic_immune"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_majia"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
 	
 	
 

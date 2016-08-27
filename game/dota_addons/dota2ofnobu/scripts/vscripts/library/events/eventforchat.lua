@@ -66,18 +66,24 @@ local function chat_of_test(keys)
 	elseif s == "cd" then
 		--【Timer】
 		Timers:CreateTimer(function()
-			print("cd3")
+			caster:SetMana(caster:GetMaxMana() )
+			--caster:SetHealth(caster:GetMaxHealth())
+
 			-- Reset cooldown for abilities that is not rearm
-			for i = 0, 15 do
-				if caster:GetAbilityByIndex( i ) ~= nil then
-					local ability = caster:GetAbilityByIndex( i )
+			for i = 0, caster:GetAbilityCount() - 1 do
+				local ability = caster:GetAbilityByIndex( i )
+				if ability  then
 					ability:EndCooldown()
 				end
 			end
+
+			-- Put item exemption in here
+			local exempt_table = {}
+
 			-- Reset cooldown for items
 			for i = 0, 5 do
 				local item = caster:GetItemInSlot( i )
-				if item ~= nil then
+				if item then--if item and not exempt_table( item:GetAbilityName() ) then
 					item:EndCooldown()
 				end
 			end
@@ -90,7 +96,7 @@ function Nobu:Chat( keys )
 	print("[Nobu-lua] Chat Init")
 
 	--【測試模式】
-	if nobu_debug then
+	--if nobu_debug then
 		chat_of_test(keys)
-	end
+	--end
 end

@@ -204,7 +204,7 @@ function C22T_Damage( keys )
 
 	for _,v in ipairs(group) do
 		local damage = 500 + 0.28*v:GetHealth()
-		AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_C22T",nil)
 	end
 

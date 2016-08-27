@@ -4,6 +4,164 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+
+	// =================================================================================
+	// Creature: 水式神 LV4
+	// =================================================================================
+	"A04W_UNIT"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"ModelScale"	"1"
+		"Level"	"3"
+		"Model"	"models/heroes/morphling/morphling.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A00F
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"52.0"
+		"AttackDamageMax"	"62.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.95"
+		"AttackAnimationPoint"	"0.4"
+		"AttackAcquisitionRange"	"1000.00"
+		"AttackRange"	"475"
+		"ProjectileSpeed"	"1300,1300"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"35.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"35"
+		"LumberCost"	"35"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"460"
+		"MovementTurnRate"	"0.90"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"600"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"100"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1200"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+	// =================================================================================
+	// Creature: 水式
+	// =================================================================================
+	"A04W_SUMMEND_UNIT"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/morphling/morphling.vmdl"
+		"ModelScale"	"1"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A00F
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"52.0"
+		"AttackDamageMax"	"62.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.25"
+		"AttackAnimationPoint"	"0.4"
+		"AttackAcquisitionRange"	"1000.00"
+		"AttackRange"	"475"
+		"ProjectileSpeed"	"1300"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"25"
+		"LumberCost"	"25"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"0.90"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"600"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"100"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1200"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"ProjectileModel"	"particles/a04w/a04w.vpcf"
+	}
+
 	// 柴田勝家的肉棒
 	"a27_weapon"
 	{
@@ -1250,7 +1408,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: Adt1
-		"Ability1"	""
+		"Ability1"	"for_magic_immune"
 		// Reference: Amim
 		"Ability2"	""
 		// Reference: Aoar
@@ -2129,7 +2287,7 @@
 		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0"
 		"AttackAcquisitionRange"	"500"
@@ -2177,7 +2335,12 @@
 		"MinimapIcon"	"minimap_tower90"
 		"MinimapIconSize"	"320"
 	}
-
+	// 石田三成的大
+	"A29T_dummy"
+	{
+		"BaseClass"	"npc_dota_creature"
+		// "Model"	"models/hero14/hero14.vmdl"
+	}
 	// 大本營
 	"com_soildercamp_3"
 	{

@@ -57,7 +57,8 @@ function Nobu:OnUnitKill( keys )
   	end
 	
     if killedUnit:IsRealHero() then
-      killedUnit:RespawnUnit() 
+      --killedUnit:RespawnUnit()
+	  killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
 	  --[[Returns:void
       Respawns the target unit if it can be respawned.
       ]]

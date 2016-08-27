@@ -15,24 +15,22 @@ gamestates =
 -- 測試模式送裝
 function for_test_equiment()
   Timers:CreateTimer ( 1, function ()
-        local test_ent = PlayerResource:GetPlayer(0):GetAssignedHero()
-        if (test_ent == nil) then
-          return 1
-        end
-        local item_point = test_ent:GetAbsOrigin()
-        Test_ITEM ={
-          "item_flash_ring",
-          "item_wind_scroll",
-          "item_mountain_scroll",
-          "item_fire_scroll",
-          "item_lightning_scroll"
-        }
-        for i,v in ipairs(Test_ITEM) do
-          local item = CreateItem(v,nil, nil)
-          print(v)
-          CreateItemOnPositionSync(item_point+Vector(i*100,0), item)
-        end
-        return nil
+		for ii=0,9 do
+			local test_ent = PlayerResource:GetPlayer(0):GetAssignedHero()
+			if (test_ent == nil) then
+			  return 1
+			end
+			local item_point = test_ent:GetAbsOrigin()
+			Test_ITEM ={
+			  "item_flash_ring"
+			}
+			for i,v in ipairs(Test_ITEM) do
+			  local item = CreateItem(v,nil, nil)
+			  print(v)
+			  CreateItemOnPositionSync(item_point+Vector(i*100,0), item)
+			end
+			return nil
+		end
       end)
 end
 
@@ -61,9 +59,9 @@ function Nobu:OnGameRulesStateChange( keys )
 	elseif(newState == DOTA_GAMERULES_STATE_TEAM_SHOWCASE) then --選擇英雄階段
 
 	elseif(newState == DOTA_GAMERULES_STATE_PRE_GAME) then --當英雄選擇結束 --6
-    if (_G.nobu_debug) then -- 測試模式給裝
+    --if (_G.nobu_debug) then -- 測試模式給裝
       for_test_equiment()
-    end
+    --end
     if _G.nobu_server_b then
       Nobu:OpenRoom()
     end
@@ -72,13 +70,13 @@ function Nobu:OnGameRulesStateChange( keys )
     GameRules:SendCustomMessage("dota2信長目前還在測試階段 請多見諒", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
 		--刪除建築物無敵
-	  -- local allBuildings = Entities:FindAllByClassname('npc_dota_building')
-	  -- for i = 1, #allBuildings, 1 do
-	  --    local building = allBuildings[i]
-	  --    if building:HasModifier('modifier_invulnerable') then
-	  --       building:RemoveModifierByName('modifier_invulnerable')
-	  --    end
-	  -- end
+	  local allBuildings = Entities:FindAllByClassname('npc_dota_building')
+	  for i = 1, #allBuildings, 1 do
+	     local building = allBuildings[i]
+	     if building:HasModifier('modifier_invulnerable') then
+	        building:RemoveModifierByName('modifier_invulnerable')
+	     end
+	  end
 
     --出兵觸發
     if _G.nobu_chubing_b then

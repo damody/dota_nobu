@@ -192,11 +192,11 @@ function C01T_Mitsuhide_Akechi_Effect( keys, point )
 				)
 		-- 砍樹
 		GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
-		direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              point,
 	                              nil,
 	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
@@ -210,22 +210,6 @@ function C01T_Mitsuhide_Akechi_Effect( keys, point )
 			else
 				AMHC:Damage(caster,it,dmg*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
-		end
-
-		direUnits = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
-	                          point,
-	                          nil,
-	                          SEARCH_RADIUS,
-	                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-	                          DOTA_UNIT_TARGET_ALL,
-	                          DOTA_UNIT_TARGET_FLAG_NONE,
-	                          FIND_ANY_ORDER,
-	                          false)
-
-		--effect:傷害+暈眩
-		for _,it in pairs(direUnits) do
-			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01T",nil)
 		end
 		return nil
 	end)

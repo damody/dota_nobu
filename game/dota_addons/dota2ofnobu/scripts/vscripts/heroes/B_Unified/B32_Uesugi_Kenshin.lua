@@ -19,8 +19,6 @@ function GoIceRock( event )
 	local caster = event.caster
 	local target = event.target
 	local ability = event.ability
-	print("hello")
-
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_B32E", { duration = 2 } )
 end
 
@@ -125,7 +123,18 @@ function B32E( keys )
 	local team  = caster:GetTeamNumber()
 	caster:SetAbsOrigin(ability:GetCursorPosition())
 	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
-
+	direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+              caster:GetAbsOrigin(),
+              nil,
+              200,
+              DOTA_UNIT_TARGET_TEAM_ENEMY,
+              DOTA_UNIT_TARGET_ALL,
+              DOTA_UNIT_TARGET_FLAG_NONE,
+              FIND_ANY_ORDER,
+              false)
+	for _,it in pairs(direUnits) do
+		ability:ApplyDataDrivenModifier(caster,it,"modifier_B32E", { duration = 2 } )
+	end
 end
 
 	

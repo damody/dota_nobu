@@ -269,53 +269,55 @@ end
 
 function test_1()
 	--print("lua"..tostring(DOTA_MAX_PLAYERS))
-	Timers:CreateTimer(2,function()
-		--【測試單位】
-		_G.TestUnit = CreateUnitByName("TestUnit_nomagicresist", Vector(0,0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-	end)
+	
+	if _G.nobu_debug then
+		Timers:CreateTimer(2,function()
+			--【測試單位】
+			_G.TestUnit = CreateUnitByName("TestUnit_nomagicresist", Vector(0,0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+		end)
+		Timers:CreateTimer(2,function()
 
-	Timers:CreateTimer(2,function()
+			--【HP/MP滿血】
+			for playerID = 0, 10 do
+				local id       = playerID
+			  local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
 
-		--【HP/MP滿血】
-		for playerID = 0, 10 do
-			local id       = playerID
-		  local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
+				--print("lua"..tostring(p))
 
-			--print("lua"..tostring(p))
+				if p ~= nil and (p: GetAssignedHero()) ~= nil then
+				  local caster     = p: GetAssignedHero()
+				  local point    = caster:GetAbsOrigin()
+				  local owner = caster:GetPlayerOwner()
 
-			if p ~= nil and (p: GetAssignedHero()) ~= nil then
-			  local caster     = p: GetAssignedHero()
-			  local point    = caster:GetAbsOrigin()
-			  local owner = caster:GetPlayerOwner()
+					GameRules: SendCustomMessage("每20秒 全場狀態回復",DOTA_TEAM_GOODGUYS,0)
 
-				GameRules: SendCustomMessage("每20秒 全場狀態回復",DOTA_TEAM_GOODGUYS,0)
+					caster:SetMana(caster:GetMaxMana() )
+					caster:SetHealth(caster:GetMaxHealth())
 
-				caster:SetMana(caster:GetMaxMana() )
-				caster:SetHealth(caster:GetMaxHealth())
-
-				-- Reset cooldown for abilities that is not rearm
-				for i = 0, caster:GetAbilityCount() - 1 do
-					local ability = caster:GetAbilityByIndex( i )
-					if ability  then
-						ability:EndCooldown()
+					-- Reset cooldown for abilities that is not rearm
+					for i = 0, caster:GetAbilityCount() - 1 do
+						local ability = caster:GetAbilityByIndex( i )
+						if ability  then
+							ability:EndCooldown()
+						end
 					end
-				end
 
-				-- Put item exemption in here
-				local exempt_table = {}
+					-- Put item exemption in here
+					local exempt_table = {}
 
-				-- Reset cooldown for items
-				for i = 0, 5 do
-					local item = caster:GetItemInSlot( i )
-					if item then--if item and not exempt_table( item:GetAbilityName() ) then
-						item:EndCooldown()
+					-- Reset cooldown for items
+					for i = 0, 5 do
+						local item = caster:GetItemInSlot( i )
+						if item then--if item and not exempt_table( item:GetAbilityName() ) then
+							item:EndCooldown()
+						end
 					end
 				end
 			end
-		end
 
-		return 20
-	end)
+			return 20
+		end)
+	end
 end
 
 

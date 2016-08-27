@@ -8,6 +8,149 @@
 --<<endglobal>>
 
 
+function GoIceRock( event )
+	local caster = event.caster
+	local target = event.target
+	local ability = event.ability
+	local level  = event.ability:GetLevel()
+	ability:ApplyDataDrivenModifier( caster, target, "modifier_A04E", { duration = level*0.5+0.5 } )
+end
+
+function FireEffect_IcePath( event )
+	local caster		= event.caster
+	local ability		= event.ability
+	local pathLength	= ability:GetCastRange()
+	local pathDelay		= event.path_delay
+	local pathDuration	= event.duration
+	local pathRadius	= event.path_radius
+
+	local startPos = caster:GetAbsOrigin()
+	local endPos = startPos + caster:GetForwardVector() * pathLength
+
+	ability.ice_path_stunStart	= GameRules:GetGameTime() + pathDelay
+	ability.ice_path_stunEnd	= GameRules:GetGameTime() + pathDelay + pathDuration
+
+	ability.ice_path_startPos	= startPos * 1
+	ability.ice_path_endPos		= endPos * 1
+
+	ability.ice_path_startPos.z = 0
+	ability.ice_path_endPos.z = 0
+
+	-- Create ice_path
+	local particleName = "particles/units/heroes/hero_jakiro/jakiro_ice_path.vpcf"
+	local pfx = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster )
+	ParticleManager:SetParticleControl( pfx, 0, startPos )
+	ParticleManager:SetParticleControl( pfx, 1, endPos )
+	ParticleManager:SetParticleControl( pfx, 2, startPos )
+
+	ability.pfxIcePath = pfx
+
+	-- Create ice_path_b
+	particleName = "particles/units/heroes/hero_jakiro/jakiro_ice_path_b.vpcf"
+	pfx = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster )
+	ParticleManager:SetParticleControl( pfx, 0, startPos )
+	ParticleManager:SetParticleControl( pfx, 1, endPos )
+	ParticleManager:SetParticleControl( pfx, 2, Vector( pathDelay + pathDuration, 0, 0 ) )
+	ParticleManager:SetParticleControl( pfx, 9, startPos )
+
+	-- Generate projectiles
+	if pathRadius < 32 then
+		print( "Set the proper value of path_radius in ice_path_datadriven." )
+		return
+	end
+
+	local projectileRadius = pathRadius * math.sqrt(2)
+	local numProjectiles = math.floor( pathLength / (pathRadius*2) ) + 1
+	local stepLength = pathLength / ( numProjectiles - 1 )
+
+	for i=1, numProjectiles do
+		local projectilePos = startPos + caster:GetForwardVector() * (i-1) * stepLength
+
+		ProjectileManager:CreateLinearProjectile( {
+			Ability				= ability,
+		--	EffectName			= "",
+			vSpawnOrigin		= projectilePos,
+			fDistance			= 64,
+			fStartRadius		= projectileRadius,
+			fEndRadius			= projectileRadius,
+			Source				= caster,
+			bHasFrontalCone		= false,
+			bReplaceExisting	= false,
+			iUnitTargetTeam		= DOTA_UNIT_TARGET_TEAM_ENEMY,
+			iUnitTargetFlags	= DOTA_UNIT_TARGET_FLAG_NONE,
+			iUnitTargetType		= DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+			fExpireTime			= ability.ice_path_stunEnd,
+			bDeleteOnHit		= false,
+			vVelocity			= Vector( 0, 0, 0 ),	-- Don't move!
+			bProvidesVision		= true,
+			iVisionRadius		= 150,
+			iVisionTeamNumber	= caster:GetTeamNumber(),
+		} )
+	end
+end
+
+--[[
+	Author: Ractidous
+	Date: 27.01.2015.
+	Destroy ice_path manually in order to show its endcap effects.
+]]
+function FireEffect_Destroy_IcePath_A( event )
+	local caster		= event.caster
+	local ability		= event.ability
+	local pfxIcePath	= ability.pfxIcePath
+
+	ParticleManager:DestroyParticle( pfxIcePath, false )
+
+	ability.pfxIcePath = nil
+end
+
+function CheckIcePath( event )
+	local caster		= event.caster
+	local target		= event.target
+	local ability		= event.ability
+	local pathRadius	= event.path_radius
+
+	local stunModifierName	= "modifier_ice_path_stun_datadriven"
+
+	if GameRules:GetGameTime() < ability.ice_path_stunStart then
+		-- Not yet.
+		return
+	end
+
+	if target:HasModifier( stunModifierName ) then
+		-- Already stunned.
+		return
+	end
+
+	local targetPos = target:GetAbsOrigin()
+	targetPos.z = 0
+
+	local distance = DistancePointSegment( targetPos, ability.ice_path_startPos, ability.ice_path_endPos )
+	if distance < pathRadius then
+		local duration = ability.ice_path_stunEnd - GameRules:GetGameTime()
+		ability:ApplyDataDrivenModifier( caster, target, stunModifierName, { duration = duration } )
+	end
+end
+
+--[[
+	Author: Ractidous
+	Date: 27.01.2015.
+	Distance between a point and a segment.
+]]
+function DistancePointSegment( p, v, w )
+	local l = w - v
+	local l2 = l:Dot( l )
+	t = ( p - v ):Dot( w - v ) / l2
+	if t < 0.0 then
+		return ( v - p ):Length2D()
+	elseif t > 1.0 then
+		return ( w - p ):Length2D()
+	else
+		local proj = v + t * l
+		return ( proj - p ):Length2D()
+	end
+end
+
 function A04T_ANIMATION( keys )
 	local caster = keys.caster
 
@@ -15,12 +158,6 @@ function A04T_ANIMATION( keys )
     caster:StartGesture( ACT_DOTA_CAST_ABILITY_1 )
 end
 
-function A04T_STOP_SPELL( keys )
-	--如果停止施法就殺掉單位
-	local caster = keys.caster
-	local id 	= caster:GetPlayerID() --獲取玩家ID
-	A04T_UNIT[id]:ForceKill( true )
-end
 
 function A04T_HIDEUNIT_SPELLABLILITY( keys )
 	--debug
@@ -348,10 +485,8 @@ function A04W_Bonus( event )
 
 	local hModifier = target:FindModifierByNameAndCaster("modifier_A04W_Tech", caster)
 	hModifier:SetStackCount(level)
-
-	--debug
-	GameRules: SendCustomMessage(tostring(level),DOTA_TEAM_GOODGUYS,0)
-
+	target:SetBaseMaxHealth(600+80*level)
+	target:SetHealth(target:GetMaxHealth())
 end
 
 function A04D_ATTACK_UNIT( event )
@@ -362,3 +497,48 @@ function A04D_ATTACK_UNIT( event )
 		ability:ApplyDataDrivenModifier(unit,unit,"modifier_A04D_ATTACK_UNIT",nil)
 	end
 end
+
+function A04T_End( keys )
+	keys.caster.dummy:ForceKill(false)
+end
+
+function A04T( keys )
+	local ability = keys.ability
+	local caster = keys.caster
+	local target = keys.target_points[1]
+	local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() )
+	local level  = keys.ability:GetLevel()--獲取技能等級
+	local radius = keys.ability:GetLevelSpecialValueFor("radius",level-1)
+	local damage_scepter = keys.ability:GetLevelSpecialValueFor("damage_scepter",level-1)
+	ability:ApplyDataDrivenModifier( dummy, dummy, "modifier_freezing_field_caster_datadriven",{duration=8} )
+	caster.dummy = dummy
+	Timers:CreateTimer(function()
+		if  ( caster:IsChanneling() ) then
+			local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              target,
+	                              nil,
+	                              radius,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              FIND_ANY_ORDER,
+	                              false)
+
+			--effect:傷害+暈眩
+			for _,it in pairs(direUnits) do
+				if (not(it:IsBuilding())) then
+					if (not it:HasModifier("modifier_freezing_field_debuff_datadriven")) then
+						ability:ApplyDataDrivenModifier(caster,it,"modifier_freezing_field_debuff_datadriven", {duration=5})
+					end
+					AMHC:Damage(caster,it,damage_scepter,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				else
+					AMHC:Damage(caster,it,damage_scepter*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				end
+			end
+			return 0.7
+		else
+			return nil
+		end
+	end)
+end
+

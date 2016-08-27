@@ -6,14 +6,14 @@ function B15E( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
-	local spe_value = ability:GetManaCost(level + 1)
+	local spe_value = 8
 
 	--【扣魔】
 	if caster:GetMana() < spe_value then
 		caster:CastAbilityToggle(ability,-1)		
 		caster:SetMana(0)
 	else
-		caster:SetMana(caster:GetMaxMana() - spe_value)
+		caster:SetMana(caster:GetMana() - spe_value)
 	end
 end
 

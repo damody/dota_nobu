@@ -31,6 +31,10 @@ function Nobu:PickHero( keys )
     caster:FindAbilityByName("C22D"):SetLevel(1)
   elseif name == "npc_dota_hero_templar_assassin"  then
     caster:FindAbilityByName("C19D"):SetLevel(1)
+  elseif name == "npc_dota_hero_centaur"  then
+	caster:FindAbilityByName("A07D"):SetLevel(1)
+  elseif name == "npc_dota_hero_broodmother"  then
+	caster:FindAbilityByName("A13D"):SetLevel(1)
   elseif name == "npc_dota_hero_storm_spirit"  then
     caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
   elseif name ==  "npc_dota_hero_silencer"  then

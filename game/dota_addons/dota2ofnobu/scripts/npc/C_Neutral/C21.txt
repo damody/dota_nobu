@@ -292,6 +292,10 @@
 		"AbilityCooldown"	"115 95 75"
 		"AbilityManaCost"	"210"
 		"AbilityCastRange"	"600"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+		}
 		"OnSpellStart"
 		{
 			"ApplyModifier"

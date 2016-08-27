@@ -18,7 +18,7 @@ function _G.Nobu:InitGameMode()
   if _G.nobu_debug then
     GameRules:SetPreGameTime( 0 )--設置遊戲準備時間
   else
-    GameRules:SetPreGameTime( 50 )--設置遊戲準備時間
+    GameRules:SetPreGameTime( 10 )--設置遊戲準備時間
   end
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
@@ -54,7 +54,7 @@ function _G.Nobu:InitGameMode()
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
 
   if _G.nobu_debug then
-    GameRules:GetGameModeEntity():SetFogOfWarDisabled(false)--地圖視野
+    GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
   end
   GameMode:SetStashPurchasingDisabled( true )-- 是否关闭/开启储藏处购买功能
   GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度

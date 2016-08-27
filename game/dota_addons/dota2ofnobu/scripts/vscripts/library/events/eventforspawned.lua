@@ -31,12 +31,11 @@ function Nobu:OnHeroIngame( keys )
   local hero = EntIndexToHScript( keys.entindex )
   if hero:IsHero() then
     --等級
-    for i=1,25 do
+    for i=1,5 do
       hero:HeroLevelUp(false)
       -- caster.HeroLevelUp(caster,true)
     end
   end
-
 
   if _G.nobu_server_b then
     if hero:IsHero() then

@@ -5,12 +5,13 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dianwei_yaohuo"
+		"MaxLevel"	"5"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"HotKeyOverride"	"D"
-		"Level" "1"
-		"MaxLevel"	"5"
+		
+		"AbilityCooldown"	"6 5 4 3"
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
 		"precache"
 		{
@@ -72,7 +73,7 @@
 		"AbilityCastPoint"	"0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"13"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0 0 0"
@@ -181,7 +182,6 @@
 		"HotKeyOverride"	"R"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"13.0 10.0 7.0 4.0"
 		"precache"
 		{
 			"particle"	"particles/a07r/a07r.vpcf"
@@ -261,7 +261,7 @@
 		"AnimationPlaybackRate"	"1.0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"
@@ -409,7 +409,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"100"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"
@@ -477,7 +477,7 @@
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%damage"
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"60"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.8"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.1"
 				}
 				"Duration"	"45"
 				"IsBuff"	"1"

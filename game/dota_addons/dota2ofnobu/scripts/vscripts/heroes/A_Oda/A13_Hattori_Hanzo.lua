@@ -148,7 +148,7 @@ function A13W( event )
 			-- Level Up the unit to the casters level
 			local casterLevel = caster:GetLevel()
 			for j=1,casterLevel-1 do
-				illusion[i]:HeroLevelUp(false)
+				--illusion[i]:HeroLevelUp(false)
 			end
 
 			-- Set the skill points to 0 and learn the skills of the caster
@@ -172,11 +172,12 @@ function A13W( event )
 					illusion[i]:AddItem(newItem)
 				end
 			end
+
 			-- Set the unit as an illusion
 			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			illusion[i]:SetBaseDamageMin(-1000)
-			illusion[i]:SetBaseDamageMax(-1000)
+			illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = -1000, incoming_damage = incomingDamage })
+			--illusion[i]:SetBaseDamageMin(-1000)
+			--illusion[i]:SetBaseDamageMax(-1000)
 			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 			illusion[i]:MakeIllusion()
 

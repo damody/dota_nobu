@@ -28,7 +28,7 @@ function A27W( event )
 			-- Level Up the unit to the casters level
 			local casterLevel = caster:GetLevel()
 			for j=1,casterLevel-1 do
-				illusion[i]:HeroLevelUp(false)
+				--illusion[i]:HeroLevelUp(false)
 			end
 
 			-- Set the skill points to 0 and learn the skills of the caster

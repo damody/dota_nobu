@@ -156,7 +156,7 @@ function ExorcismPhysics( event )
 		-- Set the new velocity
 		if math.abs(angle_difference) < 5 then
 			-- CLAMP
-			local newVel = unit:GetPhysicsVelocity():Length() * direction
+			local newVel = unit:GetPhysicsVelocity():Length() * direction * 2
 			unit:SetPhysicsVelocity(newVel)
 		elseif angle_difference > 0 then
 			local newVel = RotatePosition(Vector(0,0,0), QAngle(0,10,0), unit:GetPhysicsVelocity())

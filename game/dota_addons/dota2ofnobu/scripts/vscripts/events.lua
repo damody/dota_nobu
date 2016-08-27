@@ -179,9 +179,9 @@ function Nobu:Init_Event_and_Filter_GameMode()
   local self =  _G.Nobu
 
   --【測試模式】
-  if nobu_debug then
+  --if nobu_debug then
     Test_main(self)
-  end
+  --end
 
   print(self)
 

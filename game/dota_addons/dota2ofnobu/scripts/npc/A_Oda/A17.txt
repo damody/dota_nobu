@@ -1,8 +1,8 @@
 //佐佐成政
 "DOTAAbilities"
 {
-//佐佐成政 疾射
-"A17E"
+	//佐佐成政 疾射
+	"A17E"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"gyrocopter_flak_cannon"
@@ -112,7 +112,7 @@
 		}
 		"AbilityDamage"	"65 95 125 155"
 	}
-//佐佐成政 大筒
+	//佐佐成政 大筒
 	"A17T"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -123,7 +123,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"6 3 0"
+		"AbilityCooldown"	"6 3 0.5"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"

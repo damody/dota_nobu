@@ -147,16 +147,14 @@ function Trig_C21TActions( keys )
         	--call function
 			C21T_Copy(u,i, u2)
 			C21T_Effect(u,u2,i)
-
+			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 			return 0.1    
 		else 
 
 			--清理分身
 			for ii,unit in pairs(udg_C21T_Table[i]) do
 
-            	--刪除單位
-                
-
+            	u:AddNewModifier(u,keys.ability,"modifier_phased",{duration=0.1})
                 --刪除無敵
                 u:RemoveModifierByName("modifier_C21T")
 

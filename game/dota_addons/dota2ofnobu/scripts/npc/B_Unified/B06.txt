@@ -324,6 +324,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"HotKeyOverride"	"T"
+		"AbilityCooldown"	"120"
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
@@ -398,12 +399,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"Basic_Attack_Speed"	"0.1"
+				"Basic_Attack_Speed"	"1.2"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Bonus_Health"	"500"
+				"Bonus_Health"	"500 750 1000"
 			}
 			"03"
 			{

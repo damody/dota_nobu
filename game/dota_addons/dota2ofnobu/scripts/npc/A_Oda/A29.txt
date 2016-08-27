@@ -32,7 +32,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		
 		// Time		
@@ -225,8 +225,8 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.2"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"treant_overgrowth"
 		"HotKeyOverride"				"E"
@@ -253,7 +253,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"1.10 1.35 1.60 1.85"
+				"duration"						"1.0 1.5 2.0 2.5"
 			}
 			
 			"02"
@@ -264,7 +264,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_interval"				"0.05"
+				"damage_interval"				"1"
 			}
 		}
 
@@ -297,6 +297,10 @@
 		{
 			"modifier_A29E_damage_datadriven"
 			{
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"IsHidden"		"0"
 				"IsDebuff"		"1"
 				"IsPurgable"	"1"
@@ -343,7 +347,7 @@
 			"modifier_A29R"
 			{
 				"Aura"	"modifier_A29R_2"
-				"Aura_Radius"	"650"
+				"Aura_Radius"	"1300"
 				// for testing using:
 				// "Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -423,7 +427,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"160 140 120"
-		"AbilityDuration"				"50 50 50"
+		
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -436,17 +440,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"700 700 700"
+				"radius"				"1000 1000 1000"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirits"				"10 14 15"
+				"spirits"				"44"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirit_speed"			"500 500 500"
+				"spirit_speed"			"700 700 700"
 			}
 			"04"
 			{
@@ -461,17 +465,17 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"min_damage"			"53 53 53"
+				"min_damage"			"30 30 30"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_damage"			"58 58 58"
+				"max_damage"			"65 65 65"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"25 25 25"
+				"heal_percent"			"60 90 150"
 			}
 			"09"
 			{
@@ -482,17 +486,22 @@
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"35"	//Always have a duration AbilitySpecial, don't believe Valves lies.
+				"duration"				"30 35 40"
 			}
 			"11"	
 			{
 				"var_type"					"FIELD_FLOAT"
-				"delay_between_spirits"		"0.3"
+				"delay_between_spirits"		"0.1"
 			}
 			"12"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"min_time_between_attacks"	"3.0"
+			}
+			"13"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal"						"350 550 750"
 			}
 			"13"
 			{
