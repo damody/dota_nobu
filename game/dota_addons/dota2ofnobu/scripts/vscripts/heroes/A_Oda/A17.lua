@@ -126,7 +126,7 @@ function A17T_Succes_Attack( keys )
    	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
 	for i,v in ipairs(group) do
 		if v~=target then
-			AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
+			AMHC:Damage( caster,v,dmg*0.8,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 		end
 	end	
 end

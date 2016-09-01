@@ -20,7 +20,7 @@
 		"AbilityCooldown"	"19"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"75 75 75 75"
+		"AbilityManaCost"	"75"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/lifestealer/rage.vsnd"
@@ -178,6 +178,41 @@
 					}
 				}
 			}
+			// 分身的火箭傷害
+			"modifier_searing_arrow2"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"	"0"
+					"ProjectileName"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+				}
+				"OnOrbFire"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E"
+					}
+				}
+				"States"	{}
+				"OnOrbImpact"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage_bonus2"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Medusa.AttackSplit"
+					}
+				}
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -187,6 +222,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage_bonus"	"40 75 110 145"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_bonus2"	"20 30 40 50"
 			}
 		}
 	}
@@ -320,7 +360,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCooldown"	"100"
+		"AbilityCooldown"	"150"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
@@ -359,6 +399,7 @@
 				"EffectName"	"Brewmaster_Storm.Attack"
 			}
 		}
+		
 		"AbilitySpecial"
 		{
 			"01"

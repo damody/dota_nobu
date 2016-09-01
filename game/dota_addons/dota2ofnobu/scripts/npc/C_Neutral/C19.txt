@@ -10,6 +10,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityCooldown"	"9"
+		"AbilityManaCost"	"80"
 		"precache"
 		{
 			"particle"	"particles/c15w/c15w.vpcf"
@@ -208,6 +209,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"80"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -237,7 +239,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastPoint"	"3 3 3 3"
 		"AbilityCooldown"	"35"
-		"AbilityManaCost"	"50 50 50 50"
+		"AbilityManaCost"	"50"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
 		// ?? global

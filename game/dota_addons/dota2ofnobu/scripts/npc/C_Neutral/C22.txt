@@ -12,7 +12,7 @@
 		"HotKeyOverride"	"D"
 		"MaxLevel"	"1"
 		"AbilityCooldown"	"6"
-		"AbilityManaCost"	"135"
+		"AbilityManaCost"	"50"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -179,7 +179,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCooldown"	"22"
-		"AbilityManaCost"	"85 110 135 160"
+		"AbilityManaCost"	"85 110 125 130"
 		"AbilityCastRange"	"400 525 650 775"
 		"precache"
 		{
@@ -358,6 +358,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityCooldown"	"110"
+		"AbilityManaCost"	"150"
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"

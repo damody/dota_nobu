@@ -7,7 +7,7 @@
 --[[Author: YOLOSPAGHETTI
 	Date: April 3, 2016
 	Fires the projectile if the targets line up]]
-function CheckAngles(keys)
+function B33R(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
@@ -34,12 +34,12 @@ function CheckAngles(keys)
 	--local attack_spill_width = ability:GetLevelSpecialValueFor("attack_spill_width", ability:GetLevel() - 1)/2
 	
 	-- Units in radius
-	local units = FindUnitsInRadius(caster:GetTeamNumber(), first_target_origin, nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), 0, 0, false)
+	local units = FindUnitsInRadius(caster:GetTeamNumber(), first_target_origin, nil, radius, 
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	
 	-- Calculates the position of each found unit in relation to the last target
 	for i,unit in ipairs(units) do
 		if unit ~= target then
-		
 			-- local target_origin_difference = target:GetAbsOrigin() - unit:GetAbsOrigin()
 			
 			-- -- Get the radian of the origin difference between the last target and the unit. We use this to figure out at what angle the unit is at relative to the the target.

@@ -108,6 +108,7 @@ end
 
 
 function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, illusion_outgoing_damage, illusion_duration)	
+	local caster = keys.caster
 	local player_id = keys.caster:GetPlayerID()
 	local caster_team = keys.caster:GetTeam()
 	
@@ -140,6 +141,13 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 			local illusion_duplicate_item = CreateItem(individual_item:GetName(), illusion, illusion)
 			illusion:AddItem(illusion_duplicate_item)
 		end
+	end
+
+	if (caster:HasModifier("modifier_b15w")) then
+		caster:FindAbilityByName("B15W"):ApplyDataDrivenModifier(illusion,illusion,"modifier_b15w",{duration=999})
+	end
+	if (caster:HasModifier("modifier_searing_arrow")) then
+		caster:FindAbilityByName("B15E"):ApplyDataDrivenModifier(illusion,illusion,"modifier_searing_arrow2",{duration=999})
 	end
 	
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle 

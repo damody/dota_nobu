@@ -15,7 +15,7 @@
 		"RequiredLevel"	"0"
 		"AbilityCastPoint"	"0.300"
 		"AbilityCooldown"	"22.0 17.0 12.00 7.00"
-		"AbilityManaCost"	"100 125 150 175"
+		"AbilityManaCost"	"100"
 		"AbilityCastRange"	"700"
 		"precache"
 		{
@@ -157,7 +157,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"E"
 		"AbilityCooldown"	"23 20 17 14"
-		"AbilityManaCost"	"110 140 170 200"
+		"AbilityManaCost"	"110"
 		"AbilityCastRange"	"575"
 		"precache"
 		{
@@ -285,12 +285,13 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"HotKeyOverride"	"T"
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityCooldown"	"115 95 75"
-		"AbilityManaCost"	"210"
+		"AbilityManaCost"	"150"
 		"AbilityCastRange"	"600"
 		"precache"
 		{

@@ -51,6 +51,95 @@
 		}
 	}
 
+	//侍大將 普攻
+	"com_bigattack"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_skyhigh_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A17T"
+			{
+				"Passive"	"1"
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T"
+					}
+				}
+				"States"	{}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_sight"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+				}
+				"IsBuff"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T_Succes_Attack"
+						"dmg"	"%attack_damage"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"night_sight"	"1100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_range_bonus"	"0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attacked_range"	"250"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"0"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_bonus"	"0"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_bonus"	"0"
+			}
+		}
+	}
+
 	// 技能的名字
 	"ability_sample_ability"
 	{

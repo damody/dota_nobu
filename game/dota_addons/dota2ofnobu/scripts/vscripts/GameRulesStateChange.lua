@@ -16,7 +16,7 @@ gamestates =
 function for_test_equiment()
   Timers:CreateTimer ( 1, function ()
 		for ii=0,9 do
-			local test_ent = PlayerResource:GetPlayer(0):GetAssignedHero()
+			local test_ent = PlayerResource:GetPlayer(ii):GetAssignedHero()
 			if (test_ent == nil) then
 			  return 1
 			end
@@ -59,9 +59,9 @@ function Nobu:OnGameRulesStateChange( keys )
 	elseif(newState == DOTA_GAMERULES_STATE_TEAM_SHOWCASE) then --選擇英雄階段
 
 	elseif(newState == DOTA_GAMERULES_STATE_PRE_GAME) then --當英雄選擇結束 --6
-    --if (_G.nobu_debug) then -- 測試模式給裝
+    if (_G.nobu_debug) then -- 測試模式給裝
       for_test_equiment()
-    --end
+    end
     if _G.nobu_server_b then
       Nobu:OpenRoom()
     end

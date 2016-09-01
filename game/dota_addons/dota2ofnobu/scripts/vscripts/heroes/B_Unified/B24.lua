@@ -33,7 +33,7 @@ function B24T( keys )
    		FIND_ANY_ORDER, 
    		false)
 	for _,v in ipairs(group) do
-		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
+		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 		--print("nobu"..v:GetUnitName())
 	end
 
@@ -44,19 +44,23 @@ function B24T( keys )
 	local pointx2
 	local pointy2
 	local a	
-	for i=1,16 do
-		a	=	(	22.5	*	i	)* bj_DEGTORAD
+	local maxrock = 16
+	for i=1,maxrock do
+		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
 		pointx2 	=  	pointx 	+ 	420.00 	* 	math.cos(a)
 		pointy2 	=  	pointy 	+ 	420.00 	*	math.sin(a)
 		point = Vector(pointx2 ,pointy2 , pointz)
 
-		local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,caster)
-		ParticleManager:SetParticleControl(particle,0,point)
-		ParticleManager:SetParticleControl(particle,1,point)
-		ParticleManager:SetParticleControl(particle,2,Vector(6,6,6))
+		
 
 		local dummy = CreateUnitByName("B24T_HIDE",point,false,nil,nil,caster:GetTeam())
 		ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24T",nil)
+		Timers:CreateTimer(0.2, function()
+		local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,caster)
+		ParticleManager:SetParticleControl(particle,0,dummy:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle,1,dummy:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle,2,Vector(6,6,6))
+		end)
 		--dummy:SetOrigin(point)--不加會卡點
 		
 		--紀錄
@@ -89,13 +93,67 @@ function B24W( keys )
 	--local vec = caster:GetForwardVector():Normalized()	
 
 	caster.B24WUNIT = dummy --擊退次數完 刪除單位用
-
+	dummy:SetHealth(dummy:GetMaxHealth())
 	--紀錄次數
-	dummy.B24W_NUM = ability:GetLevelSpecialValueFor("time",ability:GetLevel()-1)
+	dummy.B24W_NUM = ability:GetLevelSpecialValueFor("times",ability:GetLevel()-1)
 
 	--一定要放紀錄次數下面
 	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24W",nil)
 
+	local count = 0
+	Timers:CreateTimer(function ()
+		local SEARCH_RADIUS = 250
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	          dummy:GetAbsOrigin(),
+	          nil,
+	          SEARCH_RADIUS,
+	          DOTA_UNIT_TARGET_TEAM_ENEMY,
+	          DOTA_UNIT_TARGET_HERO,
+	          DOTA_UNIT_TARGET_FLAG_NONE,
+	          FIND_ANY_ORDER,
+	          false)
+
+		
+		local hasenemy = false
+		for _,target in pairs(direUnits) do
+			if not target:IsBuilding() then
+				Physics:Unit(target)
+				target:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin()):Normalized()*1000)
+				AMHC:Damage( caster,target,ability:GetLevelSpecialValueFor("Damage",ability:GetLevel()-1),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				Timers:CreateTimer(0.15, function()
+						local its = FindUnitsInRadius(caster:GetTeamNumber(),
+							target:GetAbsOrigin(),
+							nil,
+							SEARCH_RADIUS,
+							DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+							DOTA_UNIT_TARGET_HERO,
+							DOTA_UNIT_TARGET_FLAG_NONE,
+							FIND_ANY_ORDER,
+							false)
+						for _,it in pairs(its) do
+							if it:GetUnitName() == "B24T_HIDE" then
+								target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*1000)
+								break
+							end
+						end
+					end)
+				
+				hasenemy = true
+			end
+		end
+		if hasenemy then
+			dummy.B24W_NUM = dummy.B24W_NUM - 1
+		end
+
+		if (dummy:IsAlive() and dummy.B24W_NUM > 0) then
+			return 0.3
+		else
+			if dummy:IsAlive() then
+				dummy:ForceKill(false)
+			end
+			return nil
+		end
+	end)
 	--【Group】
 	local teams = DOTA_UNIT_TARGET_TEAM_BOTH
 	local types =DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
@@ -133,69 +191,7 @@ function B24W2( keys )
 end
 
 function B24W3( keys )
-	--【Basic】
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	--local player = caster:GetPlayerID()
-	local point = caster:GetAbsOrigin()
-	local point2 = target:GetAbsOrigin() 
-	--local point2 = ability:GetCursorPosition()
-	local level = ability:GetLevel() - 1
-	--local vec = caster:GetForwardVector():Normalized()
-	local check_boolean = false
-
-	--【判斷有沒有卡牆】
-	--判斷背後有沒有碰撞單位
-	--【Group_Line】
-	local vec = (point2 - point) :Normalized()
-	local vStartPos = point2 + 50 * vec
-	local vEndPos = point2 + 100 * vec
-	local width = 50
-	local group = FindUnitsInLine(
-		target:GetTeam(), 
-		vStartPos, 
-		vEndPos, 
-		target, 
-		width, 
-		DOTA_UNIT_TARGET_TEAM_BOTH, 
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES)
-	-- Make the found units move to (0, 0, 0)
-	for i,v in pairs(group) do
-		if v ~= caster and v ~= target then
-			if v:GetUnitName() == "B24T_HIDE" then
-			   --print("nobu"..v:GetUnitName())
-			   check_boolean = true
-			   break
-			end
-		end
-	end
-
-	--【DEBUG】
-	if nobu_debug then
-		local start_point = vStartPos
-		local end_point = vEndPos
-		local radius = 50 --可以獲取單位碰撞面積
-		DebugDrawLine(start_point, end_point, 0, 0, 255, true, 5)
-		DebugDrawCircle(point, Vector(0,255,0), 100, 150, true, 5)
-		DebugDrawCircle(start_point, Vector(255,0,0), 100, radius, true, 5)
-		DebugDrawCircle(end_point, Vector(255,0,0), 100, radius, true, 5)
-	end			
-
-	if check_boolean == true then
-		--print("nobu".."true")
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_B24W_3",nil)	--原地擊退
-	else
-		--print("nobu".."false")
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_B24W_2",nil)
-	end
 	
-	--【判斷擊退次數】
-	caster.B24W_NUM = caster.B24W_NUM - 1
-	if caster.B24W_NUM == 0 then
-		caster:RemoveModifierByName("modifier_B24W") --刪除modifier 就會殺死單位
-	end
 end
 
 function B24E_START( keys )

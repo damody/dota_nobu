@@ -6,7 +6,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_d01_4 (Copy)"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.3"
@@ -52,7 +52,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"11 15 19"
+				"duration"	"7 11 13"
 			}
 			"02"
 			{
@@ -75,10 +75,10 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_d01_1 (Copy)"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCooldown"	"19"
-		"AbilityManaCost"	"40 60 80 100"
+		"AbilityManaCost"	"40"
 		"precache"
 		{
 			"particle"	"particles/b01w/b01w.vpcf"
@@ -205,7 +205,7 @@
 		"AbilityCooldown"	"16 15 14 13"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100 120 140 160"
+		"AbilityManaCost"	"100"
 		"precache"
 		{
 			"particle"	"particles/b01e2/b01e2.vpcf"
@@ -232,8 +232,6 @@
 						"Target"	"TARGET"
 						"UnitCount"	"%count"
 						"SpawnRadius"	"?10 100"
-						"GrantsGold"	"1"
-						"GrantsXP"	"1"
 						"OnSpawn"
 						{
 							"ApplyModifier"

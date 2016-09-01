@@ -37,13 +37,13 @@ function C01E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	else
 		dmg = 100 
 	end
-	AddFOWViewer(DOTA_TEAM_GOODGUYS, point, 300.0, 3.0, false)
+	AddFOWViewer(caster:GetTeamNumber(), point, 300.0, 3.0, false)
 
-	direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+	direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
                               point,
                               nil,
                               SEARCH_RADIUS,
-                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
                               DOTA_UNIT_TARGET_ALL,
                               DOTA_UNIT_TARGET_FLAG_NONE,
                               FIND_ANY_ORDER,
@@ -56,29 +56,6 @@ function C01E_Mitsuhide_Akechi_Effect( keys, skillcount )
 			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E",nil)
 		end
 	end
-
-	direUnits = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
-                          point,
-                          nil,
-                          SEARCH_RADIUS,
-                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-                          DOTA_UNIT_TARGET_ALL,
-                          DOTA_UNIT_TARGET_FLAG_NONE,
-                          FIND_ANY_ORDER,
-                          false)
-
-	--effect:傷害+暈眩
-	for _,it in pairs(direUnits) do
-		AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E",nil)
-	end
-	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
-	dummy:EmitSound( "C01E.sound" )
-	Timers:CreateTimer( 0.5, function()
-					dummy:ForceKill( true )
-					return nil
-				end
-			)
 
 	--particle
 	local particle=ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",PATTACH_WORLDORIGIN,caster)

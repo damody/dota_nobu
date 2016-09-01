@@ -218,7 +218,7 @@ function B02W( keys )
 	illusion:AddNewModifier(target, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
-	illusion:SetRenderColor(0,0,200)
+	--illusion:SetRenderColor(0,0,200)
 	illusion:MakeIllusion()
 
 	--【KV】

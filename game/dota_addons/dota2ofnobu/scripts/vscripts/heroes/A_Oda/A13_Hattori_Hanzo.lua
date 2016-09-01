@@ -372,7 +372,7 @@ function A13E_modifier:OnIntervalThink()
 		for _,hookpoint in pairs(hook_pts) do
 			-- 拉到敵人
 			local SEARCH_RADIUS = self.hook_width
-			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+			local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              hookpoint,
 	                              nil,
 	                              SEARCH_RADIUS,

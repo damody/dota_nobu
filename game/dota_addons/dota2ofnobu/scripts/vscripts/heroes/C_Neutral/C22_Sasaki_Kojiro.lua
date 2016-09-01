@@ -78,6 +78,7 @@ function C22R_critical:DeclareFunctions()
 end
 
 function C22R_critical:GetModifierPreAttack_CriticalStrike()
+	print("C22R_level ".. self.C22R_level)
 	return self.C22R_level*50 + 100
 end
 
@@ -91,6 +92,7 @@ end
 function C22R_Levelup( keys )
 	local caster = keys.caster
 	caster.C22R_noncrit_count = 0
+	caster.C22R_level = keys.ability:GetLevel()
 end
 
 function C22R( keys )
@@ -113,7 +115,7 @@ function C22R( keys )
 				caster:AddNewModifier(caster, skill, "C22R_critical", { duration = 0.1 } )
 				local hModifier = caster:FindModifierByNameAndCaster("C22R_critical", caster)
 				if (hModifier ~= nil) then
-					hModifier.C22R_level = keys.ability:GetLevel()
+					hModifier.C22R_level = caster.C22R_level
 				end
 			end
 		end

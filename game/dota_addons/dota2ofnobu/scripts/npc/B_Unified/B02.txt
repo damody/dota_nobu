@@ -1,8 +1,8 @@
 //風魔小太郎
 "DOTAAbilities"
 {
-//風魔小太郎 忍法．熾烈之徑
-"B02E"
+	//風魔小太郎 忍法．熾烈之徑
+	"B02E"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"ogre_magi_ignite"
@@ -136,6 +136,7 @@
 		"AbilityCastPoint"	"0.25"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"480"
+		"AbilityManaCost"	"100"
 		"precache"
 		{
 			"particle"	"particles/b02r4/b02r4.vpcf"
@@ -237,7 +238,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AnimationPlaybackRate"	"5"
 		"AbilityCooldown"	"85 80 75"
-		"AbilityManaCost"	"150 150 150"
+		"AbilityManaCost"	"150"
 		"AbilityCastRange"	"%cast_D"
 		"precache"
 		{
@@ -357,7 +358,7 @@
 		"AbilityCooldown"	"20 19 18 17"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100 130 160 190"
+		"AbilityManaCost"	"100 110 120 130"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"650.00"
@@ -423,7 +424,7 @@
 			}
 		}
 	}
- 	//風魔小太郎 忍法．熾烈之徑 
+ 	//風魔小太郎 風行步
 	"B02D"
 	{
 		// General
@@ -433,7 +434,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"	"7"
+		"MaxLevel"	"5"
 		"AbilityCastPoint"	"0.0 0.0 0.0 0.0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------

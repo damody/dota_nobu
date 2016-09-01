@@ -154,8 +154,7 @@ end
 function A25R_Levelup( keys )
 	local caster = keys.caster
 	caster.A25R_noncrit_count = 0
-			-- 	local particle = ParticleManager:CreateParticle("particles/a25r/a25r.vpcf", PATTACH_POINT, caster)
-			-- ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_attack2", Vector(0,0,0), true)
+	
 end
 
 function A25R( keys )

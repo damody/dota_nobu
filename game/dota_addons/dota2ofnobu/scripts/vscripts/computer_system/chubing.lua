@@ -48,26 +48,61 @@ if _G.nobu_chubing_b then --"Nobu" then
 
 		--出兵觸發:武士+弓箭手
 		--50秒出第一波，之後每26秒出一波
+		local speedup = 0.01
+		local ShuaGuai_count = -1
 	 	Timers:CreateTimer( function()--50
+	 		ShuaGuai_count = ShuaGuai_count + 1
+	 		--強化箭塔
+	 		local allBuildings = Entities:FindAllByClassname('npc_dota_tower')
+			for k, ent in pairs(allBuildings) do
+			    if ent:IsTower() then
+			    	ent:SetMaxHealth(ent:GetBaseMaxHealth()+ShuaGuai_count*10)
+			    	ent:SetHealth(ent:GetHealth()+10)
+			    	ent:SetBaseDamageMax(ent:GetBaseDamageMax() + 2)
+			    	ent:SetBaseDamageMin(ent:GetBaseDamageMin() + 2)
+			    	ent:SetPhysicalArmorBaseValue(ent:GetPhysicalArmorBaseValue() + 0.1)
+				end
+			end
+
 		  	ShuaGuai_Of_A()
-		    return 26 --26
+		  	
+		    local time =  26.00 - 0.1*ShuaGuai_count
+		    if time < 10 then
+		    	return 10
+		  	else
+		  		return time
+		  	end
 		 end)
 
 		--出兵觸發:火槍兵
 	 	Timers:CreateTimer( 93,function()
 	  		ShuaGuai_Of_B()
-		    return 143.00
+		    local time =  143.00 - 1*ShuaGuai_count
+		    if time < 30 then
+		    	return 30
+		  	else
+		  		return time
+		  	end
 		end)
 
 		--出兵觸發:騎兵
 	 	Timers:CreateTimer( 48, function()
 	  		ShuaGuai_Of_C()
-		    return 98.00
+		    local time =  98.00 - 0.5*ShuaGuai_count
+		    if time < 30 then
+		    	return 20
+		  	else
+		  		return time
+		  	end
 		end)
 	end
 
+	local A_count = -1
+	local B_count = -1
+	local C_count = -1
 	function ShuaGuai_Of_A( )
 		--print("[Nobu-lua]Run ShuaGuaiA")
+		A_count = A_count + 1
 		local tem_count = 0
 		--總共六個出發點 6
 		local function ltt()
@@ -106,7 +141,25 @@ if _G.nobu_chubing_b then --"Nobu" then
 					--【武士 、 弓箭手】
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
-
+					if string.match(unit_name, "ashigaru_spearmen") then
+						local hp = unit:GetMaxHealth()
+						unit:SetBaseMaxHealth(hp+A_count * 5)
+						local dmgmax = unit:GetBaseDamageMax()
+						local dmgmin = unit:GetBaseDamageMin()
+						unit:SetBaseDamageMax(dmgmax+A_count*1)
+						unit:SetBaseDamageMax(dmgmin+A_count*1)
+						local armor = unit:GetPhysicalArmorBaseValue()
+						unit:SetPhysicalArmorBaseValue(armor+A_count*0.1)
+					else
+						local hp = unit:GetMaxHealth()
+						unit:SetBaseMaxHealth(hp+A_count * 3)
+						local dmgmax = unit:GetBaseDamageMax()
+						local dmgmin = unit:GetBaseDamageMin()
+						unit:SetBaseDamageMax(dmgmax+A_count*2)
+						unit:SetBaseDamageMax(dmgmin+A_count*2)
+						local armor = unit:GetPhysicalArmorBaseValue()
+						unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)
+					end
 					--creep:SetContextNum("isshibing",1,0)
 
 					--單位面向角度
@@ -139,6 +192,7 @@ if _G.nobu_chubing_b then --"Nobu" then
 
 	function ShuaGuai_Of_B( )
 		local tem_count = 0
+		B_count = B_count + 1
 		--總共六個出發點 6
 		local function ltt()
 			tem_count = tem_count + 1
@@ -165,6 +219,14 @@ if _G.nobu_chubing_b then --"Nobu" then
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
 
+					local hp = unit:GetMaxHealth()
+					unit:SetBaseMaxHealth(hp+A_count * 3)
+					local dmgmax = unit:GetBaseDamageMax()
+					local dmgmin = unit:GetBaseDamageMin()
+					unit:SetBaseDamageMax(dmgmax+A_count*5)
+					unit:SetBaseDamageMax(dmgmin+A_count*5)
+					local armor = unit:GetPhysicalArmorBaseValue()
+					unit:SetPhysicalArmorBaseValue(armor+A_count*0.1)
 					--creep:SetContextNum("isshibing",1,0)
 
 					--單位面向角度
@@ -190,6 +252,7 @@ if _G.nobu_chubing_b then --"Nobu" then
 
 	function ShuaGuai_Of_C( )
 		local tem_count = 0
+		C_count = C_count + 1
 		--總共六個出發點 6
 		local function ltt()
 			tem_count = tem_count + 1
@@ -215,7 +278,15 @@ if _G.nobu_chubing_b then --"Nobu" then
 					--【武士 、 弓箭手】
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
-
+					
+					local hp = unit:GetMaxHealth()
+					unit:SetBaseMaxHealth(hp+A_count * 10)
+					local dmgmax = unit:GetBaseDamageMax()
+					local dmgmin = unit:GetBaseDamageMin()
+					unit:SetBaseDamageMax(dmgmax+A_count*5)
+					unit:SetBaseDamageMax(dmgmin+A_count*5)
+					local armor = unit:GetPhysicalArmorBaseValue()
+					unit:SetPhysicalArmorBaseValue(armor+A_count*0.2)
 					--creep:SetContextNum("isshibing",1,0)
 
 					--單位面向角度

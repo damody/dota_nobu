@@ -11,6 +11,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"100"
 		"precache"
 		{
 			"particle"	"particles/a12w/a12w.vpcf"
@@ -156,6 +157,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"100"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -240,6 +242,8 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityCooldown"	"6 6 5 4"
 		"AOERadius"	"%radius"
+		"AbilityManaCost"	"120"
+		"AbilityCastRange"	"900"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/razor/razor_attack_crit_02.vsnd"

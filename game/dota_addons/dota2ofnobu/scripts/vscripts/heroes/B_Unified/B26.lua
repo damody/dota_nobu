@@ -71,15 +71,19 @@ function B26T( keys )
 	local particle2 = ParticleManager:CreateParticle("particles/b26t4/b26t4.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle2,0, point+Vector(0,0,200))
 	ParticleManager:SetParticleControl(particle2,1, point+Vector(0,0,299))	
-
+	if caster.wings ~= nil then
+		ParticleManager:DestroyParticle(caster.wings,true)
+	end
 	local wings = ParticleManager:CreateParticle("particles/b26t/b26t_wings.vpcf",PATTACH_OVERHEAD_FOLLOW,caster)
 	ParticleManager:SetParticleControl(wings,5, caster:GetAbsOrigin()+Vector(0,0,100))
+	caster.wings = wings
 	Timers:CreateTimer(0,function()
 		if caster:HasModifier("modifier_B26T") then
-			ParticleManager:SetParticleControlOrientation(wings,1,caster:GetForwardVector(),caster:GetRightVector(),caster:GetUpVector())
+			ParticleManager:SetParticleControlOrientation(caster.wings,1,caster:GetForwardVector(),caster:GetRightVector(),caster:GetUpVector())
 			return 0
 		end
-		ParticleManager:DestroyParticle(wings,true)
+		ParticleManager:DestroyParticle(caster.wings,true)
+		caster.wings = nil
 		return nil		
 		end)
 

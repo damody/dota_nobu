@@ -9,7 +9,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"10"
-		"AbilityManaCost"	"200"
+		"AbilityManaCost"	"50"
 		"precache"
 		{
 			"particle"	"particles/b06w2/b06w2.vpcf"
@@ -75,7 +75,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastPoint"	"0.300"
 		"AbilityCooldown"	"11"
-		"AbilityManaCost"	"200"
+		"AbilityManaCost"	"60 70 80 90"
 		"AbilityCastRange"	"250"
 		"precache"
 		{
@@ -328,6 +328,7 @@
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"150"
 		"precache"
 		{
 			"particle"	"particles/b06t/b06t.vpcf"

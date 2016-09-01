@@ -6,18 +6,17 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"btnability_gouge"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
-		"LevelsBetweenUpgrades"	"0"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"13"
-		"AbilityManaCost"	"80 105 125 145"
+		"AbilityManaCost"	"80"
 		"precache"
 		{
 			"soundfile"	"soundevents/c01w.vsndevts"
-			"particle"	"particles/c09/xun_zhimingjiejie_damage.vpcf"
+			"particle"	"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf"
 			"particle"	"particles/c09/c09w_hide.vpcf"
 		}
 		"OnSpellStart"
@@ -70,7 +69,7 @@
 								"Target"	"TARGET"
 								"ControlPoints"	{}
 								"ControlPointEntities"	{}
-								"EffectName"	"particles/c09/xun_zhimingjiejie_damage.vpcf"
+								"EffectName"	"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf"
 								"EffectAttachType"	"follow_overhead"
 							}
 							"AttachEffect"
@@ -133,10 +132,9 @@
 		"HotKeyOverride"	"E"
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
-		"LevelsBetweenUpgrades"	"0"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCooldown"	"13"
-		"AbilityManaCost"	"120 140 160 180"
+		"AbilityManaCost"	"120"
 		"AbilityCastRange"	"1500"
 		"AOERadius"	"300"
 		"precache"
@@ -309,8 +307,8 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"155"
-		"AbilityManaCost"	"275"
+		"AbilityCooldown"	"155 145 133"
+		"AbilityManaCost"	"175"
 		"AbilityCastRange"	"1100"
 		"AbilityChannelTime"	"%C01T_Skill_Duration"
 		"AOERadius"	"%C01T_Radius"

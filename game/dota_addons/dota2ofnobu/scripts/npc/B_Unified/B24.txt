@@ -13,7 +13,7 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"19 17 15 13"
-		"AbilityManaCost"	"105 135 165 195"
+		"AbilityManaCost"	"80"
 		"AbilityCastRange"	"%cast_dis"
 		"AOERadius"	"%range"
 		"precache"
@@ -73,61 +73,6 @@
 						"Function"	"B24T2_Death"
 					}
 				}
-				"OnIntervalThink"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Types"	"DOTA_UNIT_TARGET_HERO"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Center"	"CASTER"
-							"Radius"	"%range"
-						}
-						"Action"
-						{
-							"RunScript"
-							{
-								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
-								"Function"	"B24W3"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-								"Damage"	"%Damage"
-							}
-						}
-					}
-				}
-				"ThinkInterval"	"0.30"
-				"OnCreated"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Types"	"DOTA_UNIT_TARGET_HERO"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Center"	"CASTER"
-							"Radius"	"%range"
-						}
-						"Action"
-						{
-							"RunScript"
-							{
-								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
-								"Function"	"B24W3"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-								"Damage"	"%Damage"
-							}
-						}
-					}
-				}
 				"OnDestroy"
 				{
 					"RunScript"
@@ -137,37 +82,6 @@
 					}
 				}
 				"Duration"	"%life_duration"
-			}
-			"modifier_B24W_2"
-			{
-				"OnCreated"
-				{
-					"Knockback"
-					{
-						"Target"	"TARGET"
-						"Center"	"CASTER"
-						"Duration"	"0.2"
-						"Distance"	"%distance"
-						"ShouldStun"	"1"
-					}
-				}
-				"Duration"	"0"
-			}
-			"modifier_B24W_3"
-			{
-				"OnCreated"
-				{
-					"Knockback"
-					{
-						"Target"	"TARGET"
-						"Center"	"CASTER"
-						"Duration"	"0.2"
-						"Distance"	"1"
-						"ShouldStun"	"0"
-						"Height"	"50"
-					}
-				}
-				"Duration"	"0"
 			}
 		}
 		"AbilitySpecial"
@@ -190,7 +104,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"time"	"6 8 10 12"
+				"times"	"6 8 10 12"
 			}
 			"05"
 			{
@@ -216,7 +130,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AnimationPlaybackRate"	"1.5"
 		"AbilityCooldown"	"21"
-		"AbilityManaCost"	"100 130 160 190"
+		"AbilityManaCost"	"110"
 		"AbilityCastRange"	"%cast_dis"
 		"AOERadius"	"%radius"
 		"precache"
@@ -419,10 +333,10 @@
 		"AbilityCastPoint"	"0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"15.0 15.0 15.0 15.0"
+		"AbilityCooldown"	"120 100 80"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"125 140 155 170"
+		"AbilityManaCost"	"150"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"1400"
@@ -516,6 +430,8 @@
 				"States"
 				{
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"%silence_duration"
 				"IsDebuff"	"1"
@@ -540,13 +456,13 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"silence_duration"	"2.5"
+				"silence_duration"	"2 2.5 3"
 			}
 		}
-		"AbilityDuration"	"1.0 1.25 1.5 1.75"
+		"AbilityDuration"	"2 2.5 3"
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"500 700 1000"
+		"AbilityDamage"	"400 700 1000"
 	}
 
 

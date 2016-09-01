@@ -29,11 +29,52 @@ function Nobu:OnHeroIngame( keys )
   -- end
 
   local hero = EntIndexToHScript( keys.entindex )
+  
   if hero:IsHero() then
+    local caster = hero
+    local name = caster:GetUnitName()
+    if string.match(name, "ancient_apparition")  then
+      caster:FindAbilityByName("A04D"):SetLevel(1)
+    elseif string.match(name, "jakiro") then
+      caster:FindAbilityByName("C22D"):SetLevel(1)
+    elseif string.match(name, "templar_assassin") then
+      caster:FindAbilityByName("C19D"):SetLevel(1)
+    elseif string.match(name, "centaur") then
+      caster:FindAbilityByName("A07D"):SetLevel(1)
+    elseif string.match(name, "broodmother") then
+      caster:FindAbilityByName("A13D"):SetLevel(1)
+    elseif string.match(name, "storm_spirit") then
+      caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
+    elseif string.match(name, "silencer") then
+      -- 這隻角色天生會帶一個modifier我們需要砍掉他
+      Timers:CreateTimer(0.1, function ()
+        if (caster:GetModifierNameByIndex(0) ~= nil) then
+          caster:RemoveModifierByName(caster:GetModifierNameByIndex(0))
+        end
+        return nil
+      end)
+      caster:FindAbilityByName("C07D"):SetLevel(1)
+    elseif string.match(name, "windrunner") then
+      caster:FindAbilityByName("C17D"):SetLevel(1)
+    elseif string.match(name, "faceless_void") then--風魔
+      caster:FindAbilityByName("B02D"):SetLevel(1)
+    end
+	Timers:CreateTimer ( 1, function ()
+		if not hero:IsIllusion() then
+			local item_point = hero:GetAbsOrigin()
+				Test_ITEM ={
+				  "item_flash_ring"
+				}
+			for i,v in ipairs(Test_ITEM) do
+			  local item = CreateItem(v,nil, nil)
+			  print(v)
+			  CreateItemOnPositionSync(item_point+Vector(i*100,0), item)
+			end
+		end
+	end)
     --等級
     for i=1,5 do
-      hero:HeroLevelUp(false)
-      -- caster.HeroLevelUp(caster,true)
+      --hero:HeroLevelUp(false)
     end
   end
 

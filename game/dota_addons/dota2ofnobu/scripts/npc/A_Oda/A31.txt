@@ -54,11 +54,12 @@
 			"modifier_A31W"
 			{
 				"Passive"	"0"
-				"IsHidden"	"1"
+				"IsHidden"	"0"
 				"IsDebuff"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"35"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "35"
 				}
 			}
 		}
@@ -359,6 +360,14 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A31_Mori_Ranmaru.lua"
 				"Function"	"SplitShotDamage"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A31_Mori_Ranmaru.lua"
+				"Function"	"A31T_Levelup"
 			}
 		}
 		"Modifiers"

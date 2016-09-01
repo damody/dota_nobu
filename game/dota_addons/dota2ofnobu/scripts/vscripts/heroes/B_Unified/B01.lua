@@ -250,15 +250,15 @@ function B01R(keys)
 	local dmg = dmg / (1 - damageReduction)
 	if target:IsHero() then 
 		per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
-		print("hero")
+		--print("hero")
 	elseif  target:IsBuilding() then
 		per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
-		dmg = dmg / (1 - damageReduction)
-		print("building")
+		
+		--print("building")
 	else
 		per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
-		dmg = dmg / (1 - damageReduction)
-		print("unit")
+		
+		--print("unit")
 	end
 	local dmgori = dmg
 	dmg = dmg * per_atk  / 100

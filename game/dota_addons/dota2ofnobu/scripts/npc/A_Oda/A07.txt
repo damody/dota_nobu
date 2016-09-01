@@ -76,7 +76,7 @@
 		"AbilityCooldown"	"13"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0 0 0"
+		"AbilityManaCost"	"100"
 		"precache"
 		{
 			"particle"	"particles/a07w5/a07w5.vpcf"
@@ -264,10 +264,10 @@
 		"AbilityCooldown"	"10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		"AbilityManaCost"	"100"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"1500"
+		
 		"AOERadius"	"%radius"
 		// Data driven
 		// -------------------------------------------------------------------------------------------------------------
@@ -342,7 +342,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"425"
+				"radius"	"525"
 			}
 			"02"
 			{
@@ -412,7 +412,7 @@
 		"AbilityCooldown"	"100"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		"AbilityManaCost"	"150"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -422,7 +422,7 @@
 			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf"
 			"model"	"models/heroes/dragon_knight/dragon_knight_dragon.vmdl"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
-			"soundfile"	"soundevents/voscripts/game_sounds_vo_stormspirit.vsndevts"
+			"soundfile"	"soundevents/a07t.vsndevts"
 			"particle"	"particles/a07t2/a07t2.vpcf"
 			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
@@ -455,6 +455,20 @@
 		{
 			"modifier_A07T"
 			{
+				"OnAttackLanded"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/a07e/a07e_t.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"	"TARGET"
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"A07T.attack"
+					}
+				}
 				"IsHidden"	"0"
 				"IsPurgable"	"0"
 				"AllowIllusionDuplicate"	"1"

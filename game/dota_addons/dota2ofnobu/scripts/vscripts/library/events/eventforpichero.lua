@@ -25,19 +25,19 @@ function Nobu:PickHero( keys )
 
   --【英雄名稱判別】
   local name = caster:GetUnitName()
-  if name == "npc_dota_hero_ancient_apparition"  then
+  if string.match(name, "ancient_apparition")  then
     caster:FindAbilityByName("A04D"):SetLevel(1)
-  elseif name == "npc_dota_hero_jakiro"  then
+  elseif string.match(name, "jakiro") then
     caster:FindAbilityByName("C22D"):SetLevel(1)
-  elseif name == "npc_dota_hero_templar_assassin"  then
+  elseif string.match(name, "templar_assassin") then
     caster:FindAbilityByName("C19D"):SetLevel(1)
-  elseif name == "npc_dota_hero_centaur"  then
-	caster:FindAbilityByName("A07D"):SetLevel(1)
-  elseif name == "npc_dota_hero_broodmother"  then
-	caster:FindAbilityByName("A13D"):SetLevel(1)
-  elseif name == "npc_dota_hero_storm_spirit"  then
+  elseif string.match(name, "centaur") then
+    caster:FindAbilityByName("A07D"):SetLevel(1)
+  elseif string.match(name, "broodmother") then
+    caster:FindAbilityByName("A13D"):SetLevel(1)
+  elseif string.match(name, "storm_spirit") then
     caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
-  elseif name ==  "npc_dota_hero_silencer"  then
+  elseif string.match(name, "silencer") then
     -- 這隻角色天生會帶一個modifier我們需要砍掉他
     Timers:CreateTimer(0.1, function ()
       if (caster:GetModifierNameByIndex(0) ~= nil) then
@@ -45,17 +45,10 @@ function Nobu:PickHero( keys )
       end
       return nil
     end)
-
     caster:FindAbilityByName("C07D"):SetLevel(1)
-
-    -- local t = caster:FindAllModifiers()
-    -- for i,v in ipairs(t) do
-    --   print(v)
-    -- end
---:FindModifierByName("")
-  elseif name ==  "npc_dota_hero_windrunner"  then
+  elseif string.match(name, "windrunner") then
     caster:FindAbilityByName("C17D"):SetLevel(1)
-  elseif name ==  "npc_dota_hero_faceless_void"  then--風魔
+  elseif string.match(name, "faceless_void") then--風魔
     caster:FindAbilityByName("B02D"):SetLevel(1)
   end
   --【英雄名稱判別】

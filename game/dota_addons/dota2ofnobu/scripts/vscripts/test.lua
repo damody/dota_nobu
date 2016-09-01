@@ -328,7 +328,9 @@ function Nobu_Test:PickHero(keys)
   local point    = caster:GetAbsOrigin()
   local owner = caster:GetPlayerOwner()
   --金錢
-  PlayerResource:SetGold(id-1,99999,false)--玩家ID需要減一
+  for i=0,9 do
+	PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
+  end
 end
 
 function Test_main(self)

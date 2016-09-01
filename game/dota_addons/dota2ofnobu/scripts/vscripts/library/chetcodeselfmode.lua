@@ -57,12 +57,6 @@ local point    = hero:GetAbsOrigin()
       end
   end
 
-  if s == "gg" then
-    GameRules:SetCustomGameEndDelay(1)
-    GameRules:SetCustomVictoryMessage("贏三小啦幹")
-    GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-  end
-
   if s == "test" then
     --UnitSilenceTarget( hero,hero,10)
     UnitMagicImmune( hero,hero,10)
@@ -127,8 +121,8 @@ local point    = hero:GetAbsOrigin()
 
 
   if s == "Create1" then
-    for i=1,5 do
-     local  u = CreateUnitByName("TestUnit_nomagicresist",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+    for i=1,2 do
+     local  u = CreateUnitByName("B08",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
      --u:SetOwner(p)                                         --設置u的擁有者
      --u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
      --u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})

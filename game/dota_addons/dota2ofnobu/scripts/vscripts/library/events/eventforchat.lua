@@ -40,11 +40,32 @@ local function chat_of_test(keys)
 		end
 	end
 
+	if string.match(s,"lv") then
+		local lvmax = tonumber(string.match(s, '%d+'))
+		for i=1,lvmax do
+	      caster:HeroLevelUp(true)
+	    end
+	end
+
 	if s == "gg" then
 		GameRules:SetCustomGameEndDelay(1)
 		GameRules:SetCustomVictoryMessage("贏三小啦幹")
 		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 	end
+	
+	if s == "Create1" then
+		for i=1,1 do
+		 local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+		 --u:SetOwner(p)                                         --設置u的擁有者
+		 u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
+		 --u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		 for i=1,25 do
+		   u:HeroLevelUp(true)
+		end  
+		end
+		-- --等級
+		  
+	  end
 	--【測試指令】
 	if s == "ShuaGuai" then
 		print("ShuaGuai")

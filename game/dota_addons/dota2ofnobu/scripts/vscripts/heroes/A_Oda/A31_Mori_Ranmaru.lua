@@ -170,3 +170,8 @@ function SplitShotDamage( keys )
 
 	ApplyDamage(damage_table)
 end
+
+function A31T_Levelup( keys )
+	keys.caster:ModifyAgility( 20 )
+	keys.caster:CalculateStatBonus()
+end

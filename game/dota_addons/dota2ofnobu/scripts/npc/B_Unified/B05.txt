@@ -31,7 +31,7 @@
 		"AbilityCooldown"	"7 6 6 5"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"120 140 160 180"
+		"AbilityManaCost"	"80 90 100 110"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"750"
@@ -144,7 +144,7 @@
 		"AbilityCooldown"	"13 11.5 10 8.5"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"225 325 450"
+		"AbilityManaCost"	"50 60 70 80"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/zuus/gods_wrath_precast.vsnd"
@@ -292,7 +292,7 @@
 		"AbilityCooldown"	"12.0 10.0 8.0 6.0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"75 95 115 135"
+		"AbilityManaCost"	"75"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"700"
@@ -451,6 +451,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastRange"	"1000"
 		"AOERadius"	"600"
+		"AbilityManaCost"	"200"
 		"OnSpellStart"
 		{
 			"RunScript"

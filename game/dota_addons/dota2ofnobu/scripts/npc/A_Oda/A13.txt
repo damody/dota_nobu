@@ -16,7 +16,7 @@
 		"MaxLevel"	"5"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
-		"AbilityManaCost"	"0 0 0 0"
+		"AbilityManaCost"	"50"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
@@ -31,10 +31,11 @@
 				"ModifierName"	"modifier_A13D"
 				"Duration"	"20.0"
 			}
-			"RunScript"
+			"ApplyModifier"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
-				"Function"	"A13D"
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_invisible"
+				"Duration"	"20"
 			}
 		}
 		"Modifiers"
@@ -57,6 +58,14 @@
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
 						"Function"	"A13D_End"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_A13D"
 					}
 				}
 				"Properties"
@@ -100,7 +109,7 @@
 		"MaxLevel"	"4"
 		"AbilityCastPoint"	"0.5"
 		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
-		"AbilityManaCost"	"0 0 0 0"
+		"AbilityManaCost"	"100"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
@@ -159,7 +168,7 @@
 		"AbilityCooldown"	"14 11 8 5"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		"AbilityManaCost"	"100"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"400 600 800 1200"
@@ -336,7 +345,7 @@
 		"AbilityCooldown"	"110"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		"AbilityManaCost"	"200"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"300"

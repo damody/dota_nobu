@@ -22,9 +22,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.3"
@@ -35,10 +34,10 @@
 		"AbilityCooldown"	"12"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"80 110 140 170"
+		"AbilityManaCost"	"80"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"850"
+		"AbilityCastRange"	"1000"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -217,9 +216,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.3"
@@ -230,7 +228,7 @@
 		"AbilityCooldown"	"22 20 18 16"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"120 140 160 180"
+		"AbilityManaCost"	"100"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"800"
@@ -374,7 +372,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityCooldown"	"16 13 10 7"
-		"AbilityManaCost"	"60 60 60 60"
+		"AbilityManaCost"	"30"
 		"precache"
 		{
 			"particle"	"particles/b33r2/b33r2.vpcf"
@@ -401,7 +399,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B33.lua"
-						"Function"	"CheckAngles"
+						"Function"	"B33R"
 						"particle"	"particles/b33r2/b33r2.vpcf"
 						"damage"	"%attack_damage"
 					}
@@ -470,15 +468,16 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.2 0.2 0.2 0.2"
 		"AbilityCooldown"	"90 75 60"
-		"AbilityManaCost"	"120 120 120 120"
+		"AbilityManaCost"	"120"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"700"
+		"AbilityCastRange"	"1000"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"

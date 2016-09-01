@@ -86,12 +86,12 @@ function C21T_Copy(u,i, u2)
     		if (tu:IsAlive()) then
     			tu:StartGesture( ACT_DOTA_ATTACK  )	
     		end
-    		if (count > 3) then
+    		if (count > 4) then
     			tu:ForceKill(false)
                 tu:Destroy()
     			return nil
     		else
-    			return 0.3
+    			return 0.4
     		end
     	end)
 
@@ -117,9 +117,9 @@ function Trig_C21TActions( keys )
 	if udg_C21T_LV[i] ==1 then
 		ti=11
 	elseif udg_C21T_LV[i] ==2 then
-		ti=15
+		ti=16
 	elseif udg_C21T_LV[i] ==3 then
-		ti=21
+		ti=23
 	end	
 
 	--timer
@@ -135,7 +135,7 @@ function Trig_C21TActions( keys )
         local radius = 400
         local teams = DOTA_UNIT_TARGET_TEAM_ENEMY
         local types = DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO     --+DOTA_UNIT_TARGET_BUILDING
-        local flags = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE
+        local flags = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES 
 
         --獲取周圍的單位
         group = FindUnitsInRadius(u:GetTeamNumber(),point,nil,radius,teams,types,flags,FIND_ANY_ORDER,true)
@@ -164,7 +164,7 @@ function Trig_C21TActions( keys )
 			return nil 	
         end	
 
-	end,1 )
+	end,0.5 )
 end
 
 
