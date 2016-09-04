@@ -379,37 +379,29 @@ end
 ---------TEST-------------------------
 ---------TEST-------------------------
 ---------TEST-------------------------
-function OnDestroyEgg_clone( event )
+function B05T( event )
 	local caster		= event.caster
 	local ability	= event.ability
 	local point = ability:GetCursorPosition()
 	AddFOWViewer(caster:GetTeamNumber(), point, 1500.0, 3.0, false)
-	-- if isDead then
+	
 
-	-- 	hero:Kill( ability, egg.supernova_lastAttacker )
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              point,
+	                              nil,
+	                              600,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
 
-	-- else
+	--effect:傷害+暈眩
+	for _,it in pairs(direUnits) do
+		ability:ApplyDataDrivenModifier(caster, it,"modifier_B05T",nil)
+	end
 
-	-- 	hero:SetHealth( hero:GetMaxHealth() )
-	-- 	hero:SetMana( hero:GetMaxMana() )
 
-	-- 	-- Strong despel
-	-- 	local RemovePositiveBuffs = true
-	-- 	local RemoveDebuffs = true
-	-- 	local BuffsCreatedThisFrameOnly = false
-	-- 	local RemoveStuns = true
-	-- 	local RemoveExceptions = true
-	-- 	hero:Purge( RemovePositiveBuffs, RemoveDebuffs, BuffsCreatedThisFrameOnly, RemoveStuns, RemoveExceptions )
-
-	-- 	-- Stun nearby enemies
-	-- 	ability:ApplyDataDrivenModifier( hero, egg, "modifier_supernova_egg_explode_datadriven", {} )
-	-- 	hero:RemoveModifierByName( "modifier_supernova_egg_explode_datadriven" )
-
-	-- end
-
-	-- -- Play sound effect
-	-- local soundName = "Hero_Phoenix.SuperNova." .. ( isDead and "Death" or "Explode" )
-	-- StartSoundEvent( soundName, hero )
 	local dummy = AMHC:CreateUnit( "hide_unit",point,caster:GetForwardVector(),caster,caster:GetTeamNumber())
    --添加馬甲技能
 	dummy:AddAbility("majia"):SetLevel(1)

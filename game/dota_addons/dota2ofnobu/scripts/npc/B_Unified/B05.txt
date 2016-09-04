@@ -452,6 +452,24 @@
 		"AbilityCastRange"	"1000"
 		"AOERadius"	"600"
 		"AbilityManaCost"	"200"
+		"AbilityCooldown"	"110"
+		"Modifiers"
+		{
+			"modifier_B05T"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"2"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -460,13 +478,13 @@
 				"sound"	"Hero_Zuus.GodsWrath.Target"
 				"particle"	"particles/b05t2/b05t2.vpcf"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B05_Moari.lua"
-				"Function"	"OnDestroyEgg_clone"
+				"Function"	"B05T"
 			}
 			"ActOnTargets"
 			{
 				"Target"
 				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 					"Center"	"POINT"
 					"Radius"	"600"
@@ -481,7 +499,7 @@
 					"Damage"
 					{
 						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_PURE"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
 						"Damage"	"%AbilityDamage"
 					}
 				}

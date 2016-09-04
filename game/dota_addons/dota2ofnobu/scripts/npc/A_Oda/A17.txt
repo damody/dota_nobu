@@ -149,6 +149,14 @@
 			"modifier_A17T"
 			{
 				"States"	{}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T"
+					}
+				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_sight"
@@ -184,7 +192,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_range_bonus"	"450"
+				"attack_range_bonus"	"400 600 800"
 			}
 			"04"
 			{
@@ -220,6 +228,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilityCastPoint"	"0.3 0.3 0.3 0.3"
+		"AbilityCooldown"	"20"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120 120 120 120"

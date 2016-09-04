@@ -108,7 +108,7 @@ local function chat_of_test(keys)
 					item:EndCooldown()
 				end
 			end
-			return 0.1
+			return nil
 		end)
 	end
 end
