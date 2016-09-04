@@ -3,12 +3,63 @@
 {
 	"Version"		"1"
 
-	// Rewrite of the Viper Viper Strike ability
-	// Author: Pizzalol
-	// Date: 19.12.2014.
-	// Changed: 15.01.2015.
-	// NOTE: Wonky projectile particle
-	// NOTE2: Edit the warmup particle and delete 3 out of 4 children for it to work properly (thanks to Noya for the info)
+	"B32D"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_14"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate"	"2"
+		"MaxLevel" "1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"12"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"80"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"900"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/b32d/b32d_pnt.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B32D"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B32D"
+			{
+				"IsDebuff"	"1"
+				"EffectName"	"particles/b32d/b32d_pnt.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"States"
+				{
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_DISABLED"
+					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"8"
+			}
+		}
+	}
+
 	"B32W"
 	{
 		// General
@@ -407,6 +458,11 @@
 				"Target"	"CASTER"
 				"EffectName"	"stormspirit_ss_ability_lightning_14"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B32_Uesugi_Kenshin.lua"
+				"Function"	"B32T_Start"
+			}
 		}
 		"Modifiers"
 		{
@@ -429,12 +485,19 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B32_Uesugi_Kenshin.lua"
-						"Function"	"B32T"
+						"Function"	"B32T_Effect"
 					}
 				}
 				"ThinkInterval"	"0.5"
 				"States"	{}
-				"OnDestroy"	{}
+				"OnDestroy"	
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B32_Uesugi_Kenshin.lua"
+						"Function"	"B32T_End"
+					}
+				}
 			}
 		}
 		// Special

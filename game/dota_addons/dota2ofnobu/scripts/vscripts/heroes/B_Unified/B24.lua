@@ -97,6 +97,9 @@ function B24W( keys )
 	--紀錄次數
 	dummy.B24W_NUM = ability:GetLevelSpecialValueFor("times",ability:GetLevel()-1)
 
+	dummy:SetBaseMaxHealth(800+level*400)
+	dummy:SetHealth(dummy:GetMaxHealth())
+
 	--一定要放紀錄次數下面
 	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24W",nil)
 
@@ -108,7 +111,7 @@ function B24W( keys )
 	          nil,
 	          SEARCH_RADIUS,
 	          DOTA_UNIT_TARGET_TEAM_ENEMY,
-	          DOTA_UNIT_TARGET_HERO,
+	          DOTA_UNIT_TARGET_ALL,
 	          DOTA_UNIT_TARGET_FLAG_NONE,
 	          FIND_ANY_ORDER,
 	          false)
@@ -120,21 +123,28 @@ function B24W( keys )
 				Physics:Unit(target)
 				target:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin()):Normalized()*1000)
 				AMHC:Damage( caster,target,ability:GetLevelSpecialValueFor("Damage",ability:GetLevel()-1),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				Timers:CreateTimer(0.15, function()
+				local wcount = 0
+				Timers:CreateTimer(0.1, function()
 						local its = FindUnitsInRadius(caster:GetTeamNumber(),
 							target:GetAbsOrigin(),
 							nil,
-							SEARCH_RADIUS,
+							100,
 							DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-							DOTA_UNIT_TARGET_HERO,
+							DOTA_UNIT_TARGET_ALL,
 							DOTA_UNIT_TARGET_FLAG_NONE,
 							FIND_ANY_ORDER,
 							false)
 						for _,it in pairs(its) do
 							if it:GetUnitName() == "B24T_HIDE" then
-								target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*1000)
-								break
+								target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*(1000 - wcount*150))
+								return nil
 							end
+						end
+						wcount = wcount + 1
+						if (wcount > 5) then
+							return nil
+						else
+							return 0.1
 						end
 					end)
 				
@@ -285,7 +295,7 @@ function B24R( keys )
 		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4,3)
 
 		--使用間隔
-		Timers:CreateTimer(2.0,function ()
+		Timers:CreateTimer(0.3,function ()
 			caster.B24R_B = false
 		end)
 

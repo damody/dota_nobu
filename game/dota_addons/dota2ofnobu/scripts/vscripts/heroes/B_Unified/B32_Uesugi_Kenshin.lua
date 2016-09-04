@@ -128,7 +128,7 @@ function B32E( keys )
               nil,
               200,
               DOTA_UNIT_TARGET_TEAM_ENEMY,
-              DOTA_UNIT_TARGET_ALL,
+              DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
               DOTA_UNIT_TARGET_FLAG_NONE,
               FIND_ANY_ORDER,
               false)
@@ -185,7 +185,7 @@ function B32R( keys )
 end
 
 	
-function B32T( keys )
+function B32T_Effect( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local point = caster:GetAbsOrigin()
@@ -204,3 +204,15 @@ function B32T( keys )
 		)	
 end
 
+function B32T_Start( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("B32D")
+			ability:SetLevel(1)
+			ability:SetActivated(true)
+end
+
+function B32T_End( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("B32D")
+			ability:SetActivated(false)
+end
