@@ -206,22 +206,18 @@
 				"IsPurgable"	"0"
 				"OnAttackLanded"
 				{
-					"ActOnTargets"
+					"RunScript"
 					{
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-						}
-						"Action"
-						{
-							"CleaveAttack"
-							{
-								"CleavePercent"	"40"
-								"CleaveRadius"	"%radius"
-								"CleaveEffect"	"particles/a07r/a07r.vpcf"
-							}
-						}
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%radius"
+						"CleaveEffect"	"particles/a07r/a07r.vpcf"
 					}
 				}
 				"Properties"	{}
@@ -234,12 +230,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"245 285 325 365"
+				"CleaveRadius"	"245 285 325 365"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_bonus"	"15 30 45 60"
+				"CleavePercent"	"40"
 			}
 		}
 	}
@@ -493,7 +489,7 @@
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"60"
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.9"
 				}
-				"Duration"	"% duration"
+				"Duration"	"%duration"
 				"IsBuff"	"1"
 				"OnIntervalThink"
 				{

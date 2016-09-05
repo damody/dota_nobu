@@ -393,11 +393,18 @@
 				// 要改Effect
 				"OnAttackLanded"
 				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
 					"CleaveAttack"
 					{
 						"CleaveEffect"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
 						"CleaveRadius"	"525"
-						"CleavePercent"	"100"
+						"CleavePercent"	"0"
 					}
 				}
 				"Properties"
@@ -414,6 +421,16 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"A06T_ADD_D"	"100 150 200"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"CleavePercent"	"100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"CleaveRadius"	"525"
 			}
 		}
 		"OnCastbar"	"1"

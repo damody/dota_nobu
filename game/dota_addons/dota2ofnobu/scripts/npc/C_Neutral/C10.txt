@@ -101,14 +101,21 @@
 				}
 				"OnAttackLanded"
 				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
 					"CleaveAttack"
 					{
-						"CleavePercent"	"%CleavePercent"
-						"CleaveRadius"	"%radius"
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%CleaveRadius"
 						"CleaveEffect"	"particles/c10r2/c10r2.vpcf"
 					}
 				}
-				"IsHidden"	"1"
+				"IsHidden"	"0"
 			}
 		}
 		"AbilitySpecial"
@@ -121,7 +128,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"385"
+				"CleaveRadius"	"385"
 			}
 			"03"
 			{
