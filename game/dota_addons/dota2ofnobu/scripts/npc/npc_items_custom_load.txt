@@ -35,8 +35,6 @@
 		"precache"
 		{
 			"particle"	"particles/item/item_the_red_lightning_chapter.vpcf"
-			"soundfile"	"sounds/weapons/hero/shadowshaman/shock01.vsnd"
-			"soundfile"	"soundevents/ITEMS/D09.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -90,7 +88,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_D09_3"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -114,8 +112,6 @@
 		"precache"
 		{
 			"particle"	"particles/item/d09/d09.vpcf"
-			"soundfile"	"sounds/weapons/hero/shadowshaman/shock01.vsnd"
-			"soundfile"	"soundevents/ITEMS/D09.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -196,9 +192,6 @@
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/move_slow.vpcf"
-			"particle"	"particles/item/item_the_overflame_art_of_war.vpcf"
-			"soundfile"	"sounds/ambient/tut_rockfall.vsnd"
-			"soundfile"	"soundevents/items/item_the_overflame_art_of_war.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -271,7 +264,7 @@
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AOERadius"	"350"
-		"AbilityCastRange"	"900"
+		"AbilityCastRange"	"700"
 		"ID"	"1511"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -318,6 +311,90 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"560.00"
+			}
+		}
+	}
+
+	// 巨龍
+	"item_great_dragon"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_great_dragon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AOERadius"	"350"
+		"AbilityCastRange"	"700"
+		"ID"	"1521"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/item/dragon.vpcf"
+		"ItemCost"	"750"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/dragon.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/item/dragon.vpcf"
+				"MoveSpeed"	"1500"
+				"StartRadius"	"250"
+				"StartPosition"	"attach_origin"
+				"EndRadius"	"250"
+				"FixedDistance"	"900"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"1"
+				"ProvidesVision"	"0"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_DragonKnight.BreathFire"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_great_dragon.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%damage"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"550.00"
 			}
 		}
 	}
@@ -437,7 +514,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"items/Addon_Items/item_perceive_wine.lua"
+			  	"ScriptFile"	"items/Addon_Items/item_perceive_wine.lua"
 				"Function"	"Shock"
 			}
 			"ApplyModifier"

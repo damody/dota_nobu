@@ -87,8 +87,9 @@ function Precache( context )
     "particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge.vpcf",
     --鳥居元宗
     "particles/generic_gameplay/generic_hit_blood.vpcf",
-    "particles/a16r3/a16r3.vpcf"
-
+    "particles/a16r3/a16r3.vpcf",
+    -- 巨龍
+    "particles/item/dragon.vpcf"
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do
@@ -99,9 +100,9 @@ function Precache( context )
     local sound_Precache_Table = {
       --武田勝賴
       -- "soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
-
-    "soundevents/ITEMS/D09.vsndevts",
-    "soundevents/ITEMS/D03.vsndevts",
+    "soundevents/items/item_the_overflame_art_of_war.vsndevts",
+    "soundevents/items/D09.vsndevts",
+    "soundevents/items/D03.vsndevts",
     "soundevents/custom_sounds.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do

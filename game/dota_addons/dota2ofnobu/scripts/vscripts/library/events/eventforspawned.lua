@@ -61,15 +61,19 @@ function Nobu:OnHeroIngame( keys )
     end
 	Timers:CreateTimer ( 1, function ()
 		if not hero:IsIllusion() then
-			local item_point = hero:GetAbsOrigin()
-				Test_ITEM ={
-				  "item_flash_ring"
-				}
-			for i,v in ipairs(Test_ITEM) do
-			  local item = CreateItem(v,nil, nil)
-			  print(v)
-			  CreateItemOnPositionSync(item_point+Vector(i*100,0), item)
-			end
+      if hero.init1 == nil then
+        hero.init1 = true
+        hero:AddItem(CreateItem("item_flash_ring", hero, hero)) 
+      end
+      Timers:CreateTimer(1, function ()
+          for itemSlot=0,5 do
+            local item = hero:GetItemInSlot(itemSlot)
+            if item ~= nil then
+              item:SetPurchaseTime(100000)
+            end
+          end
+          return 5
+        end)
 		end
 	end)
     --等級
