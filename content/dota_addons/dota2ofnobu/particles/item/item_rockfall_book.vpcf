@@ -31,8 +31,8 @@
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 0.75
-			m_flStartScale = 0.74
+			m_flEndScale = 0.52
+			m_flStartScale = 0.5
 			m_flBias = 0.0
 		},
 		{
@@ -60,15 +60,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 79, 63, 30, 255 ]
-			m_ColorMin = [ 80, 61, 16, 255 ]
-			m_bDisableOperator = true
-		},
-		{
-			_class = "C_INIT_RandomColor"
-			m_nFieldOutput = 22
-			m_ColorMax = [ 189, 189, 189, 255 ]
-			m_ColorMin = [ 0, 0, 0, 255 ]
+			m_ColorMax = [ 255, 203, 97, 255 ]
+			m_ColorMin = [ 255, 194, 51, 255 ]
 		},
 		{
 			_class = "C_INIT_PositionPlaceOnGround"

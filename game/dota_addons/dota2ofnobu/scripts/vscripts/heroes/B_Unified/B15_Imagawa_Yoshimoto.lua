@@ -154,7 +154,7 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 	illusion:AddNewModifier(keys.caster, keys.ability, "modifier_illusion", {duration = 10, outgoing_damage = -70, incoming_damage = 200})
 	
 	illusion:MakeIllusion()  --Without MakeIllusion(), the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.  Without it, IsIllusion() returns false and IsRealHero() returns true.
-
+	illusion:SetHealth(keys.caster:GetHealth())
 	illusion:SetRenderColor(0,0,200)
 
 	ParticleManager:CreateParticle("particles/generic_gameplay/illusion_killed.vpcf", PATTACH_ABSORIGIN_FOLLOW, illusion)

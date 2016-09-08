@@ -4,13 +4,325 @@
 "DOTAAbilities"
 {
 	"Version"		"1"
+	// 赤雷捲軸
+	"item_the_red_lightning_chapter"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_red_lightning_chapter"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1516"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/item/item_the_red_lightning_chapter.vpcf"
+		"ItemCost"	"2750"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/item_the_red_lightning_chapter.vpcf"
+			"soundfile"	"sounds/weapons/hero/shadowshaman/shock01.vsnd"
+			"soundfile"	"soundevents/ITEMS/D09.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_red_lightning_chapter.lua"
+				"Function"	"Shock"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_distance"	"510"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"start_radius"	"125"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_radius"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_distance"	"720"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"targets"	"6"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"700.00"
+			}
+		}
+	}
 
-	// Rewrite of Blink Dagger
-	// Author: Rook
-	// Date: January 25, 2015
-	// Known bugs:
-	//     Double-tapping the item currently does not blink the unit toward their fountain.
-	//     When damage is taken, the value before reductions is used to determine whether the item should be put on a brief cooldown, not the value after reductions like it should be.
+	// 無上雷暴之書
+	"item_the_over_lightning_art_of_war"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_D09_3"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1518"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/move_slow.vpc"
+		"ItemCost"	"750"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d09/d09.vpcf"
+			"soundfile"	"sounds/weapons/hero/shadowshaman/shock01.vsnd"
+			"soundfile"	"soundevents/ITEMS/D09.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/D09.lua"
+				"Function"	"Shock"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_distance"	"510"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"start_radius"	"125"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_radius"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_distance"	"720"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"targets"	"6"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"310.00"
+			}
+		}
+	}
+
+	// 大炎上之書
+	"item_the_overflame_art_of_war"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_dayan"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"65"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"600"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AOERadius"	"650"
+		"AbilityCastRange"	"700"
+		"ID"	"1517"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"ItemCost"	"18500"
+		"ItemRequirements"
+		{
+			
+		}
+		"precache"
+		{
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+			"particle"	"particles/item/item_the_overflame_art_of_war.vpcf"
+			"soundfile"	"sounds/ambient/tut_rockfall.vsnd"
+			"soundfile"	"soundevents/items/item_the_overflame_art_of_war.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_overflame_art_of_war.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_the_overflame_art_of_war"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-70"
+				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"Duration"  "5"
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"60"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"300.00"
+			}
+		}
+	}
+
+	// 落石
+	"item_rockfall_book"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_rockfall_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AOERadius"	"350"
+		"AbilityCastRange"	"900"
+		"ID"	"1511"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"750"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d09/d09.vpcf"
+			"soundfile"	"sounds/weapons/hero/shadowshaman/shock01.vsnd"
+			"soundfile"	"soundevents/ITEMS/D09.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_rockfall_book.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_rockfall"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"0.01"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"560.00"
+			}
+		}
+	}
+
+	// 瞬戒
 	"item_flash_ring"
 	{
 		// General
@@ -90,6 +402,78 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"blink_range_broken"	"300"
+			}
+		}
+	}
+	// 抗魔
+	"item_perceive_wine"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_perceive_wine"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"26"
+		"AbilityManaCost"	"0"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"1601"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"785"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_perceive_wine.lua"
+				"Function"	"Shock"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_D02"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_D02_2"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_D02"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Passive"	"0"
+				"Duration"	"%duration"
+				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"IsHidden"	"0"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"50"
 			}
 		}
 	}
@@ -269,7 +653,7 @@
 		}
 	}
 
-	// 火之卷
+	// 火之章
 	"item_Q02"
 	{
 		// General
@@ -541,7 +925,7 @@
 			}
 		}
 	}
-
+	// 風之章
 	"item_Q03"
 	{
 		// General
@@ -922,7 +1306,7 @@
 			}
 		}
 	}
-
+	// 電卷
 	"item_lightning_scroll"
 	{
 		// General
