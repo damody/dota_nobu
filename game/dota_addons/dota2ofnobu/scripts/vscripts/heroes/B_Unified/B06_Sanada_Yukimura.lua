@@ -1,4 +1,65 @@
 
+LinkLuaModifier( "modifier_item_blade_mail_rework_damage_return", "scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua",LUA_MODIFIER_MOTION_NONE )
+modifier_item_blade_mail_rework_damage_return = class({})
+
+--------------------------------------------------------------------------------
+
+function modifier_item_blade_mail_rework_damage_return:DeclareFunctions()
+    local funcs = {
+        MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
+
+    return funcs
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_item_blade_mail_rework_damage_return:OnTakeDamage(event)
+    local attacker = event.unit
+    local victim = event.attacker
+    local return_damage = event.original_damage
+    local damage_type = event.damage_type
+    local damage_flags = event.damage_flags
+    local ability = self:GetAbility()
+
+    local damage = {
+        victim = victim, 
+        attacker = attacker,
+        damage = return_damage,
+        damage_type = damage_type,
+        damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+        ability = ability 
+    }
+
+    if victim:GetTeam() ~= attacker:GetTeam() then
+        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
+            if damage_type == DAMAGE_TYPE_MAGICAL and self.caster.B06R_Buff == true then
+            	self.caster.B06R_Buff = false
+            	self.caster:SetHealth(self.caster:GetHealth()+return_damage)
+            	self.caster:FindAbilityByName("B06R"):ApplyDataDrivenModifier(self.caster, self.caster, "modifier_B06R", {duration = 3.0})
+            	Timers:CreateTimer(0.01, function() 
+					target.AmpDamageParticle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, target)
+				end)
+
+				local count = 0
+				Timers:CreateTimer(1.0, function() 
+					if count == 2 then
+						return nil
+					else
+						self.caster.AmpDamageParticle = ParticleManager:CreateParticle("particles/b06r3/b06r4.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+						count = count + 1
+						return 1.0
+					end
+				end)
+            else
+                if not victim:IsMagicImmune() then
+
+                end 
+            end 
+        end 
+    end 
+end 
+
 --哇塞 lua也太方便了吧 X.y後面就可以設定一個變數
 --還可以是table
 --可以在KV那邊傳導設定 keys的子級
@@ -104,44 +165,28 @@ end
 --ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags() 超好用
 
 function B06R_Learn_Ability( keys )
-	keys.caster.B06R_Buff = true
+	local ability = keys.ability
+	local caster = keys.caster
+	if caster.b06r == nil then
+		keys.caster.B06R_Buff = true
+		ability:ApplyDataDrivenModifier( caster, caster, "modifier_item_blade_mail_rework_damage_return", {duration = 10000} )
+		caster:FindModifierByName("modifier_item_blade_mail_rework_damage_return").caster = caster
+		caster.b06r = 1
+		Timers:CreateTimer(1, function ()
+			if (not caster:HasModifier("modifier_item_blade_mail_rework_damage_return")) then
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_item_blade_mail_rework_damage_return", {duration = 10000} )
+			end
+		end)
+	end
 end
 
-
-function B06R_BeSpelled( caster,ability )
-	caster.B06R_Buff = false
-	caster:FindAbilityByName("B06R"):ApplyDataDrivenModifier(caster, caster, "modifier_B06R", {duration = 3.0})
-
-	local target  = caster
-	local location = target:GetAbsOrigin()
-	local particleName = "particles/b06r3/b06r3.vpcf"
-
-	-- Particle. Need to wait one frame for the older particle to be destroyed
-	Timers:CreateTimer(0.01, function() 
-		target.AmpDamageParticle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, target)
-		-- ParticleManager:SetParticleControl(target.AmpDamageParticle, 0, target:GetAbsOrigin())
-		-- ParticleManager:SetParticleControl(target.AmpDamageParticle, 1, target:GetAbsOrigin())
-		-- ParticleManager:SetParticleControl(target.AmpDamageParticle, 2, target:GetAbsOrigin())
-
-		-- ParticleManager:SetParticleControlEnt(target.AmpDamageParticle, 1, target, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-		-- ParticleManager:SetParticleControlEnt(target.AmpDamageParticle, 2, target, PATTACH_OVERHEAD_FOLLOW, "attach_origin", target:GetAbsOrigin(), true)
-	end)
-
-	local count = 0
-	Timers:CreateTimer(1.0, function() 
-		if count == 2 then
-			return nil
-		else
-			particleName = "particles/b06r3/b06r4.vpcf"
-			target.AmpDamageParticle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, target)
-			count = count + 1
-			return 1.0
-		end
-	end)
-end
 
 function B06R_TimeUP( keys )
-	keys.caster.B06R_Buff = true
+	local level  = keys.ability:GetLevel()--獲取技能等級
+	local Float_Timer = keys.ability:GetLevelSpecialValueFor("Float_Timer",level-1)
+	Timers:CreateTimer(Float_Timer, function() 
+		keys.caster.B06R_Buff = true
+		end)
 end
 
 function B06T_SE( keys )

@@ -7,7 +7,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"enchantress_untouchable"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCooldown"	"13"
@@ -352,6 +352,8 @@
 		"AbilityManaCost"	"200 250 300"
 		"AbilityCastRange"	"1050.00"
 		"AOERadius"	"650.00"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/antimage/mana_void_cast.vsnd"

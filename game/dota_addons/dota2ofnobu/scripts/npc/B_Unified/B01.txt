@@ -1,76 +1,8 @@
 //雜賀孫市
 "DOTAAbilities"
 {
-	//雜賀孫市 三段
-	"B01T"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"cps_d01_4 (Copy)"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCooldown"	"135 123 111"
-		"AbilityManaCost"	"200 200 200"
-		"precache"
-		{
-			"soundfile"	"soundevents/b01.vsndevts"
-			"particle"	"particles/b26t2/b26t2.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_B26T"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"C01W.sound1"
-			}
-			"RunScript"
-			{
-				"Function"	"C01W_sound"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_B26T"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%per_att"
-				}
-				"Duration"	"%duration"
-				"EffectName"	"particles/b26t2/b26t2.vpcf"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"7 11 13"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"per_att"	"200"
-			}
-		}
-	}
-
-	
-
-	// Rewrite of the Mirana Sacred Arrow ability
-	// Author: Pizzalol
-	// Date: 26.09.2015.
-	
 
 	//雜賀孫市 狙擊模式
-	
 	"B01W"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -123,7 +55,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_atk_rng"	"250 500 750 1000"
+				"bonus_atk_rng"	"200 350 500 650"
 			}
 			"03"
 			{
@@ -263,6 +195,68 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"count"	"2 4 6 8"
+			}
+		}
+	}
+	//雜賀孫市 三段
+	"B01T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_4 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"135 123 111"
+		"AbilityManaCost"	"200 200 200"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"precache"
+		{
+			"soundfile"	"soundevents/b01.vsndevts"
+			"particle"	"particles/b26t2/b26t2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26T"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01W.sound1"
+			}
+			"RunScript"
+			{
+				"Function"	"C01W_sound"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B26T"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%per_att"
+				}
+				"Duration"	"%duration"
+				"EffectName"	"particles/b26t2/b26t2.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"7 11 13"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"per_att"	"200"
 			}
 		}
 	}

@@ -41,7 +41,9 @@ function A16T( keys )
 	    -- Register units around caster
 	    group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 300, ability:GetAbilityTargetTeam(), 63, 80, 0, false)
 	    for i,v in ipairs(group) do
+	    	if (not v:IsBuilding()) then
 				ability:ApplyDataDrivenModifier(caster,v,"modifier_A16T",nil)
+			end
 	    end
 			--
 	    -- print(point)

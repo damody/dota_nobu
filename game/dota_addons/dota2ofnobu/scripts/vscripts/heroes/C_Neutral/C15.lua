@@ -17,14 +17,9 @@ function new_C15W( keys )
 	local distance = radius
 
 	Timers:CreateTimer(duration,function()
-
-
-
 		-- local dummy = CreateUnitByName("Dummy_Ver1",point2 ,false,nil,nil,caster:GetTeam())	
 		-- dummy:FindAbilityByName("majia"):SetLevel(1)
 		--StartSoundEventFromPosition("Ability.StarfallImpact",point_tem)
-
-
 		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf",PATTACH_POINT,caster)
 		ParticleManager:SetParticleControl(particle,0, point_tem)
 		ParticleManager:SetParticleControl(particle,1, point_tem)	
@@ -85,7 +80,7 @@ function new_C15E( keys )
 	--ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
 	dummy:FindAbilityByName("majia"):SetLevel(level + 1)		
 	local dummy_ability = dummy:AddAbility("batrider_firefly")
-	dummy_ability:SetLevel(1)
+	dummy_ability:SetLevel(level)
 	ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET, AbilityIndex = dummy_ability:GetEntityIndex(), Queue = false}) 
 
 	--【Particle】

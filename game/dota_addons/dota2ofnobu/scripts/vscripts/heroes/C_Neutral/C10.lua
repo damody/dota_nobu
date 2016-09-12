@@ -15,6 +15,20 @@ function C10T_Init( keys )
 		table.insert(keys.caster.C10T_T,v)
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_C10T",nil)
 	end	
+	local delay = ability:GetLevelSpecialValueFor("delay",0)
+	local count = 0
+	Timers:CreateTimer(0, function()
+		count = count + 0.1
+		-- 死了就清掉
+		if (not caster:IsAlive()) then
+			keys.caster.C10T_T = {}
+		end
+		if (count > delay) then
+			return nil
+		else
+			return 0.1
+		end
+    	end)
 end
 
 function C10T_PutIn( keys )

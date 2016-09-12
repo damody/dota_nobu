@@ -40,9 +40,13 @@ function Nobu:OnHeroIngame( keys )
     elseif string.match(name, "templar_assassin") then
       caster:FindAbilityByName("C19D"):SetLevel(1)
     elseif string.match(name, "centaur") then
-      caster:FindAbilityByName("A07D"):SetLevel(1)
+      if (caster:FindAbilityByName("A07D"):GetLevel() == 0) then
+        caster:FindAbilityByName("A07D"):SetLevel(1)
+      end
     elseif string.match(name, "broodmother") then
-      caster:FindAbilityByName("A13D"):SetLevel(1)
+      if (caster:FindAbilityByName("A13D"):GetLevel() == 0) then
+        caster:FindAbilityByName("A13D"):SetLevel(1)
+      end
     elseif string.match(name, "storm_spirit") then
       caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
     elseif string.match(name, "silencer") then
@@ -57,13 +61,16 @@ function Nobu:OnHeroIngame( keys )
     elseif string.match(name, "windrunner") then
       caster:FindAbilityByName("C17D"):SetLevel(1)
     elseif string.match(name, "faceless_void") then--風魔
-      caster:FindAbilityByName("B02D"):SetLevel(1)
+      if (caster:FindAbilityByName("B02D"):GetLevel() == 0) then
+        caster:FindAbilityByName("B02D"):SetLevel(1)
+      end
     end
 	Timers:CreateTimer ( 1, function ()
 		if not hero:IsIllusion() then
       if hero.init1 == nil then
         hero.init1 = true
         hero:AddItem(CreateItem("item_flash_ring", hero, hero)) 
+		hero:AddItem(CreateItem("item_pleated_skirt", hero, hero)) 
       end
       Timers:CreateTimer(1, function ()
           for itemSlot=0,5 do

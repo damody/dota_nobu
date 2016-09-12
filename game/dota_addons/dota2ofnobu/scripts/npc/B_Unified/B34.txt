@@ -1,8 +1,8 @@
 //武田勝賴
 "DOTAAbilities"
 {
-//武田勝賴 怒擊斧
-"B34W"
+	//武田勝賴 怒擊斧
+	"B34W"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"beastmaster_wild_axes"
@@ -254,6 +254,8 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"

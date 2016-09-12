@@ -58,7 +58,7 @@
 		"AbilityCastPoint"	"0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"15"
+		"AbilityCooldown"	"16 13 10 7"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"
@@ -80,7 +80,7 @@
 			{
 				"UnitName"	"A04W_SUMMEND_UNIT"
 				"UnitCount"	"%count"
-				"Duration"	"30"
+				"Duration"	"26"
 				"GrantsGold"	"35"
 				"OnSpawn"
 				{
@@ -347,7 +347,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"50"
+				"damage"	"200 300 400 500"
 			}
 		}
 		"AbilityDuration"	"1.0 1.33 1.66 2.0"
@@ -472,6 +472,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCooldown"	"140"
 		"AbilityCastPoint"	"0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -606,9 +607,7 @@
 		"AOERadius"	"800"
 		"FightRecapLevel"	"2"
 		"AbilityCastPoint"	"0.3 0.3 0.3"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
+
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"
@@ -776,6 +775,16 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_slow"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_slow"
 				}
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Damage"	"%damage"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+					}
+				}
+				"ThinkInterval"	"1"
 			}
 			"modifier_freezing_field_ref_point_datadriven"
 			{

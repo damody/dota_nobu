@@ -18,9 +18,9 @@ function item_blink_datadriven_on_spell_start(keys)
 	local difference_vector = target_point - origin_point
 
 	
-	-- if difference_vector:Length2D() > keys.MaxBlinkRange then  --Clamp the target point to the BlinkRangeClamp range in the same direction.
-	-- 	target_point = origin_point + (target_point - origin_point):Normalized() * keys.BlinkRangeClamp
-	-- end
+	if difference_vector:Length2D() > keys.MaxBlinkRange then  --Clamp the target point to the BlinkRangeClamp range in the same direction.
+	 	--target_point = origin_point + (target_point - origin_point):Normalized() * keys.BlinkRangeClamp
+	end
 	
 	keys.caster:SetAbsOrigin(target_point)
 	FindClearSpaceForUnit(keys.caster, target_point, false)

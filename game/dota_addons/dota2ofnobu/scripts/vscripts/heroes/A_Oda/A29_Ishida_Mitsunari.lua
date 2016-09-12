@@ -40,22 +40,38 @@ function ExorcismStart( event )
 	print("Spawning "..spirits.." spirits")
 	for i=1,spirits do
 		Timers:CreateTimer(i * delay_between_spirits, function()
-			-- local unit = CreateUnitByName(unit_name, caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
-			local unit = CreateUnitByName(unit_name, caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
+			if (caster:IsAlive()) then
+				-- local unit = CreateUnitByName(unit_name, caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
+				local unit = CreateUnitByName(unit_name, caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 
-			-- The modifier takes care of the physics and logic
-			ability:ApplyDataDrivenModifier(caster, unit, "modifier_exorcism_spirit", {})
-			
-			-- Add the spawned unit to the table
-			table.insert(ability.spirits, unit)
+				-- The modifier takes care of the physics and logic
+				ability:ApplyDataDrivenModifier(caster, unit, "modifier_exorcism_spirit", {})
+				
+				-- Add the spawned unit to the table
+				table.insert(ability.spirits, unit)
 
-			-- Initialize the number of hits, to define the heal done after the ability ends
-			unit.numberOfHits = 0
+				-- Initialize the number of hits, to define the heal done after the ability ends
+				unit.numberOfHits = 0
 
-			-- Double check to kill the units, remove this later
-			Timers:CreateTimer(duration+10, function() if unit and IsValidEntity(unit) then unit:RemoveSelf() end end)
+				-- Double check to kill the units, remove this later
+				Timers:CreateTimer(duration+10, function() if unit and IsValidEntity(unit) then unit:RemoveSelf() end end)
+			end
 		end)
 	end
+	local count = 0
+	Timers:CreateTimer(0.5, function()
+		count = count + 0.5
+		if (caster:IsAlive() and count < duration) then
+			return 0.5
+		else
+			if (not caster:IsAlive()) then
+				print("ExorcismDeath(event)")
+				ExorcismDeath(event)
+				ExorcismEnd(event)
+			end
+			return nil
+		end
+	end)
 end
 
 -- Movement logic for each spirit
@@ -251,7 +267,8 @@ function ExorcismPhysics( event )
 		elseif unit.state == "target_acquired" then
 
 			-- Update the point of the target's current position
-			if unit.current_target then
+			if unit.current_target and IsValidEntity(unit.current_target) then
+				IsValidEntity(handle_1)
 				point = unit.current_target:GetAbsOrigin()
 				if Debug then DebugDrawCircle(point, targetColor, 100, 25, true, draw_duration) end
 			end

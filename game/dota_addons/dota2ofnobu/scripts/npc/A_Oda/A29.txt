@@ -419,7 +419,8 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"death_prophet_exorcism"
-		
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.5 0.5 0.5"
@@ -440,7 +441,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"1000 1000 1000"
+				"radius"				"800 800 800"
 			}
 			"02"
 			{
@@ -475,12 +476,12 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"60 90 150"
+				"heal_percent"			"40 60 80"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"average_damage"		"55 55 55"
+				"average_damage"		"55 65 75"
 			}
 			// Extra
 			"10"
@@ -523,8 +524,6 @@
 		{
 			"RunScript"
 			{
-				// scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua
-				// "ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
 				"Function"		"ExorcismDeath"
 			}
@@ -557,7 +556,9 @@
 		"Modifiers"
 		{
 			"modifier_exorcism"
-			{	
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
 				"OnCreated"
 				{
 					
@@ -582,22 +583,6 @@
 						//"ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
 						"Function"		"ExorcismAttack"
-					}
-				}
-
-				"OnDeath"
-				{
-					"RunScript"
-					{
-						//"ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
-						"ScriptFile"	"scripts/vscripts/heroes/hero_death_prophet/exorcism.lua"
-						"Function"		"ExorcismDeath"
-					}
-
-					"FireSound"
-					{
-						"EffectName"	"Hero_DeathProphet.Death"
-						"Target" 		"CASTER"
 					}
 				}
 

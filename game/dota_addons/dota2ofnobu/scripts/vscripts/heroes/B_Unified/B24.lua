@@ -99,7 +99,7 @@ function B24W( keys )
 
 	dummy:SetBaseMaxHealth(800+level*400)
 	dummy:SetHealth(dummy:GetMaxHealth())
-
+	dummy:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	--一定要放紀錄次數下面
 	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24W",nil)
 
@@ -282,7 +282,9 @@ function B24R( keys )
 	local y1 = point.y
 	local z1 = point.z
 	local distance = 40
-
+	if target:IsBuilding() then
+		return
+	end
 	--INIT
 	if caster.B24R_B == nil then
 		caster.B24R_B = false

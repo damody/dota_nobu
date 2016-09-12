@@ -4,21 +4,15 @@
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 4
 	m_nFallbackMaxCount = 2
-	m_ConstantColor =
-	[
-		43,
-		84,
-		88,
-		55,
-	]
+	m_ConstantColor = [ 43, 84, 88, 55 ]
 	m_bShouldSort = false
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderModels"
 			m_bIgnoreNormal = true
 			m_nSkin = 5
-			m_ModelList =
+			m_ModelList = 
 			[
 				{
 					m_model = resource:"models/b08r/b08r.vmdl"
@@ -29,30 +23,30 @@
 			m_nLOD = 1
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flStartScale = 0.000000
-			m_flBias = 0.100000
-			m_flEndTime = 0.250000
+			m_flStartScale = 0.0
+			m_flBias = 0.1
+			m_flEndTime = 0.25
 		},
 		{
 			_class = "C_OP_Noise"
 			m_nFieldOutput = 12
-			m_flOutputMin = -1.000000
+			m_flOutputMin = -1.0
 			m_bAdditive = true
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
 			m_nField = 20
-			m_RateMin = 1.000000
-			m_RateMax = 3.000000
-			m_flEndTime_min = 10000000000.000000
-			m_flEndTime_max = 10000000000.000000
+			m_RateMin = 1.0
+			m_RateMax = 3.0
+			m_flEndTime_min = 10000000000.0
+			m_flEndTime_max = 10000000000.0
 		},
 		{
 			_class = "C_OP_PositionLock"
@@ -62,43 +56,43 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
-			m_flEndTime = 999999986991104.000000
-			m_Rate = -40.000000
+			m_flEndTime = 999999986991104.0
+			m_Rate = -40.0
 			m_nOpEndCapState = 1
 		},
 		{
 			_class = "C_OP_RadiusDecay"
-			m_flMinRadius = 0.100000
+			m_flMinRadius = 0.1
 			m_nOpEndCapState = 1
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_flEndTime_max = 10000000000.000000
-			m_flEndTime_min = 10000000000.000000
-			m_RateMax = 3.000000
-			m_RateMin = 1.000000
+			m_flEndTime_max = 10000000000.0
+			m_flEndTime_min = 10000000000.0
+			m_RateMax = 3.0
+			m_RateMin = 1.0
 			m_nField = 12
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_flEndTime_max = 10000000000.000000
-			m_flEndTime_min = 10000000000.000000
-			m_RateMax = 3.000000
-			m_RateMin = 1.000000
+			m_flEndTime_max = 10000000000.0
+			m_flEndTime_min = 10000000000.0
+			m_RateMax = 3.0
+			m_RateMin = 1.0
 			m_nField = 12
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.500000
-			m_fLifetimeMax = 0.500000
+			m_fLifetimeMin = 0.5
+			m_fLifetimeMax = 0.5
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 0.100000
-			m_flRadiusMax = 0.100000
+			m_flRadiusMin = 0.1
+			m_flRadiusMax = 0.1
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -106,8 +100,8 @@
 		{
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 1
-			m_flInputMax = 6400.000000
-			m_flOutputMax = 800.000000
+			m_flInputMax = 6400.0
+			m_flOutputMax = 800.0
 		},
 		{
 			_class = "C_INIT_RandomYaw"
@@ -120,14 +114,14 @@
 			_class = "C_INIT_RandomRotation"
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 1
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/b08r3/b08r3_a.vpcf"

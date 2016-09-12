@@ -39,43 +39,6 @@ function B01W( keys )
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = duration})
 	caster:AddNewModifier(caster,ability,"modifier_B01W",{duration = duration})--變身
 
-	--【Varible】
-	--local duration = ability:GetLevelSpecialValueFor("duration",level)
-	--local radius = ability:GetLevelSpecialValueFor("radius",level)
-
-	--【Varible Of Tem】
-	-- local point_tem = nil
-	-- local deg = 0 
-	-- local distance = 300
-
-
-	-- --【For】
-	-- for i=1,10 do
-	-- 	deg = deg + 36
-	-- 	point_tem = point2 + Vector(distance*math.cos(nobu_degtorad(deg))  , distance*math.sin(nobu_degtorad(deg))  ,point2.z ) 
-	-- 	--【Dummy Kv】
-	-- 	local dummy = CreateUnitByName("C15T_DUMMY",point_tem ,false,caster,caster,caster:GetTeam())	
-	-- 	--dummy:SetControllableByPlayer(player,false)
-	-- 	--ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
-	-- 	dummy:FindAbilityByName("majia"):SetLevel(1)		
-	-- 	-- local dummy_ability = dummy:AddAbility("batrider_firefly")
-	-- 	-- dummy_ability:SetLevel(1)
-	-- 	-- ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET, AbilityIndex = dummy_ability:GetEntityIndex(), Queue = false}) 
-	-- 	-- Execute the attack order for the caster
-	-- 	dummy:SetForwardVector(vec)
-	-- 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C15T",nil)
-
-	-- 	local order =
-	-- 	{
-	-- 		UnitIndex = dummy:entindex(),
-	-- 		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-	-- 		TargetIndex = target:entindex(),
-	-- 		Queue = true
-	-- 	}
-
-	-- 	ExecuteOrderFromTable(order)				
-	-- end
-
 	--【Particle】
 	local particle = ParticleManager:CreateParticle("particles/b01w/b01w.vpcf",PATTACH_POINT_FOLLOW,caster)
 	ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)

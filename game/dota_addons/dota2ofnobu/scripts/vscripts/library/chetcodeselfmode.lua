@@ -56,70 +56,7 @@ local point    = hero:GetAbsOrigin()
         GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
       end
   end
-
-  if s == "test" then
-    --UnitSilenceTarget( hero,hero,10)
-    UnitMagicImmune( hero,hero,10)
-
-    --hero:AddNewModifier(hero,nil,"modifier_item_gem_of_true_sight",{duration = 120, radius = 1100})
-
-  -- local test_ent = Entities:FindByName(nil,"test_porn_of_creep")
-  -- local item_point = test_ent:GetAbsOrigin()
-  -- for i=1,5 do
-  --   local  u = CreateUnitByName("com_ashigaru_spearmen",item_point,true,nil,nil,DOTA_TEAM_BADGUYS)
-  -- end
-    -- local caster = event.caster
-    -- local player = caster:GetPlayerID()
-    -- local XP = hero:GetCurrentXP() 
-    -- local unit_name = "B01"
-    -- local gold = hero:GetGold()
-    -- local pID = hero:GetPlayerID()
-
-    -- PlayerResource:ReplaceHeroWith(pID, "B01", gold, XP)   
-
-    -- local table = {222,"fdokfodk"}
-    -- PrintTable(keys)
-
-    --HideWearables( hero )
-    -- local wearable =  hero:FirstMoveChild()
-    -- if wearable:GetClassname() == "dota_item_wearable" then
-    --   wearable:SetModel( "models/development/invisiblebox.vmdl" )
-    -- end
-    --  wearable:RemoveEffects(EF_NODRAW)
-    --  wearable = wearable:NextMovePeer()
-     
-    --  for i=1,50 do
-    --     if wearable ~= nil then
-    --       wearable:RemoveEffects(EF_NODRAW)
-    --       wearable = wearable:NextMovePeer()
-    --     end  
-    --     if wearable ~= nil then
-    --       if wearable:GetClassname() == "dota_item_wearable" then
-    --         print(i)
-    --         wearable:SetModel( "models/development/invisiblebox.vmdl" )
-    --       end    
-    --     end   
-    --  end
-
-     -- local  u = CreateUnitByName("creature_19",Vector(0,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-     -- --u:SetOwner(p)                                         --設置u的擁有者
-     -- u:SetControllableByPlayer(0,true)               --設置u可以被玩家0操控
-
-    -- --等級
-    -- for i=1,25 do
-    --   u.HeroLevelUp(u,true)
-    -- end
-
-
-
-    --hero:SetRenderAlpha(0)
-   --hero:SetRenderColor(250,250,250)
-    -- local table = {}
-    -- table["ssssssssss"] = "5"
-    -- print(  table["ssssssssss"])
-  end
-
-
+	
   if s == "Create1" then
     for i=1,2 do
      local  u = CreateUnitByName("B08",hero:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王

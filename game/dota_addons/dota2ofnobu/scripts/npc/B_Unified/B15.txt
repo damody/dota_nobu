@@ -165,11 +165,11 @@
 				"States"	{}
 				"OnOrbImpact"
 				{
-					"Damage"
+					"RunScript"
 					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E_attack1"
 						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage_bonus"
 					}
 					"FireSound"
 					{
@@ -200,11 +200,11 @@
 				"States"	{}
 				"OnOrbImpact"
 				{
-					"Damage"
+					"RunScript"
 					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E_attack2"
 						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage_bonus2"
 					}
 					"FireSound"
 					{
@@ -361,6 +361,8 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"150"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
@@ -374,32 +376,29 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
 				"Function"	"B15T"
 			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-					"Center"	"CASTER"
-					"Radius"	"385"
-				}
-				"Action"
-				{
-					"Stun"
-					{
-						"Target"	"TARGET"
-						"Duration"	"%stun_time"
-					}
-				}
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
 				"EffectName"	"Brewmaster_Storm.Attack"
 			}
 		}
-		
+		"Modifiers"
+		{
+			"modifier_B15T"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%stun_time"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"

@@ -36,3 +36,16 @@ function A06D_Use(keys)
 	end	
 end
 
+function A06T_Start(keys)
+	local caster = keys.caster
+	caster.a06t_count = 0
+end
+
+function A06T_Count(keys)
+	local caster = keys.caster
+	caster.a06t_count = caster.a06t_count + 1
+	if caster.a06t_count >= 7 then
+		caster.a06t_count = nil
+		caster:RemoveModifierByName("modifier_A06T")
+	end
+end

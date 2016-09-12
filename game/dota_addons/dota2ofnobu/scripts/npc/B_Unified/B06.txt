@@ -127,7 +127,10 @@
 			"modifier_B06E"
 			{
 				"Duration"	"%Stun_Time"
-				"States"	{}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"OnCreated"
@@ -144,7 +147,6 @@
 						"EffectAttachType"	"attach_hitloc"
 					}
 				}
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"IsDebuff"	"1"
 			}
 		}
@@ -212,7 +214,10 @@
 			"modifier_B06E_HIDE"
 			{
 				"Duration"	"%Stun_Time"
-				"States"	{}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"OnCreated"
@@ -260,13 +265,22 @@
 		{
 			"RunScript"
 			{
-				"Target"	"CASTER"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
 				"Function"	"B06R_Learn_Ability"
 			}
 		}
 		"Modifiers"
 		{
+			"modifier_B06R_miss"
+			{
+				"IsBuff"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%miss"
+				}
+				"Passive"	"1"
+				"IsHidden"	"0"
+			}
 			"modifier_B06R"
 			{
 				"Properties"
@@ -309,7 +323,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Float_Timer"	"33 25 17 9"
+				"Float_Timer"	"30 21 14 6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"miss"	"8 16 24 32"
 			}
 		}
 	}
@@ -349,7 +368,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%Basic_Attack_Speed"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"	"Bonus_Health"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
 				}
 				"Aura"	"modifier_B06T_2"
 				"Aura_Radius"	"99999"
@@ -392,6 +411,7 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"30"
 				}
+				"Duration"	"1"
 				"TextureName"	"cps_d06_5"
 			}
 		}

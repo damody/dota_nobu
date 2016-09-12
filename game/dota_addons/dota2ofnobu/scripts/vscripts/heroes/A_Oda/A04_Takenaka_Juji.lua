@@ -485,7 +485,7 @@ function A04W_Bonus( event )
 
 	local hModifier = target:FindModifierByNameAndCaster("modifier_A04W_Tech", caster)
 	hModifier:SetStackCount(level)
-	target:SetBaseMaxHealth(600+80*level)
+	target:SetBaseMaxHealth(600+40*level)
 	target:SetHealth(target:GetMaxHealth())
 end
 

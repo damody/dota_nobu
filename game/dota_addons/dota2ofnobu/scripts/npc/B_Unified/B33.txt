@@ -388,6 +388,14 @@
 				"ModifierName"	"modifier_psi_blades"
 			}
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B33.lua"
+				"Function"	"B33R_Levelup"
+			}
+		}
 		"Modifiers"
 		{
 			"modifier_psi_blades"
@@ -475,6 +483,8 @@
 		"AbilityCastPoint"	"0.2 0.2 0.2 0.2"
 		"AbilityCooldown"	"90 75 60"
 		"AbilityManaCost"	"120"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"1000"

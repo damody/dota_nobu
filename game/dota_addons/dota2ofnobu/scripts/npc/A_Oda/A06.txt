@@ -120,7 +120,7 @@
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
 		"AbilityCastPoint"	"0.8 0.8 0.8 0.8"
-		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
+		"AbilityCooldown"	"12"
 		"AbilityManaCost"	"50"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
@@ -144,7 +144,7 @@
 				"IsBuff"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"4 8 12 16"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A06W_speed"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"160"
 				}
 				"States"	{}
@@ -158,6 +158,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"A06W_Duration"	"6 8 10 12"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A06W_speed"	"4 8 12 16"
 			}
 		}
 	}
@@ -360,6 +365,11 @@
 				"ModifierName"	"modifier_A06T"
 				"Duration"	"20.0"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
+				"Function"	"A06T_Start"
+			}
 		}
 		"Modifiers"
 		{
@@ -369,6 +379,11 @@
 				// 要改Effect
 				"OnAttackLanded"
 				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
+						"Function"	"A06T_Count"
+					}
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"

@@ -174,16 +174,25 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_h10_2 (Copy)"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"22"
 		"AbilityManaCost"	"85 110 125 130"
 		"AbilityCastRange"	"400 525 650 775"
 		"precache"
 		{
 			"particle"	"particles/c20e/c20e.vpcf"
+			"particle"	"particles/a23r/necronomicon_archer_projectile_2.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 		"OnSpellStart"
@@ -191,52 +200,87 @@
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
-				"Dodgeable"	"1"
 				"EffectName"	"particles/c20e/c20e.vpcf"
-				"MoveSpeed"	"2000"
+				"Dodgeable"	"1"
 				"ProvidesVision"	"1"
-				"VisionRadius"	"100"
+				"MoveSpeed"	"1800"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
 			}
-			"RunScript"
+			"FireSound"
 			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C22_Sasaki_Kojiro.lua"
-				"Function"	"C22E_Start"
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Sven.StormBolt"
 			}
 		}
 		"OnProjectileHitUnit"
 		{
-			"DeleteOnHit"	"1"
-			"Damage"
+			"DeleteOnHit"	"0"
+			"FireSound"
 			{
 				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"%AbilityDamage"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
 			}
-			"ApplyModifier"
+			"FireEffect"
 			{
 				"Target"	"TARGET"
-				"ModifierName"	"modifier_C22E"
+				"EffectName"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"ControlPointEntities"
+				{
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+				}
 			}
-			"RunScript"
+			"ActOnTargets"
 			{
 				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C22_Sasaki_Kojiro.lua"
-				"Function"	"C22E_Succes_Hit"
+				"Action"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%C22R_Damage"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_C22E"
+					}
+				}
 			}
 		}
 		"Modifiers"
 		{
 			"modifier_C22E"
 			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%C22R_Duration"
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Duration"	"1.5"
-				"IsDebuff"	"1"
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"C22R_Duration"	"1.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C22R_Damage"	"100 200 300 400"
 			}
 		}
 		"AbilityDamage"	"100 200 300 400"

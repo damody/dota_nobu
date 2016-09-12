@@ -280,7 +280,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"zuus_lightning_bolt"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -313,43 +313,11 @@
 				"Function"	"SearchArea"
 				"particle"	"particles/b05r/b05r.vpcf"
 			}
-			"ActOnTargets"
+			"ApplyModifier"
 			{
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Radius"	"%true_sight_radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_OTHER"
-				}
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_truesight"
-						"Target"	"TARGET"
-						"Duration"	"%true_sight_duration"
-					}
-				}
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"	"POINT"
-					"Radius"	"%true_sight_radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_truesight"
-						"Target"	"TARGET"
-						"Duration"	"%true_sight_duration"
-					}
-				}
+				"ModifierName"	"modifier_truesight"
+				"Target"	"TARGET"
+				"Duration"	"%true_sight_duration"
 			}
 			"FireSound"
 			{
@@ -453,6 +421,8 @@
 		"AOERadius"	"600"
 		"AbilityManaCost"	"200"
 		"AbilityCooldown"	"110"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"Modifiers"
 		{
 			"modifier_B05T"

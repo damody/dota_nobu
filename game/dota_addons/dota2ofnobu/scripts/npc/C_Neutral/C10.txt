@@ -7,7 +7,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"antimage_blink"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"AbilityCastPoint"	"0.3"
@@ -101,16 +101,9 @@
 				}
 				"OnAttackLanded"
 				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
-						"Function"	"AON_Cleave"
-						"dmg"	"%attack_damage"
-						"Target"	"TARGET"
-					}
 					"CleaveAttack"
 					{
-						"CleavePercent"	"0"
+						"CleavePercent"	"%CleavePercent"
 						"CleaveRadius"	"%CleaveRadius"
 						"CleaveEffect"	"particles/c10r2/c10r2.vpcf"
 					}
@@ -152,6 +145,8 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"115 100 85"
 		"AbilityManaCost"	"150 180 210"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/earthshaker/fist_swing_impact3.vsnd"

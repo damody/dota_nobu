@@ -269,20 +269,13 @@ function A28T(keys)
  	local player = caster:GetPlayerID()
  	local phoenix = CreateUnitByName("a28_phoenix",point2 ,false,caster,caster,caster:GetTeam())
  	phoenix:FindAbilityByName("A28TE"):SetLevel(level+1)
+ 	phoenix:FindAbilityByName("A28TW"):SetLevel(level+1)
  	--phoenix:SetPlayerID(player)
 	phoenix:SetControllableByPlayer(player, true)
 	phoenix:SetBaseMaxHealth(2000+level*1000)
 	phoenix:SetHealth(phoenix:GetMaxHealth())
 	phoenix:SetBaseDamageMax(250+level*100)
 	phoenix:SetBaseDamageMin(200+level*110)
- 	--dummy:SetControllableByPlayer(player,false)
- 	--ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
-		
- 	-- local dummy_ability = dummy:AddAbility("batrider_firefly")
- 	-- dummy_ability:SetLevel(1)
- 	-- ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET, AbilityIndex = dummy_ability:GetEntityIndex(), Queue = false}) 
- 	-- Execute the attack order for the caster
- 	--dummy:SetForwardVector(vec)
  	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 40+level*20})
 				
 end
@@ -311,10 +304,7 @@ function A28T_dead(keys)
 			return nil
 		end
 		end)
-	
 end
-
-
 
 function A28TE_Effect( keys, point )
 	local dmg = 84
@@ -326,7 +316,6 @@ function A28TE_Effect( keys, point )
 	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 0, point + Vector (0, 0, 10000))
 	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 1, point)
 	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 2, Vector(0.5, 0, 0))
-
 end
 
 
@@ -376,5 +365,68 @@ function A28TE( keys )
 			return nil
 		end
 	end)
+end
+
+
+--[[Author: Pizzalol
+	Date: 04.03.2015.
+	Creates additional attack projectiles for units within the specified radius around the caster]]
+function SplitShotLaunch( keys )
+	local caster = keys.caster
+	local caster_location = caster:GetAbsOrigin()
+	local ability = keys.ability
+	local ability_level = ability:GetLevel() - 1
+
+	-- Targeting variables
+	local target_type = ability:GetAbilityTargetType()
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_flags = ability:GetAbilityTargetFlags()
+	local attack_target = caster:GetAttackTarget()
+
+	-- Ability variables
+	local radius = ability:GetLevelSpecialValueFor("range", ability_level)
+	local max_targets = ability:GetLevelSpecialValueFor("arrow_count", ability_level)
+	local projectile_speed = ability:GetLevelSpecialValueFor("projectile_speed", ability_level)
+	local split_shot_projectile = keys.split_shot_projectile
+
+	local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, target_team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, target_flags, FIND_CLOSEST, false)
+
+	-- Create projectiles for units that are not the casters current attack target
+	for _,v in pairs(split_shot_targets) do
+		if v ~= attack_target and not v:HasModifier("modifier_invisible") then
+			local projectile_info = 
+			{
+				EffectName = split_shot_projectile,
+				Ability = ability,
+				vSpawnOrigin = caster_location,
+				Target = v,
+				Source = caster,
+				bHasFrontalCone = false,
+				iMoveSpeed = projectile_speed,
+				bReplaceExisting = false,
+				bProvidesVision = false
+			}
+			ProjectileManager:CreateTrackingProjectile(projectile_info)
+			max_targets = max_targets - 1
+		end
+		-- If we reached the maximum amount of targets then break the loop
+		if max_targets == 0 then break end
+	end
+end
+
+-- Apply the auto attack damage to the hit unit
+function SplitShotDamage( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local damage_table = {}
+
+	damage_table.attacker = caster
+	damage_table.victim = target
+	damage_table.damage_type = ability:GetAbilityDamageType()
+	damage_table.damage = caster:GetAttackDamage()
+
+	ApplyDamage(damage_table)
 end
 

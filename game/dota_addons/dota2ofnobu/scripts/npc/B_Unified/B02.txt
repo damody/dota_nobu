@@ -134,8 +134,9 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"20"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastRange"	"480"
+		"AbilityCastRange"	"580"
 		"AbilityManaCost"	"100"
 		"precache"
 		{
@@ -240,6 +241,8 @@
 		"AbilityCooldown"	"85 80 75"
 		"AbilityManaCost"	"150"
 		"AbilityCastRange"	"%cast_D"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/leshrac/lightning_storm03.vsnd"

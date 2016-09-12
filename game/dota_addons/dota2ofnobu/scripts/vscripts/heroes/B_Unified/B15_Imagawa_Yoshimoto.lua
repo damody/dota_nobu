@@ -1,6 +1,30 @@
 function B15W_on_spell_start(keys)
 end
 
+function B15E_attack1( keys )
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local dmg = keys.ability:GetLevelSpecialValueFor("damage_bonus", keys.ability:GetLevel() - 1 )
+	local target = keys.target
+	--if (not target:IsBuilding()) then
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	--end
+end
+
+function B15E_attack2( keys )
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local dmg = keys.ability:GetLevelSpecialValueFor("damage_bonus2", keys.ability:GetLevel() - 1 )
+	local target = keys.target
+	--if (not target:IsBuilding()) then
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	--end
+end
+
 function B15E( keys )
 	--【Basic】
 	local caster = keys.caster
@@ -155,16 +179,33 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 	
 	illusion:MakeIllusion()  --Without MakeIllusion(), the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.  Without it, IsIllusion() returns false and IsRealHero() returns true.
 	illusion:SetHealth(keys.caster:GetHealth())
-	illusion:SetRenderColor(0,0,200)
 
-	ParticleManager:CreateParticle("particles/generic_gameplay/illusion_killed.vpcf", PATTACH_ABSORIGIN_FOLLOW, illusion)
+	--ParticleManager:CreateParticle("particles/generic_gameplay/illusion_killed.vpcf", PATTACH_ABSORIGIN_FOLLOW, illusion)
 	
 	return illusion
 end
 
 function B15T(keys)
-	AMHC:CreateParticle("particles/b15t/b15t.vpcf",PATTACH_ABSORIGIN,false,keys.caster,2.0,nil)
+	local caster = keys.caster
+	local ability = keys.ability
+	AMHC:CreateParticle("particles/b15t/b15t.vpcf",PATTACH_ABSORIGIN_FOLLOW,false,keys.caster,2.0,nil)
 
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              caster:GetAbsOrigin(),
+	                              nil,
+	                              500,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
+
+	--effect:傷害+暈眩
+	for _,it in pairs(direUnits) do
+		if (not(it:IsBuilding())) then
+			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_B15T",nil)
+		end
+	end
 	-- local ability = event.ability
 	-- local duration = ability:GetLevelSpecialValueFor( "A13W_Duration", ability:GetLevel() - 1 )
 	local time = 0.90 - ( 0.20 * keys.ability:GetLevel() )

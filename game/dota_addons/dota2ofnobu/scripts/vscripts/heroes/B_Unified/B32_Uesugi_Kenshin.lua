@@ -150,6 +150,7 @@ function B32R( keys )
 	local group = {}
 	local radius = 650.00
 	if (caster.hasB32R == nil) then
+		caster:SetMana(caster:GetMana()+40)
 	 	local group = FindUnitsInRadius(
 					caster:GetTeamNumber(), point, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
 					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false)

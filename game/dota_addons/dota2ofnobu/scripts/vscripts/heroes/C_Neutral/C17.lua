@@ -260,11 +260,11 @@ function C17T(keys)
 	for i,v in ipairs(group) do
 		if (not v:IsBuilding()) then
 			if v:GetTeamNumber() ~= caster_team then
-	        	if (v:GetHealth()*0.25) <= dmg then
-	        		AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	        	if (v:GetMaxHealth()*0.20) <= dmg then
+	        		AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	       		else
-	       			local dmg2 = v:GetMaxHealth()*0.25
-	       			AMHC:Damage( caster,v,dmg2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	       			local dmg2 = v:GetMaxHealth()*0.20
+	       			AMHC:Damage( caster,v,dmg2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	        	end
 			else
 				--【KV】

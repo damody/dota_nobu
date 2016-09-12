@@ -20,32 +20,19 @@ function C22W_Damage( keys )
 
 	for _,v in ipairs(group) do
 		----print(v:GetUnitName())
-		if v:IsMagicImmune() then --是否魔免(如果是加深傷害)
-			AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-			----print("YES")
-		else
+		if caster:HasModifier("modifier_C22D") then
+			if v:IsMagicImmune() then
+				AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage( caster,v,damage*0.3,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
+		end
+		if not v:IsMagicImmune() then --是否魔免(如果是加深傷害)
 			AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end
 	end
 end
 
-function C22E_Succes_Hit( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	--print(caster:GetUnitName())
-	--print(target:GetUnitName())
-	caster.C22E_Target = target
-end
-
-function C22E_Start( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	--print(caster:GetUnitName())
-	--print(target:GetUnitName())
-	caster.C22E_Target = nil
-end
 
 function C22R_SE( keys )
 	local caster = keys.caster
@@ -128,9 +115,21 @@ function C22D_GetAbility( keys )
 	if ability:GetLevel() >0 then
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_C22R", {duration = 4.0})
 	end
-	if caster.C22E_Target ~= nil then
-		if caster.C22E_Target:FindModifierByName("modifier_C22E") ~= nil then
-			local target = caster.C22E_Target
+
+
+	direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+		                          caster:GetAbsOrigin(),
+		                          nil,
+		                          3000,
+		                          DOTA_UNIT_TARGET_TEAM_ENEMY,
+		                          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		                          DOTA_UNIT_TARGET_FLAG_NONE,
+		                          FIND_ANY_ORDER,
+		                          false)
+
+	for _,it in pairs(direUnits) do
+		if it:FindModifierByName("modifier_C22E") ~= nil then
+			local target = it
 			point = caster:GetAbsOrigin()
 			local  x = point.x
 			local  y = point.y
@@ -139,11 +138,15 @@ function C22D_GetAbility( keys )
 			local  y2     = point2.y
 			local  a      = caster:GetAngles().y --bj_RADTODEG *math.atan2(y2-y,x2-x) 
 			point3 = Vector(x+100*math.cos(a*bj_DEGTORAD) ,  y+100*math.sin(a*bj_DEGTORAD), point.z)--需要Z軸 要不然會低於地圖
-			target:SetOrigin(point3)			
-			caster.C22E_Target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+			target:SetOrigin(point3)
+			target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+			--命令攻击被攻击的目标
+			local order = {UnitIndex = caster:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = target:entindex()}
 
-			--debug
-			caster.C22E_Target = nil
+			ExecuteOrderFromTable(order)
+			break
 		end
 	end
 
@@ -208,6 +211,9 @@ function C22T_Damage( keys )
 		local damage = 500 + 0.28*v:GetHealth()
 		AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_C22T",nil)
+		if v:IsMagicImmune() then
+			AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
 	end
 
 	local particle = ParticleManager:CreateParticle("particles/c20t2/c20t2.vpcf", PATTACH_POINT, caster)

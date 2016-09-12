@@ -100,7 +100,12 @@ function B33T( keys )
 	--dummy:AddAbility("majia"):SetLevel(1)
 	dummy:SetForwardVector(caster:GetForwardVector())
 	EmitSoundOn("broodmother_broo_immort_01",keys.caster)
-	dummy:EmitSound("broodmother_broo_win_01") 
+	dummy:EmitSound("broodmother_broo_win_01")
+	Physics:Unit(dummy)
+
+	Timers:CreateTimer(0.1, function()
+			dummy:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin())*2)
+		end)
 
 	-- local particle=ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_POINT,caster)
 	-- ParticleManager:SetParticleControl(particle,0,caster:GetAbsOrigin())
@@ -153,5 +158,10 @@ function B33T( keys )
     	end
 
     end)
-
 end
+
+function B33R_Levelup( keys )
+	keys.caster:ModifyAgility( 5 )
+	keys.caster:CalculateStatBonus()
+end
+
