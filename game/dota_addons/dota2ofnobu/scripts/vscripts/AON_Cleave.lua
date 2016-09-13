@@ -11,7 +11,8 @@ function AON_Cleave(keys)
 	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
 	local dmg = dmg / (1 - damageReduction)
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  ability:GetLevelSpecialValueFor("CleaveRadius",level) , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		nil,  ability:GetLevelSpecialValueFor("CleaveRadius",level) , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 	dmg = dmg * ability:GetLevelSpecialValueFor("CleavePercent",level) / 100
 	for _, it in pairs(group) do

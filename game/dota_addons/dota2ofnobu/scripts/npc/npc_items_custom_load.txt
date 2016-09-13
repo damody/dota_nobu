@@ -2550,7 +2550,7 @@
 		}
 		"Modifiers"
 		{
-			"Passive_strength_ingot"
+			"Passive_lesser_shield"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -2591,7 +2591,7 @@
 		}
 		"Modifiers"
 		{
-			"Passive_strength_ingot"
+			"Passive_stable_shield"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -2605,6 +2605,180 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
 				}
+			}
+		}
+	}
+
+	// 長船．太刀
+	"item_the_great_sword_of_precision"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"item_the_great_sword_of_precision"
+		"FightRecapLevel"	"1"
+		"ID"	"1702"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"7600"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"		"damage"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d01/d01.vpcf"
+			"particle"	"particles/item/d02_4/d02_4_f.vpcf"
+		}
+		"Modifiers"
+		{
+			"Passive_the_great_sword_of_precision"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "80"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_precision.lua"
+						"Function"	"Shock"
+					}
+				}
+			}
+		}
+	}
+
+	// 正宗．武士刀
+	"item_true_katana"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"item_true_katana"
+		"FightRecapLevel"	"1"
+		"ID"	"1704"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"8500"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"		"damage"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item/d01/d01.vpcf"
+			"particle"	"particles/item/d02_4/d02_4_f.vpcf"
+		}
+		"Modifiers"
+		{
+			"Passive_the_great_sword_of_precision"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "75"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20"	//魔法減傷
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "20" 	//攻擊百分比
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "75" //攻速
+				}
+			}
+		}
+	}
+
+	// 葵紋越前康繼．禦神刀
+	"item_the_great_sword_of_invincible"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"item_the_great_sword_of_invincible"
+		"FightRecapLevel"	"1"
+		"ID"	"1707"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"9100"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"		"damage"
+		"ItemRequirements"	{}
+		"AbilityCooldown"	"100"
+		"AbilityManaCost"	"200"
+		"precache"
+		{
+			"particle"	"particles/a07w5/a07w5.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_sword_of_invincible"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_invincible.lua"
+				"Function"	"Shock"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_the_great_sword_of_precision"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "30"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "30"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+				}
+			}
+			"modifier_sword_of_invincible"
+			{
+				"IsHidden"	"0"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectAttachType"	"follow_origin"
+				"Duration"  "2"
 			}
 		}
 	}

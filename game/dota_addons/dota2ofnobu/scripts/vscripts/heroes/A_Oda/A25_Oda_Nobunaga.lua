@@ -160,7 +160,6 @@ end
 function A25R( keys )
 	local caster = keys.caster
 	local skill = keys.ability
-	local id  = caster:GetPlayerID()
 	local ran =  RandomInt(0, 100)
 	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
 		if (ran > 20) then
