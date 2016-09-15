@@ -397,7 +397,6 @@
 		"ID"	"1524"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
-		"Effect"	"particles/item/dragon.vpcf"
 		"ItemCost"	"750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -524,14 +523,6 @@
 			"FireSound"
 			{
 				"EffectName"	"Hero_QueenOfPain.Pick"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_item_c05"
-			{
-				"Properties"	{}
-				"Passive"	"1"
 			}
 		}
 		// Special
@@ -1199,7 +1190,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus3"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"10"
 				}
 				"Passive"	"1"
 				"EffectName"	"particles/item_d01_3/d01_3_c.vpcf"
@@ -1388,7 +1379,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%bonus3"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"10"
 				}
 				"Passive"	"1"
 				"EffectName"	"particles/item_d01_3/d01_3_c.vpcf"
@@ -1547,7 +1538,7 @@
 		"AbilityCooldown"	"26"
 		"AbilityManaCost"	"100"
 		// Valve's version of this item uses the ID "1".
-		"ID"	"1501"
+		"ID"	"1500"
 		"ItemQuality"	"component"
 		"Model"	"models/props_structures/barrel_oct.vmdl"
 		"Effect"	"particles/item_s01/s01.vpcf"
@@ -2779,6 +2770,43 @@
 				}
 				"EffectAttachType"	"follow_origin"
 				"Duration"  "2"
+			}
+		}
+	}
+
+	// 御守
+	"item_protection_amulet"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"item_protection_amulet"
+		"FightRecapLevel"	"1"
+		"ID"	"1650"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"1000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"		"damage"
+		"ItemRequirements"	{}
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"200"
+		"precache"
+		{
+			"particle"	"particles/a07w5/a07w5.vpcf"
+		}
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_protection_amulet.lua"
+				"Function"	"Shock"
 			}
 		}
 	}

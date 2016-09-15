@@ -242,49 +242,12 @@
 				"duration"	"%duration"
 				"path_radius"	"%path_radius"
 			}
-			"DelayedAction"
-			{
-				"Delay"	"%path_delay"
-				"Action"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-						"Function"	"FireEffect_Destroy_IcePath_A"
-					}
-				}
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-				"Function"	"GoIceRock"
-				"Target"	"TARGET"
-			}
 		}
 		"Modifiers"
 		{
-			"modifier_ice_path_check_range_datadriven"
-			{
-				"IsHidden"	"1"
-				"IsPurgable"	"0"
-				"ThinkInterval"	"0.1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-						"Function"	"CheckIcePath"
-						"Target"	"TARGET"
-						"path_radius"	"%path_radius"
-					}
-				}
-			}
 			"modifier_A04E"
 			{
+				"IsPurgable"	"1"
 				"IsDebuff"	"1"
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 				"EffectName"	"particles/a04e/a04e.vpcf"
@@ -303,26 +266,6 @@
 					}
 				}
 				"Duration"	"2"
-			}
-			"modifier_ice_path_stun_datadriven"
-			{
-				"IsDebuff"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"EffectName"	"particles/a04e/a04e.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OnCreated"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage"
-					}
-				}
 			}
 		}
 		// Special
@@ -350,7 +293,7 @@
 				"damage"	"200 300 400 500"
 			}
 		}
-		"AbilityDuration"	"1.0 1.33 1.66 2.0"
+		"AbilityDuration"	"1.10 1.50 1.90 2.30"
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"0"

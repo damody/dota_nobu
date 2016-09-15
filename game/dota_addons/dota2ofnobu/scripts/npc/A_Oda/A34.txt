@@ -73,6 +73,7 @@
 			"modifier_frost_bite_root_datadriven"
 			{
 				"IsPurgable"	"1"
+				"IsDebuff"	"1"
 				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
 				"States"
 				{
@@ -181,6 +182,7 @@
 		{
 			"modifier_frost_nova_slow"
 			{
+				"IsPurgable"	"1"
 				"IsDebuff"	"1"
 				"StatusEffectName"	"particles/status_fx/status_effect_frost_lich.vpcf"
 				"StatusEffectPriority"	"10"

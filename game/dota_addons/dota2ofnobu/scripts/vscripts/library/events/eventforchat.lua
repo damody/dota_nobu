@@ -61,19 +61,51 @@ local function chat_of_test(keys)
 		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 	end
 	
-	if s == "Create1" then
-		for i=1,1 do
-		 local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-		 --u:SetOwner(p)                                         --設置u的擁有者
-		 u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
-		 --u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-		 for i=1,25 do
-		   u:HeroLevelUp(true)
-		end  
+	if s == "-old" then
+		if (caster:GetUnitName() == "npc_dota_hero_centaur") then
+			caster:RemoveAbility("A07W")
+			caster:RemoveAbility("A07E")
+			caster:RemoveAbility("A07R")
+			caster:RemoveAbility("A07D")
+			caster:RemoveAbility("A07T")
+
+			caster:AddAbility("A07W_old")
+			caster:AddAbility("A07E_old")
+			caster:AddAbility("A07R_old")
+			caster:AddAbility("A07T_old")
+		elseif (caster:GetUnitName() == "npc_dota_hero_pugna") then
+			caster:RemoveAbility("B25W")
+			caster:RemoveAbility("B25E")
+			caster:RemoveAbility("B25R")
+			caster:RemoveAbility("B25T")
+
+			caster:AddAbility("B25W")
+			caster:AddAbility("B25E_old")
+			caster:AddAbility("B25R_old")
+			caster:AddAbility("B25T_old")
 		end
-		-- --等級
-		  
-	  end
+	end
+	
+	if s == "Create1" then
+		local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+		--u:SetOwner(p)                                         --設置u的擁有者
+		u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
+		--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		for i=1,30 do
+		u:HeroLevelUp(true)
+		end 
+	end
+	
+	if s == "Create2" then
+		local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+		--u:SetOwner(p)                                         --設置u的擁有者
+		u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
+		--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		for i=1,30 do
+		u:HeroLevelUp(true)
+		end 
+	end
+	
 	--【測試指令】
 	if s == "ShuaGuai" then
 		print("ShuaGuai")

@@ -1,3 +1,70 @@
+LinkLuaModifier( "A07R_critical", "scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua",LUA_MODIFIER_MOTION_NONE )
+
+
+--RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+
+A07R_critical = class({})
+
+function A07R_critical:IsHidden()
+	return true
+end
+
+function A07R_critical:DeclareFunctions()
+	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
+end
+
+function A07R_critical:GetModifierPreAttack_CriticalStrike()
+	return self.A07R_level
+end
+
+function A07R_critical:CheckState()
+	local state = {
+	}
+	return state
+end
+
+
+function A07R_Levelup( keys )
+	local caster = keys.caster
+	caster.A07R_noncrit_count = 0
+	
+end
+
+function A07R_old( keys )
+	local caster = keys.caster
+	local skill = keys.ability
+	local ability = keys.ability
+	local ran =  RandomInt(0, 100)
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
+		if (ran > 36) then
+			caster.A07R_noncrit_count = caster.A07R_noncrit_count + 1
+		end
+		if (caster.A07R_noncrit_count > 3 or ran <= 36) then
+			caster.A07R_noncrit_count = 0
+			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
+			caster:AddNewModifier(caster, skill, "A07R_critical", { duration = 0.1 } )
+			local hModifier = caster:FindModifierByNameAndCaster("A07R_critical", caster)
+			--SE
+			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
+			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
+			--動作
+			local rate = caster:GetAttackSpeed()
+			--print(tostring(rate))
+
+			--播放動畫
+		    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
+			if rate < 1.00 then
+			    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1.00)
+			else
+			    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+			end
+
+			if (hModifier ~= nil) then
+				hModifier.A07R_level = ability:GetLevelSpecialValueFor("crit_persent",ability:GetLevel() - 1) 
+			end
+		end
+	end
+end
 
 function A07W_BorrowedTimeActivate( event )
 	-- Variables

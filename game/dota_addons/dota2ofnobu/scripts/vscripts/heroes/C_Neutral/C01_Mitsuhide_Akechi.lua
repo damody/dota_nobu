@@ -39,7 +39,7 @@ function C01E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	end
 	AddFOWViewer(caster:GetTeamNumber(), point, 300.0, 3.0, false)
 
-	direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
                               point,
                               nil,
                               SEARCH_RADIUS,

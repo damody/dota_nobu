@@ -85,33 +85,22 @@ function FireEffect_IcePath( event )
 
 	for i=1, numProjectiles do
 		local projectilePos = startPos + caster:GetForwardVector() * (i-1) * stepLength
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+                              projectilePos,
+                              nil,
+                              projectileRadius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_NONE,
+                              FIND_ANY_ORDER,
+                              false)
 
-		local myIce = ProjectileManager:CreateLinearProjectile( {
-			Ability				= ability,
-		--	EffectName			= "",
-			vSpawnOrigin		= projectilePos,
-			fDistance			= 64,
-			fStartRadius		= projectileRadius,
-			fEndRadius			= projectileRadius,
-			Source				= caster,
-			bHasFrontalCone		= false,
-			bReplaceExisting	= false,
-			iUnitTargetTeam		= DOTA_UNIT_TARGET_TEAM_ENEMY,
-			iUnitTargetFlags	= DOTA_UNIT_TARGET_FLAG_NONE,
-			iUnitTargetType		= DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
-			fExpireTime			= ability.ice_path_stunEnd,
-			bDeleteOnHit		= false,
-			vVelocity			= Vector( 0, 0, 0 ),	-- Don't move!
-			bProvidesVision		= true,
-			iVisionRadius		= 150,
-			iVisionTeamNumber	= caster:GetTeamNumber(),
-		} )
-		Timers:CreateTimer( 0.1, function()
-					ProjectileManager:DestroyLinearProjectile(myIce)
-					return nil
-				end
-			)
-		
+		--effect:傷害+暈眩
+		for _,it in pairs(direUnits) do
+			if (not(it:IsTower())) then
+				ability:ApplyDataDrivenModifier(caster, it,"modifier_B32E",nil)
+			end
+		end		
 	end
 end
 

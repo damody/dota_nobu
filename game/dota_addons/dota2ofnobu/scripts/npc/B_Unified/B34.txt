@@ -38,6 +38,7 @@
 		{
 			"modifier_B34W"
 			{
+				"IsPurgable"	"1"
 				"OnCreated"
 				{
 					"Stun"
@@ -102,6 +103,7 @@
 		}
 		"Modifiers"
 		{
+			"IsPurgable"	"1"
 			"modifier_B34E_2"
 			{
 				"Aura"	"modifier_B34E_3"
@@ -136,7 +138,7 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
 				}
-				"IsPurgable"	"0"
+				"IsPurgable"	"1"
 			}
 		}
 		"AbilitySpecial"

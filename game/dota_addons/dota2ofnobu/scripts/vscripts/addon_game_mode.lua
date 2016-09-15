@@ -90,7 +90,8 @@ function Precache( context )
     "particles/a16r3/a16r3.vpcf",
     -- 巨龍
     "particles/item/dragon.vpcf",
-    "particles/a07w5/a07w5.vpcf"
+    "particles/a07w5/a07w5.vpcf",
+    "particles/a07w4/a07w4_c.vpcf"
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

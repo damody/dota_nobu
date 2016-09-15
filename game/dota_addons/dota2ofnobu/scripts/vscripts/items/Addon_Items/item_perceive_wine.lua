@@ -2,14 +2,14 @@
 function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	
-	local count = caster:GetModifierCount()
-	for i=count, 1, -1 do
-		local modifier = caster:GetModifierNameByIndex(i)
-		if (modifier ~= nil and modifier:IsDebuff()) then
-			caster:RemoveModifierByName(modifier)
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() then
+			caster:RemoveModifierByName(v:GetName())
 		end
 	end
+	-- Strong Dispel 刪除負面效果
+	caster:Purge( false, true, true, true, true)
 end
 
 

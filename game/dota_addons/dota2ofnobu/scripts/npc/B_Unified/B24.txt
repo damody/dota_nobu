@@ -62,6 +62,8 @@
 		{
 			"modifier_B24W"
 			{
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
 				"EffectName"	"particles/b24t/b01t.vpcf"
 				"EffectAttachType"	"attach_origin"
 				"OnDeath"
@@ -274,6 +276,8 @@
 			}
 			"modifier_B24R_2"
 			{
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
 				"States"	{}
 				"OnCreated"
 				{
@@ -429,6 +433,8 @@
 			}
 			"modifier_B24T_2"
 			{
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
 				"States"
 				{
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"

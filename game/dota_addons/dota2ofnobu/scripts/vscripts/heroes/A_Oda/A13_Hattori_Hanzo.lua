@@ -481,6 +481,8 @@ function A13T( keys )
 	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
 	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
 	local right = caster:GetRightVector()
+	caster:AddSpeechBubble(1,"臨兵鬥者皆陣列在前",3.0,0,-50)
+
 	casterLoc = keys.target_points[1] - right:Normalized() * 300
 	Timers:CreateTimer( 0.3, function()
 		caster:AddNoDraw()

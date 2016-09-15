@@ -194,7 +194,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_range_bonus"	"400 600 800"
+				"attack_range_bonus"	"400 500 600"
 			}
 			"04"
 			{
@@ -290,8 +290,8 @@
 							"Center"	"TARGET"
 							"Radius"	"%radius"
 							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING "
-							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 						}
 						"Action"
 						{

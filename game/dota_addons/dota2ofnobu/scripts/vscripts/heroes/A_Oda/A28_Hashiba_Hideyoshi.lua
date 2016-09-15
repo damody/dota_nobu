@@ -12,6 +12,7 @@ function A28W(keys)
 			unit:ForceKill(true)
 		else
 			unit:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
+			unit:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
 		end
 	end
 end

@@ -400,6 +400,7 @@
 		{
 			"modifier_psi_blades"
 			{
+				"IsPurgable"	"1"
 				"Passive"	"0"
 				"IsHidden"	"0"
 				"OnAttackLanded"
@@ -420,6 +421,7 @@
 				{
 					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
 					"ProjectileName"	"particles/b33r/b33r.vpcf"
+
 				}
 				"Duration"	"%duration"
 				"AllowIllusionDuplicate"	"1"
@@ -432,7 +434,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_attack_range"	"60 120 180 240"
+				"bonus_attack_range"	"200"
 			}
 			"02"
 			{
@@ -522,6 +524,7 @@
 		{
 			"modifier_spawn_spiderlings_datadriven"
 			{
+				"IsPurgable"	"1"
 				"Duration"	"%duration"
 				"IsDebuff"	"1"
 				"EffectName"	"particles/b33t7/b33t7.vpcf"
@@ -536,7 +539,6 @@
 					}
 				}
 				"ThinkInterval"	"0.5"
-				"IsPurgable"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"

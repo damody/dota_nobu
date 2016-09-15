@@ -40,7 +40,7 @@ function Nobu:OnHeroIngame( keys )
     elseif string.match(name, "templar_assassin") then
       caster:FindAbilityByName("C19D"):SetLevel(1)
     elseif string.match(name, "centaur") then
-      if (caster:FindAbilityByName("A07D"):GetLevel() == 0) then
+      if (caster:FindAbilityByName("A07D") ~= nil and caster:FindAbilityByName("A07D"):GetLevel() == 0) then
         caster:FindAbilityByName("A07D"):SetLevel(1)
       end
     elseif string.match(name, "broodmother") then
@@ -69,8 +69,9 @@ function Nobu:OnHeroIngame( keys )
 		if not hero:IsIllusion() then
       if hero.init1 == nil then
         hero.init1 = true
-        hero:AddItem(CreateItem("item_flash_ring", hero, hero)) 
-		hero:AddItem(CreateItem("item_pleated_skirt", hero, hero)) 
+        hero:AddItem(CreateItem("item_flash_ring", hero, hero))
+		hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
+		hero:AddItem(CreateItem("item_protection_amulet", hero, hero))
       end
       Timers:CreateTimer(1, function ()
           for itemSlot=0,5 do

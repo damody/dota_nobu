@@ -7,15 +7,6 @@
 	A04R_FLOAT={}
 --<<endglobal>>
 
-
-function GoIceRock( event )
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-	local level  = event.ability:GetLevel()
-	ability:ApplyDataDrivenModifier( caster, target, "modifier_A04E", { duration = level*0.5+0.5 } )
-end
-
 function FireEffect_IcePath( event )
 	local caster		= event.caster
 	local ability		= event.ability
@@ -28,7 +19,7 @@ function FireEffect_IcePath( event )
 	local endPos = startPos + caster:GetForwardVector() * pathLength
 
 	ability.ice_path_stunStart	= GameRules:GetGameTime() + pathDelay
-	ability.ice_path_stunEnd	= GameRules:GetGameTime() + pathDelay + pathDuration
+	ability.ice_path_stunEnd	= GameRules:GetGameTime() + pathDelay + 0.01
 
 	ability.ice_path_startPos	= startPos * 1
 	ability.ice_path_endPos		= endPos * 1
@@ -44,6 +35,9 @@ function FireEffect_IcePath( event )
 	ParticleManager:SetParticleControl( pfx, 2, startPos )
 
 	ability.pfxIcePath = pfx
+	Timers:CreateTimer(0.1, function() 
+		ParticleManager:DestroyParticle( ability.pfxIcePath, true )
+	end)
 
 	-- Create ice_path_b
 	particleName = "particles/units/heroes/hero_jakiro/jakiro_ice_path_b.vpcf"
@@ -65,70 +59,22 @@ function FireEffect_IcePath( event )
 
 	for i=1, numProjectiles do
 		local projectilePos = startPos + caster:GetForwardVector() * (i-1) * stepLength
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+                              projectilePos,
+                              nil,
+                              projectileRadius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_NONE,
+                              FIND_ANY_ORDER,
+                              false)
 
-		ProjectileManager:CreateLinearProjectile( {
-			Ability				= ability,
-		--	EffectName			= "",
-			vSpawnOrigin		= projectilePos,
-			fDistance			= 64,
-			fStartRadius		= projectileRadius,
-			fEndRadius			= projectileRadius,
-			Source				= caster,
-			bHasFrontalCone		= false,
-			bReplaceExisting	= false,
-			iUnitTargetTeam		= DOTA_UNIT_TARGET_TEAM_ENEMY,
-			iUnitTargetFlags	= DOTA_UNIT_TARGET_FLAG_NONE,
-			iUnitTargetType		= DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
-			fExpireTime			= ability.ice_path_stunEnd,
-			bDeleteOnHit		= false,
-			vVelocity			= Vector( 0, 0, 0 ),	-- Don't move!
-			bProvidesVision		= true,
-			iVisionRadius		= 150,
-			iVisionTeamNumber	= caster:GetTeamNumber(),
-		} )
-	end
-end
-
---[[
-	Author: Ractidous
-	Date: 27.01.2015.
-	Destroy ice_path manually in order to show its endcap effects.
-]]
-function FireEffect_Destroy_IcePath_A( event )
-	local caster		= event.caster
-	local ability		= event.ability
-	local pfxIcePath	= ability.pfxIcePath
-
-	ParticleManager:DestroyParticle( pfxIcePath, false )
-
-	ability.pfxIcePath = nil
-end
-
-function CheckIcePath( event )
-	local caster		= event.caster
-	local target		= event.target
-	local ability		= event.ability
-	local pathRadius	= event.path_radius
-
-	local stunModifierName	= "modifier_ice_path_stun_datadriven"
-
-	if GameRules:GetGameTime() < ability.ice_path_stunStart then
-		-- Not yet.
-		return
-	end
-
-	if target:HasModifier( stunModifierName ) then
-		-- Already stunned.
-		return
-	end
-
-	local targetPos = target:GetAbsOrigin()
-	targetPos.z = 0
-
-	local distance = DistancePointSegment( targetPos, ability.ice_path_startPos, ability.ice_path_endPos )
-	if distance < pathRadius then
-		local duration = ability.ice_path_stunEnd - GameRules:GetGameTime()
-		ability:ApplyDataDrivenModifier( caster, target, stunModifierName, { duration = duration } )
+		--effect:傷害+暈眩
+		for _,it in pairs(direUnits) do
+			if (not(it:IsTower())) then
+				ability:ApplyDataDrivenModifier(caster, it,"modifier_A04E",nil)
+			end
+		end
 	end
 end
 

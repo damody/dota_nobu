@@ -20,7 +20,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800 800 800 800"
-		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+		"AbilityCastPoint"				"0.2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -113,7 +113,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"targets"			"4 4 4 4"
+				"targets"			"4 5 6 7"
 			}
 			"03"
 			{
@@ -126,6 +126,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
+			"particle"	"particles/b25e_old/b25e_enemy.vpcf"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
 			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
 		}
@@ -181,7 +182,7 @@
 		"AbilityManaCost"	"0"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"300"
+		"AbilityCastRange"	"500"
 		// Data driven
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -282,6 +283,117 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"90 160 220 300"
 	}
+
+	// 本願寺顯如 死之手指
+	"B25R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"lion_finger_of_death"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"15 15 13 11"
+		"AbilityManaCost"	"100 110 120 130"
+		"AbilityCastRange"	"3000"
+		"precache"
+		{
+			"particle"	"particles/a12t2/a12t2.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+			"particle"			"particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/a12t2/a12t2.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"1500"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Sven.StormBolt"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+			"FireEffect"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"ControlPointEntities"
+				{
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+				}
+			}
+			"ApplyModifier"
+			{
+				"Caster"	"CASTER"
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_A31R"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%A31R_Damage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A31R"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
+				"Duration"	"%A31R_Duration"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A31R_Duration"	"1 1.5 2 2.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A31R_Damage"	"150 300 450 600"
+			}
+		}
+	}
+
 	// 本願寺顯如 死之手指
 	"B25R_old"
 	{	
@@ -307,12 +419,12 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"4500"
+		"AbilityCastRange"				"8500"
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"20"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -334,12 +446,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_delay"				"0.1"
+				"damage_delay"				"0.05"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.01"
+				"stun_duration"				"1"
 			}
 
 		}
@@ -363,25 +475,26 @@
 				"EffectName"	"particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf"
 				"EffectAttachType"	"start_at_customorigin"
 				
-
 				"ControlPointEntities"
 				{
 					"CASTER"	"attach_attack1"
 					"TARGET"	"attach_hitloc"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
 				}
 			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"		"modifier_finger_of_death_datadriven"
-				"Target"			"TARGET"
-			}
-
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_B25R"
 				"Target" 		"TARGET"
 				"Duration"	"%stun_duration"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_finger_of_death_datadriven"
+				"Target"			"TARGET"
 			}
 		}
 
@@ -391,7 +504,8 @@
 			{
 				"IsHidden"	"1"
 				"Duration"	"%damage_delay"
-
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
 				"OnDestroy"
 				{
 					"Damage"
@@ -405,6 +519,9 @@
 
 			"modifier_B25R"
 			{
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
@@ -412,129 +529,12 @@
 				{
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
 			}
 		}
 	}
 	
-	// 本願寺顯如 死之手指
-	"B25R"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"lion_finger_of_death"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"HotKeyOverride"	"E"
-		"MaxLevel"	"4"
-		"RequiredLevel"	"1"
-		"LevelsBetweenUpgrades"	"0"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"15 15 13 11"
-		"AbilityManaCost"	"100 110 120 130"
-		"AbilityCastRange"	"4500"
-		"precache"
-		{
-			"particle"	"particles/a12t2/a12t2.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
-			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"TrackingProjectile"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/a12t2/a12t2.vpcf"
-				"Dodgeable"	"1"
-				"ProvidesVision"	"1"
-				"MoveSpeed"	"1500"
-				"VisionRadius"	"225"
-				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Sven.StormBolt"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"FireSound"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"Hero_Sven.StormBoltImpact"
-			}
-			"FireEffect"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"ControlPointEntities"
-				{
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-				}
-			}
-			"ActOnTargets"
-			{
-				"Target"	"TARGET"
-				"Action"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%A31R_Damage"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_A31R"
-					}
-				}
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_A31R"
-			{
-				"IsHidden"	"0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration"	"%A31R_Duration"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsDebuff"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"A31R_Duration"	"1 1.5 2 2.5"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A31R_Damage"	"150 300 450 600"
-			}
-		}
-	}
-
+	
 	// 本願寺顯如 阿修羅地獄
 	"B25T"
 	{
@@ -727,6 +727,7 @@
 		{
 			"modifier_fiends_grip_datadriven"
 			{
+				"IsPurgable"	"1"
 				"IsDebuff"	"1"
 				"EffectName"	"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
 				"EffectAttachType"	"attach_origin"

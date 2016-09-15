@@ -216,7 +216,7 @@
 		}
 		"OnProjectileHitUnit"
 		{
-			"DeleteOnHit"	"0"
+			"DeleteOnHit"	"1"
 			"FireSound"
 			{
 				"Target"	"TARGET"
@@ -258,8 +258,8 @@
 		{
 			"modifier_A31R"
 			{
-				"IsHidden"	"0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsPurgable"	"1"
+				"IsDebuff"	"1"
 				"Duration"	"%A31R_Duration"
 				"States"
 				{
@@ -267,7 +267,6 @@
 				}
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"IsDebuff"	"1"
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 			}
 		}
