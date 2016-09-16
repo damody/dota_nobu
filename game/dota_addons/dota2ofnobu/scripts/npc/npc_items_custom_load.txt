@@ -581,7 +581,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_C05"
+		"AbilityTextureName"	"item_flash_ring"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCastPoint"	"0.0"
@@ -803,7 +803,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_D02_2"
+		"AbilityTextureName"	"item_mountain_scroll"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCooldown"	"26"
@@ -887,7 +887,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_D03"
+		"AbilityTextureName"	"item_fire_scroll"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCooldown"	"26"
@@ -1100,7 +1100,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_D01"
+		"AbilityTextureName"	"item_wind_scroll"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCooldown"	"30"
@@ -1626,7 +1626,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_D09_3"
+		"AbilityTextureName"	"item_lightning_scroll"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -3915,10 +3915,25 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-		
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_muramasa_katana.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_muramasa_katana.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"modifier_Passive_muramasa_katana"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -3966,7 +3981,7 @@
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_great_spear_of_dragonfly"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -3985,6 +4000,15 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速
 				}
+				"OnAttackLanded"
+				// "%attack_damage" is set to the damage value before mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_spear_of_dragonfly.lua"
+						"Function"	"Shock"
+					}
+				}
 			}
 		}
 	}
@@ -3996,7 +4020,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_the_great_sword_of_hurricane"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -4019,10 +4043,46 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_hurricane.lua"
+				"Function"	"Shock"
+			}
+		}
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_hurricane.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_hurricane.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"modifier_great_sword_of_hurricane"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				"EffectName"		"particles/generic_gameplay/generic_slowed_cold.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-190" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"
+				}
+			}
+			"Passive_great_sword_of_hurricane"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -4033,7 +4093,7 @@
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "60"	//攻
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "800"			//血
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0"			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
@@ -5711,7 +5771,7 @@
 	}
 
 	//浪人十手‧一階製作單
-	"item_recipe_ronin_jitte_1" 
+	"item_recipe_ronin_jitte" 
 	{
 	    "ID" "3003"
 	    "BaseClass" "item_recipe_arcane_boots"
@@ -5726,7 +5786,7 @@
 	}
 	
 	//浪人十手‧二階製作單
-	"item_recipe_ronin_jitte_2" 
+	"item_recipe_ronin_jitte_1" 
 	{
 	    "ID" "3004"
 	    "BaseClass" "item_recipe_arcane_boots"
@@ -5741,7 +5801,7 @@
 	}
 
 	//浪人十手‧三階製作單
-	"item_recipe_ronin_jitte_3" 
+	"item_recipe_ronin_jitte_2" 
 	{
 	    "ID" "3005"
 	    "BaseClass" "item_recipe_arcane_boots"
@@ -5756,7 +5816,7 @@
 	}
 
 	//禦神法輪‧一階製作單
-	"item_recipe_mana_thief_1" 
+	"item_recipe_mana_thief" 
 	{
 	    "ID" "3006"
 	    "BaseClass" "item_recipe_arcane_boots"
@@ -5771,7 +5831,7 @@
 	}
 
 	//禦神法輪‧二階製作單
-	"item_recipe_mana_thief_2" 
+	"item_recipe_mana_thief_1" 
 	{
 	    "ID" "3007"
 	    "BaseClass" "item_recipe_arcane_boots"
@@ -5786,7 +5846,7 @@
 	}
 
 	//武士服‧一階製作單
-	"item_recipe_samurai_cloth_1" 
+	"item_recipe_samurai_cloth" 
 	{
 	    "ID" "3008"
 	    "BaseClass" "item_recipe_arcane_boots"
@@ -5801,7 +5861,7 @@
 	}
 
 	//武士服‧二階製作單
-	"item_recipe_samurai_cloth_2" 
+	"item_recipe_samurai_cloth_1" 
 	{
 	    "ID" "3009"
 	    "BaseClass" "item_recipe_arcane_boots"

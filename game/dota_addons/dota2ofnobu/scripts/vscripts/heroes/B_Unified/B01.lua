@@ -207,6 +207,7 @@ function B01R(keys)
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
 	local dmg = keys.dmg
+	print("B01R "..dmg)
 	local per_atk = 0
 	local targetArmor = target:GetPhysicalArmorValue()
 	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
@@ -225,7 +226,7 @@ function B01R(keys)
 	end
 	local dmgori = dmg
 	dmg = dmg * per_atk  / 100
-	print(dmgori, damageReduction, dmg)
+	--print(dmgori, damageReduction, dmg)
 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 end
 
@@ -233,3 +234,4 @@ function C01W_sound( keys )
 	local caster = keys.caster
 	caster:EmitSound( "B01W.sound"..1)
 end
+

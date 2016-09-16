@@ -7,7 +7,6 @@ function Shock( keys )
 		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() then
 			caster:RemoveModifierByName(v:GetName())
 		end
-		
 	end
 	Timers:CreateTimer(0.1, function() 
 			if (caster:HasModifier("modifier_perceive_wine") or caster:HasModifier("modifier_perceive_wine_hyper")) then
