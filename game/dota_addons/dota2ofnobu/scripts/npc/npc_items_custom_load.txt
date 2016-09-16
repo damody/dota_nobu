@@ -5411,16 +5411,10 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"	"1"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"ItemDroppable" "1"
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemKillable" "1"
 		"ID"	"1589"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -5428,7 +5422,6 @@
 		"ItemCost"	"1300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
 		
 		"Modifiers"
 		{
@@ -5468,17 +5461,11 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"ItemDroppable" "1"
+		"ItemSellable" "1"
 		"ItemPurchasable" "1"
+		"ItemKillable" "1"
 		"FightRecapLevel"	"1"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
 		"ID"	"15891"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -5486,11 +5473,6 @@
 		"ItemCost"	"1300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"
-	    {
-	        "01" "item_the_spear_of_saddle"
-	        "02" "item_r_spear_of_saddle_1"
-	    }
 		
 		"Modifiers"
 		{
@@ -5518,35 +5500,32 @@
 		}
 	}
 
-
-	"item_recipe_spear_of_saddle_1" 
+	"item_recipe_the_spear_of_saddle_1" 
 	{
-	    "ID" "2200"
-	    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"	"item_the_spear_of_saddle"
-	    "BaseClass"           "item_datadriven"
-	    "ItemRecipe"          "1" //destroyed after combine
-	    "ItemCost"            "100" //if its 0, it will combine without needing a recipe.
-	    "ItemResult"          "item_the_spear_of_saddle_1" //the result of combining the ItemRequirements
-	    "ItemRequirements"
-	    {
-	        "01" "item_the_spear_of_saddle;item_recipe_spear_of_saddle_1"
-	    }
+	    "ID" "3004"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1300"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_spear_of_saddle_1"
+		"ItemRequirements"
+		{
+			"01" "item_the_spear_of_saddle"
+		}
 	}
 
-	"item_recipe_spear_of_saddle_2" 
+	"item_recipe_the_spear_of_saddle_2" 
 	{
-	    "ID" "2201"
-	    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"	"item_the_spear_of_saddle"
-	    "BaseClass"           "item_datadriven"
-	    "ItemCost"            "100" //if its 0, it will combine without needing a recipe.
-	    "ItemRecipe"          "1" //destroyed after combine
-	    "ItemResult"          "item_the_spear_of_saddle_2" //the result of combining the ItemRequirements
-	    "ItemRequirements"
-	    {
-	        "01" "item_the_spear_of_saddle_1;item_recipe_spear_of_saddle_2"
-	    }
+	    "ID" "3005"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1300"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_spear_of_saddle_2"
+		"ItemRequirements"
+		{
+			"01" "item_the_spear_of_saddle_1"
+		}
 	}
 
 	// 鞍切_2
@@ -5561,17 +5540,11 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"ItemDroppable" "1"
+		"ItemSellable" "1"
 		"ItemPurchasable" "1"
+		"ItemKillable" "1"
 		"FightRecapLevel"	"1"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
 		"ID"	"15892"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -5579,11 +5552,7 @@
 		"ItemCost"	"1300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"
-	    {
-	        "01" "item_the_spear_of_saddle_1"
-	        "02" "item_r_spear_of_saddle_2"
-	    }
+
 		"Modifiers"
 		{
 			"Passive_spear_of_saddle_2"
