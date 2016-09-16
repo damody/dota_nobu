@@ -3998,7 +3998,7 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
 				}
 				"OnAttackLanded"
 				// "%attack_damage" is set to the damage value before mitigation
@@ -6832,6 +6832,2535 @@
 		"ItemRequirements"
 		{
 			"01" "item_thunderbolt_book;item_storm_book"  //合成所需物品
+		}
+	}
+
+	// 紅雪左文字
+	"item_kousetsusamonnji"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_kousetsusamonnji"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"12"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1519"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"6150"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "60"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 桔梗仙冬月
+	"item_kisyosennfuyuzuki"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_kisyosennfuyuzuki"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"36"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"220"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1520"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4650"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 嗜血妖刀
+	"item_the_blade_of_blood_devourer"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_blade_of_blood_devourer"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"40"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"75"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1521"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4750"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 備前兼光
+	"item_bizennosafunekanemitsu"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_bizennosafunekanemitsu"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"30"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1522"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"6020"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 鬼蜘蛛．夜哭
+	"item_the_scream_of_spiders"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_scream_of_spiders"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1523"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"8250"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "15"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "15"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "15"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "65"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 凍雲
+	"item_kokumo"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_kokumo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1525"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4550"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "42"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 神直毘御劍
+	"item_the_sword_of_kaminaobi"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_sword_of_kaminaobi"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"65"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"125"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1526"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"5300"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "25"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 雷切
+	"item_raikiri"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_raikiri"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1527"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"5470"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "80"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 忍者裝束
+	"item_ninja_cloth"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_ninja_cloth"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1528"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4650"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "25" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "6"	//防禦
+				}
+			}
+		}
+	}
+
+	// 黑漆塗五枚胴
+	"item_the_dark_armor"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_dark_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1529"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2820"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+				}
+			}
+		}
+	}
+
+	// 靈都宮燈
+	"item_reito_lantern"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_reito_lantern"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"25"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"200"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1623"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4250"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 鬼頰當
+	"item_the_hooate_of_ghost"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_hooate_of_ghost"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1593"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1250"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "300" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 靜心兜
+	"item_the_poketto_of_meisō"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_poketto_of_meisō"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"11"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"60"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1594"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1620"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "3"	//防禦
+				}
+			}
+		}
+	}
+
+	// 武士服‧一階
+	"item_samurai_cloth"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_samurai_cloth"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1595"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2950"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "50" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 武士服‧二階
+	"item_samurai_cloth_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_samurai_cloth"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"15951"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3650"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "70" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 南蠻胴具足
+	"item_nannbann_armor"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_nannbann_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"30"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1596"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4800"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "780" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "6"	//防禦
+				}
+			}
+		}
+	}
+
+	// 狐火大鎧
+	"item_foxfire_armor"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_foxfire_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1597"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3050"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+				}
+			}
+		}
+	}
+
+	// 當世具足
+	"item_contemporary_armor"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_contemporary_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"22"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1598"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "480" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "400"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+				}
+			}
+		}
+	}
+
+	// 鬼之籠手
+	"item_ghost_gloves"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_ghost_gloves"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1599"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2700"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "400" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 掛面具足
+	"item_ghost_gloves"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_ghost_gloves"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1804"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3150"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+				}
+			}
+		}
+	}
+
+	// 真知短甲
+	"item_prophet_armor"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_prophet_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1805"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1750"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 制魔腹卷
+	"item_devil_supressor_armor"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_devil_supressor_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"210"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1806"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3200"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+				}
+			}
+		}
+	}
+
+	// 吹雪護肩
+	"item_fubuki_shoulders"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_fubuki_shoulders"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"19"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1807"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3850"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+				}
+			}
+		}
+	}
+
+	// 暗部長靴
+	"item_dark_boots"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_dark_boots"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1808"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2900"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "30"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "90"	//跑速
+				}
+			}
+		}
+	}
+
+	// 仕手能靴
+	"item_mana_boots"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_mana_boots"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1809"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2350"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "60"	//跑速
+				}
+			}
+		}
+	}
+
+	// 禦魔長踏
+	"item_magic_defence_boots"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_magic_defence_boots"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1810"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2800"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "60"	//跑速
+				}
+			}
+		}
+	}
+
+	// 琉球浪人木屐
+	"item_ryukyu_rōnin_clogs"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_ryukyu_rōnin_clogs"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1811"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2850"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "360" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "75"	//跑速
+				}
+			}
+		}
+	}
+
+	// 逝者之笏
+	"item_death_of_scepter"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_death_of_scepter"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"80"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"400"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1812"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4100"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "15"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "15"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "15"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "300"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 妖化河童殼
+	"item_the_shell_of_spirituality_kappa"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_shell_of_spirituality_kappa"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"22"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"90"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1813"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1620"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "200"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 平蜘蛛釜
+	"item_kotennmyohiragumo"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_kotennmyohiragumo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"48"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"200"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1814"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3350"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "300" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 御魔護符
+	"item_magic_talisman"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_magic_talisman"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"40"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1815"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1300"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 月輪鏡
+	"item_moon_mirror"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_moon_mirror"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"25"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"160"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1816"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2100"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 八幡鈴
+	"item_hachiman_bell"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_hachiman_bell"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1817"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1750"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "150" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 鬼面
+	"item_ghost_mask"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_ghost_mask"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"40"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"25"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1818"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1900"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 薩摩銃
+	"item_satsuma_gun"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_satsuma_gun"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"55"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1819"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3050"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 孫子兵法．山之章
+	"The Art of War:Mountain chapter"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"The Art of War:Mountain chapter"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"26"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1533"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2185"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 孫子兵法殘冊
+	"item_the_lost_art_of_war_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_lost_art_of_war_1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"29"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"200"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1534"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"5150"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 孫子兵法斷簡
+	"item_the_lost_art_of_war_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_lost_art_of_war_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"35"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1535"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"5285"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 孫子兵法全本
+	"item_the_art_of_war"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_art_of_war"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"35"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1536"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"10935"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "20"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 茶碗
+	"item_tea_bowl"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_tea_bowl"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1800"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1600"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "150" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 怒雷之書
+	"item_thunderbolt_book"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_thunderbolt_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"4"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"75"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1510"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3350"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 水計之書
+	"item_flood_book"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_flood_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"28"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"280"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1512"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 火計之書
+	"item_ignite_book"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_ignite_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"30"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"300"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1513"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3750"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 狂風之書
+	"item_storm_book"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_storm_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"40"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"400"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1514"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3200"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
 		}
 	}
 }
