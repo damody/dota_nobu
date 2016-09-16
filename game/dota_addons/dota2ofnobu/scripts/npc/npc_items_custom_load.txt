@@ -208,7 +208,7 @@
 //		// General
 //		// -------------------------------------------------------------------------------------------------------------
 //		"BaseClass"	"item_datadriven"
-//		"AbilityTextureName"	"item_D09_3"
+//		"AbilityTextureName"	"item_the_over_lightning_art_of_war"
 //		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AOE"
 //		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 //		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1106,7 +1106,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityManaCost"	"125"
 		// Valve's version of this item uses the ID "1".
-		"ID"	"1503"
+		"ID"	"1505"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q03_2/q03_2.vpcf"
@@ -6321,7 +6321,7 @@
 		"ItemResult" "item_the_dark_armor"  //合成後物品
 		"ItemRequirements"
 		{
-			"01" "item_the_poketto_of_meisō"  //合成所需物品
+			"01" "item_the_poketto_of_meiso"  //合成所需物品
 		}
 	}
 
@@ -6356,14 +6356,14 @@
 	}
 
 	//靜心兜製作單
-	"item_recipe_the_poketto_of_meisō" 
+	"item_recipe_the_poketto_of_meiso" 
 	{
 	    "ID" "3042"
 	    "BaseClass" "item_recipe_arcane_boots"
 		"ItemCost" "550"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
-		"ItemResult" "item_the_poketto_of_meisō"  //合成後物品
+		"ItemResult" "item_the_poketto_of_meiso"  //合成後物品
 		"ItemRequirements"
 		{
 			"01" "item_spirit_ingot;item_lesser_shield"  //合成所需物品
@@ -6536,14 +6536,14 @@
 	}
 
 	//琉球浪人木屐製作單
-	"item_recipe_ryukyu_rōnin_clogs" 
+	"item_recipe_ryukyu_ronin_clogs" 
 	{
 	    "ID" "3054"
 	    "BaseClass" "item_recipe_arcane_boots"
 		"ItemCost" "1050"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
-		"ItemResult" "item_ryukyu_rōnin_clogs"  //合成後物品
+		"ItemResult" "item_ryukyu_ronin_clogs"  //合成後物品
 		"ItemRequirements"
 		{
 			"01" "item_pleated_skirt;item_health_ingot;item_lesser_armor"  //合成所需物品
@@ -6831,7 +6831,7 @@
 		"ItemResult" "item_the_over_lightning_art_of_war"  //合成後物品
 		"ItemRequirements"
 		{
-			"01" "item_thunderbolt_book;item_storm_book"  //合成所需物品
+			"01" "item_storm_book;item_thunderbolt_book"  //合成所需物品
 		}
 	}
 
@@ -7520,12 +7520,12 @@
 	}
 
 	// 靜心兜
-	"item_the_poketto_of_meisō"
+	"item_the_poketto_of_meiso"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_the_poketto_of_meisō"
+		"AbilityTextureName"	"item_the_poketto_of_meiso"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -8321,12 +8321,12 @@
 	}
 
 	// 琉球浪人木屐
-	"item_ryukyu_rōnin_clogs"
+	"item_ryukyu_ronin_clogs"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_ryukyu_rōnin_clogs"
+		"AbilityTextureName"	"item_ryukyu_ronin_clogs"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -8843,12 +8843,12 @@
 	}
 
 	// 孫子兵法．山之章
-	"The Art of War:Mountain chapter"
+	"item_the_art_of_war_mountain_chapter"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"The Art of War:Mountain chapter"
+		"AbilityTextureName"	"item_the_art_of_war_mountain_chapter"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -9349,6 +9349,64 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 林之卷
+	"item_forest_scroll"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_forest_scroll"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"35"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"75"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1503"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"950"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
