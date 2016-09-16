@@ -5500,34 +5500,6 @@
 		}
 	}
 
-	"item_recipe_the_spear_of_saddle_1" 
-	{
-	    "ID" "3004"
-	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "1300"
-		"ItemShopTags" ""
-		"ItemRecipe" "1"
-		"ItemResult" "item_the_spear_of_saddle_1"
-		"ItemRequirements"
-		{
-			"01" "item_the_spear_of_saddle"
-		}
-	}
-
-	"item_recipe_the_spear_of_saddle_2" 
-	{
-	    "ID" "3005"
-	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "1300"
-		"ItemShopTags" ""
-		"ItemRecipe" "1"
-		"ItemResult" "item_the_spear_of_saddle_2"
-		"ItemRequirements"
-		{
-			"01" "item_the_spear_of_saddle_1"
-		}
-	}
-
 	// 鞍切_2
 	"item_the_spear_of_saddle_2"
 	{
@@ -5664,7 +5636,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1550"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -5690,6 +5662,1116 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
+		}
+	}
+
+	//鞍切‧一階製作單
+	"item_recipe_the_spear_of_saddle_1" 
+	{
+	    "ID" "3000"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1300"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_spear_of_saddle"
+		"ItemRequirements"
+		{
+			"01" "item_cursed_katana;item_samurai's_badge"
+		}
+	}
+
+	//鞍切‧二階製作單
+	"item_recipe_the_spear_of_saddle_2" 
+	{
+	    "ID" "3001"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1300"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_spear_of_saddle_1"
+		"ItemRequirements"
+		{
+			"01" "item_the_spear_of_saddle"
+		}
+	}
+
+	//鞍切‧三階製作單
+	"item_recipe_the_spear_of_saddle_3" 
+	{
+	    "ID" "3002"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1300"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_spear_of_saddle_2"
+		"ItemRequirements"
+		{
+			"01" "item_the_spear_of_saddle_1"
+		}
+	}
+
+	//浪人十手‧一階製作單
+	"item_recipe_ronin_jitte_1" 
+	{
+	    "ID" "3003"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ronin_jitte"
+		"ItemRequirements"
+		{
+			"01" "item_naginata;item_mana_ingot"
+		}
+	}
+	
+	//浪人十手‧二階製作單
+	"item_recipe_ronin_jitte_2" 
+	{
+	    "ID" "3004"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ronin_jitte_1"
+		"ItemRequirements"
+		{
+			"01" "item_ronin_jitte"
+		}
+	}
+
+	//浪人十手‧三階製作單
+	"item_recipe_ronin_jitte_3" 
+	{
+	    "ID" "3005"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ronin_jitte_2"
+		"ItemRequirements"
+		{
+			"01" "item_ronin_jitte_1"
+		}
+	}
+
+	//禦神法輪‧一階製作單
+	"item_recipe_mana_thief_1" 
+	{
+	    "ID" "3006"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1250"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_mana_thief"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_staff;item_speed_clothes;item_intelligence_ingot"  //合成前物品
+		}
+	}
+
+	//禦神法輪‧二階製作單
+	"item_recipe_mana_thief_2" 
+	{
+	    "ID" "3007"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1250"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_mana_thief_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_mana_thief"  //合成前物品
+		}
+	}
+
+	//武士服‧一階製作單
+	"item_recipe_samurai_cloth_1" 
+	{
+	    "ID" "3008"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "700"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_samurai_cloth"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_speed_clothes;item_regeneration_ingot;item_samurai's_badge"  //合成前物品
+		}
+	}
+
+	//武士服‧二階製作單
+	"item_recipe_samurai_cloth_2" 
+	{
+	    "ID" "3009"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "700"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_samurai_cloth_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_samurai_cloth"  //合成前物品
+		}
+	}
+
+	//舞雷刀製作單
+	"item_recipe_lightning_katana" 
+	{
+	    "ID" "3010"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "0"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_lightning_katana"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_katana;item_power_ingot;item_lightning_scroll"  //合成所需物品
+		}
+	}
+
+	//御魂製作單
+	"item_recipe_soul_adder" 
+	{
+	    "ID" "3011"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1050"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_soul_adder"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_staff;item_staff"  //合成所需物品
+		}
+	}
+
+	//十字槍製作單
+	"item_recipe_cross_spear" 
+	{
+	    "ID" "3012"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_cross_spear"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_spear;item_spear;item_insight_gem"  //合成所需物品
+		}
+	}
+
+	//陣太刀製作單
+	"item_recipe_gorgeous_tachi" 
+	{
+	    "ID" "3013"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "0"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_gorgeous_tachi"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_tachi;item_strength_ingot;item_agility_ingot;item_intelligence_ingot"  //合成所需物品
+		}
+	}
+
+	//野太刀製作單
+	"item_recipe_big_tachi" 
+	{
+	    "ID" "3014"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "0"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_big_tachi"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_tachi;item_power_ingot;item_brave_ring"  //合成所需物品
+		}
+	}
+
+	//長捲製作單
+	"item_recipe_variety_tachi" 
+	{
+	    "ID" "3015"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "600"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_variety_tachi"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_spear;item_strength_ingot;item_regeneration_ingot"  //合成所需物品
+		}
+	}
+
+	//戒杖刀製作單
+	"item_recipe_logs_big_tachi" 
+	{
+	    "ID" "3016"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "0"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_logs_big_tachi"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_tachi;item_intelligence_ingot;item_spell_book"  //合成所需物品
+		}
+	}
+
+	//皆朱槍製作單
+	"item_recipe_red_spear" 
+	{
+	    "ID" "3017"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_red_spear"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_naginata;item_fire_scroll"  //合成所需物品
+		}
+	}
+
+	//斬月槍製作單
+	"item_recipe_moon_spear" 
+	{
+	    "ID" "3018"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "0"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_moon_spear"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_naginata;item_spear;item_strength_ingot"  //合成所需物品
+		}
+	}
+
+	//逆刃刀製作單
+	"item_recipe_sakabatou" 
+	{
+	    "ID" "3019"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1050"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_sakabatou"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_katana;item_katana"  //合成所需物品
+		}
+	}
+
+	//琉璃光姬製作單
+	"item_recipe_glass_mitsutomo" 
+	{
+	    "ID" "3020"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_glass_mitsutomo"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_staff;item_regeneration_ingot;item_mana_ingot"  //合成所需物品
+		}
+	}
+
+	//闇牙黃泉津製作單
+	"item_recipe_the_dark_yellow_teeth_and_zimbabwe" 
+	{
+	    "ID" "3021"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_dark_yellow_teeth_and_zimbabwe"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_cursed_katana;item_ancient_doll"  //合成所需物品
+		}
+	}
+
+	//星杵製作單
+	"item_recipe_the_club_of_nebula" 
+	{
+	    "ID" "3022"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_club_of_nebula"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_spear"  //合成所需物品
+		}
+	}
+
+	//和泉守兼定製作單
+	"item_recipe_izuminokami_kanesada" 
+	{
+	    "ID" "3023"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_izuminokami_kanesada"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_katana;item_regeneration_ingot"  //合成所需物品
+		}
+	}
+
+	//忍者刀製作單
+	"item_recipe_ninja_sword" 
+	{
+	    "ID" "3024"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1100"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ninja_sword"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_katana;item_tachi"  //合成所需物品
+		}
+	}
+
+	//雪走製作單
+	"item_recipe_yubashiri" 
+	{
+	    "ID" "3025"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "700"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_yubashiri"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_frozen_ring;item_tachi"  //合成所需物品
+		}
+	}
+
+	//統率者鐵扇製作單
+	"item_recipe_commander_of_fan" 
+	{
+	    "ID" "3026"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1100"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_commander_of_fan"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_naginata;item_tachi;item_staff"  //合成所需物品
+		}
+	}
+
+	//鬼切製作單
+	"item_recipe_the_spear_of_ghost" 
+	{
+	    "ID" "3027"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1400"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_spear_of_ghost"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_gorgeous_tachi"  //合成所需物品
+		}
+	}
+
+	//蜘蛛切製作單
+	"item_recipe_the_spear_of_spiders" 
+	{
+	    "ID" "3028"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1550"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_spear_of_spiders"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_naginata;item_spear;item_intelligence_ingot"  //合成所需物品
+		}
+	}
+
+	//紅雪左文字製作單
+	"item_recipe_kousetsusamonnji" 
+	{
+	    "ID" "3029"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_kousetsusamonnji"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_big_tachi;item_red_spear"  //合成所需物品
+		}
+	}
+
+	//桔梗仙冬月製作單
+	"item_recipe_kisyosennfuyuzuki" 
+	{
+	    "ID" "3030"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "900"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_kisyosennfuyuzuki"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_yubashiri;item_staff"  //合成所需物品
+		}
+	}
+
+	//嗜血妖刀製作單
+	"item_recipe_the_blade_of_blood_devourer" 
+	{
+	    "ID" "3031"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_blade_of_blood_devourer"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_cursed_katana;item_ghost_mask"  //合成所需物品
+		}
+	}
+
+	//備前兼光製作單
+	"item_recipe_bizennosafunekanemitsu" 
+	{
+	    "ID" "3032"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1150"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_bizennosafunekanemitsu"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_logs_big_tachi;item_izuminokami_kanesada"  //合成所需物品
+		}
+	}
+
+	//鬼蜘蛛．夜哭製作單
+	"item_recipe_the_scream_of_spiders" 
+	{
+	    "ID" "3033"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_scream_of_spiders"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_spear_of_ghost;item_the_spear_of_spiders"  //合成所需物品
+		}
+	}
+
+	//巨龍製作單
+	"item_recipe_great_dragon" 
+	{
+	    "ID" "3034"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_great_dragon"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_club_of_nebula;item_spirit_ingot;item_health_ingot"  //合成所需物品
+		}
+	}
+
+	//凍雲製作單
+	"item_recipe_kokumo" 
+	{
+	    "ID" "3035"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "900"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_kokumo"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_yubashiri;item_tachi"  //合成所需物品
+		}
+	}
+
+	//神直毘御劍製作單
+	"item_recipe_the_sword_of_kaminaobi" 
+	{
+	    "ID" "3036"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_sword_of_kaminaobi"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_energy_ingot;item_moon_spear"  //合成所需物品
+		}
+	}
+
+	//雷切製作單
+	"item_recipe_raikiri" 
+	{
+	    "ID" "3037"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1150"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_raikiri"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_lightning_katana;item_cursed_katana"  //合成所需物品
+		}
+	}
+
+	//忍者裝束製作單
+	"item_recipe_ninja_cloth" 
+	{
+	    "ID" "3038"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1600"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ninja_cloth"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_speed_clothes;item_shun_armor"  //合成所需物品
+		}
+	}
+
+	//黑漆塗五枚胴製作單
+	"item_recipe_the_dark_armor" 
+	{
+	    "ID" "3039"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1050"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_dark_armor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_poketto_of_meisō"  //合成所需物品
+		}
+	}
+
+	//靈都宮燈製作單
+	"item_recipe_reito_lantern" 
+	{
+	    "ID" "3040"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1450"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_reito_lantern"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_moon_mirror;item_stable_shield"  //合成所需物品
+		}
+	}
+
+	//鬼頰當製作單
+	"item_recipe_the_hooate_of_ghost" 
+	{
+	    "ID" "3041"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "350"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_hooate_of_ghost"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_health_ingot"  //合成所需物品
+		}
+	}
+
+	//靜心兜製作單
+	"item_recipe_the_poketto_of_meisō" 
+	{
+	    "ID" "3042"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "550"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_poketto_of_meisō"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_spirit_ingot;item_lesser_shield"  //合成所需物品
+		}
+	}
+
+	//南蠻胴具足製作單
+	"item_recipe_nannbann_armor" 
+	{
+	    "ID" "3043"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1450"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_nannbann_armor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_hooate_of_ghost;item_the_hooate_of_ghost;item_protection_amulet"  //合成所需物品
+		}
+	}
+
+	//狐火大鎧製作單
+	"item_recipe_foxfire_armor" 
+	{
+	    "ID" "3044"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_foxfire_armor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_flame_armor;item_regeneration_ingot"  //合成所需物品
+		}
+	}
+
+	//當世具足製作單
+	"item_recipe_contemporary_armor" 
+	{
+	    "ID" "3045"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_contemporary_armor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_body_wrap;item_health_ingot;item_mana_ingot"  //合成所需物品
+		}
+	}
+
+	//鬼之籠手製作單
+	"item_recipe_ghost_gloves" 
+	{
+	    "ID" "3046"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ghost_gloves"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_health_ingot;item_lesser_armor;item_lesser_armor"  //合成所需物品
+		}
+	}
+
+	//掛面具足製作單
+	"item_recipe_shun_armor" 
+	{
+	    "ID" "3047"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "650"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_shun_armor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_samurai's_badge;item_samurai's_badge;item_stable_shield"  //合成所需物品
+		}
+	}
+
+	//真知短甲製作單
+	"item_recipe_prophet_armor" 
+	{
+	    "ID" "3048"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_prophet_armor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_lesser_armor;item_insight_gem"  //合成所需物品
+		}
+	}
+
+	//制魔腹卷製作單
+	"item_recipe_devil_supressor_armor" 
+	{
+	    "ID" "3049"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_devil_supressor_armor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_regeneration_ingot;item_regeneration_ingot;item_stable_shield"  //合成所需物品
+		}
+	}
+
+	//吹雪護肩製作單
+	"item_recipe_fubuki_shoulders" 
+	{
+	    "ID" "3050"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1150"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_fubuki_shoulders"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_staff;item_staff;item_stable_shield"  //合成所需物品
+		}
+	}
+
+	//暗部長靴製作單
+	"item_recipe_dark_boots" 
+	{
+	    "ID" "3051"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_dark_boots"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_pleated_skirt;item_speed_clothes;item_spear"  //合成所需物品
+		}
+	}
+
+	//仕手能靴製作單
+	"item_recipe_mana_boots" 
+	{
+	    "ID" "3052"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_mana_boots"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_pleated_skirt;item_spirit_ingot"  //合成所需物品
+		}
+	}
+
+	//禦魔長踏製作單
+	"item_recipe_magic_defence_boots" 
+	{
+	    "ID" "3053"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_magic_defence_boots"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_pleated_skirt;item_regeneration_ingot;item_regeneration_ingot"  //合成所需物品
+		}
+	}
+
+	//琉球浪人木屐製作單
+	"item_recipe_ryukyu_rōnin_clogs" 
+	{
+	    "ID" "3054"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1050"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ryukyu_rōnin_clogs"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_pleated_skirt;item_health_ingot;item_lesser_armor"  //合成所需物品
+		}
+	}
+
+	//逝者之笏製作單
+	"item_recipe_death_of_scepter" 
+	{
+	    "ID" "3055"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_death_of_scepter"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_energy_ingot;item_mana_ingot"  //合成所需物品
+		}
+	}
+
+	//妖化河童殼製作單
+	"item_recipe_the_shell_of_spirituality_kappa" 
+	{
+	    "ID" "3056"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "550"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_shell_of_spirituality_kappa"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_lesser_shield;item_mana_ingot"  //合成所需物品
+		}
+	}
+
+	//平蜘蛛釜製作單
+	"item_recipe_kotennmyohiragumo" 
+	{
+	    "ID" "3057"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "850"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_kotennmyohiragumo"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_tea_bowl;item_health_ingot"  //合成所需物品
+		}
+	}
+
+	//御魔護符製作單
+	"item_recipe_magic_talisman" 
+	{
+	    "ID" "3058"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "650"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_magic_talisman"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_protection_amulet"  //合成所需物品
+		}
+	}
+
+	//月輪鏡製作單
+	"item_recipe_moon_mirror" 
+	{
+	    "ID" "3059"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_moon_mirror"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_tea_bowl"  //合成所需物品
+		}
+	}
+
+	//八幡鈴製作單
+	"item_recipe_hachiman_bell" 
+	{
+	    "ID" "3060"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_hachiman_bell"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_spirit_ingot;item_agility_ingot"  //合成所需物品
+		}
+	}
+
+	//鬼面製作單
+	"item_recipe_ghost_mask" 
+	{
+	    "ID" "3061"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_ghost_mask"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_strength_ingot;item_agility_ingot;item_intelligence_ingot"  //合成所需物品
+		}
+	}
+
+	//薩摩銃製作單
+	"item_recipe_satsuma_gun" 
+	{
+	    "ID" "3062"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_satsuma_gun"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_blowgun"  //合成所需物品
+		}
+	}
+
+	//孫子兵法．風之章製作單
+	"item_recipe_the_art_of_war_tornado_chapter" 
+	{
+	    "ID" "3063"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_art_of_war_tornado_chapter"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_wind_scroll;item_agility_ingot;item_agility_ingot"  //合成所需物品
+		}
+	}
+
+	//孫子兵法．林之章製作單
+	"item_recipe_the_art_of_war_forest_chapter" 
+	{
+	    "ID" "3064"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_art_of_war_forest_chapter"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_forest_scroll;item_intelligence_ingot;item_intelligence_ingot"  //合成所需物品
+		}
+	}
+
+	//孫子兵法．火之章製作單
+	"item_recipe_the_art_of_war_flame_chapter" 
+	{
+	    "ID" "3065"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_art_of_war_flame_chapter"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_fire_scroll;item_power_ingot;item_power_ingot"  //合成所需物品
+		}
+	}
+
+	//孫子兵法．山之章製作單
+	"item_recipe_the_art_of_war_mountain_chapter" 
+	{
+	    "ID" "3066"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_art_of_war_mountain_chapter"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_fire_scroll;item_strength_ingot;item_strength_ingot"  //合成所需物品
+		}
+	}
+
+	//孫子兵法殘冊製作單
+	"item_recipe_the_lost_art_of_war_1" 
+	{
+	    "ID" "3067"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "900"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_lost_art_of_war_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_art_of_war_forest_chapter;item_the_art_of_war_flame_chapter"  //合成所需物品
+		}
+	}
+
+	//孫子兵法斷簡製作單
+	"item_recipe_the_lost_art_of_war_2" 
+	{
+	    "ID" "3068"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "900"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_lost_art_of_war_2"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_art_of_war_tornado_chapter;item_the_art_of_war_mountain_chapter"  //合成所需物品
+		}
+	}
+
+	//孫子兵法全本製作單
+	"item_recipe_the_art_of_war" 
+	{
+	    "ID" "3069"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_art_of_war"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_lost_art_of_war_1;item_the_lost_art_of_war_2"  //合成所需物品
+		}
+	}
+
+	//赤雷卷軸製作單
+	"item_recipe_the_red_lightning_chapter" 
+	{
+	    "ID" "3070"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_red_lightning_chapter"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_lightning_scroll;item_intelligence_ingot;item_intelligence_ingot"  //合成所需物品
+		}
+	}
+
+	//真．赤雷卷製作單
+	"item_recipe_the_red_lightning_chapter_hyper" 
+	{
+	    "ID" "3071"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "750"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_red_lightning_chapter_hyper"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_red_lightning_chapter"  //合成所需物品
+		}
+	}
+
+	//大炎上之書製作單
+	"item_recipe_the_overflame_art_of_war" 
+	{
+	    "ID" "3072"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1750"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_overflame_art_of_war"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_rockfall_book;item_ignite_book"  //合成所需物品
+		}
+	}
+
+	//無上雷暴之書製作單
+	"item_recipe_the_over_lightning_art_of_war" 
+	{
+	    "ID" "3073"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "2100"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_over_lightning_art_of_war"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_thunderbolt_book;item_storm_book"  //合成所需物品
 		}
 	}
 }
