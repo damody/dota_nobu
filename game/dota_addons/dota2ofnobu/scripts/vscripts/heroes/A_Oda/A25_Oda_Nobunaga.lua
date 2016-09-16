@@ -43,11 +43,9 @@ function A25E( keys )
 		local pos = casterLocation + RandomVector(RandomInt(randonint , range-randonint))
 		local spike = ParticleManager:CreateParticle("particles/a25e/a25e.vpcf", PATTACH_ABSORIGIN, keys.caster)
 		ParticleManager:SetParticleControl(spike, 0, pos)
-		-- Timers:CreateTimer( 0.0, function()
-		-- 	ParticleManager:DestroyParticle(spike,false)
-		-- 	return nil
-		-- end
-		-- )
+		Timers:CreateTimer(5, function() 
+			ParticleManager:DestroyParticle(spike,true)
+		end)
 	end
 	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), casterLocation, nil, range+50, 
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )

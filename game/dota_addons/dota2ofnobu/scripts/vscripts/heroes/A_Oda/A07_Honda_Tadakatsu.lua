@@ -159,7 +159,7 @@ end
 
 ----------------------------------------------------------------------------<<A07E>>------------------------------------------------------------------------------
 function A07E_SE( keys )
-	local caster = keys.caster
+	local caster = keys.target
 	local dummy = CreateUnitByName( "hide_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
 
 	AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,dummy,2.0,nil)

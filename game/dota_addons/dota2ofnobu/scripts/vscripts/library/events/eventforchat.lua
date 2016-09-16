@@ -61,8 +61,9 @@ local function chat_of_test(keys)
 		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 	end
 	
-	if s == "-old" then
-		if (caster:GetUnitName() == "npc_dota_hero_centaur") then
+	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
+		caster.isold = true
+		if (caster:GetUnitName() == "npc_dota_hero_centaur") then -- 本多忠勝
 			caster:RemoveAbility("A07W")
 			caster:RemoveAbility("A07E")
 			caster:RemoveAbility("A07R")
@@ -73,13 +74,11 @@ local function chat_of_test(keys)
 			caster:AddAbility("A07E_old")
 			caster:AddAbility("A07R_old")
 			caster:AddAbility("A07T_old")
-		elseif (caster:GetUnitName() == "npc_dota_hero_pugna") then
-			caster:RemoveAbility("B25W")
+		elseif (caster:GetUnitName() == "npc_dota_hero_pugna") then -- 本願寺顯如
 			caster:RemoveAbility("B25E")
 			caster:RemoveAbility("B25R")
 			caster:RemoveAbility("B25T")
 
-			caster:AddAbility("B25W")
 			caster:AddAbility("B25E_old")
 			caster:AddAbility("B25R_old")
 			caster:AddAbility("B25T_old")
@@ -114,10 +113,7 @@ local function chat_of_test(keys)
 		ShuaGuai_Of_C( )
 	elseif s == "hp" then
 		print("nobu"..id)
-		Timers:CreateTimer(function()
-			caster:SetHealth(caster:GetMaxHealth())
-			return 0.1
-		end)
+		caster:SetHealth(caster:GetMaxHealth())
 	elseif s == "mp" then
 		print("nobu"..id)
 		Timers:CreateTimer(function()

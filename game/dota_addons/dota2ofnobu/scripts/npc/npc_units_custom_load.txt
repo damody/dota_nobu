@@ -818,89 +818,6 @@
 		"StatusManaRegen"	"0"
 	}
 
-	// 鐵砲兵
-	"Test_com_gunner_clone"
-	{
-		// General
-		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
-		// Add model
-		"Model"	"models/arquebusier/arquebusier.vmdl"
-		"ModelScale"	"0.8"
-		"Level"	"3"
-		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"HealthBarOffset"	"140"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference: A0NH
-		"Ability1"	""
-		// Reference: A0GD
-		"Ability2"	""
-		// Reference: A0GW
-		"Ability3"	""
-		// Armor
-		// ----------------------------------------------------------------
-		"ArmorPhysical"	"2"
-		"MagicalResistance"	"0"
-		// Attack
-		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"	"77.0"
-		"AttackDamageMax"	"85.0"
-		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"2.00"
-		"AttackAnimationPoint"	"0.17"
-		"AttackAcquisitionRange"	"700.00"
-		"AttackRange"	"650"
-		"ProjectileSpeed"	"99999"
-		// Bounty
-		// ----------------------------------------------------------------
-		"BountyGoldMin"	"61.0"
-		"BountyGoldMax"	"63.0"
-		"BountyXP"	"30"
-		// Gold and Lumber
-		// ----------------------------------------------------------------
-		"GoldCost"	"60"
-		"LumberCost"	"60"
-		// Movement
-		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"290"
-		"MovementTurnRate"	"0.5"
-		// Status
-		// ----------------------------------------------------------------
-		"StatusHealth"	"780"
-		"StatusHealthRegen"	"0.25"
-		"StatusMana"	"200"
-		"StatusManaRegen"	"0.00"
-		"StatusStartingMana"	"200"
-		// Vision
-		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"1400"
-		"VisionNighttimeRange"	"800"
-		// Team
-		// ----------------------------------------------------------------
-		"TeamName"	"DOTA_TEAM_NEUTRALS"
-		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
-		"AutoAttacksByDefault"	"1"
-		"ProjectileModel"	"particles/items2_fx/necronomicon_archer_projectile.vpcf"
-
-	}
-
 	"npc_dummy_unit_Ver2"
 	{
 		// General
@@ -1644,6 +1561,89 @@
 		"Ability16"	""
 	}
 
+	// 鐵砲兵
+	"Test_com_gunner_clone"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/arquebusier/arquebusier.vmdl"
+		"ModelScale"	"0.8"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0NH
+		"Ability1"	""
+		// Reference: A0GD
+		"Ability2"	""
+		// Reference: A0GW
+		"Ability3"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"77.0"
+		"AttackDamageMax"	"85.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"2.00"
+		"AttackAnimationPoint"	"0.17"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"650"
+		"ProjectileSpeed"	"99999"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"61.0"
+		"BountyGoldMax"	"63.0"
+		"BountyXP"	"30"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"60"
+		"LumberCost"	"60"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"290"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"780"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"200"
+		"StatusManaRegen"	"0.00"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AutoAttacksByDefault"	"1"
+		"ProjectileModel"	"particles/items2_fx/necronomicon_archer_projectile.vpcf"
+
+	}
+
 	// 足輕
 	"com_ashigaru_spearmen"
 	{
@@ -1689,7 +1689,7 @@
 		"MovementTurnRate"	"0.50"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"700"
+		"StatusHealth"	"650"
 		"StatusHealthRegen"	"0.25"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
@@ -1771,7 +1771,7 @@
 		"MovementTurnRate"	"0.50"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"700"
+		"StatusHealth"	"650"
 		"StatusHealthRegen"	"0.25"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
@@ -2099,7 +2099,7 @@
 		"Ability2"	""
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"2"
+		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
@@ -2124,7 +2124,7 @@
 		"MovementTurnRate"	"0.5"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"750"
+		"StatusHealth"	"650"
 		"StatusHealthRegen"	"0.25"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
@@ -2173,7 +2173,7 @@
 		"Ability2"	""
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"2"
+		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
@@ -2198,7 +2198,7 @@
 		"MovementTurnRate"	"0.5"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"750"
+		"StatusHealth"	"650"
 		"StatusHealthRegen"	"0.25"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
@@ -2442,7 +2442,7 @@
 		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/cavalry/cavalry.vmdl"
-		"ModelScale"	"0.8"
+		"ModelScale"	"1"
 		"Level"	"3"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"100"

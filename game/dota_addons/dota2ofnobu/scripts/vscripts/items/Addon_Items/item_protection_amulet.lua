@@ -32,16 +32,10 @@ function modifier_protection_amulet:OnTakeDamage(event)
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
 	    if (self.caster ~= nil) then
-		    local otherattack = false
-		    local am = self.caster:FindAllModifiers()
-		    for _,v in pairs(am) do
-				if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber()  or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-					otherattack = true
-				end
-			end
+
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		            if (damage_type == DAMAGE_TYPE_MAGICAL or otherattack == true) and self.caster.protection_amulet == true then
+		            if (damage_type == DAMAGE_TYPE_MAGICAL) and self.caster.protection_amulet == true then
 		            	Timers:CreateTimer(0.1, function() 
 		            		self.caster.protection_amulet = false
 		            		self.caster:Purge( false, true, true, true, true)
