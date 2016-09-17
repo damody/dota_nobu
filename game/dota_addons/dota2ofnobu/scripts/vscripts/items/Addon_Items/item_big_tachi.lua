@@ -1,22 +1,22 @@
-LinkLuaModifier( "brave_ring", "items/Addon_Items/item_brave_ring.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "big_tachi", "items/Addon_Items/item_big_tachi.lua",LUA_MODIFIER_MOTION_NONE )
 --長船
 
 
-brave_ring = class({})
+big_tachi = class({})
 
-function brave_ring:IsHidden()
+function big_tachi:IsHidden()
 	return true
 end
 
-function brave_ring:DeclareFunctions()
+function big_tachi:DeclareFunctions()
 	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
 end
 
-function brave_ring:GetModifierPreAttack_CriticalStrike()
+function big_tachi:GetModifierPreAttack_CriticalStrike()
 	return 200
 end
 
-function brave_ring:CheckState()
+function big_tachi:CheckState()
 	local state = {
 	}
 	return state
@@ -28,16 +28,16 @@ function Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
-	if (caster.brave_ring_count == nil) then
-		caster.brave_ring_count = 0
+	if (caster.big_tachi_count == nil) then
+		caster.big_tachi_count = 0
 	end
-	if (ran > 15) then
-		caster.brave_ring_count = caster.brave_ring_count + 1
+	if (ran > 20) then
+		caster.big_tachi_count = caster.big_tachi_count + 1
 	end
-	if (caster.brave_ring_count > 7 or ran <= 15) then
-		caster.brave_ring_count = 0
+	if (caster.big_tachi_count > 5 or ran <= 20) then
+		caster.big_tachi_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-		caster:AddNewModifier(caster, skill, "brave_ring", { duration = 0.1 } )
+		caster:AddNewModifier(caster, skill, "big_tachi", { duration = 0.1 } )
 		--SE
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 		-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

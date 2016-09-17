@@ -58,10 +58,10 @@ function modifier_protection_amulet:OnTakeDamage(event)
 							local item = self.caster:GetItemInSlot(itemSlot)
 							if item ~= nil and item:GetName() == "item_protection_amulet" then
 								hasitem = true
-								item:StartCooldown(5)
+								item:StartCooldown(30)
 							end
 						end
-						Timers:CreateTimer(5, function() 
+						Timers:CreateTimer(30, function() 
 							self.caster.protection_amulet = true
 							print("self.caster.protection_amulet")
 						end)

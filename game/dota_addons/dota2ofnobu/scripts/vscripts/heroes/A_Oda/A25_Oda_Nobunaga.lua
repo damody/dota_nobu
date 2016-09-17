@@ -5,8 +5,6 @@ local A25R_level = 0
 LinkLuaModifier( "A25R_critical", "scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua",LUA_MODIFIER_MOTION_NONE )
 
 
-
-
 function A25W( keys )
 	local caster = keys.caster
 	local ability	= keys.ability
@@ -23,10 +21,11 @@ function A25W( keys )
 		)
 end
 
-
-
-
-
+function BladeFuryStop( event )
+	local caster = event.caster
+	
+	caster:StopSound("Hero_Juggernaut.BladeFuryStart")
+end
 --EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 function A25E( keys )

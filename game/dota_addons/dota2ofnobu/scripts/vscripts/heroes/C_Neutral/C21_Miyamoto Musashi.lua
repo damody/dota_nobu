@@ -300,3 +300,9 @@ function A21R( keys )
 		end
 	end
 end
+
+function BladeFuryStop( event )
+	local caster = event.caster
+	
+	caster:StopSound("Hero_Juggernaut.BladeFuryStart")
+end

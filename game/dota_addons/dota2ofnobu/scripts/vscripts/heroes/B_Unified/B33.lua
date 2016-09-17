@@ -103,7 +103,7 @@ function B33T( keys )
 	Physics:Unit(dummy)
 
 	Timers:CreateTimer(0.1, function()
-			dummy:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin())*2)
+			dummy:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin())*3)
 		end)
 
 	-- local particle=ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_POINT,caster)
@@ -126,7 +126,7 @@ function B33T( keys )
 	local isstart = false
     Timers:CreateTimer(time, function()
 
-    	if IsValidEntity(target) not target:IsAlive() or (isstart and not target:HasModifier("modifier_spawn_spiderlings_datadriven")) then
+    	if not IsValidEntity(target) or  not target:IsAlive() or (isstart and not target:HasModifier("modifier_spawn_spiderlings_datadriven")) then
     		dummy:ForceKill( true )
     		if target:HasModifier("modifier_spawn_spiderlings_datadriven") then
     			target:RemoveModifierByName("modifier_spawn_spiderlings_datadriven")

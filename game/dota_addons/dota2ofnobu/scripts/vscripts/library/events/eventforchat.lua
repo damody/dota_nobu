@@ -39,6 +39,7 @@ local function chat_of_test(keys)
 			GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 	end
+	
 	if string.match(s,"item") then
 		for itemSlot=0,5 do
 			local item = caster:GetItemInSlot(itemSlot)

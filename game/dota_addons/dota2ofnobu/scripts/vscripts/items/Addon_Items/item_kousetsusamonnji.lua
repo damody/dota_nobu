@@ -1,22 +1,22 @@
-LinkLuaModifier( "brave_ring", "items/Addon_Items/item_brave_ring.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "kousetsusamonnji", "items/Addon_Items/item_kousetsusamonnji.lua",LUA_MODIFIER_MOTION_NONE )
 --長船
 
 
-brave_ring = class({})
+kousetsusamonnji = class({})
 
-function brave_ring:IsHidden()
+function kousetsusamonnji:IsHidden()
 	return true
 end
 
-function brave_ring:DeclareFunctions()
+function kousetsusamonnji:DeclareFunctions()
 	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
 end
 
-function brave_ring:GetModifierPreAttack_CriticalStrike()
+function kousetsusamonnji:GetModifierPreAttack_CriticalStrike()
 	return 200
 end
 
-function brave_ring:CheckState()
+function kousetsusamonnji:CheckState()
 	local state = {
 	}
 	return state
@@ -28,16 +28,16 @@ function Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
-	if (caster.brave_ring_count == nil) then
-		caster.brave_ring_count = 0
+	if (caster.kousetsusamonnji_count == nil) then
+		caster.kousetsusamonnji_count = 0
 	end
-	if (ran > 15) then
-		caster.brave_ring_count = caster.brave_ring_count + 1
+	if (ran > 36) then
+		caster.kousetsusamonnji_count = caster.kousetsusamonnji_count + 1
 	end
-	if (caster.brave_ring_count > 7 or ran <= 15) then
-		caster.brave_ring_count = 0
+	if (caster.kousetsusamonnji_count > 3 or ran <= 36) then
+		caster.kousetsusamonnji_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-		caster:AddNewModifier(caster, skill, "brave_ring", { duration = 0.1 } )
+		caster:AddNewModifier(caster, skill, "kousetsusamonnji", { duration = 0.1 } )
 		--SE
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 		-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

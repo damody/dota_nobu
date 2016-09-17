@@ -1,4 +1,4 @@
-
+require("equilibrium_constant")
 --單位創建也會運行
 
 model_lookup = {}
@@ -73,7 +73,7 @@ function Nobu:OnHeroIngame( keys )
 		hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
 		hero:AddItem(CreateItem("item_protection_amulet", hero, hero))
 		
-		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, 2)
+		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
 		donkey:SetOwner(hero)
 		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
     donkey:SetBaseMaxHealth(1000)
@@ -81,7 +81,7 @@ function Nobu:OnHeroIngame( keys )
     donkey:SetPhysicalArmorBaseValue(10)
     donkey:SetBaseMoveSpeed(2000)
     donkey:AddAbility("for_magic_immune")
-    donkey:AddNewModifier(caster, nil, "modifier_movespeed_cap", { duration = 600 })
+    donkey:AddNewModifier(donkey, nil, "modifier_movespeed_cap", { duration = 600 })
       end
       Timers:CreateTimer(1, function ()
           for itemSlot=0,5 do

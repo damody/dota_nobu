@@ -1,3 +1,4 @@
+
 print ( '[Nobu-lua] ADDON INIT EXECUTED' )
 
 --【全局變量】
