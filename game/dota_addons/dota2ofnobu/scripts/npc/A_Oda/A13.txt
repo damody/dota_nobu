@@ -15,7 +15,7 @@
 		"HotKeyOverride"	"D"
 		"MaxLevel"	"5"
 		"AbilityCastPoint"	"0.0"
-		"AbilityCooldown"	"5.0 5.0 5.0 5.0"
+		"AbilityCooldown"	"16"
 		"AbilityManaCost"	"50"
 		"precache"
 		{
@@ -389,24 +389,11 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
-			"ActOnTargets"
+			"RunScript"
 			{
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Radius"	"%splash_radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}
-				"Action"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Damage"	"%AbilityDamage"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-					}
-				}
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
+				"Function"	"A13T_break"
+				"Target"	"TARGET"
 			}
 		}
 		"Modifiers"
@@ -451,7 +438,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"splash_radius"	"100 100 100"
+				"splash_radius"	"150 150 150"
 			}
 			"04"
 			{
@@ -478,9 +465,14 @@
 				"var_type"	"FIELD_INTEGER"
 				"distance_scepter"	"1800"
 			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"50 75 100"
+			}
 		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"50 75 100"
+		"AbilityDamage"	"60 80 100"
 	}
 }

@@ -18,14 +18,14 @@ function Shock( keys )
                               nil,
                               250,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,
-                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
                               DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
                               FIND_ANY_ORDER,
                               false)
 
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
-			if (not(it:IsTower())) then
+			if (not(it:IsBuilding())) then
 				local flame = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_flames.vpcf", PATTACH_OVERHEAD_FOLLOW, it)
 				Timers:CreateTimer(0.3, function ()
 					ParticleManager:DestroyParticle(flame, false)

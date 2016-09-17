@@ -250,7 +250,7 @@ function B02D_OnAttackLanded(keys)
 	
 	--【DMG】
 		--【Varible】
-		local dmg = ability:GetLevelSpecialValueFor("bonus_damage",level)
+	local dmg = ability:GetLevelSpecialValueFor("bonus_damage",level)
 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 end
 

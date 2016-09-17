@@ -1,6 +1,247 @@
 //風魔小太郎
 "DOTAAbilities"
 {
+	//風魔小太郎 風行步
+	"B02D"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"riki_smoke_screen"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"	"5"
+		"AbilityCastPoint"	"0.0 0.0 0.0 0.0"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"16"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 115 130 145 160"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+				"Target"	"CASTER"
+				"EffectAttachType"	"attach_origin"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_BountyHunter.WindWalk"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_wind_walk_fade_datadriven"
+			}
+			"DelayedAction"
+			{
+				"Delay"	"%fade_time"
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+						"Duration"	"20"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_wind_walk_fade_datadriven"
+			{
+				"Duration"	"%fade_time"
+				"isBuff"	"1"
+				"EffectName"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02D_OnAttackLanded"
+					}
+				}
+				"IsHidden"	"1"
+			}
+			"modifier_wind_walk_datadriven"
+			{
+				"Duration"	"%duration"
+				"isBuff"	"1"
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02D_OnAttackLanded"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"States"	{}
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed"
+				}
+				"IsHidden"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fade_time"	"0.90"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"0 90 175 260 345"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"speed"	"0 5 10 15 20"
+			}
+		}
+	}
+	//風魔小太郎 忍法．朧
+	"B02W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dark_seer_wall_of_replica"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0..15"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20 19 18 17"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 110 120 130"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"650.00"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_PhantomLancer.SpiritLance.Impact"
+				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+				"Function"	"B02W"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_PhantomLancer.SpiritLance.Throw"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+				"Function"	"B02W_OnUpgrade"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"spell_T"	"0.15"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"spell_D"	"650.00"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"illusion_duration"	"5.0 5.5 6.0 6.5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"illusion_outgoing_damage"	"-20.0"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"illusion_incoming_damage"	"400.0"
+			}
+		}
+	}
 	//風魔小太郎 忍法．熾烈之徑
 	"B02E"
 	{
@@ -345,245 +586,5 @@
 			}
 		}
 	}
-	//風魔小太郎 忍法．朧
-	"B02W"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"dark_seer_wall_of_replica"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityCastPoint"	"0..15"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"20 19 18 17"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100 110 120 130"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"650.00"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_PhantomLancer.SpiritLance.Impact"
-				"Target"	"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
-				"Function"	"B02W"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_PhantomLancer.SpiritLance.Throw"
-			}
-		}
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
-				"Function"	"B02W_OnUpgrade"
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"spell_T"	"0.15"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"spell_D"	"650.00"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"illusion_duration"	"5.0 5.5 6.0 6.5"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"illusion_outgoing_damage"	"-20.0"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"illusion_incoming_damage"	"400.0"
-			}
-		}
-	}
- 	//風魔小太郎 風行步
-	"B02D"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"riki_smoke_screen"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"	"5"
-		"AbilityCastPoint"	"0.0 0.0 0.0 0.0"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"16"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100 115 130 145 160"
-		// Precache
-		// -------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
-			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"FireEffect"
-			{
-				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
-				"Target"	"CASTER"
-				"EffectAttachType"	"attach_origin"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_BountyHunter.WindWalk"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_wind_walk_fade_datadriven"
-			}
-			"DelayedAction"
-			{
-				"Delay"	"%fade_time"
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_invisible"
-						"Duration"	"20"
-					}
-				}
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_wind_walk_fade_datadriven"
-			{
-				"Duration"	"%fade_time"
-				"isBuff"	"1"
-				"EffectName"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
-						"Function"	"B02D_OnAttackLanded"
-					}
-				}
-				"IsHidden"	"1"
-			}
-			"modifier_wind_walk_datadriven"
-			{
-				"Duration"	"%duration"
-				"isBuff"	"1"
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
-					}
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_invisible"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
-						"Function"	"B02D_OnAttackLanded"
-					}
-				}
-				"OnAbilityExecuted"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
-					}
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_invisible"
-					}
-				}
-				"States"	{}
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_invisible"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed"
-				}
-				"IsHidden"	"1"
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"fade_time"	"0.90"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"20"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_damage"	"0 90 175 260 345"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"speed"	"0 5 10 15 20"
-			}
-		}
-	}
+
 }

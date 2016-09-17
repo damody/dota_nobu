@@ -9,7 +9,7 @@ function A25E_Damage( event )
 	local attacker = event.attacker
 	local ability = event.ability
 
-	if attacker:IsTower() or damage > 45 then
+	if attacker:IsBuilding() or damage > 45 then
 		caster.A25E_Damage_Count = caster.A25E_Damage_Count - 1
 	end
 

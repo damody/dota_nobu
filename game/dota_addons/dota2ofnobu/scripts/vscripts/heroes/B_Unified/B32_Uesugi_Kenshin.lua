@@ -97,7 +97,7 @@ function FireEffect_IcePath( event )
 
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
-			if (not(it:IsTower())) then
+			if (not(it:IsBuilding())) then
 				ability:ApplyDataDrivenModifier(caster, it,"modifier_B32E",nil)
 			end
 		end		

@@ -6,48 +6,82 @@ function Shock( keys )
 	
 	--math.random(-100, 100)
 	local chaos = {}
-	Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-		chaos[1] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos[1], 0, point)
-	end)
-
-	Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-		chaos[2] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos[2], 0, point + Vector(300, 0, 0))
-	end)
-	Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-		chaos[3] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos[3], 0, point + Vector(-300, 0, 0))
-	end)
-	Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-		chaos[4] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos[4], 0, point + Vector(250, 200, 0))
-	end)
-	Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-		chaos[5] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos[5], 0, point + Vector(-100, -300, 0))
-	end)
-	Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-		chaos[6] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos[6], 0, point + Vector(200, -300, 0))
-	end)
-	Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-		chaos[7] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos[7], 0, point + Vector(-250, 200, 0))
-	end)
-
+	local idx = 1
 	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
-	dummy:EmitSound( "war.sound1" )
-	Timers:CreateTimer( 1.5, function()
+	for i=0,3 do
+		Timers:CreateTimer( i*2.5, function()
 				dummy:EmitSound( "war.sound1" )
+				local id1 = idx
+				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
+					chaos[id1] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					ParticleManager:SetParticleControl(chaos[id1], 0, point)
+					Timers:CreateTimer(8, function ()
+						ParticleManager:DestroyParticle(chaos[id1], true)
+						end)
+				end)
+				idx = idx + 1
+				local id2 = idx
+				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
+					chaos[id2] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					ParticleManager:SetParticleControl(chaos[id2], 0, point + Vector(300, 0, 0))
+					Timers:CreateTimer(8, function ()
+						ParticleManager:DestroyParticle(chaos[id2], true)
+						end)
+				end)
+				idx = idx + 1
+				local id3 = idx
+				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
+					chaos[id3] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					ParticleManager:SetParticleControl(chaos[id3], 0, point + Vector(-300, 0, 0))
+					Timers:CreateTimer(8, function ()
+						ParticleManager:DestroyParticle(chaos[id3], true)
+						end)
+				end)
+				idx = idx + 1
+				local id4 = idx
+				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
+					chaos[id4] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					ParticleManager:SetParticleControl(chaos[id4], 0, point + Vector(250, 200, 0))
+					Timers:CreateTimer(8, function ()
+						ParticleManager:DestroyParticle(chaos[id4], true)
+						end)
+				end)
+				idx = idx + 1
+				local id5 = idx
+				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
+					chaos[id5] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					ParticleManager:SetParticleControl(chaos[id5], 0, point + Vector(-100, -300, 0))
+					Timers:CreateTimer(8, function ()
+						ParticleManager:DestroyParticle(chaos[id5], true)
+						end)
+				end)
+				idx = idx + 1
+				local id6 = idx
+				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
+					chaos[id6] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					ParticleManager:SetParticleControl(chaos[id6], 0, point + Vector(200, -300, 0))
+					Timers:CreateTimer(8, function ()
+						ParticleManager:DestroyParticle(chaos[id6], true)
+						end)
+				end)
+				idx = idx + 1
+				local id7 = idx
+				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
+					chaos[id7] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					ParticleManager:SetParticleControl(chaos[id7], 0, point + Vector(-250, 200, 0))
+					Timers:CreateTimer(8, function ()
+						ParticleManager:DestroyParticle(chaos[id7], true)
+						end)
+				end)
+				idx = idx + 1
 				return nil
-			end
-			)
-	Timers:CreateTimer( 6.5, function()
+			end)
+	end
+	Timers:CreateTimer( 15, function()
 					dummy:ForceKill( true )
 					return nil
-				end
-			)
+				end)
+
 
 	local count = 0
 	Timers:CreateTimer(1, function ()
@@ -73,10 +107,7 @@ function Shock( keys )
 				AMHC:Damage(caster,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
-		if count > 5 then
-			for i=1,#chaos do
-				ParticleManager:DestroyParticle(chaos[i], false)
-			end
+		if count > 13 then
 			return nil
 		else
 			return 0.8

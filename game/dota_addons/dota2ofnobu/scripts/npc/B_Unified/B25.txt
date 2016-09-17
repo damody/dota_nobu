@@ -118,7 +118,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"speed"				"900 900 900 900"
+				"speed"				"900 1000 1100 1200"
 			}
 		}
 		
@@ -142,7 +142,7 @@
 			"RunScript"
 			{
 				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
-				"Function"			"heat_seeking_missile_seek_targets"
+				"Function"			"B25E"
 			}
 		}
 		
@@ -179,7 +179,7 @@
 		"AbilityCooldown"	"9 8 7 6"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		"AbilityManaCost"	"200"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"500"
@@ -206,24 +206,11 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
-			"ActOnTargets"
+			"RunScript"
 			{
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Radius"	"%splash_radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}
-				"Action"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Damage"	"%AbilityDamage"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-					}
-				}
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
+				"Function"	"B25E_old_break"
+				"Target"	"TARGET"
 			}
 		}
 		"Modifiers"
@@ -277,6 +264,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"distance"	"1400"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"90 160 220 300"
 			}
 		}
 		// Damage.
@@ -548,7 +540,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"skywrath_mage_mystic_flare"
+		"AbilityTextureName"			"icon_128x128_80"
 		"AOERadius"						"%radius"
 		"AbilityChannelTime"			"4"
 		"RequiredLevel"	"6"
@@ -657,7 +649,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"skywrath_mage_mystic_flare"
+		"AbilityTextureName"			"icon_128x128_80"
 		"AOERadius"						"%radius"
 		"AbilityChannelTime"			"7"
 		"RequiredLevel"	"6"

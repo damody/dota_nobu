@@ -57,7 +57,7 @@ end
 
 
 
-function heat_seeking_missile_seek_targets( keys )
+function B25E( keys )
 	-- Variables
 	local caster = keys.caster
 	local ability = keys.ability
@@ -81,20 +81,42 @@ function heat_seeking_missile_seek_targets( keys )
 	local count = 0
 	for k, v in pairs( units ) do
 		if count < max_targets then
-			local projTable = {
-				Target = v,
-				Source = caster,
-				Ability = ability,
-				EffectName = particleName,
-				bDodgeable = projectileDodgable,
-				bProvidesVision = projectileProvidesVision,
-				iMoveSpeed = projectileSpeed, 
-				vSpawnOrigin = caster:GetAbsOrigin()
-			}
-			ProjectileManager:CreateTrackingProjectile( projTable )
-			count = count + 1
+			if (caster:CanEntityBeSeenByMyTeam(v)) and not v:HasModifier("modifier_invisible") then
+				local projTable = {
+					Target = v,
+					Source = caster,
+					Ability = ability,
+					EffectName = particleName,
+					bDodgeable = projectileDodgable,
+					bProvidesVision = projectileProvidesVision,
+					iMoveSpeed = projectileSpeed, 
+					vSpawnOrigin = caster:GetAbsOrigin()
+				}
+				ProjectileManager:CreateTrackingProjectile( projTable )
+				count = count + 1
+			end
 		else
 			break
+		end
+	end
+end
+
+function B25E_old_break( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              target:GetAbsOrigin(),
+	                              nil,
+	                              ability:GetLevelSpecialValueFor( "splash_radius", ability:GetLevel() - 1 ),
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
+	for _,it in pairs(direUnits) do
+		if (not(it:IsBuilding())) then
+			AMHC:Damage(caster,it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
 end
@@ -159,6 +181,7 @@ function B25E_old( keys )
 					bProvidesVision = false,
 					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+					iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NONE,
 					vVelocity = velocityVec * projectile_speed
 				}
 				ProjectileManager:CreateLinearProjectile( projectileTable )
@@ -277,43 +300,4 @@ function B25T_start( keys )
 		end
 		end)
 
-	-- ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {radius = 700} )
-	
-	-- -- Referencing total damage done per interval
-	-- local damage_per_interval = total_damage / max_instances
-	
-	-- -- Deal damage per interval equally
-	-- Timers:CreateTimer( function()
-	-- 		local units = FindUnitsInRadius(
-	-- 			caster:GetTeamNumber(), target, caster, radius, targetTeam,
-	-- 			targetType, targetFlag, FIND_ANY_ORDER, false
-	-- 		)
-	-- 		if #units > 0 then
-	-- 			local damage_per_hero = damage_per_interval / #units
-	-- 			for k, v in pairs( units ) do
-	-- 				-- Apply damage
-	-- 				local damageTable = {
-	-- 					victim = v,
-	-- 					attacker = caster,
-	-- 					damage = damage_per_hero,
-	-- 					damage_type = damageType
-	-- 				}
-	-- 				ApplyDamage( damageTable )
-					
-	-- 				-- Fire sound
-	-- 				StartSoundEvent( soundTarget, v )
-	-- 			end
-	-- 		end
-			
-	-- 		current_instance = current_instance + 1
-			
-	-- 		-- Check if maximum instances reached
-	-- 		if current_instance >= max_instances then
-	-- 			dummy:Destroy()
-	-- 			return nil
-	-- 		else
-	-- 			return interval
-	-- 		end
-	-- 	end
-	-- )
 end

@@ -51,7 +51,7 @@ function C01E_Mitsuhide_Akechi_Effect( keys, skillcount )
 
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
-		if (not(it:IsTower())) then
+		if (not(it:IsBuilding())) then
 			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E",nil)
 		end

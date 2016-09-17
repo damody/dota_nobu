@@ -71,7 +71,7 @@ function FireEffect_IcePath( event )
 
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
-			if (not(it:IsTower())) then
+			if (not(it:IsBuilding())) then
 				ability:ApplyDataDrivenModifier(caster, it,"modifier_A04E",nil)
 			end
 		end
@@ -217,7 +217,7 @@ function A04T_freezing_field_explode( keys )
 		local dmg = abilityDamage
 
 		--判斷是不是建築物:如果是傷害減半
-		if v:IsTower() or v:IsBuilding() then
+		if v:IsBuilding() then
 			dmg = 0.55 * dmg
 		end
 

@@ -95,7 +95,6 @@ function B33T( keys )
 	local team  = caster:GetTeamNumber()
 	local dummy = CreateUnitByName("B33T_UNIT",caster:GetAbsOrigin(),true,nil,nil,team)
 	local time = 0.1
-	local b = false
 	local num = 0
 	--dummy:AddAbility("majia"):SetLevel(1)
 	dummy:SetForwardVector(caster:GetForwardVector())
@@ -124,18 +123,17 @@ function B33T( keys )
 	-- end)
 	local particle=ParticleManager:CreateParticle("particles/b33t6/b33t6.vpcf",PATTACH_WORLDORIGIN,caster)
 	ParticleManager:SetParticleControl(particle,0,point)
-
+	local isstart = false
     Timers:CreateTimer(time, function()
 
-    	if not target:IsAlive() or num == 120 then
+    	if IsValidEntity(target) not target:IsAlive() or (isstart and not target:HasModifier("modifier_spawn_spiderlings_datadriven")) then
     		dummy:ForceKill( true )
     		if target:HasModifier("modifier_spawn_spiderlings_datadriven") then
     			target:RemoveModifierByName("modifier_spawn_spiderlings_datadriven")
     		end
-    		print("Stop")
     		return nil
     	else
-	    	if b then
+	    	if isstart then
 	    		dummy:SetAbsOrigin(target:GetAbsOrigin())
 	    		ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP, Queue = false})
 	    		dummy:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK,1.0)
@@ -144,9 +142,8 @@ function B33T( keys )
 	    		dummy:StartGestureWithPlaybackRate(ACT_DOTA_RUN,2.5)
 	    		if CalcDistanceBetweenEntityOBB(dummy,target) < 50 then
 	    			ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP, Queue = false})
-	    			b = true
+	    			isstart = true
 	    			keys.ability:ApplyDataDrivenModifier(caster, target,"modifier_spawn_spiderlings_datadriven",nil)
-	    			print("B33")
 	    		end
 
 				ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION, Position = target:GetAbsOrigin(), Queue = false}) 

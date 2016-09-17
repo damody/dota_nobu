@@ -19,7 +19,7 @@ function Shock( keys )
 	                          FIND_ANY_ORDER,
 	                          false)
 		for _,it in pairs(direUnits) do
-			if (not(it:IsTower())) then
+			if (not(it:IsBuilding())) then
 				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_great_sword_of_hurricane", {duration=0.5})
 			end
 		end

@@ -43,7 +43,7 @@ function Shock( keys )
 
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
-		if (not(it:IsTower())) then
+		if (not(it:IsBuilding())) then
 			Physics:Unit(it)
 			it:SetPhysicsVelocity(Vector(0,0,1000))
 			Timers:CreateTimer(0.3, function() 

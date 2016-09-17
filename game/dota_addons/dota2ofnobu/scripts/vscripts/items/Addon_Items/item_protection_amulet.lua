@@ -79,29 +79,27 @@ end
 
 --御守
 
-function Shock( keys )
+function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	caster.protection_amulet = true
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {duration = 10000} )
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 	caster:FindModifierByName("modifier_protection_amulet").caster = caster
+	caster.has_item_protection_amulet = true
 	Timers:CreateTimer(1, function() 
-		local hasitem = false
-		for itemSlot=0,5 do
-			local item = caster:GetItemInSlot(itemSlot)
-			if item ~= nil and item:GetName() == "item_protection_amulet" then
-				hasitem = true
-			end
+		if (caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet")) then
+			ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
+			caster:FindModifierByName("modifier_protection_amulet").caster = caster
 		end
-		if (not caster:HasModifier("modifier_protection_amulet")) then
-			ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {duration = 10000} )
-		end
-		if hasitem then
+		if caster.has_item_protection_amulet == true then
 			return 1
 		else
 			caster:RemoveModifierByName("modifier_protection_amulet")
+			return nil
 		end
 		end)
 end
 
-
+function OnUnequip( keys )
+	keys.caster.has_item_protection_amulet = nil
+end

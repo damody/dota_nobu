@@ -347,7 +347,6 @@
 			"modifier_the_overflame_art_of_war"
 			{
 				"IsHidden"	"0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"States"
 				{
 					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -2980,7 +2979,15 @@
 			"RunScript"
 			{
 				"ScriptFile"	"items/Addon_Items/item_protection_amulet.lua"
-				"Function"	"Shock"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_protection_amulet.lua"
+				"Function"	"OnUnequip"
 			}
 		}
 	}
@@ -6806,19 +6813,19 @@
 	}
 
 	//大炎上之書製作單
-	"item_recipe_the_overflame_art_of_war" 
-	{
-	    "ID" "3072"
-	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "1750"
-		"ItemShopTags" ""
-		"ItemRecipe" "1"
-		"ItemResult" "item_the_overflame_art_of_war"  //合成後物品
-		"ItemRequirements"
-		{
-			"01" "item_rockfall_book;item_ignite_book"  //合成所需物品
-		}
-	}
+	//"item_recipe_the_overflame_art_of_war" 
+	//{
+	//    "ID" "3072"
+	//    "BaseClass" "item_recipe_arcane_boots"
+	//	"ItemCost" "1750"
+	//	"ItemShopTags" ""
+	//	"ItemRecipe" "1"
+	//	"ItemResult" "item_the_overflame_art_of_war"  //合成後物品
+	//	"ItemRequirements"
+	//	{
+	//		"01" "item_rockfall_book;item_ignite_book"  //合成所需物品
+	//	}
+	//}
 
 	//無上雷暴之書製作單
 	"item_recipe_the_over_lightning_art_of_war" 

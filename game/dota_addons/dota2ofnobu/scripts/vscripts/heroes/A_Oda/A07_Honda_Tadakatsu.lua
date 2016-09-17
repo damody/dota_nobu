@@ -159,12 +159,17 @@ end
 
 ----------------------------------------------------------------------------<<A07E>>------------------------------------------------------------------------------
 function A07E_SE( keys )
-	local caster = keys.target
-	local dummy = CreateUnitByName( "hide_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
-
-	AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,dummy,2.0,nil)
-	--EmitSoundOn( "Ability.Torrent", dummy )
-	dummy:ForceKill( true )
+	local caster = keys.caster
+	if (keys.target ~= nil) then
+		caster = keys.target
+		local dummy = CreateUnitByName( "hide_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
+		AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,dummy,2.0,nil)
+		dummy:ForceKill( true )
+	else
+		local dummy = CreateUnitByName( "hide_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
+		AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,dummy,2.0,nil)
+		dummy:ForceKill( true )
+	end
 end
 
 
@@ -199,7 +204,7 @@ function A07R_Learn_Skill( keys )
 	local level = keys.ability:GetLevel()
 
 	local ability = caster:FindAbilityByName("A07D")
-	ability:SetLevel(level)
+	ability:SetLevel(level+1)
 	ability:SetActivated(true)
 end
 
@@ -212,7 +217,12 @@ function A07T_Transform( keys )
 	local level = ability:GetLevel()
 
 	local duration = ability:GetLevelSpecialValueFor("duration",level - 1)
-
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+			caster:RemoveModifierByName(v:GetName())
+		end
+	end
 	-- Deciding the transformation level
 	local modifier = keys.modifier_one
 

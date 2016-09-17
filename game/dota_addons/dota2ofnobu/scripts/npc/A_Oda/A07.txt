@@ -5,13 +5,13 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dianwei_yaohuo"
-		"MaxLevel"	"5"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"HotKeyOverride"	"D"
-		
-		"AbilityCooldown"	"6 5 4 3"
+		"MaxLevel"	"5"
+		"AbilityCooldown"	"7 6 5 4 4"
+		"AbilityManaCost"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
 		"precache"
 		{
@@ -46,13 +46,21 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"60"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atk_speed"
 				}
 				"IsBuff"	"1"
 				"AllowIllusionDuplicate"	"1"
 				"Duration"	"3"
 				"EffectName"	"particles/a07d2/a07d2.vpcf"
 				"EffectAttachType"	"attach_hitloc"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_speed"	"60 70 80 90 100"
 			}
 		}
 	}
@@ -646,6 +654,8 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"A07T_Ver2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
@@ -763,8 +773,6 @@
 					}
 				}
 				"ThinkInterval"	"1"
-				"States"	{}
-				"OnDestroy"	{}
 			}
 		}
 		// Special
@@ -800,6 +808,8 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"A07T_Ver2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"

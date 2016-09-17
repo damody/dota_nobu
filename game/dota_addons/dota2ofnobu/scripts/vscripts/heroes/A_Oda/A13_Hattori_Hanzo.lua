@@ -64,6 +64,20 @@ function modifier_transparency:GetEffectName()
 end
 
 
+function A13D_OnAttackLanded(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local player = caster:GetPlayerID()
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	
+	--【DMG】
+		--【Varible】
+	local dmg = ability:GetLevelSpecialValueFor("bonus_damage",level)
+	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
+end
+
 function A13W_Levelup( keys )
 	local caster = keys.caster
 	local ability = caster:FindAbilityByName("A13D")
@@ -242,8 +256,8 @@ function A13E:OnUpgrade()
 	local ability = caster:FindAbilityByName("A13D")
 	local level = self:GetLevel()
 	
-	if (ability:GetLevel() < level) then
-		ability:SetLevel(level)
+	if (ability:GetLevel()+1 < level) then
+		ability:SetLevel(level+1)
 	end
 end
 
@@ -400,6 +414,9 @@ function A13E_modifier:OnIntervalThink()
 					ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
 						damage_type = self.damage_type, ability = self:GetAbility()})
 					hashook = true
+					if (it:HasModifier("modifier_invisible")) then
+						it:RemoveModifierByName("modifier_invisible")
+					end
 					it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
 					local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
 					if (hModifier ~= nil) then
@@ -481,7 +498,12 @@ function A13T( keys )
 	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
 	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
 	local right = caster:GetRightVector()
-	caster:AddSpeechBubble(1,"臨兵鬥者皆陣列在前",3.0,0,-50)
+	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
+	dummy:FindAbilityByName("majia"):SetLevel(1)
+	dummy:AddSpeechBubble(1,"臨兵鬥者皆陣列在前",3.0,0,-50)
+	Timers:CreateTimer( 2, function()
+		dummy:ForceKill(true)
+	end)
 
 	casterLoc = keys.target_points[1] - right:Normalized() * 300
 	Timers:CreateTimer( 0.3, function()
@@ -531,6 +553,7 @@ function A13T( keys )
 					bProvidesVision = false,
 					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+					iUnitTargetFlags  = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 					vVelocity = velocityVec * projectile_speed
 				}
 				ProjectileManager:CreateLinearProjectile( projectileTable )
@@ -549,4 +572,24 @@ end
 function A13T_End( keys )
 	local caster = keys.caster
 	caster:RemoveNoDraw()
+end
+
+function A13T_break( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              target:GetAbsOrigin(),
+	                              nil,
+	                              ability:GetLevelSpecialValueFor( "splash_radius", ability:GetLevel() - 1 ),
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
+	for _,it in pairs(direUnits) do
+		if (not(it:IsBuilding())) then
+			AMHC:Damage(caster,it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
+	end
 end
