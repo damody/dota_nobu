@@ -5882,6 +5882,21 @@
 		}
 	}
 
+	//武士服‧三階製作單
+	"item_recipe_samurai_cloth_2" 
+	{
+	    "ID" "3074"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_samurai_cloth_2"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_samurai_cloth_1"  //合成前物品
+		}
+	}
+
 	//舞雷刀製作單
 	"item_recipe_lightning_katana" 
 	{
@@ -6813,19 +6828,19 @@
 	}
 
 	//大炎上之書製作單
-	//"item_recipe_the_overflame_art_of_war" 
-	//{
-	//    "ID" "3072"
-	//    "BaseClass" "item_recipe_arcane_boots"
-	//	"ItemCost" "1750"
-	//	"ItemShopTags" ""
-	//	"ItemRecipe" "1"
-	//	"ItemResult" "item_the_overflame_art_of_war"  //合成後物品
-	//	"ItemRequirements"
-	//	{
-	//		"01" "item_rockfall_book;item_ignite_book"  //合成所需物品
-	//	}
-	//}
+	"item_recipe_the_overflame_art_of_war" 
+	{
+	    "ID" "3072"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1750"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_overflame_art_of_war"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_rockfall_book;item_ignite_book"  //合成所需物品
+		}
+	}
 
 	//無上雷暴之書製作單
 	"item_recipe_the_over_lightning_art_of_war" 
@@ -7691,6 +7706,63 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "70" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	// 武士服‧三階
+	"item_samurai_cloth_2"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_samurai_cloth"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"15951"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3650"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemRequirements"	{}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "30"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "90" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
