@@ -7,7 +7,7 @@
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_jakiro"
 		"Model"	"models/c20/c20_model.vmdl"
-		"ModelScale"	"1"
+		"ModelScale"	"1.2"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
@@ -30,11 +30,11 @@
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"2.00"
-		"MagicalResistance"	"0"
+		"MagicalResistance"	"30"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"87.0"
+		"AttackDamageMin"	"85.0"
 		"AttackDamageMax"	"105.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		// "1.80"
@@ -47,15 +47,15 @@
 		// ----------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"	"37"
-		"AttributeStrengthGain"	"2"
-		"AttributeBaseIntelligence"	"58"
-		"AttributeIntelligenceGain"	"3.50"
-		"AttributeBaseAgility"	"38"
-		"AttributeAgilityGain"	"2.4"
+		"AttributeStrengthGain"	"2.45"
+		"AttributeBaseIntelligence"	"28"
+		"AttributeIntelligenceGain"	"2.50"
+		"AttributeBaseAgility"	"32"
+		"AttributeAgilityGain"	"2"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"1.0"
-		"BountyGoldMax"	"0.0"
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"

@@ -30,14 +30,14 @@
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"4.00"
-		"MagicalResistance"	"0"
+		"MagicalResistance"	"30"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"82.0"
+		"AttackDamageMin"	"80.0"
 		"AttackDamageMax"	"100.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.8"
+		"AttackRate"	"1.6"
 		"AttackAnimationPoint"	"0.3"
 		"AttackAcquisitionRange"	"500"
 		"AttackRange"	"128"
@@ -47,14 +47,14 @@
 		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"	"41"
 		"AttributeStrengthGain"	"3.40"
-		"AttributeBaseIntelligence"	"45"
+		"AttributeBaseIntelligence"	"25"
 		"AttributeIntelligenceGain"	"2.00"
 		"AttributeBaseAgility"	"21"
 		"AttributeAgilityGain"	"2.10"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"1.0"
-		"BountyGoldMax"	"0.0"
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"0"
@@ -62,7 +62,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"300"
+		"MovementSpeed"	"315"
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------

@@ -7,7 +7,7 @@
 		// ----------------------------------------------------------------
 		// Add model
 		"Model"	"models/hero14/hero14.vmdl"
-		"ModelScale"	"1"
+		"ModelScale"	"1.7"
 		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
@@ -30,11 +30,11 @@
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"0"
-		"MagicalResistance"	"0"
+		"MagicalResistance"	"30"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"72.0"
+		"AttackDamageMin"	"70.0"
 		"AttackDamageMax"	"88.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.60"
@@ -46,15 +46,15 @@
 		// ----------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"	"27"
-		"AttributeStrengthGain"	"1.7"
-		"AttributeBaseIntelligence"	"44"
-		"AttributeIntelligenceGain"	"2.50"
+		"AttributeStrengthGain"	"2.0"
+		"AttributeBaseIntelligence"	"24"
+		"AttributeIntelligenceGain"	"2.0"
 		"AttributeBaseAgility"	"32"
-		"AttributeAgilityGain"	"3.1"
+		"AttributeAgilityGain"	"2.85"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"1.0"
-		"BountyGoldMax"	"0.0"
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"0"
@@ -62,7 +62,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"300"
+		"MovementSpeed"	"320"
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------

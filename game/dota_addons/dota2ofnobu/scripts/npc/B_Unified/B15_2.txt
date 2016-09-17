@@ -5,7 +5,7 @@
 	{
 	 //General
 	 //--------------------------------------------------------------
-		"ModelScale"	"1.35"
+		"ModelScale"	"1.2"
 		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
@@ -27,11 +27,11 @@
 		//Armor
 		// --------------------------------------------------------------
 		"ArmorPhysical"	"0"
-		"MagicalResistance"	"0"
+		"MagicalResistance"	"30"
 		//Attack
 		// --------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"	"54.0"
+		"AttackDamageMin"	"52.0"
 		"AttackDamageMax"	"68.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.80"
@@ -42,15 +42,16 @@
 		//Attributes
 		// --------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"	"41"
-		"AttributeStrengthGain"	"4"
-		"AttributeBaseIntelligence"	"45"
-		"AttributeIntelligenceGain"	"1.6"
+		"AttributeBaseStrength"	"31"
+		"AttributeStrengthGain"	"2.75"
+		"AttributeBaseIntelligence"	"25"
+		"AttributeIntelligenceGain"	"2.45"
 		"AttributeBaseAgility"	"26"
-		"AttributeAgilityGain"	"1.6"
+		"AttributeAgilityGain"	"2.0"
 		//Bounty
 		// --------------------------------------------------------------
 		"BountyGoldMin"	"300"
+		"BountyGoldMax"	"300"
 		//Gold and Lumber
 		// --------------------------------------------------------------
 		"GoldCost"	"0"

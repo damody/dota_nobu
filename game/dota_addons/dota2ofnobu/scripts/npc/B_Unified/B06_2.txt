@@ -12,7 +12,7 @@
 		// ----------------------------------------------------------------
 		// Add model
 		"Model"	"models/b06/b06_model.vmdl"
-		"ModelScale"	"1"
+		"ModelScale"	"1.2"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
@@ -34,16 +34,16 @@
 		"Ability7"	""
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"4.00"
-		"MagicalResistance"	"0"
+		"ArmorPhysical"	"3.00"
+		"MagicalResistance"	"30"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"81.0"
+		"AttackDamageMin"	"79.0"
 		"AttackDamageMax"	"99.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.80"
-		"AttackAnimationPoint"	"0.2"
+		"AttackAnimationPoint"	"0.33"
 		"AttackAcquisitionRange"	"500"
 		"AttackRange"	"150"
 		"ProjectileSpeed"	"10000"
@@ -51,15 +51,15 @@
 		// ----------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"	"44"
-		"AttributeStrengthGain"	"2.90"
-		"AttributeBaseIntelligence"	"44"
+		"AttributeStrengthGain"	"2.60"
+		"AttributeBaseIntelligence"	"24"
 		"AttributeIntelligenceGain"	"2.00"
 		"AttributeBaseAgility"	"27"
 		"AttributeAgilityGain"	"2.30"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"1.0"
-		"BountyGoldMax"	"0.0"
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"0"
@@ -67,8 +67,8 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"300"
-		"MovementTurnRate"	"3.00"
+		"MovementSpeed"	"318"
+		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------
 		"StatusHealth"	"400"
