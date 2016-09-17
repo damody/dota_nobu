@@ -229,12 +229,12 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
-				"Function"	"A21R_Levelup"
+				"Function"	"C21R_Levelup"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_A21R_critical_strike"
+			"modifier_C21R_critical_strike"
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
@@ -244,7 +244,7 @@
 					{
 						"Target"	"CASTER"
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
-						"Function"	"A21R"
+						"Function"	"C21R"
 					}
 				}
 				"States"	{}

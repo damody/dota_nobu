@@ -415,11 +415,12 @@
 					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"%time"
-				"IsDebuff"	"1"
-				"ThinkInterval"	"0.1"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
 			}
 			"modifier_B02R_2"
 			{
+				"IsDebuff"		"1"
 				"Duration"	"1.91"
 				"OnIntervalThink"
 				{

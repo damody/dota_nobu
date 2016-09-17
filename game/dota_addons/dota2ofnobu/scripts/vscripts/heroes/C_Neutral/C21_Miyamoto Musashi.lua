@@ -1,5 +1,5 @@
 
-LinkLuaModifier( "A21R_critical", "scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "C21R_critical", "scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua",LUA_MODIFIER_MOTION_NONE )
 
 --global
 	udg_C21T_LV = {}
@@ -237,48 +237,48 @@ end
 
 --RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-A21R_critical = class({})
+C21R_critical = class({})
 
-function A21R_critical:IsHidden()
+function C21R_critical:IsHidden()
 	return true
 end
 
-function A21R_critical:DeclareFunctions()
+function C21R_critical:DeclareFunctions()
 	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
 end
 
-function A21R_critical:GetModifierPreAttack_CriticalStrike()
-	return self.A21R_level*20 + 130
+function C21R_critical:GetModifierPreAttack_CriticalStrike()
+	return self.C21R_level*20 + 130
 end
 
-function A21R_critical:CheckState()
+function C21R_critical:CheckState()
 	local state = {
 	}
 	return state
 end
 
 
-function A21R_Levelup( keys )
+function C21R_Levelup( keys )
 	local caster = keys.caster
-	caster.A21R_noncrit_count = 0
-			-- 	local particle = ParticleManager:CreateParticle("particles/A21R/A21R.vpcf", PATTACH_POINT, caster)
+	caster.C21R_noncrit_count = 0
+			-- 	local particle = ParticleManager:CreateParticle("particles/C21R/C21R.vpcf", PATTACH_POINT, caster)
 			-- ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_attack2", Vector(0,0,0), true)
 end
 
-function A21R( keys )
+function C21R( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local id  = caster:GetPlayerID()
 	local ran =  RandomInt(0, 100)
 	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
 		if (ran > 20) then
-			caster.A21R_noncrit_count = caster.A21R_noncrit_count + 1
+			caster.C21R_noncrit_count = caster.C21R_noncrit_count + 1
 		end
-		if (caster.A21R_noncrit_count > 2 or ran <= 40) then
-			caster.A21R_noncrit_count = 0
+		if (caster.C21R_noncrit_count > 2 or ran <= 40) then
+			caster.C21R_noncrit_count = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-			caster:AddNewModifier(caster, skill, "A21R_critical", { duration = 0.1 } )
-			local hModifier = caster:FindModifierByNameAndCaster("A21R_critical", caster)
+			caster:AddNewModifier(caster, skill, "C21R_critical", { duration = 0.1 } )
+			local hModifier = caster:FindModifierByNameAndCaster("C21R_critical", caster)
 			--SE
 			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
@@ -295,7 +295,7 @@ function A21R( keys )
 				end
 
 			if (hModifier ~= nil) then
-				hModifier.A21R_level = keys.ability:GetLevel()
+				hModifier.C21R_level = keys.ability:GetLevel()
 			end
 		end
 	end

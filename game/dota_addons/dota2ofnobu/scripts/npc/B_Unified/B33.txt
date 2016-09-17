@@ -291,6 +291,12 @@
 				"ModifierName"	"modifier_b33e_slow_datadriven"
 				"Target"	"TARGET"
 			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%damage"
+			}
 		}
 		"Modifiers"
 		{
@@ -400,7 +406,6 @@
 		{
 			"modifier_psi_blades"
 			{
-				"IsPurgable"	"1"
 				"Passive"	"0"
 				"IsHidden"	"0"
 				"OnAttackLanded"
