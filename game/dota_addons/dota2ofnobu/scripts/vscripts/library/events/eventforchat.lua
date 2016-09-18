@@ -23,7 +23,31 @@ local function chat_of_test(keys)
 	-- 	local steamID = PlayerResource:GetSteamAccountID(pID)
 	-- 	GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 	-- end
+	
+	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
+		caster.isold = true
+		if (caster:GetUnitName() == "npc_dota_hero_centaur") then -- 本多忠勝
+			caster:RemoveAbility("A07W")
+			caster:RemoveAbility("A07E")
+			caster:RemoveAbility("A07R")
+			caster:RemoveAbility("A07D")
+			caster:RemoveAbility("A07T")
 
+			caster:AddAbility("A07W_old")
+			caster:AddAbility("A07E_old")
+			caster:AddAbility("A07R_old")
+			caster:AddAbility("A07T_old")
+		elseif (caster:GetUnitName() == "npc_dota_hero_pugna") then -- 本願寺顯如
+			caster:RemoveAbility("B25E")
+			caster:RemoveAbility("B25R")
+			caster:RemoveAbility("B25T")
+
+			caster:AddAbility("B25E_old")
+			caster:AddAbility("B25R_old")
+			caster:AddAbility("B25T_old")
+		end
+	end
+	
 	if string.match(s,"test") then
 		local pID = tonumber(string.match(s, '%d+'))
 		local steamID = PlayerResource:GetSteamAccountID(pID)
@@ -55,36 +79,17 @@ local function chat_of_test(keys)
 	      caster:HeroLevelUp(true)
 	    end
 	end
-
+	if string.match(s,"gold") then
+		for i=0,9 do
+		PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
+		end
+	end
 	if s == "gg" then
 		GameRules:SetCustomGameEndDelay(1)
 		GameRules:SetCustomVictoryMessage("贏三小啦幹")
 		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 	end
 	
-	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
-		caster.isold = true
-		if (caster:GetUnitName() == "npc_dota_hero_centaur") then -- 本多忠勝
-			caster:RemoveAbility("A07W")
-			caster:RemoveAbility("A07E")
-			caster:RemoveAbility("A07R")
-			caster:RemoveAbility("A07D")
-			caster:RemoveAbility("A07T")
-
-			caster:AddAbility("A07W_old")
-			caster:AddAbility("A07E_old")
-			caster:AddAbility("A07R_old")
-			caster:AddAbility("A07T_old")
-		elseif (caster:GetUnitName() == "npc_dota_hero_pugna") then -- 本願寺顯如
-			caster:RemoveAbility("B25E")
-			caster:RemoveAbility("B25R")
-			caster:RemoveAbility("B25T")
-
-			caster:AddAbility("B25E_old")
-			caster:AddAbility("B25R_old")
-			caster:AddAbility("B25T_old")
-		end
-	end
 	
 	if s == "Create1" then
 		local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
