@@ -279,8 +279,8 @@
 		}
 	}
 
-	// 大炎上之書
-	"item_the_overflame_art_of_war"
+	// 真‧大炎上之書
+	"item_the_overflame_art_of_war_hyper"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
@@ -302,7 +302,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AOERadius"	"650"
 		"AbilityCastRange"	"700"
-		"ID"	"1517"
+		"ID"	"15171"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"ItemCost"	"15500"
@@ -355,6 +355,100 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-70"
 				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"Duration"  "2"
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"60"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"300.00"
+			}
+		}
+	}
+
+	// 大炎上之書
+	"item_the_overflame_art_of_war"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_dayan"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"65"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"400"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AOERadius"	"650"
+		"AbilityCastRange"	"700"
+		"ID"	"1517"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"ItemCost"	"15500"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemRequirements"
+		{
+			
+		}
+		"precache"
+		{
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_overflame_art_of_war.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_the_overflame_art_of_war"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "40"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+				}
+			}
+			"modifier_the_overflame_art_of_war"
+			{
+				"IsHidden"	"0"
 				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"IsDebuff"	"1"
@@ -6881,7 +6975,7 @@
 	{
 	    "ID" "3071"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "750"
+		"ItemCost" "1750"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_the_red_lightning_chapter_hyper"  //合成後物品
@@ -9434,7 +9528,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_thunderbolt_book"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -9445,7 +9539,7 @@
 		"AbilityCooldown"	"4"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"75"
+		"AbilityManaCost"	"0"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"%cast_distance"
@@ -9456,11 +9550,82 @@
 		"ItemCost"	"3350"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
-		
+
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_thunderbolt_book.lua"
+				"Function"		"ShowEffect"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"Passive_thunderbolt_book2"
+				"Target"	"CASTER"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_thunderbolt_book.lua"
+				"Function"		"ShowEffect"
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"	"Passive_thunderbolt_book2"
+				"Target"
+				{
+					"Center"	"CASTER"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_DEAD"
+				}
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_thunderbolt_book.lua"
+				"Function"		"ShowEffect"
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"	"Passive_thunderbolt_book2"
+				"Target"
+				{
+					"Center"	"CASTER"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_DEAD"
+				}
+			}
+		}
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_thunderbolt_book2"
+			{
+				"OnAbilityExecuted"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+							"Center"	"CASTER"
+							"Radius"	"300"
+						}
+						"Action"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"items/Addon_Items/item_thunderbolt_book.lua"
+								"Function"		"Shock"
+							}
+						}
+					}
+				}
+			}
+			"Passive_thunderbolt_book1"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -9481,6 +9646,7 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
 				}
+				
 			}
 		}
 	}
@@ -10062,6 +10228,21 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
 				}
 			}
+		}
+	}
+
+	//真‧大炎上之書製作單
+	"item_recipe_the_overflame_art_of_war_hyper" 
+	{
+	    "ID" "3074"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "10000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_the_overflame_art_of_war_hyper"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_overflame_art_of_war"  //合成所需物品
 		}
 	}
 }
