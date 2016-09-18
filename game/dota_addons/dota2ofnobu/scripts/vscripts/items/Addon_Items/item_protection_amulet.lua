@@ -36,7 +36,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type == DAMAGE_TYPE_MAGICAL) and self.caster.protection_amulet == true then
-		            	Timers:CreateTimer(0.1, function() 
+		            	Timers:CreateTimer(0.01, function() 
 		            		self.caster.protection_amulet = false
 		            		self.caster:Purge( false, true, true, true, true)
 		            		end)
@@ -82,7 +82,9 @@ end
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster.protection_amulet = true
+	if (caster.protection_amulet == nil) then
+		caster.protection_amulet = true
+	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 	caster:FindModifierByName("modifier_protection_amulet").caster = caster
 	caster.has_item_protection_amulet = true

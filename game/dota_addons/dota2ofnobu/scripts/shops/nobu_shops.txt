@@ -1,0 +1,108 @@
+"dota_shops"
+{
+//Home Shop Start
+//--------------------------
+
+"consumables"
+{
+	"item"      "item_perceive_wine"		//般若湯
+	"item"      "item_perceive_wine_hyper"	//抗魔
+	"item"      "item_rations"				//軍糧丸
+	"item"      "item_sake"
+	"item"      "item_liquor"
+	"item"      ""
+}
+
+"attributes"
+{
+	"item"      "ITEM_NAME"
+	"item"      ""
+	"item"      ""
+	"item"      ""
+}
+
+"weapons_armor"
+{
+	"item"      "item_flash_ring"	//閃光輪
+	"item"      ""
+	"item"      ""
+	"item"      ""
+}
+
+
+
+"misc"
+{
+	"item"      "item_mountain_scroll"				//山卷
+	"item"      "item_rockfall_book"				//落石
+	
+}   
+//基本合成
+// Level 1 - Green Recipes
+"basics"
+{
+	"item"      "ITEM_NAME"
+}
+//補助
+// Level 2 - Blue Recipes
+"support"
+{
+	"item"      "ITEM_NAME"
+}
+//魔術合成
+"magics"
+{
+	"item"      "item_the_red_lightning_chapter"	//赤雷卷
+	"item"      "item_the_red_lightning_chapter_hyper"	//真．赤雷卷
+	"item"      "item_the_over_lightning_art_of_war"	//無上雷暴之書
+	"item"      "item_the_overflame_art_of_war"		//大炎上之書
+	"item"      "item_great_dragon"					//巨龍
+	"item"      ""
+	"item"      ""
+}
+//防具合成
+// Level 3 - Purple Recipes
+"defense"
+{
+	"item"      "ITEM_NAME"
+}
+//武器合成
+"weapons"
+{
+	"item"      "ITEM_NAME"
+}
+//聖物
+// Level 4 - Orange / Orb / Artifacts
+"artifacts"
+{
+	"item"      "ITEM_NAME"
+}
+
+//Sideshop Start - Page 1
+//--------------------------
+//秘密商人
+"sideshop1"
+{
+	"item"      "item_samurai's_badge"
+	"item"      ""
+	"item"      ""
+	"item"      ""
+}
+
+//Sideshop Page 2
+"sideshop2" 
+{
+	"item"      ""
+}
+
+//Secret Shop Start
+//--------------------------   
+//名刀
+"secretshop"
+{
+	
+	"item"      "item_the_great_sword_of_invincible"
+	"item"      "item_true_katana"
+	"item"      "item_the_great_sword_of_precision"
+}
+}
