@@ -39,6 +39,7 @@
 			"modifier_B34W"
 			{
 				"IsPurgable"	"1"
+				"IsDebuff"		"1"
 				"OnCreated"
 				{
 					"Stun"
@@ -103,7 +104,6 @@
 		}
 		"Modifiers"
 		{
-			"IsPurgable"	"1"
 			"modifier_B34E_2"
 			{
 				"Aura"	"modifier_B34E_3"
@@ -133,7 +133,7 @@
 					}
 				}
 				"ThinkInterval"	"1"
-				"IsDebuff"	"0"
+				"IsDebuff"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
@@ -331,7 +331,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"365"
+				"radius"	"400"
 			}
 			"02"
 			{
@@ -350,54 +350,6 @@
 			}
 		}
 		"AbilityDamage"	"85 130 170"
-	}
-
-	"test3333"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"OnUpgrade"
-		{
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_gem_of_true_sight"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_test3333"
-			{
-				"Passive"	"1"
-				"Properties"	{}
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"StatusEffectName"	"particles/a16e2/a16e2.vpcf"
-				"StatusEffectPriority"	"10"
-			}
-			"modifier_test3333_2"
-			{
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
-				}
-				"Properties"	{}
-				"ThinkInterval"	"0.1"
-				"OnCreated"	{}
-			}
-			"modifier_test3333_3"
-			{
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
-				}
-				"Duration"	"1"
-			}
-		}
 	}
 
 }	

@@ -91,6 +91,8 @@ function Precache( context )
     "particles/a16r3/a16r3.vpcf",
     -- 巨龍
     "particles/item/dragon.vpcf",
+    -- 星杵
+    "particles/item/item_club_of_nebula.vpcf",
     "particles/a07w5/a07w5.vpcf",
     "particles/a07w4/a07w4_c.vpcf"
     --注意要加,

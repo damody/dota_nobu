@@ -56,6 +56,16 @@
 					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"8"
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"50"
+					}
+				}
 			}
 		}
 	}

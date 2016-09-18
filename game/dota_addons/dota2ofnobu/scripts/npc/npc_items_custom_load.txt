@@ -498,7 +498,7 @@
 		"ItemCost"	"1000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+
 		"precache"
 		{
 			"particle"	"particles/item/dragon.vpcf"
@@ -1025,6 +1025,23 @@
 		}
 		"Modifiers"
 		{
+			"Passive_art_of_war_flame_chapter"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "10"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+				}
+			}
 			"modifier_item_Q02"
 			{
 				"Properties"
@@ -1114,93 +1131,25 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"	"1"
-		"ItemRequirements"	{}
 		"precache"
 		{
 			"particle"	"particles/item/d02/d02.vpcf"
 			"particle"	"particles/item/d01_2/d01_2.vpcf"
 			"particle"	"particles/item/d02/d02.vpcf"
 			"particle"	"particles/item/d02/d02.vpcf"
+			"particle"	"particles/item_d01_3/d01_3_c.vpcf"
 		}
 		"OnSpellStart"
 		{
-			"SpawnUnit"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"OnSpawn"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_ITEM_D01"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/D01.lua"
-						"Function"	"item_D01"
-					}
-				}
-				"UnitCount"	"1"
-				"UnitName"	"npc_dummy_unit"
+				"ScriptFile"	"items/Addon_Items/item_wind_scroll.lua"
+				"Function"	"Shock"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_ITEM_D01"
-			{
-				"Properties"	{}
-				"Passive"	"0"
-				"Duration"	"%duration"
-				"EffectName"	"particles/item/d01_2/d01_2.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Aura"	"modifier_item_D01_2"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_ApplyToCaster"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"IsBuff"	"1"
-				"ThinkInterval"	"%duration"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/D01.lua"
-						"Function"	"item_D01_END"
-					}
-				}
-			}
-			"modifier_item_D01_2"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
-				}
-				"Passive"	"0"
-				"EffectName"	"particles/item/d02/d02.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsBuff"	"1"
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_D01_3"
-					}
-				}
-				"OnCreated"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_D01_3"
-					}
-				}
-			}
-			"modifier_item_D01_3"
+			"modifier_item_wind_scroll"
 			{
 				"Properties"
 				{
@@ -1261,7 +1210,7 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"	"1"
-		"ItemRequirements"	{}
+		
 		"precache"
 		{
 			"particle"	"particles/item/d02/d02.vpcf"
@@ -1272,81 +1221,32 @@
 		}
 		"OnSpellStart"
 		{
-			"SpawnUnit"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"OnSpawn"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_Q03"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/D01.lua"
-						"Function"	"item_D01"
-					}
-				}
-				"UnitCount"	"1"
-				"UnitName"	"npc_dummy_unit"
+				"ScriptFile"	"items/Addon_Items/item_wind_scroll.lua"
+				"Function"	"Shock"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_item_Q03"
+			"Passive_art_of_war_tornado_chapter"
 			{
-				"Properties"	{}
-				"Passive"	"0"
-				"Duration"	"%duration"
-				"EffectName"	"particles/item/d01_2/d01_2.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Aura"	"modifier_item_Q03_2"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
-				"Aura_ApplyToCaster"	"1"
-				"States"	{}
-				"IsBuff"	"1"
-				"ThinkInterval"	"%duration"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/D01.lua"
-						"Function"	"item_D01_END"
-					}
-				}
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			}
-			"modifier_item_Q03_2"
-			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
-				}
-				"Passive"	"0"
-				"EffectName"	"particles/item/d02/d02.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsBuff"	"1"
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_Q03_3"
-					}
-				}
-				"OnCreated"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_Q03_3"
-					}
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 				}
 			}
-			"modifier_item_Q03_3"
+			"modifier_item_wind_scroll"
 			{
 				"Properties"
 				{
@@ -1358,35 +1258,6 @@
 				"EffectAttachType"	"follow_overhead"
 				"IsBuff"	"1"
 			}
-			"modifier_item_Q03_4"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"10"
-				}
-				"Passive"	"1"
-				"EffectName"	"particles/item_d01_3/d01_3_c.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Aura"	"modifier_item_Q03_5"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
-				"Aura_ApplyToCaster"	"1"
-				"States"	{}
-				"IsBuff"	"0"
-				"ThinkInterval"	"%duration"
-				"IsHidden"	"1"
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			}
-			"modifier_item_Q03_5"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus2"
-				}
-				"Passive"	"0"
-				"IsBuff"	"1"
-			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -1395,34 +1266,19 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus3"	"10"
+				"duration"	"22"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"22"
+				"duration_ver2"	"5"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration_ver2"	"5"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius2"	"850"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
 				"radius"	"1500.00"
 			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus2"	"7"
-			}
-			"07"
+			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus"	"15"
@@ -1483,138 +1339,22 @@
 		}
 		"Modifiers"
 		{
-			"modifier_item_Q04"
+			"Passive_art_of_war_forest_chapter"
 			{
-				"Properties"	{}
-				"Passive"	"0"
-				"Duration"	"%duration"
-				"EffectName"	"particles/item/d01_2/d01_2.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Aura"	"modifier_item_Q03_2"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
-				"Aura_ApplyToCaster"	"1"
-				"States"	{}
-				"IsBuff"	"1"
-				"ThinkInterval"	"%duration"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/D01.lua"
-						"Function"	"item_D01_END"
-					}
-				}
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			}
-			"modifier_item_Q04_2"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
-				}
-				"Passive"	"0"
-				"EffectName"	"particles/item/d02/d02.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsBuff"	"1"
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_Q03_3"
-					}
-				}
-				"OnCreated"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_Q03_3"
-					}
-				}
-			}
-			"modifier_item_Q04_3"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus"
-				}
-				"Passive"	"0"
-				"Duration"	"%duration_ver2"
-				"EffectName"	"particles/item/d02/d02.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsBuff"	"1"
-			}
-			"modifier_item_Q04_4"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"10"
-				}
-				"Passive"	"1"
-				"EffectName"	"particles/item_d01_3/d01_3_c.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Aura"	"modifier_item_Q03_5"
-				"Aura_Radius"	"%radius"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER"
-				"Aura_ApplyToCaster"	"1"
-				"States"	{}
-				"IsBuff"	"0"
-				"ThinkInterval"	"%duration"
 				"IsHidden"	"1"
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			}
-			"modifier_item_Q04_5"
-			{
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus2"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 				}
-				"Passive"	"0"
-				"IsBuff"	"1"
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus3"	"10"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"22"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration_ver2"	"5"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius2"	"850"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"1500.00"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus2"	"7"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus"	"15"
 			}
 		}
 	}
@@ -2871,7 +2611,7 @@
 		"ItemCost"	"7700"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SideShop"	"1"
+		"SecretShop" "1"
 		"ItemShopTags"		"damage"
 		"ItemRequirements"	{}
 		"precache"
@@ -2928,7 +2668,7 @@
 		"ItemCost"	"8500"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SideShop"	"1"
+		"SecretShop" "1"
 		"ItemShopTags"		"damage"
 		"ItemRequirements"	{}
 		"precache"
@@ -2977,9 +2717,8 @@
 		"ItemCost"	"9150"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SideShop"	"1"
+		"SecretShop" "1"
 		"ItemShopTags"		"damage"
-		"ItemRequirements"	{}
 		"AbilityCooldown"	"100"
 		"AbilityManaCost"	"200"
 		"precache"
@@ -3229,7 +2968,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_cross_spear"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -3288,6 +3027,78 @@
 	                    {
 	                        "Center"    "CASTER"
 	                        "Radius"    "900"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
+			}
+		}
+		
+	}
+
+	// 洞察寶石
+	"item_insight_gem"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_insight_gem"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"55"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"175"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%cast_distance"
+		"ID"	"1561"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"						"1"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Radius"    "1100"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+                }
+                "ModifierName"      "modifier_truesight"
+                "Duration"      "10"
+            }
+		}
+		"Modifiers"
+		{
+			"Passive_insight_gem"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "500"
 	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
 	                    }
@@ -3853,7 +3664,7 @@
 		"ItemCost"	"900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -3909,7 +3720,7 @@
 		"ItemCost"	"7200"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{
@@ -3965,7 +3776,7 @@
 		"ItemCost"	"6325"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{
@@ -4021,7 +3832,7 @@
 		"ItemCost"	"7800"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{
@@ -4069,7 +3880,7 @@
 		"ItemCost"	"8600"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{
@@ -4122,7 +3933,7 @@
 		"ItemCost"	"9850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		"OnEquip"
 		{
 			"RunScript"
@@ -4185,7 +3996,7 @@
 		"ItemCost"	"8450"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{
@@ -4250,7 +4061,7 @@
 		"ItemCost"	"11200"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -4343,7 +4154,7 @@
 		"ItemCost"	"6525"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -4419,7 +4230,7 @@
 		"ItemCost"	"7750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -4476,7 +4287,7 @@
 		"ItemCost"	"5800"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -4533,7 +4344,7 @@
 		"ItemCost"	"7300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -4590,7 +4401,7 @@
 		"ItemCost"	"7900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -4647,7 +4458,7 @@
 		"ItemCost"	"7900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -4704,7 +4515,7 @@
 		"ItemCost"	"7000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -4761,7 +4572,7 @@
 		"ItemCost"	"7900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		"OnToggleOn"
 		{
 			"ApplyModifier"
@@ -4847,7 +4658,7 @@
 		"ItemCost"	"6850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -4891,7 +4702,7 @@
 		"ItemCost"	"1000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -5371,11 +5182,12 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "400"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速
 				}
 			}
 		}
@@ -5445,7 +5257,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_the_club_of_nebula"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -5467,7 +5279,6 @@
 		"ItemCost"	"500"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
 		
 		"Modifiers"
 		{
@@ -5491,6 +5302,59 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
+			}
+		}
+		"precache"
+		{
+			"particle"	"particles/item/item_club_of_nebula.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/item/item_club_of_nebula.vpcf"
+				"MoveSpeed"	"1500"
+				"StartRadius"	"250"
+				"StartPosition"	"attach_origin"
+				"EndRadius"	"250"
+				"FixedDistance"	"900"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"1"
+				"ProvidesVision"	"0"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_DragonKnight.BreathFire"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_great_dragon.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%damage"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"300.00"
 			}
 		}
 	}
@@ -9534,7 +9398,7 @@
 		"ItemCost"	"1600"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -9882,7 +9746,7 @@
 		"ItemCost"	"450"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -9940,7 +9804,7 @@
 		"ItemCost"	"750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -9998,7 +9862,7 @@
 		"ItemCost"	"600"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"SideShop"						"1"
 		
 		"Modifiers"
 		{
@@ -10056,7 +9920,7 @@
 		"ItemCost"	"250"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{
@@ -10114,7 +9978,7 @@
 		"ItemCost"	"210"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{
@@ -10172,7 +10036,7 @@
 		"ItemCost"	"1850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"SecretShop" "1"
 		
 		"Modifiers"
 		{

@@ -254,3 +254,18 @@ function B15T(keys)
 		        end
 	end,time )	
 end
+
+function SplitShotDamage( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local damage_table = {}
+
+	damage_table.attacker = caster
+	damage_table.victim = target
+	damage_table.damage_type = ability:GetAbilityDamageType()
+	damage_table.damage = caster:GetAttackDamage()
+
+	ApplyDamage(damage_table)
+end
