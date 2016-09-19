@@ -5722,17 +5722,12 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
-				"Orb"
+				"OnAttackLanded"
 				{
-					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"		"0"
-				}
-				"OnOrbImpact"
-				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target" "TARGET"
-						"ModifierName"	"modifier_spear_of_saddle"
+						"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+						"Function"	"Shock"
 					}
 				}
 			}
@@ -5797,17 +5792,12 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
-				"Orb"
+				"OnAttackLanded"
 				{
-					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"		"0"
-				}
-				"OnOrbImpact"
-				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target" "TARGET"
-						"ModifierName"	"modifier_spear_of_saddle"
+						"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+						"Function"	"Shock"
 					}
 				}
 			}
@@ -5872,17 +5862,12 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
-				"Orb"
+				"OnAttackLanded"
 				{
-					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"		"0"
-				}
-				"OnOrbImpact"
-				{
-					"ApplyModifier"
+					"RunScript"
 					{
-						"Target" "TARGET"
-						"ModifierName"	"modifier_spear_of_saddle"
+						"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+						"Function"	"Shock"
 					}
 				}
 			}
