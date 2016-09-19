@@ -80,7 +80,7 @@ function new_C15E( keys )
 	--ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
 	dummy:FindAbilityByName("majia"):SetLevel(level + 1)		
 	local dummy_ability = dummy:AddAbility("batrider_firefly")
-	dummy_ability:SetLevel(level)
+	dummy_ability:SetLevel(level + 1)
 	ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET, AbilityIndex = dummy_ability:GetEntityIndex(), Queue = false}) 
 
 	--【Particle】
