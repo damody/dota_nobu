@@ -1492,7 +1492,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"items/Addon_Items/D09.lua"
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
 				"Function"	"Shock"
 			}
 		}
@@ -2968,7 +2968,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"items/Addon_Items/D09.lua"
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
 				"Function"	"Shock"
 			}
 		}
@@ -5688,7 +5688,22 @@
 		"ItemCost"	"1300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
 			"modifier_spear_of_saddle"
@@ -5758,9 +5773,25 @@
 		"ItemCost"	"1300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
+			
 			"modifier_spear_of_saddle"
 			{
 				"Passive"			"0"
@@ -5828,9 +5859,25 @@
 		"ItemCost"	"1300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
+			
 			"modifier_spear_of_saddle"
 			{
 				"Passive"			"0"
@@ -5904,9 +5951,26 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
+			
+
 			"Passive_lightning_katana"
 			{
 				"IsHidden"	"1"
@@ -7708,7 +7772,22 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
 		"ItemRequirements"	{}
-		
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -7731,6 +7810,48 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+						"Function"	"Shock2"
+					}
+				}
+			}
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_distance"	"510"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"start_radius"	"125"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_radius"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_distance"	"720"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"targets"	"6"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"350.00"
 			}
 		}
 	}

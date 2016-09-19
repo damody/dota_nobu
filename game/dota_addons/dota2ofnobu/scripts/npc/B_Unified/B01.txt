@@ -80,12 +80,7 @@
 			"modifier_B01R"
 			{
 				"Passive"	"1"
-				"Orb"
-				{
-					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"	"0"
-				}
-				"OnOrbImpact"
+				"OnAttackLanded"
 				{
 					"RunScript"
 					{
