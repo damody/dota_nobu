@@ -5792,7 +5792,7 @@
 		"Modifiers"
 		{
 			
-			"modifier_spear_of_saddle"
+			"modifier_spear_of_saddle_1"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"
@@ -5828,7 +5828,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
-						"Function"	"Shock"
+						"Function"	"Shock1"
 					}
 				}
 			}
@@ -5878,7 +5878,7 @@
 		"Modifiers"
 		{
 			
-			"modifier_spear_of_saddle"
+			"modifier_spear_of_saddle_2"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"
@@ -5914,7 +5914,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"items/Addon_Items/item_the_spear_of_saddle.lua"
-						"Function"	"Shock"
+						"Function"	"Shock2"
 					}
 				}
 			}
@@ -7851,7 +7851,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"350.00"
+				"damage"	"400.00"
 			}
 		}
 	}

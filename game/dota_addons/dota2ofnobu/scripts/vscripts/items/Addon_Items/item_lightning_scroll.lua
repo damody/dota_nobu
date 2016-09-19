@@ -215,7 +215,7 @@ function Shock2( keys )
 	--local point2 = ability:GetCursorPosition()
 	local level = ability:GetLevel() - 1
 	local vec = (point2-point):Normalized() --caster:GetForwardVector():Normalized()
-	if (caster.nobuorb1 == "item_raikiri") then
+	if (caster.nobuorb1 == "item_raikiri") and not target:IsBuilding() then
 		local ran =  RandomInt(0, 100)
 		if (caster.raikiri == nil) then
 			caster.raikiri = 0
@@ -252,13 +252,16 @@ function Shock2( keys )
 		                              nil,
 		                              500,
 		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-		                              DOTA_UNIT_TARGET_ALL,
+		                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		                              DOTA_UNIT_TARGET_FLAG_NONE,
 		                              FIND_ANY_ORDER,
 		                              false)
 			local targets_shocked = 1 --Is targets=extra targets or total?
 			for _,unit in pairs(cone_units) do
 				if targets_shocked < targets then
+					Timers:CreateTimer(0.1, function() 
+						keys.target.raikiri = nil
+					end)
 					if unit.has_D09 ~= true then
 						unit.has_D09 = true
 						-- Particle

@@ -14,8 +14,9 @@ end
 
 function Shock( keys )
 	local caster = keys.caster
+	local target = keys.target
 	local skill = keys.ability
-	if (caster.nobuorb1 == "item_the_spear_of_ghost") then
+	if (caster.nobuorb1 == "item_the_spear_of_ghost") and not target:IsBuilding() then
 		local ran =  RandomInt(0, 100)
 		if (caster.spear_of_ghost == nil) then
 			caster.spear_of_ghost = 0

@@ -1,12 +1,18 @@
 
 function OnEquip( keys )	
 	local caster = keys.caster
-	caster:AddAbility("ability_muramasa_katana"):SetLevel(1)
+	if (caster.nobuorb1 == nil) then
+		caster:AddAbility("ability_muramasa_katana"):SetLevel(1)
+		caster.nobuorb1 = "muramasa_katana"
+	end
 end
 
 function OnUnequip( keys )	
 	local caster = keys.caster
-	caster:RemoveAbility("ability_muramasa_katana")
+	if (caster.nobuorb1 == "muramasa_katana") then
+		caster:RemoveAbility("ability_muramasa_katana")
+		caster.nobuorb1 = nil
+	end
 end
 
 
