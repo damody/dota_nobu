@@ -177,3 +177,120 @@ function tableContains(list, element)
     end
     return false
 end
+
+function OnEquip( keys )
+	local caster = keys.caster
+	if (caster.nobuorb1 == nil) then
+		caster.nobuorb1 = "item_raikiri"
+	end
+end
+
+function OnUnequip( keys )
+	local caster = keys.caster
+	if (caster.nobuorb1 == "item_raikiri") then
+		caster.nobuorb1 = nil
+	end
+end
+
+function Shock2( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local start_radius = ability:GetLevelSpecialValueFor("start_radius", level )
+	local end_radius = ability:GetLevelSpecialValueFor("end_radius", level )
+	local end_distance = ability:GetLevelSpecialValueFor("end_distance", level )
+	local targets = ability:GetLevelSpecialValueFor("targets", level )
+	local damage = ability:GetLevelSpecialValueFor("damage", level )
+	local AbilityDamageType = ability:GetAbilityDamageType()
+	local particleName = "particles/item/d09/d09.vpcf"
+	local vec = caster:GetForwardVector():Normalized()
+	--【Basic】
+	local caster = keys.caster
+	--local target = keys.target
+	local ability = keys.ability
+	--local player = caster:GetPlayerID()
+	local point = caster:GetAbsOrigin()
+	local point2 = target:GetAbsOrigin() 
+	--local point2 = ability:GetCursorPosition()
+	local level = ability:GetLevel() - 1
+	local vec = (point2-point):Normalized() --caster:GetForwardVector():Normalized()
+	if (caster.nobuorb1 == "item_raikiri") then
+		local ran =  RandomInt(0, 100)
+		if (caster.raikiri == nil) then
+			caster.raikiri = 0
+		end
+		if (ran > 20) then
+			caster.raikiri = caster.raikiri + 1
+		end
+		if (caster.raikiri > (100/20) or ran <= 20) then
+			caster.raikiri = 0
+			--【KV】
+			--caster:SetForwardVector(vec)
+
+			-- Make sure the main target is damaged
+			local lightningBolt = ParticleManager:CreateParticle(particleName, PATTACH_WORLDORIGIN, caster)
+
+			--【Particle】
+			local particle = ParticleManager:CreateParticle("particles/item/d09/d09.vpcf",PATTACH_POINT,caster)
+			ParticleManager:SetParticleControl(particle,0, point + vec * 100)
+			ParticleManager:SetParticleControl(particle,1, point2)
+
+			-- ParticleManager:SetParticleControl(lightningBolt,0,Vector(point.x,point.y,caster:GetAbsOrigin().z + caster:GetBoundingMaxs().z ))	
+			-- ParticleManager:SetParticleControl(lightningBolt,1,Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z + target:GetBoundingMaxs().z ))
+			--【DMG】
+			ApplyDamage({ victim = target, attacker = caster, damage = damage, damage_type = AbilityDamageType})
+			target.has_D09 = true
+			-- target:EmitSound("Hero_ShadowShaman.EtherShock.Target")
+
+			--【Varible Of Tem】
+			--local tem_point = nil
+
+
+			local cone_units = FindUnitsInRadius(caster:GetTeamNumber(),
+		                              point2,
+		                              nil,
+		                              500,
+		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+		                              DOTA_UNIT_TARGET_ALL,
+		                              DOTA_UNIT_TARGET_FLAG_NONE,
+		                              FIND_ANY_ORDER,
+		                              false)
+			local targets_shocked = 1 --Is targets=extra targets or total?
+			for _,unit in pairs(cone_units) do
+				if targets_shocked < targets then
+					if unit.has_D09 ~= true then
+						unit.has_D09 = true
+						-- Particle
+						local tem_point = unit:GetAbsOrigin()
+
+						--【Particle】
+						particle = ParticleManager:CreateParticle("particles/item/d09/d09.vpcf",PATTACH_POINT,caster)
+						ParticleManager:SetParticleControl(particle,0, point + vec * 100)
+						ParticleManager:SetParticleControl(particle,1, tem_point)
+					
+						--【DMG】
+						ApplyDamage({ victim = unit, attacker = caster, damage = damage, damage_type = AbilityDamageType})
+
+						-- Increment counter
+						targets_shocked = targets_shocked + 1
+					end
+				else
+					break
+				end
+			end
+
+			for _,unit in pairs(cone_units) do
+				unit.has_D09 = nil
+			end
+
+			--【SOUND】
+			caster:EmitSound("ITEM_D09.sound")
+			--target:EmitSound("ITEM_D09.sound")
+			Timers:CreateTimer(2,function()
+				caster:StopSound("ITEM_D09.sound")
+				--target:StopSound("ITEM_D09.sound")
+			end)	
+		end
+	end
+end
