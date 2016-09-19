@@ -126,6 +126,15 @@
 				"EffectName"	"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"Duration"	"%slow_duration"
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"5"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"

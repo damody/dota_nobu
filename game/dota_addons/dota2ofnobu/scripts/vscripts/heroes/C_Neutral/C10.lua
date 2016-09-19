@@ -37,10 +37,12 @@ end
 
 function C10T_END( keys )
 	local point = keys.caster:GetAbsOrigin()
-	keys.caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
+	keys.caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	for i,v in ipairs(keys.caster.C10T_T) do
-		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
-		v:SetAbsOrigin(point)
+		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		if (v:HasModifier("modifier_C10T")) then
+			v:SetAbsOrigin(point)
+		end
 	end
 end
 

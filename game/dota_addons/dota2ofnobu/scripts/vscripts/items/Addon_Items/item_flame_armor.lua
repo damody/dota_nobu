@@ -3,7 +3,7 @@ function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 
-	local SEARCH_RADIUS = 300
+	local SEARCH_RADIUS = keys.range
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
                               caster:GetAbsOrigin(),
                               nil,
@@ -18,7 +18,7 @@ function Shock( keys )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			local flame = ParticleManager:CreateParticle("particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf", PATTACH_ABSORIGIN, it)
-			AMHC:Damage(caster,it, 40,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			AMHC:Damage(caster,it, keys.damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			Timers:CreateTimer(0.9, function ()
 				ParticleManager:DestroyParticle(flame, false)
 			end)

@@ -386,6 +386,8 @@
 		{
 			"modifier_B15T"
 			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
 				"IsHidden"	"0"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Duration"	"%stun_time"
@@ -397,6 +399,15 @@
 				"EffectAttachType"	"follow_overhead"
 				"IsDebuff"	"1"
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"5"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"

@@ -1,4 +1,4 @@
-LinkLuaModifier("modifier_voodoo_lua", "heroes/hero_shadow_shaman/modifiers/modifier_voodoo_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_voodoo_lua", "heroes/modifier_voodoo_lua.lua", LUA_MODIFIER_MOTION_NONE)
 
 function A28W(keys)
 	local ability = keys.ability

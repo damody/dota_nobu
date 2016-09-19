@@ -49,6 +49,7 @@ function C21T_Effect(u,u2,i)
 
 	--傷害
 	AMHC:Damage( u,u2,110.0,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	AMHC:Damage( u,u2,u:GetAttackDamage(),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 
 	--發動攻擊	 
 	local order_target = 
@@ -182,8 +183,10 @@ function Trig_C21EActions(keys)
 			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
 				--刪除無敵
                 u:RemoveModifierByName("modifier_C21E")
+                u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 				return nil 
 			else
+				u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 				point = u:GetAbsOrigin()
 				local  x = point.x
 				local  y = point.y

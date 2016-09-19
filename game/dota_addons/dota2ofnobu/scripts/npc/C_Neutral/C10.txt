@@ -220,6 +220,15 @@
 				}
 				"EffectName"	"particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf"
 				"EffectAttachType"	"follow_hitloc"
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"5"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"

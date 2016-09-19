@@ -61,9 +61,20 @@
 		}
 		"modifier_A28W"
 		{
+			"IsPurgable"	"1"
+			"IsDebuff"		"1"
 			"Properties"
 			{
 				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
+			}
+			"OnCreated"
+			{
+				"Damage"
+				{
+					"Target"	"TARGET"
+					"Type"	"DAMAGE_TYPE_MAGICAL"
+					"Damage"	"5"
+				}
 			}
 		}
 		"OnSpellStart"

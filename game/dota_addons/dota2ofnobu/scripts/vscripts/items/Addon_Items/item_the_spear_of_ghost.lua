@@ -1,43 +1,30 @@
-LinkLuaModifier( "big_tachi", "items/Addon_Items/item_big_tachi.lua",LUA_MODIFIER_MOTION_NONE )
---野太刀
-
-
-big_tachi = class({})
-
-function big_tachi:IsHidden()
-	return true
-end
-
-function big_tachi:DeclareFunctions()
-	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
-end
-
-function big_tachi:GetModifierPreAttack_CriticalStrike()
-	return 200
-end
-
-function big_tachi:CheckState()
-	local state = {
-	}
-	return state
-end
-
 
 
 function Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
-	if (caster.big_tachi_count == nil) then
-		caster.big_tachi_count = 0
+	if (caster.spear_of_ghost == nil) then
+		caster.spear_of_ghost = 0
 	end
-	if (ran > 20) then
-		caster.big_tachi_count = caster.big_tachi_count + 1
+	if (ran > keys.Chance) then
+		caster.spear_of_ghost = caster.spear_of_ghost + 1
 	end
-	if (caster.big_tachi_count > 5 or ran <= 20) then
-		caster.big_tachi_count = 0
+	if (caster.spear_of_ghost > (100/keys.Chance)+1 or ran <= keys.Chance) then
+		caster.spear_of_ghost = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-		caster:AddNewModifier(caster, skill, "big_tachi", { duration = 0.1 } )
+		if (not keys.target:IsMagicImmune() and keys.target.spear_of_ghost == nil) then
+			keys.target.spear_of_ghost = 1
+			Timers:CreateTimer(0.1, function() 
+					keys.target.spear_of_ghost = nil
+				end)
+			local dmg = keys.target:GetHealth() * keys.Percent / 100
+			if dmg < keys.MinDmg then
+				dmg = keys.MinDmg
+			end
+			AMHC:Damage(caster,keys.target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			AMHC:CreateNumberEffect(keys.target,dmg,1,AMHC.MSG_DAMAGE,'blue')
+		end
 		--SE
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 		-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

@@ -46,6 +46,15 @@
 				}
 				"Properties"	{}
 				"TextureName"	"templar_assassin_meld"
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"5"
+					}
+				}
 			}
 			"modifier_C15W_2"
 			{

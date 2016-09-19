@@ -153,6 +153,7 @@ local function chat_of_test(keys)
 			return nil
 		end)
 	end
+	
 end
 
 function Nobu:Chat( keys )
