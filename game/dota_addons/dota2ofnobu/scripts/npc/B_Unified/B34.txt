@@ -19,7 +19,6 @@
 			"soundfile"	"sounds/weapons/hero/beastmaster/wild_axes.vsnd"
 			"soundfile"	"sounds/weapons/hero/beastmaster/attack03.vsnd"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -30,8 +29,8 @@
 			}
 			"FireSound"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Beastmaster.Wild_Axes"
+				"Target"	"TARGET"
+				"EffectName"	"hero_Crystal.frostbite"
 			}
 		}
 		"Modifiers"

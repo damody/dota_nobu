@@ -94,7 +94,8 @@ function Precache( context )
     -- 星杵
     "particles/item/item_club_of_nebula.vpcf",
     "particles/a07w5/a07w5.vpcf",
-    "particles/a07w4/a07w4_c.vpcf"
+    "particles/a07w4/a07w4_c.vpcf",
+    "particles/a34e2/a34e2.vpcf"
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do
@@ -109,6 +110,7 @@ function Precache( context )
     "soundevents/items/D09.vsndevts",
     "soundevents/items/D03.vsndevts",
     "soundevents/custom_sounds.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

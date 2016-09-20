@@ -85,9 +85,19 @@ function Shock( keys )
 	Timers:CreateTimer(2,function()
 		caster:StopSound("ITEM_D09.sound")
 		--target:StopSound("ITEM_D09.sound")
-	end)	
-
-
+	end)
+	--跟凍牙輪共用CD
+	if math.abs(damage - 350) < 1 then
+		for itemSlot=0,5 do
+			local item = caster:GetItemInSlot(itemSlot)
+			if item ~= nil then
+				local itemName = item:GetName()
+				if (itemName == "item_frozen_ring") then
+					item:StartCooldown(20)
+				end
+			end
+		end
+	end
 end
 
 
