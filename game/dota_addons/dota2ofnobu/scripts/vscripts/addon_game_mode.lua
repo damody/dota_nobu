@@ -1,4 +1,4 @@
-
+require("equilibrium_constant")
 print ( '[Nobu-lua] ADDON INIT EXECUTED' )
 
 --【全局變量】
@@ -110,7 +110,6 @@ function Precache( context )
     "soundevents/items/D09.vsndevts",
     "soundevents/items/D03.vsndevts",
     "soundevents/custom_sounds.vsndevts",
-    "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)
@@ -123,4 +122,17 @@ if Script_reload_B then
   Timers:CreateTimer(1,function()
     Activate()
   end)
+end
+
+if true and not debug.bHookIsSet then
+debug.sethook(function( ... )
+  local info = debug.getinfo(2)
+  local src = tostring(info.short_src)
+  local name = tostring(info.name)
+  if name ~= "__index" then
+    print(debug.traceback("Crash "..src.." "..name))
+  end
+  -- body
+end, "c")
+debug.bHookIsSet = true
 end

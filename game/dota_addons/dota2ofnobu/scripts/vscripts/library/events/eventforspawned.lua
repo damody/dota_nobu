@@ -1,4 +1,3 @@
-require("equilibrium_constant")
 --單位創建也會運行
 
 model_lookup = {}
