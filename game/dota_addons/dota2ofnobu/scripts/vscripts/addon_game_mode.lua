@@ -95,7 +95,8 @@ function Precache( context )
     "particles/item/item_club_of_nebula.vpcf",
     "particles/a07w5/a07w5.vpcf",
     "particles/a07w4/a07w4_c.vpcf",
-    "particles/a34e2/a34e2.vpcf"
+    "particles/a34e2/a34e2.vpcf",
+    "particles/a04r3/a04r3.vpcf"
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do
@@ -110,6 +111,7 @@ function Precache( context )
     "soundevents/items/D09.vsndevts",
     "soundevents/items/D03.vsndevts",
     "soundevents/custom_sounds.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)
@@ -123,7 +125,7 @@ if Script_reload_B then
     Activate()
   end)
 end
-
+--[[
 if true and not debug.bHookIsSet then
 debug.sethook(function( ... )
   local info = debug.getinfo(2)
@@ -136,3 +138,4 @@ debug.sethook(function( ... )
 end, "c")
 debug.bHookIsSet = true
 end
+]]

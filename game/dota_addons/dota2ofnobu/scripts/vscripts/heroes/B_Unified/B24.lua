@@ -83,8 +83,10 @@ end
 function B24W( keys )
 	--【Basic】
 	local caster = keys.caster
-	local dummy	= keys.target
 	local ability = keys.ability
+	local mouse = ability:GetCursorPosition()
+	local dummy	= CreateUnitByName("B24W_DUMMY", mouse, true, nil, nil, caster:GetTeamNumber())
+	
 	--local player = caster:GetPlayerID()
 	local point = caster:GetAbsOrigin()
 	local point2 = dummy:GetAbsOrigin() 
@@ -99,10 +101,22 @@ function B24W( keys )
 
 	dummy:SetBaseMaxHealth(800+level*400)
 	dummy:SetHealth(dummy:GetMaxHealth())
-	dummy:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	--一定要放紀錄次數下面
 	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24W",nil)
 
+
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	          dummy:GetAbsOrigin(),
+	          nil,
+	          SEARCH_RADIUS,
+	          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	          DOTA_UNIT_TARGET_HERO,
+	          DOTA_UNIT_TARGET_FLAG_NONE,
+	          FIND_ANY_ORDER,
+	          false)
+	for _,target in pairs(direUnits) do
+		target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+	end
 	local count = 0
 	Timers:CreateTimer(function ()
 		local SEARCH_RADIUS = 250

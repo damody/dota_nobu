@@ -25,5 +25,5 @@ function Nobu:DamageFilterEvent( filterTable )
 	-- 	victim.damagetype = damagetype_const 
 	-- 	--print(victim:GetUnitName())
 	-- end 
-	-- return true 
+	return true 
 end

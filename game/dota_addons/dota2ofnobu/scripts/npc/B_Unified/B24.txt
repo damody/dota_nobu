@@ -25,27 +25,17 @@
 		}
 		"OnSpellStart"
 		{
-			"SpawnUnit"
+			"RunScript"
 			{
 				"Target"	"POINT"
-				"OnSpawn"
-				{
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
-						"Function"	"B24W"
-					}
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"Hero_ElderTitan.EarthSplitter.Cast"
-					}
-				}
-				"UnitCount"	"1"
-				"UnitLimit"	"1"
-				"UnitName"	"B24W_DUMMY"
-				"Duration"	"%life_duration"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
+				"Function"	"B24W"
+			}
+					
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_ElderTitan.EarthSplitter.Cast"
 			}
 			"RunScript"
 			{
