@@ -33,9 +33,25 @@ function B24T( keys )
    		FIND_ANY_ORDER, 
    		false)
 	for _,v in ipairs(group) do
-		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-		--print("nobu"..v:GetUnitName())
+		if (v:GetUnitName() ~= "B24W_DUMMY") then
+			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		end
 	end
+
+	group = FindUnitsInRadius(
+   		caster:GetTeamNumber(), 
+   		caster:GetAbsOrigin(), 
+   		nil, 
+   		radius ,
+   		DOTA_UNIT_TARGET_TEAM_ENEMY, 
+   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+   		FIND_ANY_ORDER, 
+   		false)
+	for _,v in ipairs(group) do
+		ability:ApplyDataDrivenModifier(caster, v,"modifier_B24T_2",{duration=100})
+	end
+
 
 	--【For】
 	local pointx = point.x
@@ -108,11 +124,11 @@ function B24W( keys )
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	          dummy:GetAbsOrigin(),
 	          nil,
-	          SEARCH_RADIUS,
+	          250,
 	          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 	          DOTA_UNIT_TARGET_HERO,
 	          DOTA_UNIT_TARGET_FLAG_NONE,
-	          FIND_ANY_ORDER,
+	          0,
 	          false)
 	for _,target in pairs(direUnits) do
 		target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
@@ -126,8 +142,8 @@ function B24W( keys )
 	          SEARCH_RADIUS,
 	          DOTA_UNIT_TARGET_TEAM_ENEMY,
 	          DOTA_UNIT_TARGET_HERO,
-	          DOTA_UNIT_TARGET_FLAG_NONE,
-	          FIND_ANY_ORDER,
+	          0,
+	          0,
 	          false)
 
 		

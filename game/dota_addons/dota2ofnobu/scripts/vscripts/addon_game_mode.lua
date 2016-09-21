@@ -1,4 +1,4 @@
-require("equilibrium_constant")
+--require("equilibrium_constant")
 print ( '[Nobu-lua] ADDON INIT EXECUTED' )
 
 --【全局變量】

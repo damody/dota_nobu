@@ -80,7 +80,6 @@ function Nobu:OnHeroIngame( keys )
     donkey:SetPhysicalArmorBaseValue(10)
     donkey:SetBaseMoveSpeed(2000)
     donkey:AddAbility("for_magic_immune")
-    donkey:AddNewModifier(donkey, nil, "modifier_movespeed_cap", { duration = 600 })
       end
       Timers:CreateTimer(1, function ()
           for itemSlot=0,5 do

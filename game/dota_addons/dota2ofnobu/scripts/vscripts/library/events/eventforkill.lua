@@ -55,13 +55,25 @@ function Nobu:OnUnitKill( keys )
   		end)
   		print("npc_dota_hero_silencer_dead")
   	end
-	
+
     if killedUnit:IsRealHero() then
       --killedUnit:RespawnUnit()
-	  killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*0.4)
-	  --[[Returns:void
-      Respawns the target unit if it can be respawned.
-      ]]
+	    killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*0.5)
+      group = FindUnitsInRadius(
+          killedUnit:GetTeamNumber(), 
+          killedUnit:GetAbsOrigin(), 
+          nil, 
+          1500,
+          DOTA_UNIT_TARGET_TEAM_ENEMY, 
+          DOTA_UNIT_TARGET_HERO, 
+          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+          FIND_ANY_ORDER, 
+          false)
+      local xp = killedUnit:GetLevel() * 100 / #group
+      for _,v in ipairs(group) do
+        v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
+      end
+
 
       -- for i=1,10 do
       --   GameRules: SendCustomMessage("   ",DOTA_TEAM_GOODGUYS,0)

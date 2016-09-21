@@ -53,7 +53,7 @@ function Shock( keys )
 	local cone_units = GetEnemiesInCone( caster,vec, start_radius, end_radius, end_distance )
 	local targets_shocked = 1 --Is targets=extra targets or total?
 	for _,unit in pairs(cone_units) do
-		if targets_shocked < targets then
+		if targets_shocked < targets and (caster:CanEntityBeSeenByMyTeam(unit)) then
 			if unit.has_D09 ~= true then
 				unit.has_D09 = true
 				-- Particle

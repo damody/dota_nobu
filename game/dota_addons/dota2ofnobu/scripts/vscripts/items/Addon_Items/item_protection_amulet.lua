@@ -18,7 +18,7 @@ function modifier_protection_amulet:OnCreated( event )
 end
 
 function modifier_protection_amulet:OnIntervalThink()
-	if (self.caster ~= nil) then
+	if (self.caster ~= nil) and IsValidEntity(self.caster) then
 		self.hp = self.caster:GetHealth()
 	end
 end
@@ -31,7 +31,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 	    local damage_type = event.damage_type
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
-	    if (self.caster ~= nil) then
+	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
@@ -40,31 +40,33 @@ function modifier_protection_amulet:OnTakeDamage(event)
 		            		self.caster.protection_amulet = false
 		            		self.caster:Purge( false, true, true, true, true)
 		            		end)
-		            	self.caster:SetHealth(self.hp)
-						local am = self.caster:FindAllModifiers()
-						for _,v in pairs(am) do
-							if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-								self.caster:RemoveModifierByName(v:GetName())
+		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
+			            	self.caster:SetHealth(self.hp)
+							local am = self.caster:FindAllModifiers()
+							for _,v in pairs(am) do
+								if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
+									self.caster:RemoveModifierByName(v:GetName())
+								end
 							end
-						end
-		            	-- Strong Dispel 刪除負面效果
-		            	self.caster:Purge( false, true, true, true, true)
-						local count = 0
-						AmpDamageParticle = ParticleManager:CreateParticle("particles/a07w4/a07w4_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
-						Timers:CreateTimer(1.0, function() 
-							ParticleManager:DestroyParticle(AmpDamageParticle, false)
-						end)
-						for itemSlot=0,5 do
-							local item = self.caster:GetItemInSlot(itemSlot)
-							if item ~= nil and item:GetName() == "item_protection_amulet" then
-								hasitem = true
-								item:StartCooldown(30)
+			            	-- Strong Dispel 刪除負面效果
+			            	self.caster:Purge( false, true, true, true, true)
+							local count = 0
+							AmpDamageParticle = ParticleManager:CreateParticle("particles/a07w4/a07w4_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+							Timers:CreateTimer(1.0, function() 
+								ParticleManager:DestroyParticle(AmpDamageParticle, false)
+							end)
+							for itemSlot=0,5 do
+								local item = self.caster:GetItemInSlot(itemSlot)
+								if item ~= nil and item:GetName() == "item_protection_amulet" then
+									hasitem = true
+									item:StartCooldown(30)
+								end
 							end
+							Timers:CreateTimer(30, function() 
+								self.caster.protection_amulet = true
+								print("self.caster.protection_amulet")
+							end)
 						end
-						Timers:CreateTimer(30, function() 
-							self.caster.protection_amulet = true
-							print("self.caster.protection_amulet")
-						end)
 		            else
 		                if not victim:IsMagicImmune() then
 
@@ -87,6 +89,7 @@ function OnEquip( keys )
 	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 	caster:FindModifierByName("modifier_protection_amulet").caster = caster
+	caster:FindModifierByName("modifier_protection_amulet").hp = 1
 	caster.has_item_protection_amulet = true
 	Timers:CreateTimer(1, function() 
 		if (caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet")) then

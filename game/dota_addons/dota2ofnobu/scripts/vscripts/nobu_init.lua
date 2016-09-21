@@ -24,11 +24,12 @@ function _G.Nobu:InitGameMode()
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
   GameRules:SetGoldPerTick(15)-- 設置金錢
-  GameRules:SetGoldTickTime(1)--金錢跳錢秒數
+  GameRules:SetGoldTickTime(2)--金錢跳錢秒數
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
   GameRules:SetCustomGameEndDelay(1) --遊戲結束時間 --正常30
   GameRules:SetCustomVictoryMessageDuration(1)  --遊戲結束發送訊息時間
+  GameRules:SetCustomVictoryMessage("天下布武！")
   -- GameRules:SetCustomGameSetupTimeout(20)
   -- GameRules:SetHeroMinimapIconScale( 1 )
   -- GameRules:SetCreepMinimapIconScale( 1 )

@@ -106,7 +106,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Damage"	"100"
+				"Damage"	"200"
 			}
 		}
 	}
@@ -373,11 +373,6 @@
 				}
 				"Action"
 				{
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_B24T_2"
-					}
 					"Damage"
 					{
 						"Target"	"TARGET"
@@ -432,7 +427,6 @@
 			}
 			"modifier_B24T_2"
 			{
-				"IsPurgable"	"1"
 				"IsDebuff"	"1"
 				"States"
 				{
@@ -441,10 +435,7 @@
 					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"%silence_duration"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
 			}
-			"modifier_B24T_3"	{}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -463,7 +454,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"silence_duration"	"2 2.5 3"
+				"silence_duration"	"2.5 3 3.5"
 			}
 		}
 		"AbilityDuration"	"2 2.5 3"

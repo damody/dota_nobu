@@ -25,7 +25,7 @@
 		"AbilityManaCost"	"200"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"AbilityCastRange"	"700"
 		"ID"	"1620"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -88,7 +88,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"end_distance"	"1020"
+				"end_distance"	"820"
 			}
 			"05"
 			{
@@ -124,7 +124,7 @@
 		"AbilityManaCost"	"200"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"AbilityCastRange"	"700"
 		"ID"	"1516"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10946,7 +10946,7 @@
 	//真‧大炎上之書製作單
 	"item_recipe_the_overflame_art_of_war_hyper" 
 	{
-	    "ID" "3074"
+	    "ID" "3075"
 	    "BaseClass" "item_recipe_arcane_boots"
 		"ItemCost" "10000"
 		"ItemShopTags" ""
