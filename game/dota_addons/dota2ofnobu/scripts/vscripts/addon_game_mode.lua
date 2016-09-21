@@ -84,19 +84,27 @@ function Precache( context )
     "particles/b24t3/b24t3.vpcf",
     "particles/b13e/b13e.vpcf",
 
+    "particles/b08w2/b08w2.vpcf",
+    "particles/b08t_2/b08t.vpcf",
+
     --羽柴秀吉
     "particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge.vpcf",
     --鳥居元宗
     "particles/generic_gameplay/generic_hit_blood.vpcf",
     "particles/a16r3/a16r3.vpcf",
-    -- 巨龍
+    --巨龍
     "particles/item/dragon.vpcf",
-    -- 星杵
+    --星杵
     "particles/item/item_club_of_nebula.vpcf",
     "particles/a07w5/a07w5.vpcf",
     "particles/a07w4/a07w4_c.vpcf",
     "particles/a34e2/a34e2.vpcf",
-    "particles/a04r3/a04r3.vpcf"
+    "particles/a04r3/a04r3.vpcf",
+    --法術書
+    "particles/item/item_spell_book.vpcf",
+    "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf",
+    --吹箭
+    "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

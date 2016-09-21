@@ -1542,7 +1542,7 @@
 		"AbilityTextureName"	"item_spell_book"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
@@ -1554,7 +1554,7 @@
 		"AbilityManaCost"	"120"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"AbilityCastRange"	"700"
 		"ID"	"1515"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -1565,53 +1565,48 @@
 		"ItemRequirements"	{}
 		"precache"
 		{
-			"particle"	"particles/item/d09/d09.vpcf"
-			"soundfile"	"sounds/weapons/hero/shadowshaman/shock01.vsnd"
-			"soundfile"	"soundevents/ITEMS/D09.vsndevts"
+			"particle"	"particles/item/item_spell_book.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_spell_book_friendly"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"20"
+			
+				"EffectName"		"particles/item/item_spell_book.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "40"	//回血
+				}
+			}
+			"modifier_spell_book_enemy"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Passive"	"0"
+				"Duration"			"7"
+				"EffectName"	"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-30" 	//跑速
+				}
+			}
 		}
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"items/Addon_Items/D09.lua"
+				"ScriptFile"	"items/Addon_Items/item_spell_book.lua"
 				"Function"	"Shock"
 			}
 		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"cast_distance"	"510"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"start_radius"	"125"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"end_radius"	"300"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"end_distance"	"720"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"targets"	"6"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"350.00"
-			}
-		}
+		
 	}
 	//肉
 	"item_S01"
@@ -2536,6 +2531,7 @@
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "OnAttacked"
 			    {
 			        "Random"
@@ -3152,6 +3148,44 @@
 	                    "Duration"      "0.50"
 	                }
 	            }
+			}
+			"shield_modifier"
+			{
+			    "Passive" "1"
+			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttacked"
+			    {
+			        "Random"
+			        {
+			            "Chance" "15"
+			            "OnSuccess"
+			            {
+			                "ApplyModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier"
+			                }
+			            }
+			            "OnFailure"
+			            {
+			                "RemoveModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier"
+			                }
+			            }
+			        }
+			    }
+			}
+			"block_modifier"
+			{
+			    "IsBuff" "1"
+			    "IsHidden" "1"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
+			    }
 			}
 		}
 		
@@ -4021,6 +4055,25 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_tiger.lua"
+						"Function"	"Shock"
+					}
+				}
+			}
+			"modifier_great_sword_of_tiger"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"0.4"
+				"IsDebuff"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
 			}
 		}
 	}
@@ -4138,7 +4191,6 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
 				}
 				"OnAttackLanded"
-				// "%attack_damage" is set to the damage value before mitigation
 				{
 					"RunScript"
 					{
@@ -4486,6 +4538,44 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "65" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
+			}
+			"shield_modifier"
+			{
+			    "Passive" "1"
+			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttacked"
+			    {
+			        "Random"
+			        {
+			            "Chance" "25"
+			            "OnSuccess"
+			            {
+			                "ApplyModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier"
+			                }
+			            }
+			            "OnFailure"
+			            {
+			                "RemoveModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier"
+			                }
+			            }
+			        }
+			    }
+			}
+			"block_modifier"
+			{
+			    "IsBuff" "1"
+			    "IsHidden" "1"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
+			    }
 			}
 		}
 	}
@@ -9387,6 +9477,7 @@
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "OnAttacked"
 			    {
 			        "Random"
@@ -9417,7 +9508,7 @@
 			    "IsHidden" "1"
 			    "Properties"
 			    {
-			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "10000"
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
 			    }
 			}
 		}
@@ -9887,16 +9978,29 @@
 		"ItemCost"	"3050"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
-		
 		"OnSpellStart"
 		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"2500"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
 			"RunScript"
 			{
 				"ScriptFile"	"items/Addon_Items/item_blowgun.lua"
 				"Function"	"Shock2"
 			}
 		}
+		
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -10591,11 +10695,10 @@
 	// 療癒圖騰
 	"item_healing_totem"
 	{
-		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_healing_totem"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -10609,7 +10712,7 @@
 		"AbilityManaCost"	"0"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"AbilityCastRange"	"500"
 		"ID"	"1562"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10619,29 +10722,13 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
 		"SideShop"						"1"
 		
-		"Modifiers"
+		"OnSpellStart"
 		{
-			"Passive_lightning_katana"
+			"RunScript"
 			{
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
-					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
-				}
+				"ScriptFile"	"items/Addon_Items/item_healing_totem.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
 			}
 		}
 	}
@@ -10883,16 +10970,33 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
 		"SecretShop" "1"
+
 		
 		"OnSpellStart"
 		{
+			
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"2500"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"SpendCharge"
+			{}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
 			"RunScript"
 			{
 				"ScriptFile"	"items/Addon_Items/item_shuriken.lua"
 				"Function"	"Shock"
 			}
-			"SpendCharge"
-			{}
 		}
 
 		"Modifiers"
@@ -10966,13 +11070,26 @@
 		
 		"OnSpellStart"
 		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"2500"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
 			"RunScript"
 			{
 				"ScriptFile"	"items/Addon_Items/item_blowgun.lua"
 				"Function"	"Shock"
 			}
 		}
-
 		"Modifiers"
 		{
 			"Passive_lightning_katana"

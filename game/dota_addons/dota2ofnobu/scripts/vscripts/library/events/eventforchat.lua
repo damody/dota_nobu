@@ -79,6 +79,15 @@ local function chat_of_test(keys)
 	      caster:HeroLevelUp(true)
 	    end
 	end
+	if string.match(s,"cam") then
+		local dis = tonumber(string.match(s, '%d+'))
+		GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
+		SendToConsole("r_farz 60000")
+	    Timers:CreateTimer( 1, function()
+	  		SendToConsole("r_farz 60000")
+	      return 1
+	    end)
+	end
 	if string.match(s,"gold") then
 		for i=0,9 do
 		PlayerResource:SetGold(i,99999,false)--玩家ID需要減一

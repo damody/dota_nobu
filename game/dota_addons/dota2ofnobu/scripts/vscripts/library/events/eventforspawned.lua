@@ -1,3 +1,5 @@
+require("equilibrium_constant")
+
 --單位創建也會運行
 
 model_lookup = {}
@@ -50,7 +52,7 @@ function Nobu:OnHeroIngame( keys )
       caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
     elseif string.match(name, "silencer") then
       -- 這隻角色天生會帶一個modifier我們需要砍掉他
-      Timers:CreateTimer(0.1, function ()
+      Timers:CreateTimer(0.01, function ()
         if (caster:GetModifierNameByIndex(0) ~= nil) then
           caster:RemoveModifierByName(caster:GetModifierNameByIndex(0))
         end
@@ -70,16 +72,15 @@ function Nobu:OnHeroIngame( keys )
         hero.init1 = true
         hero:AddItem(CreateItem("item_flash_ring", hero, hero))
 		hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
-		hero:AddItem(CreateItem("item_protection_amulet", hero, hero))
 		
 		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
 		donkey:SetOwner(hero)
 		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
-    donkey:SetBaseMaxHealth(1000)
-    donkey:SetHealth(donkey:GetMaxHealth())
-    donkey:SetPhysicalArmorBaseValue(10)
-    donkey:SetBaseMoveSpeed(2000)
-    donkey:AddAbility("for_magic_immune")
+		donkey:SetBaseMaxHealth(2000)
+		donkey:SetHealth(donkey:GetMaxHealth())
+		donkey:SetPhysicalArmorBaseValue(10)
+		donkey:SetBaseMoveSpeed(2000)
+		donkey:AddAbility("for_magic_immune")
       end
       Timers:CreateTimer(1, function ()
           for itemSlot=0,5 do

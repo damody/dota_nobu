@@ -122,6 +122,11 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
 				"Function"	"A13W"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A13W"
+				"Target"	"CASTER"
+			}
 		}
 		"OnUpgrade"
 		{
@@ -129,6 +134,18 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
 				"Function"	"A13W_Levelup"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A13W"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"0.5"
+				"IsDebuff"	"0"
 			}
 		}
 		"AbilitySpecial"

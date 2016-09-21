@@ -7,16 +7,17 @@ function Shock( keys )
 	if (caster.great_spear_of_dragonfly_count == nil) then
 		caster.great_spear_of_dragonfly_count = 0
 	end
-	if (caster.great_spear_of_dragonfly == nil) then
-		caster.great_spear_of_dragonfly = 1
-		Timers:CreateTimer(0.1, function() 
-				caster.great_spear_of_dragonfly = nil
-			end)
-		if (ran > 20) then
-			caster.great_spear_of_dragonfly_count = caster.great_spear_of_dragonfly_count + 1
-		end
-		if (caster.great_spear_of_dragonfly_count > 5 or ran <= 20) then
-			caster.great_spear_of_dragonfly_count = 0
+	
+	if (ran > 20) then
+		caster.great_spear_of_dragonfly_count = caster.great_spear_of_dragonfly_count + 1
+	end
+	if (caster.great_spear_of_dragonfly_count > 5 or ran <= 20) then
+		caster.great_spear_of_dragonfly_count = 0
+		if (caster.great_spear_of_dragonfly == nil) then
+			caster.great_spear_of_dragonfly = 1
+			Timers:CreateTimer(0.1, function() 
+					caster.great_spear_of_dragonfly = nil
+				end)
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 			local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              target:GetAbsOrigin(),
