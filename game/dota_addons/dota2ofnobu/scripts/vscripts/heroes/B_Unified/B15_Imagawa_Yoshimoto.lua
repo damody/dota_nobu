@@ -1,6 +1,21 @@
 function B15W_on_spell_start(keys)
 end
 
+function OnToggleOn( keys )
+	local caster = keys.caster
+	if (caster.nobuorb1 == nil) then
+		caster.nobuorb1 = "B25E_1"
+	end
+end
+
+function OnToggleOff( keys )
+	local caster = keys.caster
+	if (caster.nobuorb1 == "B25E_1") then
+		caster.nobuorb1 = nil
+	end
+end
+
+
 function B15E_attack1( keys )
 	--【Basic】
 	local caster = keys.caster
@@ -9,7 +24,9 @@ function B15E_attack1( keys )
 	local dmg = keys.ability:GetLevelSpecialValueFor("damage_bonus", keys.ability:GetLevel() - 1 )
 	local target = keys.target
 	--if (not target:IsBuilding()) then
+	if (caster.nobuorb1 == "B25E_1") then
 		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
 	--end
 end
 
@@ -21,7 +38,9 @@ function B15E_attack2( keys )
 	local dmg = keys.ability:GetLevelSpecialValueFor("damage_bonus2", keys.ability:GetLevel() - 1 )
 	local target = keys.target
 	--if (not target:IsBuilding()) then
+	if (caster.nobuorb1 == "B25E_1") then
 		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
 	--end
 end
 

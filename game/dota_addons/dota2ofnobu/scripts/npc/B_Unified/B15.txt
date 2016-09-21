@@ -128,6 +128,12 @@
 		}
 		"OnToggleOn"
 		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+				"Function"	"OnToggleOn"
+			}
+
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_searing_arrow"
@@ -136,6 +142,12 @@
 		}
 		"OnToggleOff"
 		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+				"Function"	"OnToggleOff"
+			}
+
 			"RemoveModifier"
 			{
 				"Target"	"CASTER"

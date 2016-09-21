@@ -112,6 +112,20 @@ function A12R( keys )
 	caster.A12D_B = false --最後一定要加	
 end
 
+function OnToggleOn( keys )
+	local caster = keys.caster
+	if (caster.nobuorb1 == nil) then
+		caster.nobuorb1 = "A12T_On"
+	end
+end
+
+function OnToggleOff( keys )
+	local caster = keys.caster
+	if (caster.nobuorb1 == "A12T_On") then
+		caster.nobuorb1 = nil
+	end
+end
+
 function A12T( keys )
 
 	local caster = keys.caster
@@ -119,7 +133,7 @@ function A12T( keys )
 	local ability = keys.ability
 	local special_dmg = ability:GetLevelSpecialValueFor("Special_Damage",ability:GetLevel() - 1)
 	local damage = 0 
-		if caster:GetMana() > 30 and not target:IsBuilding() then
+		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == "A12T_On" then
 			if caster.A12T == true then
 				damage = caster:GetMana()*special_dmg/100*3
 				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
@@ -144,7 +158,7 @@ function A12T_Start( keys )
 	local damage = 0
 	local SpendMana = ability:GetLevelSpecialValueFor("SpendMana",ability:GetLevel() - 1)
 	
-	if caster:GetMana() > 30 and not target:IsBuilding() then	
+	if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == "A12T_On" then	
 		caster:SpendMana(SpendMana,ability)	--消耗mana
 		if caster:GetMana() < SpendMana then
 		else

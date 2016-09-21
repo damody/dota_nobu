@@ -344,15 +344,26 @@
 		}
 		"OnToggleOn"
 		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+				"Function"	"OnToggleOn"
+			}
+
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_A12T"
 			}
-			
 		}
 		"OnToggleOff"
 		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
+				"Function"	"OnToggleOff"
+			}
+			
 			"RemoveModifier"
 			{
 				"Target"	"CASTER"

@@ -69,11 +69,12 @@ function Nobu:OnUnitKill( keys )
           DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
           FIND_ANY_ORDER, 
           false)
-      local xp = killedUnit:GetLevel() * 100 / #group
-      for _,v in ipairs(group) do
-        v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
+      if (#group > 0) then
+        local xp = killedUnit:GetLevel() * 100 / #group
+        for _,v in ipairs(group) do
+          v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
+        end
       end
-
 
       -- for i=1,10 do
       --   GameRules: SendCustomMessage("   ",DOTA_TEAM_GOODGUYS,0)
