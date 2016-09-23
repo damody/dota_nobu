@@ -107,6 +107,15 @@ function Precache( context )
     "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf",
     "particles/item/item_flood_book.vpcf",
     "particles/item/item_ignite_book.vpcf",
+    --闇牙黃泉津
+    "particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5_model.vpcf",
+    --三日月宗近
+    "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_notarget_moonfall.vpcf",
+    "particles/units/heroes/hero_dragon_knight/dragon_knight_transform_green.vpcf",
+    --忍者刀
+    "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf",
+    "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf",
+    "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka_glow.vpcf"
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do
@@ -121,7 +130,8 @@ function Precache( context )
     "soundevents/items/D09.vsndevts",
     "soundevents/items/D03.vsndevts",
     "soundevents/custom_sounds.vsndevts",
-    "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+    "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

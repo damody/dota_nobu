@@ -24,9 +24,6 @@ end
 function modifier_transparency:AttackProc(params)
 	local hAbility = self:GetAbility()
 	local hTarget = params.target
-	local nFXIndex = ParticleManager:CreateParticle( "particles/shadow_raze_gen/raze.vpcf", PATTACH_ABSORIGIN, self:GetCaster() )
-	ParticleManager:SetParticleControl( nFXIndex, 0, hTarget:GetAbsOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 15, Vector( 133, 0, 162 ) )
 	--local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), hTarget:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 end
 
@@ -120,14 +117,8 @@ function A13D_End( keys )
 			ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
 			
 			StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
-			
-			local damageTable = {
-				victim = target,
-				attacker = caster,
-				damage = abilityDamage,
-				damage_type = abilityDamageType
-			}
-			ApplyDamage( damageTable )
+			PopupCriticalDamage(target, abilityDamage)
+			AMHC:Damage( caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end	
 		keys.caster:RemoveModifierByName( modifierName )
 	end

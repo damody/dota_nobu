@@ -1,6 +1,4 @@
 
-	A06E_B = {}
-
 function A06R_OnAttack(keys)
 	local caster = keys.caster
 	local id  = caster:GetPlayerID()
@@ -23,8 +21,6 @@ function A06R_OnAttack(keys)
 			ability:SetActivated(true)
 		end
 	end
-	print(_VERSION)
-	A06E_B[id] = true
 end
 
 function A06D_Use(keys)

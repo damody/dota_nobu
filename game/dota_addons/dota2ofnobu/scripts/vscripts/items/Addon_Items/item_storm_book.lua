@@ -13,12 +13,7 @@ function Shock( keys )
 	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
 	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
 	local right = caster:GetRightVector()
-	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
-	dummy:FindAbilityByName("majia"):SetLevel(1)
-	dummy:AddSpeechBubble(1,"今天的風兒有點囂張~",3.0,0,-50)
-	Timers:CreateTimer( 2, function()
-		dummy:ForceKill(true)
-	end)
+	caster:AddSpeechBubble(1,"今天的風兒有點囂張~",3.0,0,-50)
 
 	--casterLoc = keys.target_points[1] - right:Normalized() * 300
 	
@@ -48,7 +43,7 @@ function Shock( keys )
 				local random_distance = RandomInt( -radius, radius )
 				local spawn_location = middlePoint + perpendicularVec * random_distance
 				
-				local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 ):Normalized()*1000
+				local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 ):Normalized()*1500
 				
 				local sumtime = 0
 				local flame = ParticleManager:CreateParticle("particles/item/tornado_a.vpcf", PATTACH_ABSORIGIN, caster)
@@ -73,7 +68,7 @@ function Shock( keys )
 							isend = true
 						end
 					end
-					if (sumtime < 1.5 and not isend) then
+					if (sumtime < 1.2 and not isend) then
 						return step
 					else
 						ParticleManager:DestroyParticle(flame, false)

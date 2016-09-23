@@ -70,8 +70,8 @@ function Nobu:OnHeroIngame( keys )
 		if not hero:IsIllusion() then
       if hero.init1 == nil then
         hero.init1 = true
-        hero:AddItem(CreateItem("item_flash_ring", hero, hero))
-		hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
+        --hero:AddItem(CreateItem("item_flash_ring", hero, hero))
+		--hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
 		
 		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
 		donkey:SetOwner(hero)
