@@ -10543,7 +10543,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_flood_book"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -10555,9 +10555,8 @@
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"280"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"AbilityCastRange"	"700"
+		"AOERadius"		"400"
 		"ID"	"1512"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10565,11 +10564,31 @@
 		"ItemCost"	"3000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_flood_book.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"modifier_flood_book"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+			
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"Passive_flood_book"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -10601,7 +10620,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_ignite_book"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -10613,6 +10632,8 @@
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"300"
+		"AbilityCastRange"	"2000"
+		"AOERadius"		"800"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"%cast_distance"
@@ -10623,11 +10644,38 @@
 		"ItemCost"	"3750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ignite_book.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"modifier_ignite_book"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Duration"		"5"
+				"EffectName"	"particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf"
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"40"
+					}
+				}
+			}
+			"Passive_ignite_book"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -10659,7 +10707,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_storm_book"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -10673,7 +10721,8 @@
 		"AbilityManaCost"	"400"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"AbilityCastRange"	"500"
+
 		"ID"	"1514"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10681,7 +10730,15 @@
 		"ItemCost"	"3200"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
-		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_storm_book.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
 		
 		"Modifiers"
 		{
@@ -10706,6 +10763,55 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
 				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"collision_radius"	"100 100 100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"splash_radius"	"150 150 150"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"6.0 6.0 6.0"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"1000"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"machines_per_sec"	"72"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"1000"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance_scepter"	"1200"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"66"
 			}
 		}
 	}
@@ -10915,7 +11021,7 @@
 		"AbilityManaCost"	"0"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"%cast_distance"
+		"AbilityCastRange"	"700"
 		"ID"	"1802"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10925,8 +11031,35 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
 		"SideShop"						"1"
 		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ancient_doll.lua"
+				"Function"	"Shock"
+			}
+		}
+
 		"Modifiers"
 		{
+			"modifier_ancient_doll"
+			{
+				"IsBuff"	"1"
+				"AllowIllusionDuplicate"	"1"
+			}
+			"modifier_ancient_doll_ability"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_ancient_doll.lua"
+						"Function"	"AbilityExecuted"
+					}
+				}
+			}
 			"Passive_lightning_katana"
 			{
 				"IsHidden"	"1"

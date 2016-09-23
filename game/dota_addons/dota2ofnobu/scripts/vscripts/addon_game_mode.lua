@@ -104,7 +104,9 @@ function Precache( context )
     "particles/item/item_spell_book.vpcf",
     "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf",
     --吹箭
-    "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+    "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf",
+    "particles/item/item_flood_book.vpcf",
+    "particles/item/item_ignite_book.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

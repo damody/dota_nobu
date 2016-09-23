@@ -185,10 +185,11 @@ function A07D_HealHP( keys )
 	local float_healhp
 
 	if hModifier ~= nil then
-		float_healhp = ((caster:GetHealth()) + (0.08 * caster:GetMaxHealth()))
+		float_healhp = ((caster:GetHealth()) + (0.06 * caster:GetMaxHealth()))
 		caster:SetHealth(float_healhp)
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_A07D", {duration = duration})
 	else
-		float_healhp = ((caster:GetHealth()) + (0.04 * caster:GetMaxHealth()))
+		float_healhp = ((caster:GetHealth()) + (0.03 * caster:GetMaxHealth()))
 		caster:SetHealth(float_healhp)	
 	end
 end

@@ -11,7 +11,7 @@ modifier_transparency = class({})
 
 function modifier_transparency:DeclareFunctions()
 	return { MODIFIER_EVENT_ON_ATTACK_LANDED,
-	MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+	--MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
 	MODIFIER_EVENT_ON_ABILITY_EXECUTED }
 end
 
@@ -565,8 +565,8 @@ function A13T( keys )
 				sumtime = sumtime + 0.125
 				return 0.125
 			end
-		end
-	)caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
+		end)
+	caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
 end
 
 function A13T_End( keys )
