@@ -31,12 +31,17 @@
 				"ModifierName"	"modifier_A13D"
 				"Duration"	"20.0"
 			}
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_invisible"
-				"Duration"	"20"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
+				"Function"		"A13D"
 			}
+			//"ApplyModifier"
+			//{
+			//	"Target"	"CASTER"
+			//	"ModifierName"	"modifier_invisible"
+			//	"Duration"	"20"
+			//}
 		}
 		"Modifiers"
 		{
