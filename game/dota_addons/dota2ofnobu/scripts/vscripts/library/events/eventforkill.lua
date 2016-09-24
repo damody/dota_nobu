@@ -58,7 +58,7 @@ function Nobu:OnUnitKill( keys )
 
     if killedUnit:IsRealHero() then
       --killedUnit:RespawnUnit()
-	    killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1+5)
+	    killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
       group = FindUnitsInRadius(
           killedUnit:GetTeamNumber(), 
           killedUnit:GetAbsOrigin(), 

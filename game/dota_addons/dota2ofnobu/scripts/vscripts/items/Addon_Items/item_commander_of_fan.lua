@@ -12,6 +12,13 @@ function Shock( keys )
           DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
           0,
           false)
+	
+	local flame = ParticleManager:CreateParticle("particles/item/item_commander_of_fantop.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(flame,4,point+Vector(0, 0, 20))
+	Timers:CreateTimer(0.5, function ()
+		ParticleManager:DestroyParticle(flame, false)
+	end)
+	
 	for _,target in pairs(direUnits) do
 		if not target:IsBuilding() then
 			if (target:IsMagicImmune()) then

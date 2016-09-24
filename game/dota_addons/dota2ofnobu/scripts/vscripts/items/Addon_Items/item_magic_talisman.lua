@@ -1,10 +1,10 @@
---御守
-LinkLuaModifier( "modifier_protection_amulet", "items/Addon_Items/item_protection_amulet.lua",LUA_MODIFIER_MOTION_NONE )
-modifier_protection_amulet = class({})
+--御魔護符
+LinkLuaModifier( "modifier_magic_talisman", "items/Addon_Items/item_magic_talisman.lua",LUA_MODIFIER_MOTION_NONE )
+modifier_magic_talisman = class({})
 
 --------------------------------------------------------------------------------
 
-function modifier_protection_amulet:DeclareFunctions()
+function modifier_magic_talisman:DeclareFunctions()
     local funcs = {
         MODIFIER_EVENT_ON_TAKEDAMAGE
     }
@@ -14,17 +14,17 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_protection_amulet:OnCreated( event )
+function modifier_magic_talisman:OnCreated( event )
 	self:StartIntervalThink(0.2) 
 end
 
-function modifier_protection_amulet:OnIntervalThink()
+function modifier_magic_talisman:OnIntervalThink()
 	if (self.caster ~= nil) and IsValidEntity(self.caster) then
 		self.hp = self.caster:GetHealth()
 	end
 end
 
-function modifier_protection_amulet:OnTakeDamage(event)
+function modifier_magic_talisman:OnTakeDamage(event)
 	if IsServer() then
 	    local attacker = event.unit
 	    local victim = event.attacker
@@ -36,9 +36,9 @@ function modifier_protection_amulet:OnTakeDamage(event)
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		            if (damage_type == DAMAGE_TYPE_MAGICAL) and self.caster.protection_amulet == true then
+		            if (damage_type == DAMAGE_TYPE_MAGICAL) and self.caster.magic_talisman == true then
 		            	Timers:CreateTimer(0.01, function() 
-		            		self.caster.protection_amulet = false
+		            		self.caster.magic_talisman = false
 		            		self.caster:Purge( false, true, true, true, true)
 		            		end)
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
@@ -58,14 +58,14 @@ function modifier_protection_amulet:OnTakeDamage(event)
 							end)
 							for itemSlot=0,5 do
 								local item = self.caster:GetItemInSlot(itemSlot)
-								if item ~= nil and item:GetName() == "item_protection_amulet" then
+								if item ~= nil and item:GetName() == "item_magic_talisman" then
 									hasitem = true
 									item:StartCooldown(30)
 								end
 							end
 							Timers:CreateTimer(30, function() 
-								self.caster.protection_amulet = true
-								print("self.caster.protection_amulet")
+								self.caster.magic_talisman = true
+								print("self.caster.magic_talisman")
 							end)
 						end
 		            else
@@ -79,30 +79,31 @@ function modifier_protection_amulet:OnTakeDamage(event)
 	end
 end
 
+
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster.protection_amulet == nil) then
-		caster.protection_amulet = true
+	if (caster.magic_talisman == nil) then
+		caster.magic_talisman = true
 	end
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
-	caster:FindModifierByName("modifier_protection_amulet").caster = caster
-	caster:FindModifierByName("modifier_protection_amulet").hp = 1
-	caster.has_item_protection_amulet = true
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
+	caster:FindModifierByName("modifier_magic_talisman").caster = caster
+	caster:FindModifierByName("modifier_magic_talisman").hp = 1
+	caster.has_item_magic_talisman = true
 	Timers:CreateTimer(1, function() 
-		if (caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet")) then
-			ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
-			caster:FindModifierByName("modifier_protection_amulet").caster = caster
+		if (caster:IsAlive() and not caster:HasModifier("modifier_magic_talisman")) then
+			ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
+			caster:FindModifierByName("modifier_magic_talisman").caster = caster
 		end
-		if caster.has_item_protection_amulet == true then
+		if caster.has_item_magic_talisman == true then
 			return 1
 		else
-			caster:RemoveModifierByName("modifier_protection_amulet")
+			caster:RemoveModifierByName("modifier_magic_talisman")
 			return nil
 		end
 		end)
 end
 
 function OnUnequip( keys )
-	keys.caster.has_item_protection_amulet = nil
+	keys.caster.has_item_magic_talisman = nil
 end

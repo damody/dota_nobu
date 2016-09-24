@@ -176,17 +176,17 @@ function Trig_C21EActions(keys)
     local  point = u:GetAbsOrigin() --獲取單位的座標
     local  point2 = u2:GetAbsOrigin() --獲取目標的座標
     local  time = keys.ability:GetLevel()--獲取技能等級
-
+    keys.ability:ApplyDataDrivenModifier(u,u2,"modifier_C21EStun",{duration = 1})
     --timer2
 	AMHC:Timer( "C21T_E1"..tostring(id),function( )
 
 			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
 				--刪除無敵
                 u:RemoveModifierByName("modifier_C21E")
-                u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+                u:AddNewModifier(nil,nil,"modifier_phased",{duration=1})
 				return nil 
 			else
-				u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+				u:AddNewModifier(nil,nil,"modifier_phased",{duration=1})
 				point = u:GetAbsOrigin()
 				local  x = point.x
 				local  y = point.y

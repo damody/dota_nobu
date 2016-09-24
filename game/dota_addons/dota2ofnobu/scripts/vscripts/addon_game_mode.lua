@@ -115,7 +115,10 @@ function Precache( context )
     --忍者刀
     "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf",
     "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf",
-    "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka_glow.vpcf"
+    "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka_glow.vpcf",
+    "particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_base_attack_explosion.vpcf",
+    "particles/item/item_commander_of_fantop.vpcf",
+    
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

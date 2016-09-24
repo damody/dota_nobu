@@ -47,6 +47,15 @@ local function chat_of_test(keys)
 			caster:AddAbility("B25T_old")
 		end
 	end
+	if string.match(s,"cam") then
+		local dis = tonumber(string.match(s, '%d+'))
+		GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
+		SendToConsole("r_farz 60000")
+	    Timers:CreateTimer( 1, function()
+	  		SendToConsole("r_farz 60000")
+	      return 1
+	    end)
+	end
 	
 	if string.match(s,"test") then
 		local pID = tonumber(string.match(s, '%d+'))
@@ -63,7 +72,7 @@ local function chat_of_test(keys)
 			GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 	end
-	
+	--[[
 	if string.match(s,"item") then
 		for itemSlot=0,5 do
 			local item = caster:GetItemInSlot(itemSlot)
@@ -79,15 +88,7 @@ local function chat_of_test(keys)
 	      caster:HeroLevelUp(true)
 	    end
 	end
-	if string.match(s,"cam") then
-		local dis = tonumber(string.match(s, '%d+'))
-		GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
-		SendToConsole("r_farz 60000")
-	    Timers:CreateTimer( 1, function()
-	  		SendToConsole("r_farz 60000")
-	      return 1
-	    end)
-	end
+	
 	if string.match(s,"gold") then
 		for i=0,9 do
 		PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
@@ -162,7 +163,7 @@ local function chat_of_test(keys)
 			return nil
 		end)
 	end
-	
+	]]
 end
 
 function Nobu:Chat( keys )

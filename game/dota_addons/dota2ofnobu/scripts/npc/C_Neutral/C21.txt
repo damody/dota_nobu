@@ -1,6 +1,6 @@
 "DOTAAbilities"
 {
-// 宮本武藏
+	// 宮本武藏
 	"C21W"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -191,13 +191,30 @@
 		}
 		"Modifiers"
 		{
+			"modifier_C21EStun"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Duration"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
 			"modifier_C21E"
 			{
 				"IsBuff"	"1"
 				"IsHidden"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10000"
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.8"
 				}
 				"States"
 				{
@@ -321,6 +338,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10000"
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
 				}
 				"States"
 				{

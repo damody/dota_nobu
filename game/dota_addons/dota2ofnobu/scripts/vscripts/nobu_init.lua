@@ -18,7 +18,7 @@ function _G.Nobu:InitGameMode()
   if _G.nobu_debug then
     GameRules:SetPreGameTime( 0 )--設置遊戲準備時間
   else
-    GameRules:SetPreGameTime( 10 )--設置遊戲準備時間
+    GameRules:SetPreGameTime( 60 )--設置遊戲準備時間
   end
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
@@ -58,13 +58,12 @@ function _G.Nobu:InitGameMode()
     GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
   end
   GameMode:SetStashPurchasingDisabled( true )-- 是否关闭/开启储藏处购买功能
-  GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
   GameMode:SetAnnouncerDisabled(false) --禁止播音員
   GameMode:SetFountainConstantManaRegen(-1) --溫泉回魔(固定值)
   GameMode:SetFountainPercentageHealthRegen(-1) --溫泉回血(百分比)
   GameMode:SetFountainPercentageManaRegen(-1) --溫泉回魔(百分比)
-  GameMode:SetMaximumAttackSpeed(400) --最大攻擊速度
-  GameMode:SetMinimumAttackSpeed(0) --最小攻擊速度
+  GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
+  GameMode:SetMinimumAttackSpeed(-100) --最小攻擊速度
   GameMode:SetGoldSoundDisabled( false )
   GameMode:SetStashPurchasingDisabled ( false ) --倉庫
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢
