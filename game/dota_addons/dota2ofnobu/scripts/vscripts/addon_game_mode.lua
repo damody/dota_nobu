@@ -118,7 +118,7 @@ function Precache( context )
     "particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka_glow.vpcf",
     "particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_base_attack_explosion.vpcf",
     "particles/item/item_commander_of_fantop.vpcf",
-    
+    "particles/generic_gameplay/generic_sleep.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

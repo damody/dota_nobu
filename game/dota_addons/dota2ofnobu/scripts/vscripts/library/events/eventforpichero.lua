@@ -33,6 +33,11 @@ function Nobu:PickHero( keys )
     caster:FindAbilityByName("C19D"):SetLevel(1)
   elseif string.match(name, "centaur") then
     caster:FindAbilityByName("A07D"):SetLevel(1)
+    GameRules: SendCustomMessage("本多忠勝玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+    GameRules: SendCustomMessage("本多忠勝玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+  elseif string.match(name, "pugna") then
+    GameRules: SendCustomMessage("本願寺顯如玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+    GameRules: SendCustomMessage("本願寺顯如玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "broodmother") then
     caster:FindAbilityByName("A13D"):SetLevel(1)
   elseif string.match(name, "storm_spirit") then

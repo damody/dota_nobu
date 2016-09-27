@@ -54,10 +54,13 @@ function Nobu:OnGameRulesStateChange( keys )
 	elseif(newState == DOTA_GAMERULES_STATE_HERO_SELECTION) then --選擇英雄階段
 		-- self:PostLoadPrecache()
 		-- self:OnAllPlayersLoaded()
+		for i=0,9 do
+			PlayerResource:SetGold(i,2000,false)--玩家ID需要減一
+		end
 	elseif(newState == DOTA_GAMERULES_STATE_STRATEGY_TIME) then
 
 	elseif(newState == DOTA_GAMERULES_STATE_TEAM_SHOWCASE) then --選擇英雄階段
-
+		
 	elseif(newState == DOTA_GAMERULES_STATE_PRE_GAME) then --當英雄選擇結束 --6
     if (_G.nobu_debug) then -- 測試模式給裝
       for_test_equiment()

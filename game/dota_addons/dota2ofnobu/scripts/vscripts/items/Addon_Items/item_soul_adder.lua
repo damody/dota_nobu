@@ -1,10 +1,9 @@
---御魔護符
+--御魂
 
 function Shock( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	target:AddSpeechBubble(1,"Zzzz...",3.0,0,-50)
 	Timers:CreateTimer(2.9, function() 
     		if (target:HasModifier("modifier_soul_adder")) then
     			print("target modifier_soul_adder")
