@@ -2,6 +2,9 @@
 LinkLuaModifier( "modifier_nannbann_armor", "items/Addon_Items/item_nannbann_armor.lua",LUA_MODIFIER_MOTION_NONE )
 modifier_nannbann_armor = class({})
 
+
+LinkLuaModifier( "modifier_nannbann_armor2", "items/Addon_Items/item_nannbann_armor.lua",LUA_MODIFIER_MOTION_NONE )
+modifier_nannbann_armor2 = class({})
 --------------------------------------------------------------------------------
 
 function modifier_nannbann_armor:DeclareFunctions()
@@ -40,15 +43,19 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 		            	Timers:CreateTimer(0.01, function() 
 		            		self.caster.nannbann_armor = false
 		            		self.caster:Purge( false, true, true, true, true)
-		            		end)
-		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
-			            	self.caster:SetHealth(self.hp)
-							local am = self.caster:FindAllModifiers()
+		            		event.caster = self.caster
+			            	event.ability = self:GetAbility()
+			            	ShockTarget(event, self.caster)
+			            	local am = self.caster:FindAllModifiers()
 							for _,v in pairs(am) do
 								if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
 									self.caster:RemoveModifierByName(v:GetName())
 								end
 							end
+		            		end)
+
+		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
+			            	self.caster:SetHealth(self.hp)
 			            	-- Strong Dispel 刪除負面效果
 			            	self.caster:Purge( false, true, true, true, true)
 							local count = 0
@@ -107,3 +114,90 @@ end
 function OnUnequip( keys )
 	keys.caster.has_item_nannbann_armor = nil
 end
+
+
+--------------------------------------------------------------------------------
+
+function modifier_nannbann_armor2:DeclareFunctions()
+    local funcs = {
+        MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
+
+    return funcs
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_nannbann_armor2:OnCreated( event )
+	self:StartIntervalThink(0.2) 
+end
+
+function modifier_nannbann_armor2:OnIntervalThink()
+	if (self.caster ~= nil) and IsValidEntity(self.caster) then
+		self.hp = self.caster:GetHealth()
+	end
+end
+
+function modifier_nannbann_armor2:OnTakeDamage(event)
+	if IsServer() then
+	    local attacker = event.unit
+	    local victim = event.attacker
+	    local return_damage = event.original_damage
+	    local damage_type = event.damage_type
+	    local damage_flags = event.damage_flags
+	    local ability = self:GetAbility()
+
+	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
+		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
+		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
+		            if (damage_type == DAMAGE_TYPE_MAGICAL) then
+		            	if self.magic_shield > 0 then
+		            		print("999 "..self.magic_shield)
+		            		if self.magic_shield > return_damage then
+		            			self.magic_shield = self.magic_shield - return_damage
+		            			self.caster:SetHealth(self.hp)
+		            		else
+		            			ParticleManager:DestroyParticle(self.shield_effect, false)
+		            			if (self.hp > self.caster:GetHealth() + self.magic_shield) then
+		            				self.caster:SetHealth(self.caster:GetHealth() + self.magic_shield)
+		            			else
+		            				self.caster:SetHealth(self.hp)
+		            			end
+		            			self.magic_shield = 0
+		            		end
+		            	end
+		            end 
+		        end
+		    end
+		end
+	end
+end
+
+
+function ShockTarget( keys, target )
+	local caster = keys.caster
+	local ability = keys.ability
+	local havetime = 10
+	ability:ApplyDataDrivenModifier( caster, target, "modifier_nannbann_armor2", {duration = havetime} )
+	target:FindModifierByName("modifier_nannbann_armor2").caster = target
+	target:FindModifierByName("modifier_nannbann_armor2").hp = target:GetHealth()
+	target:FindModifierByName("modifier_nannbann_armor2").magic_shield = 1000
+	local shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	target:FindModifierByName("modifier_nannbann_armor2").shield_effect = shield
+	local sumtime = 0
+	local isend = false
+	Timers:CreateTimer(havetime, function() 
+			isend = true
+		end)
+	Timers:CreateTimer(0, function() 
+			ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
+			if not isend then
+				return 0.2
+			else
+				ParticleManager:DestroyParticle(shield, false)
+				return nil
+			end
+		end)
+end
+
+

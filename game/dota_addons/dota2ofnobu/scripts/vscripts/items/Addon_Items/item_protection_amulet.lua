@@ -40,15 +40,16 @@ function modifier_protection_amulet:OnTakeDamage(event)
 		            	Timers:CreateTimer(0.01, function() 
 		            		self.caster.protection_amulet = false
 		            		self.caster:Purge( false, true, true, true, true)
-		            		end)
-		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
-			            	self.caster:SetHealth(self.hp)
-							local am = self.caster:FindAllModifiers()
+		            		local am = self.caster:FindAllModifiers()
 							for _,v in pairs(am) do
 								if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
 									self.caster:RemoveModifierByName(v:GetName())
 								end
 							end
+		            		end)
+
+		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
+			            	self.caster:SetHealth(self.hp)
 			            	-- Strong Dispel 刪除負面效果
 			            	self.caster:Purge( false, true, true, true, true)
 							local count = 0

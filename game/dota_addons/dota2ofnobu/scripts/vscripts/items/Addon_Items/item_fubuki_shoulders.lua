@@ -5,9 +5,9 @@ function Start( keys )
 	--local target = keys.target
 	local ability = keys.ability
 	ability:ApplyDataDrivenModifier(caster, caster,"modifier_fubuki_shoulders",{duration=7})
-	local particle = ParticleManager:CreateParticle("particles/a04r3/a04r3.vpcf", PATTACH_ROOTBONE_FOLLOW, caster)
-	ParticleManager:SetParticleControl( particle, 0, Vector( 0, 0, 200 ) )
-	ParticleManager:SetParticleControl( particle, 1, Vector( 7, 0, 0 ) )
+	local particle = ParticleManager:CreateParticle("particles/a04r3/a04r3.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl( particle, 0, Vector( 0, 0, 100 ) )
+	ParticleManager:SetParticleControl( particle, 1, Vector( 0, 0, 100 ) )
 	Timers:CreateTimer(7, function ()
 		ParticleManager:DestroyParticle(particle, true)
 		end)

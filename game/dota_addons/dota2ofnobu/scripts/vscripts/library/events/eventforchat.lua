@@ -47,6 +47,11 @@ local function chat_of_test(keys)
 			caster:AddAbility("B25T_old")
 		end
 	end
+	if s == "gg" then
+		GameRules:SetCustomGameEndDelay(1)
+		GameRules:SetCustomVictoryMessage("贏三小啦幹")
+		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+	end
 	if string.match(s,"cam") then
 		local dis = tonumber(string.match(s, '%d+'))
 		GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
@@ -72,7 +77,7 @@ local function chat_of_test(keys)
 			GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 	end
-	--[[
+	
 	if string.match(s,"item") then
 		for itemSlot=0,5 do
 			local item = caster:GetItemInSlot(itemSlot)
@@ -94,11 +99,7 @@ local function chat_of_test(keys)
 		PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
 		end
 	end
-	if s == "gg" then
-		GameRules:SetCustomGameEndDelay(1)
-		GameRules:SetCustomVictoryMessage("贏三小啦幹")
-		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-	end
+	
 	
 	
 	if s == "Create1" then
@@ -136,6 +137,8 @@ local function chat_of_test(keys)
 			caster:SetMana(caster:GetMaxMana())
 			return 0.1
 		end)
+	elseif s == "ss" then
+		caster:SetAbsOrigin(caster:GetAbilityByIndex(1):GetCursorPosition())
 	elseif s == "cd" then
 		--【Timer】
 		Timers:CreateTimer(function()
@@ -163,7 +166,7 @@ local function chat_of_test(keys)
 			return nil
 		end)
 	end
-	]]
+	
 end
 
 function Nobu:Chat( keys )
