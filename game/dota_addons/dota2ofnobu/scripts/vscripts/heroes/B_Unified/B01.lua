@@ -207,21 +207,18 @@ function B01R(keys)
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
 	local dmg = keys.dmg
-	print("B01R "..dmg)
+	--print("B01R "..dmg)
 	local per_atk = 0
 	local targetArmor = target:GetPhysicalArmorValue()
-	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
-	local dmg = dmg / (1 - damageReduction)
+
 	if target:IsHero() then 
 		per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
 		--print("hero")
 	elseif  target:IsBuilding() then
 		per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
-		
 		--print("building")
 	else
 		per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
-		
 		--print("unit")
 	end
 	local dmgori = dmg

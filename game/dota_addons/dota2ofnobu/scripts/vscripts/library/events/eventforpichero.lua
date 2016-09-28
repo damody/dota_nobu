@@ -31,18 +31,26 @@ function Nobu:PickHero( keys )
     caster:FindAbilityByName("C22D"):SetLevel(1)
   elseif string.match(name, "templar_assassin") then
     caster:FindAbilityByName("C19D"):SetLevel(1)
-  elseif string.match(name, "centaur") then
+  elseif string.match(name, "centaur") then --本多忠勝
     caster:FindAbilityByName("A07D"):SetLevel(1)
     GameRules: SendCustomMessage("本多忠勝玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
     GameRules: SendCustomMessage("本多忠勝玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "pugna") then
+  elseif string.match(name, "pugna") then --本願寺顯如
     GameRules: SendCustomMessage("本願寺顯如玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
     GameRules: SendCustomMessage("本願寺顯如玩家可以打-old使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "broodmother") then
     caster:FindAbilityByName("A13D"):SetLevel(1)
   elseif string.match(name, "storm_spirit") then
     caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
-  elseif string.match(name, "silencer") then
+  elseif string.match(name, "bristleback") then -- 今川義元
+    Timers:CreateTimer(1, function ()
+      if (caster:GetLevel() >= 8) then
+        hero:FindAbilityByName("B15D"):SetLevel(1)
+        return nil
+      end
+      return 1
+    end)
+  elseif string.match(name, "silencer") then --立花道雪
     -- 這隻角色天生會帶一個modifier我們需要砍掉他
     Timers:CreateTimer(0.1, function ()
       if (caster:GetModifierNameByIndex(0) ~= nil) then
@@ -53,7 +61,7 @@ function Nobu:PickHero( keys )
     caster:FindAbilityByName("C07D"):SetLevel(1)
   elseif string.match(name, "windrunner") then
     caster:FindAbilityByName("C17D"):SetLevel(1)
-  elseif string.match(name, "faceless_void") then--風魔
+  elseif string.match(name, "faceless_void") then --風魔
     caster:FindAbilityByName("B02D"):SetLevel(1)
   end
   --【英雄名稱判別】

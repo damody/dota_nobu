@@ -18,8 +18,8 @@ function Shock( keys )
 	for _,target in pairs(direUnits) do
 		if not target:IsBuilding() then
 			Physics:Unit(target)
-			target:SetPhysicsVelocity((target:GetAbsOrigin() - point):Normalized()*1000)
-			ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 1})
+			target:SetPhysicsVelocity((target:GetAbsOrigin() - point):Normalized()*700)
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 0.5})
 			AMHC:Damage(caster,target,300,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end
 	end

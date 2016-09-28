@@ -178,8 +178,15 @@ function C07_Effect( keys )
 	local dmg = keys.C07_dmg
 	local height = 700
 	--print(dmg)
-	local group = {}
-   	group = FindUnitsInRadius(dummy:GetTeamNumber(), point, nil, 1000,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+	local group = FindUnitsInRadius(dummy:GetTeamNumber(),
+                              point,
+                              nil,
+                              1000,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+                              FIND_CLOSEST,
+                              false)
 	for i,v in ipairs(group) do
 		if i == 1 then
 			StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
@@ -192,7 +199,15 @@ function C07_Effect( keys )
 			ParticleManager:SetParticleControl(particle, 1, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 			ParticleManager:SetParticleControl(particle, 2, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 
-		   	group2 = FindUnitsInRadius(dummy:GetTeamNumber(), point2, nil, 300,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+		   	local group2 = FindUnitsInRadius(dummy:GetTeamNumber(),
+                              point,
+                              nil,
+                              1000,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+                              FIND_ANY_ORDER,
+                              false)
 			for i2,v2 in ipairs(group2) do
 				AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end

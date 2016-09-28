@@ -118,7 +118,10 @@
 						"ModifierName"	"modifier_invisible"
 					}
 				}
-				"States"	{}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"OnDestroy"
 				{
 					"RemoveModifier"
@@ -360,7 +363,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dmg"	"90 120 150 180"
+				"dmg"	"180 240 300 360"
 			}
 		}
 	}

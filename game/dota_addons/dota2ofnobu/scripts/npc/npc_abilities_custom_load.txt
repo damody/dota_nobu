@@ -907,9 +907,10 @@
 			"modifier_for_move1500"
 			{
 				"Passive"	"1"
-				"IsHidden"	"1"
+				"IsHidden"	"0"
 				"Properties"
 				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"1500"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "1500"	//跑速
 				}
 			}
@@ -929,7 +930,7 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "100"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "100"	//跑速
 				}
 			}
 		}

@@ -324,49 +324,6 @@
 						"Target"	"CASTER"
 					}
 				}
-				"ThinkInterval"	"%bladestorm_damage_tick"
-				"OnIntervalThink"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"	"CASTER"
-							"Radius"	"%bladestorm_radius"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-						}
-						"Action"
-						{
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Type"	"DAMAGE_TYPE_PHYSICAL"
-								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
-							}
-							// Custom Building Damage
-							"RunScript"
-							{
-								"ScriptFile"	"buildings/damage.lua"
-								"Function"	"DoBuildingDamage"
-								"Target"
-								{
-									"Center"	"TARGET"
-									"Radius"	"%radius"
-									"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-									"Types"	"DOTA_UNIT_TARGET_BASIC"
-									"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-								}
-								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
-							}
-							"FireSound"
-							{
-								"EffectName"	"Hero_Juggernaut.BladeFury.Impact"
-								"Target"	"TARGET"
-							}
-						}
-					}
-				}
 				"OnDestroy"
 				{
 					"FireSound"
@@ -399,7 +356,12 @@
 				"var_type"	"FIELD_FLOAT"
 				"duration"	"7.0 7.0 7.0 7.0"
 			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Damage"	"290 450 600"
+			}
 		}
-		"AbilityDamage"	"290 400 510"
+		"AbilityDamage"	"290 450 600"
 	}
 }

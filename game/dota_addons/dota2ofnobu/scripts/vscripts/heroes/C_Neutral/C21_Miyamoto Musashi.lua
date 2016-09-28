@@ -176,7 +176,7 @@ function Trig_C21EActions(keys)
     local  point = u:GetAbsOrigin() --獲取單位的座標
     local  point2 = u2:GetAbsOrigin() --獲取目標的座標
     local  time = keys.ability:GetLevel()--獲取技能等級
-    keys.ability:ApplyDataDrivenModifier(u,u2,"modifier_C21EStun",{duration = 1})
+    keys.ability:ApplyDataDrivenModifier(u,u2,"modifier_C21EStun",{duration = 0.5})
     --timer2
 	AMHC:Timer( "C21T_E1"..tostring(id),function( )
 

@@ -191,21 +191,40 @@ end
 
 function A25T( keys )
 	local caster = keys.caster
-	local skill = keys.ability
+	local ability = keys.ability
 	local id  = caster:GetPlayerID()
 	local ran =  RandomInt(0, 100)
 	local tornado = ParticleManager:CreateParticle("particles/a17t/a17t_funnel.vpcf", PATTACH_ABSORIGIN, keys.caster)
 	local timecount = 0
 	local small_tornado_count = 0
+	local AbilityDamage = ability:GetLevelSpecialValueFor( "Damage", ability:GetLevel() - 1 )
 	Timers:CreateTimer(0, function()
 		local pos = caster:GetAbsOrigin()
 		ParticleManager:SetParticleControl(tornado, 3, pos)
 		timecount = timecount + 0.1
 		small_tornado_count = small_tornado_count + 1
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+                              caster:GetAbsOrigin(),
+                              nil,
+                              400,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+                              FIND_ANY_ORDER,
+                              false)
+
+		--effect:傷害+暈眩
+		for _,it in pairs(direUnits) do
+			if (not(it:IsBuilding())) then
+				AMHC:Damage(caster,it,AbilityDamage*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			else
+				AMHC:Damage(caster,it,AbilityDamage*0.1,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			end
+		end
 		if (small_tornado_count % 4 == 0) then
 			A25T2(keys)
 		end
-		if (timecount < 7) then
+		if (caster:HasModifier("modifier_A25T")) then
 			return 0.1
 		else
 			ParticleManager:DestroyParticle(tornado, false)

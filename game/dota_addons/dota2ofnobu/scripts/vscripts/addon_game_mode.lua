@@ -73,6 +73,8 @@ function Precache( context )
     "particles/07t/c07t_zc.vpcf",
     "particles/b05e/b05e.vpcf",
 
+    --光秀
+    "particles/c09/c09w_hide.vpcf",
     --阿市
     "particles/c17w/c17w.vpcf",
 

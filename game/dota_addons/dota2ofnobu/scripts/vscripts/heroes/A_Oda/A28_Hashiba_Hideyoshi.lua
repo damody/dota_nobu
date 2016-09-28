@@ -6,14 +6,18 @@ function A28W(keys)
 	local casterLocation = keys.target_points[1]
 	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
 	local duration = ability:GetLevelSpecialValueFor("duration", ( ability:GetLevel() - 1 ))
-	local units = FindUnitsInRadius(caster:GetTeamNumber(), casterLocation, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
+	local units =  FindUnitsInRadius(caster:GetTeamNumber(),
+                              casterLocation,
+                              nil,
+                              radius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              0,
+                              0,
+                              false)
 	for i,unit in ipairs(units) do
-		if unit:IsIllusion() then
-			unit:ForceKill(true)
-		else
-			unit:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
-			unit:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
-		end
+		unit:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
+		unit:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
 	end
 end
 

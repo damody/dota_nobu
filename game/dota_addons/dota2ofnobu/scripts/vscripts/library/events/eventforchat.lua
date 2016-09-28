@@ -86,7 +86,7 @@ local function chat_of_test(keys)
 			end
 		end
 	end
-	--[[
+	
 	if string.match(s,"lv") then
 		local lvmax = tonumber(string.match(s, '%d+'))
 		for i=1,lvmax do
@@ -138,7 +138,7 @@ local function chat_of_test(keys)
 			return 0.1
 		end)
 	elseif s == "ss" then
-		caster:SetAbsOrigin(caster:GetAbilityByIndex(1):GetCursorPosition())
+		caster:AddAbility("for_move1500"):SetLevel(1)
 	elseif s == "cd" then
 		--【Timer】
 		Timers:CreateTimer(function()
@@ -166,7 +166,7 @@ local function chat_of_test(keys)
 			return nil
 		end)
 	end
-	]]
+	
 end
 
 function Nobu:Chat( keys )

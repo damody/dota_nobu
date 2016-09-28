@@ -323,6 +323,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
 				}
 				"EffectName"	"particles/c07t2/c07t2.vpcf"
 				"EffectAttachType"	"follow_hitloc"
@@ -398,9 +399,10 @@
 				{
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Properties"	{
+				"Properties"	
+				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-35"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-100"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-90"
 				}
 				"OnCreated"
 				{

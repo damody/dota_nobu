@@ -15,7 +15,7 @@ function Shock( keys )
 		ParticleManager:SetParticleControl(rock_effect, 0, point)
 	end)
 
-	local SEARCH_RADIUS = 350
+	local SEARCH_RADIUS = 300
 	GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              point,

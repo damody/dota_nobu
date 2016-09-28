@@ -79,9 +79,84 @@
 		"Ability16"	""
 		"StatusManaRegen"	"10"
 	}
-	// =================================================================================
+	
+	// Creature: 疫鬼神
+	"great_sword_of_disease_unit"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"ModelScale"	"1"
+		"Level"	"3"
+		"Model"	"models/heroes/morphling/morphling.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A00F
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"52.0"
+		"AttackDamageMax"	"62.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.95"
+		"AttackAnimationPoint"	"0.4"
+		"AttackAcquisitionRange"	"1000.00"
+		"AttackRange"	"475"
+		"ProjectileSpeed"	"1300,1300"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"35.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"35"
+		"LumberCost"	"35"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"460"
+		"MovementTurnRate"	"0.90"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"600"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"100"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1200"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
 	// Creature: 水式神 LV4
-	// =================================================================================
 	"A04W_UNIT"
 	{
 		// General
