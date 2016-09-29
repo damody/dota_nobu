@@ -7,8 +7,13 @@ function Shock( keys )
 
     ability:ApplyDataDrivenModifier(caster,target,"modifier_great_sword_of_banish",{duration = 3})
     Timers:CreateTimer(0.1, function ()
-		chaos_effect = ParticleManager:CreateParticle("particles/econ/items/clockwerk/clockwerk_paraflare/clockwerk_para_rocket_flare_explosion.vpcf", PATTACH_ABSORIGIN, keys.caster)
-		ParticleManager:SetParticleControl(chaos_effect, 3, point)
+		if target:HasModifier("modifier_great_sword_of_banish") then
+			target:SetRenderColor(100, 255, 100)
+			return 0.1
+		else
+			target:SetRenderColor(255, 255, 255)
+			return nil
+		end
 	end)
 end
 

@@ -88,13 +88,13 @@
 		"BaseClass"	"npc_dota_creature"
 		"ModelScale"	"1"
 		"Level"	"3"
-		"Model"	"models/heroes/morphling/morphling.vmdl"
+		"Model"	"models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_small.vmdl"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: A00F
-		"Ability1"	""
+		"Ability1"	"great_sword_of_disease_W"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"0.00"
@@ -102,14 +102,14 @@
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"	"52.0"
-		"AttackDamageMax"	"62.0"
+		"AttackDamageMin"	"31.0"
+		"AttackDamageMax"	"42.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"0.95"
+		"AttackRate"	"0.8"
 		"AttackAnimationPoint"	"0.4"
 		"AttackAcquisitionRange"	"1000.00"
 		"AttackRange"	"475"
-		"ProjectileSpeed"	"1300,1300"
+		"ProjectileSpeed"	"1300"
 		// Bounty
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"35.0"
@@ -121,14 +121,14 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"460"
+		"MovementSpeed"	"300"
 		"MovementTurnRate"	"0.90"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"600"
-		"StatusHealthRegen"	"0.25"
-		"StatusMana"	"100"
-		"StatusStartingMana"	"100"
+		"StatusHealth"	"2000"
+		"StatusHealthRegen"	"10"
+		"StatusMana"	"400"
+		"StatusStartingMana"	"0"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1200"
@@ -139,9 +139,9 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability2"	""
-		"Ability3"	""
-		"Ability4"	""
+		"Ability2"	"great_sword_of_disease_E"
+		"Ability3"	"great_sword_of_disease_R"
+		"Ability4"	"great_sword_of_disease_T"
 		"Ability5"	""
 		"Ability6"	""
 		"Ability7"	""
@@ -154,6 +154,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"ProjectileModel"	"particles/hw_fx/hw_candy_projectile.vpcf"
 	}
 
 	// Creature: 水式神 LV4
