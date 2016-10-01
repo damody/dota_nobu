@@ -4,10 +4,12 @@ function Shock( keys )
 	local ability = keys.ability
 	local am = caster:FindAllModifiers()
 	for _,v in pairs(am) do
-		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() then
+		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
 			caster:RemoveModifierByName(v:GetName())
 		end
 	end
+	-- Strong Dispel 刪除負面效果
+	caster:Purge( false, true, true, true, true)
 	Timers:CreateTimer(0.1, function() 
 			if (caster:HasModifier("modifier_perceive_wine") or caster:HasModifier("modifier_perceive_wine_hyper")) then
 				if caster:HasModifier("Passive_liquor") then
@@ -20,8 +22,7 @@ function Shock( keys )
 			end
 			return nil
 		end)
-	-- Strong Dispel 刪除負面效果
-	caster:Purge( false, true, true, true, true)
+	
 end
 
 

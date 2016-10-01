@@ -59,6 +59,8 @@ function Precache( context )
 
   -- 【特效預載】
     local particle_Precache_Table = {
+    --淺井長政
+    "particles/b01w/b01w.vpcf",
     --武田勝賴
     "particles/units/heroes/hero_beastmaster/beastmaster_wildaxe.vpcf",
     "particles/b34e/b34e.vpcf",
@@ -121,6 +123,17 @@ function Precache( context )
     "particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_base_attack_explosion.vpcf",
     "particles/item/item_commander_of_fantop.vpcf",
     "particles/generic_gameplay/generic_sleep.vpcf",
+    --池田鬼神丸國重
+    "particles/econ/items/phantom_lancer/phantom_lancer_immortal_ti6/phantom_lancer_immortal_ti6_spiritlance_cast_flash.vpcf",
+    "particles/radiant_fx/tower_good3_powerline.vpcf",
+    "particles/generic_gameplay/dropped_tango_aura.vpcf",
+    
+    "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf",
+
+    "particles/econ/items/puck/puck_alliance_set/puck_dreamcoil_magic_aproset.vpcf",
+
+    "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf",
+    
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

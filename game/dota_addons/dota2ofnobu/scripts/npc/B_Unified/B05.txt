@@ -100,7 +100,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"jump_count"	"5"
+				"jump_count"	"5 6 7 10"
 			}
 			"03"
 			{
@@ -406,6 +406,127 @@
 		// just a ministun
 		"AbilityModifierSupportValue"	"0.1"
 	}
+
+	//毛利元就 三矢之訓 
+	"B05R_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"zuus_lightning_bolt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"200"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"700"
+		"AOERadius"	"375"
+		"precache"
+		{
+			"particle"	"particles/b05r/b05r.vpcf"
+			"soundfile"	"sounds/weapons/hero/zuus/lightning_bolt.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
+			"particle"	"particles/b05r2/b05r2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B05R"
+				"Target"	"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Zuus.LightningBolt"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B05R"
+			{
+				"Passive"	"0"
+				"Aura"	"modifier_B05R_2"
+				"Aura_Radius"	"99999"
+				"Duration"	"20"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster"	"1"
+				"Properties"	{}
+				"IsHidden"	"1"
+			}
+			"modifier_B05R_2"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%def"
+				}
+				"IsBuff"	"1"
+				"EffectName"	"particles/b05r2/b05r2.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"true_sight_radius"	"375"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sight_radius"	"375"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"true_sight_duration"	"5.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"sight_duration"	"4.5"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spread_aoe"	"375"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"def"	"5 10 15 20"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"100 175 275 350"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// just a ministun
+		"AbilityModifierSupportValue"	"0.1"
+	}
+
 	//毛利元就 氣霸西國
 	"B05T"
 	{
@@ -415,12 +536,12 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.2"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastRange"	"1000"
+		"AbilityCastRange"	"1100"
 		"AOERadius"	"600"
 		"AbilityManaCost"	"200"
-		"AbilityCooldown"	"110"
+		"AbilityCooldown"	"110 100 90"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"Modifiers"
@@ -464,7 +585,7 @@
 					"Stun"
 					{
 						"Target"	"TARGET"
-						"Duration"	"2"
+						"Duration"	"%duration"
 					}
 					"Damage"
 					{
@@ -478,6 +599,104 @@
 			{
 				"Target"	"POINT"
 				"Radius"	"600"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.5 2 2.5"
+			}
+		}
+		"AbilityDamage"	"700 900 1100"
+	}
+
+	//毛利元就 氣霸西國
+	"B05T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastRange"	"1200"
+		"AOERadius"	"%radius"
+		"AbilityManaCost"	"200"
+		"AbilityCooldown"	"150 140 130"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"Modifiers"
+		{
+			"modifier_B05T"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"2"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"sound"	"Hero_Zuus.GodsWrath.Target"
+				"particle"	"particles/b05t2/b05t2.vpcf"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B05_Moari.lua"
+				"Function"	"B05T"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"	"POINT"
+					"Radius"	"%radius"
+				}
+				"Action"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%duration"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+				}
+			}
+			"DestroyTrees"
+			{
+				"Target"	"POINT"
+				"Radius"	"%radius"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"800 900 1000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.5 2 2.5"
 			}
 		}
 		"AbilityDamage"	"700 900 1100"

@@ -26,7 +26,7 @@ local function chat_of_test(keys)
 	
 	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
 		caster.isold = true
-		if (caster:GetUnitName() == "npc_dota_hero_centaur") then -- 本多忠勝
+		if string.match(caster:GetUnitName(), "centaur") then -- 本多忠勝
 			caster:RemoveAbility("A07W")
 			caster:RemoveAbility("A07E")
 			caster:RemoveAbility("A07R")
@@ -37,7 +37,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("A07E_old")
 			caster:AddAbility("A07R_old")
 			caster:AddAbility("A07T_old")
-		elseif (caster:GetUnitName() == "npc_dota_hero_pugna") then -- 本願寺顯如
+		elseif string.match(caster:GetUnitName(), "pugna") then -- 本願寺顯如
 			caster:RemoveAbility("B25E")
 			caster:RemoveAbility("B25R")
 			caster:RemoveAbility("B25T")
@@ -45,6 +45,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("B25E_old")
 			caster:AddAbility("B25R_old")
 			caster:AddAbility("B25T_old")
+		elseif string.match(caster:GetUnitName(), "keeper_of_the_light") then -- 毛利元就
+			caster:RemoveAbility("B05R")
+			caster:RemoveAbility("B05T")
+
+			caster:AddAbility("B05R_old")
+			caster:AddAbility("B05T_old")
 		end
 	end
 	if s == "gg" then
@@ -61,7 +67,42 @@ local function chat_of_test(keys)
 	      return 1
 	    end)
 	end
-	
+
+	if s == "ss" then
+		caster:AddAbility("for_move1500"):SetLevel(1)
+	end
+	if string.match(s,"gold") then
+		for i=0,9 do
+		PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
+		end
+	end
+	if s == "cd" then
+		--【Timer】
+		Timers:CreateTimer(function()
+			caster:SetMana(caster:GetMaxMana() )
+			--caster:SetHealth(caster:GetMaxHealth())
+
+			-- Reset cooldown for abilities that is not rearm
+			for i = 0, caster:GetAbilityCount() - 1 do
+				local ability = caster:GetAbilityByIndex( i )
+				if ability  then
+					ability:EndCooldown()
+				end
+			end
+
+			-- Put item exemption in here
+			local exempt_table = {}
+
+			-- Reset cooldown for items
+			for i = 0, 5 do
+				local item = caster:GetItemInSlot( i )
+				if item then--if item and not exempt_table( item:GetAbilityName() ) then
+					item:EndCooldown()
+				end
+			end
+			return nil
+		end)
+	end
 	if string.match(s,"test") then
 		local pID = tonumber(string.match(s, '%d+'))
 		local steamID = PlayerResource:GetSteamAccountID(pID)
@@ -92,12 +133,6 @@ local function chat_of_test(keys)
 		for i=1,lvmax do
 	      caster:HeroLevelUp(true)
 	    end
-	end
-	
-	if string.match(s,"gold") then
-		for i=0,9 do
-		PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
-		end
 	end
 	
 	
@@ -137,36 +172,7 @@ local function chat_of_test(keys)
 			caster:SetMana(caster:GetMaxMana())
 			return 0.1
 		end)
-	elseif s == "ss" then
-		caster:AddAbility("for_move1500"):SetLevel(1)
-	elseif s == "cd" then
-		--【Timer】
-		Timers:CreateTimer(function()
-			caster:SetMana(caster:GetMaxMana() )
-			--caster:SetHealth(caster:GetMaxHealth())
-
-			-- Reset cooldown for abilities that is not rearm
-			for i = 0, caster:GetAbilityCount() - 1 do
-				local ability = caster:GetAbilityByIndex( i )
-				if ability  then
-					ability:EndCooldown()
-				end
-			end
-
-			-- Put item exemption in here
-			local exempt_table = {}
-
-			-- Reset cooldown for items
-			for i = 0, 5 do
-				local item = caster:GetItemInSlot( i )
-				if item then--if item and not exempt_table( item:GetAbilityName() ) then
-					item:EndCooldown()
-				end
-			end
-			return nil
-		end)
 	end
-	
 end
 
 function Nobu:Chat( keys )

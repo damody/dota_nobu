@@ -15,7 +15,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_protection_amulet:OnCreated( event )
-	self:StartIntervalThink(0.2) 
+	self:StartIntervalThink(0.2)
 end
 
 function modifier_protection_amulet:OnIntervalThink()

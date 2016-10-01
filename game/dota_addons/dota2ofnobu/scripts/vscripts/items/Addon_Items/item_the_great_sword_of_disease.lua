@@ -27,6 +27,10 @@ function OnUnequip(keys)
     keys.caster.great_sword_of_disease = nil
 end
 
+function Death(keys)
+    keys.caster:ForceKill(false)
+end
+
 function Shock( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -34,6 +38,7 @@ function Shock( keys )
     local monster = CreateUnitByName("great_sword_of_disease_unit",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeamNumber())
     monster:SetControllableByPlayer(caster:GetPlayerID(),false)
     monster:AddNewModifier(monster,ability,"modifier_phased",{duration=0.1})
+    ability:ApplyDataDrivenModifier(monster, monster,"modifier_dead", {duration=60})
     caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 end
 
@@ -114,4 +119,23 @@ function ToSick(keys)
             keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_great_sword_of_disease_R2", {duration=20})
         end
     end
+end
+
+function make_line(keys)
+    local caster = keys.caster
+    local target = keys.target
+    local chaos_effect1 = ParticleManager:CreateParticle("particles/radiant_fx/tower_good3_powerline.vpcf", PATTACH_ABSORIGIN, keys.caster)
+    ParticleManager:SetParticleControl(chaos_effect1,0, caster:GetAbsOrigin()+Vector(0, 0, 100))
+    ParticleManager:SetParticleControl(chaos_effect1,4, target:GetAbsOrigin()+Vector(0, 0, 100))
+    local chaos_effect2 = ParticleManager:CreateParticle("particles/radiant_fx/tower_good3_powerline.vpcf", PATTACH_ABSORIGIN, keys.caster)
+    ParticleManager:SetParticleControl(chaos_effect2,0, caster:GetAbsOrigin()+Vector(0, 0, 100))
+    ParticleManager:SetParticleControl(chaos_effect2,4, target:GetAbsOrigin()+Vector(0, 0, 100))
+    caster.chaos_effect1 = chaos_effect1
+    caster.chaos_effect2 = chaos_effect2
+end
+
+function line_end(keys)
+    local caster = keys.caster
+    ParticleManager:DestroyParticle(caster.chaos_effect1, false)
+    ParticleManager:DestroyParticle(caster.chaos_effect2, false)
 end

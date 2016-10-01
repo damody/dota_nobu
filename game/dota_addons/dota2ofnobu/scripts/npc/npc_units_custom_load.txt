@@ -97,8 +97,8 @@
 		"Ability1"	"great_sword_of_disease_W"
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"0.00"
-		"MagicalResistance"	"0"
+		"ArmorPhysical"	"20.00"
+		"MagicalResistance"	"50"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -114,6 +114,7 @@
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"35.0"
 		"BountyGoldMax"	"35.0"
+		"AbilityLayout"	"6"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"35"
@@ -141,8 +142,8 @@
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Ability2"	"great_sword_of_disease_E"
 		"Ability3"	"great_sword_of_disease_R"
-		"Ability4"	"great_sword_of_disease_T"
-		"Ability5"	""
+		"Ability4"	"great_sword_of_disease_D"
+		"Ability5"	"great_sword_of_disease_T"
 		"Ability6"	""
 		"Ability7"	""
 		"Ability8"	""
@@ -154,7 +155,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"ProjectileModel"	"particles/hw_fx/hw_candy_projectile.vpcf"
+		"ProjectileModel"	"particles/units/heroes/hero_undying/undying_decay_fakeprojectile_glow.vpcf"
 	}
 
 	// Creature: 水式神 LV4
@@ -1414,7 +1415,7 @@
 		"AttackDamageMin"	"0"
 		"AttackDamageMax"	"0"
 		"MovementSpeed"	"1500"
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
 		"StatusHealth"	"5555"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 	}

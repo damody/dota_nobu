@@ -289,7 +289,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"75"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"80"
 				}
 				"EffectName"	"particles/b06r/b06r.vpcf"
 				"EffectAttachType"	"attach_origin"
@@ -327,12 +327,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Float_Timer"	"30 21 14 6"
+				"Float_Timer"	"20 14 9 4"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"miss"	"8 16 24 32"
+				"miss"	"6 12 18 24"
 			}
 		}
 	}
@@ -363,6 +363,11 @@
 			{
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_B06T"
+			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%Bonus_Health"
 			}
 		}
 		"Modifiers"
@@ -404,6 +409,14 @@
 						"Target"	"TARGET"
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
 						"Function"	"B06T_SE"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B06T"
+						"Target" 		"CASTER"
 					}
 				}
 			}

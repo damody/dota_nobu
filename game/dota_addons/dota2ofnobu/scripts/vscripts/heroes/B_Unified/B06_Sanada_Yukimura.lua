@@ -12,6 +12,15 @@ function modifier_item_blade_mail_rework_damage_return:DeclareFunctions()
     return funcs
 end
 
+function modifier_item_blade_mail_rework_damage_return:OnCreated( event )
+	self:StartIntervalThink(0.2)
+end
+
+function modifier_item_blade_mail_rework_damage_return:OnIntervalThink()
+	if (self.caster ~= nil) and IsValidEntity(self.caster) then
+		self.hp = self.caster:GetHealth()
+	end
+end
 --------------------------------------------------------------------------------
 
 function modifier_item_blade_mail_rework_damage_return:OnTakeDamage(event)
@@ -35,7 +44,7 @@ function modifier_item_blade_mail_rework_damage_return:OnTakeDamage(event)
         if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
             if damage_type == DAMAGE_TYPE_MAGICAL and self.caster.B06R_Buff == true then
             	self.caster.B06R_Buff = false
-            	self.caster:SetHealth(self.caster:GetHealth()+return_damage)
+            	self.caster:SetHealth(self.hp)
             	self.caster:FindAbilityByName("B06R"):ApplyDataDrivenModifier(self.caster, self.caster, "modifier_B06R", {duration = 3.0})
             	Timers:CreateTimer(0.01, function() 
 					target.AmpDamageParticle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, target)
@@ -51,10 +60,6 @@ function modifier_item_blade_mail_rework_damage_return:OnTakeDamage(event)
 						return 1.0
 					end
 				end)
-            else
-                if not victim:IsMagicImmune() then
-
-                end 
             end 
         end 
     end 

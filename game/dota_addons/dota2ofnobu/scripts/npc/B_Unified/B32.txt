@@ -443,7 +443,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"100"
+		"AbilityCooldown"	"95 85 75"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"
@@ -493,12 +493,11 @@
 				"AllowIllusionDuplicate"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"2"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%damage"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"60"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.1"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.4"
 				}
-				"Duration"	"30"
+				"Duration"	"22"
 				"IsBuff"	"1"
 				"OnIntervalThink"
 				{
@@ -526,23 +525,9 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"10.0"
-			}
-			"02"
-			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_movement_speed"	"115"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"110 160 210"
+				"damage"	"50 90 130"
 			}
 		}
-		// Stats
-		// -------------------------------------------------------------------------------------------------------------
-		// Attacks are primarily about the damage
-		"AbilityModifierSupportValue"	"0.35"
 	}
 }

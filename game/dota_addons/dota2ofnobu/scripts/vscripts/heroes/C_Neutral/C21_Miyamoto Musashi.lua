@@ -178,12 +178,14 @@ function Trig_C21EActions(keys)
     local  time = keys.ability:GetLevel()--獲取技能等級
     keys.ability:ApplyDataDrivenModifier(u,u2,"modifier_C21EStun",{duration = 0.5})
     --timer2
+    u:FindAbilityByName("C21W"):SetActivated(false)
 	AMHC:Timer( "C21T_E1"..tostring(id),function( )
 
 			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
 				--刪除無敵
                 u:RemoveModifierByName("modifier_C21E")
                 u:AddNewModifier(nil,nil,"modifier_phased",{duration=1})
+                u:FindAbilityByName("C21W"):SetActivated(true)
 				return nil 
 			else
 				u:AddNewModifier(nil,nil,"modifier_phased",{duration=1})
