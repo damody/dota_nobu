@@ -134,6 +134,7 @@ function Precache( context )
 
     "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf",
     
+    "particles/b02r3/b02r3.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

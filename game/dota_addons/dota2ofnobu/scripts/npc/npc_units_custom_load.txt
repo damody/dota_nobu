@@ -468,8 +468,8 @@
 		"StatusManaRegen"	"10"
 	}
 
-	// 下級伏兵先鋒
-	"ndrp"
+	// 林卷 伏兵先鋒
+	"forest_soldier1"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -480,10 +480,7 @@
 		"Level"	"2"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference: ACen
-		"Ability1"	""
+
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"3.00"
@@ -491,8 +488,8 @@
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"41.0"
-		"AttackDamageMax"	"62.0"
+		"AttackDamageMin"	"61.0"
+		"AttackDamageMax"	"82.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.38"
 		"AttackAnimationPoint"	"0.30"
@@ -500,8 +497,8 @@
 		"AttackRange"	"128"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"55.0"
-		"BountyGoldMax"	"55.0"
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"55"
@@ -513,8 +510,10 @@
 		"MovementTurnRate"	"2.00"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"1060"
+		"StatusHealth"	"700"
 		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1400"
@@ -525,6 +524,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"forest_soldier_W"
 		"Ability2"	""
 		"Ability3"	""
 		"Ability4"	""
@@ -546,8 +546,8 @@
 		}
 	}
 
-	// 下級伏兵軍師
-	"nwiz"
+	// 林卷 伏兵軍師
+	"forest_caster1"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -558,10 +558,7 @@
 		"Level"	"2"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference: Amnb
-		"Ability1"	""
+		
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"1.00"
@@ -575,14 +572,14 @@
 		"AttackRate"	"1.40"
 		"AttackAnimationPoint"	"0.5"
 		"AttackAcquisitionRange"	"700.00"
-		"AttackRange"	"1300"
+		"AttackRange"	"500"
 		// Add projectile
 		"ProjectileModel"	"particles/base_attacks/ranged_goodguy.vpcf"
 		"ProjectileSpeed"	"900"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"40.0"
-		"BountyGoldMax"	"40.0"
+		"BountyGoldMin"	"30.0"
+		"BountyGoldMax"	"30.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"40"
@@ -590,12 +587,14 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"415"
+		"MovementSpeed"	"320"
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"765"
+		"StatusHealth"	"700"
 		"StatusHealthRegen"	"1.00"
+		"StatusMana"	"500"
+		"StatusStartingMana"	"500"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1400"
@@ -606,7 +605,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability2"	""
+		"Ability1"	"forest_caster_W"
+		"Ability2"	"forest_caster_E"
 		"Ability3"	""
 		"Ability4"	""
 		"Ability5"	""
@@ -621,6 +621,401 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+	}
+
+
+	// 林章 伏兵先鋒
+	"forest_soldier2"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"
+		"ModelScale"	"1.1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"8.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"80.0"
+		"AttackDamageMax"	"100.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.1"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"45.0"
+		"BountyGoldMax"	"45.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"420"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"900"
+		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"300"
+		"StatusStartingMana"	"300"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"forest_soldier_W"
+		"Ability2"	"forest_soldier_E"
+		"Ability3"	""
+		"Ability4"	""
+		"Creature"
+		{
+			"AttachWearables"	{}
+		}
+	}
+
+	// 林章 伏兵軍師
+	"forest_caster2"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
+		"ModelScale"	"1.1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"88.0"
+		"AttackDamageMax"	"97.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.40"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"500"
+		// Add projectile
+		"ProjectileModel"	"particles/base_attacks/ranged_goodguy.vpcf"
+		"ProjectileSpeed"	"900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"50.0"
+		"BountyGoldMax"	"50.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"40"
+		"LumberCost"	"40"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"1.00"
+		"StatusMana"	"600"
+		"StatusStartingMana"	"600"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"forest_caster_W"
+		"Ability2"	"forest_caster_E"
+		"Ability3"	"forest_caster_R"
+		"Ability4"	""
+	}
+
+	// 孫子兵法殘冊 伏兵先鋒
+	"forest_soldier3"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"16.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"100.0"
+		"AttackDamageMax"	"120.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"85.0"
+		"BountyGoldMax"	"85.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"520"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"300"
+		"StatusStartingMana"	"300"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"forest_soldier_W"
+		"Ability2"	"forest_soldier_E"
+		"Ability3"	"forest_soldier_R"
+		"Ability4"	""
+		"Creature"
+		{
+			"AttachWearables"	{}
+		}
+	}
+
+	// 孫子兵法殘冊 伏兵軍師
+	"forest_caster3"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"88.0"
+		"AttackDamageMax"	"97.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.40"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"500"
+		// Add projectile
+		"ProjectileModel"	"particles/base_attacks/ranged_goodguy.vpcf"
+		"ProjectileSpeed"	"900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"100.0"
+		"BountyGoldMax"	"100.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"40"
+		"LumberCost"	"40"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"415"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"1.00"
+		"StatusMana"	"1000"
+		"StatusStartingMana"	"1000"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"forest_caster_W"
+		"Ability2"	"forest_caster_E"
+		"Ability3"	"forest_caster_R"
+		"Ability4"	""
+	}
+
+
+	// 全書 伏兵先鋒
+	"forest_soldier4"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"12"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"25.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"150.0"
+		"AttackDamageMax"	"170.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.8"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"185.0"
+		"BountyGoldMax"	"185.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"520"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1200"
+		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"300"
+		"StatusStartingMana"	"300"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"forest_soldier_W"
+		"Ability2"	"forest_soldier_E"
+		"Ability3"	"forest_soldier_R"
+		"Ability4"	""
+		"Creature"
+		{
+			"AttachWearables"	{}
+		}
+	}
+
+	// 全書 伏兵軍師
+	"forest_caster4"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"12"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"188.0"
+		"AttackDamageMax"	"197.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.40"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"500"
+		// Add projectile
+		"ProjectileModel"	"particles/base_attacks/ranged_goodguy.vpcf"
+		"ProjectileSpeed"	"900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"100.0"
+		"BountyGoldMax"	"100.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"40"
+		"LumberCost"	"40"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"415"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1500"
+		"StatusHealthRegen"	"1.00"
+		"StatusMana"	"2000"
+		"StatusStartingMana"	"2000"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"forest_caster_W"
+		"Ability2"	"forest_caster_E"
+		"Ability3"	"forest_caster_R"
+		"Ability4"	""
 	}
 
 	// 雜賀眾
@@ -1619,6 +2014,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"ProjectileModel"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
 		"Ability5"	""
 		"Ability6"	""
 		"Ability7"	""

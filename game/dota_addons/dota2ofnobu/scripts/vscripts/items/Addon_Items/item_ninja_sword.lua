@@ -16,18 +16,12 @@ function modifier_transparency:OnAbilityExecuted(params)
 	end
 end
 
-function modifier_transparency:AttackProc(params)
-	local hAbility = self:GetAbility()
-	local hTarget = params.target
-	--local enemies = FindUnitsInRadius( self:GetParent():GetTeamNumber(), hTarget:GetOrigin(), nil, hAbility:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
-end
-
 function modifier_transparency:GetModifierInvisibilityLevel()
-	return 50
+	return 70
 end
 
 function modifier_transparency:IsHidden()
-	return true
+	return false
 end
 
 function modifier_transparency:CheckState()
@@ -41,7 +35,6 @@ function modifier_transparency:OnAttackLanded( params )
 	if IsServer() then
 		if params.attacker == self:GetParent() then
 		EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Nevermore.Pick", self:GetCaster() )
-		self:AttackProc(params)
 		self:Destroy()
 		end
 	end
@@ -59,7 +52,7 @@ end
 function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_transparency", {duration = 10} )
+	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=10})
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_ninja_sword", {duration = 10})
 end
 

@@ -262,7 +262,7 @@ function B02R(keys)
 	local ability = keys.ability
 	--local player = caster:GetPlayerID()
 	local point = caster:GetAbsOrigin()
-	local point2 = target:GetAbsOrigin() 
+	local point2 = target:GetAbsOrigin()
 	--local point2 = ability:GetCursorPosition()
 	local level = ability:GetLevel() - 1
 	--local vec = caster:GetForwardVector():Normalized()

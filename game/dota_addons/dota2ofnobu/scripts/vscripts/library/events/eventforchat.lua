@@ -67,7 +67,7 @@ local function chat_of_test(keys)
 	      return 1
 	    end)
 	end
-
+	--[[
 	if s == "ss" then
 		caster:AddAbility("for_move1500"):SetLevel(1)
 	end
@@ -173,6 +173,7 @@ local function chat_of_test(keys)
 			return 0.1
 		end)
 	end
+	]]
 end
 
 function Nobu:Chat( keys )

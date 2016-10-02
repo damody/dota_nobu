@@ -12,8 +12,13 @@ function _G.Nobu:InitGameMode()
   --【Setup rules】
   -- --LimitPathingSearchDepth(0.5)
   -- --GameRules:SetHeroRespawnEnabled( false )
+  --設定每隊人數
+  GameRules:SetCustomGameTeamMaxPlayers(1, 7)
+  GameRules:SetCustomGameTeamMaxPlayers(2, 7)
+  GameRules:SetCustomGameTeamMaxPlayers(3, 7)
+
   GameRules:SetUseUniversalShopMode( false ) --开启/关闭全地图商店模式
-  GameRules:SetSameHeroSelectionEnabled( true )
+  GameRules:SetSameHeroSelectionEnabled( false )
   GameRules:SetHeroSelectionTime( 0 )--設定選擇英雄時間
   if _G.nobu_debug then
     GameRules:SetPreGameTime( 0 )--設置遊戲準備時間
