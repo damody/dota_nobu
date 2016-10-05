@@ -193,7 +193,7 @@
  		"ProjectileModel"			"particles/base_attacks/fountain_attack.vpcf" // Particle system model for projectile.
  		"ProjectileSpeed"			"2400"		// Speed of projectile.
 
- 		// Attributes
+ 		// Attributese
  		//----------------------------------------------------------------
  		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
  		"AttributeBaseStrength"		"0"			// Base strength
@@ -3665,4 +3665,1334 @@
 		"Level"	"5"
 		"ConsideredHero"	"0"
 	}
+
+	"npc_dota_neutral_160_douchebag"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"1"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"2"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"28"		// Damage range min.
+ 		"AttackDamageMax"			"29"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"500"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyGoldMin"				"26"		// Gold earned min.
+ 		"BountyGoldMax"				"28"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"805"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"150"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_160_bandit"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"2"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"2"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"26"		// Damage range min.
+ 		"AttackDamageMax"			"29"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyGoldMin"				"21"		// Gold earned min.
+ 		"BountyGoldMax"				"23"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"705"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"800"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_160_assassin"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"3"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"2"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"34"		// Damage range min.
+ 		"AttackDamageMax"			"39"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyGoldMin"				"27"		// Gold earned min.
+ 		"BountyGoldMax"				"31"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"805"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"125"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_wild_bear"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"3"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"3"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"32"		// Damage range min.
+ 		"AttackDamageMax"			"40"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyGoldMin"				"30"		// Gold earned min.
+ 		"BountyGoldMax"				"34"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"750"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"200"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_160_executor"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"4"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"2"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"48"		// Damage range min.
+ 		"AttackDamageMax"			"53"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"150"		// Experience earn.
+ 		"BountyGoldMin"				"38"		// Gold earned min.
+ 		"BountyGoldMax"				"44"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"985"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"175"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_giant_tortoise"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"4"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"4"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"55"		// Damage range min.
+ 		"AttackDamageMax"			"61"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyGoldMin"				"44"		// Gold earned min.
+ 		"BountyGoldMax"				"52"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"995"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"365"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_fear_molang"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"4"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"4"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"55"		// Damage range min.
+ 		"AttackDamageMax"			"61"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyGoldMin"				"44"		// Gold earned min.
+ 		"BountyGoldMax"				"52"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"995"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"400"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_bear"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"4"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"11"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"86"		// Damage range min.
+ 		"AttackDamageMax"			"93"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyGoldMin"				"67"		// Gold earned min.
+ 		"BountyGoldMax"				"81"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1600"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"400"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_forbearance_law_corpse"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"4"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"5"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"55"		// Damage range min.
+ 		"AttackDamageMax"			"61"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyGoldMin"				"45"		// Gold earned min.
+ 		"BountyGoldMax"				"50"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1015"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"350"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_japanese_pirates_sea_people"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"4"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"2"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"32"		// Damage range min.
+ 		"AttackDamageMax"			"36"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyGoldMin"				"49"		// Gold earned min.
+ 		"BountyGoldMax"				"57"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"665"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"100"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_barbarian"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"5"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"4"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"55"		// Damage range min.
+ 		"AttackDamageMax"			"65"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"500"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyGoldMin"				"55"		// Gold earned min.
+ 		"BountyGoldMax"				"65"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"2000"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"350"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_pour_odd_person"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"5"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"3"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"63"		// Damage range min.
+ 		"AttackDamageMax"			"68"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyGoldMin"				"55"		// Gold earned min.
+ 		"BountyGoldMax"				"65"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"2000"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"500"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_japanese_pirates_leader"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"4"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"2"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"131"		// Damage range min.
+ 		"AttackDamageMax"			"139"		// Damage range max.	
+ 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"500"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"300"		// Experience earn.
+ 		"BountyGoldMin"				"105"		// Gold earned min.
+ 		"BountyGoldMax"				"125"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1900"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"750"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_the_exiled_forbearance"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"6"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"10"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"101"		// Damage range min.
+ 		"AttackDamageMax"			"107"		// Damage range max.	
+ 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"300"		// Experience earn.
+ 		"BountyGoldMin"				"108"		// Gold earned min.
+ 		"BountyGoldMax"				"124"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"2700"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"300"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_cursed_warrior_souls"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"6"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"30"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"305"		// Damage range min.
+ 		"AttackDamageMax"			"375"		// Damage range max.	
+ 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"250"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"700"		// Experience earn.
+ 		"BountyGoldMin"				"450"		// Gold earned min.
+ 		"BountyGoldMax"				"450"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"18550"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"1500"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_the_king_of_robbers"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"7"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"12"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"126"		// Damage range min.
+ 		"AttackDamageMax"			"145"		// Damage range max.	
+ 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"250"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"500"		// Experience earn.
+ 		"BountyGoldMin"				"300"		// Gold earned min.
+ 		"BountyGoldMax"				"300"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"300"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"10600"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"500"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_robbers_remnants"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"1"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"1"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"41"		// Damage range min.
+ 		"AttackDamageMax"			"46"		// Damage range max.	
+ 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyGoldMin"				"42"		// Gold earned min.
+ 		"BountyGoldMax"				"46"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1500"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"300"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_country_riot"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"1"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"6"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"91"		// Damage range min.
+ 		"AttackDamageMax"			"96"		// Damage range max.	
+ 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyGoldMin"				"52"		// Gold earned min.
+ 		"BountyGoldMax"				"54"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"2250"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"300"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_peasants_revolt"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"1"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"3"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"71"		// Damage range min.
+ 		"AttackDamageMax"			"76"		// Damage range max.	
+ 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyGoldMin"				"37"		// Gold earned min.
+ 		"BountyGoldMax"				"39s"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1850"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"300"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
 }
