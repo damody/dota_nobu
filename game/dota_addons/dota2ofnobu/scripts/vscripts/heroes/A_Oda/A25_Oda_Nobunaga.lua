@@ -50,19 +50,27 @@ function A25E( keys )
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 	for _,it in pairs(enemies) do
 		if (not(it:IsBuilding())) then
-			ApplyDamage({ victim = it, attacker = caster, damage = damage, 
-				damage_type = ability:GetAbilityDamageType() , ability = ability})
+			AMHC:Damage(caster,it, damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
 		end
 	end
 	local dummy = CreateUnitByName( "npc_dummy", casterLocation, false, caster, caster, caster:GetTeamNumber() )
 	dummy:EmitSound( "A25E.spiked_carapace" )
 	Timers:CreateTimer( 0.5, function()
-					dummy:ForceKill( true )
-					return nil
-				end
-			)
-	
+			dummy:ForceKill( true )
+			return nil
+		end)
+	Timers:CreateTimer( 1, function()
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), casterLocation, nil, range+50, 
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		for _,it in pairs(enemies) do
+			if (not(it:IsBuilding())) then
+				AMHC:Damage(caster,it, damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
+			end
+		end
+		return nil
+		end)
 end
 
 --[[
@@ -247,12 +255,11 @@ function A25T2( keys )
 	Timers:CreateTimer(0, function()
 		pos = pos + movedir
 		ParticleManager:SetParticleControl(tornado, 3, pos)
-		-- local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, nil, 150, 
-		-- 	DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, 0, 0, false )
-		-- for _,it in pairs(enemies) do
-		-- 	ApplyDamage({ victim = it, attacker = caster, damage = 6, 
-		-- 		damage_type = ability:GetAbilityDamageType() , ability = ability})
-		-- end
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, nil, 150, 
+			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+		for _,it in pairs(enemies) do
+			AMHC:Damage(caster,it, 6,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+		end
 
 		timecount = timecount + 0.1
 		if (timecount < 7) then

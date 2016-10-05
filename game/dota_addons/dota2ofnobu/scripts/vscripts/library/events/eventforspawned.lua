@@ -80,7 +80,18 @@ function Nobu:OnHeroIngame( keys )
 		donkey:SetHealth(donkey:GetMaxHealth())
 		donkey:SetPhysicalArmorBaseValue(10)
 		donkey:SetBaseMoveSpeed(2000)
+    donkey:SetBaseManaRegen()
+    
 		donkey:AddAbility("for_magic_immune")
+
+    --[[for abilitySlot=0,15 do
+      local ability = donkey:GetAbilityByIndex(abilitySlot)
+      if ability ~= nil then 
+        local abilityLevel = ability:GetLevel()
+        local abilityName = ability:GetAbilityName()
+        donkey:RemoveAbility(abilityName)
+      end
+    end]]
       end
       Timers:CreateTimer(1, function ()
           for itemSlot=0,5 do

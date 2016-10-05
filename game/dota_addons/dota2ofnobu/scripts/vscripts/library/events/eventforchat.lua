@@ -55,7 +55,7 @@ local function chat_of_test(keys)
 	end
 	if s == "gg" then
 		GameRules:SetCustomGameEndDelay(1)
-		GameRules:SetCustomVictoryMessage("贏三小啦幹")
+		GameRules:SetCustomVictoryMessage("遊戲時間到了喔~")
 		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 	end
 	if string.match(s,"cam") then
@@ -67,9 +67,16 @@ local function chat_of_test(keys)
 	      return 1
 	    end)
 	end
-	--[[
+
 	if s == "ss" then
 		caster:AddAbility("for_move1500"):SetLevel(1)
+	end
+	if s == "xx" then
+		caster:RemoveAbility("for_move1500")
+		caster:RemoveModifierByName("modifier_for_move1500")
+	end
+	if s == "re" then
+		caster:SetTimeUntilRespawn(0)
 	end
 	if string.match(s,"gold") then
 		for i=0,9 do
@@ -173,7 +180,7 @@ local function chat_of_test(keys)
 			return 0.1
 		end)
 	end
-	]]
+	
 end
 
 function Nobu:Chat( keys )

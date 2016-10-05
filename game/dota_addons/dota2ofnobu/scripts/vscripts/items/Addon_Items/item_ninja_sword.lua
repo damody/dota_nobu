@@ -5,16 +5,9 @@ LinkLuaModifier( "modifier_transparency", "scripts/vscripts/items/Addon_Items/it
 modifier_transparency = class({})
 
 function modifier_transparency:DeclareFunctions()
-	return { MODIFIER_EVENT_ON_ATTACK_LANDED,
-	--MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
-	MODIFIER_EVENT_ON_ABILITY_EXECUTED }
+	return {  }
 end
 
-function modifier_transparency:OnAbilityExecuted(params)
-	if IsServer() then
-		self:Destroy()
-	end
-end
 
 function modifier_transparency:GetModifierInvisibilityLevel()
 	return 70
@@ -29,15 +22,6 @@ function modifier_transparency:CheckState()
 	[MODIFIER_STATE_INVISIBLE] = true
 	}
 	return state
-end
-
-function modifier_transparency:OnAttackLanded( params )
-	if IsServer() then
-		if params.attacker == self:GetParent() then
-		EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Nevermore.Pick", self:GetCaster() )
-		self:Destroy()
-		end
-	end
 end
 
 function modifier_transparency:GetAttributes()
@@ -63,7 +47,6 @@ function Shock2( keys )
 		local caster = keys.caster
 		local target = keys.target
 		local ability = keys.ability
-		local modifierName = "modifier_ninja_sword"
 		if (not target:IsBuilding()) then
 			-- Deal damage and show VFX
 			local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
@@ -74,6 +57,7 @@ function Shock2( keys )
 			PopupCriticalDamage(target, 350)
 			AMHC:Damage( caster,target,350,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end	
-		keys.caster:RemoveModifierByName( modifierName )
+		keys.caster:RemoveModifierByName( "modifier_ninja_sword" )
+		keys.caster:RemoveModifierByName( "modifier_transparency" )
 	end
 end

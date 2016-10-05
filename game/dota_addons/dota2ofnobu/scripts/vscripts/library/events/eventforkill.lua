@@ -68,8 +68,16 @@ function Nobu:OnUnitKill( keys )
   	end
 
     if killedUnit:IsRealHero() then
-      --killedUnit:RespawnUnit()
-	    killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
+      if killedUnit.death_count == nil then
+        killedUnit.death_count = 1
+      else
+        killedUnit.death_count = killedUnit.death_count + 1
+      end
+      if killedUnit.death_count <= 10 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
+      else
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1+killedUnit.death_count-10)
+      end
       group = FindUnitsInRadius(
           killedUnit:GetTeamNumber(), 
           killedUnit:GetAbsOrigin(), 
@@ -91,6 +99,17 @@ function Nobu:OnUnitKill( keys )
       --   GameRules: SendCustomMessage("   ",DOTA_TEAM_GOODGUYS,0)
       -- end
       --Tutorial: AddQuest("quest_1",1,"破塔成功","ssssssssss")
+    elseif string.match(name, "neutral") then
+      local unitname = name
+      local pos = killedUnit:GetAbsOrigin()
+      local team = killedUnit:GetTeamNumber()
+      Timers:CreateTimer(60, function()
+        if (killedUnit.origin_pos) then
+          pos = killedUnit.origin_pos
+          local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
+          unit.origin_pos = pos
+        end
+        end)
     end
 
     print(killedUnit:GetUnitName() )

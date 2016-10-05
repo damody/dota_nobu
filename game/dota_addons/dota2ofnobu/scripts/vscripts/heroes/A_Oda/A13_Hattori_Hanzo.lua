@@ -10,19 +10,15 @@ LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/A_Oda/A13_Hat
 modifier_transparency = class({})
 
 function modifier_transparency:DeclareFunctions()
-	return { MODIFIER_EVENT_ON_ATTACK_LANDED,
+	return { 
+	--MODIFIER_EVENT_ON_ATTACK_LANDED,
 	--MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
-	MODIFIER_EVENT_ON_ABILITY_EXECUTED }
-end
-
-function modifier_transparency:OnAbilityExecuted(params)
-	if IsServer() then
-		self:Destroy()
-	end
+	--MODIFIER_EVENT_ON_ABILITY_EXECUTED 
+	}
 end
 
 function modifier_transparency:GetModifierInvisibilityLevel()
-	return 70
+	return 1
 end
 
 function modifier_transparency:IsHidden()
@@ -36,14 +32,6 @@ function modifier_transparency:CheckState()
 	return state
 end
 
-function modifier_transparency:OnAttackLanded( params )
-	if IsServer() then
-		if params.attacker == self:GetParent() then
-		EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Nevermore.Pick", self:GetCaster() )
-		self:Destroy()
-		end
-	end
-end
 
 function modifier_transparency:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
@@ -74,7 +62,7 @@ function A13W_Levelup( keys )
 	local level = keys.ability:GetLevel()
 	
 	if (ability:GetLevel() < level) then
-		ability:SetLevel(level)
+		ability:SetLevel(level+2)
 	end
 end
 
@@ -84,7 +72,7 @@ function A13R_Levelup( keys )
 	local level = keys.ability:GetLevel()
 	
 	if (ability:GetLevel() < level) then
-		ability:SetLevel(level)
+		ability:SetLevel(level+2)
 	end
 end
 
@@ -101,7 +89,6 @@ function A13D_End( keys )
 		local caster = keys.caster
 		local target = keys.target
 		local ability = keys.ability
-		local modifierName = "modifier_A13D"
 		local abilityDamage = ability:GetLevelSpecialValueFor( "A13D_Damage", ability:GetLevel() - 1 )
 		local abilityDamageType = ability:GetAbilityDamageType()
 		if (not target:IsBuilding()) then
@@ -114,7 +101,8 @@ function A13D_End( keys )
 			PopupCriticalDamage(target, abilityDamage)
 			AMHC:Damage( caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end	
-		keys.caster:RemoveModifierByName( modifierName )
+		keys.caster:RemoveModifierByName( "modifier_A13D" )
+		keys.caster:RemoveModifierByName( "modifier_transparency" )
 	end
 end
 
@@ -136,77 +124,81 @@ function A13W( event )
 	local origin_go_index = RandomInt(1, people)
 	local random_angle = RandomInt(-20, 20) * 0.1
 	local origin_pos = caster:GetOrigin()
-
-	for i=1,people do
-		if (i ~= origin_go_index) then
-			-- handle_UnitOwner needs to be nil, else it will crash the game.
-			illusion[i] = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
-			illusion[i]:SetPlayerID(caster:GetPlayerID())
-			illusion[i]:SetControllableByPlayer(player, true)
-			
-			-- Level Up the unit to the casters level
-			local casterLevel = caster:GetLevel()
-			for j=1,casterLevel-1 do
-				illusion[i]:HeroLevelUp(false)
-			end
-
-			-- Set the skill points to 0 and learn the skills of the caster
-			illusion[i]:SetAbilityPoints(0)
-			for abilitySlot=0,15 do
-				local ability = caster:GetAbilityByIndex(abilitySlot)
-				if ability ~= nil then 
-					local abilityLevel = ability:GetLevel()
-					local abilityName = ability:GetAbilityName()
-					local illusionAbility = illusion[i]:FindAbilityByName(abilityName)
-					illusionAbility:SetLevel(abilityLevel)
+	if caster:IsAlive() then
+		for i=1,people do
+			if (i ~= origin_go_index) then
+				-- handle_UnitOwner needs to be nil, else it will crash the game.
+				illusion[i] = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
+				illusion[i]:SetPlayerID(caster:GetPlayerID())
+				illusion[i]:SetControllableByPlayer(player, true)
+				
+				-- Level Up the unit to the casters level
+				local casterLevel = caster:GetLevel()
+				for j=1,casterLevel-1 do
+					illusion[i]:HeroLevelUp(false)
 				end
-			end
 
-			-- Recreate the items of the caster
-			for itemSlot=0,5 do
-				local item = caster:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = CreateItem(itemName, illusion[i], illusion[i])
-					illusion[i]:AddItem(newItem)
+				-- Set the skill points to 0 and learn the skills of the caster
+				illusion[i]:SetAbilityPoints(0)
+				for abilitySlot=0,15 do
+					local ability = caster:GetAbilityByIndex(abilitySlot)
+					if ability ~= nil then 
+						local abilityLevel = ability:GetLevel()
+						local abilityName = ability:GetAbilityName()
+						local illusionAbility = illusion[i]:FindAbilityByName(abilityName)
+						if (illusionAbility ~= nil) then
+							illusionAbility:SetLevel(abilityLevel)
+						end
+					end
 				end
+
+				-- Recreate the items of the caster
+				for itemSlot=0,5 do
+					local item = caster:GetItemInSlot(itemSlot)
+					if item ~= nil then
+						local itemName = item:GetName()
+						local newItem = CreateItem(itemName, illusion[i], illusion[i])
+						illusion[i]:AddItem(newItem)
+					end
+				end
+
+				-- Set the unit as an illusion
+				-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+				illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = -1000, incoming_damage = incomingDamage })
+				--illusion[i]:SetBaseDamageMin(-1000)
+				--illusion[i]:SetBaseDamageMax(-1000)
+				-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
+				illusion[i]:MakeIllusion()
+
+				illusion[i]:SetHealth(caster:GetHealth())
+				--illusion[i]:SetRenderColor(255,0,255)
 			end
-
-			-- Set the unit as an illusion
-			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = -1000, incoming_damage = incomingDamage })
-			--illusion[i]:SetBaseDamageMin(-1000)
-			--illusion[i]:SetBaseDamageMax(-1000)
-			-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
-			illusion[i]:MakeIllusion()
-
-			illusion[i]:SetHealth(caster:GetHealth())
-			--illusion[i]:SetRenderColor(255,0,255)
 		end
-	end
-	
-	Timers:CreateTimer( 0.1, 
-		function()
-			for i=1,people do
-				target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
-				if (i ~= origin_go_index) then
-					ProjectileManager:ProjectileDodge(illusion[i])
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
-					illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
-					illusion[i]:SetForwardVector(target_pos[i]:Normalized())
-					illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
-				else
-					ProjectileManager:ProjectileDodge(caster)
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
-					caster:SetAbsOrigin(origin_pos+target_pos[i])
-					ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
-					caster:SetForwardVector(target_pos[i]:Normalized())
-					caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
+		
+		Timers:CreateTimer( 0.1, function()
+				if caster:IsAlive() then
+					for i=1,people do
+						target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
+						if (i ~= origin_go_index) then
+							ProjectileManager:ProjectileDodge(illusion[i])
+							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
+							illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
+							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
+							illusion[i]:SetForwardVector(target_pos[i]:Normalized())
+							illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
+						else
+							ProjectileManager:ProjectileDodge(caster)
+							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
+							caster:SetAbsOrigin(origin_pos+target_pos[i])
+							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
+							caster:SetForwardVector(target_pos[i]:Normalized())
+							caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
+						end
+					end
 				end
-			end
-			return nil
-		end )
+				return nil
+			end )
+	end
 end
 
 

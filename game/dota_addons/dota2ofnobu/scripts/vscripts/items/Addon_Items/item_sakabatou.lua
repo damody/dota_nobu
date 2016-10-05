@@ -20,7 +20,11 @@ function Shock( keys )
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 
 			if (not(target:IsBuilding())) then
-				ability:ApplyDataDrivenModifier(caster,target,"modifier_sakabatou",{duration = 0.8})
+				if target:IsMagicImmune() then
+					ability:ApplyDataDrivenModifier(caster,target,"modifier_sakabatou",{duration = 0.2})
+				else
+					ability:ApplyDataDrivenModifier(caster,target,"modifier_sakabatou",{duration = 0.8})
+				end
 			end
 			
 			--動作

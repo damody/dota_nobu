@@ -8,7 +8,11 @@ function Shock( keys )
 	Timers:CreateTimer(1, function ()
 		ParticleManager:DestroyParticle(flame, false)
 	end)
-	AMHC:Damage( caster,target,500,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	if (target:IsMagicImmune()) then
+		AMHC:Damage( caster,target,250,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	else
+		AMHC:Damage( caster,target,500,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
 	caster:Heal(500,caster)
 	ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 end

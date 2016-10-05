@@ -1687,6 +1687,83 @@
 		}
 	}
 
+	// 守護家園
+	"for_move300"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_speedup"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"ThinkInterval"	"0.3"
+
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"1200"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_for_move300"
+								"Target" 		"TARGET"
+								"Duration"		"5"
+							}
+						}
+					}
+				}
+			}
+			"modifier_for_move300"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"Duration"	"7"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "300"	//跑速
+				}
+			}
+		}
+	}
+
+	// cp怪定位用
+	"for_cp_position"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_cp_position"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"CP_Posistion"
+					}
+				}
+			}
+		}
+	}
+
 	// 馬甲 施法輔助用
 	"majia_2"
 	{

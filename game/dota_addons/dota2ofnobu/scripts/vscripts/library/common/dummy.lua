@@ -6,3 +6,8 @@ function killdummy( keys )
 		print(dummy:GetUnitName())
 	end
 end
+
+function CP_Posistion( keys )
+	local caster = keys.caster
+	caster.origin_pos = caster:GetAbsOrigin()
+end

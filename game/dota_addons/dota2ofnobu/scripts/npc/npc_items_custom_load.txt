@@ -272,10 +272,6 @@
 		"ItemCost"	"15500"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"
-		{
-			
-		}
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/move_slow.vpcf"
@@ -323,7 +319,7 @@
 				"EffectAttachType"	"follow_overhead"
 				"IsDebuff"	"1"
 				"Duration"  "2"
-				"ThinkInterval"	"1.0"
+				"ThinkInterval"	"5.0"
 				"OnIntervalThink"
 				{
 					"Damage"
@@ -738,7 +734,7 @@
 		"ItemRequirements"	{}
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+			"particle"	"particles/item/item_perceive_wine.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -765,7 +761,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -810,7 +806,7 @@
 		"SideShop"	"1"
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+			"particle"	"particles/item/item_perceive_wine.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -837,7 +833,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -5859,7 +5855,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "7" //跑速
 				}
 			}
 		}
@@ -6159,6 +6155,11 @@
 					{
 						"Target"	"CASTER"
 						"ModifierName"	"modifier_ninja_sword"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_transparency"
 					}
 				}
 				"Properties"
@@ -7846,7 +7847,7 @@
 	{
 	    "ID" "3069"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "500"
+		"ItemCost" "3500"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_the_art_of_war"  //合成後物品
@@ -9858,7 +9859,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -9951,7 +9952,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -10044,7 +10045,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -10138,7 +10139,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -12663,7 +12664,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -12756,7 +12757,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -12849,7 +12850,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
@@ -12943,7 +12944,7 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield_shell_mod.vpcf"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
