@@ -23,7 +23,7 @@ local function chat_of_test(keys)
 	-- 	local steamID = PlayerResource:GetSteamAccountID(pID)
 	-- 	GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 	-- end
-	
+	--舊版模式
 	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
 		caster.isold = true
 		if string.match(caster:GetUnitName(), "centaur") then -- 本多忠勝
@@ -61,7 +61,16 @@ local function chat_of_test(keys)
 			caster:AddAbility("B01E")
 			caster:AddAbility("B01R_old")
 			caster:AddAbility("B01T")
+		elseif string.match(caster:GetUnitName(), "beastmaster") then -- 武田勝賴
+			caster:RemoveAbility("B34E")
+			caster:RemoveAbility("B34R")
+			caster:RemoveAbility("B34T")
+
+			caster:AddAbility("B34E_old")
+			caster:AddAbility("B34R_old")
+			caster:AddAbility("B34T_old")
 		end
+
 	end
 	if s == "gg" then
 		GameRules:SetCustomGameEndDelay(1)

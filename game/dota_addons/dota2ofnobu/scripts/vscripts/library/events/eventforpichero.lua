@@ -38,7 +38,11 @@ function Nobu:PickHero( keys )
     GameRules: SendCustomMessage("本願寺顯如玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "keeper_of_the_light") then -- 毛利元就
     GameRules: SendCustomMessage("毛利元就玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "broodmother") then
+  elseif string.match(name, "nevermore") then --雜賀孫市
+    GameRules: SendCustomMessage("雜賀孫市玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+  elseif string.match(name, "beastmaster") then --武田勝賴
+    GameRules: SendCustomMessage("武田勝賴玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+  elseif string.match(name, "broodmother") then --服部半藏
     caster:FindAbilityByName("A13D"):SetLevel(1)
   elseif string.match(name, "storm_spirit") then
     caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)

@@ -141,6 +141,7 @@ if _G.nobu_chubing_b then --"Nobu" then
 					--【武士 、 弓箭手】
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
+					unit:AddAbility("set_level_1"):SetLevel(1)
 					if string.match(unit_name, "ashigaru_spearmen") then
 						local hp = unit:GetMaxHealth()
 						unit:SetBaseMaxHealth(hp+A_count * 5)
@@ -215,10 +216,10 @@ if _G.nobu_chubing_b then --"Nobu" then
 					unit_name = "com_gunner"
 					--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
-					--【武士 、 弓箭手】
+					--【槍手】
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
-
+					unit:AddAbility("set_level_1"):SetLevel(1)
 					local hp = unit:GetMaxHealth()
 					unit:SetBaseMaxHealth(hp+A_count * 3)
 					local dmgmax = unit:GetBaseDamageMax()
@@ -275,7 +276,7 @@ if _G.nobu_chubing_b then --"Nobu" then
 					unit_name = "com_cavalry"
 					--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
-					--【武士 、 弓箭手】
+					--【騎兵】
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
 					

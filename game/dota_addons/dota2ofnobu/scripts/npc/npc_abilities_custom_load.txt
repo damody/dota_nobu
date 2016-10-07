@@ -2,6 +2,90 @@
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 "DOTAAbilities"
 {
+	//槍兵打英雄小兵兩倍痛
+	"gunner_attack"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_3 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"Modifiers"
+		{
+			"modifier_B01R"
+			{
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"dmg"	"%attack_damage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01R3"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_hero"	"100"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_building"	"0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_unit"	"50"
+			}
+		}
+	}
+
+	//弓手打建築物兩倍痛
+	"archer_attack"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_3 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"Modifiers"
+		{
+			"modifier_B01R"
+			{
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"dmg"	"%attack_damage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01R2"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_hero"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_building"	"30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_unit"	"0"
+			}
+		}
+	}
+
 	// 變身為戰法
 	"to_war_magic_unit"
 	{
@@ -39,16 +123,11 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastPoint"	"0.25"
-		"AbilityCooldown"	"60"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"5"
-		"AOERadius"	"500"
+
 		"Modifiers"
 		{
-			"set_level_1"
-			{	
+			"modifier_magic_unit"
+			{
 				"Passive"	"1"
 				"IsHidden"			"0"
 				"OnCreated"
@@ -60,7 +139,7 @@
 					}
 				}
 			}
-		}		
+		}
 	}
 	// 曳光戰法
 	"war_magic_light"

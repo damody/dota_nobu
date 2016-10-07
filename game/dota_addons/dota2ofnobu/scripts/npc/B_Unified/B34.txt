@@ -160,6 +160,69 @@
 		}
 		"AbilityDamage"	"50 70 90 110"
 	}
+	//武田勝賴 狂熱攻速
+	"B34E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"sandking_burrowstrike_alt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"28 25 22 19"
+		"AbilityManaCost"	"100 110 120 130"
+		"AbilityCastRange"	"800"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B34E2_old"
+				"Target" 		"CASTER"
+				"Duration"		"16"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B34E_old"
+			{
+				"IsHidden"	"0"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%atkspeed" //攻速
+				}
+			}
+			"modifier_B34E2_old"
+			{
+				"IsHidden"	"0"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%atkspeed" //攻速
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"140"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"16"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atkspeed"	"20 40 60 80"
+			}
+		}
+		"AbilityDamage"	"50 70 90 110"
+	}
 	//武田勝賴 狂斬
 	"B34R"
 	{
@@ -244,6 +307,58 @@
 			}
 		}
 	}
+	//武田勝賴 撕裂傷口
+	"B34R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_inner_beast"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"Modifiers"
+		{
+			"modifier_B34R_old"
+			{
+				"IsHidden"	"0"
+				"Passive"	"1"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+						"Function"	"B34R_old"
+						"Target" "TARGET"
+					}
+				}
+				"OnAttackStart"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_SkeletonKing.CriticalStrike"
+						"Target"	"CASTER"
+					}
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+						"EffectAttachType"	"attach_sword"
+						"Target"	"CASTER"
+						"ControlPoints"	{}
+						"ControlPointEntities"	{}
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"60 90 120 150"
+			}
+		}
+	}
 	//武田勝賴 天目長嚎
 	"B34T"
 	{
@@ -260,8 +375,10 @@
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
 			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
 			"particle"	"particles/b34t/b34t.vpcf"
+			"particle"	"particles/b34t/b34t2.vpcf"
 		}
 		"Modifiers"
 		{
@@ -272,6 +389,8 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%speed_bonus"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%attack_bonus"
 				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
 				"Duration"	"%duration"
 				"IsDebuff"	"1"
 				"IsPurgable"	"1"
@@ -351,4 +470,87 @@
 		"AbilityDamage"	"85 130 170"
 	}
 
+	//武田勝賴 天目長嚎
+	"B34T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_primal_roar"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCooldown"	"100 90 80"
+		"AbilityManaCost"	"200"
+		"AbilityCastRange"	"1000"
+		"AOERadius"		"1000"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"particle"	"particles/b34t/b34t.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B34.lua"
+				"Function"	"B34T_old"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Roshan.Slam"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B34T_old"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%speed_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%attack_bonus"
+				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"%duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonus"	"-85 -125 -165"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"-85 -125 -165"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"4 5 6"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg"	"500 750 1000"
+			}
+		}
+		"AbilityDamage"	"500 750 1000"
+	}
 }	

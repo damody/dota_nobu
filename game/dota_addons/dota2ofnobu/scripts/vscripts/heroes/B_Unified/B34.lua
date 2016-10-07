@@ -43,6 +43,16 @@ function B34R( keys )
 	end
 end
 
+function B34R_old( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local dmg = ability:GetLevelSpecialValueFor("dmg",level)
+	AMHC:Damage(caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+
+end
+
 function B34R_limit( keys )
 	local caster = keys.caster
 	caster.B34R = 5
@@ -51,6 +61,22 @@ end
 function B34T( keys )
 	local caster = keys.caster
 	caster.B34R = 5
+end
+
+function B34T_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local particle = ParticleManager:CreateParticle("particles/b34t/b34t2.vpcf", PATTACH_ABSORIGIN, caster)
+
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  1000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+
+	for _, it in pairs(group) do
+		AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor("dmg",level),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		ability:ApplyDataDrivenModifier(caster,it,"modifier_B34T_old",{})
+	end
 end
 
 function B34E( keys )

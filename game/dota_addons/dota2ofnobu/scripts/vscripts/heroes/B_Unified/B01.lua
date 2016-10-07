@@ -44,10 +44,19 @@ function B01W( keys )
 	--ParticleManager:SetParticleControl(particle,0, point)
 	ParticleManager:SetParticleControl(particle,1, Vector(10,0,0))
 	ParticleManager:SetParticleControl(particle,2, point)
-	--【Timer】
-	Timers:CreateTimer(3,function()
-		ParticleManager:DestroyParticle(particle,false)
-	end)		
+	caster.B01W_effect = particle
+
+end
+
+function B01W_end( keys )
+	--【Basic】
+	local caster = keys.caster
+	--local target = keys.target
+	local ability = keys.ability
+
+	caster:RemoveModifierByName("modifier_B01W")--變身
+
+	ParticleManager:DestroyParticle(caster.B01W_effect,false)	
 
 end
 
@@ -141,6 +150,80 @@ end
 -- 	print(dmg)
 -- end
 
+
+function B01R3(keys)
+	--【Basic】
+	local caster = keys.caster
+	if caster.nobuorb1 == nil then
+		local target = keys.target
+		local ability = keys.ability
+		local level = ability:GetLevel() - 1
+		local dmg = keys.dmg
+		--print("B01R "..dmg)
+		local per_atk = 0
+		local targetArmor = target:GetPhysicalArmorValue()
+
+		if target:IsHero() then 
+			per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
+			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+			Timers:CreateTimer(1, function()
+				ParticleManager:DestroyParticle(particle,false)
+			end)
+		elseif  target:IsBuilding() then
+			per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+			
+		else
+			per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+			Timers:CreateTimer(1, function()
+				ParticleManager:DestroyParticle(particle,false)
+			end)
+		end
+		local dmgori = dmg
+		dmg = dmg * per_atk  / 100
+		--print(dmgori, damageReduction, dmg)
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+
+	end
+end
+
+function B01R2(keys)
+	--【Basic】
+	local caster = keys.caster
+	if caster.nobuorb1 == nil then
+		local target = keys.target
+		local ability = keys.ability
+		local level = ability:GetLevel() - 1
+		local dmg = keys.dmg
+		--print("B01R "..dmg)
+		local per_atk = 0
+		local targetArmor = target:GetPhysicalArmorValue()
+
+		if target:IsHero() then 
+			per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
+			--print("hero")
+		elseif  target:IsBuilding() then
+			per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+			Timers:CreateTimer(1, function()
+				ParticleManager:DestroyParticle(particle,false)
+			end)
+		else
+			per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+			--print("unit")
+		end
+		local dmgori = dmg
+		dmg = dmg * per_atk  / 100
+		--print(dmgori, damageReduction, dmg)
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+
+	end
+end
+
+
 function B01R(keys)
 	--【Basic】
 	local caster = keys.caster
@@ -167,12 +250,20 @@ function B01R(keys)
 		dmg = dmg * per_atk  / 100
 		--print(dmgori, damageReduction, dmg)
 		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+		ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+		Timers:CreateTimer(1, function()
+			ParticleManager:DestroyParticle(particle,false)
+			end)
 	end
 end
 
 function B01R_old(keys)
 	--【Basic】
 	local caster = keys.caster
+	if caster.B01R_old == nil then
+		caster.B01R_old = 0
+	end
 	if caster.nobuorb1 == nil then
 		local ran =  RandomInt(0, 100)
 		if (ran > 45) then
@@ -203,6 +294,12 @@ function B01R_old(keys)
 			dmg = dmg * per_atk  / 100
 			--print(dmgori, damageReduction, dmg)
 			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			
+			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+			Timers:CreateTimer(1, function()
+				ParticleManager:DestroyParticle(particle,false)
+				end)
 		end
 	end
 end

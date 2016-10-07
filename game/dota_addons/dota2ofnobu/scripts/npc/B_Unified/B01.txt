@@ -40,9 +40,17 @@
 				{
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_atk_rng"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_atk"
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_atk_rng"
+					//"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_atk_rng"
 				}
 				"Duration"	"%duration"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01W_end"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"
@@ -74,10 +82,10 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_d01_1 (Copy)"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityCooldown"	"19"
-		"AbilityManaCost"	"40"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"100"
 		"precache"
 		{
 			"particle"	"particles/b01w/b01w.vpcf"
@@ -106,6 +114,11 @@
 					"Flags"	"DOTA_UNIT_TARGET_FLAG_DEAD"
 				}
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+				"Function"	"B01W_end"
+			}
 		}
 		"Modifiers"
 		{
@@ -114,8 +127,9 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_atk_rng"
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_sight_rng"
-					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"%bonus_sight_rng"
+					//"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_sight_rng"
+					//"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"%bonus_sight_rng"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-70"	//跑速
 				}
 			}
 		}
@@ -211,7 +225,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk_building"	"20 40 60 80"
+				"atk_building"	"20 30 40 55"
 			}
 			"03"
 			{
