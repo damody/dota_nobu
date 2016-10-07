@@ -6697,13 +6697,8 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-				}
-				"Orb"
-				{
-					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"		"0"
-				}				
-				"OnOrbImpact"
+				}		
+				"OnAttackLanded"
 				{
 					"RunScript"
 					{
@@ -8200,7 +8195,7 @@
 					{
 						"dmg"	"%attack_damage"
 						"ScriptFile"	"items/Addon_Items/item_muramasa_katana.lua"
-						"Function"	"StealLife"
+						"Function"	"StealLife2"
 						"StealPercent"	"40"
 					}
 				}
@@ -8338,7 +8333,22 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
 		
-		
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
 			"modifier_spear_of_spiders"
@@ -8378,12 +8388,8 @@
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				"Orb"
-				{
-					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"		"0"
-				}				
-				"OnOrbImpact"
+			
+				"OnAttackLanded"
 				{
 					"RunScript"
 					{
@@ -12520,6 +12526,7 @@
 					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_BLIND"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"2.5"
 				"IsDebuff"	"1"

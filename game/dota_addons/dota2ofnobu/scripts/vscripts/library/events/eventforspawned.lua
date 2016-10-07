@@ -71,27 +71,27 @@ function Nobu:OnHeroIngame( keys )
       if hero.init1 == nil then
         hero.init1 = true
         --hero:AddItem(CreateItem("item_flash_ring", hero, hero))
-		--hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
-		
-		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
-		donkey:SetOwner(hero)
-		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
-		donkey:SetBaseMaxHealth(2000)
-		donkey:SetHealth(donkey:GetMaxHealth())
-		donkey:SetPhysicalArmorBaseValue(10)
-		donkey:SetBaseMoveSpeed(2000)
-    donkey:SetBaseManaRegen()
-    
-		donkey:AddAbility("for_magic_immune")
+    		--hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
+    		
+    		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
+    		donkey:SetOwner(hero)
+    		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
+    		donkey:SetBaseMaxHealth(2000)
+    		donkey:SetHealth(donkey:GetMaxHealth())
+    		donkey:SetPhysicalArmorBaseValue(10)
+    		donkey:SetBaseMoveSpeed(2000)
+    		donkey:AddAbility("for_magic_immune")
 
-    --[[for abilitySlot=0,15 do
-      local ability = donkey:GetAbilityByIndex(abilitySlot)
-      if ability ~= nil then 
-        local abilityLevel = ability:GetLevel()
-        local abilityName = ability:GetAbilityName()
-        donkey:RemoveAbility(abilityName)
-      end
-    end]]
+        --[[
+        for abilitySlot=0,15 do
+          local ability = donkey:GetAbilityByIndex(abilitySlot)
+            if ability ~= nil then 
+              local abilityLevel = ability:GetLevel()
+              local abilityName = ability:GetAbilityName()
+              donkey:RemoveAbility(abilityName)
+            end
+        end
+        ]]
       end
       Timers:CreateTimer(1, function ()
           for itemSlot=0,5 do

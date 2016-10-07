@@ -33,13 +33,10 @@ function Nobu:PickHero( keys )
     caster:FindAbilityByName("C19D"):SetLevel(1)
   elseif string.match(name, "centaur") then --本多忠勝
     caster:FindAbilityByName("A07D"):SetLevel(1)
-    GameRules: SendCustomMessage("",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
     GameRules: SendCustomMessage("本多忠勝玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "pugna") then --本願寺顯如
-    GameRules: SendCustomMessage("",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
     GameRules: SendCustomMessage("本願寺顯如玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "keeper_of_the_light") then -- 毛利元就
-    GameRules: SendCustomMessage("",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
     GameRules: SendCustomMessage("毛利元就玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "broodmother") then
     caster:FindAbilityByName("A13D"):SetLevel(1)

@@ -23,7 +23,8 @@ function StealLife(keys)
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
 	local dmg = keys.dmg
-	if not target:IsBuilding() then
+	if caster.nobuorb1 == "muramasa_katana" or caster.nobuorb1 == nil) and not target:IsBuilding() then
+		caster.nobuorb1 == "muramasa_katana"
 		caster:Heal(dmg*keys.StealPercent*0.01, ability)
 	    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 	end

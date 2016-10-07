@@ -218,7 +218,7 @@ function Nobu:eventfororder( filterTable )
 		-- [   VScript       ]:    issuer_player_id_const          	= 0 (number)
 		-- [   VScript       ]: }
 	elseif ordertype >= 5 and ordertype <= 9 then --技能類
-		spell_ability(filterTable)
+		--spell_ability(filterTable)
 	elseif ordertype == DOTA_UNIT_ORDER_HOLD_POSITION then --10
 		if _G.nobu_debug then
 			test_of_spell( filterTable )

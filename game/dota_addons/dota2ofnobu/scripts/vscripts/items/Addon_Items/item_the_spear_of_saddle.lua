@@ -27,7 +27,8 @@ function Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 
-	if caster.nobuorb1 == "spear_of_saddle" and not keys.target:IsBuilding() then
+	if (caster.nobuorb1 == "spear_of_saddle" or caster.nobuorb1 == nil) and not keys.target:IsBuilding() then
+		caster.nobuorb1 == "spear_of_saddle"
 		skill:ApplyDataDrivenModifier(caster, keys.target,"modifier_spear_of_saddle",{ duration = 3.5 })
 	end
 end

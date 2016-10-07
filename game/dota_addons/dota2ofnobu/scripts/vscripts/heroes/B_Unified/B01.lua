@@ -32,8 +32,6 @@ function B01W( keys )
 	local level = ability:GetLevel() - 1
 	--local vec = caster:GetForwardVector():Normalized()
 
-	local duration = ability:GetLevelSpecialValueFor("duration",level - 1)
-
 	--【Translation】
 	local modifier = keys.modifier_one-- Deciding the transformation level
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = duration})
@@ -47,67 +45,10 @@ function B01W( keys )
 	ParticleManager:SetParticleControl(particle,1, Vector(10,0,0))
 	ParticleManager:SetParticleControl(particle,2, point)
 	--【Timer】
-	Timers:CreateTimer(duration,function()
+	Timers:CreateTimer(3,function()
 		ParticleManager:DestroyParticle(particle,false)
 	end)		
 
-	-- local particle2 = ParticleManager:CreateParticle("particles/c17r/c17r.vpcf",PATTACH_POINT,caster)
-	-- ParticleManager:SetParticleControl(particle2,0, point2)
-	-- ParticleManager:SetParticleControl(particle2,1, Vector(1,1,1))	
-	-- ParticleManager:SetParticleControl(particle2,2, point2)	
-
-	--【Order】	
-	-- local order =
-	-- {
-	-- 	UnitIndex = caster:entindex(),
-	-- 	OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-	-- 	TargetIndex = target:entindex(),
-	-- 	Queue = true
-	-- }
-
-	-- ExecuteOrderFromTable(order)		
-
-	--【Test】
-	--modifier_batrider_firefly
-	-- local modifier_S = "modifier_batrider_firefly"
-	-- local modifier_T = {damage_per_second = 10,radius = 200,duration = 18 ,tick_interval = 0.1 , tree_radius = 100}
-	-- caster:AddNewModifier(caster,caster,modifier_S,modifier_T)
-
-	----【Timer】
-	-- local num = 0
-	-- Timers:CreateTimer(0.03,function()
-	-- 	if num == 60 then
-	-- 		--dummy:ForceKill(false)
-	-- 		return nil
-	-- 	else
-
-	-- 		--deg = 5
-	-- 		--local rad = nobu_degtorad(deg)
-	-- 		--point_tem = Vector(point_tem.x+distance*math.cos(rad) ,  point_tem.y+distance*math.sin(rad) , point_tem.z) --point_tem.z
-	-- 		point_tem = Vector(point_tem.x+distance*vec.x ,  point_tem.y+distance*vec.y , point_tem.z)
-	-- 		dummy:SetAbsOrigin(point_tem)
-	-- 		AddFOWViewer ( caster:GetTeam(), point_tem, 200, 12, true)
-
-	-- 		num = num + 1
-	-- 		return 0.03
-	-- 	end
-	-- end)	
-
-	--【System】
-	-- if target.yushou == nil or target.yushou == false then
-	-- 	ability:ApplyDataDrivenModifier(caster,target,"modifier_C15T_2",nil)
-	-- end
-
-	--【Group】
-	-- local group = {}
-	-- local aoe = ability:GetLevelSpecialValueFor("aoe",ability:GetLevel() - 1)
- --   	group = FindUnitsInRadius(dummy:GetTeamNumber(), point2, nil, aoe ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
-	-- for i,v in ipairs(group) do
-	-- 	AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-	-- end	
-
-	--【DEBUG】
-	--print(vec)
 end
 
 function B01E(keys)
@@ -203,29 +144,69 @@ end
 function B01R(keys)
 	--【Basic】
 	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	local level = ability:GetLevel() - 1
-	local dmg = keys.dmg
-	--print("B01R "..dmg)
-	local per_atk = 0
-	local targetArmor = target:GetPhysicalArmorValue()
+	if caster.nobuorb1 == nil then
+		local target = keys.target
+		local ability = keys.ability
+		local level = ability:GetLevel() - 1
+		local dmg = keys.dmg
+		--print("B01R "..dmg)
+		local per_atk = 0
+		local targetArmor = target:GetPhysicalArmorValue()
 
-	if target:IsHero() then 
-		per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
-		--print("hero")
-	elseif  target:IsBuilding() then
-		per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
-		--print("building")
-	else
-		per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
-		--print("unit")
+		if target:IsHero() then 
+			per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
+			--print("hero")
+		elseif  target:IsBuilding() then
+			per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+			--print("building")
+		else
+			per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+			--print("unit")
+		end
+		local dmgori = dmg
+		dmg = dmg * per_atk  / 100
+		--print(dmgori, damageReduction, dmg)
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
-	local dmgori = dmg
-	dmg = dmg * per_atk  / 100
-	--print(dmgori, damageReduction, dmg)
-	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 end
+
+function B01R_old(keys)
+	--【Basic】
+	local caster = keys.caster
+	if caster.nobuorb1 == nil then
+		local ran =  RandomInt(0, 100)
+		if (ran > 45) then
+			caster.B01R_old = caster.B01R_old + 1
+		end
+		if (caster.B01R_old > 2 or ran <= 45) then
+			caster.B01R_old = 0
+
+			local target = keys.target
+			local ability = keys.ability
+			local level = ability:GetLevel() - 1
+			local dmg = keys.dmg
+			--print("B01R "..dmg)
+			local per_atk = 0
+			local targetArmor = target:GetPhysicalArmorValue()
+
+			if target:IsHero() then 
+				per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
+				--print("hero")
+			elseif  target:IsBuilding() then
+				per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+				--print("building")
+			else
+				per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+				--print("unit")
+			end
+			local dmgori = dmg
+			dmg = dmg * per_atk  / 100
+			--print(dmgori, damageReduction, dmg)
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
+	end
+end
+
 
 function C01W_sound( keys )
 	local caster = keys.caster

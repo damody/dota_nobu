@@ -10,13 +10,30 @@ function OnUnequip( keys )
 	if (caster.nobuorb1 == "item_the_spear_of_ghost") then
 		caster.nobuorb1 = nil
 	end
+	for itemSlot=0,5 do
+		local item = caster:GetItemInSlot(itemSlot)
+		if item ~= nil then
+			local itemName = item:GetName()
+			if (string.match(itemName,"scream_of_spiders")) then
+				caster.nobuorb1 = "item_the_spear_of_ghost"
+				break
+			end
+		end
+	end
 end
 
 function Shock( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local skill = keys.ability
-	if (caster.nobuorb1 == "item_the_spear_of_ghost") and not target:IsBuilding() then
+
+	if (caster.nobuorb1 == "item_the_spear_of_ghost" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.gospear_of_ghost == nil then
+		caster.nobuorb1 = "item_the_spear_of_ghost"
+		caster.gospear_of_ghost = 1
+		print("item_the_spear_of_ghost")
+		Timers:CreateTimer(0.1, function() 
+				caster.gospear_of_ghost = nil
+			end)
 		local ran =  RandomInt(0, 100)
 		if (caster.spear_of_ghost == nil) then
 			caster.spear_of_ghost = 0
@@ -25,6 +42,7 @@ function Shock( keys )
 			caster.spear_of_ghost = caster.spear_of_ghost + 1
 		end
 		if (caster.spear_of_ghost > (100/keys.Chance)+1 or ran <= keys.Chance) then
+
 			caster.spear_of_ghost = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 			if (not keys.target:IsMagicImmune() and keys.target.spear_of_ghost == nil) then
@@ -36,6 +54,7 @@ function Shock( keys )
 				if dmg < keys.MinDmg then
 					dmg = keys.MinDmg
 				end
+
 				AMHC:Damage(caster,keys.target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				AMHC:CreateNumberEffect(keys.target,dmg,1,AMHC.MSG_DAMAGE,'blue')
 			end

@@ -210,7 +210,7 @@ function C01T_Mitsuhide_Akechi( keys )
 	--大絕直徑
 	local sk_radius = keys.ability:GetLevelSpecialValueFor("C01T_Radius",level-1)
 	sk_radius = sk_radius + 100
-	AddFOWViewer(DOTA_TEAM_GOODGUYS, point, sk_radius+100, 6.0, false)
+	AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 6.0, false)
 	--轉半徑
 	sk_radius = sk_radius*0.5
 	Timers:CreateTimer(0.1, function()

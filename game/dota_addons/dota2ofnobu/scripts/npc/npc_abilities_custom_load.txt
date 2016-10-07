@@ -2,6 +2,154 @@
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 "DOTAAbilities"
 {
+	// 變身為戰法
+	"to_war_magic_unit"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+
+		"Modifiers"
+		{
+			"modifier_magic_unit"
+			{
+				"Passive"	"1"
+				"IsHidden"			"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/war_magic.lua"
+						"Function"	"to_war_magic_unit"
+					}
+				}
+			}
+		}		
+	}
+	"set_level_1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"60"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"5"
+		"AOERadius"	"500"
+		"Modifiers"
+		{
+			"set_level_1"
+			{	
+				"Passive"	"1"
+				"IsHidden"			"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/war_magic.lua"
+						"Function"	"set_level_1"
+					}
+				}
+			}
+		}		
+	}
+	// 曳光戰法
+	"war_magic_light"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"30"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"5"
+		"AOERadius"	"500"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/war_magic.lua"
+				"Function"	"light"
+				"Target"	"POINT"
+			}
+		}
+		
+	}
+	// 加速戰法
+	"war_magic_speedup"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d06_5"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+		"AbilityCooldown"	"60"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"15"
+		"precache"
+		{
+			"particle"	"particles/b06t/b06t.vpcf"
+			"particle"	"particles/b06w2/b06w3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/war_magic.lua"
+				"Function"	"speedup"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_speedup"
+			{
+				"EffectName"	"particles/item/war_speedup3.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"15"
+				}
+				"Duration"	"10"
+				"TextureName"	"cps_d06_5"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Basic_Attack_Speed"	"0.9"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_Health"	"500 750 1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"30 40 50"
+			}
+		}
+	}	
 	//林卷小兵 綁人
 	"forest_soldier_W"
 	{

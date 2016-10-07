@@ -61,8 +61,18 @@ function A13W_Levelup( keys )
 	local ability = caster:FindAbilityByName("A13D")
 	local level = keys.ability:GetLevel()
 	
-	if (ability:GetLevel() < level) then
-		ability:SetLevel(level+2)
+	if (ability:GetLevel() < level+1) then
+		ability:SetLevel(level+1)
+	end
+end
+
+function A13E_Levelup( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("A13D")
+	local level = keys.ability:GetLevel()
+	
+	if (ability:GetLevel() < level+1) then
+		ability:SetLevel(level+1)
 	end
 end
 
@@ -71,8 +81,8 @@ function A13R_Levelup( keys )
 	local ability = caster:FindAbilityByName("A13D")
 	local level = keys.ability:GetLevel()
 	
-	if (ability:GetLevel() < level) then
-		ability:SetLevel(level+2)
+	if (ability:GetLevel() < level+1) then
+		ability:SetLevel(level+1)
 	end
 end
 

@@ -21,7 +21,7 @@ function Shock( keys )
 				Timers:CreateTimer(0.1, function() 
 					caster.great_sword_of_tiger = nil
 				end)
-				AMHC:Damage(caster,target,280,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage(caster,target,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				ability:ApplyDataDrivenModifier(caster,target,"modifier_great_sword_of_tiger",{duration = 0.4})
 			end
 		end

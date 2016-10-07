@@ -225,7 +225,12 @@ function Shock2( keys )
 	--local point2 = ability:GetCursorPosition()
 	local level = ability:GetLevel() - 1
 	local vec = (point2-point):Normalized() --caster:GetForwardVector():Normalized()
-	if (caster.nobuorb1 == "item_raikiri") and not target:IsBuilding() then
+	if (caster.nobuorb1 == "item_raikiri" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.goraikiri == nil then
+		caster.nobuorb1 = "item_raikiri"
+		caster.goraikiri = 1
+		Timers:CreateTimer(0.1, function() 
+				caster.goraikiri = nil
+			end)
 		local ran =  RandomInt(0, 100)
 		if (caster.raikiri == nil) then
 			caster.raikiri = 0
@@ -298,12 +303,12 @@ function Shock2( keys )
 			end
 
 			--【SOUND】
-			caster:EmitSound("ITEM_D09.sound")
-			--target:EmitSound("ITEM_D09.sound")
+			local dummy = CreateUnitByName( "npc_dummy", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
+			dummy:EmitSound("ITEM_D09.sound")
 			Timers:CreateTimer(2,function()
-				caster:StopSound("ITEM_D09.sound")
-				--target:StopSound("ITEM_D09.sound")
-			end)	
+				dummy:StopSound("ITEM_D09.sound")
+				dummy:ForceKill(true)
+			end)
 		end
 	end
 end

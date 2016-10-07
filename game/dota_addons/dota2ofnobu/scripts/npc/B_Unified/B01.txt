@@ -69,6 +69,75 @@
 			}
 		}
 	}
+	//雜賀孫市 狙擊模式
+	"B01W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_1 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCooldown"	"19"
+		"AbilityManaCost"	"40"
+		"precache"
+		{
+			"particle"	"particles/b01w/b01w.vpcf"
+		}
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B01W"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+				"Function"	"B01W"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_B01W"
+				"Target"
+				{
+					"Center"	"CASTER"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_DEAD"
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B01W"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_atk_rng"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_sight_rng"
+					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"%bonus_sight_rng"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_atk"	"0 10 20 30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_atk_rng"	"400 550 700 850"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_sight_rng"	"250 500 750 1000"
+			}
+		}
+	}
 	//雜賀孫市 雨鐵炮
 	"B01R"
 	{
@@ -107,6 +176,47 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"atk_unit"	"34 46 58 70"
+			}
+		}
+	}
+	//雜賀孫市 雨鐵炮
+	"B01R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_3 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"Modifiers"
+		{
+			"modifier_B01R"
+			{
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"dmg"	"%attack_damage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01R_old"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_hero"	"20 30 40 55"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_building"	"20 40 60 80"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_unit"	"60 90 120 150"
 			}
 		}
 	}

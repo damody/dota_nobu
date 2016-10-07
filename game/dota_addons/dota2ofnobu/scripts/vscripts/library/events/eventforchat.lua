@@ -51,6 +51,16 @@ local function chat_of_test(keys)
 
 			caster:AddAbility("B05R_old")
 			caster:AddAbility("B05T_old")
+		elseif string.match(caster:GetUnitName(), "nevermore") then -- 雜賀孫市
+			caster:RemoveAbility("B01W")
+			caster:RemoveAbility("B01E")
+			caster:RemoveAbility("B01R")
+			caster:RemoveAbility("B01T")
+
+			caster:AddAbility("B01W_old")
+			caster:AddAbility("B01E")
+			caster:AddAbility("B01R_old")
+			caster:AddAbility("B01T")
 		end
 	end
 	if s == "gg" then

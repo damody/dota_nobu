@@ -143,7 +143,8 @@ function Shock( keys )
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()
-	if (keys.target.mana_thief == nil) and (caster.nobuorb1 == "item_mana_thief") then
+	if (keys.target.mana_thief == nil) and (caster.nobuorb1 == "item_mana_thief" or caster.nobuorb1 == nil) then
+		caster.nobuorb1 = "item_mana_thief"
 		keys.target.mana_thief = 1
 		-- Calculation
 		local mana_to_burn = math.min( current_mana,  burn_amount)
@@ -195,7 +196,8 @@ function Shock2( keys )
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()
-	if (keys.target.mana_thief == nil) and (caster.nobuorb1 == "item_mana_thief") then
+	if (keys.target.mana_thief == nil) and (caster.nobuorb1 == "item_mana_thief" or caster.nobuorb1 == nil) then
+		caster.nobuorb1 = "item_mana_thief"
 		keys.target.mana_thief = 1
 		-- Calculation
 		local mana_to_burn = math.min( current_mana,  burn_amount)
