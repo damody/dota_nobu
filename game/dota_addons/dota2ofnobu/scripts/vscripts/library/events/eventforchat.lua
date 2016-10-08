@@ -86,7 +86,7 @@ local function chat_of_test(keys)
 	      return 1
 	    end)
 	end
-	if 1==2 then
+	if 1==1 then
 		if s == "ss" then
 			caster:AddAbility("for_move1500"):SetLevel(1)
 		end

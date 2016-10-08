@@ -940,7 +940,7 @@
 			}
 		}
 	}
-	
+
 	"set_level_1"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -1959,36 +1959,6 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
 				"Function"	"attribute_bonus"
-			}
-		}
-	}
-	// 妖刀．村正
-	"ability_muramasa_katana"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"item_muramasa_katana"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"MaxLevel"	"1"
-		"Modifiers"
-		{
-			"modifier_muramasa_katana"
-			{
-				"Passive"	"1"
-				"Orb"
-				{
-					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"	"0"
-				}
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"dmg"	"%attack_damage"
-						"ScriptFile"	"items/Addon_Items/item_muramasa_katana.lua"
-						"Function"	"StealLife"
-						"StealPercent"	"52"
-					}
-				}
 			}
 		}
 	}

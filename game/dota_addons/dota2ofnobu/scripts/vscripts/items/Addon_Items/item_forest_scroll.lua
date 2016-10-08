@@ -187,10 +187,7 @@ function soldier1(keys)
 	--local radius = ability:GetLevelSpecialValueFor("radius",level)
 	local time = 2
 
-	--【Particle】
-	-- local particle = ParticleManager:CreateParticle("particles/c15t5/c15t5.vpcf",PATTACH_POINT,caster)
-	-- ParticleManager:SetParticleControl(particle,0, point)
-	-- ParticleManager:SetParticleControl(particle,1, point)
+	ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = 1} )
 
 	for i=0,3 do
 		local particle2 = ParticleManager:CreateParticle("particles/b02r3/b02r3.vpcf",PATTACH_POINT,target)

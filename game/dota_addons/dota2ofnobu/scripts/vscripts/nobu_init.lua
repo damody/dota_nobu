@@ -23,7 +23,7 @@ function _G.Nobu:InitGameMode()
   if _G.nobu_debug then
     GameRules:SetPreGameTime( 0 )--設置遊戲準備時間
   else
-    GameRules:SetPreGameTime( 60 )--設置遊戲準備時間
+    GameRules:SetPreGameTime( 10 )--設置遊戲準備時間
   end
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间

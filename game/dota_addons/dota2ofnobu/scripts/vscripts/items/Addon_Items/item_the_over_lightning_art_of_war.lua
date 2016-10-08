@@ -3,7 +3,7 @@ function Shock( keys )
 	local caster = keys.caster
 	local point = caster:GetAbsOrigin()
 	local ability = keys.ability
-	
+	GridNav:DestroyTreesAroundPoint(point, 500, false)
 
 	
 	local sumtime = 0
@@ -16,13 +16,11 @@ function Shock( keys )
 		ParticleManager:SetParticleControl(particle, 0, Vector(pp.x,pp.y,1000 ))
 		ParticleManager:SetParticleControl(particle, 1, Vector(pp.x,pp.y,pp.z + 10 ))
 		ParticleManager:SetParticleControl(particle, 2, Vector(pp.x,pp.y,pp.z + 10 ))
-
-		local SEARCH_RADIUS = 500
-		GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
+		
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		      point,
 		      nil,
-		      SEARCH_RADIUS,
+		      500,
 		      DOTA_UNIT_TARGET_TEAM_ENEMY,
 		      DOTA_UNIT_TARGET_ALL,
 		      DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
@@ -42,6 +40,8 @@ function Shock( keys )
 
 		if sumtime < 11.1 then
 			return 0.2
+		else
+			return nil
 		end
 	end)
 

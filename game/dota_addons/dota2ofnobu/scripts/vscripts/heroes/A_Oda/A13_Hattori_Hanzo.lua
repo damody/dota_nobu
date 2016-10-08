@@ -175,8 +175,6 @@ function A13W( event )
 				-- Set the unit as an illusion
 				-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 				illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = -1000, incoming_damage = incomingDamage })
-				--illusion[i]:SetBaseDamageMin(-1000)
-				--illusion[i]:SetBaseDamageMax(-1000)
 				-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 				illusion[i]:MakeIllusion()
 

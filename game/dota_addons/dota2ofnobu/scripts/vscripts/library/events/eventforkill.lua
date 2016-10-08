@@ -73,11 +73,7 @@ function Nobu:OnUnitKill( keys )
       else
         killedUnit.death_count = killedUnit.death_count + 1
       end
-      if killedUnit.death_count <= 10 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
-      else
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1+killedUnit.death_count-10)
-      end
+      killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
       group = FindUnitsInRadius(
           killedUnit:GetTeamNumber(), 
           killedUnit:GetAbsOrigin(), 
