@@ -47,7 +47,7 @@ function _G.Nobu:InitGameMode()
   -- GameMode = GameRules:GetGameModeEntity()
   GameMode:SetRecommendedItemsDisabled( true )--禁止推薦
   GameMode:SetBuybackEnabled( false ) --關閉英雄買活功能
-  GameMode:SetTopBarTeamValuesOverride ( true )
+  GameMode:SetTopBarTeamValuesOverride ( false )
   --GameMode:SetTopBarTeamValuesVisible( true ) --?
   -- GameMode:SetUnseenFogOfWarEnabled( UNSEEN_FOG_ENABLED )
   GameMode:SetTowerBackdoorProtectionEnabled( false )--關閉偷塔保護
@@ -55,7 +55,7 @@ function _G.Nobu:InitGameMode()
   GameMode:SetRemoveIllusionsOnDeath( true )--死亡會不會有陰影
   --GameMode:SetAnnouncerDisabled( true )
   GameMode:SetLoseGoldOnDeath( false )--死亡會不會掉錢
-  --GameMode:SetCameraDistanceOverride( 1234 )--攝像頭距離
+  GameMode:SetCameraDistanceOverride( 1200 )--攝像頭距離
   GameMode:SetUseCustomHeroLevels ( true )-- 允許自定義英雄等級
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
 
@@ -67,8 +67,8 @@ function _G.Nobu:InitGameMode()
   GameMode:SetFountainConstantManaRegen(-1) --溫泉回魔(固定值)
   GameMode:SetFountainPercentageHealthRegen(-1) --溫泉回血(百分比)
   GameMode:SetFountainPercentageManaRegen(-1) --溫泉回魔(百分比)
-  GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
-  GameMode:SetMinimumAttackSpeed(-100) --最小攻擊速度
+  GameMode:SetMaximumAttackSpeed( 5000 ) --最大攻擊速度
+  GameMode:SetMinimumAttackSpeed(-1000) --最小攻擊速度
   GameMode:SetGoldSoundDisabled( false )
   GameMode:SetStashPurchasingDisabled ( false ) --倉庫
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢

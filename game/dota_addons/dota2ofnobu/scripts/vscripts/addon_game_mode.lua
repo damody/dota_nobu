@@ -137,6 +137,13 @@ function Precache( context )
     "particles/b02r3/b02r3.vpcf",
 
     "particles/item/item_perceive_wine.vpcf",
+
+    "particles/item/war_speedup3.vpcf",
+    "particles/item/war_light.vpcf",
+    "particles/econ/courier/courier_onibi/courier_onibi_green_ambient_c.vpcf",
+    "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf",
+    
+
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

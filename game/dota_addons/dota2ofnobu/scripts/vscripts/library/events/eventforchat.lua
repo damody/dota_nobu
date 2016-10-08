@@ -86,120 +86,120 @@ local function chat_of_test(keys)
 	      return 1
 	    end)
 	end
-
-	if s == "ss" then
-		caster:AddAbility("for_move1500"):SetLevel(1)
-	end
-	if s == "xx" then
-		caster:RemoveAbility("for_move1500")
-		caster:RemoveModifierByName("modifier_for_move1500")
-	end
-	if s == "re" then
-		caster:SetTimeUntilRespawn(0)
-	end
-	if string.match(s,"gold") then
-		for i=0,9 do
-		PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
+	if 1==2 then
+		if s == "ss" then
+			caster:AddAbility("for_move1500"):SetLevel(1)
 		end
-	end
-	if s == "cd" then
-		--【Timer】
-		Timers:CreateTimer(function()
-			caster:SetMana(caster:GetMaxMana() )
-			--caster:SetHealth(caster:GetMaxHealth())
+		if s == "xx" then
+			caster:RemoveAbility("for_move1500")
+			caster:RemoveModifierByName("modifier_for_move1500")
+		end
+		if s == "re" then
+			caster:SetTimeUntilRespawn(0)
+		end
+		if string.match(s,"gold") then
+			for i=0,9 do
+			PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
+			end
+		end
+		if s == "cd" then
+			--【Timer】
+			Timers:CreateTimer(function()
+				caster:SetMana(caster:GetMaxMana() )
+				--caster:SetHealth(caster:GetMaxHealth())
 
-			-- Reset cooldown for abilities that is not rearm
-			for i = 0, caster:GetAbilityCount() - 1 do
-				local ability = caster:GetAbilityByIndex( i )
-				if ability  then
-					ability:EndCooldown()
+				-- Reset cooldown for abilities that is not rearm
+				for i = 0, caster:GetAbilityCount() - 1 do
+					local ability = caster:GetAbilityByIndex( i )
+					if ability  then
+						ability:EndCooldown()
+					end
+				end
+
+				-- Put item exemption in here
+				local exempt_table = {}
+
+				-- Reset cooldown for items
+				for i = 0, 5 do
+					local item = caster:GetItemInSlot( i )
+					if item then--if item and not exempt_table( item:GetAbilityName() ) then
+						item:EndCooldown()
+					end
+				end
+				return nil
+			end)
+		end
+		if string.match(s,"test") then
+			local pID = tonumber(string.match(s, '%d+'))
+			local steamID = PlayerResource:GetSteamAccountID(pID)
+			GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			local res = PlayerResource:GetConnectionState(pID)
+			if (res == 0) then
+				GameRules: SendCustomMessage("no connection",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			elseif (res == 1) then
+				GameRules: SendCustomMessage("bot connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			elseif (res == 2) then
+				GameRules: SendCustomMessage("player connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			elseif (res == 3) then
+				GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			end
+		end
+		
+		if string.match(s,"item") then
+			for itemSlot=0,5 do
+				local item = caster:GetItemInSlot(itemSlot)
+				if item ~= nil then
+					print(item:GetName())
 				end
 			end
-
-			-- Put item exemption in here
-			local exempt_table = {}
-
-			-- Reset cooldown for items
-			for i = 0, 5 do
-				local item = caster:GetItemInSlot( i )
-				if item then--if item and not exempt_table( item:GetAbilityName() ) then
-					item:EndCooldown()
-				end
-			end
-			return nil
-		end)
-	end
-	if string.match(s,"test") then
-		local pID = tonumber(string.match(s, '%d+'))
-		local steamID = PlayerResource:GetSteamAccountID(pID)
-		GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-		local res = PlayerResource:GetConnectionState(pID)
-		if (res == 0) then
-			GameRules: SendCustomMessage("no connection",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-		elseif (res == 1) then
-			GameRules: SendCustomMessage("bot connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-		elseif (res == 2) then
-			GameRules: SendCustomMessage("player connected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-		elseif (res == 3) then
-			GameRules: SendCustomMessage("bot/player disconnected",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+		end
+		
+		if string.match(s,"lv") then
+			local lvmax = tonumber(string.match(s, '%d+'))
+			for i=1,lvmax do
+		      caster:HeroLevelUp(true)
+		    end
+		end
+		
+		
+		
+		if s == "Create1" then
+			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			--u:SetOwner(p)                                         --設置u的擁有者
+			u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
+			--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+		
+		if s == "Create2" then
+			local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			--u:SetOwner(p)                                         --設置u的擁有者
+			u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
+			--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+		
+		--【測試指令】
+		if s == "ShuaGuai" then
+			print("ShuaGuai")
+			ShuaGuai_Of_A( )
+			ShuaGuai_Of_B( )
+			ShuaGuai_Of_C( )
+		elseif s == "hp" then
+			print("nobu"..id)
+			caster:SetHealth(caster:GetMaxHealth())
+		elseif s == "mp" then
+			print("nobu"..id)
+			Timers:CreateTimer(function()
+				caster:SetMana(caster:GetMaxMana())
+				return 0.1
+			end)
 		end
 	end
-	
-	if string.match(s,"item") then
-		for itemSlot=0,5 do
-			local item = caster:GetItemInSlot(itemSlot)
-			if item ~= nil then
-				print(item:GetName())
-			end
-		end
-	end
-	
-	if string.match(s,"lv") then
-		local lvmax = tonumber(string.match(s, '%d+'))
-		for i=1,lvmax do
-	      caster:HeroLevelUp(true)
-	    end
-	end
-	
-	
-	
-	if s == "Create1" then
-		local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-		--u:SetOwner(p)                                         --設置u的擁有者
-		u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
-		--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-		for i=1,30 do
-		u:HeroLevelUp(true)
-		end 
-	end
-	
-	if s == "Create2" then
-		local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-		--u:SetOwner(p)                                         --設置u的擁有者
-		u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
-		--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-		for i=1,30 do
-		u:HeroLevelUp(true)
-		end 
-	end
-	
-	--【測試指令】
-	if s == "ShuaGuai" then
-		print("ShuaGuai")
-		ShuaGuai_Of_A( )
-		ShuaGuai_Of_B( )
-		ShuaGuai_Of_C( )
-	elseif s == "hp" then
-		print("nobu"..id)
-		caster:SetHealth(caster:GetMaxHealth())
-	elseif s == "mp" then
-		print("nobu"..id)
-		Timers:CreateTimer(function()
-			caster:SetMana(caster:GetMaxMana())
-			return 0.1
-		end)
-	end
-	
 end
 
 function Nobu:Chat( keys )

@@ -49,8 +49,9 @@ function B34R_old( keys )
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
 	local dmg = ability:GetLevelSpecialValueFor("dmg",level)
-	AMHC:Damage(caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-
+	if not target:IsBuilding() then
+		AMHC:Damage(caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	end
 end
 
 function B34R_limit( keys )

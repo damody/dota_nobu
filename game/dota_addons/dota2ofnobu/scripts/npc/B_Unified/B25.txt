@@ -542,12 +542,12 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"icon_128x128_80"
 		"AOERadius"						"%radius"
-		"AbilityChannelTime"			"4"
+		"AbilityChannelTime"			"%duration"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1400"
+		"AbilityCastRange"				"1500"
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 		
 		// Time		
@@ -574,12 +574,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
+				"duration"				"4 5 6"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600"
+				"damage"				"400 600 1000"
 			}
 			"04"
 			{
@@ -651,12 +651,12 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"icon_128x128_80"
 		"AOERadius"						"%radius"
-		"AbilityChannelTime"			"7"
+		"AbilityChannelTime"			"%duration"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1400"
+		"AbilityCastRange"				"1500"
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 		
 		// Time		
@@ -683,12 +683,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
+				"duration"				"7 8 9"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600"
+				"damage"				"400 600 1000"
 			}
 			"04"
 			{
