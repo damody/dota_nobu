@@ -13,7 +13,7 @@ function _G.Nobu:InitGameMode()
   -- --LimitPathingSearchDepth(0.5)
   -- --GameRules:SetHeroRespawnEnabled( false )
   --設定每隊人數
-  GameRules:SetCustomGameTeamMaxPlayers(1, 7)
+  --GameRules:SetCustomGameTeamMaxPlayers(4, 7)
   GameRules:SetCustomGameTeamMaxPlayers(2, 7)
   GameRules:SetCustomGameTeamMaxPlayers(3, 7)
 
@@ -23,7 +23,7 @@ function _G.Nobu:InitGameMode()
   if _G.nobu_debug then
     GameRules:SetPreGameTime( 0 )--設置遊戲準備時間
   else
-    GameRules:SetPreGameTime( 10 )--設置遊戲準備時間
+    GameRules:SetPreGameTime( 40 )--設置遊戲準備時間
   end
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
@@ -70,7 +70,6 @@ function _G.Nobu:InitGameMode()
   GameMode:SetMaximumAttackSpeed( 5000 ) --最大攻擊速度
   GameMode:SetMinimumAttackSpeed(-1000) --最小攻擊速度
   GameMode:SetGoldSoundDisabled( false )
-  GameMode:SetStashPurchasingDisabled ( false ) --倉庫
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢
   --GameMode:SetCustomGameForceHero("npc_dota_hero_dragon_knight") --強迫選擇英雄 (可以跳過選角畫面)
 

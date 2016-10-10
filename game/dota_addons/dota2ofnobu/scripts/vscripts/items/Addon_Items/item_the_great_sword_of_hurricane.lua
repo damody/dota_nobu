@@ -65,7 +65,8 @@ function SplitShotLaunch( keys )
 		local projectile_speed = ability:GetLevelSpecialValueFor("projectile_speed", ability_level)
 		local split_shot_projectile = "particles/units/heroes/hero_invoker/invoker_tornado_funnel.vpcf"
 
-		local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, target_team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, target_flags, FIND_CLOSEST, false)
+		local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, 
+			target_team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, target_flags, FIND_CLOSEST, false)
 
 		-- Create projectiles for units that are not the casters current attack target
 		for _,v in pairs(split_shot_targets) do
@@ -77,19 +78,7 @@ function SplitShotLaunch( keys )
 					ParticleManager:SetParticleControl(tornado, 3, caster_location+(v:GetAbsOrigin()-caster_location)*count)
 					
 					if (count > 1) then
-						local projectile_info = 
-						{
-							EffectName = split_shot_projectile,
-							Ability = ability,
-							vSpawnOrigin = caster_location,
-							Target = v,
-							Source = caster,
-							bHasFrontalCone = false,
-							iMoveSpeed = projectile_speed,
-							bReplaceExisting = false,
-							bProvidesVision = false
-						}
-						ProjectileManager:CreateTrackingProjectile(projectile_info)
+						AMHC:Damage(caster,v, 400,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 						ParticleManager:DestroyParticle(tornado, true)
 						return nil
 					else

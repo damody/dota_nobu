@@ -52,7 +52,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -125,7 +125,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -198,7 +198,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -271,7 +271,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -344,7 +344,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -417,7 +417,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -490,7 +490,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -563,7 +563,7 @@
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
  		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
  		"StatusStartingMana"		"1000"
  		// Team
  		//----------------------------------------------------------------
@@ -662,7 +662,7 @@
 		
  		"WakesNeutrals"				"0"	// Model.
 	}
-
+	//馬
 	"npc_dota_courier"
  	{
  		// General
@@ -734,7 +734,7 @@
 		
  		"WakesNeutrals"				"0"
  	}
-
+ 	//溫泉
 	"dota_fountain"
  	{
  		// General
@@ -2781,13 +2781,9 @@
 		"HealthBarOffset"	"140"
 		// Abilities
 		// ----------------------------------------------------------------
-		// Reference: Adt1
 		"Ability1"	"for_magic_immune"
-		// Reference: Amim
-		"Ability2"	""
-		// Reference: Aoar
+		"Ability2"	"tofar_goback"
 		"Ability3"	""
-		// Reference: A0BN
 		"Ability4"	""
 		// Armor
 		// ----------------------------------------------------------------
@@ -2824,7 +2820,7 @@
 		"StatusHealthRegen"	"50.00"
 		// Vision
 		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"1100"
+		"VisionDaytimeRange"	"1400"
 		"VisionNighttimeRange"	"1100"
 		// Team
 		// ----------------------------------------------------------------
@@ -2845,7 +2841,6 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"AutoAttacksByDefault"	"1"
 	}
 
 	// 騎兵精英
@@ -3223,6 +3218,7 @@
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1400"
 		"VisionNighttimeRange"	"800"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
@@ -3243,6 +3239,7 @@
 		"MinimapIcon"	"minimap_tower90"
 		"MinimapIconSize"	"1"
 		"RingRadius"	"45"
+		"AutoAttacksByDefault"	"1"
 	}
 
 	// 足輕
@@ -3377,6 +3374,7 @@
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1400"
 		"VisionNighttimeRange"	"800"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Ability3"	""
@@ -4139,6 +4137,7 @@
 		"Ability16"	""
 		"HasInventory"	"0"
 		"ConsideredHero"	"0"
+		"AutoAttacksByDefault"	"1"
 	}
 	// 叫兵騎兵
 	"com_cavalry_D"
@@ -4420,7 +4419,7 @@
 		// Status
 		// ----------------------------------------------------------------
 		"StatusHealth"	"3250"
-		"StatusHealthRegen"	"3.00"
+		"StatusHealthRegen"	"1.00"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1100"

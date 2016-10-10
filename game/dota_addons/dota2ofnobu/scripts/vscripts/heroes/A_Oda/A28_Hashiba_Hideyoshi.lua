@@ -281,7 +281,7 @@ function A28T(keys)
 	phoenix:SetHealth(phoenix:GetMaxHealth())
 	phoenix:SetBaseDamageMax(250+level*100)
 	phoenix:SetBaseDamageMin(200+level*110)
- 	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 40+level*20})
+ 	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 90})
 				
 end
 
@@ -337,12 +337,8 @@ function A28TE( keys )
 	--轉半徑
 	Timers:CreateTimer(0.1, function()
 		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 1.0, false)
-		for i=1,30 do
-			if ( RandomInt(1, 10) > 5) then
-				A28TE_Effect(keys, point + RandomVector(radius))
-			else
-				A28TE_Effect(keys, point + RandomVector(RandomInt(1, radius*0.8)))
-			end
+		for i=1,10 do
+			A28TE_Effect(keys, point + RandomVector(radius))
 		end
 		caster:StartGesture( ACT_DOTA_CAST_ABILITY_1 )
 		Timers:CreateTimer(0.45, 
@@ -360,7 +356,7 @@ function A28TE( keys )
 
 			--effect:傷害+暈眩
 			for _,it in pairs(direUnits) do
-				AMHC:Damage(caster,it,100,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(caster,it,100*level,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
 			end)
 

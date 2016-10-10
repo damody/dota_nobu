@@ -36,7 +36,8 @@ function StealLife2(keys)
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
 	local dmg = keys.dmg
-
-	caster:Heal(dmg*keys.StealPercent*0.01, ability)
-    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
+	if not target:IsBuilding() then
+		caster:Heal(dmg*keys.StealPercent*0.01, ability)
+	    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
+	end
 end

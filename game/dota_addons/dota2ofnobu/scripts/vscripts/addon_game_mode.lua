@@ -127,6 +127,7 @@ function Precache( context )
     "particles/econ/items/phantom_lancer/phantom_lancer_immortal_ti6/phantom_lancer_immortal_ti6_spiritlance_cast_flash.vpcf",
     "particles/radiant_fx/tower_good3_powerline.vpcf",
     "particles/generic_gameplay/dropped_tango_aura.vpcf",
+    "particles/units/heroes/hero_undying/undying_decay_fakeprojectile_glow.vpcf",
     
     "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf",
 

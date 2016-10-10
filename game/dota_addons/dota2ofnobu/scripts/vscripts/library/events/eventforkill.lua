@@ -35,7 +35,11 @@ function Nobu:OnUnitKill( keys )
     -- [   VScript              ]:    splitscreenplayer               	= -1 (number)
     -- [   VScript              ]: }
 	
-
+    local AttackerUnit = EntIndexToHScript( keys.entindex_attacker )
+    if (AttackerUnit:IsRealHero()) then
+      AttackerUnit.kill_count = AttackerUnit.kill_count + 1
+      print("AttackerUnit.kill_count "..AttackerUnit.kill_count)
+    end
     ------------------------------------------------------------------
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
   	local name = killedUnit:GetUnitName()

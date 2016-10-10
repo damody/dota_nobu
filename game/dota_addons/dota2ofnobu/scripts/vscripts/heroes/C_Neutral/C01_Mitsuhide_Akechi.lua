@@ -53,7 +53,11 @@ function C01E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E",nil)
+			if skillcount == 0 then
+				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E", {duration=level*0.5})
+			else
+				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E", {duration=0.8})
+			end
 		end
 	end
 
@@ -74,7 +78,7 @@ function C01E_Mitsuhide_Akechi ( keys )
 	local caster = keys.caster --unit
 	local caster_abs = caster:GetAbsOrigin() -- vectorv
 	local point = keys.target_points[1] 
-	local time = 1.4
+	local time = 2
 	local b = false --boolean
 	local level = keys.ability:GetLevel()
 	local skillcount = 0

@@ -2,7 +2,30 @@
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 "DOTAAbilities"
 {
-	//槍兵打英雄小兵兩倍痛
+	//走遠了要回來
+	"tofar_goback"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_tofar_goback"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"tofar_goback"
+					}
+				}
+			}
+		}
+	}
+
+	//鐵炮兵打英雄小兵兩倍痛
 	"gunner_attack"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -29,7 +52,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk_hero"	"100"
+				"atk_hero"	"30"
 			}
 			"02"
 			{
@@ -39,7 +62,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk_unit"	"50"
+				"atk_unit"	"30"
 			}
 		}
 	}
@@ -76,7 +99,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk_building"	"30"
+				"atk_building"	"100"
 			}
 			"03"
 			{
@@ -217,7 +240,7 @@
 			}
 		}
 	}
-	// 變身為織田叫足輕
+	// 變身為聯合叫足輕
 	"to_soldier_Unified"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -362,7 +385,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"70"
 
 		"OnSpellStart"
 		{
@@ -387,7 +410,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"70"
 
 		"OnSpellStart"
 		{
@@ -412,7 +435,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"70"
 
 		"OnSpellStart"
 		{
@@ -465,7 +488,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"70"
 
 		"OnSpellStart"
 		{
@@ -490,7 +513,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"70"
 
 		"OnSpellStart"
 		{
@@ -515,7 +538,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"70"
 
 		"OnSpellStart"
 		{
@@ -569,7 +592,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -594,7 +617,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -619,7 +642,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -672,7 +695,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -697,7 +720,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -722,7 +745,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -776,7 +799,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -801,7 +824,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -826,7 +849,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -879,7 +902,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -904,7 +927,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -929,7 +952,7 @@
 		"AbilityCooldown"	"30"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"100"
 
 		"OnSpellStart"
 		{
@@ -975,14 +998,14 @@
 		"AbilityTextureName"	"icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint"	"0.25"
-		"AbilityCooldown"	"30"
+		"AbilityCooldown"	"10"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"5"
+		"AbilityManaCost"	"10"
 		"AOERadius"	"500"
 
 		"OnSpellStart"
@@ -1039,7 +1062,7 @@
 		"AbilityTextureName"	"icon_128x128_100"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 
 		"AbilityCooldown"	"40"
 		"MaxLevel"	"3"
@@ -1081,7 +1104,7 @@
 		"AbilityTextureName"	"icon_128x128_130"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 
 		"AbilityCooldown"	"60"
 		"MaxLevel"	"3"

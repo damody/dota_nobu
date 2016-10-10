@@ -10,7 +10,9 @@ function C10T_Init( keys )
 	keys.caster.C10T_T = {}
 
     local group = keys.caster.C10T_T
-   	group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+   	group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, 
+   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+   	
 	for i,v in ipairs(group) do
 		table.insert(keys.caster.C10T_T,v)
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_C10T",nil)

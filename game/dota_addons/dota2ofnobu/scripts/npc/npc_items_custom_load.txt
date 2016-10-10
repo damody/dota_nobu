@@ -313,7 +313,7 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-70"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-80"
 				}
 				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
 				"EffectAttachType"	"follow_overhead"
@@ -430,7 +430,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"300.00"
+				"damage"	"400.00"
 			}
 		}
 	}
@@ -2303,7 +2303,7 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "80"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 				}
 			}
 		}
@@ -2778,7 +2778,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"	"item_protection_amulet"
 		"FightRecapLevel"	"1"
 		"ID"	"1650"
@@ -3982,7 +3982,7 @@
 		}
 	}
 
-	// 菊一文字則．太刀
+	// 菊一文字則宗．太刀
 	"item_the_great_sword_of_soul"
 	{
 		// General
@@ -4715,7 +4715,7 @@
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_the_great_sword_of_teleport"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
@@ -5359,7 +5359,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "50"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "30"
 				}
 			}
 		}
@@ -5422,7 +5422,7 @@
 				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "100" //攻速
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "70" //攻速
 				}
 			}
 		}
@@ -8764,14 +8764,22 @@
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"modifier_ninja_cloth"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"25"	//閃避
+				}
+			}
+			"Passive_ninja_cloth"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"25"	//閃避
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
@@ -8977,6 +8985,15 @@
 		            }
 				}
 			}
+			"modifier_ninja_cloth"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
+				}
+			}
 			"Passive_lightning_katana"
 			{
 				"IsHidden"	"1"
@@ -8984,7 +9001,6 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
@@ -9325,7 +9341,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_nannbann_armor"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -9634,6 +9650,15 @@
 		
 		"Modifiers"
 		{
+			"modifier_ninja_cloth"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
+				}
+			}
 			"Passive_lightning_katana"
 			{
 				"IsHidden"	"1"
@@ -9641,7 +9666,6 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
@@ -9949,7 +9973,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "90"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "90"	//跑速
 				}
 			}
 		}
@@ -10042,7 +10066,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "100" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "60"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
 				}
 			}
 		}
@@ -10135,8 +10159,8 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "60"	//跑速
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "15" //魔抗
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20" //魔抗
 				}
 			}
 		}
@@ -10229,7 +10253,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "75"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "75"	//跑速
 				}
 			}
 			"shield_modifier"
@@ -10334,7 +10358,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "0"	//跑速
 				}
 			}
 		}
@@ -10478,7 +10502,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_magic_talisman"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -10837,7 +10861,7 @@
 		"AbilityManaCost"	"100"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"900"
+		"AbilityCastRange"	"750"
 		"ID"	"1819"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -12421,7 +12445,7 @@
 		"AbilityManaCost"	"100"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"550"
+		"AbilityCastRange"	"500"
 		"ID"	"1567"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -12506,7 +12530,7 @@
 		}
 	}
 
-	// 真‧菊一文字則．太刀
+	// 真‧菊一文字則宗．太刀
 	"item_the_great_sword_of_soul_hyper"
 	{
 		// General
@@ -12755,7 +12779,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "90"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "90"	//跑速
 				}
 			}
 		}
@@ -12848,7 +12872,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "60"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
 				}
 			}
 		}
@@ -12941,8 +12965,8 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "60"	//跑速
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "15" //魔抗
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20" //魔抗
 				}
 			}
 		}
@@ -13035,7 +13059,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "75"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "75"	//跑速
 				}
 			}
 			"shield_modifier"

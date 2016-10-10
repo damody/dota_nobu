@@ -76,14 +76,20 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_A27W"
+						"ModifierName"	"modifier_A27D"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"1"
 					}
 				}
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_A27W"
+			"modifier_A27D"
 			{
 				"Duration"	"3"
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
@@ -93,9 +99,8 @@
 				{
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
 			}
 		}
 	}

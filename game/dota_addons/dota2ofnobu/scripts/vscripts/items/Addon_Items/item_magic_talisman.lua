@@ -71,10 +71,10 @@ function modifier_magic_talisman:OnTakeDamage(event)
 								local item = self.caster:GetItemInSlot(itemSlot)
 								if item ~= nil and item:GetName() == "item_magic_talisman" then
 									hasitem = true
-									item:StartCooldown(25)
+									item:StartCooldown(20)
 								end
 							end
-							Timers:CreateTimer(25, function() 
+							Timers:CreateTimer(20, function() 
 								self.caster.magic_talisman = true
 								print("self.caster.magic_talisman")
 							end)

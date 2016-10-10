@@ -537,9 +537,7 @@
 			}
 			"modifier_spawn_spiderlings_datadriven"
 			{
-				"IsPurgable"	"1"
 				"Duration"	"%duration"
-				"IsDebuff"	"1"
 				"EffectName"	"particles/b33t7/b33t7.vpcf"
 				"EffectAttachType"	"follow_hitloc"
 				"OnIntervalThink"
@@ -581,12 +579,12 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed"	"-50"
+				"speed"	"-50 -60 -70"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_speed"	"-100"
+				"attack_speed"	"-100 -150 -200"
 			}
 		}
 		// Stats

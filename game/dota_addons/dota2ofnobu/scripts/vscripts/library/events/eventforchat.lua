@@ -129,6 +129,18 @@ local function chat_of_test(keys)
 				return nil
 			end)
 		end
+		if string.match(s,"kk") then
+			local sumkill = 0
+			for playerID = 0, 14 do
+	    		local id       = playerID
+		  		local p        = PlayerResource:GetPlayer(id)
+		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
+				  local hero     = p: GetAssignedHero()
+				  sumkill = sumkill + hero.kill_count
+				end
+	    	end
+	    	print("sumkill "..sumkill)
+	    end
 		if string.match(s,"test") then
 			local pID = tonumber(string.match(s, '%d+'))
 			local steamID = PlayerResource:GetSteamAccountID(pID)

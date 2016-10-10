@@ -12,6 +12,7 @@
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bAdditive = true
 			m_hTexture = resource:"materials/hero12target.vtex"
+			m_bDisableOperator = true
 		},
 	]
 	m_Operators = 
@@ -52,7 +53,6 @@
 	[
 		{
 			m_ChildRef = resource:"particles/item/war_speedup2_a.vpcf"
-			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/item/war_speedup3_b.vpcf"

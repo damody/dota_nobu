@@ -211,8 +211,6 @@
 			"modifier_C10T"
 			{
 				"Duration"	"%slow_duration"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
 				"States"	{}
 				"Properties"
 				{
@@ -220,15 +218,6 @@
 				}
 				"EffectName"	"particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf"
 				"EffectAttachType"	"follow_hitloc"
-				"OnCreated"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"5"
-					}
-				}
 			}
 		}
 		"AbilitySpecial"
