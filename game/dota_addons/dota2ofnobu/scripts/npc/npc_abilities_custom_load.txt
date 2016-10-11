@@ -137,6 +137,34 @@
 			}
 		}		
 	}
+	// 變身為戰法2
+	"to_war_magic_unit2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+
+		"Modifiers"
+		{
+			"modifier_magic_unit"
+			{
+				"Passive"	"1"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/war_magic.lua"
+						"Function"	"to_war_magic_unit2"
+					}
+				}
+			}
+		}		
+	}
 	// 變身為織田叫足輕
 	"to_soldier_Oda"
 	{
@@ -991,6 +1019,97 @@
 			}
 		}
 	}
+	// 召集戰法
+	"war_magic_gohome"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_47"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"60"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"20"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/war_magic.lua"
+				"Function"	"gohome"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_wantgohome"
+				"Target" 		"TARGET"
+				"Duration"		"10"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_wantgohome"
+			{
+				"EffectName"	"particles/events/ti6_teams/teleport_start_ti6_lvl3_ehome.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
+
+	// 偵隱戰法
+	"war_magic_findanything"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_21"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"60"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"20"
+		"AOERadius"		"1000"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/war_magic.lua"
+				"Function"	"findanything"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_wantgohome"
+				"Target" 		"TARGET"
+				"Duration"		"10"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_wantgohome"
+			{
+				"EffectName"	"particles/item/war_speedup3.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OnTakeDamage"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_wantgohome"
+						"Target" 		"TARGET"
+					}
+				}
+			}
+		}
+	}
+
 	// 曳光戰法
 	"war_magic_light"
 	{

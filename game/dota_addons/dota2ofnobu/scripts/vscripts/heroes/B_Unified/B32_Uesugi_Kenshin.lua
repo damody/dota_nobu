@@ -104,6 +104,76 @@ function FireEffect_IcePath( event )
 	end
 end
 
+
+function FireEffect_IcePath2( event )
+	local caster		= event.caster
+	local ability		= event.ability
+	local pathLength	= 1200
+	local pathDelay		= event.path_delay
+	local pathDuration	= event.duration
+	local pathRadius	= event.path_radius
+
+	local startPos = caster:GetAbsOrigin()
+	local endPos = (ability:GetCursorPosition() - caster:GetAbsOrigin()):Normalized() * 1200 + caster:GetAbsOrigin()
+
+	ability.ice_path_stunStart	= GameRules:GetGameTime() + pathDelay
+	ability.ice_path_stunEnd	= GameRules:GetGameTime() + pathDelay + pathDuration
+
+	ability.ice_path_startPos	= startPos * 1
+	ability.ice_path_endPos		= endPos * 1
+
+	ability.ice_path_startPos.z = 0
+	ability.ice_path_endPos.z = 0
+
+	-- Create ice_path
+	local particleName = "particles/units/heroes/hero_jakiro/jakiro_ice_path.vpcf"
+	local pfx = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster )
+	ParticleManager:SetParticleControl( pfx, 0, startPos )
+	ParticleManager:SetParticleControl( pfx, 1, endPos )
+	ParticleManager:SetParticleControl( pfx, 2, startPos )
+
+	ability.pfxIcePath = pfx
+
+	-- Create ice_path_b
+	particleName = "particles/units/heroes/hero_jakiro/jakiro_ice_path_b.vpcf"
+	pfx = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster )
+	ParticleManager:SetParticleControl( pfx, 0, startPos )
+	ParticleManager:SetParticleControl( pfx, 1, endPos )
+	ParticleManager:SetParticleControl( pfx, 2, Vector( pathDelay + pathDuration, 0, 0 ) )
+	ParticleManager:SetParticleControl( pfx, 9, startPos )
+	ability.pfxIcePath2 = pfx
+
+	-- Generate projectiles
+	if pathRadius < 32 then
+		print( "Set the proper value of path_radius in ice_path_datadriven." )
+		return
+	end
+
+	local projectileRadius = pathRadius * math.sqrt(2)
+	local numProjectiles = math.floor( pathLength / (pathRadius*2) ) + 1
+	local stepLength = pathLength / ( numProjectiles - 1 )
+
+	for i=1, numProjectiles do
+		local projectilePos = startPos + caster:GetForwardVector() * (i-1) * stepLength
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+                              projectilePos,
+                              nil,
+                              projectileRadius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_FLAG_NONE,
+                              FIND_ANY_ORDER,
+                              false)
+
+		--effect:傷害+暈眩
+		for _,it in pairs(direUnits) do
+			if (not(it:IsBuilding())) then
+				ability:ApplyDataDrivenModifier(caster, it,"modifier_B32E",nil)
+			end
+		end		
+	end
+end
+
 function B32E( keys )
 	local caster = keys.caster
 	local target = keys.target

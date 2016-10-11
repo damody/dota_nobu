@@ -11,7 +11,7 @@ function A28W(keys)
                               nil,
                               radius,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,
-                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
                               0,
                               0,
                               false)

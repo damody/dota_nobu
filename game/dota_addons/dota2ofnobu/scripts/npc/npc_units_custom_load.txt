@@ -662,6 +662,148 @@
 		
  		"WakesNeutrals"				"0"	// Model.
 	}
+
+	//戰法
+	"war_magic_unit2"
+	{
+		// General
+ 		//----------------------------------------------------------------
+ 		"BaseClass"					"npc_dota_courier"	// Class of entity of link to.
+ 		"Model"						"models/heroes/juggernaut/jugg_healing_ward.vmdl"	// Model.
+ 		"SoundSet"					""					// Name of sound set.
+ 		"Level"						"0"
+ 		"IsAncient"					"1"
+ 		"ModelScale"				"2"
+ 		"UnitLabel"					"courier"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"AbilityLayout"				"6"		// changes when we change to flying -> "5"
+
+ 		"Ability1"					"to_war_magic_unit2"
+ 		"Ability2"					"courier_go_to_secretshop"		
+ 		"Ability3"					"courier_return_stash_items"
+ 		"Ability4"					"courier_take_stash_items"
+ 		"Ability5"					"courier_transfer_items"	
+ 		"Ability6"					"courier_burst"		
+ 		"Ability7"					"courier_morph"
+ 		"Ability8"					"courier_take_stash_and_transfer_items"
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+ 		"HealthBarOffset"			"120"
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+ 		"MovementSpeed"				"0"		// Speed
+ 		"MovementTurnRate"			"0.5"		// Turning rate.
+	
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyGoldMin"				"150"		// Gold earned min.
+ 		"BountyGoldMax"				"150"		// Gold earned max.
+
+ 			// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1000"		// Base health.
+ 		"StatusHealthRegen"			"10"			// Health regeneration rate.
+ 		"StatusMana"				"1000"			// Base mana.
+ 		"StatusManaRegen"			"1"			// Mana regeneration rate.
+ 		"StatusStartingMana"		"1000"
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_COURIER"
+		
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"350"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"350"		// Range of vision at night time.
+
+ 		// Bots
+ 		//----------------------------------------------------------------
+ 		"AttackDesire"				"1.5"		// How much bots want to attack them vs other non-hero things
+
+ 		//Inventory
+ 		"HasInventory"				"0"
+		
+ 		"IdleExpression"			"scenes/default_idle.vcd"
+		
+ 		"WakesNeutrals"				"0"	// Model.
+	}
+	"npc_dota_neutral_160_assassin"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"3"
+ 		"ModelScale" 					".90"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"2"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"34"		// Damage range min.
+ 		"AttackDamageMax"			"39"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyGoldMin"				"27"		// Gold earned min.
+ 		"BountyGoldMax"				"31"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"270"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"805"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"125"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
 	//馬
 	"npc_dota_courier"
  	{
@@ -687,6 +829,7 @@
  		"Ability6"					"courier_burst"		
  		"Ability7"					"courier_morph"
  		"Ability8"					"courier_take_stash_and_transfer_items"
+ 		"Ability9"					"for_magic_immune"
 
  		// Bounds
  		//----------------------------------------------------------------
@@ -708,8 +851,6 @@
  		//----------------------------------------------------------------
  		"StatusHealth"				"1000"		// Base health.
  		"StatusHealthRegen"			"10"			// Health regeneration rate.
- 		"StatusMana"				"1000"			// Base mana.
- 		"StatusManaRegen"			"1000"			// Mana regeneration rate.
 
  		// Team
  		//----------------------------------------------------------------
@@ -3050,7 +3191,7 @@
 		// Status
 		// ----------------------------------------------------------------
 		"StatusHealth"	"650"
-		"StatusHealthRegen"	"0.25"
+		"StatusHealthRegen"	"10"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
 		// Vision
@@ -3132,7 +3273,7 @@
 		// Status
 		// ----------------------------------------------------------------
 		"StatusHealth"	"650"
-		"StatusHealthRegen"	"0.25"
+		"StatusHealthRegen"	"10"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
 		// Vision
@@ -4027,7 +4168,7 @@
 		// Status
 		// ----------------------------------------------------------------
 		"StatusHealth"	"880"
-		"StatusHealthRegen"	"0.25"
+		"StatusHealthRegen"	"20"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
 		// Vision

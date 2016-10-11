@@ -69,6 +69,17 @@ local function chat_of_test(keys)
 			caster:AddAbility("B34E_old")
 			caster:AddAbility("B34R_old")
 			caster:AddAbility("B34T_old")
+		elseif string.match(caster:GetUnitName(), "dragon_knight") then -- 武田勝賴
+			caster:RemoveAbility("B32W")
+			caster:RemoveAbility("B32E")
+			caster:RemoveAbility("B32R")
+			caster:RemoveAbility("B32D")
+			caster:RemoveAbility("B32T")
+
+			caster:AddAbility("B32W_old")
+			caster:AddAbility("B32E_old")
+			caster:AddAbility("B32R_old")
+			caster:AddAbility("B32T_old")
 		end
 
 	end

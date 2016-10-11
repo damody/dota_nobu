@@ -77,11 +77,6 @@ function Nobu:OnHeroIngame( keys )
     		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
     		donkey:SetOwner(hero)
     		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
-    		donkey:SetBaseMaxHealth(2000)
-    		donkey:SetHealth(donkey:GetMaxHealth())
-    		donkey:SetPhysicalArmorBaseValue(10)
-    		donkey:SetBaseMoveSpeed(2000)
-    		donkey:AddAbility("for_magic_immune")
 
         --[[
         for abilitySlot=0,15 do

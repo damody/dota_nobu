@@ -793,7 +793,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"15 20 25"
+				"duration"	"20 23 26"
 			}
 			"02"
 			{
@@ -831,7 +831,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"120"
+		"AbilityCooldown"	"100"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"150"
@@ -894,7 +894,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
-						"Function"	"AON_Cleave"
+						"Function"	"AON_Cleave_A07_old"
 						"dmg"	"%attack_damage"
 						"Target"	"TARGET"
 					}
@@ -965,7 +965,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"15 20 25"
+				"duration"	"15 18 21"
 			}
 			"02"
 			{
