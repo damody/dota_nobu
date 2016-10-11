@@ -743,7 +743,7 @@
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"3"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					".80"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -4707,7 +4707,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"1"
@@ -4732,8 +4732,8 @@
  		"AttackDamageMax"			"29"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
- 		"AttackRange"				"500"		// Range within a target can be attacked.
+ 		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
+ 		"AttackRange"				"400"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
 
@@ -4777,7 +4777,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_troll_dark_a/n_creep_troll_dark_a.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"2"
@@ -4802,7 +4802,7 @@
  		"AttackDamageMax"			"29"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -4847,7 +4847,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"3"
@@ -4872,7 +4872,7 @@
  		"AttackDamageMax"			"39"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -4917,7 +4917,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/items/lone_druid/true_form/dark_wood_true_form/dark_wood_true_form.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"3"
@@ -4942,7 +4942,7 @@
  		"AttackDamageMax"			"40"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -4987,11 +4987,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/items/lone_druid/true_form/wolf_hunter_true_form/wolf_hunter_true_form.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"4"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					".70"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5012,7 +5012,7 @@
  		"AttackDamageMax"			"53"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5057,7 +5057,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_big.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"4"
@@ -5082,7 +5082,7 @@
  		"AttackDamageMax"			"61"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5127,11 +5127,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/heroes/lycan/summon_wolves.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"4"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"1.40"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5152,7 +5152,7 @@
  		"AttackDamageMax"			"61"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5197,11 +5197,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/heroes/lone_druid/spirit_bear.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"4"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"1.40"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5222,7 +5222,7 @@
  		"AttackDamageMax"			"93"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5267,11 +5267,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"4"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"2.20"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5292,7 +5292,7 @@
  		"AttackDamageMax"			"61"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5337,11 +5337,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/lane_creeps/creep_radiant_hulk/creep_radiant_diretide_ancient_hulk.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"4"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					".50"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5362,7 +5362,7 @@
  		"AttackDamageMax"			"36"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5407,11 +5407,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/heroes/bounty_hunter/bounty_hunter.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"5"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"1.50"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5432,8 +5432,8 @@
  		"AttackDamageMax"			"65"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
- 		"AttackRange"				"500"		// Range within a target can be attacked.
+ 		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
+ 		"AttackRange"				"400"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
 
@@ -5477,11 +5477,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_beast/n_creep_beast.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"5"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"1.50"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5502,7 +5502,7 @@
  		"AttackDamageMax"			"68"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5547,11 +5547,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"4"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"1.60"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5572,8 +5572,8 @@
  		"AttackDamageMax"			"139"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
- 		"AttackRange"				"500"		// Range within a target can be attacked.
+ 		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
+ 		"AttackRange"				"400"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
 
@@ -5617,11 +5617,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/lane_creeps/creep_bad_melee_diretide/creep_bad_melee_diretide.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"6"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"2.0"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5642,7 +5642,7 @@
  		"AttackDamageMax"			"107"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5687,11 +5687,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/items/terrorblade/marauders_demon/marauders_demon.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"6"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"2.2"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5712,7 +5712,7 @@
  		"AttackDamageMax"			"375"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"250"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5731,7 +5731,7 @@
  		// Movement
  		//----------------------------------------------------------------
  		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
- 		"MovementSpeed"				"270"		// Speed.
+ 		"MovementSpeed"				"320"		// Speed.
 
  		// Status
  		//----------------------------------------------------------------
@@ -5757,11 +5757,11 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_centaur_lrg/n_creep_centaur_lrg.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"7"
- 		"ModelScale" 					".90"
+ 		"ModelScale" 					"1.50"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -5780,9 +5780,9 @@
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
  		"AttackDamageMin"			"126"		// Damage range min.
  		"AttackDamageMax"			"145"		// Damage range max.	
- 		"AttackRate"				"1.2"		// Speed of attack.
+ 		"AttackRate"				"0.8"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"250"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5827,7 +5827,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_berserker.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"1"
@@ -5852,7 +5852,7 @@
  		"AttackDamageMax"			"46"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5897,7 +5897,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"1"
@@ -5922,7 +5922,7 @@
  		"AttackDamageMax"			"96"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -5967,7 +5967,7 @@
  	{										
  		// General
  		//----------------------------------------------------------------
- 		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"	// Model.
+ 		"Model"						"models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"	// Model.
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"1"
@@ -5992,7 +5992,7 @@
  		"AttackDamageMax"			"76"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
  		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -6006,7 +6006,7 @@
  		//----------------------------------------------------------------
  		"BountyXP"					"200"		// Experience earn.
  		"BountyGoldMin"				"37"		// Gold earned min.
- 		"BountyGoldMax"				"39s"		// Gold earned max.
+ 		"BountyGoldMax"				"39"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6018,6 +6018,146 @@
  		"StatusHealth"				"1850"		// Base health.
  		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
  		"StatusMana"				"300"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_160_bandit_military_adviser"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"1"
+ 		"ModelScale" 					"1.30"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"5"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"60"		// Damage range min.
+ 		"AttackDamageMax"			"69"		// Damage range max.	
+ 		"AttackRate"				"1.8"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
+ 		"AttackRange"				"400"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyGoldMin"				"55"		// Gold earned min.
+ 		"BountyGoldMax"				"55"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"300"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1500"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"800"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 	}
+
+ 	"npc_dota_neutral_130_wild_warrior"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		"Model"						"models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"	// Model.
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"SoundSet"					"n_creep_Melee"
+ 		"Level"						"1"
+ 		"ModelScale" 					"1.6"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					"for_cp_position"			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"15"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"80"		// Damage range min.
+ 		"AttackDamageMax"			"87"		// Damage range max.	
+ 		"AttackRate"				"0.9"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"RingRadius"				"60"
+ 		"HealthBarOffset"			"190"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyGoldMin"				"105"		// Gold earned min.
+ 		"BountyGoldMax"				"105"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"300"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"2040"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"460"			// Base mana.
  		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 	
  		// Vision
