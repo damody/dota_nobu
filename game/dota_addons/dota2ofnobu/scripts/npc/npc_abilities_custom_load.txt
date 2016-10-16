@@ -888,6 +888,7 @@
 			}
 		}
 	}
+
 	// 變身為織田叫騎兵
 	"to_cavalry_Unified"
 	{
@@ -991,7 +992,62 @@
 			}
 		}
 	}
+	// 確認織田輸了
+	"check_Oda_is_dead"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 
+		"Modifiers"
+		{
+			"modifier_check_is_dead"
+			{
+				"Passive"	"1"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/war_magic.lua"
+						"Function"	"check_Oda_is_dead"
+					}
+				}
+			}
+		}
+	}
+	// 確認聯合輸了
+	"check_Unified_is_dead"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+
+		"Modifiers"
+		{
+			"modifier_check_is_dead"
+			{
+				"Passive"	"1"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/war_magic.lua"
+						"Function"	"check_Unified_is_dead"
+					}
+				}
+			}
+		}
+	}
 	"set_level_1"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -2275,7 +2331,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
-						"Function"	"A17T_Succes_Attack"
+						"Function"	"A17T_Succes_Attack2"
 						"dmg"	"%attack_damage"
 					}
 				}

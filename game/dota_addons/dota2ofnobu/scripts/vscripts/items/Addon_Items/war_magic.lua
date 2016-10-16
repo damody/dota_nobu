@@ -231,8 +231,10 @@ prestige[3] = 0
 payprestige = {}
 payprestige[2] = 0
 payprestige[3] = 0
+CP_Monster = 0
 _G.prestige = prestige
 _G.payprestige = payprestige
+_G.CP_Monster = CP_Monster
 
 function to_war_magic_unit(keys)
 	local caster = keys.caster
@@ -263,6 +265,11 @@ function to_war_magic_unit(keys)
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
 		ExecuteOrderFromTable(order)
+		local pres = prestige[caster:GetTeamNumber()]
+		local maxmana = math.floor(pres / 60) * 5 + 20
+		if caster:GetMana() > maxmana then
+			caster:SetMana(maxmana)
+		end
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -310,6 +317,11 @@ function to_war_magic_unit2(keys)
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
 		ExecuteOrderFromTable(order)
+		local pres = prestige[caster:GetTeamNumber()]
+		local maxmana = math.floor(pres / 60) * 5 + 20
+		if caster:GetMana() > maxmana then
+			caster:SetMana(maxmana)
+		end
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -410,6 +422,11 @@ function to_soldier_Oda(keys)
     	end
     	return 1
     	end)
+	--強化cp怪
+	Timers:CreateTimer(180, function()
+		CP_Monster = CP_Monster + 1
+		return 180
+		end)
 end
 
 
@@ -747,4 +764,27 @@ function to_cavalry_Unified(keys)
 		return 1
     	end)
 	caster:AddNewModifier(caster, ability, "modifier_cavalry", {})
+end
+
+
+function check_Oda_is_dead(keys)
+	local caster = keys.caster
+
+	Timers:CreateTimer(1, function()
+		if IsValidEntity(caster) and not caster:IsAlive() then
+			print("Oda Dead")
+		end
+		return 1
+		end)
+end
+
+function check_Unified_is_dead(keys)
+	local caster = keys.caster
+
+	Timers:CreateTimer(1, function()
+		if IsValidEntity(caster) and not caster:IsAlive() then
+			print("Unified Dead")
+		end
+		return 1
+		end)
 end

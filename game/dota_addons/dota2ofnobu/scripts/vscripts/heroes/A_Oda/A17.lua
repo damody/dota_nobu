@@ -80,21 +80,6 @@ function A17T( event )
 	local projectile_speed =  ability:GetLevelSpecialValueFor( "projectile_speed" , ability:GetLevel() - 1  )
 	local particleName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
 
-	-- Get engineering level and increase the radius
-	--local engineering_level = 0
-	--local engineering_ability = caster:FindAbilityByName("tinker_engineering_upgrade")
-	--if engineering_ability and engineering_ability:GetLevel() > 0 then
-
-		-- Increase radius
-		--local cluster_extra_radius = engineering_ability:GetLevelSpecialValueFor( "cluster_extra_radius" , engineering_level -1  )
-		--radius = radius + cluster_extra_radius
-	--end
-
-	-- Create a dummy on the area to make the rocket track it
-	--local random_position = point + RandomVector(RandomInt(0,radius))
-	--local dummy = CreateUnitByName("dummy_unit_vulnerable", random_position, false, caster, caster, DOTA_UNIT_TARGET_TEAM_ENEMY)
-
-
 	local projTable = {
 		EffectName = particleName,
 		Ability = ability,
@@ -128,5 +113,21 @@ function A17T_Succes_Attack( keys )
 		if v~=target then
 			AMHC:Damage( caster,v,dmg*0.8,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 		end
+	end	
+end
+
+function A17T_Succes_Attack2( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	--local point = caster:GetAbsOrigin()
+	local point2 = target:GetAbsOrigin()
+	local level = ability:GetLevel() - 1
+	local dmg = keys.dmg
+    local group = {}
+    local radius = ability:GetLevelSpecialValueFor("attacked_range",level)
+   	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+	for i,v in ipairs(group) do
+			AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 	end	
 end

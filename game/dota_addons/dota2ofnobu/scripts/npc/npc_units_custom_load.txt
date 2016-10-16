@@ -735,75 +735,7 @@
 		
  		"WakesNeutrals"				"0"	// Model.
 	}
-	"npc_dota_neutral_160_assassin"
- 	{										
- 		// General
- 		//----------------------------------------------------------------
- 		"Model"						"models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"	// Model.
- 		"BaseClass"					"npc_dota_creep_neutral"
- 		"SoundSet"					"n_creep_Melee"
- 		"Level"						"3"
- 		"ModelScale" 					".80"
- 		"IsNeutralUnitType"			"1"
-
- 		// Abilities
- 		//----------------------------------------------------------------
- 		"Ability1"					"for_cp_position"			// Ability 1
- 		"Ability2"					""			// Ability 2
- 		"Ability3"					""			// Ability 3
- 		"Ability4"					""			// Ability 4
-
- 		// Armor
- 		//----------------------------------------------------------------
- 		"ArmorPhysical"				"2"			// Physical protection.
-
- 		// Attack
- 		//----------------------------------------------------------------
- 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"34"		// Damage range min.
- 		"AttackDamageMax"			"39"		// Damage range max.	
- 		"AttackRate"				"1.35"		// Speed of attack.
- 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
- 		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
- 		"AttackRange"				"128"		// Range within a target can be attacked.
- 		"ProjectileModel"			""			// Particle system model for projectile.
- 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
-
- 		// Bounds
- 		//----------------------------------------------------------------
- 		"RingRadius"				"60"
- 		"HealthBarOffset"			"190"
-
- 		// Bounty
- 		//----------------------------------------------------------------
- 		"BountyXP"					"100"		// Experience earn.
- 		"BountyGoldMin"				"27"		// Gold earned min.
- 		"BountyGoldMax"				"31"		// Gold earned max.
-
- 		// Movement
- 		//----------------------------------------------------------------
- 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
- 		"MovementSpeed"				"270"		// Speed.
-
- 		// Status
- 		//----------------------------------------------------------------
- 		"StatusHealth"				"805"		// Base health.
- 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
- 		"StatusMana"				"125"			// Base mana.
- 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 	
- 		// Vision
- 		//----------------------------------------------------------------
- 		"VisionDaytimeRange"		"1300"		// Range of vision during day light.
- 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
-
- 		// Team
- 		//----------------------------------------------------------------
- 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
- 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
- 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
- 	}
 	//馬
 	"npc_dota_courier"
  	{
@@ -3302,7 +3234,7 @@
 		"RingRadius"	"45"
 	}
 
-	// 足輕
+	// 強力足輕
 	"com_ashigaru_spearmen_C"
 	{
 		// General
@@ -4454,7 +4386,7 @@
 		// Reference: Adt1
 		"Ability1"	"A0BM"
 		// Reference: A00W
-		"Ability2"	""
+		"Ability2"	"check_Unified_is_dead"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"41.00"
@@ -4505,6 +4437,155 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"ConsideredHero"	"0"
+		"HasInventory"	"0"
+		"RingRadius"	"400"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	// 聯合本陣
+	"com_soldiercamp_Unified"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/tent/newtent.vmdl"
+		"ModelScale"	"3"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Adt1
+		"Ability1"	"A0BM"
+		// Reference: A00W
+		"Ability2"	"check_Unified_is_dead"
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"41.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"0"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"50.0"
+		"BountyGoldMax"	"50.0"
+		"BountyXP"	"50"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"20000"
+		"StatusHealthRegen"	"40.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"ConsideredHero"	"0"
+		"HasInventory"	"0"
+		"RingRadius"	"400"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	// 織田本陣
+	"com_soldiercamp_Oda"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/tent/newtent.vmdl"
+		"ModelScale"	"3"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Adt1
+		"Ability1"	"A0BM"
+		// Reference: A00W
+		"Ability2"	"check_Oda_is_dead"
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"41.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"0"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"50.0"
+		"BountyGoldMax"	"50.0"
+		"BountyXP"	"50"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"20000"
+		"StatusHealthRegen"	"40.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
 		"ConsideredHero"	"0"
 		"HasInventory"	"0"
 		"RingRadius"	"400"
@@ -4702,7 +4783,7 @@
 		"Level"	"5"
 		"ConsideredHero"	"0"
 	}
-
+	//惡棍
 	"npc_dota_neutral_160_douchebag"
  	{										
  		// General
@@ -4744,7 +4825,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyXP"					"10"		// Experience earn.
  		"BountyGoldMin"				"26"		// Gold earned min.
  		"BountyGoldMax"				"28"		// Gold earned max.
 
@@ -4772,7 +4853,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//山賊
  	"npc_dota_neutral_160_bandit"
  	{										
  		// General
@@ -4814,7 +4895,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyXP"					"10"		// Experience earn.
  		"BountyGoldMin"				"21"		// Gold earned min.
  		"BountyGoldMax"				"23"		// Gold earned max.
 
@@ -4842,7 +4923,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//刺客
  	"npc_dota_neutral_160_assassin"
  	{										
  		// General
@@ -4884,7 +4965,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyXP"					"10"		// Experience earn.
  		"BountyGoldMin"				"27"		// Gold earned min.
  		"BountyGoldMax"				"31"		// Gold earned max.
 
@@ -4912,7 +4993,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//野熊精
  	"npc_dota_neutral_130_wild_bear"
  	{										
  		// General
@@ -4954,7 +5035,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"30"		// Gold earned min.
  		"BountyGoldMax"				"34"		// Gold earned max.
 
@@ -4982,7 +5063,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//執行者
  	"npc_dota_neutral_160_executor"
  	{										
  		// General
@@ -5024,7 +5105,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"150"		// Experience earn.
+ 		"BountyXP"					"15"		// Experience earn.
  		"BountyGoldMin"				"38"		// Gold earned min.
  		"BountyGoldMax"				"44"		// Gold earned max.
 
@@ -5052,7 +5133,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//巨大烏龜
  	"npc_dota_neutral_130_giant_tortoise"
  	{										
  		// General
@@ -5094,7 +5175,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"44"		// Gold earned min.
  		"BountyGoldMax"				"52"		// Gold earned max.
 
@@ -5122,7 +5203,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//恐懼魔狼
  	"npc_dota_neutral_130_fear_molang"
  	{										
  		// General
@@ -5164,7 +5245,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"44"		// Gold earned min.
  		"BountyGoldMax"				"52"		// Gold earned max.
 
@@ -5192,7 +5273,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//熊
  	"npc_dota_neutral_130_bear"
  	{										
  		// General
@@ -5234,7 +5315,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyXP"					"25"		// Experience earn.
  		"BountyGoldMin"				"67"		// Gold earned min.
  		"BountyGoldMax"				"81"		// Gold earned max.
 
@@ -5262,7 +5343,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//忍法操屍
  	"npc_dota_neutral_130_forbearance_law_corpse"
  	{										
  		// General
@@ -5304,7 +5385,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"45"		// Gold earned min.
  		"BountyGoldMax"				"50"		// Gold earned max.
 
@@ -5332,7 +5413,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//倭寇海民
  	"npc_dota_neutral_130_japanese_pirates_sea_people"
  	{										
  		// General
@@ -5374,7 +5455,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"100"		// Experience earn.
+ 		"BountyXP"					"10"		// Experience earn.
  		"BountyGoldMin"				"49"		// Gold earned min.
  		"BountyGoldMax"				"57"		// Gold earned max.
 
@@ -5402,7 +5483,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//野蠻人
  	"npc_dota_neutral_130_barbarian"
  	{										
  		// General
@@ -5444,7 +5525,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyXP"					"25"		// Experience earn.
  		"BountyGoldMin"				"55"		// Gold earned min.
  		"BountyGoldMax"				"65"		// Gold earned max.
 
@@ -5472,7 +5553,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//傾奇者
  	"npc_dota_neutral_130_pour_odd_person"
  	{										
  		// General
@@ -5514,7 +5595,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyXP"					"25"		// Experience earn.
  		"BountyGoldMin"				"55"		// Gold earned min.
  		"BountyGoldMax"				"65"		// Gold earned max.
 
@@ -5542,7 +5623,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//倭寇頭領
  	"npc_dota_neutral_130_japanese_pirates_leader"
  	{										
  		// General
@@ -5584,7 +5665,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"300"		// Experience earn.
+ 		"BountyXP"					"30"		// Experience earn.
  		"BountyGoldMin"				"105"		// Gold earned min.
  		"BountyGoldMax"				"125"		// Gold earned max.
 
@@ -5612,7 +5693,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//被放逐的上忍
  	"npc_dota_neutral_130_the_exiled_forbearance"
  	{										
  		// General
@@ -5654,7 +5735,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"300"		// Experience earn.
+ 		"BountyXP"					"30"		// Experience earn.
  		"BountyGoldMin"				"108"		// Gold earned min.
  		"BountyGoldMax"				"124"		// Gold earned max.
 
@@ -5682,7 +5763,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//受詛咒的武士亡靈
  	"npc_dota_cursed_warrior_souls"
  	{										
  		// General
@@ -5752,7 +5833,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//強盜之王
  	"npc_dota_the_king_of_robbers"
  	{										
  		// General
@@ -5778,9 +5859,9 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"126"		// Damage range min.
- 		"AttackDamageMax"			"145"		// Damage range max.	
- 		"AttackRate"				"0.8"		// Speed of attack.
+ 		"AttackDamageMin"			"226"		// Damage range min.
+ 		"AttackDamageMax"			"245"		// Damage range max.	
+ 		"AttackRate"				"0.5"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"250"		// Range within a target can be attacked.
@@ -5822,7 +5903,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//強盜殘兵
  	"npc_dota_robbers_remnants"
  	{										
  		// General
@@ -5864,7 +5945,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"42"		// Gold earned min.
  		"BountyGoldMax"				"46"		// Gold earned max.
 
@@ -5892,7 +5973,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//國一揆
  	"npc_dota_country_riot"
  	{										
  		// General
@@ -5934,7 +6015,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyXP"					"25"		// Experience earn.
  		"BountyGoldMin"				"52"		// Gold earned min.
  		"BountyGoldMax"				"54"		// Gold earned max.
 
@@ -5962,7 +6043,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//百姓一揆
  	"npc_dota_peasants_revolt"
  	{										
  		// General
@@ -6004,7 +6085,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"37"		// Gold earned min.
  		"BountyGoldMax"				"39"		// Gold earned max.
 
@@ -6032,7 +6113,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//強盜軍師
  	"npc_dota_neutral_160_bandit_military_adviser"
  	{										
  		// General
@@ -6074,7 +6155,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"200"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"55"		// Gold earned min.
  		"BountyGoldMax"				"55"		// Gold earned max.
 
@@ -6102,7 +6183,7 @@
  		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
-
+ 	//野武士
  	"npc_dota_neutral_130_wild_warrior"
  	{										
  		// General
@@ -6144,7 +6225,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"250"		// Experience earn.
+ 		"BountyXP"					"25"		// Experience earn.
  		"BountyGoldMin"				"105"		// Gold earned min.
  		"BountyGoldMax"				"105"		// Gold earned max.
 

@@ -54,7 +54,7 @@ function ShuaGuai( )
 	--50秒出第一波，之後每26秒出一波
 	local speedup = 0.01
 	local ShuaGuai_count = -1
- 	Timers:CreateTimer( function()--50
+ 	Timers:CreateTimer(60, function()--50
  		ShuaGuai_count = ShuaGuai_count + 1
  		--強化箭塔
  		local allBuildings = Entities:FindAllByClassname('npc_dota_tower')
@@ -67,8 +67,8 @@ function ShuaGuai( )
 		    	ent:SetPhysicalArmorBaseValue(ent:GetPhysicalArmorBaseValue() + 0.2)
 			end
 		end
-		local AA_num = 3 + 0.0125*ShuaGuai_count
-		local AB_num = 2 + 0.0125*ShuaGuai_count
+		local AA_num = 3 + 0.01*ShuaGuai_count
+		local AB_num = 2 + 0.005*ShuaGuai_count
 	  	ShuaGuai_Of_AA(AA_num)
 	  	ShuaGuai_Of_AB(AB_num)
 	  	
@@ -82,7 +82,7 @@ function ShuaGuai( )
 
 	--出兵觸發:火槍兵
  	Timers:CreateTimer( 60,function()
- 		local B_num = 2 + 0.0125*ShuaGuai_count
+ 		local B_num = 2 + 0.005*ShuaGuai_count
   		ShuaGuai_Of_B(B_num)
 	    local time =  100.00 - 0.5*ShuaGuai_count
 	    if time < 30 then
@@ -94,7 +94,7 @@ function ShuaGuai( )
 
 	--出兵觸發:騎兵
  	Timers:CreateTimer( 48, function()
- 		local C_num = 1 + 0.0125*ShuaGuai_count
+ 		local C_num = 1 + 0.005*ShuaGuai_count
   		ShuaGuai_Of_C(C_num)
 	    local time =  70.00 - 0.5*ShuaGuai_count
 	    if time < 30 then

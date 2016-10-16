@@ -69,7 +69,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("B34E_old")
 			caster:AddAbility("B34R_old")
 			caster:AddAbility("B34T_old")
-		elseif string.match(caster:GetUnitName(), "dragon_knight") then -- 武田勝賴
+		elseif string.match(caster:GetUnitName(), "dragon_knight") then -- 上杉謙信
 			caster:RemoveAbility("B32W")
 			caster:RemoveAbility("B32E")
 			caster:RemoveAbility("B32R")
@@ -79,6 +79,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("B32W_old")
 			caster:AddAbility("B32E_old")
 			caster:AddAbility("B32R_old")
+			caster:AddAbility("B32D_old"):SetLevel(1)
 			caster:AddAbility("B32T_old")
 		end
 
@@ -209,9 +210,10 @@ local function chat_of_test(keys)
 		--【測試指令】
 		if s == "ShuaGuai" then
 			print("ShuaGuai")
-			ShuaGuai_Of_A( )
-			ShuaGuai_Of_B( )
-			ShuaGuai_Of_C( )
+			ShuaGuai_Of_AA( 10 )
+			ShuaGuai_Of_AB( 10 )
+			ShuaGuai_Of_B( 10 )
+			ShuaGuai_Of_C( 10 )
 		elseif s == "hp" then
 			print("nobu"..id)
 			caster:SetHealth(caster:GetMaxHealth())

@@ -73,7 +73,7 @@
 		"HotKeyOverride"	"W"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0 0 0 0"
+		"AbilityCastPoint"	"0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"20 16 12 8"
@@ -182,7 +182,7 @@
 		"HotKeyOverride"	"E"
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
-		"AbilityCastPoint"	"0"
+		"AbilityCastPoint"	"0.2"
 		"AbilityCooldown"	"18"
 		"AbilityManaCost"	"85 110 125 130"
 		"AbilityCastRange"	"400 525 650 775"
@@ -403,6 +403,7 @@
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastPoint"	"0.2"
 		"AbilityCooldown"	"110"
 		"AbilityManaCost"	"150"
 		"precache"

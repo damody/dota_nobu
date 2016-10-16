@@ -1,4 +1,4 @@
-	
+--上杉謙信	
 function B32W( keys )
 	local caster = keys.caster
 	local target = keys.target

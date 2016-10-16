@@ -126,6 +126,7 @@
 		"AbilityCooldown"	"6 3 0.5"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"200"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
@@ -205,7 +206,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_bonus"	"80 100 120"
+				"attack_bonus"	"200 300 400"
 			}
 			"06"
 			{

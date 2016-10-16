@@ -54,7 +54,7 @@ function Nobu:OnGameRulesStateChange( keys )
 	elseif(newState == DOTA_GAMERULES_STATE_HERO_SELECTION) then --選擇英雄階段
 		-- self:PostLoadPrecache()
 		-- self:OnAllPlayersLoaded()
-		for i=0,9 do
+		for i=0,20 do
 			PlayerResource:SetGold(i,2000,false)--玩家ID需要減一
 		end
 	elseif(newState == DOTA_GAMERULES_STATE_STRATEGY_TIME) then

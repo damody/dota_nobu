@@ -55,6 +55,10 @@
 					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_DISABLED"
 					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
 				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-30"
+				}
 				"Duration"	"8"
 				"ThinkInterval"	"1"
 				"OnIntervalThink"
@@ -65,6 +69,50 @@
 						"Type"			"DAMAGE_TYPE_MAGICAL"
 						"Damage"		"50"
 					}
+				}
+			}
+		}
+	}
+
+	"B32D_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_26"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"MaxLevel" "1"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		
+		"Modifiers"
+		{
+			"modifier_B32D"
+			{
+				"Passive"	"1"
+				"Aura"          	"modifier_B32D2"
+				"Aura_Radius"   	"900"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"7"
+				}
+				
+			}
+			"modifier_B32D2"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"2"
 				}
 			}
 		}
@@ -202,7 +250,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		//"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.1"
@@ -305,7 +353,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed"	"400 500 600 700"
+				"speed"	"400 450 500 550"
 			}
 			"03"
 			{
@@ -694,7 +742,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"icon_128x128_14"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -703,7 +751,6 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
 		"AnimationPlaybackRate"	"2"
-		"MaxLevel" "1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"12"
@@ -746,9 +793,8 @@
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%damage"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%damage"
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.4"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"
 				}
-				"Duration"	"8"
+				"Duration"	"%duration"
 				"ThinkInterval"	"1"
 				"OnIntervalThink"
 				{
@@ -756,7 +802,7 @@
 					{
 						"Target"		"TARGET"
 						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"50"
+						"Damage"		"%damage"
 					}
 				}
 			}
@@ -768,10 +814,15 @@
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"-10 -20 -30 -40"
 			}
-			"01"
+			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"regen"	"-10 -20 -30 -40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5 6 7 8"
 			}
 		}
 	}

@@ -28,7 +28,7 @@ function B26D( keys )
 	   		caster:GetTeamNumber(), 
 	   		caster:GetAbsOrigin(), 
 	   		nil, 
-	   		radius ,
+	   		500,
 	   		DOTA_UNIT_TARGET_TEAM_ENEMY, 
 	   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
 	   		DOTA_UNIT_TARGET_FLAG_NONE, 

@@ -77,7 +77,11 @@ function Nobu:OnUnitKill( keys )
       else
         killedUnit.death_count = killedUnit.death_count + 1
       end
-      killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
+      if killedUnit:GetLevel() >= 20 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
+      else
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
+      end
       group = FindUnitsInRadius(
           killedUnit:GetTeamNumber(), 
           killedUnit:GetAbsOrigin(), 
@@ -99,18 +103,44 @@ function Nobu:OnUnitKill( keys )
       --   GameRules: SendCustomMessage("   ",DOTA_TEAM_GOODGUYS,0)
       -- end
       --Tutorial: AddQuest("quest_1",1,"破塔成功","ssssssssss")
-    elseif string.match(name, "neutral") then
+    elseif string.match(name, "neutral_130") then
       local unitname = name
       local pos = killedUnit:GetAbsOrigin()
       local team = killedUnit:GetTeamNumber()
-      Timers:CreateTimer(60, function()
+      Timers:CreateTimer(130, function()
         if (killedUnit.origin_pos) then
           pos = killedUnit.origin_pos
           local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
           unit.origin_pos = pos
+          local CP_Monster = _G.CP_Monster
+          local hp = unit:GetMaxHealth()
+          unit:SetBaseMaxHealth(hp+CP_Monster * 50)
+          local dmgmax = unit:GetBaseDamageMax()
+          local dmgmin = unit:GetBaseDamageMin()
+          unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
+          unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
+        end
+        end)
+    elseif string.match(name, "neutral_160") then
+      local unitname = name
+      local pos = killedUnit:GetAbsOrigin()
+      local team = killedUnit:GetTeamNumber()
+      Timers:CreateTimer(160, function()
+        if (killedUnit.origin_pos) then
+          pos = killedUnit.origin_pos
+          local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
+          unit.origin_pos = pos
+          local CP_Monster = _G.CP_Monster
+          local hp = unit:GetMaxHealth()
+          unit:SetBaseMaxHealth(hp+CP_Monster * 50)
+          local dmgmax = unit:GetBaseDamageMax()
+          local dmgmin = unit:GetBaseDamageMin()
+          unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
+          unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
         end
         end)
     end
+
 
     print(killedUnit:GetUnitName() )
     if killedUnit  == _G.TestUnit then
