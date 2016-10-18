@@ -35,6 +35,27 @@ function modifier_gohomelua:OnTakeDamage(event)
 	end
 end
 
+function findanything( keys )
+	local caster = keys.caster
+	local point = keys.target_points[1] 
+	local ability = keys.ability
+	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍即將發動偵隱戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	else
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍即將發動偵隱戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+	end
+	Timers:CreateTimer(3, function()
+			local donkey = CreateUnitByName("findeverything_unit", point, true, nil, nil, caster:GetTeamNumber())
+			donkey:FindAbilityByName("true_gem"):SetLevel(1)
+			donkey:FindAbilityByName("majia_2"):SetLevel(1)
+			if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+				GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動偵隱戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+			else
+				GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動偵隱戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+			end
+		end)
+end
+
 function light( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
@@ -81,7 +102,7 @@ function slowattack( keys )
 			GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動阻撓戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
 		end
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), point,
-			nil,  600 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			nil,  800 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
 
 		for _, it in pairs(group) do
@@ -111,7 +132,7 @@ function gohome( keys )
 			else
 				GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動召集戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
 			end
-			target:SetAbsOrigin(caster:GetAbsOrigin())
+			target:SetTimeUntilRespawn(0)
 			target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
 			Timers:CreateTimer(1, function()
 				target:RemoveModifierByName("modifier_wantgohome")
@@ -788,3 +809,52 @@ function check_Unified_is_dead(keys)
 		return 1
 		end)
 end
+
+-- 賣忍者
+function to_sell_ninja_unit(keys)
+	local caster = keys.caster
+	local pos = caster:GetAbsOrigin()
+	print("to_soldier_Unified")
+	Timers:CreateTimer(1, function() 
+			for abilitySlot=0,15 do
+		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        if ability ~= nil then 
+		          local abilityLevel = ability:GetLevel()
+		          local abilityName = ability:GetAbilityName()
+		          caster:RemoveAbility(abilityName)
+		        end
+		    end
+		    caster:AddAbility("soldier_Unified_top"):SetLevel(1)
+		    caster:AddAbility("soldier_Unified_mid"):SetLevel(1)
+		    caster:AddAbility("soldier_Unified_bottom"):SetLevel(1)
+		end)
+	Timers:CreateTimer(1, function()
+		caster:SetAbsOrigin(pos)
+		caster:SetMana(prestige[3]-payprestige[3])
+		local order = {
+	 		UnitIndex = caster:entindex(), 
+	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		Position = pos, --Optional.  Only used when targeting the ground
+	 		Queue = 0 --Optional.  Used for queueing up abilities
+	 	}
+		ExecuteOrderFromTable(order)
+		return 0.2
+		end)
+	Timers:CreateTimer(1, function()
+    	for playerID = 0, 10 do
+    		local id       = playerID
+	  		local p        = PlayerResource:GetPlayer(id-1)
+	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
+			  local hero     = p: GetAssignedHero()
+			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
+			  	caster:SetOwner(hero)
+			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  	return nil
+			  end
+			end
+    	end
+		return 1
+    	end)
+	caster:AddNewModifier(caster, ability, "modifier_soldier_Unified", {})
+end
+

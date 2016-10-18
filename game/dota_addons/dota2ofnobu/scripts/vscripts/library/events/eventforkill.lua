@@ -78,7 +78,7 @@ function Nobu:OnUnitKill( keys )
         killedUnit.death_count = killedUnit.death_count + 1
       end
       if killedUnit:GetLevel() >= 20 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1.5)
       else
         killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
       end

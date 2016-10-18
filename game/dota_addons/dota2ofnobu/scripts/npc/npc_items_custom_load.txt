@@ -3088,6 +3088,7 @@
 	                        "Radius"    "900"
 	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	                    }
 	                    "ModifierName"      "modifier_truesight"
 	                    "Duration"      "0.50"
@@ -5218,7 +5219,7 @@
 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-6"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"
 				}
 			}
 
@@ -5231,7 +5232,7 @@
 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-6"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"
 				}
 			}
 			"Passive_great_sword_of_disarmament"
@@ -6470,7 +6471,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-7"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle"
@@ -6556,7 +6557,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-20"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-13"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle_1"
@@ -6642,7 +6643,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-30"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-18"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle_2"
@@ -12297,7 +12298,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"400"
+		"ItemCost"	"200"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
 		"ItemStackable"					"1"

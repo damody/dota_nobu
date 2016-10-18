@@ -5,6 +5,359 @@
 {
 	"Version"		"1"
 
+	//上忍
+	"ninja_unit3"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/rikimaru/rikimaru.vmdl"
+		"ModelScale"	"0.7"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"500"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"700"
+		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"700"
+		"VisionNighttimeRange"	"700"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
+	// 中忍
+	"ninja_unit2"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/rikimaru/rikimaru.vmdl"
+		"ModelScale"	"0.7"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"700"
+		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"700"
+		"VisionNighttimeRange"	"700"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
+	// 下忍
+	"ninja_unit1"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/rikimaru/rikimaru.vmdl"
+		"ModelScale"	"0.7"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"700"
+		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"700"
+		"VisionNighttimeRange"	"700"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"for_dispear"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+	//賣忍者
+	"to_sell_ninja_unit"
+	{
+		// General
+ 		//----------------------------------------------------------------
+ 		"BaseClass"					"npc_dota_courier"	// Class of entity of link to.
+ 		"Model"						"models/heroes/rikimaru/rikimaru.vmdl"	// Model.
+ 		"SoundSet"					""					// Name of sound set.
+ 		"Level"						"0"
+ 		"IsAncient"					"1"
+ 		"ModelScale"				"2"
+ 		"UnitLabel"					"courier"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"AbilityLayout"				"6"		// changes when we change to flying -> "5"
+
+ 		"Ability1"					"to_sell_ninja_unit"
+ 		"Ability2"					"courier_go_to_secretshop"		
+ 		"Ability3"					"courier_return_stash_items"
+ 		"Ability4"					"courier_take_stash_items"
+ 		"Ability5"					"courier_transfer_items"	
+ 		"Ability6"					"courier_burst"		
+ 		"Ability7"					"courier_morph"
+ 		"Ability8"					"courier_take_stash_and_transfer_items"
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+ 		"HealthBarOffset"			"120"
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+ 		"MovementSpeed"				"0"		// Speed
+ 		"MovementTurnRate"			"0.5"		// Turning rate.
+	
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyGoldMin"				"150"		// Gold earned min.
+ 		"BountyGoldMax"				"150"		// Gold earned max.
+
+ 			// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1000"		// Base health.
+ 		"StatusHealthRegen"			"10"			// Health regeneration rate.
+ 		"StatusMana"				"1000"			// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.
+ 		"StatusStartingMana"		"1000"
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_COURIER"
+		
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"1"		// Range of vision at night time.
+
+ 		// Bots
+ 		//----------------------------------------------------------------
+ 		"AttackDesire"				"1.5"		// How much bots want to attack them vs other non-hero things
+
+ 		//Inventory
+ 		"HasInventory"				"0"
+		
+ 		"IdleExpression"			"scenes/default_idle.vcd"
+		
+ 		"WakesNeutrals"				"0"	// Model.
+	}
+	// 偵隱戰法 單位
+	"findeverything_unit"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/courier/trapjaw/trapjaw.vmdl"
+		"ModelScale"	"0.7"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"3.00"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"61.0"
+		"AttackDamageMax"	"82.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.38"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"55"
+		"LumberCost"	"55"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"380"
+		"MovementTurnRate"	"2.00"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"700"
+		"StatusHealthRegen"	"3.00"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1"
+		"VisionNighttimeRange"	"1"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"true_gem"
+		"Ability2"	"majia_2"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
 	//聯合足輕叫兵
 	"soldier_Unified_unit"
 	{
@@ -1497,7 +1850,7 @@
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Ability1"	"forest_caster_W"
-		"Ability2"	"forest_caster_E"
+		"Ability2"	""
 		"Ability3"	""
 		"Ability4"	""
 		"Ability5"	""
@@ -4825,7 +5178,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"26"		// Gold earned min.
  		"BountyGoldMax"				"28"		// Gold earned max.
 
@@ -4895,7 +5248,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"21"		// Gold earned min.
  		"BountyGoldMax"				"23"		// Gold earned max.
 
@@ -4965,7 +5318,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"27"		// Gold earned min.
  		"BountyGoldMax"				"31"		// Gold earned max.
 
@@ -5035,7 +5388,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyXP"					"40"		// Experience earn.
  		"BountyGoldMin"				"30"		// Gold earned min.
  		"BountyGoldMax"				"34"		// Gold earned max.
 
@@ -5105,7 +5458,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"15"		// Experience earn.
+ 		"BountyXP"					"30"		// Experience earn.
  		"BountyGoldMin"				"38"		// Gold earned min.
  		"BountyGoldMax"				"44"		// Gold earned max.
 
@@ -5175,7 +5528,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyXP"					"40"		// Experience earn.
  		"BountyGoldMin"				"44"		// Gold earned min.
  		"BountyGoldMax"				"52"		// Gold earned max.
 
@@ -5245,7 +5598,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyXP"					"40"		// Experience earn.
  		"BountyGoldMin"				"44"		// Gold earned min.
  		"BountyGoldMax"				"52"		// Gold earned max.
 
@@ -5315,7 +5668,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"25"		// Experience earn.
+ 		"BountyXP"					"50"		// Experience earn.
  		"BountyGoldMin"				"67"		// Gold earned min.
  		"BountyGoldMax"				"81"		// Gold earned max.
 
@@ -5385,7 +5738,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyXP"					"40"		// Experience earn.
  		"BountyGoldMin"				"45"		// Gold earned min.
  		"BountyGoldMax"				"50"		// Gold earned max.
 
@@ -5455,7 +5808,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyXP"					"20"		// Experience earn.
  		"BountyGoldMin"				"49"		// Gold earned min.
  		"BountyGoldMax"				"57"		// Gold earned max.
 
@@ -5525,7 +5878,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"25"		// Experience earn.
+ 		"BountyXP"					"50"		// Experience earn.
  		"BountyGoldMin"				"55"		// Gold earned min.
  		"BountyGoldMax"				"65"		// Gold earned max.
 
@@ -5595,7 +5948,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"25"		// Experience earn.
+ 		"BountyXP"					"50"		// Experience earn.
  		"BountyGoldMin"				"55"		// Gold earned min.
  		"BountyGoldMax"				"65"		// Gold earned max.
 
@@ -5665,7 +6018,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"30"		// Experience earn.
+ 		"BountyXP"					"60"		// Experience earn.
  		"BountyGoldMin"				"105"		// Gold earned min.
  		"BountyGoldMax"				"125"		// Gold earned max.
 
@@ -5735,7 +6088,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"30"		// Experience earn.
+ 		"BountyXP"					"60"		// Experience earn.
  		"BountyGoldMin"				"108"		// Gold earned min.
  		"BountyGoldMax"				"124"		// Gold earned max.
 
@@ -5817,7 +6170,7 @@
  		// Status
  		//----------------------------------------------------------------
  		"StatusHealth"				"18550"		// Base health.
- 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusHealthRegen"			"200"		// Health regeneration rate.
  		"StatusMana"				"1500"			// Base mana.
  		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 	
@@ -5945,7 +6298,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyXP"					"40"		// Experience earn.
  		"BountyGoldMin"				"42"		// Gold earned min.
  		"BountyGoldMax"				"46"		// Gold earned max.
 
@@ -6015,7 +6368,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"25"		// Experience earn.
+ 		"BountyXP"					"50"		// Experience earn.
  		"BountyGoldMin"				"52"		// Gold earned min.
  		"BountyGoldMax"				"54"		// Gold earned max.
 
@@ -6085,7 +6438,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyXP"					"40"		// Experience earn.
  		"BountyGoldMin"				"37"		// Gold earned min.
  		"BountyGoldMax"				"39"		// Gold earned max.
 
@@ -6155,7 +6508,7 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyXP"					"40"		// Experience earn.
  		"BountyGoldMin"				"55"		// Gold earned min.
  		"BountyGoldMax"				"55"		// Gold earned max.
 

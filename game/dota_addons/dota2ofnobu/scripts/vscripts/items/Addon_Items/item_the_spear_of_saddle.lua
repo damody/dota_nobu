@@ -30,7 +30,7 @@ function Shock( keys )
 	if (caster.nobuorb1 == "spear_of_saddle" or caster.nobuorb1 == nil) and not keys.target:IsBuilding() then
 		caster.nobuorb1 = "spear_of_saddle"
 		if not keys.target:IsMagicImmune() then
-			skill:ApplyDataDrivenModifier(caster, keys.target,"modifier_spear_of_saddle",{ duration = 3.5 })
+			skill:ApplyDataDrivenModifier(caster, keys.target,"modifier_spear_of_saddle",{ duration = 1.5 })
 		end
 	end
 end

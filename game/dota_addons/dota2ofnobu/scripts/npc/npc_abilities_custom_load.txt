@@ -2,6 +2,78 @@
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 "DOTAAbilities"
 {
+	//看隱形
+	"true_gem"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_21"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"Passive_true_gem"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "900"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
+			}
+		}
+	}
+	//隱形
+	"for_dispear"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"meepo_earthbind"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"precache"
+		{
+			"particle"	"particles/b02r4/b02r4.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_dispear"
+			{
+				"Passive"	"1"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_forest_scroll.lua"
+						"Function"	"dispear2"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast"	"0.25"
+			}
+		}
+	}
 	//走遠了要回來
 	"tofar_goback"
 	{
@@ -1131,7 +1203,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
 		"AbilityManaCost"	"20"
-		"AOERadius"		"1000"
+		"AOERadius"		"900"
 
 		"OnSpellStart"
 		{
@@ -1139,13 +1211,7 @@
 			{
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"findanything"
-				"Target"	"TARGET"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_wantgohome"
-				"Target" 		"TARGET"
-				"Duration"		"10"
+				"Target"	"POINT"
 			}
 		}
 		"Modifiers"
@@ -2999,6 +3065,25 @@
 				"States"
 				{
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	// 無敵
+	"for_no_damage"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_for_magic_immune"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}

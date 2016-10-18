@@ -9,11 +9,6 @@ function Nobu:PickHero( keys )
 
   --【統計系統】
     --【技能】
-    caster.skillw = 0
-    caster.skille = 0
-    caster.skillr = 0
-    caster.skilld = 0
-    caster.skillt = 0
 
     --【傷害】
     caster.damage_num = 0
@@ -46,7 +41,9 @@ function Nobu:PickHero( keys )
     GameRules: SendCustomMessage("上杉謙信玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "broodmother") then --服部半藏
     caster:FindAbilityByName("A13D"):SetLevel(1)
-  elseif string.match(name, "storm_spirit") then
+  elseif string.match(name, "storm_spirit") then --大谷吉繼
+    caster:FindAbilityByName("A12D"):SetLevel(1)
+    caster:FindAbilityByName("A12D"):SetActivated(false)
     caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
   elseif string.match(name, "bristleback") then -- 今川義元
     Timers:CreateTimer(1, function ()

@@ -81,7 +81,7 @@ function ShuaGuai( )
 	 end)
 
 	--出兵觸發:火槍兵
- 	Timers:CreateTimer( 60,function()
+ 	Timers:CreateTimer( 90,function()
  		local B_num = 2 + 0.005*ShuaGuai_count
   		ShuaGuai_Of_B(B_num)
 	    local time =  100.00 - 0.5*ShuaGuai_count
@@ -93,7 +93,7 @@ function ShuaGuai( )
 	end)
 
 	--出兵觸發:騎兵
- 	Timers:CreateTimer( 48, function()
+ 	Timers:CreateTimer( 95, function()
  		local C_num = 1 + 0.005*ShuaGuai_count
   		ShuaGuai_Of_C(C_num)
 	    local time =  70.00 - 0.5*ShuaGuai_count

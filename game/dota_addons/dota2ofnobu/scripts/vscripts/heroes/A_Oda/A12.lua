@@ -22,6 +22,7 @@ function A12W( keys )
 	-- end
 	local caster = keys.caster
 	local ability = keys.ability
+	caster.abilityName = "A12W"
 
 	if caster.A12D_B == true then
 	    local group = {}
@@ -42,6 +43,7 @@ end
 function A12E( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	caster.abilityName = "A12E"
 	if caster.A12D_B == true then
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A12E_2",nil)
 		ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -88,6 +90,7 @@ function A12R( keys )
 	local caster		= keys.caster
 	local ability	= keys.ability
 	local point = ability:GetCursorPosition()
+	caster.abilityName = "A12R"
 	local particle=ParticleManager:CreateParticle("particles/a12r2/a12r2.vpcf",PATTACH_POINT,caster)
 	local Special_damage = ability:GetLevelSpecialValueFor("Special_damage",ability:GetLevel() - 1)
 	ParticleManager:SetParticleControl(particle,0,point)
@@ -99,6 +102,7 @@ function A12R( keys )
 	end )
 
 	if caster.A12D_B == true then
+		ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	    local group = {}
 	    local radius = 500
 	    local damage = 0
@@ -116,6 +120,7 @@ function OnToggleOn( keys )
 	local caster = keys.caster
 	if (caster.nobuorb1 == nil) then
 		caster.nobuorb1 = "A12T_On"
+		caster.abilityName = "A12T"
 	end
 end
 
@@ -123,11 +128,11 @@ function OnToggleOff( keys )
 	local caster = keys.caster
 	if (caster.nobuorb1 == "A12T_On") then
 		caster.nobuorb1 = nil
+		caster.abilityName = "A12T"
 	end
 end
 
 function A12T( keys )
-
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
@@ -196,20 +201,24 @@ end
 
 function A12D_HIDE( keys )
 	local caster = keys.caster
-	local name = caster.abilityName
-	if  name == "A12D" then
-		caster:FindAbilityByName("A12D"):SetLevel(0)
-		caster.A12D_B = true
-		caster.A12D_Time = 0
-		ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)		
-	else
-		if name == "A12W" or name == "A12E" or name == "A12R" then
-			caster.A12D_Time  = caster.A12D_Time  + 1
-			if caster.A12D_Time  == 4 then
-				caster:FindAbilityByName("A12D"):SetLevel(1)
-			end
-		end	
-	end
+	
+	Timers:CreateTimer(0.1, function()
+		local name = caster.abilityName
+		print("A12D_HIDE ",name)
+		if  name == "A12D" then
+			caster:FindAbilityByName("A12D"):SetActivated(false)
+			caster.A12D_B = true
+			caster.A12D_Time = 0
+			ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		else
+			if name == "A12W" or name == "A12E" or name == "A12R" then
+				caster.A12D_Time  = caster.A12D_Time  + 1
+				if caster.A12D_Time  >= 4 then
+					caster:FindAbilityByName("A12D"):SetActivated(true)
+				end
+			end	
+		end
+		end)
 end
 
 function A12D_HIDE_Learn( keys )
@@ -219,5 +228,8 @@ function A12D_HIDE_Learn( keys )
 	caster.A12E_CHANCE = RandomInt(0,10)
 end
 
-
+function A12D( keys )
+	local caster = keys.caster
+	caster.abilityName = "A12D"
+end
 

@@ -71,6 +71,11 @@ function dispear( keys )
 	end
 end
 
+function dispear2( keys )
+	local caster = keys.caster
+	caster:AddNewModifier(caster,ability,"modifier_transparency")
+end
+
 function nodispear( keys )
 	local caster = keys.caster
 	if caster.nodispear == nil then
