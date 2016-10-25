@@ -5,7 +5,7 @@ function Shock( keys )
 	local ability = keys.ability
 	local roubang = CreateUnitByName("healing_totem_unit",point ,false,caster,caster,caster:GetTeamNumber())
 	roubang:FindAbilityByName("healing_totem"):SetLevel(1)
-	Timers:CreateTimer(30, function ()
+	Timers:CreateTimer(15, function ()
 		roubang:ForceKill(true)
 	end)
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),

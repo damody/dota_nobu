@@ -63,7 +63,6 @@ function B25E( keys )
 	local ability = keys.ability
 	local particleName = "particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
 	-- local modifierDudName = "modifier_heat_seeking_missile_dud"
-	local projectileSpeed = 900
 	local radius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
 	local max_targets = ability:GetLevelSpecialValueFor( "targets", ability:GetLevel() - 1 )
 	local targetTeam = ability:GetAbilityTargetTeam()
@@ -89,7 +88,7 @@ function B25E( keys )
 					EffectName = particleName,
 					bDodgeable = projectileDodgable,
 					bProvidesVision = projectileProvidesVision,
-					iMoveSpeed = projectileSpeed, 
+					iMoveSpeed = 3000, 
 					vSpawnOrigin = caster:GetAbsOrigin()
 				}
 				ProjectileManager:CreateTrackingProjectile( projTable )

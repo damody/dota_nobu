@@ -9,7 +9,7 @@ function Shock( keys )
 	caster:SetForwardVector(dir:Normalized())
 	
 	local distance = 1000
-	local radius =  600
+	local radius =  700
 	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
 	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
 	local right = caster:GetRightVector()
@@ -39,7 +39,7 @@ function Shock( keys )
 	-- Create timer to spawn projectile
 	Timers:CreateTimer( function()
 			-- Get random location for projectile
-			for c = 1,4 do
+			for c = 1,2 do
 				local random_distance = RandomInt( -radius, radius )
 				local spawn_location = middlePoint + perpendicularVec * random_distance
 				
@@ -47,7 +47,7 @@ function Shock( keys )
 				
 				local sumtime = 0
 				local flame = ParticleManager:CreateParticle("particles/item/tornado_a.vpcf", PATTACH_ABSORIGIN, caster)
-				local step = 0.01
+				local step = 0.02
 				Timers:CreateTimer(step, function ()
 					sumtime = sumtime + step
 					local point = spawn_location+velocityVec*sumtime
@@ -64,7 +64,7 @@ function Shock( keys )
 					local isend = false
 					for _,target in pairs(direUnits) do
 						if not target:IsBuilding() then
-							AMHC:Damage(caster,target,66,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+							AMHC:Damage(caster,target,132,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 							isend = true
 						end
 					end

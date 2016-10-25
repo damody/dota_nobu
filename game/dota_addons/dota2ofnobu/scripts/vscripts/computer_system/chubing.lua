@@ -161,9 +161,9 @@ function ShuaGuai_Of_AA(num )
 
 				--顏色
 				if team == 2 then
-					unit:SetRenderColor(200,200,200)
+					unit:SetRenderColor(255,100,100)
 				elseif team == 3 then
-					--unit:SetRenderColor(0,200,0)
+					unit:SetRenderColor(100,255,100)
 				end
 
 				--讓單位沿著設置好的路線開始行動
@@ -219,8 +219,8 @@ function ShuaGuai_Of_AB(num )
 				unit:SetBaseMaxHealth(hp+A_count * 5)
 				local dmgmax = unit:GetBaseDamageMax()
 				local dmgmin = unit:GetBaseDamageMin()
-				unit:SetBaseDamageMax(dmgmax+A_count*3)
-				unit:SetBaseDamageMax(dmgmin+A_count*3)
+				unit:SetBaseDamageMax(dmgmax+A_count*5)
+				unit:SetBaseDamageMax(dmgmin+A_count*5)
 				local armor = unit:GetPhysicalArmorBaseValue()
 				unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)
 				--creep:SetContextNum("isshibing",1,0)
@@ -233,9 +233,9 @@ function ShuaGuai_Of_AB(num )
 
 				--顏色
 				if team == 2 then
-					unit:SetRenderColor(200,200,200)
+					unit:SetRenderColor(255,100,100)
 				elseif team == 3 then
-					--unit:SetRenderColor(0,200,0)
+					unit:SetRenderColor(100,255,100)
 				end
 
 				--讓單位沿著設置好的路線開始行動
@@ -287,8 +287,8 @@ function ShuaGuai_Of_B(num )
 				unit:SetBaseMaxHealth(hp+A_count * 8)
 				local dmgmax = unit:GetBaseDamageMax()
 				local dmgmin = unit:GetBaseDamageMin()
-				unit:SetBaseDamageMax(dmgmax+A_count*10)
-				unit:SetBaseDamageMax(dmgmin+A_count*10)
+				unit:SetBaseDamageMax(dmgmax+A_count*8)
+				unit:SetBaseDamageMax(dmgmin+A_count*8)
 				local armor = unit:GetPhysicalArmorBaseValue()
 				unit:SetPhysicalArmorBaseValue(armor+A_count*0.1)
 				--creep:SetContextNum("isshibing",1,0)
@@ -302,6 +302,12 @@ function ShuaGuai_Of_B(num )
 				--讓單位沿著設置好的路線開始行動
 				unit:SetInitialGoalEntity(ShuaGuai_entity[i])
 
+				--顏色
+				if team == 2 then
+					unit:SetRenderColor(255,100,100)
+				elseif team == 3 then
+					unit:SetRenderColor(100,255,100)
+				end
 				--碰撞面積
 				--unit:SetHullRadius(40)
 
@@ -363,6 +369,12 @@ function ShuaGuai_Of_C(num )
 				--讓單位沿著設置好的路線開始行動
 				unit:SetInitialGoalEntity(ShuaGuai_entity[i])
 
+				--顏色
+				if team == 2 then
+					unit:SetRenderColor(255,100,100)
+				elseif team == 3 then
+					unit:SetRenderColor(100,255,100)
+				end
 				--碰撞面積
 				--unit:SetHullRadius(40)
 
@@ -413,9 +425,9 @@ function soldier_Oda_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -461,9 +473,9 @@ function soldier_Oda_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -509,9 +521,9 @@ function soldier_Oda_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -558,9 +570,9 @@ function soldier_Unified_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -606,9 +618,9 @@ function soldier_Unified_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -654,9 +666,9 @@ function soldier_Unified_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -702,9 +714,9 @@ function archer_Oda_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -749,9 +761,9 @@ function archer_Oda_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -797,9 +809,9 @@ function archer_Oda_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -845,9 +857,9 @@ function archer_Unified_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -892,9 +904,9 @@ function archer_Unified_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -940,9 +952,9 @@ function archer_Unified_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -988,9 +1000,9 @@ function gunner_Oda_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1035,9 +1047,9 @@ function gunner_Oda_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1083,9 +1095,9 @@ function gunner_Oda_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1131,9 +1143,9 @@ function gunner_Unified_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1178,9 +1190,9 @@ function gunner_Unified_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1226,9 +1238,9 @@ function gunner_Unified_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1273,9 +1285,9 @@ function cavalry_Oda_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1320,9 +1332,9 @@ function cavalry_Oda_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1368,9 +1380,9 @@ function cavalry_Oda_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1416,9 +1428,9 @@ function cavalry_Unified_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1463,9 +1475,9 @@ function cavalry_Unified_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1511,9 +1523,9 @@ function cavalry_Unified_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(200,200,200)
+				unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				--unit:SetRenderColor(0,200,0)
+				unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5

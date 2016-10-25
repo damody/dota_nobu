@@ -41,6 +41,7 @@ function equilibrium_constant:DeclareFunctions()
         MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
         MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
         MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        MODIFIER_PROPERTY_MOVESPEED_MIN,
         MODIFIER_PROPERTY_MOVESPEED_MAX,
         MODIFIER_PROPERTY_MOVESPEED_LIMIT,
     }
@@ -109,7 +110,9 @@ function equilibrium_constant:GetAttributes()
     return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
 end
 
-
+function equilibrium_constant:GetModifierMoveSpeed_Min( params )
+    return 0
+end
 
 function equilibrium_constant:GetModifierMoveSpeed_Max( params )
     return MAX_MS

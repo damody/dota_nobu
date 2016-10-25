@@ -178,9 +178,13 @@ function B06R_Learn_Ability( keys )
 		caster:FindModifierByName("modifier_item_blade_mail_rework_damage_return").caster = caster
 		caster.b06r = 1
 		Timers:CreateTimer(1, function ()
-			if (not caster:HasModifier("modifier_item_blade_mail_rework_damage_return")) then
+			if (not caster:HasModifier("modifier_item_blade_mail_rework_damage_return")) and caster:IsAlive() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_item_blade_mail_rework_damage_return", {duration = 10000} )
+				caster:FindModifierByName("modifier_item_blade_mail_rework_damage_return").caster = caster
+				caster.b06r = 1
+				keys.caster.B06R_Buff = true
 			end
+			return 1
 		end)
 	end
 end

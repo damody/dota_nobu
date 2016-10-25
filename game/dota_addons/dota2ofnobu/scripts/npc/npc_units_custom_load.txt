@@ -13,53 +13,56 @@
 		"BaseClass"	"npc_dota_creature"
 		// Add model
 		"Model"	"models/heroes/rikimaru/rikimaru.vmdl"
-		"ModelScale"	"0.7"
+		"ModelScale"	"1"
 		"Level"	"2"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
 
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"5.00"
+		"ArmorPhysical"	"10.00"
 		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackAnimationPoint"	"0.30"
 		"AttackAcquisitionRange"	"500"
+		"AttackRate"				"0.5"
+		"AttackDamageMin"	"100.0"
+		"AttackDamageMax"	"150.0"
 		"AttackRange"	"128"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"200.0"
+		"BountyGoldMax"	"200.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"55"
 		"LumberCost"	"55"
 		// Movement
 		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"	"500"
 		"MovementTurnRate"	"2.00"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"700"
+		"StatusHealth"	"1000"
 		"StatusHealthRegen"	"3.00"
 		"StatusMana"	"200"
 		"StatusStartingMana"	"200"
 		// Vision
 		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"700"
-		"VisionNighttimeRange"	"700"
+		"VisionDaytimeRange"	"300"
+		"VisionNighttimeRange"	"300"
 		// Team
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability1"	""
-		"Ability2"	""
+		"Ability1"	"ninja_attack"
+		"Ability2"	"forest_soldier_E"
 		"Ability3"	""
 		"Ability4"	""
 		"Ability5"	""
@@ -83,7 +86,7 @@
 		"BaseClass"	"npc_dota_creature"
 		// Add model
 		"Model"	"models/heroes/rikimaru/rikimaru.vmdl"
-		"ModelScale"	"0.7"
+		"ModelScale"	"0.85"
 		"Level"	"2"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
@@ -94,22 +97,25 @@
 		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackAnimationPoint"	"0.30"
+		"AttackRate"				"1"
+		"AttackDamageMin"	"50"
+		"AttackDamageMax"	"70"
 		"AttackAcquisitionRange"	"500"
 		"AttackRange"	"128"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"100.0"
+		"BountyGoldMax"	"100.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"55"
 		"LumberCost"	"55"
 		// Movement
 		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"	"300"
 		"MovementTurnRate"	"2.00"
 		// Status
@@ -128,8 +134,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability1"	""
-		"Ability2"	""
+		"Ability1"	"ninja_hole"
+		"Ability2"	"true_gem"
 		"Ability3"	""
 		"Ability4"	""
 		"Ability5"	""
@@ -171,16 +177,16 @@
 		"AttackRange"	"128"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"100.0"
+		"BountyGoldMax"	"100.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"55"
 		"LumberCost"	"55"
 		// Movement
 		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
-		"MovementSpeed"	"300"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"200"
 		"MovementTurnRate"	"2.00"
 		// Status
 		// ----------------------------------------------------------------
@@ -190,8 +196,8 @@
 		"StatusStartingMana"	"200"
 		// Vision
 		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"700"
-		"VisionNighttimeRange"	"700"
+		"VisionDaytimeRange"	"500"
+		"VisionNighttimeRange"	"500"
 		// Team
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
@@ -199,7 +205,7 @@
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Ability1"	"for_dispear"
-		"Ability2"	""
+		"Ability2"	"for_magic_immune"
 		"Ability3"	""
 		"Ability4"	""
 		"Ability5"	""
@@ -306,8 +312,7 @@
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"	"61.0"
-		"AttackDamageMax"	"82.0"
+		
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.38"
 		"AttackAnimationPoint"	"0.30"
@@ -1791,7 +1796,7 @@
 	}
 
 	// 林卷 伏兵軍師
-	"forest_caster1"
+	"forest_xcaster1"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -1935,7 +1940,7 @@
 	}
 
 	// 林章 伏兵軍師
-	"forest_caster2"
+	"forest_xcaster2"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -2066,7 +2071,7 @@
 	}
 
 	// 孫子兵法殘冊 伏兵軍師
-	"forest_caster3"
+	"forest_xcaster3"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -2198,7 +2203,7 @@
 	}
 
 	// 全書 伏兵軍師
-	"forest_caster4"
+	"forest_xcaster4"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -2470,8 +2475,8 @@
 		"Ability2"	""
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"0"
-		"MagicalResistance"	"0"
+		"ArmorPhysical"	"30"
+		"MagicalResistance"	"30"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
@@ -3467,7 +3472,7 @@
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"33.0"
 		"BountyGoldMax"	"35.0"
-		"BountyXP"	"20"
+		"BountyXP"	"15"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -3545,7 +3550,7 @@
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"33.0"
 		"BountyGoldMax"	"35.0"
-		"BountyXP"	"20"
+		"BountyXP"	"15"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"0"
@@ -4722,81 +4727,6 @@
 		"BaseClass"	"npc_dota_creature"
 		// "Model"	"models/hero14/hero14.vmdl"
 	}
-	// 大本營
-	"com_soldiercamp_3"
-	{
-		// General
-		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_building"
-		// Add model
-		"Model"	"models/tent/newtent.vmdl"
-		"ModelScale"	"3"
-		"Level"	"0"
-		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
-		"HealthBarOffset"	"140"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference: Adt1
-		"Ability1"	"A0BM"
-		// Reference: A00W
-		"Ability2"	"check_Unified_is_dead"
-		// Armor
-		// ----------------------------------------------------------------
-		"ArmorPhysical"	"41.00"
-		"MagicalResistance"	"0"
-		// Attack
-		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"0"
-		"AttackAcquisitionRange"	"0"
-		// Bounty
-		// ----------------------------------------------------------------
-		"BountyGoldMin"	"50.0"
-		"BountyGoldMax"	"50.0"
-		"BountyXP"	"50"
-		// Gold and Lumber
-		// ----------------------------------------------------------------
-		"GoldCost"	"0"
-		"LumberCost"	"0"
-		// Movement
-		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
-		// Status
-		// ----------------------------------------------------------------
-		"StatusHealth"	"20000"
-		"StatusHealthRegen"	"40.00"
-		// Vision
-		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"1100"
-		"VisionNighttimeRange"	"1100"
-		// Team
-		// ----------------------------------------------------------------
-		"TeamName"	"DOTA_TEAM_NEUTRALS"
-		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
-		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
-		"ConsideredHero"	"0"
-		"HasInventory"	"0"
-		"RingRadius"	"400"
-		"MinimapIcon"	"minimap_tower90"
-		"MinimapIconSize"	"320"
-	}
-
 	// 聯合本陣
 	"com_soldiercamp_Unified"
 	{
@@ -4804,7 +4734,7 @@
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_building"
 		// Add model
-		"Model"	"models/tent/newtent.vmdl"
+		"Model"	"models/soildecamp/soildercamp.vmdl"
 		"ModelScale"	"3"
 		"Level"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
@@ -4867,7 +4797,7 @@
 		"Ability16"	""
 		"ConsideredHero"	"0"
 		"HasInventory"	"0"
-		"RingRadius"	"400"
+		"RingRadius"	"300"
 		"MinimapIcon"	"minimap_tower90"
 		"MinimapIconSize"	"320"
 	}
@@ -4879,7 +4809,7 @@
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_building"
 		// Add model
-		"Model"	"models/tent/newtent.vmdl"
+		"Model"	"models/soildecamp/soildercamp.vmdl"
 		"ModelScale"	"3"
 		"Level"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
@@ -4941,7 +4871,7 @@
 		"Ability15"	""
 		"ConsideredHero"	"0"
 		"HasInventory"	"0"
-		"RingRadius"	"400"
+		"RingRadius"	"300"
 		"MinimapIcon"	"minimap_tower90"
 		"MinimapIconSize"	"320"
 	}
@@ -6131,19 +6061,19 @@
  		// Abilities
  		//----------------------------------------------------------------
  		"Ability1"					"for_cp_position"			// Ability 1
- 		"Ability2"					""			// Ability 2
+ 		"Ability2"					"dead_give_item"			// Ability 2
  		"Ability3"					""			// Ability 3
  		"Ability4"					""			// Ability 4
 
  		// Armor
  		//----------------------------------------------------------------
  		"ArmorPhysical"				"30"			// Physical protection.
-
+ 		"MagicalResistance"			"75"
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"305"		// Damage range min.
- 		"AttackDamageMax"			"375"		// Damage range max.	
+ 		"AttackDamageMin"			"1000"		// Damage range min.
+ 		"AttackDamageMax"			"1200"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.

@@ -13,6 +13,7 @@
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
 		"RequiredLevel"	"0"
+		"LevelsBetweenUpgrades"	"2"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"22.0 17.0 12.00 7.00"
 		"AbilityManaCost"	"100"
@@ -214,7 +215,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.8"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.2"
 				}
 				"States"
 				{
@@ -337,7 +338,7 @@
 				"IsHidden"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10000"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"1000"
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
 				}
 				"States"

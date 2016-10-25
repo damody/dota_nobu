@@ -86,8 +86,7 @@ function Timers:start()
   Timers = self
   self.timers = {}
   
-  --local ent = Entities:CreateByClassname("info_target") -- Entities:FindByClassname(nil, 'CWorld')
-  local ent = SpawnEntityFromTableSynchronous("info_target", {targetname="timers_lua_thinker"})
+  local ent = Entities:CreateByClassname("info_target") -- Entities:FindByClassname(nil, 'CWorld')
   ent:SetThink("Think", self, "timers", TIMERS_THINK)
 end
 

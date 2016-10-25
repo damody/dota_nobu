@@ -30,17 +30,11 @@ function EventForAttackTarget( filterTable )
 	local f = filterTable
 	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability)
-	-- local rate = caster:GetAttackSpeed()
-	--print(tostring(rate))
-
-	--播放動畫
-    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
-    -- if rate < 1.00 then
-    -- 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK1,1.00)
-    -- else
-    -- 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK1,rate)
-    -- end
-    -- print("@@ Attack")
+	local target = EntIndexToHScript( f.entindex_target )
+	if caster:GetTeamNumber() == target:GetTeamNumber() then
+		return false
+	end
+	return true
 
 	 --    DeepPrintTable(filterTable)
 	 --    [   VScript                ]: {
@@ -201,6 +195,7 @@ function Nobu:eventfororder( filterTable )
 		-- [   VScript       ]:    issuer_player_id_const          	= 0 (number)
 		-- [   VScript       ]: }
 	elseif ordertype == DOTA_UNIT_ORDER_ATTACK_TARGET then --4
+		return EventForAttackTarget(filterTable)
 		-- [   VScript       ]: ordertype = 4
 		-- [   VScript       ]: {
 		-- [   VScript       ]:    entindex_ability                	= 0 (number)

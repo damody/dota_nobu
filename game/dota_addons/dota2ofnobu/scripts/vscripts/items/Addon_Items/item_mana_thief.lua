@@ -72,7 +72,7 @@ function mana_burn_function( keys )
 		if item ~= nil then
 			local itemName = item:GetName()
 			if (itemName == "item_mana_thief_1") then
-				item:StartCooldown(17)
+				item:StartCooldown(25)
 			end
 		end
 	end
@@ -128,7 +128,7 @@ function mana_burn_function2( keys )
 		if item ~= nil then
 			local itemName = item:GetName()
 			if (itemName == "item_mana_thief") then
-				item:StartCooldown(17)
+				item:StartCooldown(25)
 			end
 		end
 	end

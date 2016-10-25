@@ -4,6 +4,7 @@ LinkLuaModifier("modifier_cavalry", "heroes/modifier_cavalry.lua", LUA_MODIFIER_
 LinkLuaModifier("modifier_gunner", "heroes/modifier_gunner.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_soldier_Oda", "heroes/modifier_soldier_Oda.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_soldier_Unified", "heroes/modifier_soldier_Unified.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ninja", "heroes/modifier_ninja.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier( "modifier_gohomelua", "items/Addon_Items/war_magic.lua",LUA_MODIFIER_MOTION_NONE )
 modifier_gohomelua = class({})
@@ -75,14 +76,20 @@ function light( keys )
 			AddFOWViewer(caster:GetTeamNumber(), point, 100, 1.0, false)
 		end)
 	Timers:CreateTimer(1, function() 
-			AddFOWViewer(caster:GetTeamNumber(), point, 150, 1.0, false)
-		end)
-
-
-	Timers:CreateTimer(2, function() 
 			AddFOWViewer(caster:GetTeamNumber(), point, 600, 5.0, false)
 		end)
-	
+end
+
+function treecut( keys )
+	local caster = keys.caster
+	local point = keys.target_points[1] 
+	local ability = keys.ability
+	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動砍樹戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	else
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動砍樹戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+	end
+	GridNav:DestroyTreesAroundPoint(point, 500, false)
 end
 
 function slowattack( keys )
@@ -328,6 +335,7 @@ function to_war_magic_unit2(keys)
 		    end
 		    caster:AddAbility("war_magic_gohome"):SetLevel(1)
 		    caster:AddAbility("war_magic_findanything"):SetLevel(1)
+		    caster:AddAbility("war_magic_treecut"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
 		caster:SetAbsOrigin(pos)
@@ -824,9 +832,10 @@ function to_sell_ninja_unit(keys)
 		          caster:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("soldier_Unified_top"):SetLevel(1)
-		    caster:AddAbility("soldier_Unified_mid"):SetLevel(1)
-		    caster:AddAbility("soldier_Unified_bottom"):SetLevel(1)
+		    caster:AddAbility("call_ninja1"):SetLevel(1)
+		    caster:AddAbility("call_ninja2"):SetLevel(1)
+		    caster:AddAbility("call_ninja3"):SetLevel(1)
+		    caster:AddAbility("near_hero_then_can_use_ability"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
 		caster:SetAbsOrigin(pos)
@@ -855,6 +864,8 @@ function to_sell_ninja_unit(keys)
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_soldier_Unified", {})
+	caster:AddNewModifier(caster, ability, "modifier_ninja", {})
 end
+
+
 

@@ -84,7 +84,7 @@ local function chat_of_test(keys)
 		end
 
 	end
-	if s == "gg" then
+	if s == "-gg" then
 		GameRules:SetCustomGameEndDelay(1)
 		GameRules:SetCustomVictoryMessage("遊戲時間到了喔~")
 		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
@@ -98,7 +98,15 @@ local function chat_of_test(keys)
 	      return 1
 	    end)
 	end
-	if 1==1 then
+	sump = 0
+	for playerID = 0, 14 do
+		local id       = playerID
+  		local p        = PlayerResource:GetPlayer(id)
+    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
+		  sump = sump + 1
+		end
+	end
+	if 1==sump then
 		if s == "ss" then
 			caster:AddAbility("for_move1500"):SetLevel(1)
 		end
@@ -112,6 +120,11 @@ local function chat_of_test(keys)
 		if string.match(s,"gold") then
 			for i=0,9 do
 			PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
+			end
+		end
+		if string.match(s,"nogo") then
+			for i=0,9 do
+			PlayerResource:SetGold(i,0,false)--玩家ID需要減一
 			end
 		end
 		if s == "cd" then
@@ -187,21 +200,33 @@ local function chat_of_test(keys)
 		
 		
 		
-		if s == "Create1" then
-			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-			--u:SetOwner(p)                                         --設置u的擁有者
-			u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
-			--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		if s == "c1" then
+			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
 			end 
 		end
 		
-		if s == "Create2" then
-			local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-			--u:SetOwner(p)                                         --設置u的擁有者
-			u:SetControllableByPlayer(keys.playerid,true)               --設置u可以被玩家0操控
-			--u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+		if s == "c2" then
+			local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "c3" then
+			local  u = CreateUnitByName("npc_dota_hero_dragon_knight",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+		
+		if s == "c4" then
+			local  u = CreateUnitByName("npc_dota_hero_alchemist",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
 			end 

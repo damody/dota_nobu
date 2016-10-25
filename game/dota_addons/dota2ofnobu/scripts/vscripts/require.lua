@@ -33,6 +33,8 @@ loadModule ( 'library/events/eventforchat' )
 loadModule ( 'library/events/eventforkill' )
 loadModule ( 'library/common/dummy' ) --馬甲系統
 loadModule ( 'library/common/word' )  --漂浮字系統
+--loadModule ( 'libraries/selection')
+--loadModule ( 'libraries/gatherer')
 ------電腦系統-----
 loadModule ( 'computer_system/chubing' ) --出兵
 loadModule ( 'server' ) --6/24增加

@@ -174,6 +174,21 @@ function Nobu:Attachment_UpdateUnit(args)
   -- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "attachment_cosmetic_list", cosmetics )
 end
 
+function Nobu:FilterGold( filterTable )
+    local gold = filterTable["gold"]
+    local playerID = filterTable["player_id_const"]
+    local reason = filterTable["reason_const"]
+    -- Disable all hero kill gold
+    if reason == DOTA_ModifyGold_HeroKill then
+      if gold == 300 or gold == 450 then
+        return true
+      else
+        return false
+      end
+    end
+
+    return true
+end
 
 function Nobu:Init_Event_and_Filter_GameMode()
   local self =  _G.Nobu
@@ -193,7 +208,8 @@ function Nobu:Init_Event_and_Filter_GameMode()
   GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Nobu, "SetItemAddedToInventoryFilter"), Nobu)  --用来控制物品被放入物品栏时的行为
   GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Nobu, "SetModifyExperienceFilter"), Nobu)  --經驗值
   GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Nobu, "SetTrackingProjectileFilter"), Nobu)  --投射物
-
+  GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( Nobu, "FilterGold" ), self )
+  
   --【Evnet】
   Nobu.Event ={
   ListenToGameEvent('dota_player_gained_level', Nobu.LevelUP, self),

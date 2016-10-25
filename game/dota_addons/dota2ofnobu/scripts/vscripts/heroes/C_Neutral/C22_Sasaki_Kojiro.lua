@@ -32,6 +32,10 @@ function C22W_Damage( keys )
 		end
 	end
 end
+function C22W_Stop( keys )
+	local caster = keys.caster
+	caster:RemoveModifierByName("modifier_C22W")
+end
 
 
 function C22R_SE( keys )

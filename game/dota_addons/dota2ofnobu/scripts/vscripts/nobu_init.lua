@@ -55,14 +55,14 @@ function _G.Nobu:InitGameMode()
   GameMode:SetRemoveIllusionsOnDeath( true )--死亡會不會有陰影
   --GameMode:SetAnnouncerDisabled( true )
   GameMode:SetLoseGoldOnDeath( false )--死亡會不會掉錢
-  GameMode:SetCameraDistanceOverride( 1200 )--攝像頭距離
+  --GameMode:SetCameraDistanceOverride( 1200 )--攝像頭距離
   GameMode:SetUseCustomHeroLevels ( true )-- 允許自定義英雄等級
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
 
   if _G.nobu_debug then
     GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)--地圖視野
   end
-  GameMode:SetStashPurchasingDisabled( true )-- 是否关闭/开启储藏处购买功能
+  GameMode:SetStashPurchasingDisabled( false )-- 是否关闭/开启储藏处购买功能
   GameMode:SetAnnouncerDisabled(false) --禁止播音員
   GameMode:SetFountainConstantManaRegen(-1) --溫泉回魔(固定值)
   GameMode:SetFountainPercentageHealthRegen(-1) --溫泉回血(百分比)
@@ -95,9 +95,13 @@ function _G.Nobu:InitGameMode()
   MaxLevel = 30 --最大等級
   XpTable = {} --升級所需經驗
   local xp = 50
-  for i=1,MaxLevel do
+  XpTable[1]=0
+  for i=2,MaxLevel do
     XpTable[i]=xp
-    xp = xp + i*50
+    xp = xp + i*60
+    if i > 15 then
+      --xp = xp + i*20
+    end
   end
   GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(MaxLevel)
   GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XpTable)--類型為table

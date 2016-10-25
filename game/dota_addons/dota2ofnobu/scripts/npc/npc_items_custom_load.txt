@@ -628,6 +628,96 @@
 		}
 	}
 
+	// 法術戒指
+	"item_magic_ring"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_magic_ring"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"40"
+		"AbilityManaCost"	"200"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"%max_blink_range"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"3083"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"800"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_flash_ring.lua"
+				"Function"	"item_blink_datadriven_on_spell_start"
+				"Target"	"POINT"
+				"MaxBlinkRange"	"%max_blink_range"
+				"BlinkRangeClamp"	"%blink_range_clamp"
+				"BlinkRangeOnBroken"	"%blink_range_broken"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_QueenOfPain.Pick"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_magic_ring"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_BONUS" "200"				//魔
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_blink_range"	"425"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				// When attempting to blink a distance greater than max_blink_range, the caster blinks this distance in the targeted direction.
+				"blink_range_clamp"	"960"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blink_damage_cooldown"	"3"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blink_range_broken"	"300"
+			}
+		}
+	}
+
 	// 閃光輪
 	"item_flash_ring"
 	{
@@ -639,7 +729,7 @@
 		"FightRecapLevel"	"1"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"40"
-		"AbilityManaCost"	"205"
+		"AbilityManaCost"	"250"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"%max_blink_range"
@@ -675,6 +765,19 @@
 			"FireSound"
 			{
 				"EffectName"	"Hero_QueenOfPain.Pick"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_magic_ring"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_BONUS" "200"				//魔
+				}
 			}
 		}
 		// Special
@@ -713,7 +816,7 @@
 		"AbilityTextureName"	"item_perceive_wine"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"20"
+		"AbilityCooldown"	"30"
 		"AbilityManaCost"	"0"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"1600"
@@ -728,7 +831,7 @@
 		"ItemStackable"					"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"2"
+		"ItemInitialCharges"			"3"
 		"SideShop"						"1"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
@@ -1350,7 +1453,7 @@
 		"FightRecapLevel"	"1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"20"
+		"AbilityCooldown"	"10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120"
@@ -3997,7 +4100,7 @@
 		"FightRecapLevel"	"1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"55"
+		"AbilityCooldown"	"75"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"225"
@@ -4074,7 +4177,7 @@
 		"FightRecapLevel"	"1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"56"
+		"AbilityCooldown"	"40"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"300"
@@ -5025,7 +5128,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-50"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-66"	//魔抗
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-96"	//魔抗
 				}
 				"States"
 				{
@@ -6791,7 +6894,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1550"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -7617,6 +7720,21 @@
 		}
 	}
 
+	//吹雪護肩+1製作單
+	"item_recipe_fubuki_shoulders_1" 
+	{
+	    "ID" "3082"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "3000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_fubuki_shoulders_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_fubuki_shoulders"  //合成所需物品
+		}
+	}
+
 	//暗部長靴製作單
 	"item_recipe_dark_boots" 
 	{
@@ -7990,7 +8108,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"6150"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"precache"
 		{
@@ -8006,26 +8124,26 @@
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 					"Center"	"CASTER"
-					"Radius"	"500"
+					"Radius"	"700"
 				}
 				"Action"
 				{
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_D03"
+						"ModifierName"	"modifier_item_fire_scroll"
 					}
 				}
 			}
 			"RunScript"
 			{
-				"ScriptFile"	"items/Addon_Items/D03.lua"
-				"Function"	"item_D03"
+				"ScriptFile"	"items/Addon_Items/item_fire_scroll.lua"
+				"Function"	"Shock"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_item_D03"
+			"modifier_item_fire_scroll"
 			{
 				"Properties"
 				{
@@ -8096,7 +8214,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4650"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"precache"
 		{
 			"particle"	"particles/a34w/a34w.vpcf"
@@ -8215,7 +8333,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"OnSpellStart"
 		{
@@ -8295,7 +8413,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"6020"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 
 		"OnSpellStart"
 		{
@@ -8360,7 +8478,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_the_scream_of_spiders"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -8381,7 +8499,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"8250"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"OnEquip"
 		{
@@ -8454,6 +8572,51 @@
 		}
 	}
 
+	// 分靈之諾
+	"item_the_soul_of_power"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_the_soul_of_power"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"ID"	"3080"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"20000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemSellable" "0"
+		"ItemDroppable" "0"
+		"Modifiers"
+		{
+			"modifier_the_soul_of_power"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "20"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_soul_of_power.lua"
+						"Function"	"Shock"
+					}
+				}
+			}
+		}
+	}
+
 	// 凍雲
 	"item_kokumo"
 	{
@@ -8482,7 +8645,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4550"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 
 		"OnEquip"
@@ -8581,7 +8744,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"5300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -8646,7 +8809,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"5470"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		"OnEquip"
 		{
@@ -8760,7 +8923,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4650"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -8824,7 +8987,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2820"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -8914,7 +9077,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4250"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -9047,7 +9210,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1250"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"Modifiers"
 		{
@@ -9103,7 +9266,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1620"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -9192,7 +9355,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2950"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -9249,7 +9412,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3650"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -9306,7 +9469,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3650"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -9363,7 +9526,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4800"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnEquip"
 		{
 			"RunScript"
@@ -9435,7 +9598,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3050"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"Modifiers"
 		{
@@ -9508,7 +9671,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"Heal"
@@ -9579,7 +9742,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2700"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"OnSpellStart"
@@ -9646,7 +9809,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3150"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -9712,7 +9875,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -9790,7 +9953,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3200"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -9852,7 +10015,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -9887,6 +10050,68 @@
 		}
 	}
 
+	// 吹雪護肩+1
+	"item_fubuki_shoulders_1"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_fubuki_shoulders"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"19"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"200"
+
+		"ID"	"3081"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3850"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_fubuki_shoulders.lua"
+				"Function"	"Start2"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_fubuki_shoulders"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "30"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+				}
+			}
+		}
+	}
+
+
 	// 暗部長靴
 	"item_dark_boots"
 	{
@@ -9915,7 +10140,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -10008,7 +10233,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2350"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -10101,7 +10326,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2800"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -10195,7 +10420,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -10327,7 +10552,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"4100"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -10393,7 +10618,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1620"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -10458,7 +10683,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3350"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -10524,7 +10749,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnEquip"
 		{
 			"RunScript"
@@ -10598,7 +10823,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2100"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -10723,7 +10948,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
 		
 		"Modifiers"
@@ -10782,7 +11007,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -10869,7 +11094,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3050"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"TrackingProjectile"
@@ -10960,7 +11185,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2185"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		"precache"
 		{
@@ -11075,7 +11300,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"5150"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -11207,7 +11432,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"5285"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -11332,7 +11557,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"10935"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -11526,7 +11751,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1600"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		
 		"Modifiers"
@@ -11584,7 +11809,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3350"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 
 		"OnToggleOn"
 		{
@@ -11713,7 +11938,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -11793,7 +12018,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -11879,7 +12104,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3200"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -11992,7 +12217,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"950"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -12070,7 +12295,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"450"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		
 		"OnSpellStart"
@@ -12099,7 +12324,7 @@
 		"FightRecapLevel"	"1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"17"
+		"AbilityCooldown"	"10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"110"
@@ -12112,7 +12337,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 
 		"OnSpellStart"
@@ -12197,7 +12422,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"600"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		
 		"OnSpellStart"
@@ -12356,7 +12581,7 @@
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"6"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
 
 		
@@ -12453,7 +12678,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"1850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
 		
 		"OnSpellStart"
@@ -12521,7 +12746,7 @@
 	{
 	    "ID" "3075"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "10000"
+		"ItemCost" "6000"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_the_overflame_art_of_war_hyper"  //合成後物品
@@ -12692,6 +12917,20 @@
 		}
 	}
 
+	//閃光輪製作單
+	"item_recipe_flash_ring" 
+	{
+	    "ID" "3084"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1100"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_flash_ring"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_magic_ring"  //合成所需物品
+		}
+	}
 
 	// 暗部長靴
 	"item_dark_boots_1"
@@ -12721,7 +12960,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -12814,7 +13053,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2350"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -12907,7 +13146,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2800"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -13001,7 +13240,7 @@
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"2850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPEC TATORS"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
 			"RunScript"

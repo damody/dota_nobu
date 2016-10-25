@@ -34,34 +34,29 @@ function Nobu:OnHeroIngame( keys )
   if hero:IsHero() then
     local caster = hero
     local name = caster:GetUnitName()
-    if string.match(name, "ancient_apparition")  then
+    if string.match(name, "ancient_apparition")  then -- 竹中重治
       caster:FindAbilityByName("A04D"):SetLevel(1)
-    elseif string.match(name, "jakiro") then
+    elseif string.match(name, "jakiro") then  -- 佐佐木小次郎
       caster:FindAbilityByName("C22D"):SetLevel(1)
-    elseif string.match(name, "templar_assassin") then
+    elseif string.match(name, "templar_assassin") then -- 松姬
       caster:FindAbilityByName("C19D"):SetLevel(1)
-    elseif string.match(name, "centaur") then
+    elseif string.match(name, "centaur") then -- 本多忠勝
       if (caster:FindAbilityByName("A07D") ~= nil and caster:FindAbilityByName("A07D"):GetLevel() == 0) then
         caster:FindAbilityByName("A07D"):SetLevel(1)
       end
-    elseif string.match(name, "broodmother") then
+    elseif string.match(name, "broodmother") then -- 服部半藏
       if (caster:FindAbilityByName("A13D"):GetLevel() == 0) then
         caster:FindAbilityByName("A13D"):SetLevel(1)
       end
-    elseif string.match(name, "storm_spirit") then
+    elseif string.match(name, "storm_spirit") then -- 大谷吉繼
       caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
-    elseif string.match(name, "silencer") then
+    elseif string.match(name, "silencer") then -- 立花道雪
       -- 這隻角色天生會帶一個modifier我們需要砍掉他
-      Timers:CreateTimer(0.01, function ()
-        if (caster:GetModifierNameByIndex(0) ~= nil) then
-          caster:RemoveModifierByName(caster:GetModifierNameByIndex(0))
-        end
-        return nil
-      end)
+      caster:RemoveModifierByName("modifier_silencer_int_steal")
       caster:FindAbilityByName("C07D"):SetLevel(1)
-    elseif string.match(name, "windrunner") then
+    elseif string.match(name, "windrunner") then -- 阿市
       caster:FindAbilityByName("C17D"):SetLevel(1)
-    elseif string.match(name, "faceless_void") then--風魔
+    elseif string.match(name, "faceless_void") then --風魔
       if (caster:FindAbilityByName("B02D"):GetLevel() == 0) then
         caster:FindAbilityByName("B02D"):SetLevel(1)
       end

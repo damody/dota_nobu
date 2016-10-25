@@ -2,6 +2,206 @@
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 "DOTAAbilities"
 {
+	// 中忍 鑽地洞
+	"ninja_hole"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_116"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.4"
+		"AbilityCooldown"	"10"
+
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"ninja_hole_start"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_ninja_hole"
+				"Target" 		"CASTER"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"ninja_hole_end"
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_ninja_hole"
+				"Target" 		"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ninja_hole"
+			{
+				"Passive"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MODEL_SCALE" "10"
+				}
+			}
+		}
+	}	
+	
+	// 附近有英雄才能買東西
+	"near_hero_then_can_use_ability"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"1"
+
+		"Modifiers"
+		{
+			"Passive_true_gem"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"near_hero_then_can_use_ability"
+					}
+	            }
+			}
+		}
+	}
+
+	// 叫下忍
+	"call_ninja1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"0"
+		"AbilityGoldCost"	"300"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"call_ninja1"
+			}
+		}
+	}
+	// 叫中忍
+	"call_ninja2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"0"
+		"AbilityGoldCost"	"450"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"call_ninja2"
+			}
+		}
+	}
+	// 叫上忍
+	"call_ninja3"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"0"
+		"AbilityGoldCost"	"600"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"call_ninja3"
+			}
+		}
+	}
+	// 死了掉裝
+	"dead_give_item"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_21"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"60"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"20"
+		"AOERadius"		"900"
+
+		"Modifiers"
+		{
+			"modifier_dead_give_item"
+			{
+				"IsHidden"      "1"
+				"Passive"	"1"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"		"dead_give_item"
+						"item"	"item_the_soul_of_power"
+					}
+				}
+			}
+		}
+	}
+
 	//看隱形
 	"true_gem"
 	{
@@ -139,11 +339,53 @@
 		}
 	}
 
+	//忍者打建築物1.5倍痛
+	"ninja_attack"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_37"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"Modifiers"
+		{
+			"modifier_B01R"
+			{
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"dmg"	"%attack_damage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01R2"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_hero"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_building"	"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_unit"	"0"
+			}
+		}
+	}
+
 	//弓手打建築物兩倍痛
 	"archer_attack"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"cps_d01_3 (Copy)"
+		"AbilityTextureName"	"icon_128x128_64"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"Modifiers"
 		{
@@ -180,7 +422,34 @@
 			}
 		}
 	}
+	// 變身為賣忍者
+	"to_sell_ninja_unit"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"greevil_purification"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 
+		"Modifiers"
+		{
+			"modifier_magic_unit"
+			{
+				"Passive"	"1"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/war_magic.lua"
+						"Function"	"to_sell_ninja_unit"
+					}
+				}
+			}
+		}		
+	}
 	// 變身為戰法
 	"to_war_magic_unit"
 	{
@@ -1255,6 +1524,33 @@
 			{
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"light"
+				"Target"	"POINT"
+			}
+		}
+	}
+	// 砍樹戰法
+	"war_magic_treecut"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_113"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"10"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"10"
+		"AOERadius"	"500"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/war_magic.lua"
+				"Function"	"treecut"
 				"Target"	"POINT"
 			}
 		}
@@ -3240,5 +3536,86 @@
 		}
 	}
 
+	"human_gather"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityTextureName"            "human_gather"
+	    "MaxLevel"                      "3"
+
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_BUILDING | DOTA_UNIT_TARGET_HERO"
+	    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	    "CastFilterRejectCaster"        "1"
+
+	    // Gatherer Key Values
+	    "LumberGainInterval"            "1"
+	    "LumberPerInterval"             "1"
+	    "DamageTree"                    "1"
+	    "GoldGainInterval"              "0.5"
+	    "GoldPerInterval"               "10"
+	    "GoldMineInside"                "1"
+	    "DamageMine"                    "10"
+
+	    // Repair Key Values
+	    "CanAssistConstruction"         "1"
+
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "gold_capacity"         "10"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "lumber_capacity"       "10 20 30"
+	        }
+	    }
+
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"    "units/gather.lua"
+	            "Function"      "Gather"
+	        }
+
+	        "RunScript"
+	        {
+	            "ScriptFile"    "units/repair.lua"
+	            "Function"      "Repair"
+	        }
+	    }
+
+	    //"ScriptFile"  "units/human/peasant.lua"
+	    //"Function"        "HideBackpack"
+	}
+
+	"human_return_resources"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityTextureName"            "human_return_resources"
+	    "MaxLevel"                      "1"
+
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN" //Fake Toggle
+
+	    // When the ability is active, it means there are resources left to return (else it will be hidden)
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"    "units/gather.lua"
+	            "Function"      "ReturnResources"
+	        }
+	    }
+
+	    //ScriptFile"   "units/human/peasant.lua"
+	    //"Function"        "ShowBackpack"
+	    
+	    //"ScriptFile"  "units/human/peasant.lua"
+	    //"Function"        "HideBackpack"
+	}	
 }
 	

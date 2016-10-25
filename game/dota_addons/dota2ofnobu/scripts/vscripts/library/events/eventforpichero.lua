@@ -48,19 +48,19 @@ function Nobu:PickHero( keys )
   elseif string.match(name, "bristleback") then -- 今川義元
     Timers:CreateTimer(1, function ()
       if (caster:GetLevel() >= 8) then
-        hero:FindAbilityByName("B15D"):SetLevel(1)
+        caster:FindAbilityByName("B15D"):SetLevel(1)
         return nil
       end
       return 1
     end)
   elseif string.match(name, "silencer") then --立花道雪
     -- 這隻角色天生會帶一個modifier我們需要砍掉他
-    Timers:CreateTimer(0.1, function ()
-      if (caster:GetModifierNameByIndex(0) ~= nil) then
-        caster:RemoveModifierByName(caster:GetModifierNameByIndex(0))
+    caster:RemoveModifierByName("modifier_silencer_int_steal")
+    Timers:CreateTimer(1, function()
+      for i = 0, 3 do
+        print("killedUnit ".. caster:GetModifierNameByIndex(i))
       end
-      return nil
-    end)
+      end)
     caster:FindAbilityByName("C07D"):SetLevel(1)
   elseif string.match(name, "windrunner") then
     caster:FindAbilityByName("C17D"):SetLevel(1)

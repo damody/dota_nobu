@@ -573,9 +573,18 @@ function A13T_break( keys )
 	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
+	local dummy = CreateUnitByName( "npc_dummy", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
+			
+	Timers:CreateTimer(4,function()
+		dummy:ForceKill(true)
+		end)
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
-			AMHC:Damage(caster,it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if caster:IsAlive() then
+				AMHC:Damage(caster, it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage(dummy, it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 	end
 end

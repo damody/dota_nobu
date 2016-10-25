@@ -102,6 +102,15 @@
 				"Function"	"C22W_Damage"
 			}
 		}
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C22_Sasaki_Kojiro.lua"
+				"Function"	"C22W_Stop"
+			}
+		}
 		"OnChannelFinish"
 		{
 			"RemoveModifier"
@@ -147,10 +156,8 @@
 				}
 				"States"
 				{
-					// 	"MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"	// Don't use these state for a channeling ability.
+					"MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"	// Don't use these state for a channeling ability.
 					// 	"MODIFIER_STATE_OUT_OF_GAME"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
 				}

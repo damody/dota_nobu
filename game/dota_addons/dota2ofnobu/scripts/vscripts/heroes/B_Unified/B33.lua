@@ -125,9 +125,8 @@ function B33T( keys )
 	ParticleManager:SetParticleControl(particle,0,point)
 	local isstart = false
     Timers:CreateTimer(time, function()
-
-    	if not IsValidEntity(target) or  not target:IsAlive() or (isstart and not target:HasModifier("modifier_spawn_spiderlings_datadriven")) then
-    		dummy:RemoveModifierByName("modifier_tofly")
+    	if num > 10 then
+			dummy:RemoveModifierByName("modifier_tofly")
     		dummy:SetPhysicsVelocity(Vector(0, 0, -1000))
     		Timers:CreateTimer(0.5, function()
     			dummy:ForceKill( true )
@@ -137,11 +136,28 @@ function B33T( keys )
     		end
     		return nil
     	else
+    		num = num + time
+		end
+    	if not IsValidEntity(target) or  not target:IsAlive() then
+    		dummy:RemoveModifierByName("modifier_tofly")
+    		dummy:SetPhysicsVelocity(Vector(0, 0, -1000))
+    		Timers:CreateTimer(0.5, function()
+    			dummy:ForceKill( true )
+    			end)
+    		if target:HasModifier("modifier_spawn_spiderlings_datadriven") then
+    			target:RemoveModifierByName("modifier_spawn_spiderlings_datadriven")
+    		end
+    		return nil
+    	elseif (isstart and not target:HasModifier("modifier_spawn_spiderlings_datadriven")) then
+    		keys.ability:ApplyDataDrivenModifier(caster, target,"modifier_spawn_spiderlings_datadriven",nil)
+    		return time
+    	else
 	    	if isstart then
 	    		dummy:SetAbsOrigin(target:GetAbsOrigin())
 	    		ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP, Queue = false})
 	    		dummy:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK,1.0)
 	    		dummy:SetForwardVector(target:GetForwardVector())
+
 	    	else
 	    		dummy:StartGestureWithPlaybackRate(ACT_DOTA_RUN,2.5)
 	    		if CalcDistanceBetweenEntityOBB(dummy,target) < 50 then
@@ -153,8 +169,6 @@ function B33T( keys )
 				ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION, Position = target:GetAbsOrigin(), Queue = false}) 
 	    	end
 
-	    	print(tostring(num))	
-    		num = num + 1
     		return time
     	end
 

@@ -22,7 +22,11 @@ function Shock( keys )
 					caster.great_sword_of_tiger = nil
 				end)
 				AMHC:Damage(caster,target,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				ability:ApplyDataDrivenModifier(caster,target,"modifier_great_sword_of_tiger",{duration = 0.4})
+				if target:IsMagicImmune() then
+					ability:ApplyDataDrivenModifier(caster,target,"modifier_great_sword_of_tiger",{duration = 0.1})
+				else
+					ability:ApplyDataDrivenModifier(caster,target,"modifier_great_sword_of_tiger",{duration = 0.2})
+				end
 			end
 		end
 		

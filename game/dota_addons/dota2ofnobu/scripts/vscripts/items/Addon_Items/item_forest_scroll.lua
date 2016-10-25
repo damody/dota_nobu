@@ -73,7 +73,7 @@ end
 
 function dispear2( keys )
 	local caster = keys.caster
-	caster:AddNewModifier(caster,ability,"modifier_transparency")
+	caster:AddNewModifier(caster,ability,"modifier_transparency",{})
 end
 
 function nodispear( keys )
@@ -101,7 +101,7 @@ function Shock( keys )
 	ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_dead", {duration=30})
 	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	
-	local monster2 = CreateUnitByName("forest_caster1",caster:GetAbsOrigin()+caster:GetForwardVector()*100 ,false,caster,caster,caster:GetTeamNumber())
+	local monster2 = CreateUnitByName("forest_xcaster1",caster:GetAbsOrigin()+caster:GetForwardVector()*100 ,false,caster,caster,caster:GetTeamNumber())
 	monster2:SetControllableByPlayer(caster:GetPlayerID(),false)
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(1)
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(1)
@@ -121,7 +121,7 @@ function Shock2( keys )
 		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_dead", {duration=30})
 		caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	end
-	local monster2 = CreateUnitByName("forest_caster2",caster:GetAbsOrigin()+caster:GetForwardVector()*100 ,false,caster,caster,caster:GetTeamNumber())
+	local monster2 = CreateUnitByName("forest_xcaster2",caster:GetAbsOrigin()+caster:GetForwardVector()*100 ,false,caster,caster,caster:GetTeamNumber())
 	monster2:SetControllableByPlayer(caster:GetPlayerID(),false)
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(2)
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(2)
@@ -144,7 +144,7 @@ function Shock3( keys )
 		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_dead", {duration=30})
 		caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	end
-	local monster2 = CreateUnitByName("forest_caster3",caster:GetAbsOrigin()+caster:GetForwardVector()*200 ,false,caster,caster,caster:GetTeamNumber())
+	local monster2 = CreateUnitByName("forest_xcaster3",caster:GetAbsOrigin()+caster:GetForwardVector()*200 ,false,caster,caster,caster:GetTeamNumber())
 	monster2:SetControllableByPlayer(caster:GetPlayerID(),false)
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(3)
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(3)
@@ -166,7 +166,7 @@ function Shock4( keys )
 		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_dead", {duration=30})
 		caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	end
-	local monster2 = CreateUnitByName("forest_caster4",caster:GetAbsOrigin()+caster:GetForwardVector()*300 ,false,caster,caster,caster:GetTeamNumber())
+	local monster2 = CreateUnitByName("forest_xcaster4",caster:GetAbsOrigin()+caster:GetForwardVector()*300 ,false,caster,caster,caster:GetTeamNumber())
 	monster2:SetControllableByPlayer(caster:GetPlayerID(),false)
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(4)
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(4)

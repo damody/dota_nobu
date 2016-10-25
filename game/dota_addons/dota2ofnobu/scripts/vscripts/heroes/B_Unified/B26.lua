@@ -35,7 +35,7 @@ function B26D( keys )
 	   		FIND_ANY_ORDER, 
    			false)
 		for _,v in ipairs(group) do
-			ability:ApplyDataDrivenModifier(v,v,"modifier_B26W_2",nil)
+			ability:ApplyDataDrivenModifier(caster,v,"modifier_B26W_2",nil)
 		end
 		
 		local particle = ParticleManager:CreateParticle("particles/b26w2/b26w2.vpcf",PATTACH_POINT,caster)

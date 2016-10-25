@@ -18,7 +18,7 @@
 		"FightRecapLevel"	"1"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.3"
+		"AbilityCastPoint"	"0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"8"
@@ -86,14 +86,13 @@
 							}
 						}
 					}
-					"Delay"	"1"
 					"FireSound"
 					{
 						"Target"	"POINT"
 						"EffectName"	"Ability.StarfallImpact"
 					}
 				}
-				"Delay"	"(0.57 + %duration)"
+				"Delay"	"0.3"
 			}
 			"AbilityDuration"	"10.0 10.0 10.0 10.0"
 			// Damage.
@@ -239,7 +238,7 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%per_atk"
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%per_atk"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi"
 				}
 			}

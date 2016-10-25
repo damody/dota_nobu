@@ -125,9 +125,7 @@ function Trig_C21TActions( keys )
 
 	--timer
 	AMHC:Timer( "C21T_T1"..tostring(i),function( )
-
     	ti = ti - 1 
-
 		--重新抓點的位子
 		point = u:GetAbsOrigin()
 
@@ -151,17 +149,9 @@ function Trig_C21TActions( keys )
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 			return 0.1    
 		else 
-
-			--清理分身
-			for ii,unit in pairs(udg_C21T_Table[i]) do
-
-            	u:AddNewModifier(u,keys.ability,"modifier_phased",{duration=0.1})
-                --刪除無敵
-                u:RemoveModifierByName("modifier_C21T")
-
-            end
-
-
+			u:AddNewModifier(u,keys.ability,"modifier_phased",{duration=0.1})
+            --刪除無敵
+            u:RemoveModifierByName("modifier_C21T")
 			return nil 	
         end	
 
@@ -184,11 +174,20 @@ function Trig_C21EActions(keys)
 			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
 				--刪除無敵
                 u:RemoveModifierByName("modifier_C21E")
-                u:AddNewModifier(nil,nil,"modifier_phased",{duration=1})
+                u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.5})
                 u:FindAbilityByName("C21W"):SetActivated(true)
+
+                local order_target = 
+				{
+					UnitIndex = u:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = u2:entindex(), Queue = false
+				}
+		 
+		        ExecuteOrderFromTable(order_target)
 				return nil 
 			else
-				u:AddNewModifier(nil,nil,"modifier_phased",{duration=1})
+				u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.5})
 				point = u:GetAbsOrigin()
 				local  x = point.x
 				local  y = point.y
@@ -208,7 +207,7 @@ function Trig_C21EActions(keys)
 				{
 					UnitIndex = u:entindex(),
 					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-					TargetIndex = u2:entindex()
+					TargetIndex = u2:entindex(), Queue = false
 				}
 		 
 		        ExecuteOrderFromTable(order_target)

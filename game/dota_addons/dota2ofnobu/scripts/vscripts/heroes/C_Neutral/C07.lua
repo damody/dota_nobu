@@ -187,6 +187,11 @@ function C07_Effect( keys )
                               DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
                               FIND_CLOSEST,
                               false)
+	local dummyx = CreateUnitByName( "npc_dummy", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
+			
+	Timers:CreateTimer(1,function()
+		dummyx:ForceKill(true)
+		end)
 	for i,v in ipairs(group) do
 		if i == 1 then
 			StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
@@ -202,14 +207,18 @@ function C07_Effect( keys )
 		   	local group2 = FindUnitsInRadius(dummy:GetTeamNumber(),
                               point,
                               nil,
-                              1000,
+                              350,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,
                               DOTA_UNIT_TARGET_ALL,
                               DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
                               FIND_ANY_ORDER,
                               false)
 			for i2,v2 in ipairs(group2) do
-				AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				if caster:IsAlive() then
+					AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				else
+					AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 		end
 		if not v:IsBuilding() then

@@ -46,29 +46,9 @@ function Nobu:OnUnitKill( keys )
   	if string.match(name,"silencer") then
   		-- 這隻角色天生會帶一個modifier我們需要砍掉他
       -- 一般是立花道雪在用他
-      local count = 0
-  		Timers:CreateTimer(0.01, function ()
-  		  if (killedUnit:GetModifierNameByIndex(0) ~= nil) then
-    			killedUnit:RemoveModifierByName(killedUnit:GetModifierNameByIndex(0))
-  		  end
-        count = count + 1
-        if count > 3 then
-          return nil
-        end
-  		  return 0.01
-  		end)
+      
     elseif string.match(name,"slardar") then --幸村開大
-      local count = 0
-      Timers:CreateTimer(0.01, function ()
-        if (killedUnit:GetModifierNameByIndex(0) ~= nil) then
-          killedUnit:RemoveModifierByName(killedUnit:GetModifierNameByIndex(0))
-        end
-        count = count + 1
-        if count > 3 then
-          return nil
-        end
-        return 0.01
-      end)
+      killedUnit:RemoveModifierByName("modifier_B06T")
   	end
 
     if killedUnit:IsRealHero() then

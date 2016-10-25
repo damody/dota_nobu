@@ -209,6 +209,7 @@ function B32R( keys )
 	local group = {}
 	local radius = 650.00
 	if (caster.hasB32R == nil) then
+		caster.hasB32R = 1
 		caster:SetMana(caster:GetMana()+40)
 	 	local group = FindUnitsInRadius(
 					caster:GetTeamNumber(), point, caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -235,7 +236,6 @@ function B32R( keys )
 			}
 			ApplyDamage( damageTable )
 		end
-		caster.hasB32R = 1
 		Timers:CreateTimer( ability:GetLevelSpecialValueFor("B32R_CD",ability:GetLevel() - 1), function()
 					caster.hasB32R = nil
 					return nil

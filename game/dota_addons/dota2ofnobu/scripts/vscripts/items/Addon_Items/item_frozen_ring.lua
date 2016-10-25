@@ -27,7 +27,7 @@ function Shock( keys )
 		if item ~= nil then
 			local itemName = item:GetName()
 			if (itemName == "item_lightning_scroll") then
-				item:StartCooldown(17)
+				item:StartCooldown(10)
 			end
 		end
 	end

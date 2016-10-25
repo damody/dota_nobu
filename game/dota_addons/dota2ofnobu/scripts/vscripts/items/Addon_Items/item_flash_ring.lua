@@ -19,7 +19,7 @@ function item_blink_datadriven_on_spell_start(keys)
 
 	
 	if difference_vector:Length2D() > keys.MaxBlinkRange then  --Clamp the target point to the BlinkRangeClamp range in the same direction.
-	 	target_point = origin_point + (target_point - origin_point):Normalized() * keys.BlinkRangeClamp
+	 	target_point = origin_point + (target_point - origin_point):Normalized() * keys.MaxBlinkRange
 	end
 	
 	keys.caster:SetAbsOrigin(target_point)

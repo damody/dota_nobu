@@ -93,7 +93,7 @@ function Shock( keys )
 			if item ~= nil then
 				local itemName = item:GetName()
 				if (itemName == "item_frozen_ring") then
-					item:StartCooldown(20)
+					item:StartCooldown(10)
 				end
 			end
 		end

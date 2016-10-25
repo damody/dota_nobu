@@ -19,7 +19,8 @@ end
 
 function modifier_transparency:CheckState()
 	local state = {
-	[MODIFIER_STATE_INVISIBLE] = true
+	[MODIFIER_STATE_INVISIBLE] = true,
+	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	}
 	return state
 end

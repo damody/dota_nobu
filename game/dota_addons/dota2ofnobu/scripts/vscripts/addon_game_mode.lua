@@ -3,7 +3,7 @@ print ( '[Nobu-lua] ADDON INIT EXECUTED' )
 
 --【全局變量】
 _G.nobu_debug = false--IsInToolsMode() --是否在測試模式
-_G.nobu_server_b = false
+_G.nobu_server_b = true
 _G.nobu_chubing_b = true
 _G.Nobu_Test = class({})
 

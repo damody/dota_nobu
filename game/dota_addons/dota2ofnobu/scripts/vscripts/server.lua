@@ -40,7 +40,7 @@ function PlayerCanPlay(callback)
 end
 
 function GameCanPlay(callback)
-	for pID = 0, 9 do
+	for pID = 0, 13 do
     	local steamID = PlayerResource:GetSteamAccountID(pID)
     	if (steamID ~= 0) then
 	    	steamID = tostring(steamID)
@@ -65,7 +65,10 @@ function Nobu:OnPlayerConnectFull(keys)
 		_G.homeisme = true
 	end
     print("keys.index"..keys.index.." steamID "..steamID)
+    -- 中離檢查
+    --[[
     PlayerCanPlay(function()
+    		--讓該玩斷線
 	    	player:Destroy()
 	    end)
 
@@ -73,19 +76,21 @@ function Nobu:OnPlayerConnectFull(keys)
 			table.insert(cannotplay, sid)
 		end)
 	Timers:CreateTimer( 5, function()
+		--測到有跳狗結束遊戲
 		if (#cannotplay > 0) then
 		    GameRules:SetCustomGameEndDelay(1)
 		    GameRules:SetCustomVictoryMessage("有跳狗啦幹")
 		    GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end
 		end)
+	
 
 	for pID = 0, 9 do
 		_G.afkcount[pID] = 0
 	end
 	Timers:CreateTimer(20, function()
 		if (_G.homeisme) then
-			for pID = 0, 9 do
+			for pID = 0, 13 do
 				local steamID = PlayerResource:GetSteamAccountID(pID)
 				if steamID ~= 0 then
 					local res = PlayerResource:GetConnectionState(pID)
@@ -95,6 +100,7 @@ function Nobu:OnPlayerConnectFull(keys)
 					if (_G.afkcount[pID] > 10) then
 						_G.afkcount[pID] = -10000
 						GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
+
 						SendHTTPRequest("afk", "POST",
 						{
 						  id = tostring(steamID),
@@ -111,19 +117,7 @@ function Nobu:OnPlayerConnectFull(keys)
 			return nil
 		end
 	end)
-	Timers:CreateTimer(20, function()
-		if (_G.homeisme) then
-			SendHTTPRequest("keep_alive", "POST",
-				{
-					id = tostring(steamID),
-				},
-					function(result)
-						--print(result)
-					end
-				)
-		end
-		return 20
-	end)
+	]]
 end
 
 function Nobu:CloseRoom()
@@ -134,11 +128,10 @@ function Nobu:CloseRoom()
 		local player = PlayerInstanceFromIndex(i)
 		if (player ~= nil) then
 			local hero = player:GetAssignedHero()
-			DeepPrintTable(hero)
-			print("DeepPrintTable(hero)")
 			indata["id_"..i.."_k"] = tostring(hero:GetKills())
 			indata["id_"..i.."_d"] = tostring(hero:GetDeaths())
 			indata["id_"..i.."_a"] = tostring(hero:GetAssists())
+			indata["id_"..i.."_sk"] = tostring(hero.kill_count)
 		end
 	end
 

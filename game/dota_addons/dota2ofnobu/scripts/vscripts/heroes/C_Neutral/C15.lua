@@ -16,7 +16,7 @@ function new_C15W( keys )
 	local deg = 0
 	local distance = radius
 
-	Timers:CreateTimer(duration,function()
+	Timers:CreateTimer(0,function()
 		-- local dummy = CreateUnitByName("Dummy_Ver1",point2 ,false,nil,nil,caster:GetTeam())	
 		-- dummy:FindAbilityByName("majia"):SetLevel(1)
 		--StartSoundEventFromPosition("Ability.StarfallImpact",point_tem)

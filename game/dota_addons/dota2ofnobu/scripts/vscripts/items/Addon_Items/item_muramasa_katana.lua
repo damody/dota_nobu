@@ -33,7 +33,7 @@ function StealLife(keys)
 		end
 		--print("steal1 "..dmg*keys.StealPercent*0.02*(damageReduction))
 		--print("steal2 "..dmg*keys.StealPercent*0.02)
-		caster:Heal(dmg*keys.StealPercent*0.02*(damageReduction), ability)
+		caster:Heal(dmg*keys.StealPercent*0.01*(damageReduction), ability)
 	    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 	end
 end
@@ -56,7 +56,7 @@ function StealLife2(keys)
 			damageReduction = ((0.5 * targetArmor) / (1 + 0.5* targetArmor))
 		end
 		--print("steal "..dmg*keys.StealPercent*0.02*(1-damageReduction))
-		caster:Heal(dmg*keys.StealPercent*0.02*(1-damageReduction), ability)
+		caster:Heal(dmg*keys.StealPercent*0.01*(1-damageReduction), ability)
 	    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 	end
 end

@@ -31,10 +31,10 @@ function Shock( keys )
 	if (caster.kousetsusamonnji_count == nil) then
 		caster.kousetsusamonnji_count = 0
 	end
-	if (ran > 36) then
+	if (ran > 27) then
 		caster.kousetsusamonnji_count = caster.kousetsusamonnji_count + 1
 	end
-	if (caster.kousetsusamonnji_count > 3 or ran <= 36) then
+	if (caster.kousetsusamonnji_count > 4 or ran <= 36) then
 		caster.kousetsusamonnji_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 		caster:AddNewModifier(caster, skill, "kousetsusamonnji", { duration = 0.1 } )
