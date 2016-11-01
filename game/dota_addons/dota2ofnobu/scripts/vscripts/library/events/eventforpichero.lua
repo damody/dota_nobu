@@ -1,4 +1,44 @@
 
+heromap = {
+  npc_dota_hero_bristleback = "B15",
+  npc_dota_hero_earthshaker = "B24",
+  npc_dota_hero_brewmaster = "B26",
+  npc_dota_hero_silencer = "C07",
+  npc_dota_hero_sniper = "A17",
+  npc_dota_hero_beastmaster = "B34",
+  npc_dota_hero_huskar = "A16",
+
+  npc_dota_hero_mirana = "C15",
+  npc_dota_hero_antimage = "C10",
+  npc_dota_hero_crystal_maiden = "A34",
+  npc_dota_hero_storm_spirit = "A12",
+  
+  npc_dota_hero_troll_warlord = "A06",
+  npc_dota_hero_faceless_void = "B02",
+  npc_dota_hero_broodmother = "A13",
+
+  npc_dota_hero_invoker = "A28",
+  npc_dota_hero_omniknight = "A27",
+  npc_dota_hero_oracle = "A29",
+  npc_dota_hero_ancient_apparition = "A04",
+  npc_dota_hero_dragon_knight = "B32",
+  npc_dota_hero_drow_ranger = "B33",
+  
+  npc_dota_hero_nevermore = "B01",
+  npc_dota_hero_pugna = "B25",
+  npc_dota_hero_slardar = "B06",
+  npc_dota_hero_viper = "C01",
+  npc_dota_hero_windrunner = "C17",
+  npc_dota_hero_keeper_of_the_light = "B05",
+  npc_dota_hero_jakiro = "C22",
+  npc_dota_hero_alchemist = "C21",
+  npc_dota_hero_treant = "A25",
+  npc_dota_hero_templar_assassin = "C19",
+  npc_dota_hero_medusa = "A31",
+  npc_dota_hero_magnataur = "B08",
+  npc_dota_hero_centaur = "A07",
+}
+
 function Nobu:PickHero( keys )
   local id       = keys.player
   local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
@@ -16,10 +56,17 @@ function Nobu:PickHero( keys )
 
     --【金錢】
 
-
-
+  if _G.CountUsedAbility_Table == nil then
+    _G.CountUsedAbility_Table = {}
+  end
+  if _G.CountUsedAbility_Table[id] == nil then
+    _G.CountUsedAbility_Table[id] = {}
+  end
   --【英雄名稱判別】
   local name = caster:GetUnitName()
+  caster.version = "16"
+  caster.name = heromap[name]
+  
   if string.match(name, "ancient_apparition")  then
     caster:FindAbilityByName("A04D"):SetLevel(1)
   elseif string.match(name, "jakiro") then
@@ -39,6 +86,8 @@ function Nobu:PickHero( keys )
     GameRules: SendCustomMessage("武田勝賴玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "dragon_knight") then --上杉謙信
     GameRules: SendCustomMessage("上杉謙信玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+  elseif string.match(name, "slardar") then -- 真田幸村
+    GameRules: SendCustomMessage("真田幸村玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "broodmother") then --服部半藏
     caster:FindAbilityByName("A13D"):SetLevel(1)
   elseif string.match(name, "storm_spirit") then --大谷吉繼

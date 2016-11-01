@@ -103,22 +103,23 @@ function Nobu:OnHeroIngame( keys )
 
   if _G.nobu_server_b then
     if hero:IsHero() then
-      AddAFKTimer(hero)
-      hero.start_afk()
+      --AddAFKTimer(hero)
+      --hero.start_afk()
     end
   end
 end
 
 -- 統計英雄使用情況
 function Nobu:CountUsedAbility( keys )
-  if (_G.CountUsedAbility_Table[keys.PlayerID] == nil) then
-    _G.CountUsedAbility_Table[keys.PlayerID]  = {}
+  local keyid = keys.PlayerID + 1
+  if (_G.CountUsedAbility_Table[keyid] == nil) then
+    _G.CountUsedAbility_Table[keyid]  = {}
   end
-  if (_G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] == nil) then
-    _G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] = 1
+  if (_G.CountUsedAbility_Table[keyid][keys.abilityname] == nil) then
+    _G.CountUsedAbility_Table[keyid][keys.abilityname] = 1
   else
-    _G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] =
-      _G.CountUsedAbility_Table[keys.PlayerID][keys.abilityname] + 1
+    _G.CountUsedAbility_Table[keyid][keys.abilityname] =
+      _G.CountUsedAbility_Table[keyid][keys.abilityname] + 1
   end
   --DeepPrintTable(_G.CountUsedAbility_Table)
 end

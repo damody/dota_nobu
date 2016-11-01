@@ -176,22 +176,10 @@
 			"modifier_blur_datadriven"
 			{
 				"Passive"	"1"
-				"IsHidden"	"1"
-				"ThinkInterval"	"0.5"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%bonus_magic_def"
-				}
-				"States"	{}
-				"OnStateChanged"
-				{
-					"RunScript"
-					{
-						"Target"	"CASTER"
-						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15_Song_Ji.lua"
-						"Function"	"test"
-					}
 				}
 			}
 		}
@@ -221,6 +209,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCooldown"	"15"
 		"AbilityManaCost"	"80"
+		"AbilityCastRange"	"1000"
 		"OnSpellStart"
 		{
 			"RunScript"

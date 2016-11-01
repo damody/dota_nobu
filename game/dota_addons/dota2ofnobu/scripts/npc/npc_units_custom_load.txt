@@ -3444,7 +3444,7 @@
 		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/ashigaru/ashigaru_b.vmdl"
-		"ModelScale"	"0.8"
+		"ModelScale"	"0.9"
 		"Level"	"3"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"HealthBarOffset"	"130"
@@ -3521,7 +3521,7 @@
 		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/ashigaru/ashigaru.vmdl"
-		"ModelScale"	"0.8"
+		"ModelScale"	"0.9"
 		"Level"	"3"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"HealthBarOffset"	"130"
@@ -3960,7 +3960,7 @@
 		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/archer/archer.vmdl"
-		"ModelScale"	"0.8"
+		"ModelScale"	"0.9"
 		"Level"	"2"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"HealthBarOffset"	"100"
@@ -4034,7 +4034,7 @@
 		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/archer/archer.vmdl"
-		"ModelScale"	"0.8"
+		"ModelScale"	"0.9"
 		"Level"	"2"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"HealthBarOffset"	"100"
@@ -4244,7 +4244,7 @@
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
 
-	// 鐵砲兵
+	// 鐵炮兵
 	"com_gunner"
 	{
 		// General
@@ -4252,7 +4252,7 @@
 		"BaseClass"	"npc_dota_creep_lane"
 		// Add model
 		"Model"	"models/arquebusier/arquebusier.vmdl"
-		"ModelScale"	"0.8"
+		"ModelScale"	"0.9"
 		"Level"	"3"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"100"
@@ -4326,7 +4326,7 @@
 		"ProjectileModel"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
 	}
 
-	// 叫兵鐵砲兵
+	// 叫兵鐵炮兵
 	"com_gunner_D"
 	{
 		// General
@@ -6131,7 +6131,7 @@
  		// Abilities
  		//----------------------------------------------------------------
  		"Ability1"					"for_cp_position"			// Ability 1
- 		"Ability2"					""			// Ability 2
+ 		"Ability2"					"for_fly"			// Ability 2
  		"Ability3"					""			// Ability 3
  		"Ability4"					""			// Ability 4
 
@@ -6170,7 +6170,7 @@
  		// Status
  		//----------------------------------------------------------------
  		"StatusHealth"				"10600"		// Base health.
- 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusHealthRegen"			"30"		// Health regeneration rate.
  		"StatusMana"				"500"			// Base mana.
  		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 	

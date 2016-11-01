@@ -5,11 +5,12 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_d06_1"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"10"
-		"AbilityManaCost"	"50"
+		"AbilityManaCost"	"40 60 80 100"
+		"AOERadius"	"500"
 		"precache"
 		{
 			"particle"	"particles/b06w2/b06w2.vpcf"
@@ -23,7 +24,7 @@
 					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 					"Center"	"CASTER"
-					"Radius"	"300"
+					"Radius"	"500"
 				}
 				"Action"
 				{
@@ -41,6 +42,7 @@
 			{
 				"EffectName"	"particles/b06w2/b06w2.vpcf"
 				"EffectAttachType"	"follow_overhead"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Duration"	"12"
 				"IsBuff"	"1"
 				"Properties"
@@ -60,7 +62,74 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Attack_Bonus"	"20 30 40 50"
+				"Attack_Bonus"	"20 40 60 80"
+			}
+		}
+	}
+
+	// 真田幸村 真田勇士
+	"B06W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d06_1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"40 60 80 100"
+		"AOERadius"	"500"
+		"precache"
+		{
+			"particle"	"particles/b06w2/b06w2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_B06W"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B06W"
+			{
+				"EffectName"	"particles/b06w2/b06w2.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"20"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%Re_hp"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%Attack_Bonus"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Re_hp"	"10 20 30 40"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Attack_Bonus"	"40 50 60 70"
 			}
 		}
 	}
@@ -253,6 +322,98 @@
 		"AbilityDamage"	"100 180 260 340"
 	}
 
+	// 真田幸村 連牙炎突
+	"B06E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d06_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCooldown"	"11"
+		"AbilityManaCost"	"60 70 80 90"
+		"AbilityCastRange"	"250"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/jakiro/liquid_fire.vsnd"
+			"particle"	"particles/b06e2/b06e2.vpcf"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"	"particles/b06e3/b06e3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/b06e2/b06e2.vpcf"
+				"MoveSpeed"	"3000"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_2"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+				"Function"	"b06e_start"
+				"Target"	"TARGET"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_B06E"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B06E"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Duration"	"%Stun_Time"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Jakiro.LiquidFire"
+					}
+					"FireEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/b06e3/b06e3.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+					}
+				}
+				"IsDebuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Stun_Time"	"0.5 1 1.5 2"
+			}
+		}
+		"AbilityDamage"	"150 250 350 450"
+	}
+
 	// 真田幸村 心眼
 	"B06R"
 	{
@@ -337,6 +498,42 @@
 		}
 	}
 
+	// 真田幸村 心眼
+	"B06R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d06_3"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"precache"
+		{
+			"particle"	"particles/b06r/b06r.vpcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_B06R_miss"
+			{
+				"IsBuff"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%miss"
+				}
+				"Passive"	"1"
+				"IsHidden"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"miss"	"8 16 24 32"
+			}
+		}
+	}
+
 	// 真田幸村 日本第一武士
 	"B06T"
 	{
@@ -376,8 +573,9 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%Basic_Attack_Speed"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.9"
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack"
 				}
 				"Aura"	"modifier_B06T_2"
 				"Aura_Radius"	"99999"
@@ -448,6 +646,123 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"During"	"30 40 50"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack"	"40 50 60"
+			}
+		}
+	}
+
+	// 真田幸村 日本第一武士
+	"B06T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d06_4"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"AbilityCooldown"	"120"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"150"
+		"precache"
+		{
+			"particle"	"particles/b06t/b06t.vpcf"
+			"particle"	"particles/b06w2/b06w3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B06T"
+			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%Bonus_Health"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B06T"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"0.9"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"100"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%defend"
+				}
+				"Passive"	"0"
+				"Duration"	"%During"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_attack1"
+							"TARGET"	"attach_overhead"
+						}
+						"EffectName"	"particles/b06t/b06t.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"FireSound"	{}
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+						"Function"	"B06T_SE"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B06T"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Basic_Attack_Speed"	"0.9"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_Health"	"500 750 1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"40 45 50"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack"	"20 30 40"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"defend"	"10 15 20"
 			}
 		}
 	}	

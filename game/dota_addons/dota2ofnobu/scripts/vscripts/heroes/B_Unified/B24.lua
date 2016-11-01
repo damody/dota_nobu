@@ -20,6 +20,8 @@ function B24T( keys )
 	local particle=ParticleManager:CreateParticle("particles/b24t3/b24t3.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle,0,point)
 
+	ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, caster)
+
 	--【Group_radius】
 	local radius = 800
    	local group = FindUnitsInRadius(
@@ -102,7 +104,7 @@ function B24W( keys )
 	local ability = keys.ability
 	local mouse = ability:GetCursorPosition()
 	local dummy	= CreateUnitByName("B24W_DUMMY", mouse, true, nil, nil, caster:GetTeamNumber())
-	
+	dummy:SetOwner(caster)
 	--local player = caster:GetPlayerID()
 	local point = caster:GetAbsOrigin()
 	local point2 = dummy:GetAbsOrigin() 

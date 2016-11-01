@@ -49,6 +49,7 @@ function near_hero_then_can_use_ability(keys)
 
     for _,it in pairs(group) do
     	caster.buyer = it
+    	caster:SetOwner(caster.buyer)
     	--print("caster.buyer "..it:GetUnitName())
     	break
     end

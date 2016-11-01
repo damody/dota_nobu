@@ -1,6 +1,5 @@
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
-	_class = "CVModel"
 	m_meshList = 
 	{
 		m_meshList = 
@@ -13,6 +12,7 @@
 				m_bLegacySkinParentedTransforms = false
 				m_bExpensiveTangents = false
 				m_bHighPrecisionTexCoords = false
+				m_bPerVertexCurvature = false
 				m_bIgnoreCloth = false
 				m_bGetSkinningFromLod0 = false
 				m_pMorphInfo = null
@@ -43,13 +43,11 @@
 	m_pModelInfo = null
 	m_pBoneFlagList = 
 	{
-		_class = "CVBoneFlagListReference"
 		m_pObject = null
 	}
 	m_pHitBoxSetLists = 
 	[
 		{
-			_class = "CVhitBoxSetListReference"
 			m_pObject = 
 			{
 				m_HitBoxSets = 
@@ -63,8 +61,8 @@
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
 								m_sBoneName = "Bone_Chest"
-								m_vMinBounds = [ -23.457253, -39.965675, -10.659206 ]
-								m_vMaxBounds = [ 25.312042, 52.81292, 122.488403 ]
+								m_vMinBounds = [ -62.250805, -61.517128, -69.96904 ]
+								m_vMaxBounds = [ 50.20179, 70.946365, 64.75145 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},
@@ -268,23 +266,19 @@
 	m_pAttachmentLists = [  ]
 	m_pAnimGroup = 
 	{
-		_class = "CVanimGroupReference"
 		m_pObject = 
 		{
 			m_Name = ""
 			m_pReferenceSkeleton = 
 			{
-				_class = "CVReferenceSkeletonReference"
 				m_pObject = null
 			}
 			m_pBoneFlagList = 
 			{
-				_class = "CVBoneFlagListReference"
 				m_pObject = null
 			}
 			m_pSeqGroup = 
 			{
-				_class = "CVseqGroupReference"
 				m_pObject = null
 			}
 			m_pAnimGroups = [  ]
@@ -755,27 +749,22 @@
 	}
 	m_pMaterialGroupList = 
 	{
-		_class = "CVNodeMaterialGroupListReference"
 		m_pObject = null
 	}
 	m_pMeshGroupList = 
 	{
-		_class = "CVMeshGroupListReference"
 		m_pObject = null
 	}
 	m_pLodGroupList = 
 	{
-		_class = "CVLODGroupListReference"
 		m_pObject = null
 	}
 	m_pPropBreakableList = 
 	{
-		_class = "CVpropBreakableListReference"
 		m_pObject = null
 	}
 	m_pPropDataList = 
 	{
-		_class = "CVpropDataListReference"
 		m_pObject = null
 	}
 	m_pConstraintLists = [  ]
@@ -806,6 +795,7 @@
 	m_flFbxScale = 1.0
 	m_flQCScale = 1.0
 	m_vOrigin = [ 0.0, 0.0, 0.0 ]
+	m_nLoadDmxAnimVersion = 0
 	m_pPsfList = null
 	m_keyValueText = ""
 	m_bStaticProp = false

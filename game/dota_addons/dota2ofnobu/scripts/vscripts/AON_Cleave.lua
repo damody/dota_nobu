@@ -1,3 +1,18 @@
+function AON_Cleave_B32x(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local dmg = keys.dmg
+	local per_atk = 0
+	local targetArmor = target:GetPhysicalArmorValue()
+	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
+	--local dmg = dmg / (1 - damageReduction)
+
+	AMHC:Damage( caster,target,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+end
+
 function AON_Cleave_B32(keys)
 	--【Basic】
 	local caster = keys.caster
@@ -15,7 +30,7 @@ function AON_Cleave_B32(keys)
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 	for _, it in pairs(group) do
-		AMHC:Damage( caster,it,keys.dmg*0.25,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+		AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 	end
 
 end

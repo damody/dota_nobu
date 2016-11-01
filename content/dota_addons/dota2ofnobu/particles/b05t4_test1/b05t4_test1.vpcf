@@ -3,68 +3,62 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 1
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_flStartFadeSize = 0.575000
-			m_flEndFadeSize = 0.650000
-			m_flMaxSize = 0.750000
-			m_flOverbrightFactor = 2.000000
-			m_flAddSelfAmount = 1.000000
+			m_flStartFadeSize = 0.575
+			m_flEndFadeSize = 0.65
+			m_flMaxSize = 0.75
+			m_flOverbrightFactor = 2.0
+			m_flAddSelfAmount = 1.0
 			m_bSaturateColorPreAlphaBlend = false
 			m_hTexture = resource:"materials/particle/fire_particle_2/fire_particle_2.vtex"
 			m_bAnimateInFPS = true
-			m_flAnimationRate = 30.000000
+			m_flAnimationRate = 30.0
+		},
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_flFrequencyScale = 10.0
+			m_flAmplitudeScale = 10.0
+			m_nFilterCP = -1
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.150000
+			m_fDrag = 0.15
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				78,
-				68,
-				68,
-				255,
-			]
+			m_ColorFade = [ 78, 68, 68, 255 ]
 		},
 		{
 			_class = "C_OP_Decay"
-			m_flOpStartFadeInTime = 5.000000
-			m_flOpEndFadeInTime = 5.000000
+			m_flOpStartFadeInTime = 5.0
+			m_flOpEndFadeInTime = 5.0
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 1.000000
+			m_flFadeOutTime = 1.0
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 0.500000
+			m_flEndScale = 0.5
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax =
-			[
-				242,
-				234,
-				226,
-				255,
-			]
+			m_ColorMax = [ 242, 234, 226, 255 ]
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 72.000000
-			m_flRadiusMin = 64.000000
+			m_flRadiusMax = 72.0
+			m_flRadiusMin = 64.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -75,59 +69,39 @@
 		},
 		{
 			_class = "C_INIT_RandomRotation"
-			m_flDegreesMax = 0.000000
-			m_flDegreesMin = 360.000000
+			m_flDegreesMax = 0.0
+			m_flDegreesMin = 360.0
 		},
 		{
 			_class = "C_INIT_RingWave"
 			m_bEvenDistribution = true
-			m_flInitialSpeedMax = 1400.000000
-			m_flInitialSpeedMin = 1300.000000
-			m_flInitialRadius = 32.000000
+			m_flInitialSpeedMax = 1400.0
+			m_flInitialSpeedMin = 1300.0
+			m_flInitialRadius = 32.0
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMax =
-			[
-				24.000000,
-				24.000000,
-				200.000000,
-			]
-			m_vecOutputMin =
-			[
-				-24.000000,
-				-24.000000,
-				100.000000,
-			]
+			m_vecOutputMax = [ 24.0, 24.0, 200.0 ]
+			m_vecOutputMin = [ -24.0, -24.0, 100.0 ]
 		},
 	]
-	m_ForceGenerators =
+	m_ForceGenerators = 
 	[
 		{
 			_class = "C_OP_RandomForce"
-			m_MaxForce =
-			[
-				1200.000000,
-				1200.000000,
-				200.000000,
-			]
-			m_MinForce =
-			[
-				-1200.000000,
-				-1200.000000,
-				-200.000000,
-			]
+			m_MaxForce = [ 1200.0, 1200.0, 200.0 ]
+			m_MinForce = [ -1200.0, -1200.0, -200.0 ]
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
-			m_flDelay = 0.250000
+			m_flDelay = 0.25
 			m_ChildRef = resource:"particles/b05t4_test1/b05t4_test1_a.vpcf"
 			m_bDisableChild = true
 		},
 		{
-			m_flDelay = 0.135000
+			m_flDelay = 0.135
 			m_ChildRef = resource:"particles/b05t4_test1/b05t4_test1_b.vpcf"
 			m_bDisableChild = true
 		},
@@ -141,17 +115,15 @@
 		},
 		{
 			m_ChildRef = resource:"particles/b05t4_test1/b05t4_test1_e.vpcf"
-			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/b05t4_test1/b05t4_test1_f.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/b05t4_test1/b05t4_test1_g.vpcf"
-			m_bDisableChild = true
 		},
 		{
-			m_flDelay = 0.500000
+			m_flDelay = 0.5
 			m_ChildRef = resource:"particles/b05t4_test1/b05t4_test1_h.vpcf"
 			m_bDisableChild = true
 		},
@@ -201,7 +173,7 @@
 			m_bDisableChild = true
 		},
 		{
-			m_flDelay = 1.000000
+			m_flDelay = 1.0
 			m_ChildRef = resource:"particles/b05t4_test1/b05t4_test1_u.vpcf"
 			m_bDisableChild = true
 		},
@@ -218,5 +190,5 @@
 			m_bDisableChild = true
 		},
 	]
-	m_flCullRadius = 225.000000
+	m_flCullRadius = 225.0
 }

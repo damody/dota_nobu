@@ -15,32 +15,39 @@ function B02W( keys )
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
+	illusion:SetPlayerID(caster:GetPlayerID())
 	if illusion:IsHero() then
-		illusion:SetPlayerID(caster:GetPlayerID())
+		
 
 		-- Level Up the unit to the casters level
-		local casterLevel = caster:GetLevel()
+		local casterLevel = target:GetLevel()
 		for i=1,casterLevel-1 do
 			illusion:HeroLevelUp(false)
 		end	
 		-- Set the skill points to 0 and learn the skills of the caster
-		illusion:SetAbilityPoints(0)	
+		illusion:SetAbilityPoints(0)
 	end
 	illusion:SetControllableByPlayer(player, true)
 	
 
 	-- Set the skill points to 0 and learn the skills of the caster
 	for abilitySlot=0,15 do
-		local ability = target:GetAbilityByIndex(abilitySlot)
+		local ability = illusion:GetAbilityByIndex(abilitySlot)
 		if ability ~= nil then 
 			local abilityLevel = ability:GetLevel()
 			local abilityName = ability:GetAbilityName()
 			local illusionAbility = illusion:FindAbilityByName(abilityName)
 			if (illusionAbility ~= nil) then
-				illusionAbility:SetLevel(abilityLevel)
-			else
-				illusionAbility:AddAbility(abilityName):SetLevel(abilityLevel)
+				illusion:RemoveAbility(abilityName)
 			end
+		end
+	end
+	for abilitySlot=0,15 do
+		local ability = target:GetAbilityByIndex(abilitySlot)
+		if ability ~= nil then 
+			local abilityLevel = ability:GetLevel()
+			local abilityName = ability:GetAbilityName()
+			illusion:AddAbility(abilityName):SetLevel(abilityLevel)
 		end
 	end
 
@@ -54,17 +61,18 @@ function B02W( keys )
 		end
 	end
 
+	illusion:MakeIllusion()
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 	illusion:AddNewModifier(target, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	--illusion:SetRenderColor(0,0,200)
-	illusion:MakeIllusion()
+	
 
 	--【KV】
 	illusion:SetForwardVector(target:GetForwardVector())
-
+	illusion:SetControllableByPlayer(caster:GetPlayerID(), true)
 	--【Player】
 	-- PlayerResource:SetOverrideSelectionEntity(player, illusion)
 	-- PlayerResource:SetOverrideSelectionEntity(player, caster)

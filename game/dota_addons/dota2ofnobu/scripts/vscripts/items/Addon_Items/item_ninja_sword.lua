@@ -21,6 +21,7 @@ function modifier_transparency:CheckState()
 	local state = {
 	[MODIFIER_STATE_INVISIBLE] = true,
 	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true
 	}
 	return state
 end

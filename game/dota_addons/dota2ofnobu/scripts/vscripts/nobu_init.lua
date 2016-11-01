@@ -55,7 +55,7 @@ function _G.Nobu:InitGameMode()
   GameMode:SetRemoveIllusionsOnDeath( true )--死亡會不會有陰影
   --GameMode:SetAnnouncerDisabled( true )
   GameMode:SetLoseGoldOnDeath( false )--死亡會不會掉錢
-  --GameMode:SetCameraDistanceOverride( 1200 )--攝像頭距離
+  GameMode:SetCameraDistanceOverride( 1200 )--攝像頭距離
   GameMode:SetUseCustomHeroLevels ( true )-- 允許自定義英雄等級
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
 
@@ -94,7 +94,7 @@ function _G.Nobu:InitGameMode()
   -- --【經驗值設定】
   MaxLevel = 30 --最大等級
   XpTable = {} --升級所需經驗
-  local xp = 50
+  local xp = 80
   XpTable[1]=0
   for i=2,MaxLevel do
     XpTable[i]=xp

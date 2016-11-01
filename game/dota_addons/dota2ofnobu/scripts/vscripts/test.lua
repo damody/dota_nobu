@@ -320,17 +320,6 @@ function test_1()
 	end
 end
 
-
-function Nobu_Test:PickHero(keys)
-  local id       = keys.player
-  local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-  local caster     = p: GetAssignedHero()
-  local point    = caster:GetAbsOrigin()
-  local owner = caster:GetPlayerOwner()
-  --金錢
-
-end
-
 function Test_main(self)
 
 	--【自動系統】
@@ -359,7 +348,6 @@ function Test_main(self)
 
 
   -- ListenToGameEvent('dota_player_gained_level', Nobu_Test.LevelUP, self),
-  ListenToGameEvent("dota_player_pick_hero",Nobu_Test.PickHero, self),
   -- ListenToGameEvent('npc_spawned', Nobu_Test.OnHeroIngame, self)  ,
   -- ListenToGameEvent('dota_player_used_ability', Nobu_Test.CountUsedAbility, self)  ,
   -- ListenToGameEvent("entity_killed", Nobu_Test.OnUnitKill, self ),

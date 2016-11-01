@@ -87,6 +87,7 @@ function Shock( keys )
 		--target:StopSound("ITEM_D09.sound")
 	end)
 	--跟凍牙輪共用CD
+	--[[
 	if math.abs(damage - 350) < 1 then
 		for itemSlot=0,5 do
 			local item = caster:GetItemInSlot(itemSlot)
@@ -98,6 +99,7 @@ function Shock( keys )
 			end
 		end
 	end
+	]]
 end
 
 

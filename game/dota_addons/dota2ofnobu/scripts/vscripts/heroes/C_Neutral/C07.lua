@@ -130,10 +130,11 @@ function C07T( keys )
 	local height = 0
 	local distance = 100
 	local life_time = ability:GetLevelSpecialValueFor("duration",level)
-
+	AddFOWViewer(caster:GetTeamNumber(), point, 1400, life_time, false)
 	local dummy = CreateUnitByName("Dummy_Ver1",point ,false,nil,nil,caster:GetTeam())
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
 	dummy:FindAbilityByName("majia"):SetLevel(1)
+	dummy:SetOwner(caster)
 
 	--debug
     local group = {}
@@ -181,23 +182,27 @@ function C07_Effect( keys )
 	local group = FindUnitsInRadius(dummy:GetTeamNumber(),
                               point,
                               nil,
-                              1000,
+                              1400,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,
                               DOTA_UNIT_TARGET_ALL,
                               DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
                               FIND_CLOSEST,
                               false)
 	local dummyx = CreateUnitByName( "npc_dummy", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
-			
+	dummyx:SetOwner(caster)
 	Timers:CreateTimer(1,function()
 		dummyx:ForceKill(true)
 		end)
+
 	for i,v in ipairs(group) do
 		if i == 1 then
 			StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
 			StartSoundEvent( "Hero_Leshrac.Lightning_Storm", v )
 
 			point2 = v:GetAbsOrigin()
+			if caster:IsAlive() then
+				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, caster)
+			end
 			local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN , v)
 			-- Raise 1000 if you increase the camera height above 1000
 			ParticleManager:SetParticleControl(particle, 0, point + Vector(0,0,height))
@@ -205,7 +210,7 @@ function C07_Effect( keys )
 			ParticleManager:SetParticleControl(particle, 2, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 
 		   	local group2 = FindUnitsInRadius(dummy:GetTeamNumber(),
-                              point,
+                              point2,
                               nil,
                               350,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,

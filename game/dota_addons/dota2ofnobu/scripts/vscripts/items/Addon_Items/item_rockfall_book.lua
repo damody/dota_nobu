@@ -14,7 +14,7 @@ function Shock( keys )
 		local rock_effect = ParticleManager:CreateParticle("particles/item/item_rockfall_book.vpcf", PATTACH_ABSORIGIN, keys.caster)
 		ParticleManager:SetParticleControl(rock_effect, 0, point)
 	end)
-
+	AddFOWViewer(caster:GetTeamNumber(), point, 400, 3.0, false)
 	local SEARCH_RADIUS = 300
 	GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),

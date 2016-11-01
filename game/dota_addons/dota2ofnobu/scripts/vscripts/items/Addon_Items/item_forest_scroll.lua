@@ -104,7 +104,6 @@ function Shock( keys )
 	local monster2 = CreateUnitByName("forest_xcaster1",caster:GetAbsOrigin()+caster:GetForwardVector()*100 ,false,caster,caster,caster:GetTeamNumber())
 	monster2:SetControllableByPlayer(caster:GetPlayerID(),false)
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(1)
-	monster2:FindAbilityByName("forest_caster_E"):SetLevel(1)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
 	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_dead", {duration=30})
 end

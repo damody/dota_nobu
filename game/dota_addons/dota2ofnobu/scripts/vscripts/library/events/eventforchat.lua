@@ -2,6 +2,17 @@
 BUG
 	O大廳裡面也可以捕捉到，這時候caster值為nil
 ]]
+local inspect = require("inspect")
+
+function SendHTTPRequest(path, method, values, callback)
+	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
+	for key, value in pairs(values) do
+		req:SetHTTPRequestGetOrPostParameter(key, value)
+	end
+	req:Send(function(result)
+		callback(result.Body)
+	end)
+end
 
 local function chat_of_test(keys)
 	print("[Nobu-lua] Test")
@@ -14,7 +25,6 @@ local function chat_of_test(keys)
 
 	--local id    = keys.player --BUG:在講話事件裡，讀取不到玩家，是整數。
 	local s   	   = keys.text
-	local id  	   = 1 --keys.userid --BUG:會1.2的調換，不知道為甚麼
 	local p 	     = PlayerResource:GetPlayer(keys.playerid)--可以用索引轉換玩家方式，來捕捉玩家
 	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄
 	local point    = caster:GetAbsOrigin()
@@ -23,6 +33,12 @@ local function chat_of_test(keys)
 	-- 	local steamID = PlayerResource:GetSteamAccountID(pID)
 	-- 	GameRules: SendCustomMessage(tostring(steamID),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 	-- end
+	if _G.CountUsedAbility_Table == nil then
+		_G.CountUsedAbility_Table = {}
+	end
+	if _G.CountUsedAbility_Table[keys.playerid + 1] == nil then
+		_G.CountUsedAbility_Table[keys.playerid + 1] = {}
+	end
 	--舊版模式
 	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
 		caster.isold = true
@@ -61,6 +77,16 @@ local function chat_of_test(keys)
 			caster:AddAbility("B01E")
 			caster:AddAbility("B01R_old")
 			caster:AddAbility("B01T")
+		elseif string.match(caster:GetUnitName(), "slardar") then -- 真田幸村
+			caster:RemoveAbility("B06W")
+			caster:RemoveAbility("B06E")
+			caster:RemoveAbility("B06R")
+			caster:RemoveAbility("B06T")
+
+			caster:AddAbility("B06W_old")
+			caster:AddAbility("B06E_old")
+			caster:AddAbility("B06R_old")
+			caster:AddAbility("B06T_old")
 		elseif string.match(caster:GetUnitName(), "beastmaster") then -- 武田勝賴
 			caster:RemoveAbility("B34E")
 			caster:RemoveAbility("B34R")
@@ -82,13 +108,9 @@ local function chat_of_test(keys)
 			caster:AddAbility("B32D_old"):SetLevel(1)
 			caster:AddAbility("B32T_old")
 		end
-
+		caster.version = "11"
 	end
-	if s == "-gg" then
-		GameRules:SetCustomGameEndDelay(1)
-		GameRules:SetCustomVictoryMessage("遊戲時間到了喔~")
-		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-	end
+	
 	if string.match(s,"cam") then
 		local dis = tonumber(string.match(s, '%d+'))
 		GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
@@ -107,6 +129,11 @@ local function chat_of_test(keys)
 		end
 	end
 	if 1==sump then
+		if s == "-gg" then
+			GameRules:SetCustomGameEndDelay(1)
+			GameRules:SetCustomVictoryMessage("遊戲時間到了喔~")
+			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+		end
 		if s == "ss" then
 			caster:AddAbility("for_move1500"):SetLevel(1)
 		end
@@ -154,18 +181,35 @@ local function chat_of_test(keys)
 				return nil
 			end)
 		end
-		if string.match(s,"kk") then
-			local sumkill = 0
-			for playerID = 0, 14 do
-	    		local id       = playerID
-		  		local p        = PlayerResource:GetPlayer(id)
-		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
-				  local hero     = p: GetAssignedHero()
-				  sumkill = sumkill + hero.kill_count
+
+		if s == "supercd" then
+			--【Timer】
+			Timers:CreateTimer(0.1, function()
+				caster:SetMana(caster:GetMaxMana() )
+				--caster:SetHealth(caster:GetMaxHealth())
+
+				-- Reset cooldown for abilities that is not rearm
+				for i = 0, caster:GetAbilityCount() - 1 do
+					local ability = caster:GetAbilityByIndex( i )
+					if ability  then
+						ability:EndCooldown()
+					end
 				end
-	    	end
-	    	print("sumkill "..sumkill)
-	    end
+
+				-- Put item exemption in here
+				local exempt_table = {}
+
+				-- Reset cooldown for items
+				for i = 0, 5 do
+					local item = caster:GetItemInSlot( i )
+					if item then--if item and not exempt_table( item:GetAbilityName() ) then
+						item:EndCooldown()
+					end
+				end
+				return 0.1
+			end)
+		end
+
 		if string.match(s,"test") then
 			local pID = tonumber(string.match(s, '%d+'))
 			local steamID = PlayerResource:GetSteamAccountID(pID)
@@ -198,7 +242,35 @@ local function chat_of_test(keys)
 		    end
 		end
 		
-		
+		if s == "se" then
+			for playerID = 0, 14 do
+				local id       = playerID
+		  		local p        = PlayerResource:GetPlayer(id)
+		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
+				  local hero = p:GetAssignedHero()
+
+				  if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+				  	_G.CountUsedAbility_Table[id+1]["res"] = "W"
+				  else
+				  	_G.CountUsedAbility_Table[id+1]["res"] = "L"
+				  end
+				  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
+				  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
+				  _G.CountUsedAbility_Table[id+1]["kda"] = {}
+				  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["a"] = tostring(hero:GetAssists())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
+				end
+			end
+			SendHTTPRequest("save_ability_data", "POST",
+				{
+				  data = tostring(inspect(_G.CountUsedAbility_Table)),
+				},
+				function(result)
+				  print(result)
+				end)
+		end
 		
 		if s == "c1" then
 			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
@@ -231,6 +303,22 @@ local function chat_of_test(keys)
 			u:HeroLevelUp(true)
 			end 
 		end
+
+		if s == "c5" then
+			local  u = CreateUnitByName("npc_dota_hero_broodmother",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "c6" then
+			local  u = CreateUnitByName("npc_dota_hero_faceless_void",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
 		
 		--【測試指令】
 		if s == "ShuaGuai" then
@@ -240,10 +328,8 @@ local function chat_of_test(keys)
 			ShuaGuai_Of_B( 10 )
 			ShuaGuai_Of_C( 10 )
 		elseif s == "hp" then
-			print("nobu"..id)
 			caster:SetHealth(caster:GetMaxHealth())
 		elseif s == "mp" then
-			print("nobu"..id)
 			Timers:CreateTimer(function()
 				caster:SetMana(caster:GetMaxMana())
 				return 0.1

@@ -22,6 +22,7 @@ function Shock( keys )
 		ParticleManager:DestroyParticle(particle, true)
 		end)
 	--跟電卷共用CD
+	--[[
 	for itemSlot=0,5 do
 		local item = caster:GetItemInSlot(itemSlot)
 		if item ~= nil then
@@ -31,6 +32,7 @@ function Shock( keys )
 			end
 		end
 	end
+	]]
 end
 
 --雪走

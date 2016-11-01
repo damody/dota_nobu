@@ -353,7 +353,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed"	"400 450 500 550"
+				"speed"	"350 400 450 500"
 			}
 			"03"
 			{
@@ -918,6 +918,16 @@
 						"Function"	"B32T_End"
 					}
 				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_B32x"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+				}
 			}
 		}
 		// Special
@@ -928,6 +938,16 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"50 90 130"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"CleaveRadius"	"10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"CleavePercent"	"20"
 			}
 		}
 	}
@@ -1046,7 +1066,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"CleavePercent"	"25"
+				"CleavePercent"	"20"
 			}
 			"04"
 			{

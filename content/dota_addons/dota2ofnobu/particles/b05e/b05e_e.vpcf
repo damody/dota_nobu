@@ -3,20 +3,20 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 64
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bAdditive = true
-			m_flStartFadeSize = 0.800000
-			m_flEndFadeSize = 1.000000
-			m_flMaxSize = 0.400000
+			m_flStartFadeSize = 0.8
+			m_flEndFadeSize = 1.0
+			m_flMaxSize = 0.4
 			m_bDisableZBuffering = true
 			m_hTexture = resource:"materials/particle/particle_glow_04.vtex"
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
@@ -32,7 +32,7 @@
 			m_nControlPointNumber = 1
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomRotation"
@@ -43,13 +43,13 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.050000
-			m_fLifetimeMax = 0.600000
+			m_fLifetimeMin = 0.05
+			m_fLifetimeMax = 0.6
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 40.000000
-			m_flRadiusMax = 48.000000
+			m_flRadiusMin = 40.0
+			m_flRadiusMax = 48.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -58,40 +58,23 @@
 		},
 		{
 			_class = "C_INIT_CreateOnModel"
-			m_vecDirectionBias =
-			[
-				0.000000,
-				0.000000,
-				0.500000,
-			]
+			m_vecDirectionBias = [ 0.0, 0.0, 0.5 ]
 			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin =
-			[
-				52,
-				75,
-				248,
-				255,
-			]
-			m_ColorMax =
-			[
-				140,
-				140,
-				231,
-				255,
-			]
+			m_ColorMin = [ 52, 75, 248, 255 ]
+			m_ColorMax = [ 140, 140, 231, 255 ]
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 48
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/b05e/b05e_e0.vpcf"

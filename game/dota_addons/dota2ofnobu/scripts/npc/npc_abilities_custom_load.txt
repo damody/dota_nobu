@@ -1785,6 +1785,7 @@
 				"Duration"		"1"
 			}
 		}
+		
 		"Modifiers"
 		{
 			"modifier_soldier_W"
@@ -1874,6 +1875,27 @@
 					{
 						"ScriptFile"	"items/Addon_Items/item_forest_scroll.lua"
 						"Function"	"nodispear"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_transparency"
+					}
+				}
+				"OnAttack"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_transparency"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_transparency"
 					}
 				}
 			}
@@ -2102,8 +2124,6 @@
 				"jump_delay"	"0.5"
 			}
 		}
-		// Damage.
-		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"200 350 500 700"
 	}
 
@@ -3418,7 +3438,46 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "100"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "500"	//跑速
+				}
+			}
+		}
+	}
+
+	// 無碰撞
+	"for_no_collision"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_for_move500"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	
+	// 飛行
+	"for_fly"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_for_move500"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}

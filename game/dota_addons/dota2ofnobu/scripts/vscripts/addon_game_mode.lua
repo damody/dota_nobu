@@ -143,6 +143,9 @@ function Precache( context )
     "particles/item/war_light.vpcf",
     "particles/econ/courier/courier_onibi/courier_onibi_green_ambient_c.vpcf",
     "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf",
+
+    "particles/a07e/a07e_t.vpcf",
+    "particles/a07r/a07r_c.vpcf",
     
 
     --注意要加,
@@ -161,6 +164,7 @@ function Precache( context )
     "soundevents/custom_sounds.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts",
+    "soundevents/a07t.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

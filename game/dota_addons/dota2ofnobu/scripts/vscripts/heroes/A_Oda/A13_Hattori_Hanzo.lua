@@ -332,6 +332,7 @@ function A13E_modifier:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetParent()
 		self.interval_Count = self.interval_Count + 1
+		
 		local angle = math.abs(caster:GetAnglesAsVector().y - self.oriangle)
 		print("angle: "..(angle))
 		if (angle > 45) then
@@ -367,89 +368,90 @@ function A13E_modifier:OnIntervalThink()
 		ParticleManager:SetParticleControl(particle,3,self.hook_pos)
 		ParticleManager:ReleaseParticleIndex(particle)
 		self.particle[self.interval_Count] = particle
+		if self.interval_Count > 3 then
+			
+			for _,hookpoint in pairs(hook_pts) do
+				-- 拉到敵人
+				local SEARCH_RADIUS = self.hook_width
+				local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+		                              hookpoint,
+		                              nil,
+		                              SEARCH_RADIUS,
+		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+		                              DOTA_UNIT_TARGET_ALL,
+		                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		                              FIND_ANY_ORDER,
+		                              false)
+				if (table.getn(direUnits) == 0) then
+					local floorpos = hookpoint
+					floorpos.z = 100
+					direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+		                              floorpos,
+		                              nil,
+		                              SEARCH_RADIUS,
+		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+		                              DOTA_UNIT_TARGET_ALL,
+		                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		                              FIND_ANY_ORDER,
+		                              false)
+				end
+				local hashook = false
+				for _,it in pairs(direUnits) do
 
-		for _,hookpoint in pairs(hook_pts) do
-			-- 拉到敵人
-			local SEARCH_RADIUS = self.hook_width
-			local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-	                              hookpoint,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-			if (table.getn(direUnits) == 0) then
-				local floorpos = hookpoint
-				floorpos.z = 100
+					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") then
+						ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
+							damage_type = self.damage_type, ability = self:GetAbility()})
+						hashook = true
+						if (it:HasModifier("modifier_invisible")) then
+							it:RemoveModifierByName("modifier_invisible")
+						end
+						it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
+						local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
+						if (hModifier ~= nil) then
+							hModifier.path = self.path
+							hModifier.interval_Count = self.interval_Count
+							hModifier.particle = self.particle
+							break
+						end
+					end
+				end
+				if (hashook == true) then
+					self:StartIntervalThink( -1 )
+					return
+				end
+
+				-- 拉到友軍
 				direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-	                              floorpos,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
-	                              FIND_ANY_ORDER,
-	                              false)
-			end
-			local hashook = false
-			for _,it in pairs(direUnits) do
+			                          hookpoint,
+			                          nil,
+			                          SEARCH_RADIUS,
+			                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+			                          DOTA_UNIT_TARGET_ALL,
+			                          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+			                          FIND_ANY_ORDER,
+			                          false)
 
-				if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") then
-					ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
-						damage_type = self.damage_type, ability = self:GetAbility()})
-					hashook = true
-					if (it:HasModifier("modifier_invisible")) then
-						it:RemoveModifierByName("modifier_invisible")
-					end
-					it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
-					if (hModifier ~= nil) then
-						hModifier.path = self.path
-						hModifier.interval_Count = self.interval_Count
-						hModifier.particle = self.particle
+				for _,it in pairs(direUnits) do
+					if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) then
+						hashook = true
+						it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
+						local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
+						if (hModifier ~= nil) then
+							hModifier.path = self.path
+							hModifier.interval_Count = self.interval_Count
+							hModifier.particle = self.particle
+							break
+						end
 						break
 					end
 				end
-			end
-			if (hashook == true) then
-				self:StartIntervalThink( -1 )
-				return
-			end
-
-			-- 拉到友軍
-			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-		                          hookpoint,
-		                          nil,
-		                          SEARCH_RADIUS,
-		                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		                          DOTA_UNIT_TARGET_ALL,
-		                          DOTA_UNIT_TARGET_FLAG_NONE,
-		                          FIND_ANY_ORDER,
-		                          false)
-
-			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) then
-					hashook = true
-					it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
-					local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
-					if (hModifier ~= nil) then
-						hModifier.path = self.path
-						hModifier.interval_Count = self.interval_Count
-						hModifier.particle = self.particle
-						break
-					end
-					break
+				-- 拉到或距離到上限了
+				if (self.distance_sum > self.hook_distance or hashook == true) then
+					self:StartIntervalThink( -1 )
+					return
 				end
-			end
-			-- 拉到或距離到上限了
-			if (self.distance_sum > self.hook_distance or hashook == true) then
-				self:StartIntervalThink( -1 )
-				return
 			end
 		end
-		
 		self.hook_pos = next_hook_pos
 	end
 end

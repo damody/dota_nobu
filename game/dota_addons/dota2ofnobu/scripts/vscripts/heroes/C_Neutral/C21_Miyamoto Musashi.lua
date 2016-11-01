@@ -169,13 +169,15 @@ function Trig_C21EActions(keys)
     keys.ability:ApplyDataDrivenModifier(u,u2,"modifier_C21EStun",{duration = 0.5})
     --timer2
     u:FindAbilityByName("C21W"):SetActivated(false)
+    Timers:CreateTimer(0.5*(time+1), function()
+    	u:FindAbilityByName("C21W"):SetActivated(true)
+    	end)
 	AMHC:Timer( "C21T_E1"..tostring(id),function( )
 
 			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
 				--刪除無敵
                 u:RemoveModifierByName("modifier_C21E")
                 u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.5})
-                u:FindAbilityByName("C21W"):SetActivated(true)
 
                 local order_target = 
 				{

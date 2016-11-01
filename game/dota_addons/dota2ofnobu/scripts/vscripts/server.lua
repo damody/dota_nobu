@@ -107,8 +107,7 @@ function Nobu:OnPlayerConnectFull(keys)
 						},
 						function(result)
 						  --print(result)
-						end
-					  )
+						end)
 					end
 				end
 			end
@@ -135,10 +134,6 @@ function Nobu:CloseRoom()
 		end
 	end
 
-	SendHTTPRequest("close_room", "POST",
-		indata, function(res)
-			print(res)
-		end)
 end
 
 function Nobu:OpenRoom()

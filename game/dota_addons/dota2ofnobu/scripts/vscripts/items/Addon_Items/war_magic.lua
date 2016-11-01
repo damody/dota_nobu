@@ -10,6 +10,7 @@ LinkLuaModifier( "modifier_gohomelua", "items/Addon_Items/war_magic.lua",LUA_MOD
 modifier_gohomelua = class({})
 
 --------------------------------------------------------------------------------
+local inspect = require("inspect")
 
 function modifier_gohomelua:DeclareFunctions()
     local funcs = {
@@ -131,7 +132,7 @@ function gohome( keys )
 	--ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
 	target:AddNewModifier(target,ability,"modifier_gohomelua",{duration=7})
 	target:FindModifierByName("modifier_gohomelua").caster = target
-	Timers:CreateTimer(5, function()
+	Timers:CreateTimer(7, function()
 		--ParticleManager:DestroyParticle(particle,false)
 		if target:HasModifier("modifier_wantgohome") then
 			if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
@@ -796,12 +797,53 @@ function to_cavalry_Unified(keys)
 end
 
 
+function SendHTTPRequest(path, method, values, callback)
+	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
+	for key, value in pairs(values) do
+		req:SetHTTPRequestGetOrPostParameter(key, value)
+	end
+	req:Send(function(result)
+		callback(result.Body)
+	end)
+end
+
 function check_Oda_is_dead(keys)
 	local caster = keys.caster
 
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and not caster:IsAlive() then
-			print("Oda Dead")
+			local sum = 0
+			for playerID = 0, 14 do
+				sum = sum + 1
+				local id       = playerID
+		  		local p        = PlayerResource:GetPlayer(id)
+		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
+				  local hero = p:GetAssignedHero()
+
+				  if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+				  	_G.CountUsedAbility_Table[id+1]["res"] = "L"
+				  else
+				  	_G.CountUsedAbility_Table[id+1]["res"] = "W"
+				  end
+				  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
+				  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
+				  _G.CountUsedAbility_Table[id+1]["kda"] = {}
+				  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["a"] = tostring(hero:GetAssists())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
+				end
+			end
+			if sum > 1 then
+				SendHTTPRequest("save_ability_data", "POST",
+					{
+					  data = tostring(inspect(_G.CountUsedAbility_Table)),
+					},
+					function(result)
+					  print(result)
+					end)
+			end
+			return nil
 		end
 		return 1
 		end)
@@ -812,7 +854,38 @@ function check_Unified_is_dead(keys)
 
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and not caster:IsAlive() then
-			print("Unified Dead")
+			local sum = 0
+			for playerID = 0, 14 do
+				sum = sum + 1
+				local id       = playerID
+		  		local p        = PlayerResource:GetPlayer(id)
+		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
+				  local hero = p:GetAssignedHero()
+
+				  if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+				  	_G.CountUsedAbility_Table[id+1]["res"] = "L"
+				  else
+				  	_G.CountUsedAbility_Table[id+1]["res"] = "W"
+				  end
+				  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
+				  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
+				  _G.CountUsedAbility_Table[id+1]["kda"] = {}
+				  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["a"] = tostring(hero:GetAssists())
+				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
+				end
+			end
+			if sum > 1 then
+				SendHTTPRequest("save_ability_data", "POST",
+					{
+					  data = tostring(inspect(_G.CountUsedAbility_Table)),
+					},
+					function(result)
+					  print(result)
+					end)
+			end
+			return nil
 		end
 		return 1
 		end)

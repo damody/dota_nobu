@@ -3,71 +3,60 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 90
-	m_flConstantLifespan = 0.500000
-	m_ConstantColor =
-	[
-		66,
-		189,
-		171,
-		85,
-	]
-	m_Renderers =
+	m_flConstantLifespan = 0.5
+	m_ConstantColor = [ 66, 189, 171, 85 ]
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bAdditive = true
-			m_flOverbrightFactor = 3.000000
+			m_flOverbrightFactor = 3.0
 			m_hTexture = resource:"materials/particle/electrical_arc_white/electrical_arc_white.vtex"
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
 			m_nOpEndCapState = 1
-			m_fDrag = 0.050000
+			m_fDrag = 0.05
 		},
 		{
 			_class = "C_OP_LockToBone"
 		},
 		{
 			_class = "C_OP_EndCapTimedDecay"
-			m_flDecayTime = 0.250000
+			m_flDecayTime = 0.25
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 0.300000
-			m_flEndTime = 0.350000
-			m_flStartScale = 0.000000
+			m_flEndScale = 0.3
+			m_flEndTime = 0.35
+			m_flStartScale = 0.0
 		},
 		{
 			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 0.800000
-			m_flStartScale = 0.500000
-			m_flStartTime = 0.800000
+			m_flEndScale = 0.8
+			m_flStartScale = 0.5
+			m_flStartTime = 0.8
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_CreateOnModel"
-			m_vecDirectionBias =
-			[
-				0.000000,
-				0.000000,
-				-0.250000,
-			]
-			m_flHitBoxScale = 1.250000
+			m_vecDirectionBias = [ 0.0, 0.0, -0.25 ]
+			m_flHitBoxScale = 1.25
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusRandExponent = 0.212500
-			m_flRadiusMin = 14.000000
-			m_flRadiusMax = 32.000000
+			m_flRadiusRandExponent = 0.2125
+			m_flRadiusMin = 14.0
+			m_flRadiusMax = 32.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"
@@ -75,23 +64,13 @@
 		{
 			_class = "C_INIT_NormalOffset"
 			m_bNormalize = true
-			m_OffsetMax =
-			[
-				5.000000,
-				5.000000,
-				5.000000,
-			]
-			m_OffsetMin =
-			[
-				-5.000000,
-				-5.000000,
-				-5.000000,
-			]
+			m_OffsetMax = [ 5.0, 5.0, 5.0 ]
+			m_OffsetMin = [ -5.0, -5.0, -5.0 ]
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.300000
-			m_fLifetimeMax = 0.800000
+			m_fLifetimeMin = 0.3
+			m_fLifetimeMax = 0.8
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -99,14 +78,14 @@
 			m_nAlphaMin = 155
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_MaintainEmitter"
 			m_nParticlesToMaintain = 128
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/c07t2/c07t2_a.vpcf"
