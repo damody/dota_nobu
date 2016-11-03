@@ -1,3 +1,48 @@
+
+LinkLuaModifier( "modifier_A07W", "scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua",LUA_MODIFIER_MOTION_NONE )
+modifier_A07W = class({})
+
+--------------------------------------------------------------------------------
+
+function modifier_A07W:DeclareFunctions()
+    local funcs = {
+        MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
+
+    return funcs
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_A07W:OnCreated( event )
+	self:StartIntervalThink(0.1)
+end
+
+function modifier_A07W:OnIntervalThink()
+	if (self.caster ~= nil) and IsValidEntity(self.caster) then
+		self.hp = self.caster:GetHealth()
+	end
+end
+
+function modifier_A07W:OnTakeDamage(event)
+	if IsServer() then
+	    local attacker = event.unit
+	    local victim = event.attacker
+	    local return_damage = event.original_damage
+	    local damage_type = event.damage_type
+	    local damage_flags = event.damage_flags
+	    local ability = self:GetAbility()
+	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
+
+		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster and self.hp ~= nil then
+		        local dmg = self.hp - self.caster:GetHealth()
+				self.caster:SetHealth(self.caster:GetHealth() + dmg*2)
+		    end
+		end
+	end
+end
+
+
 LinkLuaModifier( "A07R_critical", "scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua",LUA_MODIFIER_MOTION_NONE )
 
 
@@ -96,8 +141,11 @@ end
 function A07W_SE( event )
 	-- Variables
 	local target = event.caster
+	local caster = event.caster
+	local ability = event.ability
 	local shield_size = 30 -- could be adjusted to model scale
 
+	caster:AddNewModifier(caster,ability,"modifier_A07W",{duration=10})
 	-- -- Strong Dispel 刪除負面效果
 	-- local RemovePositiveBuffs = false
 	-- local RemoveDebuffs = true
@@ -123,6 +171,7 @@ end
 function A07W_EndShieldParticle( event )
 	local target = event.target
 	ParticleManager:DestroyParticle(target.ShieldParticle,false)
+	target:RemoveModifierByName("modifier_A07W")
 end
 
 

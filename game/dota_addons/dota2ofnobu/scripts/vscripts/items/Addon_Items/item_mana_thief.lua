@@ -27,7 +27,7 @@ function mana_burn_function( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local current_mana = target:GetMana()
-	local burn_amount = 500
+	local burn_amount = 435
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()
@@ -83,7 +83,7 @@ function mana_burn_function2( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local current_mana = target:GetMana()
-	local burn_amount = 600
+	local burn_amount = 435
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()
@@ -139,7 +139,7 @@ function Shock( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local current_mana = target:GetMana()
-	local burn_amount = 50
+	local burn_amount = 40
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()
@@ -192,7 +192,7 @@ function Shock2( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local current_mana = target:GetMana()
-	local burn_amount = 80
+	local burn_amount = 60
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()

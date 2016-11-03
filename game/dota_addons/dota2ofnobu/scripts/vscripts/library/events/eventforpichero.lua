@@ -66,6 +66,7 @@ function Nobu:PickHero( keys )
   local name = caster:GetUnitName()
   caster.version = "16"
   caster.name = heromap[name]
+  caster:AddAbility("for_record"):SetLevel(1)
   
   if string.match(name, "ancient_apparition")  then
     caster:FindAbilityByName("A04D"):SetLevel(1)

@@ -243,6 +243,7 @@ local function chat_of_test(keys)
 		end
 		
 		if s == "se" then
+			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_GOODGUYS
 			for playerID = 0, 14 do
 				local id       = playerID
 		  		local p        = PlayerResource:GetPlayer(id)
@@ -256,6 +257,10 @@ local function chat_of_test(keys)
 				  end
 				  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
 				  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
+				  _G.CountUsedAbility_Table[id+1]["damage"] = hero.damage
+				  _G.CountUsedAbility_Table[id+1]["takedamage"] = hero.takedamage
+				  _G.CountUsedAbility_Table[id+1]["herodamage"] = hero.herodamage
+				  _G.CountUsedAbility_Table[id+1]["team"] = hero:GetTeamNumber()
 				  _G.CountUsedAbility_Table[id+1]["kda"] = {}
 				  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
 				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())

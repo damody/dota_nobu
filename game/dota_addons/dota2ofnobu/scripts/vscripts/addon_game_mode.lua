@@ -146,6 +146,8 @@ function Precache( context )
 
     "particles/a07e/a07e_t.vpcf",
     "particles/a07r/a07r_c.vpcf",
+    "particles/shake2.vpcf",
+    "particles/shake3.vpcf",
     
 
     --注意要加,

@@ -812,6 +812,7 @@ function check_Oda_is_dead(keys)
 
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and not caster:IsAlive() then
+			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_BADGUYS
 			local sum = 0
 			for playerID = 0, 14 do
 				sum = sum + 1
@@ -819,7 +820,6 @@ function check_Oda_is_dead(keys)
 		  		local p        = PlayerResource:GetPlayer(id)
 		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
 				  local hero = p:GetAssignedHero()
-
 				  if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
 				  	_G.CountUsedAbility_Table[id+1]["res"] = "L"
 				  else
@@ -827,6 +827,10 @@ function check_Oda_is_dead(keys)
 				  end
 				  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
 				  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
+				  _G.CountUsedAbility_Table[id+1]["damage"] = hero.damage
+				  _G.CountUsedAbility_Table[id+1]["takedamage"] = hero.takedamage
+				  _G.CountUsedAbility_Table[id+1]["herodamage"] = hero.herodamage
+				  _G.CountUsedAbility_Table[id+1]["team"] = hero:GetTeamNumber()
 				  _G.CountUsedAbility_Table[id+1]["kda"] = {}
 				  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
 				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
@@ -834,7 +838,7 @@ function check_Oda_is_dead(keys)
 				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
 				end
 			end
-			if sum > 1 then
+			if sum > 5 then
 				SendHTTPRequest("save_ability_data", "POST",
 					{
 					  data = tostring(inspect(_G.CountUsedAbility_Table)),
@@ -854,6 +858,7 @@ function check_Unified_is_dead(keys)
 
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and not caster:IsAlive() then
+			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_GOODGUYS
 			local sum = 0
 			for playerID = 0, 14 do
 				sum = sum + 1
@@ -869,6 +874,10 @@ function check_Unified_is_dead(keys)
 				  end
 				  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
 				  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
+				  _G.CountUsedAbility_Table[id+1]["damage"] = hero.damage
+				  _G.CountUsedAbility_Table[id+1]["takedamage"] = hero.takedamage
+				  _G.CountUsedAbility_Table[id+1]["herodamage"] = hero.herodamage
+				  _G.CountUsedAbility_Table[id+1]["team"] = hero:GetTeamNumber()
 				  _G.CountUsedAbility_Table[id+1]["kda"] = {}
 				  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
 				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
@@ -876,7 +885,7 @@ function check_Unified_is_dead(keys)
 				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
 				end
 			end
-			if sum > 1 then
+			if sum > 5 then
 				SendHTTPRequest("save_ability_data", "POST",
 					{
 					  data = tostring(inspect(_G.CountUsedAbility_Table)),

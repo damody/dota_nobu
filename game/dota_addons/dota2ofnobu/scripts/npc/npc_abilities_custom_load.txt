@@ -3516,7 +3516,7 @@
 							{
 								"ModifierName"	"modifier_for_move300"
 								"Target" 		"TARGET"
-								"Duration"		"5"
+								"Duration"		"7"
 							}
 						}
 					}
@@ -3530,6 +3530,43 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "300"	//跑速
+				}
+			}
+		}
+	}
+
+	// 英雄記錄傷害用
+	"for_record"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_for_record"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/record.lua"
+						"Function"	"Start"
+					}
+					"DelayedAction"
+					{
+						"Delay"     "1"
+						"Action"    
+						{
+							"RemoveModifier"
+							{
+								"ModifierName"	"modifier_for_record"
+								"Target" 		"CASTER"
+							}
+						}
+					}
 				}
 			}
 		}
