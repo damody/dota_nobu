@@ -67,6 +67,8 @@ function light( keys )
 	else
 		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動曳光戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
 	end
+	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 50, 7.0, false)
+	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 50, 7.0, false)
 	Timers:CreateTimer(0.5, function() 
 			local particle = ParticleManager:CreateParticle("particles/item/war_light.vpcf", PATTACH_ABSORIGIN, caster)
 			ParticleManager:SetParticleControl(particle, 0, Vector(point.x,point.y,200 ))

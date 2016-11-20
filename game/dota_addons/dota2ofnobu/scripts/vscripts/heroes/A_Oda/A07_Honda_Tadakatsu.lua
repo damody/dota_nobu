@@ -15,7 +15,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_A07W:OnCreated( event )
-	self:StartIntervalThink(0.1)
+	self:StartIntervalThink(0.05)
 end
 
 function modifier_A07W:OnIntervalThink()
@@ -33,11 +33,11 @@ function modifier_A07W:OnTakeDamage(event)
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
-
-		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster and self.hp ~= nil then
+	    	if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster and self.hp ~= nil then
 		        local dmg = self.hp - self.caster:GetHealth()
+		        dmg = math.abs(dmg)
 				self.caster:SetHealth(self.caster:GetHealth() + dmg*2)
-		    end
+			end
 		end
 	end
 end
@@ -146,6 +146,7 @@ function A07W_SE( event )
 	local shield_size = 30 -- could be adjusted to model scale
 
 	caster:AddNewModifier(caster,ability,"modifier_A07W",{duration=10})
+	caster:FindModifierByName("modifier_A07W").caster = caster
 	-- -- Strong Dispel 刪除負面效果
 	-- local RemovePositiveBuffs = false
 	-- local RemoveDebuffs = true
@@ -170,7 +171,10 @@ end
 -- Destroys the particle when the modifier is destroyed. Also plays the sound
 function A07W_EndShieldParticle( event )
 	local target = event.target
-	ParticleManager:DestroyParticle(target.ShieldParticle,false)
+	if target.ShieldParticle ~= nil then
+		ParticleManager:DestroyParticle(target.ShieldParticle,false)
+		target.ShieldParticle = nil
+	end
 	target:RemoveModifierByName("modifier_A07W")
 end
 

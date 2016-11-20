@@ -86,7 +86,10 @@ function B02W_OnUpgrade(keys)
 	local player = caster:GetPlayerID()
 	local ability = keys.ability
 	--【KV】
-	caster:FindAbilityByName("B02D"):SetLevel(ability:GetLevel()+1)
+	local b02d = caster:FindAbilityByName("B02D")
+	if b02d ~= nil then
+		b02d:SetLevel(ability:GetLevel()+1)
+	end
 end
 
 function B02D_OnAttackLanded(keys)
@@ -223,20 +226,7 @@ function B02T(keys)
 	-- ParticleManager:SetParticleControl(particle,1, point2+Vector(0,0,400))
 	-- ParticleManager:SetParticleControl(particle,2, point2+Vector(0,0,0))
 	-- ParticleManager:SetParticleControl(particle,3, point2+Vector(0,0,0))	
-	--【System of 御守】+【MODIFIER】
-	if target.yushou == nil or target.yushou == false then
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_B02T",nil)--暈眩
-		for i=1,4 do
-			tem_Deg = tem_Deg + 90 
-			tem_P = Vector( point2.x + distance*math.cos(tem_Deg*3.14159/180.0) ,point2.y + distance*math.sin(tem_Deg*3.14159/180.0),point2.z)
-			--【Particle】
-			local particle = ParticleManager:CreateParticle("particles/b02t2/b02t2.vpcf",PATTACH_POINT,target)
-			ParticleManager:SetParticleControl(particle,0, tem_P+Vector(0,0,height))
-			ParticleManager:SetParticleControl(particle,1, point2+Vector(0,0,75))
-			ParticleManager:SetParticleControl(particle,2, point2+Vector(0,0,0))
-			ParticleManager:SetParticleControl(particle,3, point2+Vector(0,0,0))
-		end
-	end	
+	
 	--【Timer】
 	height = 125
 	distance = 245.00

@@ -119,7 +119,6 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
-		"AbilityCastPoint"	"0.8 0.8 0.8 0.8"
 		"AbilityCooldown"	"12"
 		"AbilityManaCost"	"50"
 		// Stats
@@ -127,7 +126,10 @@
 		"AbilityCastRange"	"0"
 		"AbilityCastRangeBuffer"	"250"
 		"AbilityChannelTime"	"0.0 0.0 0.0 0.0"
-
+		"precache"
+		{
+			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -150,6 +152,7 @@
 				"States"	{}
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"IsPurgable"	"1"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
 			}
 		}
 		"AbilitySpecial"
@@ -162,7 +165,81 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
+				"A06W_speed"	"5 10 15 20"
+			}
+		}
+	}
+
+	// 井伊直政 赤鬼之力
+	"A06W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dragon_knight_dragon_blood"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"AbilityCooldown"	"18"
+		"AbilityManaCost"	"50"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		"AbilityCastRangeBuffer"	"250"
+		"AbilityChannelTime"	"0.0 0.0 0.0 0.0"
+		"precache"
+		{
+			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A06Wx"
+				"Duration"	"%A06W_Duration"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
+				"Function"	"A06W_old"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A06Wx"
+			{
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A06W_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%A06W_speed2"
+				}
+				"States"	{}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsPurgable"	"1"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A06W_Duration"	"14"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
 				"A06W_speed"	"4 8 12 16"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A06W_speed2"	"200 300 400 500"
 			}
 		}
 	}
@@ -180,7 +257,6 @@
 		"HotKeyOverride"	"E"
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
-		"LevelsBetweenUpgrades"	"0"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"18 15 12 9"
 		"AbilityManaCost"	"80"
@@ -270,6 +346,81 @@
 		}
 	}
 
+	// 井伊直政 赤炎斬
+	"A06E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_exort"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"14 11 8 5"
+		"AbilityManaCost"	"80"
+		"AbilityCastRange"	"250"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
+				"Function"	"A06E_old"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%damage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A06E"
+			{
+				"Duration"	"%stun"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stun"	"1.25 1.75 2.25 3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 200 300 400"
+			}
+		}
+	}
 	// 井伊直政 赤焰流
 	"A06R"
 	{
@@ -318,7 +469,6 @@
 			"modifier_A06R_to_A06D"
 			{
 				"IsBuff"	"1"
-				"Duration"	"1000"
 			}
 		}
 		"AbilitySpecial"
@@ -327,6 +477,45 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"A06R_SPEED"	"5 9 13 17"
+			}
+		}
+	}
+
+	// 井伊直政 戰魂
+	"A06R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bloodseeker_blood_bath"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0"
+		"Modifiers"
+		{
+			"modifier_A06R"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A06R_SPEED"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%A06R_SPEED2"
+				}
+				"IsBuff"	"1"
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A06R_SPEED"	"4 8 12 16"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A06R_SPEED2"	"15 30 45 60"
 			}
 		}
 	}
@@ -423,6 +612,64 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"CleaveRadius"	"525"
+			}
+		}
+		"OnCastbar"	"1"
+		"OnLearnbar"	"1"
+		"AbilityDuration"	"0.0 0.0 0.0 0.0"
+		"AbilityDamage"	"0 0 0 0"
+		// for stats tracking.
+		"AbilityModifierSupportValue"	"1.0"
+		// for stats tracking.
+		"AbilityModifierSupportBonus"	"0"
+		"ItemCombinable"	"1"
+		"ItemDisassemblable"	"0"
+		"ItemDeclaresPurchase"	"0"
+	}
+
+	// 井伊直政 赤鬼之怒
+	"A06T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"huskar_life_break_alt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AOERadius"	"400"
+		"precache"
+		{
+			"particle"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A06T"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				// 要改Effect
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
+						"Function"	"A06T_old"
+					}
+				}
+				"States"	{}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A06T_ADD_D"	"170 230 300"
 			}
 		}
 		"OnCastbar"	"1"

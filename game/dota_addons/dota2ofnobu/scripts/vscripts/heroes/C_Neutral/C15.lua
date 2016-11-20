@@ -209,10 +209,6 @@ function new_C15T( keys )
 	-- 	end
 	-- end)	
 
-	--【System】
-	if target.yushou == nil or target.yushou == false then
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_C15T_2",nil)
-	end
 
 	--【DEBUG】
 	print(vec)

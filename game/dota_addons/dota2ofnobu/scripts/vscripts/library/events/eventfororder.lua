@@ -1,5 +1,4 @@
-require('heroes/B_Unified/B06_Sanada_Yukimura')
-
+require('libraries/containers')
 --idea test
 
 
@@ -272,6 +271,24 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_ITEM then --14
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_RUNE then --15
 	elseif ordertype == DOTA_UNIT_ORDER_PURCHASE_ITEM then --16
+		local itemID = filterTable.entindex_ability
+    	local itemName = Containers.itemIDs[itemID]
+    	
+    	local unit = EntIndexToHScript(filterTable.units["0"])
+    	print("unit:GetPlayerOwnerID()" .. unit:GetPlayerOwnerID())
+    	itemName = itemName.."_buy"
+    	if _G.CountUsedAbility_Table == nil then
+    		_G.CountUsedAbility_Table = {}
+    	end
+    	if _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1] == nil then
+    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1] = {}
+    	end
+    	if _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] == nil then
+    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] = 1
+    	else
+    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] = _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] + 1
+		end
+		print(DeepPrintTable(_G.CountUsedAbility_Table))
 	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17
 	elseif ordertype == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM then --18
 	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19

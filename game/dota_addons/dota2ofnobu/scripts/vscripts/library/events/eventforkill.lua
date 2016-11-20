@@ -37,6 +37,9 @@ function Nobu:OnUnitKill( keys )
 	
     local AttackerUnit = EntIndexToHScript( keys.entindex_attacker )
     if (AttackerUnit:IsRealHero()) then
+      if AttackerUnit.kill_count == nil then
+        AttackerUnit.kill_count = 0
+      end
       AttackerUnit.kill_count = AttackerUnit.kill_count + 1
       print("AttackerUnit.kill_count "..AttackerUnit.kill_count)
     end

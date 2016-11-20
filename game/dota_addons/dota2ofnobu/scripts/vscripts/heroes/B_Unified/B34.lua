@@ -76,7 +76,7 @@ function B34T_old( keys )
 
 	for _, it in pairs(group) do
 		AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor("dmg",level),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		ability:ApplyDataDrivenModifier(caster,it,"modifier_B34T_old",{})
+		ability:ApplyDataDrivenModifier(it,it,"modifier_B34T_old",{})
 	end
 end
 

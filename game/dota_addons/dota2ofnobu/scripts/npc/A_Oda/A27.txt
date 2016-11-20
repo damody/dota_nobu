@@ -120,7 +120,7 @@
 		"MaxLevel"	"4"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"8"
-		"AbilityManaCost"	"20 40 60 80"
+		"AbilityManaCost"	"20 30 40 50"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
@@ -158,7 +158,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"600"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.55"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.25"
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "%healthb"
 				}
 				"Duration"	"%duration"
@@ -182,7 +182,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A27W_attack"	"-75 -65 -55 -45"
+				"A27W_attack"	"-55 -45 -35 -25"
 			}
 			"04"
 			{

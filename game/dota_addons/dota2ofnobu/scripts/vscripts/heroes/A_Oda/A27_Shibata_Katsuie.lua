@@ -1,5 +1,26 @@
 
 LinkLuaModifier( "A27R_critical", "scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "A27W_speed", "scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua",LUA_MODIFIER_MOTION_NONE )
+
+A27W_speed = class({})
+
+function A27W_speed:IsHidden()
+	return false
+end
+
+function A27W_speed:DeclareFunctions()
+	return { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT }
+end
+
+function A27W_speed:GetModifierAttackSpeedBonus_Constant( params)
+	return 2000
+end
+
+function A27W_speed:CheckState()
+	local state = {
+	}
+	return state
+end
 
 function A27W( event )
 	local caster = event.caster
@@ -22,24 +43,34 @@ function A27W( event )
 	for i=1,people do
 			-- handle_UnitOwner needs to be nil, else it will crash the game.
 			illusion[i] = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
-			illusion[i]:SetPlayerID(caster:GetPlayerID())
+			illusion[i]:SetOwner(caster)
 			illusion[i]:SetControllableByPlayer(player, true)
 			
 			-- Level Up the unit to the casters level
 			local casterLevel = caster:GetLevel()
 			for j=1,casterLevel-1 do
-				--illusion[i]:HeroLevelUp(false)
+				illusion[i]:HeroLevelUp(false)
 			end
 
 			-- Set the skill points to 0 and learn the skills of the caster
 			illusion[i]:SetAbilityPoints(0)
 			for abilitySlot=0,15 do
-				local ability = caster:GetAbilityByIndex(abilitySlot)
+				local ability = illusion[i]:GetAbilityByIndex(abilitySlot)
 				if ability ~= nil then 
 					local abilityLevel = ability:GetLevel()
 					local abilityName = ability:GetAbilityName()
 					local illusionAbility = illusion[i]:FindAbilityByName(abilityName)
-					illusionAbility:SetLevel(abilityLevel)
+					if (illusionAbility ~= nil) then
+						illusion[i]:RemoveAbility(abilityName)
+					end
+				end
+			end
+			for abilitySlot=0,15 do
+				local ability = caster:GetAbilityByIndex(abilitySlot)
+				if ability ~= nil then 
+					local abilityLevel = ability:GetLevel()
+					local abilityName = ability:GetAbilityName()
+					illusion[i]:AddAbility(abilityName):SetLevel(abilityLevel)
 				end
 			end
 
@@ -64,7 +95,6 @@ function A27W( event )
 
 	end
 	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
-	
 	for i=1,people do
 		illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
 		if (caster:HasModifier("modifier_A27T")) then

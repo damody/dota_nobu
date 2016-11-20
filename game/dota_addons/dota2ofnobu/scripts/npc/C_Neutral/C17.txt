@@ -9,7 +9,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityCastPoint"	"0.3"
+		"AbilityCastPoint"	"0.2"
 		"AbilityCooldown"	"13"
 		"AbilityManaCost"	"140"
 		"AbilityCastRange"	"750.00"
@@ -20,9 +20,8 @@
 			"soundfile"	"sounds/weapons/hero/ember_spirit/searing_chains_target02.vsnd"
 			"soundfile"	"sounds/weapons/hero/lich/chain_frost_impact.vsnd"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
 			"particle"	"particles/c17w4/c17w4.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+			"soundfile"	"soundevents/c17.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
 		}
 		"OnSpellStart"
@@ -30,12 +29,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"Hero_EmberSpirit.SearingChains.Target"
-			}
-			"FireSound"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"Hero_EmberSpirit.SearingChains.Target"
+				"EffectName"	"C17W.vo1"
 			}
 			"RunScript"
 			{
@@ -111,11 +105,11 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"legion_commander_duel"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"7"
-		"AbilityManaCost"	"60 70 80 90"
+		"AbilityCooldown"	"8"
+		"AbilityManaCost"	"60 80 100 120"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/omniknight/purification.vsnd"
@@ -123,18 +117,14 @@
 			"soundfile"	"soundevents/game_sounds_greevils.vsndevts"
 			"soundfile"	"soundevents/game_sounds_greevils.vsndevts"
 			"particle"	"particles/c17e2/c17e2.vpcf"
+			"soundfile"	"soundevents/c17.vsndevts"
 		}
 		"OnSpellStart"
 		{
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"Greevil.Purification"
-			}
-			"FireSound"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"Greevil.Purification"
+				"EffectName"	"C17E.vo1"
 			}
 			"RunScript"
 			{
@@ -173,7 +163,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"12"
+				"duration"	"20"
 			}
 			"03"
 			{
@@ -203,16 +193,22 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"3"
-		"AbilityManaCost"	"80"
-		"AbilityCastRange"	"825.00"
-		"AOERadius"	"195.00"
+		"AbilityManaCost"	"80 70 60 50"
+		"AbilityCastRange"	"600 700 800 1000"
+		"AOERadius"	"200"
 		"precache"
 		{
 			"particle"	"particles/c17r/c17r.vpcf"
 			"soundfile"	"sounds/weapons/hero/lina/lightstrikearray.vsnd"
+			"soundfile"	"soundevents/c17.vsndevts"
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C17R.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
@@ -252,7 +248,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"aoe"	"195.00"
+				"aoe"	"200.00"
 			}
 			"04"
 			{
@@ -271,6 +267,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"MaxLevel"	"1"
+		"AOERadius"	"800"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/creep/neutral/troll_priest_heal.vsnd"
@@ -358,13 +355,22 @@
 		"AbilityCooldown"	"90"
 		"AbilityManaCost"	"200 250 300"
 		"AbilityCastRange"	"1050.00"
-		"AOERadius"	"650.00"
+		"AOERadius"	"800.00"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/antimage/mana_void_cast.vsnd"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"soundfile"	"soundevents/c17.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C17T.vo1"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -394,7 +400,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"aoe"	"650.00"
+				"aoe"	"800.00"
 			}
 			"04"
 			{
@@ -404,7 +410,12 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"cure"	"30 40 50"
+				"regen"	"40 45 50"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hp"	"20 25 30"
 			}
 		}
 	}

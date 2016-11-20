@@ -15,6 +15,20 @@ function OnToggleOff( keys )
 	end
 end
 
+function OnToggleOn_B15E_old( keys )
+	local caster = keys.caster
+	if (caster.nobuorb2 == nil) then
+		caster.nobuorb2 = "B25E_1"
+	end
+end
+
+function OnToggleOff_B15E_old( keys )
+	local caster = keys.caster
+	if (caster.nobuorb2 == "B25E_1") then
+		caster.nobuorb2 = nil
+	end
+end
+
 
 function B15E_attack1( keys )
 	--【Basic】
@@ -23,11 +37,21 @@ function B15E_attack1( keys )
 	local level = ability:GetLevel() - 1
 	local dmg = keys.ability:GetLevelSpecialValueFor("damage_bonus", keys.ability:GetLevel() - 1 )
 	local target = keys.target
-	--if (not target:IsBuilding()) then
 	if (caster.nobuorb1 == "B25E_1") then
 		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
-	--end
+end
+
+function B15E_attack3( keys )
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local b15e = caster:FindAbilityByName("B15E_old")
+	if b15e ~= nil and b15e:GetLevel() > 0 then
+		local dmg = b15e:GetLevelSpecialValueFor("damage_bonus", b15e:GetLevel() - 1 )
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
 end
 
 function B15E_attack2( keys )
@@ -37,11 +61,9 @@ function B15E_attack2( keys )
 	local level = ability:GetLevel() - 1
 	local dmg = keys.ability:GetLevelSpecialValueFor("damage_bonus2", keys.ability:GetLevel() - 1 )
 	local target = keys.target
-	--if (not target:IsBuilding()) then
 	if (caster.nobuorb1 == "B25E_1") then
 		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
-	--end
 end
 
 function B15E( keys )
@@ -110,6 +132,10 @@ function B15D_SplitShotLaunch( keys )
 
 	local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, target_team, target_type, target_flags, FIND_CLOSEST, false)
 
+	local b15e = caster:FindAbilityByName("B15E_old")
+	if b15e ~= nil and b15e:GetLevel() > 0 and caster.nobuorb2 == "B25E_1" then
+		split_shot_projectile = "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+	end
 	-- Create projectiles for units that are not the casters current attack target
 	for _,v in pairs(split_shot_targets) do
 		if v ~= attack_target and caster:CanEntityBeSeenByMyTeam(v) and not v:HasModifier("modifier_invisible") then
@@ -147,6 +173,13 @@ function B15D_SplitShotDamage( keys )
 	damage_table.damage = caster:GetAttackDamage()
 
 	ApplyDamage(damage_table)
+
+	local b15e = caster:FindAbilityByName("B15E_old")
+	if b15e ~= nil and b15e:GetLevel() > 0 and caster.nobuorb2 == "B25E_1" then
+		local dmg = b15e:GetLevelSpecialValueFor("damage_bonus", b15e:GetLevel() - 1 )
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
+	
 end
 
 
@@ -272,19 +305,4 @@ function B15T(keys)
 		        	return time
 		        end
 	end,time )	
-end
-
-function SplitShotDamage( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-
-	local damage_table = {}
-
-	damage_table.attacker = caster
-	damage_table.victim = target
-	damage_table.damage_type = ability:GetAbilityDamageType()
-	damage_table.damage = caster:GetAttackDamage()
-
-	ApplyDamage(damage_table)
 end

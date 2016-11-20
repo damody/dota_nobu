@@ -159,7 +159,7 @@ end
 
 function C01T_Mitsuhide_Akechi_Effect( keys, point )
 	local dmg = 84
-	local SEARCH_RADIUS = 200
+	local SEARCH_RADIUS = 240
 	local caster = keys.caster
 	local level = keys.ability:GetLevel()
 

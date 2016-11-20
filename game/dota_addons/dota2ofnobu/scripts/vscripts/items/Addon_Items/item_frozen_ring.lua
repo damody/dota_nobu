@@ -7,7 +7,7 @@ function Shock( keys )
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 						caster:GetAbsOrigin(),
 						nil,
-						275,
+						375,
 						DOTA_UNIT_TARGET_TEAM_ENEMY,
 						DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 						DOTA_UNIT_TARGET_FLAG_NONE,
@@ -44,7 +44,7 @@ function Shock2( keys )
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 						target:GetAbsOrigin(),
 						nil,
-						200,
+						400,
 						DOTA_UNIT_TARGET_TEAM_ENEMY,
 						DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 						DOTA_UNIT_TARGET_FLAG_NONE,
@@ -101,7 +101,7 @@ function Shock3( keys )
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 							target:GetAbsOrigin(),
 							nil,
-							325,
+							425,
 							DOTA_UNIT_TARGET_TEAM_ENEMY,
 							DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 							DOTA_UNIT_TARGET_FLAG_NONE,
@@ -116,7 +116,7 @@ function Shock3( keys )
 			for _,it in pairs(direUnits) do
 				ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=4.5})
 				if it ~= target then
-				AMHC:Damage(caster,it,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+					AMHC:Damage(caster,it,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				end
 			end
 			local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, target)

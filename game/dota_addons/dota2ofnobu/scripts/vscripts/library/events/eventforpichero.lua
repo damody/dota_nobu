@@ -66,14 +66,14 @@ function Nobu:PickHero( keys )
   local name = caster:GetUnitName()
   caster.version = "16"
   caster.name = heromap[name]
-  caster:AddAbility("for_record"):SetLevel(1)
   
-  if string.match(name, "ancient_apparition")  then
+  if string.match(name, "ancient_apparition")  then --竹中重治
     caster:FindAbilityByName("A04D"):SetLevel(1)
-  elseif string.match(name, "jakiro") then
+  elseif string.match(name, "jakiro") then --佐佐木小次郎
     caster:FindAbilityByName("C22D"):SetLevel(1)
-  elseif string.match(name, "templar_assassin") then
+  elseif string.match(name, "templar_assassin") then --松姬
     caster:FindAbilityByName("C19D"):SetLevel(1)
+    GameRules: SendCustomMessage("松姬玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "centaur") then --本多忠勝
     caster:FindAbilityByName("A07D"):SetLevel(1)
     GameRules: SendCustomMessage("本多忠勝玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
@@ -89,6 +89,8 @@ function Nobu:PickHero( keys )
     GameRules: SendCustomMessage("上杉謙信玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "slardar") then -- 真田幸村
     GameRules: SendCustomMessage("真田幸村玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+  elseif string.match(name, "troll_warlord") then -- 井伊直政
+    GameRules: SendCustomMessage("井伊直政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "broodmother") then --服部半藏
     caster:FindAbilityByName("A13D"):SetLevel(1)
   elseif string.match(name, "storm_spirit") then --大谷吉繼
@@ -96,6 +98,7 @@ function Nobu:PickHero( keys )
     caster:FindAbilityByName("A12D"):SetActivated(false)
     caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
   elseif string.match(name, "bristleback") then -- 今川義元
+    GameRules: SendCustomMessage("今川義元玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
     Timers:CreateTimer(1, function ()
       if (caster:GetLevel() >= 8) then
         caster:FindAbilityByName("B15D"):SetLevel(1)
@@ -106,15 +109,10 @@ function Nobu:PickHero( keys )
   elseif string.match(name, "silencer") then --立花道雪
     -- 這隻角色天生會帶一個modifier我們需要砍掉他
     caster:RemoveModifierByName("modifier_silencer_int_steal")
-    Timers:CreateTimer(1, function()
-      for i = 0, 3 do
-        print("killedUnit ".. caster:GetModifierNameByIndex(i))
-      end
-      end)
     caster:FindAbilityByName("C07D"):SetLevel(1)
-  elseif string.match(name, "windrunner") then
+  elseif string.match(name, "windrunner") then -- 阿市
     caster:FindAbilityByName("C17D"):SetLevel(1)
-  elseif string.match(name, "faceless_void") then --風魔
+  elseif string.match(name, "faceless_void") then --風魔小太郎
     caster:FindAbilityByName("B02D"):SetLevel(1)
   end
   --【英雄名稱判別】
@@ -128,9 +126,6 @@ function Nobu:PickHero( keys )
     --caster:AddAbility("attribute_bonus")
 
   --【英雄系統】
-
-  --【御守系統】
-  caster.yushou = false
 
   --【test】
     --物品

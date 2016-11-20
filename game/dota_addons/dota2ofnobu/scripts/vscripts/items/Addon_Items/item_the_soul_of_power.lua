@@ -5,7 +5,7 @@ function Shock( keys )
 	local pos = caster:GetAbsOrigin()
 	Timers:CreateTimer(1, function()
 		caster:SetTimeUntilRespawn(0)
-		Timers:CreateTimer(0.1, function()
+		Timers:CreateTimer(0.3, function()
 			caster:SetAbsOrigin(pos)
 
 			for itemSlot=0,5 do

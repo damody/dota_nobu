@@ -19,7 +19,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15_Song_Ji.lua"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
 				"Function"	"C15W"
 			}
 			"ApplyModifier"
@@ -73,12 +73,178 @@
 			}
 		}
 	}
+	//松姬 癱瘓毒
+	"C19W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"	"icon_128x128_29"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/c19r/c19r.vpcf"
+		}
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_incapacitating_bite_datadriven"
+				"Target"	"CASTER"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_incapacitating_bite_datadriven"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_incapacitating_bite_datadriven"
+			{
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%atk"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"	"C19W_old"
+						"Target"	"TARGET"
+					}
+				}	
+				"OnAttackLanded"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_incapacitating_bite_debuff_datadriven"
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+					}
+				}
+			}
+			"modifier_incapacitating_bite_debuff_datadriven"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"3"
+				"EffectName"	"particles/c19r/c19r.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_moveandattackspeed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_moveandattackspeed"
+				}
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+				"ThinkInterval"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_moveandattackspeed"	"-10 -20 -30 -40"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"atk"	"10 20 30 40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"mana"	"15 20 25 30"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage"	"20 40 60 80"
+			}
+		}
+	}
+	//松姬 婉約誓言
+	"C19E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"morphling_adaptive_strike_ethereal_blade"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"80"
+		"AbilityCastRange"	"1000"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+				"Function"	"C15E"
+			}
+		}
+	}
 
-	// Rewrite of the Broodmother Incapacitating Bite ability
-	// Author: Pizzalol
-	// Date: November 28, 2015
-	// Version: 6.85
-	// Type: Datadriven
+	//松姬 治療噴霧
+	"C19E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_128x128_38"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"100 120 140 180"
+		"AbilityCastRange"	"600"
+		"AOERadius"	"500"
+		"AbilityCastPoint"	"0"
+		"AbilityChannelTime"	"%C19E_old_Duration"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+				"Function"	"C19E_old"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"C19E_old_Duration"	"2.1 2.6 3.1 3.6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"healv"	"60 80 100 120"
+			}
+		}
+	}
 	//松姬 癱瘓毒
 	"C19R"
 	{
@@ -108,6 +274,7 @@
 						{
 							"Center"	"TARGET"
 							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 						}
 					}
 				}
@@ -156,10 +323,112 @@
 			}
 		}
 	}
-
-	// Rewrite of the Phantom Assassin Blur ability
-	// Author: Pizzalol
-	// Date: 21.12.2014.
+	//松姬 奇襲
+	"C19R_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"furion_teleportation"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCooldown"	"60 50 40 30"
+		"AbilityCastPoint"	"5"
+		"AbilityManaCost"	"50"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// ?? global
+		"AbilityCastRange"	"0"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
+			"particle"	"particles/units/heroes/hero_furion/furion_teleport_end_team.vpcf"
+			// Endcap if canceled
+			"particle"	"particles/units/heroes/hero_furion/furion_teleport_e.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"particle"	"particles/units/heroes/hero_furion/furion_teleport.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_teleportation"
+				"Target"	"CASTER"
+				"Duration"	"5"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Furion.Teleport_Grow"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+				"Function"	"CreateTeleportParticles2"
+				"Target"	"POINT"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Furion.Teleport_Disappear"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+				"Function"	"Teleport2"
+				"Target"	"POINT"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Furion.Teleport_Appear"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_teleportation"
+			{
+				"IsHidden"	"0"
+				"EffectName"	"particles/units/heroes/hero_furion/furion_teleport.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"OnOrder"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Furion.Teleport_Disappear"
+						"Target"	"CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"	"EndTeleport"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_teleportation"
+						"Target"	"CASTER"
+					}
+				}
+			}
+			"modifier_C15D"
+			{
+				"IsHidden"	"1"
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
 	//松姬 不容侵犯
 	"C19T"
 	{
@@ -199,32 +468,40 @@
 			}
 		}
 	}
-	//松姬 婉約誓言
-	"C19E"
+	//松姬 不容侵犯
+	"C19T_old"
 	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"morphling_adaptive_strike_ethereal_blade"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityCooldown"	"15"
-		"AbilityManaCost"	"80"
-		"AbilityCastRange"	"1000"
-		"OnSpellStart"
+		"AbilityTextureName"	"enchantress_enchant"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"Modifiers"
 		{
-			"RunScript"
+			"modifier_blur_datadriven"
 			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15_Song_Ji.lua"
-				"Function"	"C15E"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_evasion"	"35 45 55"
 			}
 		}
 	}
-
-	// Rewrite of Furion Teleportation
-	// Author: Noya
-	// Date: April 5, 2015
-	// TODO: Check all sort of cancelling shenanigans
+	
 	//松姬 奇襲
 	"C19D"
 	{
@@ -236,8 +513,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"MaxLevel"	"1"
-		"AbilityCooldown"	"30"
-		"AbilityCastPoint"	"3 3 3 3"
+		"AbilityCastPoint"	"3"
 		"AbilityCooldown"	"35"
 		"AbilityManaCost"	"50"
 		// Stats
@@ -271,7 +547,7 @@
 			}
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15_Song_Ji.lua"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
 				"Function"	"CreateTeleportParticles"
 				"Target"	"POINT"
 			}
@@ -290,7 +566,7 @@
 			}
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15_Song_Ji.lua"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
 				"Function"	"Teleport"
 				"Target"	"POINT"
 			}
@@ -316,7 +592,7 @@
 					}
 					"RunScript"
 					{
-						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15_Song_Ji.lua"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
 						"Function"	"EndTeleport"
 					}
 					"RemoveModifier"

@@ -13,7 +13,7 @@ function Shock( keys )
 				dummy:EmitSound( "war.sound1" )
 				local id1 = idx
 				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-					chaos[id1] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					chaos[id1] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, dummy)
 					ParticleManager:SetParticleControl(chaos[id1], 0, point)
 					Timers:CreateTimer(8, function ()
 						ParticleManager:DestroyParticle(chaos[id1], true)
@@ -22,7 +22,7 @@ function Shock( keys )
 				idx = idx + 1
 				local id2 = idx
 				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-					chaos[id2] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					chaos[id2] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, dummy)
 					ParticleManager:SetParticleControl(chaos[id2], 0, point + Vector(300, 0, 0))
 					Timers:CreateTimer(8, function ()
 						ParticleManager:DestroyParticle(chaos[id2], true)
@@ -31,7 +31,7 @@ function Shock( keys )
 				idx = idx + 1
 				local id3 = idx
 				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-					chaos[id3] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					chaos[id3] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, dummy)
 					ParticleManager:SetParticleControl(chaos[id3], 0, point + Vector(-300, 0, 0))
 					Timers:CreateTimer(8, function ()
 						ParticleManager:DestroyParticle(chaos[id3], true)
@@ -40,7 +40,7 @@ function Shock( keys )
 				idx = idx + 1
 				local id4 = idx
 				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-					chaos[id4] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					chaos[id4] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, dummy)
 					ParticleManager:SetParticleControl(chaos[id4], 0, point + Vector(250, 200, 0))
 					Timers:CreateTimer(8, function ()
 						ParticleManager:DestroyParticle(chaos[id4], true)
@@ -49,7 +49,7 @@ function Shock( keys )
 				idx = idx + 1
 				local id5 = idx
 				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-					chaos[id5] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					chaos[id5] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, dummy)
 					ParticleManager:SetParticleControl(chaos[id5], 0, point + Vector(-100, -300, 0))
 					Timers:CreateTimer(8, function ()
 						ParticleManager:DestroyParticle(chaos[id5], true)
@@ -58,7 +58,7 @@ function Shock( keys )
 				idx = idx + 1
 				local id6 = idx
 				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-					chaos[id6] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					chaos[id6] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, dummy)
 					ParticleManager:SetParticleControl(chaos[id6], 0, point + Vector(200, -300, 0))
 					Timers:CreateTimer(8, function ()
 						ParticleManager:DestroyParticle(chaos[id6], true)
@@ -67,7 +67,7 @@ function Shock( keys )
 				idx = idx + 1
 				local id7 = idx
 				Timers:CreateTimer(math.random(0, 5) * 0.1, function ()
-					chaos[id7] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, keys.caster)
+					chaos[id7] = ParticleManager:CreateParticle("particles/item/item_the_overflame_art_of_war.vpcf", PATTACH_ABSORIGIN, dummy)
 					ParticleManager:SetParticleControl(chaos[id7], 0, point + Vector(-250, 200, 0))
 					Timers:CreateTimer(8, function ()
 						ParticleManager:DestroyParticle(chaos[id7], true)

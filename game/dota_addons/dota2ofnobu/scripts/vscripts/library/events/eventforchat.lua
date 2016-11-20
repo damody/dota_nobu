@@ -39,6 +39,44 @@ local function chat_of_test(keys)
 	if _G.CountUsedAbility_Table[keys.playerid + 1] == nil then
 		_G.CountUsedAbility_Table[keys.playerid + 1] = {}
 	end
+	if s == "-se" then
+		_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_GOODGUYS
+		for playerID = 0, 14 do
+			local id       = playerID
+	  		local p        = PlayerResource:GetPlayer(id)
+	    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
+			  local hero = p:GetAssignedHero()
+
+			  if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+			  	_G.CountUsedAbility_Table[id+1]["res"] = "W"
+			  else
+			  	_G.CountUsedAbility_Table[id+1]["res"] = "L"
+			  end
+			  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
+			  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
+			  _G.CountUsedAbility_Table[id+1]["damage"] = hero.damage
+			  _G.CountUsedAbility_Table[id+1]["takedamage"] = hero.takedamage
+			  _G.CountUsedAbility_Table[id+1]["herodamage"] = hero.herodamage
+			  _G.CountUsedAbility_Table[id+1]["team"] = hero:GetTeamNumber()
+			  _G.CountUsedAbility_Table[id+1]["kda"] = {}
+			  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
+			  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
+			  _G.CountUsedAbility_Table[id+1]["kda"]["a"] = tostring(hero:GetAssists())
+			  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
+			end
+		end
+		DeepPrintTable(_G.CountUsedAbility_Table)
+		
+		SendHTTPRequest("save_ability_data", "POST",
+			{
+			  data = tostring(inspect(_G.CountUsedAbility_Table)),
+			},
+			function(result)
+			  print(result)
+			end)
+		
+	end
+	
 	--舊版模式
 	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
 		caster.isold = true
@@ -107,6 +145,39 @@ local function chat_of_test(keys)
 			caster:AddAbility("B32R_old")
 			caster:AddAbility("B32D_old"):SetLevel(1)
 			caster:AddAbility("B32T_old")
+		elseif string.match(caster:GetUnitName(), "troll_warlord") then -- 井伊直政dfdsds
+			caster:RemoveAbility("A06W")
+			caster:RemoveAbility("A06E")
+			caster:RemoveAbility("A06R")
+			caster:RemoveAbility("A06D")
+			caster:RemoveAbility("A06T")
+
+			caster:AddAbility("A06W_old")
+			caster:AddAbility("A06E_old")
+			caster:AddAbility("A06R_old")
+			caster:AddAbility("A06T_old")
+		elseif string.match(caster:GetUnitName(), "bristleback") then -- 今川義元
+			caster:RemoveAbility("B15W")
+			caster:RemoveAbility("B15E")
+			caster:RemoveAbility("B15R")
+			caster:RemoveAbility("B15D")
+			caster:RemoveAbility("B15T")
+
+			caster:AddAbility("B15W_old")
+			caster:AddAbility("B15E_old")
+			caster:AddAbility("B15R_old")
+			caster:AddAbility("B15T_old")
+		elseif string.match(caster:GetUnitName(), "templar_assassin") then -- 松姬
+			caster:RemoveAbility("C19W")
+			caster:RemoveAbility("C19E")
+			caster:RemoveAbility("C19R")
+			caster:RemoveAbility("C19D")
+			caster:RemoveAbility("C19T")
+
+			caster:AddAbility("C19W_old")
+			caster:AddAbility("C19E_old")
+			caster:AddAbility("C19R_old")
+			caster:AddAbility("C19T_old")
 		end
 		caster.version = "11"
 	end
@@ -124,24 +195,27 @@ local function chat_of_test(keys)
 	for playerID = 0, 14 do
 		local id       = playerID
   		local p        = PlayerResource:GetPlayer(id)
-    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
+    	if p ~= nil then
 		  sump = sump + 1
 		end
 	end
+	if string.match(s,"damody:") then
+		sump = 1
+	end
 	if 1==sump then
-		if s == "-gg" then
+		if string.match(s,"-gg") then
 			GameRules:SetCustomGameEndDelay(1)
 			GameRules:SetCustomVictoryMessage("遊戲時間到了喔~")
 			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end
-		if s == "ss" then
+		if string.match(s,"ss") then
 			caster:AddAbility("for_move1500"):SetLevel(1)
 		end
-		if s == "xx" then
+		if string.match(s,"xx") then
 			caster:RemoveAbility("for_move1500")
 			caster:RemoveModifierByName("modifier_for_move1500")
 		end
-		if s == "re" then
+		if string.match(s,"re") then
 			caster:SetTimeUntilRespawn(0)
 		end
 		if string.match(s,"gold") then
@@ -154,7 +228,7 @@ local function chat_of_test(keys)
 			PlayerResource:SetGold(i,0,false)--玩家ID需要減一
 			end
 		end
-		if s == "cd" then
+		if string.match(s,"cd") then
 			--【Timer】
 			Timers:CreateTimer(function()
 				caster:SetMana(caster:GetMaxMana() )
@@ -182,7 +256,7 @@ local function chat_of_test(keys)
 			end)
 		end
 
-		if s == "supercd" then
+		if string.match(s,"supercd") then
 			--【Timer】
 			Timers:CreateTimer(0.1, function()
 				caster:SetMana(caster:GetMaxMana() )
@@ -242,43 +316,8 @@ local function chat_of_test(keys)
 		    end
 		end
 		
-		if s == "se" then
-			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_GOODGUYS
-			for playerID = 0, 14 do
-				local id       = playerID
-		  		local p        = PlayerResource:GetPlayer(id)
-		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
-				  local hero = p:GetAssignedHero()
-
-				  if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-				  	_G.CountUsedAbility_Table[id+1]["res"] = "W"
-				  else
-				  	_G.CountUsedAbility_Table[id+1]["res"] = "L"
-				  end
-				  _G.CountUsedAbility_Table[id+1]["name"] = hero.name
-				  _G.CountUsedAbility_Table[id+1]["version"] = hero.version
-				  _G.CountUsedAbility_Table[id+1]["damage"] = hero.damage
-				  _G.CountUsedAbility_Table[id+1]["takedamage"] = hero.takedamage
-				  _G.CountUsedAbility_Table[id+1]["herodamage"] = hero.herodamage
-				  _G.CountUsedAbility_Table[id+1]["team"] = hero:GetTeamNumber()
-				  _G.CountUsedAbility_Table[id+1]["kda"] = {}
-				  _G.CountUsedAbility_Table[id+1]["kda"]["k"] = tostring(hero:GetKills())
-				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
-				  _G.CountUsedAbility_Table[id+1]["kda"]["a"] = tostring(hero:GetAssists())
-				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
-				end
-			end
-			SendHTTPRequest("save_ability_data", "POST",
-				{
-				  data = tostring(inspect(_G.CountUsedAbility_Table)),
-				},
-				function(result)
-				  print(result)
-				end)
-		end
-		
 		if s == "c1" then
-			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
@@ -286,7 +325,7 @@ local function chat_of_test(keys)
 		end
 		
 		if s == "c2" then
-			local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
@@ -294,7 +333,7 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c3" then
-			local  u = CreateUnitByName("npc_dota_hero_dragon_knight",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_dragon_knight",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
@@ -302,7 +341,7 @@ local function chat_of_test(keys)
 		end
 		
 		if s == "c4" then
-			local  u = CreateUnitByName("npc_dota_hero_alchemist",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_alchemist",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
@@ -310,7 +349,7 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c5" then
-			local  u = CreateUnitByName("npc_dota_hero_broodmother",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_broodmother",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
@@ -318,7 +357,119 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c6" then
-			local  u = CreateUnitByName("npc_dota_hero_faceless_void",caster:GetAbsOrigin()+Vector(100,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_faceless_void",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "c11" then
+			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+		
+		if s == "c22" then
+			local  u = CreateUnitByName("npc_dota_hero_crystal_maiden",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "c33" then
+			local  u = CreateUnitByName("npc_dota_hero_dragon_knight",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+		
+		if s == "c44" then
+			local  u = CreateUnitByName("npc_dota_hero_alchemist",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "c55" then
+			local  u = CreateUnitByName("npc_dota_hero_broodmother",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "c66" then
+			local  u = CreateUnitByName("npc_dota_hero_faceless_void",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "a1" then
+			local  u = CreateUnitByName("com_ashigaru_spearmen",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "b1" then
+			local  u = CreateUnitByName("com_ashigaru_spearmen",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "a2" then
+			local  u = CreateUnitByName("com_archer",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "b2" then
+			local  u = CreateUnitByName("com_archer",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "a3" then
+			local  u = CreateUnitByName("com_cavalry",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "b3" then
+			local  u = CreateUnitByName("com_cavalry",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "a4" then
+			local  u = CreateUnitByName("Test_com_gunner_clone",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
+		if s == "b4" then
+			local  u = CreateUnitByName("Test_com_gunner_clone",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)

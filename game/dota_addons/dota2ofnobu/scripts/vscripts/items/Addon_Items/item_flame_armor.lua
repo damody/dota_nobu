@@ -18,11 +18,7 @@ function Shock( keys )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			local flame = ParticleManager:CreateParticle("particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf", PATTACH_ABSORIGIN, it)
-			if caster:IsIllusion() then
-				AMHC:Damage(caster,it, keys.damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			else
-				AMHC:Damage(caster,it, keys.damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			end
+			AMHC:Damage(caster,it, keys.damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			Timers:CreateTimer(0.9, function ()
 				ParticleManager:DestroyParticle(flame, false)
 			end)

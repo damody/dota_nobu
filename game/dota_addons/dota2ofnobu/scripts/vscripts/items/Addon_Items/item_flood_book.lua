@@ -16,7 +16,8 @@ function Shock( keys )
           0,
           false)
 	for _,target in pairs(direUnits) do
-		if not target:IsBuilding() then
+		-- 不能推秋山的石頭跟建築物
+		if not target:IsBuilding() and target:GetUnitName() ~= "B24W_DUMMY" and target:GetUnitName() ~= "B24T_HIDE" then
 			Physics:Unit(target)
 			target:SetPhysicsVelocity((target:GetAbsOrigin() - point):Normalized()*700)
 			ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 0.5})

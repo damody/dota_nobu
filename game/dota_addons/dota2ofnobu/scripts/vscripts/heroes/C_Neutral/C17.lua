@@ -53,9 +53,10 @@ function new_C17D( keys )
 	local point2 = nil
 	--PopupHealing(caster, health)
 	--【Group】
-	local group = {}
-	local radius = 650.00
- 	group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, radius,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+	local radius = 800
+
+ 	local group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, radius,DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	for i,v in ipairs(group) do
 		point2 = v:GetAbsOrigin()
 		local particle = ParticleManager:CreateParticle("particles/c17d/c17d.vpcf", PATTACH_ABSORIGIN_FOLLOW , v)
@@ -164,6 +165,7 @@ function C17W(keys)
 	local point2 = target:GetAbsOrigin() 
 	--local point2 = ability:GetCursorPosition()
 	local level = ability:GetLevel() - 1
+	local dmg_special = ability:GetLevelSpecialValueFor("dmg_special",level)
 	local duration = ability:GetLevelSpecialValueFor("duration",level)
 	local stun_duration = ability:GetLevelSpecialValueFor("stun_duration",level)
 	--local vec = caster:GetForwardVector():Normalized()
@@ -196,14 +198,14 @@ function C17W(keys)
 		local r = 0
 		local r2 = 0
 		local time = nil
-		if CalcDistanceBetweenEntityOBB(caster,target) >=1001.00 then
+		local dis = CalcDistanceBetweenEntityOBB(caster,target)
+		if dis >1000.00 then
 			r=1000.00
 		else
-			r=CalcDistanceBetweenEntityOBB(caster,target)
+			r=dis
 		end
 		r2=(1000.00-r)
-		r=r*(0.18+(0.17*(level + 1)))
-		AMHC:Damage( caster,target,r,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		AMHC:Damage( caster,target,r * dmg_special,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		r2=((r2/200.00)+1.00)
 
 		time = r2*udg_C05W_stun[level + 1]
@@ -247,39 +249,28 @@ function C17T(keys)
 	local particle3 = ParticleManager:CreateParticle("particles/c17t3/c17t3.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle3,0, point2+Vector(0,0,40))
 	ParticleManager:SetParticleControl(particle3,3, point2+Vector(0,0,40))
+	local aoeradius = ability:GetLevelSpecialValueFor("aoe",level)
+	local dmg = ability:GetLevelSpecialValueFor("dmg",level)
+	local regen = ability:GetLevelSpecialValueFor("regen",level)
+	local hpx = ability:GetLevelSpecialValueFor("hpx",level)
 
 	-- local particle = ParticleManager:CreateParticle("particles/c17t2/c17t2.vpcf",PATTACH_POINT,caster)
 	-- ParticleManager:SetParticleControl(particle,0, point2+Vector(0,0,40))
 	--【Group】	
-	local caster_team = caster:GetTeamNumber()
-	local group = {}
-	local radius = 650.00
-	local dmg = 350.00+150.00*(level + 1)
-	local r2 = 0.20+0.10*(level + 1)
- 	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+ 	local group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, aoeradius,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
 	for i,v in ipairs(group) do
 		if (not v:IsBuilding()) then
-			if v:GetTeamNumber() ~= caster_team then
-	        	if (v:GetMaxHealth()*0.20) <= dmg then
+			local dmg2 = v:GetMaxHealth()*hpx/100
+			if v:GetTeamNumber() ~= caster:GetTeamNumber() then
+	        	if dmg2 <= dmg then
 	        		AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	       		else
-	       			local dmg2 = v:GetMaxHealth()*0.20
 	       			AMHC:Damage( caster,v,dmg2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	        	end
 			else
-				--【KV】
-				local hp = v:GetHealth() + v:GetMaxHealth() * r2
+				local hp = v:GetHealth() + v:GetMaxHealth() * regen / 100
 				v:SetHealth(hp)
-				--【DEBUG】
-				--print(hp)
-				-- --print(mana)	
-				-- --print(v:GetUnitName())	
 			end
 		end
 	end	
-
---【DEBUG】
-----print(caster:GetTeamNumber())
- --print(dmg)	
--- --print(v:GetUnitName())	
 end

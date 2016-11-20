@@ -132,7 +132,8 @@ function equilibrium_constant:x_OnNPCSpawned(keys)
         and hSpawnedUnit.GetAgility and hSpawnedUnit.GetIntellect and hSpawnedUnit.GetStrength
         and not hSpawnedUnit:HasModifier("equilibrium_constant")
         then
-        hSpawnedUnit:AddNewModifier(hSpawnedUnit,nil,"equilibrium_constant",{})
+            hSpawnedUnit:AddNewModifier(hSpawnedUnit,nil,"equilibrium_constant",{})
+        
     end
 end
 

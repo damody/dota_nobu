@@ -5,13 +5,15 @@ function Shock( keys )
 	local ability = keys.ability
 	GridNav:DestroyTreesAroundPoint(point, 500, false)
 
-	
+	local dummy = AMHC:CreateUnit( "hide_unit",point,caster:GetForwardVector(),caster,caster:GetTeamNumber())
+	dummy:AddAbility("majia"):SetLevel(1)
+
 	local sumtime = 0
 	Timers:CreateTimer(0.2, function ()
 		sumtime = sumtime + 0.2
 		local pp = point + RandomVector(RandomInt(1, 250))
 
-		local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN, caster)
+		local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN, dummy)
 		-- Raise 1000 if you increase the camera height above 1000
 		ParticleManager:SetParticleControl(particle, 0, Vector(pp.x,pp.y,1000 ))
 		ParticleManager:SetParticleControl(particle, 1, Vector(pp.x,pp.y,pp.z + 10 ))
@@ -43,6 +45,7 @@ function Shock( keys )
 		if sumtime < 11.1 then
 			return 0.2
 		else
+			dummy:ForceKill( true )
 			return nil
 		end
 	end)

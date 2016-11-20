@@ -99,6 +99,91 @@
 		}
 	}
 
+	//今川義元 巨人之臂力
+	"B15W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ogre_magi_frost_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"175"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/lifestealer/rage.vsnd"
+			"particle"	"particles/b15w3/b15w3.vpcf"
+			"particle"	"particles/b15w/b15w.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+			"particle"	"particles/b15w3/b15w3.vpcf"
+			"particle"	"particles/b15w/b15w.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_LifeStealer.Rage"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_b15w"
+				"Target"	"CASTER"
+				"Duration"	"40"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_b15w"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/b15w/b15w.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+							"CASTER"	"attach_hitloc"
+							"CASTER"	"attach_hitloc"
+						}
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%power"
+				}
+				"EffectName"	"particles/b15w3/b15w3.vpcf"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"power"	"10 20 30 40"
+			}
+		}
+	}
+
 	// Rewrite of Clinkz Searing Arrows
 	// Author: Noya
 	// Date: December 31, 2015
@@ -122,7 +207,6 @@
 		"AbilityManaCost"	"0"
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
 			"particle"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
 		}
@@ -243,6 +327,100 @@
 		}
 	}
 
+	//今川義元 烈焰箭
+	"B15E_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+			"particle"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+				"Function"	"OnToggleOn_B15E_old"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_searing_arrow"
+				"Target"	"CASTER"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+				"Function"	"OnToggleOff_B15E_old"
+			}
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_searing_arrow"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_searing_arrow"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"	"0"
+					"ProjectileName"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+				}
+				"OnOrbFire"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E"
+					}
+				}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E_attack3"
+						"Target"	"TARGET"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Medusa.AttackSplit"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_bonus"	"40 60 80 100"
+			}
+		}
+	}
+
 	// Rewrite of the Medusa Split Shot ability
 	// Author: Pizzalol
 	// Date: 04.03.2015.
@@ -278,7 +456,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
-				"Function"	"SplitShotDamage"
+				"Function"	"B15D_SplitShotDamage"
 			}
 		}
 		"Modifiers"
@@ -312,7 +490,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"range"	"750"
+				"range"	"800"
 			}
 			"03"
 			{
@@ -358,6 +536,33 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"Damage_Income"	"16 29 42 55"
+			}
+		}
+	}
+	//今川義元 巨人之外皮
+	"B15R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"tiny_craggy_exterior"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"block_B15R_old"
+			{
+				"Passive"	"1"
+			    "IsBuff" "1"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%Damage_Income"
+			    }
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Damage_Income"	"50 100 150 200"
 			}
 		}
 	}
@@ -428,6 +633,84 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"stun_time"	"0.1 1.0 1.5"
+			}
+		}
+	}
+	//今川義元 多重箭
+	"B15T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"windrunner_focusfire"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/b13e/b13e.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"FireSound"
+			{
+				"EffectName"	"Hero_Medusa.AttackSplit"
+				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+				"Function"	"B15D_SplitShotDamage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_split_shot_datadriven"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsDebuff"	"0"
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15D_SplitShotLaunch"
+						"split_shot_projectile"	"particles/b13e/b13e.vpcf"
+					}
+				}
+				"Properties"	{}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"arrow_count"	"3 4 5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"800"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"1800"
 			}
 		}
 	}

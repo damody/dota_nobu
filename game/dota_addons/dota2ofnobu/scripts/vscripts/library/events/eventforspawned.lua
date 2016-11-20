@@ -1,5 +1,5 @@
 require("equilibrium_constant")
-
+LinkLuaModifier( "modifier_record", "items/Addon_Items/record.lua",LUA_MODIFIER_MOTION_NONE )
 --單位創建也會運行
 
 model_lookup = {}
@@ -33,31 +33,50 @@ function Nobu:OnHeroIngame( keys )
   
   if hero:IsHero() then
     local caster = hero
+    if caster:HasModifier("modifier_record") then
+      caster:RemoveModifierByName("modifier_record")
+    end
+
+    caster:AddNewModifier(caster,ability,"modifier_record",{})
+    caster:FindModifierByName("modifier_record").caster = caster
+
     local name = caster:GetUnitName()
-    if string.match(name, "ancient_apparition")  then -- 竹中重治
-      caster:FindAbilityByName("A04D"):SetLevel(1)
-    elseif string.match(name, "jakiro") then  -- 佐佐木小次郎
-      caster:FindAbilityByName("C22D"):SetLevel(1)
-    elseif string.match(name, "templar_assassin") then -- 松姬
-      caster:FindAbilityByName("C19D"):SetLevel(1)
-    elseif string.match(name, "centaur") then -- 本多忠勝
-      if (caster:FindAbilityByName("A07D") ~= nil and caster:FindAbilityByName("A07D"):GetLevel() == 0) then
+    if string.match(name, "ancient_apparition")  then --竹中重治
+      if caster:FindAbilityByName("A04D") ~= nil then
+        caster:FindAbilityByName("A04D"):SetLevel(1)
+      end
+    elseif string.match(name, "jakiro") then --佐佐木小次郎
+      if caster:FindAbilityByName("C22D") ~= nil then
+        caster:FindAbilityByName("C22D"):SetLevel(1)
+      end
+    elseif string.match(name, "templar_assassin") then --松姬
+      if caster:FindAbilityByName("C19D") ~= nil then
+        caster:FindAbilityByName("C19D"):SetLevel(1)
+      end
+    elseif string.match(name, "centaur") then --本多忠勝
+      if caster:FindAbilityByName("A07D") ~= nil and caster:FindAbilityByName("A07D"):GetLevel() == 0 then
         caster:FindAbilityByName("A07D"):SetLevel(1)
       end
-    elseif string.match(name, "broodmother") then -- 服部半藏
-      if (caster:FindAbilityByName("A13D"):GetLevel() == 0) then
+    elseif string.match(name, "broodmother") then --服部半藏
+      if caster:FindAbilityByName("A13D") ~= nil and caster:FindAbilityByName("A13D"):GetLevel() == 0 then
         caster:FindAbilityByName("A13D"):SetLevel(1)
       end
-    elseif string.match(name, "storm_spirit") then -- 大谷吉繼
+    elseif string.match(name, "storm_spirit") then --大谷吉繼
+      caster:FindAbilityByName("A12D"):SetLevel(1)
+      caster:FindAbilityByName("A12D"):SetActivated(false)
       caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
     elseif string.match(name, "silencer") then -- 立花道雪
+      if caster:FindAbilityByName("C07D") ~= nil then
+        caster:FindAbilityByName("C07D"):SetLevel(1)
+      end
       -- 這隻角色天生會帶一個modifier我們需要砍掉他
       caster:RemoveModifierByName("modifier_silencer_int_steal")
-      caster:FindAbilityByName("C07D"):SetLevel(1)
     elseif string.match(name, "windrunner") then -- 阿市
-      caster:FindAbilityByName("C17D"):SetLevel(1)
-    elseif string.match(name, "faceless_void") then --風魔
-      if (caster:FindAbilityByName("B02D"):GetLevel() == 0) then
+      if caster:FindAbilityByName("C17D") ~= nil then
+        caster:FindAbilityByName("C17D"):SetLevel(1)
+      end
+    elseif string.match(name, "faceless_void") then --風魔小太郎
+      if caster:FindAbilityByName("B02D") ~= nil and caster:FindAbilityByName("B02D"):GetLevel() == 0 then
         caster:FindAbilityByName("B02D"):SetLevel(1)
       end
     end
@@ -66,6 +85,11 @@ function Nobu:OnHeroIngame( keys )
       if hero.init1 == nil then
         hero.init1 = true
         hero.kill_count = 0
+        hero.damage = 0
+        hero.takedamage = 0
+        hero.herodamage = 0
+        hero:AddNewModifier(caster,ability,"modifier_record",{})
+        hero:FindModifierByName("modifier_record").caster = caster
         --hero:AddItem(CreateItem("item_flash_ring", hero, hero))
     		--hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
     		
