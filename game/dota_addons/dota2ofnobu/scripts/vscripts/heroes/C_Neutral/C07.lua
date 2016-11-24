@@ -200,9 +200,6 @@ function C07_Effect( keys )
 			StartSoundEvent( "Hero_Leshrac.Lightning_Storm", v )
 
 			point2 = v:GetAbsOrigin()
-			if caster:IsAlive() then
-				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, caster)
-			end
 			local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN , v)
 			-- Raise 1000 if you increase the camera height above 1000
 			ParticleManager:SetParticleControl(particle, 0, point + Vector(0,0,height))
@@ -219,10 +216,17 @@ function C07_Effect( keys )
                               FIND_ANY_ORDER,
                               false)
 			for i2,v2 in ipairs(group2) do
+				if v2:IsHero() then
+					ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v2)
+				end
 				if caster:IsAlive() then
 					AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				else
 					AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					caster.takedamage = caster.takedamage + dmg
+					if (v2:IsRealHero()) then
+						caster.herodamage = caster.herodamage + dmg
+					end
 				end
 			end
 		end

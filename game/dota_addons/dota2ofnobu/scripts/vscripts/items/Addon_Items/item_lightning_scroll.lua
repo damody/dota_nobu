@@ -237,10 +237,10 @@ function Shock2( keys )
 		if (caster.raikiri == nil) then
 			caster.raikiri = 0
 		end
-		if (ran > 20) then
+		if (ran > 16) then
 			caster.raikiri = caster.raikiri + 1
 		end
-		if (caster.raikiri > (100/20) or ran <= 20) then
+		if (caster.raikiri > (100/16+1) or ran <= 16) then
 			caster.raikiri = 0
 			--【KV】
 			--caster:SetForwardVector(vec)
@@ -290,7 +290,7 @@ function Shock2( keys )
 						ParticleManager:SetParticleControl(particle,1, tem_point)
 					
 						--【DMG】
-						ApplyDamage({ victim = unit, attacker = caster, damage = damage, damage_type = AbilityDamageType})
+						ApplyDamage({ victim = unit, attacker = caster, damage = 400, damage_type = AbilityDamageType})
 
 						-- Increment counter
 						targets_shocked = targets_shocked + 1

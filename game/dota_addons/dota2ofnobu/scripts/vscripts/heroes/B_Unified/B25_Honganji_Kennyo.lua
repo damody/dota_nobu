@@ -253,7 +253,7 @@ function B25T_start( keys )
 		end)
 
 
-	Timers:CreateTimer( function()
+	Timers:CreateTimer(0,  function()
 			local dummy = CreateUnitByName( "npc_dummy", target + RandomVector(500), false, caster, caster, caster:GetTeamNumber() )
 			dummy:EmitSound( "B25T.sound"..RandomInt(1, 4) )
 			Timers:CreateTimer( 1, function()
@@ -261,6 +261,14 @@ function B25T_start( keys )
 							return nil
 						end
 					)
+			local units = FindUnitsInRadius(caster:GetTeamNumber(), target,
+			nil,  radius , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
+			for k, v in pairs( units ) do
+				if v:IsHero() then
+					ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v)
+				end
+			end
 			if caster:IsChanneling() == false then
 				return nil
 			else

@@ -75,6 +75,9 @@ function B34T_old( keys )
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 	for _, it in pairs(group) do
+		if it:IsHero() then
+			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, it)
+		end
 		AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor("dmg",level),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		ability:ApplyDataDrivenModifier(it,it,"modifier_B34T_old",{})
 	end

@@ -820,6 +820,7 @@ function check_Oda_is_dead(keys)
 				sum = sum + 1
 				local id       = playerID
 		  		local p        = PlayerResource:GetPlayer(id)
+		  		local steamid = PlayerResource:GetSteamAccountID(id)
 		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
 				  local hero = p:GetAssignedHero()
 				  if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
@@ -838,6 +839,7 @@ function check_Oda_is_dead(keys)
 				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
 				  _G.CountUsedAbility_Table[id+1]["kda"]["a"] = tostring(hero:GetAssists())
 				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
+				  _G.CountUsedAbility_Table[id+1]["kda"]["steamid"] = steamid
 				end
 			end
 			if sum > 5 then
@@ -866,6 +868,7 @@ function check_Unified_is_dead(keys)
 				sum = sum + 1
 				local id       = playerID
 		  		local p        = PlayerResource:GetPlayer(id)
+		  		local steamid = PlayerResource:GetSteamAccountID(id)
 		    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
 				  local hero = p:GetAssignedHero()
 
@@ -885,6 +888,7 @@ function check_Unified_is_dead(keys)
 				  _G.CountUsedAbility_Table[id+1]["kda"]["d"] = tostring(hero:GetDeaths())
 				  _G.CountUsedAbility_Table[id+1]["kda"]["a"] = tostring(hero:GetAssists())
 				  _G.CountUsedAbility_Table[id+1]["kda"]["kcount"] = tostring(hero.kill_count)
+				  _G.CountUsedAbility_Table[id+1]["kda"]["steamid"] = steamid
 				end
 			end
 			if sum > 5 then

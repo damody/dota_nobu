@@ -11,6 +11,7 @@ function AON_Cleave_B32x(keys)
 	--local dmg = dmg / (1 - damageReduction)
 
 	AMHC:Damage( caster,target,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+
 end
 
 function AON_Cleave_B32(keys)
@@ -51,6 +52,9 @@ function AON_Cleave_A07(keys)
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 	for _, it in pairs(group) do
+		if it:IsHero() then
+			ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
+		end
 		if it ~= target then
 			AMHC:Damage( caster,it,keys.dmg*0.4,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		else
@@ -75,6 +79,9 @@ function AON_Cleave_A07_old(keys)
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 	for _, it in pairs(group) do
+		if it:IsHero() then
+			ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
+		end
 		if it ~= target then
 			AMHC:Damage( caster,it,keys.dmg*0.4,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end

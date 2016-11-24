@@ -22,6 +22,46 @@ model_change_wearable["npc_dota_hero_antimage"]= true
 _G.CountUsedAbility_Table = {}
 
 
+heromap = {
+  npc_dota_hero_bristleback = "B15",
+  npc_dota_hero_earthshaker = "B24",
+  npc_dota_hero_brewmaster = "B26",
+  npc_dota_hero_silencer = "C07",
+  npc_dota_hero_sniper = "A17",
+  npc_dota_hero_beastmaster = "B34",
+  npc_dota_hero_huskar = "A16",
+
+  npc_dota_hero_mirana = "C15",
+  npc_dota_hero_antimage = "C10",
+  npc_dota_hero_crystal_maiden = "A34",
+  npc_dota_hero_storm_spirit = "A12",
+  
+  npc_dota_hero_troll_warlord = "A06",
+  npc_dota_hero_faceless_void = "B02",
+  npc_dota_hero_broodmother = "A13",
+
+  npc_dota_hero_invoker = "A28",
+  npc_dota_hero_omniknight = "A27",
+  npc_dota_hero_oracle = "A29",
+  npc_dota_hero_ancient_apparition = "A04",
+  npc_dota_hero_dragon_knight = "B32",
+  npc_dota_hero_drow_ranger = "B33",
+  
+  npc_dota_hero_nevermore = "B01",
+  npc_dota_hero_pugna = "B25",
+  npc_dota_hero_slardar = "B06",
+  npc_dota_hero_viper = "C01",
+  npc_dota_hero_windrunner = "C17",
+  npc_dota_hero_keeper_of_the_light = "B05",
+  npc_dota_hero_jakiro = "C22",
+  npc_dota_hero_alchemist = "C21",
+  npc_dota_hero_treant = "A25",
+  npc_dota_hero_templar_assassin = "C19",
+  npc_dota_hero_medusa = "A31",
+  npc_dota_hero_magnataur = "B08",
+  npc_dota_hero_centaur = "A07",
+}
+
 function Nobu:OnHeroIngame( keys )
   --PrintTable(keys)
   -- local hero = EntIndexToHScript( keys.entindex )
@@ -36,7 +76,8 @@ function Nobu:OnHeroIngame( keys )
     if caster:HasModifier("modifier_record") then
       caster:RemoveModifierByName("modifier_record")
     end
-
+    caster.name = heromap[caster:GetUnitName()]
+    caster.version = 16
     caster:AddNewModifier(caster,ability,"modifier_record",{})
     caster:FindModifierByName("modifier_record").caster = caster
 
@@ -52,14 +93,50 @@ function Nobu:OnHeroIngame( keys )
     elseif string.match(name, "templar_assassin") then --松姬
       if caster:FindAbilityByName("C19D") ~= nil then
         caster:FindAbilityByName("C19D"):SetLevel(1)
+      else
+        caster.version = 11
+      end
+    elseif string.match(name, "pugna") then --本願寺顯如
+      if caster:FindAbilityByName("B25R") == nil then
+        caster.version = 11
+      end
+    elseif string.match(name, "keeper_of_the_light") then -- 毛利元就
+      if caster:FindAbilityByName("B05R") == nil then
+        caster.version = 11
+      end
+    elseif string.match(name, "nevermore") then --雜賀孫市
+      if caster:FindAbilityByName("B01W") == nil then
+        caster.version = 11
+      end
+    elseif string.match(name, "beastmaster") then --武田勝賴
+      if caster:FindAbilityByName("B34E") == nil then
+        caster.version = 11
+      end
+    elseif string.match(name, "dragon_knight") then --上杉謙信
+      if caster:FindAbilityByName("B32W") == nil then
+        caster.version = 11
+      end
+    elseif string.match(name, "slardar") then -- 真田幸村
+      if caster:FindAbilityByName("B06W") == nil then
+        caster.version = 11
+      end
+    elseif string.match(name, "troll_warlord") then -- 井伊直政
+      if caster:FindAbilityByName("A06W") == nil then
+        caster.version = 11
       end
     elseif string.match(name, "centaur") then --本多忠勝
       if caster:FindAbilityByName("A07D") ~= nil and caster:FindAbilityByName("A07D"):GetLevel() == 0 then
         caster:FindAbilityByName("A07D"):SetLevel(1)
       end
+      if caster:FindAbilityByName("A07D") == nil then
+        caster.version = 11
+      end
     elseif string.match(name, "broodmother") then --服部半藏
       if caster:FindAbilityByName("A13D") ~= nil and caster:FindAbilityByName("A13D"):GetLevel() == 0 then
         caster:FindAbilityByName("A13D"):SetLevel(1)
+      end
+      if caster:FindAbilityByName("A13D") == nil then
+        caster.version = 11
       end
     elseif string.match(name, "storm_spirit") then --大谷吉繼
       caster:FindAbilityByName("A12D"):SetLevel(1)

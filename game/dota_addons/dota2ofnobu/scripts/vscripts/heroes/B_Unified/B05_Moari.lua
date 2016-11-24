@@ -398,6 +398,9 @@ function B05T( event )
 
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
+		if it:IsHero() then
+			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, it)
+		end
 		ability:ApplyDataDrivenModifier(caster, it,"modifier_B05T",nil)
 	end
 
@@ -429,7 +432,7 @@ function B05T( event )
 								-- ParticleManager:SetParticleControl(particle2,1,Vector(5,5,5))
 								-- ParticleManager:SetParticleControl(particle2,3,point)
 
-								ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, caster)
+								
 								
 								Timers:CreateTimer(0.2,function()
 									for i=1,2 do

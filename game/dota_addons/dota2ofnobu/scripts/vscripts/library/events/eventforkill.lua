@@ -36,15 +36,22 @@ function Nobu:OnUnitKill( keys )
     -- [   VScript              ]: }
 	
     local AttackerUnit = EntIndexToHScript( keys.entindex_attacker )
+    local killedUnit = EntIndexToHScript( keys.entindex_killed )
     if (AttackerUnit:IsRealHero()) then
       if AttackerUnit.kill_count == nil then
         AttackerUnit.kill_count = 0
       end
-      AttackerUnit.kill_count = AttackerUnit.kill_count + 1
+      if AttackerUnit.building_count == nil then
+        AttackerUnit.building_count = 0
+      end
+      if killedUnit:IsBuilding() then
+        AttackerUnit.building_count = AttackerUnit.building_count + 1
+      else
+        AttackerUnit.kill_count = AttackerUnit.kill_count + 1
+      end
       print("AttackerUnit.kill_count "..AttackerUnit.kill_count)
     end
     ------------------------------------------------------------------
-    local killedUnit = EntIndexToHScript( keys.entindex_killed )
   	local name = killedUnit:GetUnitName()
   	if string.match(name,"silencer") then
   		-- 這隻角色天生會帶一個modifier我們需要砍掉他

@@ -566,6 +566,7 @@ function A13T_break( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
+	local dmg = ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 )
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              target:GetAbsOrigin(),
 	                              nil,
@@ -583,9 +584,13 @@ function A13T_break( keys )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			if caster:IsAlive() then
-				AMHC:Damage(caster, it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage(caster, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			else
-				AMHC:Damage(dummy, it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage(dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				caster.takedamage = caster.takedamage + dmg
+				if (it:IsRealHero()) then
+					caster.herodamage = caster.herodamage + dmg
+				end
 			end
 		end
 	end

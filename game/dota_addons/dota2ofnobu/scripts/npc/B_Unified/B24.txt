@@ -277,20 +277,10 @@
 			{
 				"IsPurgable"	"1"
 				"IsDebuff"	"1"
-				"States"	{}
-				"OnCreated"
+				"Duration"	"0.2"
+				"States"
 				{
-					"Stun"
-					{
-						"Target"	"TARGET"
-						"Duration"	"%stun_duration"
-					}
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage"
-					}
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"0"
 				"IsHidden"	"1"
@@ -311,7 +301,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"stun_duration"	"0.2"
+				"damage2"	"40 80 120 160"
 			}
 			"04"
 			{

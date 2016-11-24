@@ -149,6 +149,8 @@ function Precache( context )
     "particles/shake2.vpcf",
     "particles/shake3.vpcf",
     
+    -- 洞寶
+    "particles/b05t3/b05t3_j0.vpcf",
 
     --注意要加,
     }

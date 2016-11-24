@@ -218,6 +218,7 @@ function C01T_Mitsuhide_Akechi( keys )
 	--轉半徑
 	sk_radius = sk_radius*0.5
 	Timers:CreateTimer(0.1, function()
+		AddFOWViewer(, point, sk_radius+100, 0.5, false)
 		if ( RandomInt(1, 10) > 3) then
 			C01T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(RandomInt(sk_radius*0.7, sk_radius)))
 		else

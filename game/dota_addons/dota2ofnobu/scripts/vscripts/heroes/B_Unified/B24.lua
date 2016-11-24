@@ -35,6 +35,9 @@ function B24T( keys )
    		FIND_ANY_ORDER, 
    		false)
 	for _,v in ipairs(group) do
+		if v:IsHero() then
+			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, v)
+		end
 		if (v:GetUnitName() ~= "B24W_DUMMY") then
 			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 		end
@@ -317,6 +320,8 @@ function B24R( keys )
 	if target:IsBuilding() then
 		return
 	end
+	local damage = ability:GetLevelSpecialValueFor("damage",ability:GetLevel() - 1)
+	local damage2 = ability:GetLevelSpecialValueFor("damage2",ability:GetLevel() - 1)
 	--INIT
 	if caster.B24R_B == nil then
 		caster.B24R_B = false
@@ -377,7 +382,11 @@ function B24R( keys )
 			   		FIND_ANY_ORDER, 
 			   		false)
 				for _,v in ipairs(group) do
-					ability:ApplyDataDrivenModifier(caster,v,"modifier_B24R_2",nil)
+					AMHC:Damage( caster,v,damage2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					if not v:IsMagicImmune() then
+						AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+						ability:ApplyDataDrivenModifier(caster,v,"modifier_B24R_2",nil)
+					end
 				end
 
 				--【DEBUG】
