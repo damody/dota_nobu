@@ -50,9 +50,9 @@ function AON_Cleave_A07(keys)
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
 		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-
+ 
 	for _, it in pairs(group) do
-		if it:IsHero() then
+		if caster:HasModifier("modifier_A07T") and it:IsHero() then
 			ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
 		end
 		if it ~= target then

@@ -69,7 +69,7 @@ local function chat_of_test(keys)
 			end
 		end
 		DeepPrintTable(_G.CountUsedAbility_Table)
-		
+		--[[
 		SendHTTPRequest("save_ability_data", "POST",
 			{
 			  data = tostring(inspect(_G.CountUsedAbility_Table)),
@@ -77,7 +77,7 @@ local function chat_of_test(keys)
 			function(result)
 			  print(result)
 			end)
-		
+		]]
 	end
 	
 	--舊版模式

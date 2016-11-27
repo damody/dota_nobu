@@ -262,47 +262,34 @@ function B15T(keys)
 	-- local duration = ability:GetLevelSpecialValueFor( "A13W_Duration", ability:GetLevel() - 1 )
 	local time = 0.90 - ( 0.20 * keys.ability:GetLevel() )
 	local num = 12
-	AMHC:Timer( "amhc",function( )
-				local caster_origin = keys.caster:GetAbsOrigin()
-				
-				--Illusions are created to the North, South, East, or West of the hero (obviously, both cannot be created in the same direction).
-				local illusion1_direction = RandomInt(1, 4)
-				local illusion2_direction = (RandomInt(1, 3) + illusion1_direction) % 4  --This will ensure that the illusions will spawn in different directions.
-				
-				local illusion1_origin = nil
-				local illusion2_origin = nil
-				
-				if illusion1_direction == 1 then  --North
-					illusion1_origin = caster_origin + Vector(0, 100, 0)
-				elseif illusion1_direction == 2 then  --South
-					illusion1_origin = caster_origin + Vector(0, -100, 0)
-				elseif illusion1_direction == 3 then  --East
-					illusion1_origin = caster_origin + Vector(100, 0, 0)
-				else  --West
-					illusion1_origin = caster_origin + Vector(-100, 0, 0)
-				end
-				
-				if illusion2_direction == 1 then  --North
-					illusion2_origin = caster_origin + Vector(0, 100, 0)
-				elseif illusion2_direction == 2 then  --South
-					illusion2_origin = caster_origin + Vector(0, -100, 0)
-				elseif illusion2_direction == 3 then  --East
-					illusion2_origin = caster_origin + Vector(100, 0, 0)
-				else  --West
-					illusion2_origin = caster_origin + Vector(-100, 0, 0)
-				end
-
-				if keys.caster:IsRangedAttacker() then  --We don't have to worry about illusions switching from melee to ranged or vice versa because they can't use abilities.
-					local illusion1 = B15D_create_illusion(keys, illusion1_origin)
-				else  --keys.caster is melee.
-					local illusion1 = B15D_create_illusion(keys, illusion1_origin)
-				end	
-
-				if num < 0 or not keys.caster:IsAlive() then
-					return nil
-				else
-					num = num - 1
-		        	return time
-		        end
-	end,time )	
+	Timers:CreateTimer(time,function( )
+		if not keys.caster:IsAlive() then
+			return nil
+		end
+		local caster_origin = keys.caster:GetAbsOrigin()
+		
+		--Illusions are created to the North, South, East, or West of the hero (obviously, both cannot be created in the same direction).
+		local illusion1_direction = RandomInt(1, 4)
+		
+		local illusion1_origin
+		
+		if illusion1_direction == 1 then  --North
+			illusion1_origin = caster_origin + Vector(0, 100, 0)
+		elseif illusion1_direction == 2 then  --South
+			illusion1_origin = caster_origin + Vector(0, -100, 0)
+		elseif illusion1_direction == 3 then  --East
+			illusion1_origin = caster_origin + Vector(100, 0, 0)
+		else  --West
+			illusion1_origin = caster_origin + Vector(-100, 0, 0)
+		end
+		if keys.caster:IsAlive() then
+			B15D_create_illusion(keys, illusion1_origin)
+		end
+		if num < 0 or not keys.caster:IsAlive() then
+			return nil
+		else
+			num = num - 1
+        	return time
+        end
+	end)	
 end

@@ -117,7 +117,7 @@ function A06T_old(keys)
 	local ran =  RandomInt(1, 100)
 	if ran > 25 or caster.nextA06T_old == 1 then
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		nil,  550 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 		for _, it in pairs(group) do
 			AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor( "A06T_ADD_D", ( ability:GetLevel() - 1 ) ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )

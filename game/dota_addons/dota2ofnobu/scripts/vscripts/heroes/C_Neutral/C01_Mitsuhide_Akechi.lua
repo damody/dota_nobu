@@ -52,6 +52,9 @@ function C01E_Mitsuhide_Akechi_Effect( keys, skillcount )
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
+			if it:IsHero() then
+				ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, it)
+			end
 			AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			if skillcount == 0 then
 				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01E", {duration=level*0.5})
@@ -186,6 +189,9 @@ function C01T_Mitsuhide_Akechi_Effect( keys, point )
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
+				if it:IsHero() then
+					ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, it)
+				end
 				AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_C01T",nil)
 			else
@@ -214,11 +220,12 @@ function C01T_Mitsuhide_Akechi( keys )
 	--大絕直徑
 	local sk_radius = keys.ability:GetLevelSpecialValueFor("C01T_Radius",level-1)
 	sk_radius = sk_radius + 100
-	AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 6.0, false)
+	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 6.0, false)
+	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 6.0, false)
 	--轉半徑
 	sk_radius = sk_radius*0.5
 	Timers:CreateTimer(0.1, function()
-		AddFOWViewer(, point, sk_radius+100, 0.5, false)
+		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 0.5, false)
 		if ( RandomInt(1, 10) > 3) then
 			C01T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(RandomInt(sk_radius*0.7, sk_radius)))
 		else

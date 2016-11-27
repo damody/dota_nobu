@@ -139,7 +139,7 @@ function new_C15T( keys )
 	local deg = 0 
 	local distance = 300
 
-
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C15T_2",nil)
 	--【For】
 	for i=1,10 do
 		deg = deg + 36
