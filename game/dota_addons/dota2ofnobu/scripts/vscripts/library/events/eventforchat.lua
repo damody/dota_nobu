@@ -83,6 +83,8 @@ local function chat_of_test(keys)
 	--舊版模式
 	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
 		caster.isold = true
+		caster:SetAbilityPoints(1)
+		caster.version = "11"
 		if string.match(caster:GetUnitName(), "centaur") then -- 本多忠勝
 			caster:RemoveAbility("A07W")
 			caster:RemoveAbility("A07E")
@@ -94,18 +96,35 @@ local function chat_of_test(keys)
 			caster:AddAbility("A07E_old")
 			caster:AddAbility("A07R_old")
 			caster:AddAbility("A07T_old")
+		elseif string.match(caster:GetUnitName(), "magnataur") then -- 淺井長政
+			caster:RemoveAbility("B08W")
+			caster:RemoveAbility("B08E")
+			caster:RemoveAbility("B08R")
+			caster:RemoveAbility("B08T")
+
+			caster:AddAbility("B08W_old")
+			caster:AddAbility("B08E_old")
+			caster:AddAbility("B08R_old")
+			caster:AddAbility("B08D_old")
+			caster:AddAbility("B08T_old")
 		elseif string.match(caster:GetUnitName(), "pugna") then -- 本願寺顯如
+			caster:RemoveAbility("B25W")
 			caster:RemoveAbility("B25E")
 			caster:RemoveAbility("B25R")
 			caster:RemoveAbility("B25T")
 
+			caster:AddAbility("B25W")
 			caster:AddAbility("B25E_old")
 			caster:AddAbility("B25R_old")
 			caster:AddAbility("B25T_old")
 		elseif string.match(caster:GetUnitName(), "keeper_of_the_light") then -- 毛利元就
+			caster:RemoveAbility("B05W")
+			caster:RemoveAbility("B05E")
 			caster:RemoveAbility("B05R")
 			caster:RemoveAbility("B05T")
 
+			caster:AddAbility("B05W")
+			caster:AddAbility("B05E")
 			caster:AddAbility("B05R_old")
 			caster:AddAbility("B05T_old")
 		elseif string.match(caster:GetUnitName(), "nevermore") then -- 雜賀孫市
@@ -128,11 +147,24 @@ local function chat_of_test(keys)
 			caster:AddAbility("B06E_old")
 			caster:AddAbility("B06R_old")
 			caster:AddAbility("B06T_old")
+		elseif string.match(caster:GetUnitName(), "broodmother") then -- 服部半藏
+			caster:RemoveAbility("A13W")
+			caster:RemoveAbility("A13E")
+			caster:RemoveAbility("A13R")
+			caster:RemoveAbility("A13T")
+			caster:RemoveAbility("A13D")
+
+			caster:AddAbility("A13W_old")
+			caster:AddAbility("A13E_old")
+			caster:AddAbility("A13R_old")
+			caster:AddAbility("A13T_old")
 		elseif string.match(caster:GetUnitName(), "beastmaster") then -- 武田勝賴
+			caster:RemoveAbility("B34W")
 			caster:RemoveAbility("B34E")
 			caster:RemoveAbility("B34R")
 			caster:RemoveAbility("B34T")
 
+			caster:AddAbility("B34W")
 			caster:AddAbility("B34E_old")
 			caster:AddAbility("B34R_old")
 			caster:AddAbility("B34T_old")
@@ -148,7 +180,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("B32R_old")
 			caster:AddAbility("B32D_old"):SetLevel(1)
 			caster:AddAbility("B32T_old")
-		elseif string.match(caster:GetUnitName(), "troll_warlord") then -- 井伊直政dfdsds
+		elseif string.match(caster:GetUnitName(), "troll_warlord") then -- 井伊直政
 			caster:RemoveAbility("A06W")
 			caster:RemoveAbility("A06E")
 			caster:RemoveAbility("A06R")
@@ -182,7 +214,6 @@ local function chat_of_test(keys)
 			caster:AddAbility("C19R_old")
 			caster:AddAbility("C19T_old")
 		end
-		caster.version = "11"
 	end
 	
 	if string.match(s,"cam") then

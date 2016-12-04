@@ -8,6 +8,7 @@ function Shock( keys )
 	local chaos = {}
 	local idx = 1
 	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
+	dummy:SetOwner(caster)
 	for i=0,3 do
 		Timers:CreateTimer( i*2.5, function()
 				dummy:EmitSound( "war.sound1" )
@@ -99,12 +100,12 @@ function Shock( keys )
 	                              false)
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
-				AMHC:Damage(caster,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				ability:ApplyDataDrivenModifier(caster, it,"modifier_the_overflame_art_of_war",nil)
+				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				ability:ApplyDataDrivenModifier(dummy, it,"modifier_the_overflame_art_of_war",nil)
 				local rock_effect = ParticleManager:CreateParticle("particles/b26t/b26t.vpcf", PATTACH_ABSORIGIN, it)
 				ParticleManager:SetParticleControl(rock_effect, 0, it:GetAbsOrigin())
 			else
-				AMHC:Damage(caster,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
 		if count > 13 then

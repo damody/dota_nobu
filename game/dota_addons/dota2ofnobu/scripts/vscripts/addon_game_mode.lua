@@ -56,7 +56,7 @@ end
 function Precache( context )
   -- 【KV資源預載】
   --PrecacheEveryThingFromKV(context)   --有問題:會超lag
-
+  PrecacheResource( "model", "models/heroes/broodmother/spiderling.vmdl", context )
   -- 【特效預載】
     local particle_Precache_Table = {
     --淺井長政

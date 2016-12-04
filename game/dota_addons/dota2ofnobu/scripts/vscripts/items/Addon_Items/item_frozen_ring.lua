@@ -15,7 +15,7 @@ function Shock( keys )
 						false)
 	for _,it in pairs(direUnits) do
 		ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=1})
-		AMHC:Damage(caster,it,160,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		AMHC:Damage(caster,it,275,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 	local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, caster)
 	Timers:CreateTimer(1, function ()
@@ -104,7 +104,7 @@ function Shock3( keys )
 							425,
 							DOTA_UNIT_TARGET_TEAM_ENEMY,
 							DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-							DOTA_UNIT_TARGET_FLAG_NONE,
+							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							FIND_ANY_ORDER,
 							false)
 			if (not keys.target:IsMagicImmune() and keys.target.kokumo == nil) then

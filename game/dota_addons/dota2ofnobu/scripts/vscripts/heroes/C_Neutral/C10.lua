@@ -44,9 +44,14 @@ function C10T_END( keys )
 	local point = keys.caster:GetAbsOrigin()
 	keys.caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	for i,v in ipairs(keys.caster.C10T_T) do
-		v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-		if (v:HasModifier("modifier_C10T")) then
-			v:SetAbsOrigin(point)
+		if CalcDistanceBetweenEntityOBB(keys.caster, v) < 3500 then
+			if v:IsHero() then
+				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
+			end
+			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+			if (v:HasModifier("modifier_C10T")) and not string.match(v:GetUnitName(), "com_general") then
+				v:SetAbsOrigin(point)
+			end
 		end
 	end
 end

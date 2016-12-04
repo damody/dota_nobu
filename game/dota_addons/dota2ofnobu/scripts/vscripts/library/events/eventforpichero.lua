@@ -66,11 +66,20 @@ function Nobu:PickHero( keys )
   local name = caster:GetUnitName()
   caster.version = "16"
   caster.name = heromap[name]
-  
+  print("name " .. name)
   if string.match(name, "ancient_apparition")  then --竹中重治
     caster:FindAbilityByName("A04D"):SetLevel(1)
   elseif string.match(name, "jakiro") then --佐佐木小次郎
     caster:FindAbilityByName("C22D"):SetLevel(1)
+  elseif string.match(name, "magnataur") then -- 淺井長政
+    GameRules: SendCustomMessage("淺井長政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+    Timers:CreateTimer(1, function ()
+      if (caster:GetLevel() >= 18) then
+        caster:FindAbilityByName("B08D_old"):SetLevel(1)
+        return nil
+      end
+      return 1
+    end)
   elseif string.match(name, "templar_assassin") then --松姬
     caster:FindAbilityByName("C19D"):SetLevel(1)
     GameRules: SendCustomMessage("松姬玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
@@ -92,6 +101,7 @@ function Nobu:PickHero( keys )
   elseif string.match(name, "troll_warlord") then -- 井伊直政
     GameRules: SendCustomMessage("井伊直政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
   elseif string.match(name, "broodmother") then --服部半藏
+    GameRules: SendCustomMessage("服部半藏玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
     caster:FindAbilityByName("A13D"):SetLevel(1)
   elseif string.match(name, "storm_spirit") then --大谷吉繼
     caster:FindAbilityByName("A12D"):SetLevel(1)

@@ -118,7 +118,7 @@
 		"FightRecapLevel"	"1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"20"
+		"AbilityCooldown"	"15"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"200"
@@ -296,7 +296,7 @@
 				{
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "65"	//智
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "70"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
@@ -2877,6 +2877,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"EffectAttachType"	"follow_origin"
 				"Duration"  "2"
@@ -2943,7 +2944,7 @@
 		"FightRecapLevel"	"1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"20"
+		"AbilityCooldown"	"15"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120"
@@ -3929,6 +3930,7 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"2"
+		"SideShop"						"1"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
@@ -8281,15 +8283,15 @@
 					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Duration"	"2.5"
-				"ThinkInterval"	"1.0"
+				"Duration"	"2.51"
+				"ThinkInterval"	"0.5"
 				"OnIntervalThink"
 				{
 					"Damage"
 					{
 						"Target"	"TARGET"
 						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"200"
+						"Damage"	"100"
 					}
 				}
 			}
@@ -10769,6 +10771,7 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "10" //魔抗
 				}
 			}
 		}

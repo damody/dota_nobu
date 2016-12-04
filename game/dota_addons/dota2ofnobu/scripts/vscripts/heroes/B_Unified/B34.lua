@@ -68,6 +68,7 @@ function B34T_old( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
+	local duration = ability:GetLevelSpecialValueFor("duration",level)
 	local particle = ParticleManager:CreateParticle("particles/b34t/b34t2.vpcf", PATTACH_ABSORIGIN, caster)
 
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
@@ -81,6 +82,17 @@ function B34T_old( keys )
 		AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor("dmg",level),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		ability:ApplyDataDrivenModifier(it,it,"modifier_B34T_old",{})
 	end
+	tsum = 0.1
+	Timers:CreateTimer(0.1, function()
+		for _, it in pairs(group) do
+			if it:IsHero() then
+				if not it:HasModifier("modifier_B34T_old") then
+					ability:ApplyDataDrivenModifier(it,it,"modifier_B34T_old",{duration = duration-tsum})
+				end
+			end
+		end
+		tsum = tsum + 0.1
+		end)
 end
 
 function B34E( keys )

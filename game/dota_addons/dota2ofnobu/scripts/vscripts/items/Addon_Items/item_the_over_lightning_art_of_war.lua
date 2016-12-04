@@ -7,6 +7,7 @@ function Shock( keys )
 
 	local dummy = AMHC:CreateUnit( "hide_unit",point,caster:GetForwardVector(),caster,caster:GetTeamNumber())
 	dummy:AddAbility("majia"):SetLevel(1)
+	dummy:SetOwner(caster)
 
 	local sumtime = 0
 	Timers:CreateTimer(0.2, function ()
@@ -33,11 +34,11 @@ function Shock( keys )
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
 				if it:GetUnitName() == "npc_dota_cursed_warrior_souls" then
-					AMHC:Damage(caster,it, it:GetMaxHealth()*0.002,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.002,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				elseif it:IsMagicImmune() then
-					AMHC:Damage(caster,it, it:GetMaxHealth()*0.011,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.011,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				else
-					AMHC:Damage(caster,it, it:GetMaxHealth()*0.022,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.022,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				end
 			end
 		end

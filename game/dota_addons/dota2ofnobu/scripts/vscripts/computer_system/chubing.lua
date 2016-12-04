@@ -67,8 +67,8 @@ function ShuaGuai( )
 		    	ent:SetPhysicalArmorBaseValue(ent:GetPhysicalArmorBaseValue() + 0.2)
 			end
 		end
-		local AA_num = 3 + 0.01*ShuaGuai_count
-		local AB_num = 2 + 0.005*ShuaGuai_count
+		local AA_num = 3 + 0.015*ShuaGuai_count
+		local AB_num = 2 + 0.008*ShuaGuai_count
 	  	ShuaGuai_Of_AA(AA_num)
 	  	ShuaGuai_Of_AB(AB_num)
 	  	
@@ -82,7 +82,7 @@ function ShuaGuai( )
 
 	--出兵觸發:火槍兵
  	Timers:CreateTimer( 90,function()
- 		local B_num = 2 + 0.005*ShuaGuai_count
+ 		local B_num = 2 + 0.003*ShuaGuai_count
   		ShuaGuai_Of_B(B_num)
 	    local time =  100.00 - 0.5*ShuaGuai_count
 	    if time < 30 then

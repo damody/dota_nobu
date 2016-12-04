@@ -130,6 +130,9 @@
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+			"particle"	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_flash_c.vpcf"
+			"soundfile"	"sounds/ambient/newyear/rocket_explode01.vsnd"
+			"soundfile"	"soundevents/A17.vsndevts"
 		}
 		"OnToggleOn"
 		{
@@ -196,12 +199,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_range_bonus"	"300 400 500"
+				"attack_range_bonus"	"300 450 600"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attacked_range"	"350"
+				"attacked_range"	"350 400 450"
 			}
 			"05"
 			{
@@ -211,7 +214,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_speed_bonus"	"-100"
+				"attack_speed_bonus"	"-100 -175 -250"
 			}
 			"07"
 			{

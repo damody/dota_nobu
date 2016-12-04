@@ -1,5 +1,132 @@
  "DOTAAbilities"
 {
+	// 淺井長政 一刀．連牙
+	"B08D_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d08_1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"2"
+		"AbilityCooldown"	"100"
+		"AbilityManaCost"	"350"
+		"AbilityCastRange"	"1100"
+		"precache"
+		{
+			"particle"	"particles/b08t/b08t.vpcf"
+			"particle"	"particles/b08w2/b08w2.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_shockwave_hidden_cast"
+				"Target"	"CASTER"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Cast"
+				"Target"	"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Particle"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"Function"	"B08D_old"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B08_Asai_Nagamasa.lua"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"100"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Target"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_shockwave_hidden_cast"
+			{
+				"IsHidden"	"1"
+				"Duration"	"2.2"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/b08w2/b08w2.vpcf"
+						"EffectAttachType"	"attach_attack1"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+						}
+					}
+				}
+				"IsBuff"	"0"
+			}
+			"modifier_stun"
+			{
+				"IsHidden"	"0"
+				"Duration"	"2.2"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_speed"	"2000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_width"	"175"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_distance"	"1100"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_vision"	"175"
+			}
+		}
+		"AbilityDamage"	"1800"
+	}
 
 	// 淺井長政 一刀．牙
 	"B08W"
@@ -16,7 +143,7 @@
 		"AbilityCastPoint"	"0.25"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate"	"2"
-		"AbilityCooldown"	"7 6 5 4"
+		"AbilityCooldown"	"7"
 		"AbilityManaCost"	"100 110 120 130"
 		"AbilityCastRange"	"1100"
 		"precache"
@@ -126,6 +253,131 @@
 		"AbilityDamage"	"150 300 450 600"
 	}
 
+	// 淺井長政 一刀．牙
+	"B08W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d08_1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"2"
+		"AbilityCooldown"	"7 6 5 4"
+		"AbilityManaCost"	"80 90 100 110"
+		"AbilityCastRange"	"1100"
+		"precache"
+		{
+			"particle"	"particles/b08t/b08t.vpcf"
+			"particle"	"particles/b08w2/b08w2.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_shockwave_hidden_cast"
+				"Target"	"CASTER"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Cast"
+				"Target"	"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Particle"
+				"Target"	"CASTER"
+			}
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/b08t/b08t.vpcf"
+				"MoveSpeed"	"%shock_speed"
+				"StartRadius"	"%shock_width"
+				"StartPosition"	"attach_orgin"
+				"EndRadius"	"%shock_width"
+				"FixedDistance"	"%shock_distance"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"0"
+				"ProvidesVision"	"1"
+				"VisionRadius"	"%shock_vision"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Target"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_shockwave_hidden_cast"
+			{
+				"IsHidden"	"1"
+				"Duration"	"0.5"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/b08w2/b08w2.vpcf"
+						"EffectAttachType"	"attach_attack1"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+						}
+					}
+				}
+				"IsBuff"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_speed"	"2000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_width"	"175"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_distance"	"1100"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_vision"	"175"
+			}
+		}
+		"AbilityDamage"	"200 300 400 500"
+	}
+
 	// 淺井長政 一刀．閃瞬
 	"B08E"
 	{
@@ -143,7 +395,7 @@
 		"LevelsBetweenUpgrades"	"0"
 		"AbilityCastPoint"	"0.25"
 		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
-		"AbilityCooldown"	"9"
+		"AbilityCooldown"	"13"
 		"AbilityManaCost"	"120"
 		"AbilityCastRange"	"1150"
 		"precache"
@@ -157,20 +409,10 @@
 		}
 		"OnSpellStart"
 		{
-			"TrackingProjectile"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
-				"Dodgeable"	"1"
-				"ProvidesVision"	"1"
-				"MoveSpeed"	"999999"
-				"VisionRadius"	"225"
-				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"Hero_Sven.StormBolt"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
 			}
 			"RunScript"
 			{
@@ -185,46 +427,6 @@
 				"Function"	"anyunitspellability"
 			}
 		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"FireSound"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"Hero_Sven.StormBoltImpact"
-			}
-			"FireEffect"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"ControlPointEntities"
-				{
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-				}
-			}
-			"ActOnTargets"
-			{
-				"Target"	"TARGET"
-				"Action"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%A23R_Damage"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_A23R"
-					}
-				}
-			}
-		}
 		"OnAbilityPhaseStart"
 		{
 			"ApplyModifier"
@@ -235,7 +437,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_A23R"
+			"modifier_stun"
 			{
 				"IsHidden"	"0"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -275,12 +477,121 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A23R_Damage"	"100 200 300 400"
+				"B08E_mana"	"100 160 220 280"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"B08E_Stun_Time"	"1.1"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"B08E_Damage"	"100 200 300 400"
+			}
+		}
+	}
+
+	// 淺井長政 一刀．閃瞬
+	"B08E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d08_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
+		"AbilityCooldown"	"10 9 8 7"
+		"AbilityManaCost"	"120"
+		"AbilityCastRange"	"1150"
+		"precache"
+		{
+			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"	"particles/b08w2/b08w2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"Function"	"B08E_Action2"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B08_Asai_Nagamasa.lua"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
+				"Function"	"anyunitspellability"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B08E"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_stun"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%B08E_Stun_Time"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+			"modifier_B08E"
+			{
+				"IsHidden"	"1"
+				"Duration"	"0.5"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/b08w2/b08w2.vpcf"
+						"EffectAttachType"	"attach_attack1"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+						}
+					}
+				}
+				"IsBuff"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"B08E_Damage"	"300 400 500 600"
 			}
 		}
 	}
@@ -322,7 +633,7 @@
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"15"
 					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-5"
 				}
-				"Duration"	"9"
+				"Duration"	"8"
 				"OnDestroy"
 				{
 					"RunScript"
@@ -344,6 +655,71 @@
 		}
 	}
 
+	// 淺井長政 活心．魂
+	"B08R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d08_3"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"4"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_explosion.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_B08R"
+			{
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B08_Asai_Nagamasa.lua"
+						"Function"	"B08R_Action"
+					}
+				}
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%b08r_attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%b08r_run_speed"
+				}
+			}
+			"modifier_B08R_buff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"25"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"5"
+				}
+				"Duration"	"8"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"Function"	"EndB08R_SEParticle"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B08_Asai_Nagamasa.lua"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"b08r_attack_speed"	"15 30 45 60"
+			}
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"b08r_run_speed"	"4 6 8 10"
+			}
+		}
+	}
+
 	// 淺井長政 一刀．空牙
 	"B08T"
 	{
@@ -351,8 +727,8 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"cps_d08_4"
-		"AbilityCooldown"	"110 90 70"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityCooldown"	"110 95 80"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -468,36 +844,137 @@
 				"dragon_slave_distance"	"3000"
 			}
 		}
-		"AbilityDuration"	"0.6875 0.6875 0.6875 0.6875"
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"800 1200 1600"
+	}
+
+	// 淺井長政 一刀．空牙
+	"B08T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d08_4"
+		"AbilityCooldown"	"100 85 70"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastPoint"	"0.25"
+		"AnimationPlaybackRate"	"2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"150"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"3000"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/b08w2/b08w2.vpcf"
+			"particle"	"particles/b08t_2/b08t.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"	"particles/b08w2/b08w2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/b08t_2/b08t.vpcf"
+				"MoveSpeed"	"%dragon_slave_speed"
+				"StartRadius"	"%dragon_slave_width_initial"
+				"StartPosition"	"attach_origin"
+				"EndRadius"	"%dragon_slave_width_end"
+				"FixedDistance"	"%dragon_slave_distance"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"1"
+				"ProvidesVision"	"0"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Lina.DragonSlave"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B08T"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B08T"
+			{
+				"Duration"	"0.5"
+				"States"	{}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+						}
+						"EffectName"	"particles/b08w2/b08w2.vpcf"
+						"EffectAttachType"	"attach_attack1"
+					}
+				}
+				"IsBuff"	"0"
+				"IsHidden"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dragon_slave_speed"	"3000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dragon_slave_width_initial"	"400"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dragon_slave_width_end"	"500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dragon_slave_distance"	"3000"
+			}
+		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"900 1300 1800"
-	}
-
-	// -------------------
-	// Dummy stuff
-	// -------------------
-	"dummy_unit"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"rubick_empty1"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"	"1"
-		"Modifiers"
-		{
-			"dummy_unit"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
 	}
 
 }

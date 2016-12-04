@@ -584,21 +584,8 @@
 				"Aura_ApplyToCaster"	"1"
 				"Passive"	"0"
 				"Duration"	"%During"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"	"TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_origin"
-							"TARGET"	"attach_attack1"
-							"TARGET"	"attach_overhead"
-						}
-						"EffectName"	"particles/b06t/b06t.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-					}
-				}
+				"EffectName"	"particles/b06t/b06t.vpcf"
+				
 				"OnAttackLanded"
 				{
 					"FireSound"	{}

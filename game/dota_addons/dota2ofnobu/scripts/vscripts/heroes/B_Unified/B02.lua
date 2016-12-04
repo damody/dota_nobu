@@ -15,9 +15,9 @@ function B02W( keys )
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
-	illusion:SetPlayerID(caster:GetPlayerID())
+	
 	if illusion:IsHero() then
-		
+		illusion:SetPlayerID(caster:GetPlayerID())
 
 		-- Level Up the unit to the casters level
 		local casterLevel = target:GetLevel()

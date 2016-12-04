@@ -20,8 +20,6 @@ function B24T( keys )
 	local particle=ParticleManager:CreateParticle("particles/b24t3/b24t3.vpcf",PATTACH_POINT,caster)
 	ParticleManager:SetParticleControl(particle,0,point)
 
-	ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, caster)
-
 	--【Group_radius】
 	local radius = 800
    	local group = FindUnitsInRadius(

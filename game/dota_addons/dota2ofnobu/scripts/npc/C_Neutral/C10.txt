@@ -1,6 +1,124 @@
 //香宗我部親泰
 "DOTAAbilities"
 {
+	//香宗我部親泰 黑龍波
+	"C10W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"faceless_void_time_dilation"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"9"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"110"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/antimage/mana_void_cast.vsnd"
+			"soundfile"	"sounds/weapons/hero/antimage/mana_break.vsnd"
+			"particle"	"particles/c10w/c10w.vpcf"
+			"soundfile"	"sounds/weapons/hero/magnataur/shockwave_cast.vsnd"
+			"particle"	"particles/c10w3/c10w3.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"particle"	"particles/c10w3/c10w3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Cast.Anvil"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C10.lua"
+				"Function"	"C10W"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C10W"
+				"Target"	"TARGET"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C10W"
+			{
+				"EffectName"	"particles/c10w3/c10w3.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Duration"	"%reduction_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"start_radius"	"165.00"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_radius"	"245.00"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"800.00"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"1380"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"reduction_duration"	"6"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow"	"-15 -20 -25 -30"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"150 250 350 450"
+	}
 	//香宗我部親泰 能量奪取
 	"C10E"
 	{
@@ -26,8 +144,8 @@
 			"Damage"
 			{
 				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_PURE"
-				"Damage"	"%Heal"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%Heal*1.42"
 			}
 			"Heal"
 			{
@@ -205,9 +323,24 @@
 				}
 				"Delay"	"%delay"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C10T_self"
+				"Target" 		"CASTER"
+				"Duration"		"6"
+			}
 		}
 		"Modifiers"
 		{
+			"modifier_C10T_self"
+			{
+				"IsHidden"	"0"
+				"Passive"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "100" //攻速
+				}
+			}
 			"modifier_C10T"
 			{
 				"Duration"	"%slow_duration"
@@ -245,127 +378,5 @@
 		}
 	}
 
-	// Rewrite of the Dragon Knight Breathe Fire
-	// Author: chrislotix, Pizzalol
-	// Date: January 27, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//香宗我部親泰 黑龍波
-	"C10W"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"faceless_void_time_dilation"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.3"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"9"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"110"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"800"
-		// Precache
-		// -------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"	"sounds/weapons/hero/antimage/mana_void_cast.vsnd"
-			"soundfile"	"sounds/weapons/hero/antimage/mana_break.vsnd"
-			"particle"	"particles/c10w/c10w.vpcf"
-			"soundfile"	"sounds/weapons/hero/magnataur/shockwave_cast.vsnd"
-			"particle"	"particles/c10w3/c10w3.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
-			"particle"	"particles/c10w3/c10w3.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Magnataur.ShockWave.Cast.Anvil"
-				"Target"	"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C10.lua"
-				"Function"	"C10W"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_C10W"
-				"Target"	"TARGET"
-			}
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"%AbilityDamage"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_C10W"
-			{
-				"EffectName"	"particles/c10w3/c10w3.vpcf"
-				"EffectAttachType"	"follow_hitloc"
-				"Duration"	"%reduction_duration"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
-				}
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"start_radius"	"165.00"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"end_radius"	"245.00"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"distance"	"800.00"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"speed"	"1380"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"reduction_duration"	"6"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"slow"	"-15 -20 -25 -30"
-			}
-		}
-		// Damage.
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"90 170 240 300"
-	}
+
 }

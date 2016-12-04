@@ -108,8 +108,14 @@ function A17T_Succes_Attack( keys )
 	local dmg = keys.dmg
     local group = {}
     local radius = ability:GetLevelSpecialValueFor("attacked_range",level)
-   	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+   	local group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+   	local eff1 = ParticleManager:CreateParticle("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_flash_c.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	ParticleManager:SetParticleControl(eff1, 3, point2)
+	target:EmitSound("A17T.sound1")
 	for i,v in ipairs(group) do
+		if v:IsHero() then
+			ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v)
+		end
 		if v~=target then
 			AMHC:Damage( caster,v,dmg*0.8,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 		end

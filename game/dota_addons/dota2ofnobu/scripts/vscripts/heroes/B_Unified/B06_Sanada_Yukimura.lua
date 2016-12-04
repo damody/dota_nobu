@@ -202,7 +202,7 @@ function B06T_SE( keys )
 	local caster = keys.caster
 	local target = keys.target
 	AMHC:CreateParticle("particles/b06e4/b06e4_b.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
-	if target:IsBuilding() then
-		ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, caster)
+	if target:IsRealHero() then 
+		ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, target)
 	end
 end

@@ -64,12 +64,10 @@ heromap = {
 
 function Nobu:OnHeroIngame( keys )
   --PrintTable(keys)
-  -- local hero = EntIndexToHScript( keys.entindex )
-  -- if hero:IsHero() then
-  --   RemoveWearables( hero )
-  -- end
-
   local hero = EntIndexToHScript( keys.entindex )
+  if hero:IsHero() then
+    --RemoveWearables( hero )
+  end
   
   if hero:IsHero() then
     local caster = hero
@@ -77,7 +75,7 @@ function Nobu:OnHeroIngame( keys )
       caster:RemoveModifierByName("modifier_record")
     end
     caster.name = heromap[caster:GetUnitName()]
-    caster.version = 16
+    caster.version = "16"
     caster:AddNewModifier(caster,ability,"modifier_record",{})
     caster:FindModifierByName("modifier_record").caster = caster
 
@@ -90,53 +88,57 @@ function Nobu:OnHeroIngame( keys )
       if caster:FindAbilityByName("C22D") ~= nil then
         caster:FindAbilityByName("C22D"):SetLevel(1)
       end
+    elseif string.match(name, "magnataur") then -- 淺井長政
+      if caster:FindAbilityByName("B08T") == nil then
+        caster.version = "11"
+      end
     elseif string.match(name, "templar_assassin") then --松姬
       if caster:FindAbilityByName("C19D") ~= nil then
         caster:FindAbilityByName("C19D"):SetLevel(1)
       else
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "pugna") then --本願寺顯如
       if caster:FindAbilityByName("B25R") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "keeper_of_the_light") then -- 毛利元就
       if caster:FindAbilityByName("B05R") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "nevermore") then --雜賀孫市
       if caster:FindAbilityByName("B01W") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "beastmaster") then --武田勝賴
       if caster:FindAbilityByName("B34E") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "dragon_knight") then --上杉謙信
       if caster:FindAbilityByName("B32W") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "slardar") then -- 真田幸村
       if caster:FindAbilityByName("B06W") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "troll_warlord") then -- 井伊直政
       if caster:FindAbilityByName("A06W") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "centaur") then --本多忠勝
       if caster:FindAbilityByName("A07D") ~= nil and caster:FindAbilityByName("A07D"):GetLevel() == 0 then
         caster:FindAbilityByName("A07D"):SetLevel(1)
       end
       if caster:FindAbilityByName("A07D") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "broodmother") then --服部半藏
       if caster:FindAbilityByName("A13D") ~= nil and caster:FindAbilityByName("A13D"):GetLevel() == 0 then
         caster:FindAbilityByName("A13D"):SetLevel(1)
       end
       if caster:FindAbilityByName("A13D") == nil then
-        caster.version = 11
+        caster.version = "11"
       end
     elseif string.match(name, "storm_spirit") then --大谷吉繼
       caster:FindAbilityByName("A12D"):SetLevel(1)
@@ -291,7 +293,7 @@ function AddAFKTimer( hero )
     end
 end
 
-function RemoveWearables( hero )
+function RemoveWearables2( hero )
   local children = hero:GetChildren()
   local name = hero:GetUnitName()
 
@@ -308,6 +310,33 @@ function RemoveWearables( hero )
   end
 end
 
+function RemoveWearables( hero )
+ Timers:CreateTimer( .3, function()
+      -- Setup variables
+      if not hero:IsHero() then return end
+      local toRemove = {}
+      local wearable = hero:FirstMoveChild()
+      while wearable ~= nil do
+        if wearable:GetClassname() == "dota_item_wearable" then
+          table.insert( toRemove, wearable )
+        end
+        wearable = wearable:NextMovePeer()
+      end
+
+      -- Remove wearables
+      for k, v in pairs( toRemove ) do
+        v:RemoveSelf()
+      end
+    
+      -- Set model
+      --hero:SetModel( model_name )
+      --hero:SetOriginalModel( model_name )
+      --hero:MoveToPosition( hero:GetAbsOrigin() )
+
+      return nil
+    end
+  )
+end
 -- [   VScript   ]: Wearableelder_titan_echo_stomp
 -- [   VScript   ]: Wearableelder_titan_ancestral_spirit
 -- [   VScript   ]: Wearableelder_titan_natural_order

@@ -35,6 +35,9 @@ function Shock( keys )
 	local perpendicularVec = Vector( dx, dy, v.z )
 	perpendicularVec = perpendicularVec:Normalized()
 
+	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
+	dummy:SetOwner(caster)
+
 	local sumtime = 0
 	-- Create timer to spawn projectile
 	Timers:CreateTimer( function()
@@ -46,7 +49,7 @@ function Shock( keys )
 				local velocityVec = Vector( forwardVec.x, forwardVec.y, 0 ):Normalized()*1500
 				
 				local sumtime = 0
-				local flame = ParticleManager:CreateParticle("particles/item/tornado_a.vpcf", PATTACH_ABSORIGIN, caster)
+				local flame = ParticleManager:CreateParticle("particles/item/tornado_a.vpcf", PATTACH_ABSORIGIN, dummy)
 				local step = 0.02
 				Timers:CreateTimer(step, function ()
 					sumtime = sumtime + step
@@ -64,7 +67,7 @@ function Shock( keys )
 					local isend = false
 					for _,target in pairs(direUnits) do
 						if not target:IsBuilding() then
-							AMHC:Damage(caster,target,132,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+							AMHC:Damage(dummy,target,132,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 							isend = true
 						end
 					end
@@ -78,6 +81,7 @@ function Shock( keys )
 			end
 			-- Check if the number of machines have been reached
 			if sumtime >= 10 then
+				dummy:ForceKill( true )
 				return nil
 			else
 				sumtime = sumtime + 0.25

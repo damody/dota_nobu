@@ -371,6 +371,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
+		"AOERadius"	"500"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
@@ -448,7 +449,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
+				"radius"	"500"
 			}
 			"02"
 			{
@@ -486,6 +487,7 @@
 		"AbilityManaCost"	"200"
 		"AbilityCastRange"	"1000"
 		"AOERadius"		"1000"
+		"AnimationPlaybackRate"	"3"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"

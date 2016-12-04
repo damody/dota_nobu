@@ -416,7 +416,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_bonus"	"40 60 80 100"
+				"damage_bonus"	"40 80 120 160"
 			}
 		}
 	}
@@ -562,7 +562,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Damage_Income"	"50 100 150 200"
+				"Damage_Income"	"100 150 200 250"
 			}
 		}
 	}
@@ -580,6 +580,7 @@
 		"AbilityCooldown"	"150"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
+		"AOERadius"	"500"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
