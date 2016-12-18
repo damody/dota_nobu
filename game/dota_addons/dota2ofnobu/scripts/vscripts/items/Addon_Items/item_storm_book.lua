@@ -35,7 +35,7 @@ function Shock( keys )
 	local perpendicularVec = Vector( dx, dy, v.z )
 	perpendicularVec = perpendicularVec:Normalized()
 
-	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
+	local dummy = CreateUnitByName( "npc_dummy", targetLoc, false, caster, caster, caster:GetTeamNumber() )
 	dummy:SetOwner(caster)
 
 	local sumtime = 0

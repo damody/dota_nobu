@@ -41,7 +41,7 @@
 				{
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_atk_rng"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_atk"
-					//"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_atk_rng"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%bonus_sight_rng"
 				}
 				"Duration"	"%duration"
 				"OnDestroy"
@@ -69,7 +69,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_sight_rng"	"250 500 750 1000"
+				"bonus_sight_rng"	"1000"
 			}
 			"04"
 			{
@@ -113,7 +113,7 @@
 				"Target"
 				{
 					"Center"	"CASTER"
-					"Flags"	"DOTA_UNIT_TARGET_FLAG_DEAD"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 				}
 			}
 			"RunScript"
@@ -319,6 +319,83 @@
 			}
 		}
 	}
+	//雜賀孫市 雜賀眾
+	"B01E_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_2 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		"precache"
+		{
+			"particle"	"particles/b01e2/b01e2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+				"Function"	"B01E"
+			}
+		}
+		"Modifiers"
+		{
+			// modifier_shadow_shaman_serpent_ward is the Built-In, to give green damage to the wards
+			"modifier_B01E"
+			{
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"SpawnUnit"
+					{
+						"UnitName"	"B01W_UNIT"
+						"Target"	"TARGET"
+						"UnitCount"	"%count"
+						"SpawnRadius"	"?10 100"
+						"OnSpawn"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_phased"
+								"Target"	"TARGET"
+								"Duration"	"0.03"
+							}
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+								"Function"	"B01E_CHECK"
+							}
+						}
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast"	"0.3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"count"	"2 3 4 5"
+			}
+		}
+	}
 	//雜賀孫市 三段
 	"B01T"
 	{
@@ -381,6 +458,66 @@
 			}
 		}
 	}
-
+	//雜賀孫市 三段
+	"B01T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"cps_d01_4 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"135 123 111"
+		"AbilityManaCost"	"200 200 200"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"precache"
+		{
+			"soundfile"	"soundevents/b01.vsndevts"
+			"particle"	"particles/b26t2/b26t2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B26T"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01W.sound1"
+			}
+			"RunScript"
+			{
+				"Function"	"C01W_sound"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B26T"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%per_att"
+				}
+				"Duration"	"%duration"
+				"EffectName"	"particles/b26t2/b26t2.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"7 11 13"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"per_att"	"200"
+			}
+		}
+	}
 }
-	

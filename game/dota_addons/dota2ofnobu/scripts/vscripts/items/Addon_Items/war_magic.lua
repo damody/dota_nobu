@@ -2,8 +2,8 @@ LinkLuaModifier("modifier_war_magic", "heroes/modifier_war_magic.lua", LUA_MODIF
 LinkLuaModifier("modifier_archer", "heroes/modifier_archer.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cavalry", "heroes/modifier_cavalry.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_gunner", "heroes/modifier_gunner.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_soldier_Oda", "heroes/modifier_soldier_Oda.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_soldier_Unified", "heroes/modifier_soldier_Unified.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_soldier_oda", "heroes/modifier_soldier_oda.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_soldier_unified", "heroes/modifier_soldier_unified.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ninja", "heroes/modifier_ninja.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier( "modifier_gohomelua", "items/Addon_Items/war_magic.lua",LUA_MODIFIER_MOTION_NONE )
@@ -271,6 +271,7 @@ function to_war_magic_unit(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_war_magic_unit")
+	
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
 		        local ability = caster:GetAbilityByIndex(abilitySlot)
@@ -326,7 +327,8 @@ end
 function to_war_magic_unit2(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
-	print("to_war_magic_unit")
+	print("to_war_magic_unit2")
+
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
 		        local ability = caster:GetAbilityByIndex(abilitySlot)
@@ -372,7 +374,7 @@ function to_war_magic_unit2(keys)
 		return 1
     	end)
 	caster:AddNewModifier(caster, ability, "modifier_war_magic", {})
-	
+
 end
 
 function set_level_1(keys)
@@ -434,7 +436,7 @@ function to_soldier_Oda(keys)
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_soldier_Oda", {})
+	caster:AddNewModifier(caster, ability, "modifier_soldier_oda", {})
 
 	-- 統計威望
 	local team = caster:GetTeamNumber()
@@ -506,7 +508,7 @@ function to_soldier_Unified(keys)
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_soldier_Unified", {})
+	caster:AddNewModifier(caster, ability, "modifier_soldier_unified", {})
 end
 
 
@@ -811,7 +813,7 @@ end
 
 function check_Oda_is_dead(keys)
 	local caster = keys.caster
-
+	print("check_Oda_is_dead")
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and not caster:IsAlive() then
 			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_BADGUYS
@@ -859,7 +861,7 @@ end
 
 function check_Unified_is_dead(keys)
 	local caster = keys.caster
-
+	print("check_Unified_is_dead")
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and not caster:IsAlive() then
 			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_GOODGUYS
@@ -910,7 +912,7 @@ end
 function to_sell_ninja_unit(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
-	print("to_soldier_Unified")
+	print("to_sell_ninja_unit")
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
 		        local ability = caster:GetAbilityByIndex(abilitySlot)

@@ -185,6 +185,54 @@
 				"Function"	"new_C15E"
 			}
 		}
+		"Modifiers"
+		{
+			"modifier_C15E_2"
+			{
+				"ThinkInterval"	"0.1"
+				"Duration"	"15"
+				"IsDebuff"	"0"
+				"EffectAttachType"	"attach_origin"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"TARGET"
+							"Radius"	"%arrow_width"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_C15E_3"
+							}
+						}
+					}
+				}
+				"EffectName"	"particles/b02e5/b02e5.vpcf"
+			}
+			"modifier_C15E_3"
+			{
+				"ThinkInterval"	"0.25"
+				"Duration"	"1.01"
+				"IsDebuff"	"0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%dmg"
+					}
+				}
+				"IsHidden"	"1"
+			}
+		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -212,7 +260,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dmg"	"90 120 150 180"
+				"dmg"	"30 40 50 60"
 			}
 			"06"
 			{
@@ -394,10 +442,4 @@
 			}
 		}
 	}
-
-	// Rewrite of the Mirana Starfall ability
-	// Author: Pizzalol
-	// Date: 04.01.2015.
-	
-	
 }

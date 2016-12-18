@@ -41,8 +41,8 @@ heromap = {
 
 function Nobu:PickHero( keys )
   local id       = keys.player
-  local p        = PlayerResource:GetPlayer(id-1)--可以用索引轉換玩家方式，來捕捉玩家
-  local caster     = p: GetAssignedHero()
+  local p        = PlayerResource:GetPlayer(id-1)
+  local caster     = EntIndexToHScript(keys.heroindex)
   local point    = caster:GetAbsOrigin()
   local owner = caster:GetPlayerOwner()
 
@@ -133,7 +133,7 @@ function Nobu:PickHero( keys )
     --<<事件:命令事件>>
     --caster:AddAbility("EventForOrder"):SetLevel(1)
     --<<全能力點數>>
-    --caster:AddAbility("attribute_bonus")
+    --caster:AddAbility("attribute_bonusx")
 
   --【英雄系統】
 

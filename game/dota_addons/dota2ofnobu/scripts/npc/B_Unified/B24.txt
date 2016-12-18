@@ -14,8 +14,8 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"19 17 15 13"
 		"AbilityManaCost"	"80"
-		"AbilityCastRange"	"%cast_dis"
-		"AOERadius"	"%range"
+		"AbilityCastRange"	"1000"
+		"AOERadius"	"250"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/elder_titan/earth_split_cast.vsnd"
@@ -86,7 +86,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"range"	"150"
+				"range"	"250"
 			}
 			"03"
 			{
@@ -123,8 +123,8 @@
 		"AnimationPlaybackRate"	"1.5"
 		"AbilityCooldown"	"21"
 		"AbilityManaCost"	"110"
-		"AbilityCastRange"	"%cast_dis"
-		"AOERadius"	"%radius"
+		"AbilityCastRange"	"650"
+		"AOERadius"	"290"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/elder_titan/earth_split_cast.vsnd"
@@ -318,7 +318,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"earthshaker_fissure"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC  | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"	"1"
@@ -334,7 +334,7 @@
 		"AbilityManaCost"	"150"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"1400"
+		"AOERadius"	"800"
 		"precache"
 		{
 			"soundfile"	"sounds/physics/damage/engines/dire_engine_destruction_03.vsnd"

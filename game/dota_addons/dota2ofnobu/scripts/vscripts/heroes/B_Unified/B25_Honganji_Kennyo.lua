@@ -67,7 +67,7 @@ function B25E( keys )
 	local max_targets = ability:GetLevelSpecialValueFor( "targets", ability:GetLevel() - 1 )
 	local targetTeam = ability:GetAbilityTargetTeam()
 	local targetType = ability:GetAbilityTargetType()
-	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
+	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
 	local projectileDodgable = false
 	local projectileProvidesVision = false
 	

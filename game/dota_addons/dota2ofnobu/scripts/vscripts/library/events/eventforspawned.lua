@@ -22,6 +22,7 @@ model_change_wearable["npc_dota_hero_antimage"]= true
 _G.CountUsedAbility_Table = {}
 
 
+
 heromap = {
   npc_dota_hero_bristleback = "B15",
   npc_dota_hero_earthshaker = "B24",

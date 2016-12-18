@@ -1,9 +1,9 @@
-modifier_archer_Oda = class({})
+modifier_archer_oda = class({})
 
 --[[Author: Noya, Pizzalol
 	Date: 27.09.2015.
 	Changes the model, reduces the movement speed and disables the target]]
-function modifier_archer_Oda:DeclareFunctions()
+function modifier_archer_oda:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MODEL_CHANGE
 	}
@@ -11,15 +11,15 @@ function modifier_archer_Oda:DeclareFunctions()
 	return funcs
 end
 
-function modifier_archer_Oda:GetModifierModelChange()
+function modifier_archer_oda:GetModifierModelChange()
 	return "models/archer/archer.vmdl"
 end
 
-function modifier_archer_Oda:GetModifierMoveSpeedOverride()
+function modifier_archer_oda:GetModifierMoveSpeedOverride()
 	return 0
 end
 
-function modifier_archer_Oda:CheckState()
+function modifier_archer_oda:CheckState()
 	local state = {
 		[MODIFIER_STATE_INVULNERABLE] = true,
 	}
@@ -27,11 +27,11 @@ function modifier_archer_Oda:CheckState()
 	return state
 end
 
-function modifier_archer_Oda:IsHidden() 
+function modifier_archer_oda:IsHidden() 
 	return true
 end
 
-function modifier_archer_Oda:IsDebuff()
+function modifier_archer_oda:IsDebuff()
 	return false
 end
 

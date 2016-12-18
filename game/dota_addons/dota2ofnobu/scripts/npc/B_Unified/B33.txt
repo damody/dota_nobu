@@ -6,12 +6,6 @@
 {
 	"Version"		"1"
 
-	// Rewrite of the Viper Viper Strike ability
-	// Author: Pizzalol
-	// Date: 19.12.2014.
-	// Changed: 15.01.2015.
-	// NOTE: Wonky projectile particle
-	// NOTE2: Edit the warmup particle and delete 3 out of 4 children for it to work properly (thanks to Noya for the info)
 	//最上義姬 腐蝕之箭
 	"B33W"
 	{
@@ -198,13 +192,7 @@
 			}
 		}
 	}
-
-	// Rewrite of the Viper Viper Strike ability
-	// Author: Pizzalol
-	// Date: 19.12.2014.
-	// Changed: 15.01.2015.
-	// NOTE: Wonky projectile particle
-	// NOTE2: Edit the warmup particle and delete 3 out of 4 children for it to work properly (thanks to Noya for the info)
+	
 	//最上義姬 蛛網纏身
 	"B33E"
 	{
@@ -355,15 +343,6 @@
 		}
 	}
 
-	// Rewrite of Templar Assasssin Psi Blades
-	// Author: YOLOSPAGHETTI
-	// Date: April 2, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_templar_assassin/psi_blades.lua
 	//最上義姬 霧毒幻化
 	"B33R"
 	{
@@ -372,7 +351,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"bristleback_viscous_nasal_goo"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
@@ -462,12 +441,6 @@
 		}
 	}
 
-	// Rewrite of the Broodmother Spawn Spiderlings ability
-	// Author: Pizzalol
-	// Date: November 28, 2015
-	// Version: 6.85
-	// Type: Datadriven
-	// Notes: Uses the normal dota spiderlings NOT custom ones
 	//最上義姬 蜘蛛纏身
 	"B33T"
 	{

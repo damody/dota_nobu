@@ -335,49 +335,12 @@ function B02E_Cast(keys)
 		local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point,false,caster,caster,caster:GetTeam())	--"npc_dummy_unit_Ver2"
 		dummy:FindAbilityByName("majia"):SetLevel(1)
 		--【MODIFIER】
-		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B02E_2",nil) 
-		--【Particle】
-		-- local particle = ParticleManager:CreateParticle("particles/b02e2/b02e2.vpcf",PATTACH_POINT,dummy)
-		-- ParticleManager:SetParticleControl(particle,0, point)	
-		-- ParticleManager:SetParticleControl(particle,11, Vector(1,0,0))	
-
-		-- dummy.B02E_particle = particle
-
-		-- local particle = ParticleManager:CreateParticle("particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf",PATTACH_POINT,dummy)
-		-- ParticleManager:SetParticleControl(particle,0, point+Vector(0,0,50))
-	
-		--ParticleManager:SetParticleControl(particle,11, Vector(1,0,0))		
+		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B02E_2",nil) 	
+		Timers:CreateTimer(10, function()
+			dummy:ForceKill(true)
+			end)
 	end
-	-- 	-- local dummy_ability = dummy:AddAbility("batrider_firefly")
-	-- 	-- dummy_ability:SetLevel(1)		
-	-- 	-- table.insert(caster.B02E_Table, point)
-	-- 	-- --【Group】	
-	-- 	-- local group = {}
-	-- 	-- local radius = 100.0
-	-- 	-- local dmg = 100
-	-- 	-- for i,tem_point in ipairs(caster.B02E_Table) do
-	-- 	--  	group = FindUnitsInRadius(caster:GetTeamNumber(), tem_point , nil, radius,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
-	-- 	-- 	for i2,v in ipairs(group) do
-	-- 	-- 		--【MODIFIER】
-	-- 	-- 		ability:ApplyDataDrivenModifier(caster,v,"modifier_B02E_2",nil)--暈眩	yy
-	-- 	-- 	end	
-	-- 	-- 	--print(#caster.B02E_Table)
-	-- 	-- end
-	-- end
+	
+
 end
 
-
-
-function B02E_END(keys)
-	--【Basic】	
-	local dummy = keys.target
-	--local point = caster:GetAbsOrigin()
-	--【Dummy】
-	--ParticleManager:DestroyParticle(dummy.B02E_particle,false)
-	dummy:ForceKill(true)
-
-	--【Particle】	
-	--ParticleManager:SetParticleControl(caster.B02E_particle,0, point)
-end
-
---[   Entity System        ]: SERVER: info_target(CInfoTarget) '' [506] thinking for 12.85 ms!!!

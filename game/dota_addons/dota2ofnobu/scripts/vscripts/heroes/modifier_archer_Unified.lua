@@ -1,9 +1,9 @@
-modifier_archer_Unified = class({})
+modifier_archer_unified = class({})
 
 --[[Author: Noya, Pizzalol
 	Date: 27.09.2015.
 	Changes the model, reduces the movement speed and disables the target]]
-function modifier_archer_Unified:DeclareFunctions()
+function modifier_archer_unified:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MODEL_CHANGE
 	}
@@ -11,15 +11,15 @@ function modifier_archer_Unified:DeclareFunctions()
 	return funcs
 end
 
-function modifier_archer_Unified:GetModifierModelChange()
+function modifier_archer_unified:GetModifierModelChange()
 	return "models/archer/archer.vmdl"
 end
 
-function modifier_archer_Unified:GetModifierMoveSpeedOverride()
+function modifier_archer_unified:GetModifierMoveSpeedOverride()
 	return 0
 end
 
-function modifier_archer_Unified:CheckState()
+function modifier_archer_unified:CheckState()
 	local state = {
 		[MODIFIER_STATE_INVULNERABLE] = true,
 	}
@@ -27,11 +27,11 @@ function modifier_archer_Unified:CheckState()
 	return state
 end
 
-function modifier_archer_Unified:IsHidden() 
+function modifier_archer_unified:IsHidden() 
 	return true
 end
 
-function modifier_archer_Unified:IsDebuff()
+function modifier_archer_unified:IsDebuff()
 	return false
 end
 

@@ -1,17 +1,6 @@
 //毛利元就
 "DOTAAbilities"
 {
-	// Rewrite of Zeus Arc Lightning
-	// Author: YOLOSPAGHETTI
-	// Date: March 24, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_zuus/arc_lightning.lua
-	//
-	// Notes: Missing some particles
 	//毛利元就 鏈鎖閃電
 	"B05W"
 	{
@@ -22,7 +11,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_DEAD | DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastPoint"	"0.2"
@@ -113,17 +102,7 @@
 		"AbilityDamage"	"150 300 450 600"
 	}
 
-	// Rewrite of Zeus Thundergods Wrath
-	// Author: YOLOSPAGHETTI
-	// Date: March 24, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_zuus/thundergods_wrath.lua
-	//
-	// Notes: Does not reveal wards, wonky particles
+
 	//毛利元就 天雷擊
 	"B05E"
 	{
@@ -262,17 +241,6 @@
 		"AbilityDamage"	"225 350 475"
 	}
 
-	// Rewrite of Zeus Lightning Bolt
-	// Author: YOLOSPAGHETTI
-	// Date: March 24, 2016
-	// Version: 6.86
-	// Type: Datadriven
-	//
-	// ----- FILE REQUIREMENTS -----
-	// Script files:
-	// scripts/vscripts/heroes/hero_zuus/lightning_bolt.lua
-	//
-	// Notes: Does not reveal wards
 	//毛利元就 三矢之訓 
 	"B05R"
 	{
@@ -289,7 +257,7 @@
 		"AbilityCastPoint"	"0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"12.0 10.0 8.0 6.0"
+		"AbilityCooldown"	"12 10 8 6"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"75"
@@ -626,7 +594,7 @@
 		"AbilityCastRange"	"1200"
 		"AOERadius"	"%radius"
 		"AbilityManaCost"	"200"
-		"AbilityCooldown"	"150 140 130"
+		"AbilityCooldown"	"130 120 110"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"Modifiers"

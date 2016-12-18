@@ -85,7 +85,7 @@
 							{
 								"Target"	"TARGET"
 								"Type"	"DAMAGE_TYPE_MAGICAL"
-								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+								"Damage"	"%dmg"
 							}
 							// Custom Building Damage
 							"RunScript"
@@ -100,7 +100,7 @@
 									"Types"	"DOTA_UNIT_TARGET_BASIC"
 									"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 								}
-								"Damage"	"%AbilityDamage * %bladestorm_damage_tick"
+								"Damage"	"%dmg"
 							}
 							"FireSound"
 							{
@@ -141,6 +141,11 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"duration"	"2.0 2.0 2.0 2.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg"	"45 55 65 75"
 			}
 		}
 		"AbilityDamage"	"225 275 325 375"

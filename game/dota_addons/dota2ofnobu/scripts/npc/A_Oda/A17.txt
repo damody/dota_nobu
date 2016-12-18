@@ -1,228 +1,6 @@
 //佐佐成政
 "DOTAAbilities"
 {
-	//佐佐成政 疾射
-	"A17E"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"gyrocopter_flak_cannon"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityCooldown"	"20"
-		"AbilityManaCost"	"80 100 120 140"
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_A17E"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_A17E"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
-				}
-				"Duration"	"%duration"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack_speed"	"150"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"move_speed"	"0 5 10 15"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"duration"	"5.5 7.0 8.5 10.0"
-			}
-		}
-	}
-	//佐佐成政 要害射擊
-	"A17R"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"gyrocopter_skyhigh_call_down"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"precache"
-		{
-			"particle"	"particles/generic_gameplay/generic_stunned_old.vpcf"
-		}
-		"Modifiers"
-		{
-			"modifier_A17R_passive"
-			{
-				"Passive"	"1"
-				"OnAttack"
-				{
-					"Random"
-					{
-						"OnSuccess"
-						{
-							"RunScript"
-							{
-								"Function"	"A17R"
-								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
-								"dmg"	"%AbilityDamage"
-							}
-						}
-						"Chance"	"%chance"
-						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_CHAOS_CRIT"
-					}
-				}
-				"IsBuff"	"0"
-				"IsHidden"	"1"
-			}
-			"modifier_A17R"
-			{
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"Duration"	"%stun_duration"
-				"IsDebuff"	"1"
-				"EffectName"	"particles/generic_gameplay/generic_stunned_old.vpcf"
-				"EffectAttachType"	"follow_hitloc"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"chance"	"30"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"stun_duration"	"0.1 0.2 0.3 0.4"
-			}
-		}
-		"AbilityDamage"	"65 95 125 155"
-	}
-	//佐佐成政 大筒
-	"A17T"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"gyrocopter_skyhigh_flak_cannon"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING   "
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"6 3 0.5"
-		"RequiredLevel"	"6"
-		"LevelsBetweenUpgrades"	"6"
-		"AbilityManaCost"	"100 175 250"
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
-			"particle"	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_flash_c.vpcf"
-			"soundfile"	"sounds/ambient/newyear/rocket_explode01.vsnd"
-			"soundfile"	"soundevents/A17.vsndevts"
-		}
-		"OnToggleOn"
-		{
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_A17T"
-			}
-		}
-		"OnToggleOff"
-		{
-			"RemoveModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_A17T"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_A17T"
-			{
-				"States"	{}
-				"OnAttack"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
-						"Function"	"A17T"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"%night_sight"
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_sight"
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
-				}
-				"IsBuff"	"1"
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
-						"Function"	"A17T_Succes_Attack"
-						"dmg"	"%attack_damage"
-					}
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"projectile_speed"	"3000"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"night_sight"	"1000"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack_range_bonus"	"300 450 600"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attacked_range"	"350 400 450"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack_bonus"	"200 300 400"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack_speed_bonus"	"-100 -175 -250"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"move_speed_bonus"	"-100"
-			}
-		}
-	}
 	//佐佐成政 爆烈彈
 	"A17W"
 	{
@@ -238,7 +16,7 @@
 		"AbilityCooldown"	"20"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"120 120 120 120"
+		"AbilityManaCost"	"120"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"1800"
@@ -413,5 +191,227 @@
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"15 20 21 24"
+	}
+	//佐佐成政 疾射
+	"A17E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"80 100 120 140"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17E"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A17E"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
+				}
+				"Duration"	"%duration"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed"	"150"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed"	"0 5 10 15"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"5.5 7.0 8.5 10.0"
+			}
+		}
+	}
+	//佐佐成政 要害射擊
+	"A17R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_skyhigh_call_down"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"precache"
+		{
+			"particle"	"particles/generic_gameplay/generic_stunned_old.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A17R_passive"
+			{
+				"Passive"	"1"
+				"OnAttack"
+				{
+					"Random"
+					{
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"Function"	"A17R"
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+								"dmg"	"%AbilityDamage"
+							}
+						}
+						"Chance"	"%chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_CHAOS_CRIT"
+					}
+				}
+				"IsBuff"	"0"
+				"IsHidden"	"1"
+			}
+			"modifier_A17R"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%stun_duration"
+				"IsDebuff"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned_old.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.05 0.1 0.15 0.2"
+			}
+		}
+		"AbilityDamage"	"65 95 125 155"
+	}
+	//佐佐成政 大筒
+	"A17T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_skyhigh_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	"6 3 0.5"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"100 175 250"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+			"particle"	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_flash_c.vpcf"
+			"soundfile"	"sounds/ambient/newyear/rocket_explode01.vsnd"
+			"soundfile"	"soundevents/A17.vsndevts"
+		}
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17T"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A17T"
+			{
+				"States"	{}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"%night_sight"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_sight"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+				}
+				"IsBuff"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T_Succes_Attack"
+						"dmg"	"%attack_damage"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"3000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"night_sight"	"1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_range_bonus"	"300 450 600"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attacked_range"	"350 400 450"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"200 300 400"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_bonus"	"-100 -175 -250"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_bonus"	"-100"
+			}
+		}
 	}
 }

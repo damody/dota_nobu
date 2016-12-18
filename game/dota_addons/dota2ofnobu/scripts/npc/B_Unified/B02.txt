@@ -182,7 +182,7 @@
 		"AbilityManaCost"	"100 110 120 130"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"650.00"
+		"AbilityCastRange"	"650"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
@@ -296,7 +296,7 @@
 			}
 			"modifier_B02E_2"
 			{
-				"ThinkInterval"	"1.0"
+				"ThinkInterval"	"0.1"
 				"Duration"	"10"
 				"IsDebuff"	"0"
 				"EffectAttachType"	"attach_origin"
@@ -321,19 +321,11 @@
 						}
 					}
 				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
-						"Function"	"B02E_END"
-					}
-				}
 				"EffectName"	"particles/b02e5/b02e5.vpcf"
 			}
 			"modifier_B02E_3"
 			{
-				"ThinkInterval"	"1.0"
+				"ThinkInterval"	"0.25"
 				"Duration"	"1.01"
 				"IsDebuff"	"0"
 				"OnIntervalThink"
@@ -363,7 +355,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dmg"	"180 240 300 360"
+				"dmg"	"45 60 75 90"
 			}
 		}
 	}
@@ -404,8 +396,8 @@
 			}
 			"Damage"
 			{
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"(%dmg/18)"
+				"Type"	"DAMAGE_TYPE_PURE"
+				"Damage"	"%dmg"
 				"Target"	"TARGET"
 			}
 		}
@@ -455,7 +447,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"cast_D"	"480.00"
+				"cast_D"	"580.00"
 			}
 			"03"
 			{
@@ -465,7 +457,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"dmg"	"90 180 270 360"
+				"dmg"	"10 20 30 40"
 			}
 		}
 	}
@@ -485,7 +477,7 @@
 		"AnimationPlaybackRate"	"5"
 		"AbilityCooldown"	"85 80 75"
 		"AbilityManaCost"	"150"
-		"AbilityCastRange"	"%cast_D"
+		"AbilityCastRange"	"600"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"precache"
