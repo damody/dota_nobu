@@ -1,3 +1,4 @@
+
 function _G.Nobu:InitGameMode()
   print( "[Nobu-lua] Nobu:InitGameMode is loaded." )
 
@@ -72,7 +73,7 @@ function _G.Nobu:InitGameMode()
   GameMode:SetGoldSoundDisabled( false )
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢
   --GameMode:SetCustomGameForceHero("npc_dota_hero_dragon_knight") --強迫選擇英雄 (可以跳過選角畫面)
-
+  
   --【HUD】
   -- GameMode:SetHUDVisible(0,  false) --Clock
   -- GameMode:SetHUDVisible(1,  false)
@@ -105,4 +106,9 @@ function _G.Nobu:InitGameMode()
   end
   GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(MaxLevel)
   GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(XpTable)--類型為table
+  -- 定时清理垃圾
+	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("collectgarbage"), function()
+		collectgarbage()
+		return 300
+	end, 300)
 end

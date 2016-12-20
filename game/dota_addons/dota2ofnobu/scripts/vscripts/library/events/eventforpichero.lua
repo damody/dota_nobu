@@ -39,6 +39,69 @@ heromap = {
   npc_dota_hero_centaur = "A07",
 }
 
+model_lookup = {}
+model_lookup["npc_dota_hero_storm_spirit"] = true
+model_lookup["npc_dota_hero_drow_ranger"] = true
+--model_lookup["npc_dota_hero_windrunner"] = true
+model_lookup["npc_dota_hero_earthshaker"] = true
+model_lookup["npc_dota_hero_sniper"] = true
+model_lookup["npc_dota_hero_huskar"] = true
+model_lookup["npc_dota_hero_beastmaster"] = true
+model_lookup["npc_dota_hero_antimage"] = true
+model_lookup["npc_dota_hero_silencer"] = true
+model_lookup["npc_dota_hero_brewmaster"] = true
+model_lookup["npc_dota_hero_crystal_maiden"] = true
+model_lookup["npc_dota_hero_mirana"] = true
+model_lookup["npc_dota_hero_dragon_knight"] = true
+model_change_wearable = {}
+model_change_wearable["npc_dota_hero_antimage"]= true
+
+
+function RemoveWearables2( hero )
+  local children = hero:GetChildren()
+  local name = hero:GetUnitName()
+
+  if model_lookup[name]  == true then
+    if model_change_wearable[name] == true then
+    end
+  else
+    for k,child in pairs(children) do
+       --print("Wearable"..child:GetClassname())
+       if child:GetClassname() == "dota_item_wearable" then
+          child:RemoveSelf()
+       end
+    end
+  end
+end
+
+function RemoveWearables( hero )
+ Timers:CreateTimer( .3, function()
+      -- Setup variables
+      if not hero:IsHero() then return end
+      local toRemove = {}
+      local wearable = hero:FirstMoveChild()
+      while wearable ~= nil do
+        if wearable:GetClassname() == "dota_item_wearable" then
+          table.insert( toRemove, wearable )
+        end
+        wearable = wearable:NextMovePeer()
+      end
+
+      -- Remove wearables
+      for k, v in pairs( toRemove ) do
+        v:RemoveSelf()
+      end
+    
+      -- Set model
+      --hero:SetModel( model_name )
+      --hero:SetOriginalModel( model_name )
+      --hero:MoveToPosition( hero:GetAbsOrigin() )
+
+      return nil
+    end
+  )
+end
+
 function Nobu:PickHero( keys )
   local id       = keys.player
   local p        = PlayerResource:GetPlayer(id-1)
@@ -46,15 +109,9 @@ function Nobu:PickHero( keys )
   local point    = caster:GetAbsOrigin()
   local owner = caster:GetPlayerOwner()
 
-
-  --【統計系統】
-    --【技能】
-
-    --【傷害】
-    caster.damage_num = 0
-    caster.damaged_num = 0
-
-    --【金錢】
+  if caster:IsHero() then
+    RemoveWearables( hero )
+  end
 
   if _G.CountUsedAbility_Table == nil then
     _G.CountUsedAbility_Table = {}

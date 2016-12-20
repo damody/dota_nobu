@@ -33,6 +33,12 @@ function StealLife(keys)
 		end
 		--print("steal1 "..dmg*keys.StealPercent*0.02*(damageReduction))
 		--print("steal2 "..dmg*keys.StealPercent*0.02)
+		if damageReduction < 0 then
+			damageReduction = 1
+		end
+		if damageReduction > 1 then
+			damageReduction = 1
+		end
 		caster:Heal(dmg*keys.StealPercent*0.01*(damageReduction), ability)
 	    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 	end
