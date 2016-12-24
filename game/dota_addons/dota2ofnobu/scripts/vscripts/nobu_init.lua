@@ -20,7 +20,7 @@ function _G.Nobu:InitGameMode()
 
   GameRules:SetUseUniversalShopMode( false ) --开启/关闭全地图商店模式
   GameRules:SetSameHeroSelectionEnabled( false )
-  GameRules:SetHeroSelectionTime( 0 )--設定選擇英雄時間
+  GameRules:SetHeroSelectionTime( 30 )--設定選擇英雄時間
   if _G.nobu_debug then
     GameRules:SetPreGameTime( 0 )--設置遊戲準備時間
   else

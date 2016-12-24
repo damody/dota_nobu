@@ -8,7 +8,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_116"
+		"AbilityTextureName"	"custom/icon_128x128_116"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -63,7 +63,7 @@
 	"near_hero_then_can_use_ability"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"liubei_hujia"
+		"AbilityTextureName"	"custom/sliubei_hujia"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -95,7 +95,7 @@
 	"call_ninja1"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"liubei_hujia"
+		"AbilityTextureName"	"custom/liubei_hujia"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -120,7 +120,7 @@
 	"call_ninja2"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"liubei_hujia"
+		"AbilityTextureName"	"custom/liubei_hujia"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -145,7 +145,7 @@
 	"call_ninja3"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"liubei_hujia"
+		"AbilityTextureName"	"custom/liubei_hujia"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -170,7 +170,7 @@
 	"dead_give_item"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_21"
+		"AbilityTextureName"	"custom/icon_128x128_21"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -206,7 +206,7 @@
 	"true_gem"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_21"
+		"AbilityTextureName"	"custom/icon_128x128_21"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Modifiers"
 		{
@@ -301,7 +301,7 @@
 	"gunner_attack"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"cps_d01_3 (Copy)"
+		"AbilityTextureName"	"custom/cps_d01_3 (Copy)"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"Modifiers"
 		{
@@ -343,7 +343,7 @@
 	"ninja_attack"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_37"
+		"AbilityTextureName"	"custom/icon_128x128_37"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"Modifiers"
 		{
@@ -385,7 +385,7 @@
 	"archer_attack"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_64"
+		"AbilityTextureName"	"custom/icon_128x128_64"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"Modifiers"
 		{
@@ -538,7 +538,7 @@
 	"soldier_Oda_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -563,7 +563,7 @@
 	"soldier_Oda_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -588,7 +588,7 @@
 	"soldier_Oda_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -641,7 +641,7 @@
 	"soldier_Unified_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -666,7 +666,7 @@
 	"soldier_Unified_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -691,7 +691,7 @@
 	"soldier_Unified_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -744,7 +744,7 @@
 	"archer_Oda_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -769,7 +769,7 @@
 	"archer_Oda_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -794,7 +794,7 @@
 	"archer_Oda_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -847,7 +847,7 @@
 	"archer_Unified_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -872,7 +872,7 @@
 	"archer_Unified_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -897,7 +897,7 @@
 	"archer_Unified_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -951,7 +951,7 @@
 	"gunner_Oda_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -976,7 +976,7 @@
 	"gunner_Oda_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1001,7 +1001,7 @@
 	"gunner_Oda_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1054,7 +1054,7 @@
 	"gunner_Unified_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1079,7 +1079,7 @@
 	"gunner_Unified_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1104,7 +1104,7 @@
 	"gunner_Unified_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1158,7 +1158,7 @@
 	"cavalry_Oda_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1183,7 +1183,7 @@
 	"cavalry_Oda_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1208,7 +1208,7 @@
 	"cavalry_Oda_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1262,7 +1262,7 @@
 	"cavalry_Unified_top"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1287,7 +1287,7 @@
 	"cavalry_Unified_mid"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1312,7 +1312,7 @@
 	"cavalry_Unified_bottom"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1420,7 +1420,7 @@
 	"war_magic_gohome"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_47"
+		"AbilityTextureName"	"custom/icon_128x128_47"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1461,7 +1461,7 @@
 	"war_magic_findanything"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_21"
+		"AbilityTextureName"	"custom/icon_128x128_21"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1505,7 +1505,7 @@
 	"war_magic_light"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_40"
+		"AbilityTextureName"	"custom/icon_128x128_40"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1532,7 +1532,7 @@
 	"war_magic_treecut"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_113"
+		"AbilityTextureName"	"custom/icon_128x128_113"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1559,7 +1559,7 @@
 	"war_magic_speedup"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_54"
+		"AbilityTextureName"	"custom/icon_128x128_54"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1596,7 +1596,7 @@
 	"war_magic_slowattack"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_100"
+		"AbilityTextureName"	"custom/icon_128x128_100"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1638,7 +1638,7 @@
 	"war_magic_lessattack"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_130"
+		"AbilityTextureName"	"custom/icon_128x128_130"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -1678,7 +1678,7 @@
 	"war_magic_moreattack"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_36"
+		"AbilityTextureName"	"custom/icon_128x128_36"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -1716,7 +1716,7 @@
 	"war_magic_regen"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_22"
+		"AbilityTextureName"	"custom/icon_128x128_22"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -2131,7 +2131,7 @@
 	"forest_caster_R"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_47"
+		"AbilityTextureName"	"custom/icon_128x128_47"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -2214,7 +2214,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_30"
+		"AbilityTextureName"	"custom/icon_128x128_30"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -2271,7 +2271,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_77"
+		"AbilityTextureName"	"custom/icon_128x128_77"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2297,7 +2297,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_34"
+		"AbilityTextureName"	"custom/icon_128x128_34"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2354,7 +2354,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_101"
+		"AbilityTextureName"	"custom/icon_128x128_101"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2473,7 +2473,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_37"
+		"AbilityTextureName"	"custom/icon_128x128_37"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2528,7 +2528,7 @@
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_142"
+		"AbilityTextureName"	"custom/icon_128x128_142"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"	"100"
 		"HotKeyOverride"	"F"

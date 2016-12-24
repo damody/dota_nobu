@@ -39,69 +39,6 @@ heromap = {
   npc_dota_hero_centaur = "A07",
 }
 
-model_lookup = {}
-model_lookup["npc_dota_hero_storm_spirit"] = true
-model_lookup["npc_dota_hero_drow_ranger"] = true
---model_lookup["npc_dota_hero_windrunner"] = true
-model_lookup["npc_dota_hero_earthshaker"] = true
-model_lookup["npc_dota_hero_sniper"] = true
-model_lookup["npc_dota_hero_huskar"] = true
-model_lookup["npc_dota_hero_beastmaster"] = true
-model_lookup["npc_dota_hero_antimage"] = true
-model_lookup["npc_dota_hero_silencer"] = true
-model_lookup["npc_dota_hero_brewmaster"] = true
-model_lookup["npc_dota_hero_crystal_maiden"] = true
-model_lookup["npc_dota_hero_mirana"] = true
-model_lookup["npc_dota_hero_dragon_knight"] = true
-model_change_wearable = {}
-model_change_wearable["npc_dota_hero_antimage"]= true
-
-
-function RemoveWearables2( hero )
-  local children = hero:GetChildren()
-  local name = hero:GetUnitName()
-
-  if model_lookup[name]  == true then
-    if model_change_wearable[name] == true then
-    end
-  else
-    for k,child in pairs(children) do
-       --print("Wearable"..child:GetClassname())
-       if child:GetClassname() == "dota_item_wearable" then
-          child:RemoveSelf()
-       end
-    end
-  end
-end
-
-function RemoveWearables( hero )
- Timers:CreateTimer( .3, function()
-      -- Setup variables
-      if not hero:IsHero() then return end
-      local toRemove = {}
-      local wearable = hero:FirstMoveChild()
-      while wearable ~= nil do
-        if wearable:GetClassname() == "dota_item_wearable" then
-          table.insert( toRemove, wearable )
-        end
-        wearable = wearable:NextMovePeer()
-      end
-
-      -- Remove wearables
-      for k, v in pairs( toRemove ) do
-        v:RemoveSelf()
-      end
-    
-      -- Set model
-      --hero:SetModel( model_name )
-      --hero:SetOriginalModel( model_name )
-      --hero:MoveToPosition( hero:GetAbsOrigin() )
-
-      return nil
-    end
-  )
-end
-
 function Nobu:PickHero( keys )
   local id       = keys.player
   local p        = PlayerResource:GetPlayer(id-1)
@@ -109,79 +46,79 @@ function Nobu:PickHero( keys )
   local point    = caster:GetAbsOrigin()
   local owner = caster:GetPlayerOwner()
 
-  if caster:IsHero() then
-    RemoveWearables( hero )
-  end
-
-  if _G.CountUsedAbility_Table == nil then
-    _G.CountUsedAbility_Table = {}
-  end
-  if _G.CountUsedAbility_Table[id] == nil then
-    _G.CountUsedAbility_Table[id] = {}
-  end
-  --【英雄名稱判別】
-  local name = caster:GetUnitName()
-  caster.version = "16"
-  caster.name = heromap[name]
-  print("name " .. name)
-  if string.match(name, "ancient_apparition")  then --竹中重治
-    caster:FindAbilityByName("A04D"):SetLevel(1)
-  elseif string.match(name, "jakiro") then --佐佐木小次郎
-    caster:FindAbilityByName("C22D"):SetLevel(1)
-  elseif string.match(name, "magnataur") then -- 淺井長政
-    GameRules: SendCustomMessage("淺井長政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-    Timers:CreateTimer(1, function ()
-      if (caster:GetLevel() >= 18) then
-        caster:FindAbilityByName("B08D_old"):SetLevel(1)
-        return nil
+  Timers:CreateTimer(1, function ()
+    if not caster:IsIllusion() then
+      if _G.CountUsedAbility_Table == nil then
+        _G.CountUsedAbility_Table = {}
       end
-      return 1
-    end)
-  elseif string.match(name, "templar_assassin") then --松姬
-    caster:FindAbilityByName("C19D"):SetLevel(1)
-    GameRules: SendCustomMessage("松姬玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "centaur") then --本多忠勝
-    caster:FindAbilityByName("A07D"):SetLevel(1)
-    GameRules: SendCustomMessage("本多忠勝玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "pugna") then --本願寺顯如
-    GameRules: SendCustomMessage("本願寺顯如玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "keeper_of_the_light") then -- 毛利元就
-    GameRules: SendCustomMessage("毛利元就玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "nevermore") then --雜賀孫市
-    GameRules: SendCustomMessage("雜賀孫市玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "beastmaster") then --武田勝賴
-    GameRules: SendCustomMessage("武田勝賴玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "dragon_knight") then --上杉謙信
-    GameRules: SendCustomMessage("上杉謙信玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "slardar") then -- 真田幸村
-    GameRules: SendCustomMessage("真田幸村玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "troll_warlord") then -- 井伊直政
-    GameRules: SendCustomMessage("井伊直政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-  elseif string.match(name, "broodmother") then --服部半藏
-    GameRules: SendCustomMessage("服部半藏玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-    caster:FindAbilityByName("A13D"):SetLevel(1)
-  elseif string.match(name, "storm_spirit") then --大谷吉繼
-    caster:FindAbilityByName("A12D"):SetLevel(1)
-    caster:FindAbilityByName("A12D"):SetActivated(false)
-    caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
-  elseif string.match(name, "bristleback") then -- 今川義元
-    GameRules: SendCustomMessage("今川義元玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-    Timers:CreateTimer(1, function ()
-      if (caster:GetLevel() >= 8) then
-        caster:FindAbilityByName("B15D"):SetLevel(1)
-        return nil
+      if _G.CountUsedAbility_Table[id] == nil then
+        _G.CountUsedAbility_Table[id] = {}
       end
-      return 1
-    end)
-  elseif string.match(name, "silencer") then --立花道雪
-    -- 這隻角色天生會帶一個modifier我們需要砍掉他
-    caster:RemoveModifierByName("modifier_silencer_int_steal")
-    caster:FindAbilityByName("C07D"):SetLevel(1)
-  elseif string.match(name, "windrunner") then -- 阿市
-    caster:FindAbilityByName("C17D"):SetLevel(1)
-  elseif string.match(name, "faceless_void") then --風魔小太郎
-    caster:FindAbilityByName("B02D"):SetLevel(1)
-  end
+      --【英雄名稱判別】
+      local name = caster:GetUnitName()
+      caster.version = "16"
+      caster.name = heromap[name]
+      print("name " .. name)
+      if string.match(name, "ancient_apparition")  then --竹中重治
+        caster:FindAbilityByName("A04D"):SetLevel(1)
+      elseif string.match(name, "jakiro") then --佐佐木小次郎
+        caster:FindAbilityByName("C22D"):SetLevel(1)
+      elseif string.match(name, "magnataur") then -- 淺井長政
+        GameRules: SendCustomMessage("淺井長政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+        Timers:CreateTimer(1, function ()
+          if (caster:GetLevel() >= 18) then
+            caster:FindAbilityByName("B08D_old"):SetLevel(1)
+            return nil
+          end
+          return 1
+        end)
+      elseif string.match(name, "templar_assassin") then --松姬
+        caster:FindAbilityByName("C19D"):SetLevel(1)
+        GameRules: SendCustomMessage("松姬玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "centaur") then --本多忠勝
+        caster:FindAbilityByName("A07D"):SetLevel(1)
+        GameRules: SendCustomMessage("本多忠勝玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "pugna") then --本願寺顯如
+        GameRules: SendCustomMessage("本願寺顯如玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "keeper_of_the_light") then -- 毛利元就
+        GameRules: SendCustomMessage("毛利元就玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "nevermore") then --雜賀孫市
+        GameRules: SendCustomMessage("雜賀孫市玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "beastmaster") then --武田勝賴
+        GameRules: SendCustomMessage("武田勝賴玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "dragon_knight") then --上杉謙信
+        GameRules: SendCustomMessage("上杉謙信玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "slardar") then -- 真田幸村
+        GameRules: SendCustomMessage("真田幸村玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "troll_warlord") then -- 井伊直政
+        GameRules: SendCustomMessage("井伊直政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "broodmother") then --服部半藏
+        GameRules: SendCustomMessage("服部半藏玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+        caster:FindAbilityByName("A13D"):SetLevel(1)
+      elseif string.match(name, "storm_spirit") then --大谷吉繼
+        caster:FindAbilityByName("A12D"):SetLevel(1)
+        caster:FindAbilityByName("A12D"):SetActivated(false)
+        caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
+      elseif string.match(name, "bristleback") then -- 今川義元
+        GameRules: SendCustomMessage("今川義元玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+        Timers:CreateTimer(1, function ()
+          if (caster:GetLevel() >= 8) then
+            caster:FindAbilityByName("B15D"):SetLevel(1)
+            return nil
+          end
+          return 1
+        end)
+      elseif string.match(name, "silencer") then --立花道雪
+        -- 這隻角色天生會帶一個modifier我們需要砍掉他
+        caster:RemoveModifierByName("modifier_silencer_int_steal")
+        caster:FindAbilityByName("C07D"):SetLevel(1)
+      elseif string.match(name, "windrunner") then -- 阿市
+        caster:FindAbilityByName("C17D"):SetLevel(1)
+      elseif string.match(name, "faceless_void") then --風魔小太郎
+        caster:FindAbilityByName("B02D"):SetLevel(1)
+      end
+    end
+  end)
   --【英雄名稱判別】
 
   --【英雄系統】

@@ -48,9 +48,13 @@ function B15E_attack3( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local b15e = caster:FindAbilityByName("B15E_old")
-	if b15e ~= nil and b15e:GetLevel() > 0 then
+	if b15e ~= nil and b15e:GetLevel() > 0 and caster.nobuorb1 == "B25E_1" then
 		local dmg = b15e:GetLevelSpecialValueFor("damage_bonus", b15e:GetLevel() - 1 )
-		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		if target:IsBuilding() then
+			AMHC:Damage( caster,target,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		else
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		end
 	end
 end
 

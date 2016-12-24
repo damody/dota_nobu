@@ -5,7 +5,7 @@
 	"C19W"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"c15w"
+		"AbilityTextureName"	"custom/c15w"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -80,7 +80,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityTextureName"	"icon_128x128_29"
+		"AbilityTextureName"	"custom/icon_128x128_29"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -211,7 +211,7 @@
 	"C19E_old"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"icon_128x128_38"
+		"AbilityTextureName"	"custom/icon_128x128_38"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
