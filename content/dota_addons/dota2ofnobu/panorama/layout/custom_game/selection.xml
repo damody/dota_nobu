@@ -1,7 +1,74 @@
 <root> 
     <scripts>
-        <include src="file://{resources}/scripts/selection/selection.js" />
-        <include src="file://{resources}/scripts/selection/selection_filter.js" />
+        <!-- <include src="file://{resources}/scripts/selection/selection.js" /> -->
+        <!-- <include src="file://{resources}/scripts/selection/selection_filter.js" /> -->
     </scripts>
-    <Panel></Panel>
+    <Panel class="AddonLoadingRoot">
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_bristleback.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_bristleback.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_earthshaker.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_earthshaker.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_brewmaster.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_brewmaster.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_silencer.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_silencer.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_sniper.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_sniper.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_beastmaster.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_beastmaster.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_huskar.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_huskar.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_mirana.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_mirana.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_antimage.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_antimage.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_crystal_maiden.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_crystal_maiden.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_storm_spirit.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_storm_spirit.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_troll_warlord.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_troll_warlord.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_faceless_void.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_faceless_void.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_broodmother.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_broodmother.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_invoker.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_invoker.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_omniknight.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_omniknight.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_oracle.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_oracle.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_ancient_apparition.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_ancient_apparition.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_dragon_knight.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_dragon_knight.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_drow_ranger.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_drow_ranger.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_nevermore.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_nevermore.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_pugna.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_pugna.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_axe.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_axe.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_viper.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_viper.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_windrunner.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_windrunner.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_keeper_of_the_light.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_keeper_of_the_light.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_jakiro.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_jakiro.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_alchemist.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_alchemist.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_treant.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_treant.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_templar_assassin.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_templar_assassin.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_medusa.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_medusa.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_magnataur.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_magnataur.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/npc_dota_hero_centaur.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/heroes/selection/npc_dota_hero_centaur.png" />
+  </Panel>
 </root>
