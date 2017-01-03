@@ -140,6 +140,15 @@ function Nobu:OnHeroIngame( keys )
       if caster:FindAbilityByName("B02D") ~= nil and caster:FindAbilityByName("B02D"):GetLevel() == 0 then
         caster:FindAbilityByName("B02D"):SetLevel(1)
       end
+    elseif string.match(name, "naga_siren") then -- 望月千代女
+      local B16D = caster:FindAbilityByName("B16D")
+      if B16D ~= nil and B16D:GetLevel() == 0 then
+        B16D:SetLevel(1)
+      end
+      local B16W = caster:FindAbilityByName("B16W")
+      if B16W ~= nil then
+        B16W:SetActivated(false)
+      end
     end
 	Timers:CreateTimer ( 1, function ()
 		if not hero:IsIllusion() then

@@ -45,8 +45,238 @@
 	{
 		m_pObject = null
 	}
-	m_pHitBoxSetLists = [  ]
-	m_pAttachmentLists = [  ]
+	m_pHitBoxSetLists = 
+	[
+		{
+			m_pObject = 
+			{
+				m_HitBoxSets = 
+				[
+					{
+						m_name = "default"
+						m_HitBoxes = 
+						[
+							{
+								m_name = "Bone_Root"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Root"
+								m_vMinBounds = [ -43.931389, -43.60466, -104.851578 ]
+								m_vMaxBounds = [ 44.074818, 35.060265, 46.648766 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg1_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg1_R"
+								m_vMinBounds = [ -9.838064, -12.109598, -33.989433 ]
+								m_vMaxBounds = [ 11.852381, 16.162308, 10.887451 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg1_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg1_L"
+								m_vMinBounds = [ -11.79574, -12.413342, -33.989433 ]
+								m_vMaxBounds = [ 9.894705, 16.162308, 10.887451 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Arm1_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm1_R"
+								m_vMinBounds = [ -7.465614, -11.294266, -22.256813 ]
+								m_vMaxBounds = [ 7.631021, 2.262036, 6.721054 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Arm2_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm2_L"
+								m_vMinBounds = [ -4.442275, -14.287859, -42.496407 ]
+								m_vMaxBounds = [ 6.119994, 12.889688, 13.23732 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg2_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg2_R"
+								m_vMinBounds = [ -6.943127, -7.16839, -43.430225 ]
+								m_vMaxBounds = [ 2.069885, 5.281914, 3.872562 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Leg2_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Leg2_L"
+								m_vMinBounds = [ -2.069885, -7.16839, -43.430225 ]
+								m_vMaxBounds = [ 6.943127, 5.281914, 3.872562 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Arm2_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Arm2_R"
+								m_vMinBounds = [ -6.308594, -14.287878, -42.253807 ]
+								m_vMaxBounds = [ 12.492899, 12.889669, 13.479919 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Hand_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Hand_L"
+								m_vMinBounds = [ -4.892354, -8.066637, -10.666302 ]
+								m_vMaxBounds = [ 2.527197, 1.569107, 6.212791 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Head"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Head"
+								m_vMinBounds = [ -6.908308, -12.038453, -5.452972 ]
+								m_vMaxBounds = [ 6.958844, 12.285848, 23.037872 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Foot_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Foot_R"
+								m_vMinBounds = [ -6.4104, -14.048582, -8.78228 ]
+								m_vMaxBounds = [ 1.02885, 3.541392, 7.608917 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Foot_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Foot_L"
+								m_vMinBounds = [ -1.02885, -14.048582, -8.78228 ]
+								m_vMaxBounds = [ 6.4104, 3.541392, 7.608917 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Jaw"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Jaw"
+								m_vMinBounds = [ -6.688027, -4.740876, -2.478241 ]
+								m_vMaxBounds = [ 6.784913, 8.77984, 9.871788 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Eyelids"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Eyelids"
+								m_vMinBounds = [ -6.378907, -2.274552, -9.785843 ]
+								m_vMaxBounds = [ 6.331967, 9.611204, 3.937057 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Bone_Root"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Bone_Root"
+								m_vMinBounds = [ -43.931389, -43.60466, -104.851578 ]
+								m_vMaxBounds = [ 44.074818, 35.060265, 46.648766 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+						]
+					},
+				]
+				m_AutoCreateSetName = ""
+			}
+		},
+	]
+	m_pAttachmentLists = 
+	[
+		{
+			m_pObject = 
+			{
+				m_name = ""
+				m_attachments = 
+				[
+					{
+						m_name = "attach_origin"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Root"
+								m_vTranslationOffset = [ 0.0, 0.0, -78.919838 ]
+								m_vRotationOffset = [ 0.0, -0.0, -0.00001 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_hitloc"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Root"
+								m_vTranslationOffset = [ 0.0, 0.0, -11.405914 ]
+								m_vRotationOffset = [ 0.0, -0.0, -0.00001 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack1"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Arm1_R"
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Arm1_L"
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
+	]
 	m_pAnimGroup = 
 	{
 		m_pObject = 
@@ -88,7 +318,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_CAST_ABILITY_2"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -128,7 +364,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_CAST_ABILITY_1"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = 
 					[
@@ -185,7 +427,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_ATTACK2"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = 
 					[
@@ -242,7 +490,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_ATTACK"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = 
 					[
@@ -299,7 +553,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_CAST_ABILITY_4"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = 
 					[
@@ -356,7 +616,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_DIE"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = 
 					[
@@ -453,14 +719,14 @@
 					m_Animationname = "b16_move1"
 					m_Filepath = "models/b16/b16_move1.fbx"
 					m_nStartframe = 0
-					m_nEndframe = 27
+					m_nEndframe = 25
 					m_flFps = 30.0
 					m_Loop = 
 					{
-						m_bLoop = false
-						m_bSmoothLoop = false
-						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
+						m_bLoop = true
+						m_bSmoothLoop = true
+						m_nSmoothLoopStart = 3
+						m_nSmoothLoopEnd = 3
 						m_StartLoop = 
 						{
 							_class = "CVAnimCmdStartLoop"
@@ -470,7 +736,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_RUN"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -510,7 +782,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE_IMPATIENT"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -550,7 +828,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -590,7 +874,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE_RARE"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]

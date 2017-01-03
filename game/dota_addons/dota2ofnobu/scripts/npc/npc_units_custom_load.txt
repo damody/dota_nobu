@@ -2363,6 +2363,84 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_sniper.vsndevts"
 	}
 
+	// =================================================================================
+	// Creature: 月月
+	// =================================================================================
+ 	"B16D_SUMMEND_UNIT"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		// "Model"						"models/heroes/lycan/summon_wolves.vmdl"	// Model.
+ 		"Model"						"models/items/lycan/wolves/alpha_summon_01/alpha_summon_01.vmdl"
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"Level"						"1"
+ 		"ModelScale" 				"1"
+ 		"IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					""			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"4"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"55"		// Damage range min.
+ 		"AttackDamageMax"			"61"		// Damage range max.	
+ 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		//"RingRadius"				"60"						//	|
+ 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"		//	|
+ 		"HealthBarOffset"			"140"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"40"		// Experience earn.
+ 		"BountyGoldMin"				"40"		// Gold earned min.
+ 		"BountyGoldMax"				"40"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"380"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"995"		// Base health.
+ 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusMana"				"400"		// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+ 		// Effect
+ 		//----------------------------------------------------------------
+ 		"SoundSet"					"n_creep_Melee"
+ 	}
+
 	"npc_dummy_unit"
 	{
 		"BaseClass"	"npc_dota_creep_neutral"
