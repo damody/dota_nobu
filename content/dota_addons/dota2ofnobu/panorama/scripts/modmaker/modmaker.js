@@ -184,9 +184,9 @@ function CloseClicked()
 }
 
 (function(){
+	$.GetContextPanel().GetParent().GetParent().GetParent().FindChild("HUDElements").FindChild("RadarButton").DeleteAsync(0);
   GameEvents.Subscribe( "modmaker_lua_api", LuaAPI);
   GameEvents.Subscribe( "modmaker_send_file", SendFile);
-
   var api = $("#APIWindow");
   var close = $("#CloseButton");
 })();
