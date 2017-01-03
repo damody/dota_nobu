@@ -303,7 +303,7 @@ local function chat_of_test(keys)
 			end)
 		end
 
-		if string.match(s,"supercd") then
+		if string.match(s,"supercd") or string.match(s,"scd") then
 			--【Timer】
 			Timers:CreateTimer(0.1, function()
 				caster:SetMana(caster:GetMaxMana() )

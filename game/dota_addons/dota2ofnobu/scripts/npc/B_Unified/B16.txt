@@ -1,0 +1,585 @@
+//望月千代女
+"DOTAAbilities"
+{
+// Todo: 英雄升級時要調整月月能力值
+// 望月技能組
+// -------------------------------------------------------------------------------------------------------------
+	// 望月千代女[忍法．飛襲令]
+	"B16W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_93"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"1000"
+
+		"OnSpellStart"
+		{
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%damage"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16W"
+				"Target"		"TARGET"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16_AbilityAdjust"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B16W"
+			{
+				"Duration" "10"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%add_damage"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16W_M_Created"
+						"Target"		"TARGET"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16W_M_Destroy"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 200 300 400"
+			}
+			"02"
+			{
+				"var_type" "FIELD_INTEGER"
+				"add_damage" "30 40 50 60"
+			}
+		}
+	}
+
+	// 望月千代女[忍法．落葉散華]
+	"B16E"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityTextureName"		"custom/guanyu_xzizhan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"	"0.01"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"120 140 160 180"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16E"
+			}
+			"Damage"
+			{
+				"Target"
+				{
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center" "CASTER"
+					"Radius" "500"
+				}
+				"Damage"	"%dmg"
+				"Type"		"DAMAGE_TYPE_MAGICAL"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B16E"
+				"Target"
+				{
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center" "CASTER"
+					"Radius" "500"
+				}
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B16E"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"%stun_time"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"dmg"			"100 150 200 250"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun_time"		"0.5 1.0 1.5 2.0"
+			}
+		}
+	}
+
+	// 望月千代女[忍法．迅雷]
+	"B16R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/zhuge_leibaoyu"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16_AbilityAdjust"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16R_OnUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B16R"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16R_M_OnCreated"
+						"Target"		"TARGET"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16R_M_OnDestroy"
+						"Target"		"TARGET"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%per_atk_spd"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%per_mov_spd" 
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"per_atk_spd"		"10 15 20 25"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"per_mov_spd"		"9 17 25 33"
+			}
+		}
+	}
+	// Todo: 技能升級時月月也要提升
+	//望月千代女 [召喚忍法．召喚忍犬](B16D_SUMMEND_UNIT-MoonMoon)
+	"B16D"
+	{
+		// Todo: 不知道能不能取消技能下方的等級提示
+		"MaxLevel"	"1"
+		"HotKeyOverride"	"D"
+
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_39"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"165"
+
+		"precache"
+		{
+			"particle"  "particles/b16/b16d.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16D_SpawnMoonMoon"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16W_Unlock"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B16D_MoonMoon"
+			{
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16D_InitMoonMoon"
+					}
+					"FireEffect"
+					{
+						// "EffectName"        "particles/units/heroes/hero_windrunner/wr_taunt_kiss.vpcf"
+						"EffectName"		"particles/b16/b16d.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16W_Lock"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					// Todo: 調整月月能力(按照望月等級疊加)
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"2"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"10" 
+				    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"		"10"
+				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"2"
+				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"2"
+				}
+			}
+		}
+	}
+
+	// 望月千代女[忍法密傳．獸靈同化]
+	"B16T"
+	{
+		"BaseClass"             	"ability_datadriven"
+		"AbilityTextureName"		"custom/liubei_zhanyi"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"				"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"			"140"
+		"AbilityManaCost"			"200"
+		"MaxLevel"					"3"
+		"RequiredLevel"				"6"
+		"LevelsBetweenUpgrades"		"6"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16T"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B16T"
+			{
+				"Duration" "%duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"50"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" 		"90"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16T_M_Created"
+						"Target" 		"TARGET"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16T_M_Destory"
+						"Target" 		"TARGET"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"15 22 29"
+			}
+		}
+	}
+
+// 月月技能組
+// -------------------------------------------------------------------------------------------------------------
+	// 月月[相移]
+	// 需要幫此能力添加target => ability.target
+	"B16MMD"
+	{
+		"MaxLevel"	"1"
+		"HotKeyOverride"	"D"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/liubei_hujia"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"35"
+		"AbilityManaCost"	"0"
+
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16MMD"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B16MMD"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16MMD_M_OnCreated"
+					}
+				}
+
+				"ThinkInterval"	"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16MMD_M_Think"
+					}
+				}
+			}
+		}
+	}
+
+	// 月月[掃擊]
+	"B16MMT"
+	{
+		"MaxLevel"	"1"
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_53"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"Modifiers"
+		{
+			"modifier_B16MMT"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+						"Chance"	"15"
+						"OnSuccess"
+						{
+							"Stun"
+							{
+								"Target"	"TARGET"
+								"Duration"	"0.65"
+								"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							}
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Damage"	"60"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 月月[隱形]
+	"B16MMF"
+	{
+		"MaxLevel"	"1"
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_13"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+
+		"Modifiers"
+		{
+			"modifier_B16MMF_Timer"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+
+				"Duration" "2"
+
+				"OnAttack"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_B16MMF_Timer"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnAbilityExecuted"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_B16MMF_Timer"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_B16MMF"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+
+			"modifier_B16MMF"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_invisible"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnAttack"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B16MMF"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B16MMF"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_B16MMF_Timer"
+						"Target" 		"CASTER"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_invisible"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+		}
+	}
+}

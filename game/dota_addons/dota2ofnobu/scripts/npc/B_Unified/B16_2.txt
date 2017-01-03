@@ -1,0 +1,98 @@
+"DOTAHeroes"
+{
+	// 望月千代女
+	"B16"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_naga_siren"
+		"Model"	"models/b16/b16.vmdl"
+		"ModelScale"	"1.20"
+		"Level"	"1"
+		
+		// Abilities
+		// ----------------------------------------------------------------
+		"AbilityLayout"	"6"
+		"Ability1"	"B16W"
+		"Ability2"	"B16E"
+		"Ability3"	"B16R"
+		"Ability4"	"B16D"
+		"Ability5"	"B16MMD"
+		"Ability6"	"B16T"
+		"Ability7"	"attribute_bonusx"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"2"
+		"MagicalResistance"	"30"
+		
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"116.0"
+		"AttackDamageMax"	"132.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.17"
+		"AttackAcquisitionRange"	"500.00"
+		"AttackRange"	"128"
+		
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"33"
+		"AttributeStrengthGain"	"2.10"
+		"AttributeBaseIntelligence"	"23"
+		"AttributeIntelligenceGain"	"2.40"
+		"AttributeBaseAgility"	"33"
+		"AttributeAgilityGain"	"2.85"
+		
+		// Bounds
+ 		//----------------------------------------------------------------
+ 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
+		
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1.50"
+		
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"DisableWearables"	"1"
+	}
+
+}
