@@ -136,22 +136,22 @@ function B16D_InitMoonMoon( keys )
 	local B16MMR = moonMoon:AddAbility("B16R")
 	local B16MMF = moonMoon:AddAbility("B16MMF")
 
-	-- 呼叫調整函式
+	-- 呼叫能力調整函式
 	B16_AbilityAdjust(keys)
 end
 
 function B16_AbilityAdjust( keys )
-	local master = keys.caster
-	local moonMoon = master.moonMoon
+	local caster = keys.caster
+	local moonMoon = caster.moonMoon
 
 	-- ***如果沒有此單位就什麼都不做***
-	if not IsValidEntity(master) then
+	if (not IsValidEntity(caster)) or (not caster:IsRealHero()) then
 		return
 	end
 
-	local B16R = master:FindAbilityByName("B16R")
-	local B16W = master:FindAbilityByName("B16W")
-	local B16F = master:FindAbilityByName("B16MMD")
+	local B16R = caster:FindAbilityByName("B16R")
+	local B16W = caster:FindAbilityByName("B16W")
+	local B16F = caster:FindAbilityByName("B16MMD")
 
 	-- 利用[忍法．飛襲令]的等級判斷是否學會技能
 	if B16W ~= nil then
@@ -183,7 +183,7 @@ function B16_AbilityAdjust( keys )
 			-- 設定月月[相移]
 			if B16MMD ~= nil and B16W:GetLevel() >= 3 then
 				B16MMD:SetLevel(1)
-				B16MMD.target = master
+				B16MMD.target = caster
 			end
 			-- 設定月月[隱形]
 			if B16MMF ~= nil and B16W:GetLevel() >= 4 then
@@ -192,9 +192,10 @@ function B16_AbilityAdjust( keys )
 		end
 
 		-- Todo: 調整月月能力
-		local master_level = master:GetLevel()
-		moonMoon:FindModifierByName("modifier_B16D_MoonMoon"):SetStackCount(master_level)
-		moonMoon:SetBaseMaxHealth(master:GetMaxHealth())
+		local caster_level = caster:GetLevel()
+		moonMoon:FindModifierByName("modifier_B16D_MoonMoon"):SetStackCount(caster_level)
+		moonMoon:SetBaseMaxHealth(caster:GetMaxHealth())
+
 	end
 end
 
@@ -239,17 +240,19 @@ function B16MMD( keys )
 	ProjectileManager:ProjectileDodge(target)
 	ProjectileManager:ProjectileDodge(caster)
 
-	-- 特效
-	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, target)
-	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
-
 	-- 交換位置
 	FindClearSpaceForUnit(target,posA,true)
 	FindClearSpaceForUnit(caster,posB,true)
 
+	-- 特效
+	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, target)
+	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
 	target:EmitSound("DOTA_Item.BlinkDagger.Activate")
+
+	-- 當英雄施放時移除月月的隱身
 	if caster:IsRealHero() then
-		target:RemoveModifierByName("modifier_B16MMF")
+		keys.target = target
+		SetMoonMoonVisable( keys )
 	end
 end
 
@@ -270,7 +273,7 @@ function B16MMD_M_Think( keys )
 	end
 end
 
-function MoonMoonVisable( keys )
+function SetMoonMoonVisable( keys )
 	local moonMoon = keys.target
 	moonMoon:RemoveModifierByName("modifier_B16MMF")
 end
