@@ -248,6 +248,9 @@ function B16MMD( keys )
 	FindClearSpaceForUnit(caster,posB,true)
 
 	target:EmitSound("DOTA_Item.BlinkDagger.Activate")
+	if caster:IsRealHero() then
+		target:RemoveModifierByName("modifier_B16MMF")
+	end
 end
 
 function B16MMD_M_OnCreated( keys )
