@@ -71,11 +71,6 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Beastmaster.Call.Hawk"
-				"Target"	"CASTER"
-			}
 			"SpawnUnit"
 			{
 				"UnitName"	"A04W_SUMMEND_UNIT"
@@ -333,21 +328,10 @@
 		}
 		"OnSpellStart"
 		{
-			"RemoveModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_A04R"
-			}
 			"ApplyModifier"
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_A04R"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-				"Function"	"A04R_spell_start"
-				"Target"	"TARGET"
 			}
 			"FireSound"
 			{
@@ -367,6 +351,16 @@
 				"IsBuff"	"1"
 				"EffectName"	"particles/a04r/a04r.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
+						"Function"	"A04R_spell_start"
+						"Target"	"TARGET"
+					}
+				}
+				
 				"OnTakeDamage"
 				{
 					"RunScript"
@@ -382,118 +376,74 @@
 				{
 					"RunScript"
 					{
-						"Target"	"CASTER"
+						"Target"	"TARGET"
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
 						"Function"	"A04R_EndShieldParticle"
 					}
 				}
 				"Duration"	"10"
-				"ThinkInterval"	"0.03"
 			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
+			"modifier_A04R_Boom"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"damage_absorb"	"250 375 500 625"
-			}
-		}
-	}
+				"Duration" "0"
 
-	// 竹中重治 霜之庇護HIDE
-	"A04R_HIDE"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"crystal_maiden_crystal_nova"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"	"1"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCooldown"	"140"
-		"AbilityCastPoint"	"0"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"700"
-		"AOERadius"	"%radius"
-		// Data driven
-		// -------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
-			"particle"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
-			"particle"	"particles/a04e/a04e.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"FireEffect"
-			{
-				"TargetPoint"	"CASTER"
-				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"ControlPoints"
+				"OnCreated"
 				{
-					"01"	"%radius 2 %radius*2"
-				}
-				"Target"	"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Crystal.CrystalNova"
-				"Target"	"CASTER"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"	"CASTER"
-					"Radius"	"%radius"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Type"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_TREE"
-				}
-				"Action"
-				{
-					"Damage"
+					"FireEffect"
 					{
+						"TargetPoint"	"TARGET"
+						"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+						"EffectAttachType"	"attach_origin"
+						"ControlPoints"
+						{
+							"01"	"%radius 2 %radius2"
+						}
 						"Target"	"TARGET"
-						"Damage"	"%AbilityDamage"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
 					}
-					"ApplyModifier"
+					"FireSound"
+					{
+						"EffectName"	"Hero_Crystal.CrystalNova"
+						"Target"	"TARGET"
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Radius"	"%radius"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Type"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_TREE"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Damage"	"%AbilityDamage"
+								"Type"	"DAMAGE_TYPE_MAGICAL"
+							}
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_A04R_Freeze"
+							}
+						}
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
+						"Function"	"A04E_crystal_nova_post_vision"
+						"Target"	"TARGET"
+					}
+					"FireEffect"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_A04R_Freeze"
+						"EffectName"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
+						"EffectAttachType"	"attach_origin"
 					}
 				}
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-				"Function"	"A04E_crystal_nova_post_vision"
-				"Target"	"CASTER"
-			}
-			"AttachEffect"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf"
-				"EffectAttachType"	"attach_origin"
-			}
-		}
-		"Modifiers"
-		{
 			"modifier_A04R_Freeze"
 			{
 				"Duration"	"%duration"
@@ -506,6 +456,7 @@
 				"EffectAttachType"	"attach_origin"
 			}
 		}
+		"AbilityDamage"	"250 375 500 625"
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -513,17 +464,24 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"0.5 0.7 0.9 1.1"
+				"damage_absorb"	"250 375 500 625"
 			}
 			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"0.5 0.7 0.9 1.1"
+			}
+			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"radius"	"435"
 			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius2"	"870"
+			}
 		}
-		// Damage.
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"250 375 500 625"
 	}
 
 	// 竹中重治 吹雪
@@ -645,7 +603,8 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				// "ThinkInterval"	"%explosion_interval * 4" // 7.0 後不能再裡面進行運算
+				"ThinkInterval"	"%explosion_interval" 
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -661,7 +620,7 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				"ThinkInterval"	"%explosion_interval"
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -677,7 +636,7 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				"ThinkInterval"	"%explosion_interval"
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -693,7 +652,7 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				"ThinkInterval"	"%explosion_interval"
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -782,7 +741,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"explosion_interval"	"0.06"
+				"explosion_interval"	"0.24"
 			}
 			"04"
 			{

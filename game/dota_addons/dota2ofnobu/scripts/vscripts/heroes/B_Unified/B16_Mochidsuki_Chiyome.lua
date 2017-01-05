@@ -59,18 +59,13 @@ function B16W_M_Created( keys )
 	local target = keys.target
 	-- 特效 旋轉光環
 	-- 需要手動刪除
-	local B16W_M_P = ParticleManager:CreateParticle("particles/b16/b16w_buff.vpcf",PATTACH_OVERHEAD_FOLLOW,target)
+	local B16W_M_P = ParticleManager:CreateParticle("particles/b16/b16w_buff.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
 	target.B16W_M_P = B16W_M_P
 end
 
 function B16W_M_Destroy( keys )
 	local target = keys.target
 	ParticleManager:DestroyParticle(target.B16W_M_P, false)
-end
-
-function B16E( keys )
-	local caster = keys.caster
-	local B16E_P = ParticleManager:CreateParticle("particles/b16/b16e.vpcf",PATTACH_ABSORIGIN,caster)
 end
 
 function B16R_M_OnCreated( keys )
@@ -80,7 +75,7 @@ function B16R_M_OnCreated( keys )
 	local B16R_M_P = ParticleManager:CreateParticle("particles/b16/b16r.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
 	-- 根據技能等級調整旋轉速度
 	local abilityLv = keys.ability:GetLevel()
-	ParticleManager:SetParticleControl(B16R_M_P,1,Vector(abilityLv,0,0))
+	ParticleManager:SetParticleControl(B16R_M_P,1,Vector(abilityLv*0.01,0,0))
 	target.B16R_M_P = B16R_M_P
 end
 
@@ -88,7 +83,7 @@ function B16R_OnUpgrade( keys )
 	local target = keys.caster
 	local abilityLv = keys.ability:GetLevel()
 	if target.B16R_M_P ~= nil then
-		ParticleManager:SetParticleControl(target.B16R_M_P,1,Vector(abilityLv,0,0))
+		ParticleManager:SetParticleControl(target.B16R_M_P,1,Vector(abilityLv*0.01,0,0))
 	end
 end
 
@@ -102,7 +97,7 @@ function B16D_SpawnMoonMoon( keys )
 	local ability = keys.ability
 
 	-- 刪除舊的月月實體
-	if IsValidEntity(caster.moonMoon) and caster.moonMoon:IsAlive() then
+	if IsValidEntity(caster.moonMoon) then
 		caster.moonMoon:Destroy()
 	end
 
@@ -136,22 +131,22 @@ function B16D_InitMoonMoon( keys )
 	local B16MMR = moonMoon:AddAbility("B16R")
 	local B16MMF = moonMoon:AddAbility("B16MMF")
 
-	-- 呼叫調整函式
+	-- 呼叫能力調整函式
 	B16_AbilityAdjust(keys)
 end
 
 function B16_AbilityAdjust( keys )
-	local master = keys.caster
-	local moonMoon = master.moonMoon
+	local caster = keys.caster
+	local moonMoon = caster.moonMoon
 
 	-- ***如果沒有此單位就什麼都不做***
-	if not IsValidEntity(master) then
+	if (not IsValidEntity(caster)) or (not caster:IsRealHero()) then
 		return
 	end
 
-	local B16R = master:FindAbilityByName("B16R")
-	local B16W = master:FindAbilityByName("B16W")
-	local B16F = master:FindAbilityByName("B16MMD")
+	local B16R = caster:FindAbilityByName("B16R")
+	local B16W = caster:FindAbilityByName("B16W")
+	local B16F = caster:FindAbilityByName("B16MMD")
 
 	-- 利用[忍法．飛襲令]的等級判斷是否學會技能
 	if B16W ~= nil then
@@ -183,7 +178,7 @@ function B16_AbilityAdjust( keys )
 			-- 設定月月[相移]
 			if B16MMD ~= nil and B16W:GetLevel() >= 3 then
 				B16MMD:SetLevel(1)
-				B16MMD.target = master
+				B16MMD.target = caster
 			end
 			-- 設定月月[隱形]
 			if B16MMF ~= nil and B16W:GetLevel() >= 4 then
@@ -192,9 +187,10 @@ function B16_AbilityAdjust( keys )
 		end
 
 		-- Todo: 調整月月能力
-		local master_level = master:GetLevel()
-		moonMoon:FindModifierByName("modifier_B16D_MoonMoon"):SetStackCount(master_level)
-		moonMoon:SetBaseMaxHealth(master:GetMaxHealth())
+		local caster_level = caster:GetLevel()
+		moonMoon:FindModifierByName("modifier_B16D_MoonMoon"):SetStackCount(caster_level)
+		moonMoon:SetBaseMaxHealth(caster:GetMaxHealth())
+
 	end
 end
 
@@ -239,17 +235,19 @@ function B16MMD( keys )
 	ProjectileManager:ProjectileDodge(target)
 	ProjectileManager:ProjectileDodge(caster)
 
-	-- 特效
-	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, target)
-	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
-
 	-- 交換位置
 	FindClearSpaceForUnit(target,posA,true)
 	FindClearSpaceForUnit(caster,posB,true)
 
+	-- 特效
+	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, target)
+	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
 	target:EmitSound("DOTA_Item.BlinkDagger.Activate")
+
+	-- 當英雄施放時移除月月的隱身
 	if caster:IsRealHero() then
-		target:RemoveModifierByName("modifier_B16MMF")
+		keys.target = target
+		SetMoonMoonVisable( keys )
 	end
 end
 
@@ -270,7 +268,7 @@ function B16MMD_M_Think( keys )
 	end
 end
 
-function MoonMoonVisable( keys )
+function SetMoonMoonVisable( keys )
 	local moonMoon = keys.target
 	moonMoon:RemoveModifierByName("modifier_B16MMF")
 end
@@ -314,10 +312,145 @@ function TestPrint( event )
 
     --DeepPrintTable(event)
     print("~~~")
+end
 
-    local order = {
-		UnitIndex = event.caster:entindex(),
-		OrderType = DOTA_UNIT_ORDER_STOP
-	}
-	ExecuteOrderFromTable(order)
+-- 舊版 11.2B
+-----------------------------------------------------------------------------------------------------------------------------
+-- 更新月月身上的各種能力
+-- caster必須是望月
+function MoonMoonAdjust_old( keys )
+	local caster = keys.caster
+	local moonMoon = caster.moonMoon
+
+	if IsValidEntity(moonMoon) then
+
+		local B16W_old = caster:FindAbilityByName("B16W_old") -- [忍法．召喚忍犬]
+		local B16R_old = caster:FindAbilityByName("B16R_old") -- [忍法．迅雷]
+
+		local B16MMW_old = moonMoon:FindAbilityByName("B16MMW_old") -- [一擊斬]
+		local B16MME_old = moonMoon:FindAbilityByName("B16MME_old") -- [撕裂攻擊]
+		--local B16MMR_old = moonMoon:FindAbilityByName("B16MMR_old") -- [忍法．迅雷]
+		local B16MMT_old = moonMoon:FindAbilityByName("B16MMT_old") -- [永久隱形]
+
+		B16MMW_old:SetLevel(1)
+		B16MME_old:SetLevel(1)
+		if B16W_old:GetLevel() >= 4 then B16MMT_old:SetLevel(1) end
+
+		-- Todo: 調整月月能力
+		local caster_level = caster:GetLevel()
+		moonMoon:FindModifierByName("modifier_B16W_old_forMoonMoon"):SetStackCount(caster_level)
+	end
+end
+
+-- 額外參數 keys.baseHP
+function B16W_old_SpawnMoonMoon( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+
+	-- 刪除舊的月月實體
+	if IsValidEntity(caster.moonMoon) then
+		caster.moonMoon:Destroy()
+	end
+
+	-- 在英雄前方產生月月
+	local spawnPosition = caster:GetAbsOrigin() + caster:GetForwardVector() * 100
+	local moonMoon = CreateUnitByName("B16W_old_SUMMEND_UNIT",spawnPosition,true,caster,caster,caster:GetTeam())
+	moonMoon:SetForwardVector(caster:GetForwardVector())
+	
+	-- 記住Handle
+	caster.moonMoon = moonMoon
+	moonMoon.master = caster
+
+	-- *重要* 設定月月的控制權
+	moonMoon:SetControllableByPlayer(caster:GetPlayerID(),true)
+
+	-- 安裝修改器
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B16W_old_timer",nil)
+	ability:ApplyDataDrivenModifier(caster,moonMoon,"modifier_B16W_old_forMoonMoon",nil)
+	ability:ApplyDataDrivenModifier(caster,moonMoon,"modifier_B16W_old_buff",nil)
+
+	-- 安裝技能
+	local B16MMW_old = moonMoon:AddAbility("B16MMW_old") -- [一擊斬]
+	local B16MME_old = moonMoon:AddAbility("B16MME_old") -- [撕裂攻擊]
+	--local B16MMR_old = moonMoon:AddAbility("B16MMR_old") -- [忍法．迅雷]
+	local B16MMT_old = moonMoon:AddAbility("B16MMT_old") -- [永久隱形]
+
+	moonMoon:SetBaseMaxHealth(keys.baseHP + caster:GetLevel()*50)
+end
+
+function B16W_old_M_OnDestroy( keys )
+	local target = keys.target
+	if IsValidEntity(target) then
+		target:Destroy()
+	end
+end
+
+function B16R_old_M_OnCreated( keys )
+	local target = keys.target
+	-- 特效 閃電光環
+	-- 需要手動刪除
+	local B16R_M_P = ParticleManager:CreateParticle("particles/b16/b16r_old.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
+	-- 根據技能等級調整旋轉速度
+	local abilityLv = keys.ability:GetLevel()
+	ParticleManager:SetParticleControl(B16R_M_P,1,Vector(abilityLv*0.01,0,0))
+	target.B16R_M_P = B16R_M_P
+end
+
+function B16R_old_OnUpgrade( keys )
+	local target = keys.caster
+	local abilityLv = keys.ability:GetLevel()
+	if target.B16R_M_P ~= nil then
+		ParticleManager:SetParticleControl(target.B16R_M_P,1,Vector(abilityLv*0.01,0,0))
+	end
+end
+
+function B16R_old_M_OnDestroy( keys )
+	local target = keys.target
+	ParticleManager:DestroyParticle(target.B16R_M_P, false)
+end
+
+function B16T_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster:SetTimeUntilRespawn(0)
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B16T_old",{duration=10})
+end
+
+function B16W_old_attack(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local dmg = keys.dmg
+	--print("B01R "..dmg)
+	local per_atk = 0
+	local targetArmor = target:GetPhysicalArmorValue()
+
+	if target:IsHero() then 
+		per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
+		local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+		ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+		Timers:CreateTimer(1, function()
+			ParticleManager:DestroyParticle(particle,false)
+		end)
+	elseif  target:IsBuilding() then
+		per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+		
+	else
+		per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+		local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+		ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+		Timers:CreateTimer(1, function()
+			ParticleManager:DestroyParticle(particle,false)
+		end)
+	end
+	local dmgori = dmg
+	dmg = dmg * per_atk  / 100
+	if RandomInt(0,100) < 25 then
+		dmg = dmg * 2
+	end
+	print(dmgori, damageReduction, dmg)
+	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+
 end

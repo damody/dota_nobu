@@ -223,6 +223,33 @@ local function chat_of_test(keys)
 			caster:AddAbility("C19R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C19T_old")
+		elseif string.match(caster:GetUnitName(), "naga_siren") then -- 望月千代女
+			caster:RemoveAbility("B16W")
+			caster:RemoveAbility("B16E")
+			caster:RemoveAbility("B16R")
+			caster:RemoveAbility("B16D")
+			caster:RemoveAbility("B16MMD")
+			caster:RemoveAbility("B16T")
+			caster:RemoveAbility("attribute_bonusx")
+
+			caster:AddAbility("B16W_old")
+			caster:AddAbility("B16E_old")
+			caster:AddAbility("B16R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("B16T_old")
+		elseif string.match(caster:GetUnitName(), "crystal_maiden") then -- 阿松
+			caster:RemoveAbility("A34W")
+			caster:RemoveAbility("A34E")
+			caster:RemoveAbility("A34R")
+			caster:RemoveAbility("A34D")
+			caster:RemoveAbility("A34T")
+			caster:RemoveAbility("attribute_bonusx")
+
+			caster:AddAbility("A34W_old")
+			caster:AddAbility("A34E_old")
+			caster:AddAbility("A34R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A34T_old")
 		end
 	end
 	
