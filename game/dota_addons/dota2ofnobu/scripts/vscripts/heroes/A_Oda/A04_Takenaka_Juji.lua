@@ -278,50 +278,17 @@ function A04R_spell_start( event )
 	-- Reset the shield
 	target.AphoticShieldRemaining = max_damage_absorb
 
-	-- Particle. Need to wait one frame for the older particle to be destroyed
-	Timers:CreateTimer(0.01, function() 
-		target.ShieldParticle = ParticleManager:CreateParticle("particles/a04r3/a04r3.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-		ParticleManager:SetParticleControl(target.ShieldParticle, 1, Vector(shield_size,0,shield_size))
-		ParticleManager:SetParticleControl(target.ShieldParticle, 2, Vector(shield_size,0,shield_size))
-		ParticleManager:SetParticleControl(target.ShieldParticle, 4, Vector(shield_size,0,shield_size))
-		ParticleManager:SetParticleControl(target.ShieldParticle, 5, Vector(shield_size,0,0))
 
-		-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
-		ParticleManager:SetParticleControlEnt(target.ShieldParticle, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-	end)
+	target.ShieldParticle = ParticleManager:CreateParticle("particles/a04r3/a04r3.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(target.ShieldParticle, 1, Vector(shield_size,0,shield_size))
+	ParticleManager:SetParticleControl(target.ShieldParticle, 2, Vector(shield_size,0,shield_size))
+	ParticleManager:SetParticleControl(target.ShieldParticle, 4, Vector(shield_size,0,shield_size))
+	ParticleManager:SetParticleControl(target.ShieldParticle, 5, Vector(shield_size,0,0))
+
+	-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
+	ParticleManager:SetParticleControlEnt(target.ShieldParticle, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 
 end
-
-function A04R_boom( keys )
-	-- Variables
-	local caster = keys.unit
-	local ability = keys.ability
-	local point = caster:GetAbsOrigin()
-
-	--如何獲取準確的竹中ID，又不能用hash
-
-	--馬甲
-	local dummy = CreateUnitByName( "hide_unit", point, false, caster, caster, caster:GetTeamNumber() )
-	local level  = keys.ability:GetLevel()--獲取技能等級
-	local DummyAbility=dummy:AddAbility("A04R_HIDE")
-	DummyAbility:SetLevel(level)
-	DummyAbility:SetActivated(true)
-
-	--添加馬甲技能
-	DummyAbility=dummy:AddAbility("majia")
-	DummyAbility:SetLevel(1)
-
-	dummy:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
-
-    --命令 
-	local order = { UnitIndex = dummy:entindex(),
-            AbilityIndex = dummy:FindAbilityByName("A04R_HIDE"):entindex(),
-            OrderType =  DOTA_UNIT_ORDER_CAST_NO_TARGET,
-            Queue = true }
-	ExecuteOrderFromTable(order)
-
-end
-
 
 function A04R_damage_check( event )
 	-- Variables
@@ -350,14 +317,15 @@ function A04R_damage_check( event )
 			--移除特效
 			unit:RemoveModifierByName("modifier_A04R")
 			--爆炸
-			A04R_boom(event)
+			local caster = event.caster
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_A04R_Boom",nil)
 		end
 	-- end
 
 end
 
 function A04R_EndShieldParticle( event )
-	local target = event.caster
+	local target = event.target
 	ParticleManager:DestroyParticle(target.ShieldParticle,false)
 end
 
