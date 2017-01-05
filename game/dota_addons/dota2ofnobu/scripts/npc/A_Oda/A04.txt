@@ -645,7 +645,8 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				// "ThinkInterval"	"%explosion_interval * 4" // 7.0 後不能再裡面進行運算
+				"ThinkInterval"	"%explosion_interval" 
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -661,7 +662,7 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				"ThinkInterval"	"%explosion_interval"
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -677,7 +678,7 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				"ThinkInterval"	"%explosion_interval"
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -693,7 +694,7 @@
 			{
 				"IsPurgable"	"0"
 				"IsHidden"	"1"
-				"ThinkInterval"	"%explosion_interval * 4"
+				"ThinkInterval"	"%explosion_interval"
 				"Duration"	"%AbilityDuration"
 				"OnIntervalThink"
 				{
@@ -782,7 +783,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"explosion_interval"	"0.06"
+				"explosion_interval"	"0.24"
 			}
 			"04"
 			{

@@ -230,7 +230,7 @@ function A04T_freezing_field_explode( keys )
 		}
 		ApplyDamage( damageTable )
 	end
-	
+
 	-- Fire effect
 	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster )
 	ParticleManager:SetParticleControl( fxIndex, 0, attackPoint )
@@ -452,7 +452,8 @@ function A04T( keys )
 	local ability = keys.ability
 	local caster = keys.caster
 	local target = keys.target_points[1]
-	local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() )
+	-- local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() ) 舊單位的技能名稱ability_dummy_unit似乎有問題
+	local dummy = CreateUnitByName( "npc_dummy_unit_new", target, false, caster, caster, caster:GetTeamNumber() )
 	local level  = keys.ability:GetLevel()--獲取技能等級
 	local radius = keys.ability:GetLevelSpecialValueFor("radius",level-1)
 	local damage_scepter = keys.ability:GetLevelSpecialValueFor("damage_scepter",level-1)
