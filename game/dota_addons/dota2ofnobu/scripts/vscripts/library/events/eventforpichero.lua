@@ -118,6 +118,8 @@ function Nobu:PickHero( keys )
         caster:FindAbilityByName("B02D"):SetLevel(1)
       elseif string.match(name, "naga_siren") then -- 望月千代女
         GameRules: SendCustomMessage("望月千代女玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "crystal_maiden") then -- 阿松
+        GameRules: SendCustomMessage("阿松玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       end
     end
   end)
