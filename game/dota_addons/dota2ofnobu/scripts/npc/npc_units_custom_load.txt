@@ -2517,6 +2517,82 @@
  		"AutoAttacksByDefault"	"1"
  	}
 
+ 	// 靜滯陷阱
+	"C17R_old_SUMMEND_UNIT"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/juggernaut/jugg_healing_ward.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Amnb
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0.0"
+		"AttackDamageMax"	"0.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"0.00"
+		"AttackRange"	"275"
+		"StatusMana"	"0"
+		"StatusStartingMana"	"0"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"0"
+		"MovementTurnRate"	"0"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"200"
+		"StatusHealthRegen"	"1.00"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"StatusManaRegen"	"0"
+	}
+
 	"npc_dummy_unit"
 	{
 		"BaseClass"	"npc_dota_creep_neutral"

@@ -250,6 +250,20 @@ local function chat_of_test(keys)
 			caster:AddAbility("A34R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A34T_old")
+		elseif string.match(caster:GetUnitName(), "windrunner") then -- 阿市
+			caster:RemoveAbility("C17W")
+			caster:RemoveAbility("C17E")
+			caster:RemoveAbility("C17R")
+			caster:RemoveAbility("C17D")
+			caster:RemoveAbility("C17T")
+			caster:RemoveAbility("attribute_bonusx")
+			caster:RemoveModifierByName("modifier_C17D")
+
+			caster:AddAbility("C17W_old")
+			caster:AddAbility("C17E_old")
+			caster:AddAbility("C17R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C17T_old") 
 		end
 	end
 	

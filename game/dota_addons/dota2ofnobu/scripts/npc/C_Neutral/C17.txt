@@ -419,4 +419,393 @@
 			}
 		}
 	}
+
+// 阿市 11.2B
+// -------------------------------------------------------------------------------------------
+	// 阿市 [光之精華]
+	"C17W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_133"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AoERadius" 					"700"
+		"AbilityCooldown"				"5"
+		"AbilityManaCost"				"200 240 280 320"
+
+		"precache"
+		{
+			"particle"  "particles/c17/c17w_old_tmp.vpcf"
+			"particle"  "particles/c17/c17w_old_add.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"        "particles/c17/c17w_old_tmp.vpcf"
+				"EffectAttachType"  "world_origin"
+				"Target"            "CASTER"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"700"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+			
+				"Action"    
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/c17/c17w_old_add.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"			"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"		"C17W_old_health_recover"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_recover"	"200 270 350 430"
+			}
+		}
+	}
+
+	// 阿市 [魂之精華]
+	"C17E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_131"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AOERadius"						"700"
+		"AoERadius" 					"700"
+		"AbilityCooldown"				"5"
+		"AbilityManaCost"				"200 240 280 320"
+
+		"precache"
+		{
+			"particle"  "particles/c17/c17e_old_tmp.vpcf"
+			"particle"  "particles/c17/c17e_old_add.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"        "particles/c17/c17e_old_tmp.vpcf"
+				"EffectAttachType"  "world_origin"
+				"Target"            "CASTER"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"700"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+			
+				"Action"    
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/c17/c17e_old_add.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"			"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"		"C17E_old_mana_recover"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mana_recover"		"140 160 180 200"
+			}
+		}
+	}
+
+	// 阿市 [靜滯陷阱]
+	"C17R_old"
+	{
+		"BaseClass"             "ability_datadriven"
+		"AbilityTextureName"	"custom/zhaoyun_wushuang"
+
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCastPoint"	"0.5"
+		"AbilityCooldown"	"26 23 20 17"
+		"AbilityManaCost"	"80 70 60 50"
+		"AbilityCastRange"	"100 120 140 160"
+		"AoERadius"			"%radius_stun"
+		"AbilityCastRange"	"500"
+		"AbilityDamage"		"100 200 300 400"
+
+		"precache"
+		{
+			"particle"  "particles/c17/c17r_old_trigger.vpcf"
+			"particle"  "particles/c17/c17r_old_boom.vpcf"
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+				"Function"		"C17R_old"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C17R_old_delay_enable"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"Duration"			"2.5"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"		"C17R_old_OnEnable"
+					}
+				}
+			}
+			// 用來感測有沒有敵人靠進
+			"modifier_C17R_old_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"Aura"        "modifier_C17R_old_trigger"
+        		"Aura_Radius" "%radius_trigger"
+        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+
+        		"EffectName" 		"particles/c17/c17r_old_trigger.vpcf"
+        		"EffectAttachType" 	"follow_origin"
+
+        		"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_C17R_old_trigger"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_C17R_old_delay_aoe_stun"
+						"Target" 		"CASTER"
+					}
+					"RemoveModifier"
+					{
+						// 由於這個修改器是aura自動裝上去的所以當aura被消滅後這個修改器也會被刪除
+						"ModifierName"	"modifier_C17R_old_aura"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_C17R_old_delay_aoe_stun"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%delay_stun"
+
+				"OnDestroy"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/c17/c17r_old_boom.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius_stun"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"Stun"
+							{
+								"Duration"   "%duration_stun"
+								"Target" 	 "TARGET"
+							}
+							"Damage"
+							{
+								"Target"		"TARGET"
+								"Type"			"DAMAGE_TYPE_MAGICAL"
+								"Damage"		"%AbilityDamage"
+							}
+
+						}
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"		"C17R_old_End"
+						"Target"		"CASTER"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration_stun"		"3.5 4.5 5.5 6.5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_trigger"	"275"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"max_life_time"		"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_stun"		"425"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay_stun"		"0.5"
+			}
+		}
+	}
+
+	// 阿市 [極光守護]
+	"C17T_old"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/c17t"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"			"6"
+		"LevelsBetweenUpgrades"	"6"
+
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags" 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		
+		"AbilityCastPoint"	"%delay"
+		"AnimationPlaybackRate"	"0.3"
+
+		"AbilityCooldown"	"90"
+		"AbilityManaCost"	"200 250 300"
+		"AbilityCastRange"	"1050"
+		"AOERadius"	"%raduis"
+
+		"precache"
+		{
+			"particle"  "particles/c17/c17t_old.vpcf"
+			"particle"  "particles/c17/c17t_old_health.vpcf"
+			"soundfile"	"sounds/weapons/hero/antimage/mana_void_cast.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"soundfile"	"soundevents/c17.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"C17T.vo1"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"Hero_Antimage.ManaVoidCast"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+				"Function"		"C17T_old"
+				"Target"
+				{
+					"Center"  	"POINT"
+					"Radius" 	"%raduis"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"900 1300 1800"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"raduis"			"800"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"1.5 1.0 0.5"
+			}
+		}
+	}
 }

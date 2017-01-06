@@ -113,6 +113,7 @@ function Nobu:PickHero( keys )
         caster:RemoveModifierByName("modifier_silencer_int_steal")
         caster:FindAbilityByName("C07D"):SetLevel(1)
       elseif string.match(name, "windrunner") then -- 阿市
+        GameRules: SendCustomMessage("阿市玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("C17D"):SetLevel(1)
       elseif string.match(name, "faceless_void") then --風魔小太郎
         caster:FindAbilityByName("B02D"):SetLevel(1)

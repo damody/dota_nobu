@@ -274,3 +274,70 @@ function C17T(keys)
 		end
 	end	
 end
+
+-- 阿市 11.2B
+---------------------------------------------------------------------------------------------------
+
+function C17W_old_health_recover( keys )
+	local target = keys.target
+	local ability = keys.ability
+	local health_recover = ability:GetLevelSpecialValueFor("health_recover",ability:GetLevel()-1)
+	target:SetHealth(target:GetHealth()+health_recover)
+end
+
+function C17E_old_mana_recover( keys )
+	local target = keys.target
+	local ability = keys.ability
+	local mana_recover = ability:GetLevelSpecialValueFor("mana_recover",ability:GetLevel()-1)
+	target:SetMana(target:GetMana()+mana_recover)
+end
+
+function C17R_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local point = ability:GetCursorPosition()
+
+	local unit = CreateUnitByName("C17R_old_SUMMEND_UNIT",point,true,caster,caster,caster:GetTeam())
+	-- 把caster換成暈帳這樣之後的modifier就能用caster拿到暈帳，用ability拿到阿市
+	ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)
+	unit:AddAbility("for_magic_immune"):SetLevel(1)
+end
+
+function C17R_old_OnEnable( keys )
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local max_life_time = ability:GetLevelSpecialValueFor("max_life_time",level)
+	ability:ApplyDataDrivenModifier(target,target,"modifier_C17R_old_aura",nil)
+	target:AddNewModifier(target,nil,"modifier_invisible",nil)
+	target:AddNewModifier(target,nil,"modifier_kill", {duration = max_life_time})
+end
+
+function C17R_old_End( keys )
+	local target = keys.target
+
+	if IsValidEntity(target) and target:IsAlive() then
+		target:ForceKill(true)
+	end
+end
+
+function C17T_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local point = ability:GetCursorPosition()
+
+	local particle = ParticleManager:CreateParticle("particles/c17/c17t_old.vpcf",PATTACH_ABSORIGIN,caster)
+	ParticleManager:SetParticleControl(particle,3,point)
+
+	local level = ability:GetLevel()-1
+	local damage = ability:GetLevelSpecialValueFor("damage",level)
+	local target_entities = keys.target_entities
+	for k,v in ipairs(target_entities) do
+		if v:GetTeamNumber() ~= caster:GetTeamNumber() then
+			AMHC:Damage(caster,v,damage,AMHC:DamageType("DAMAGE_TYPE_MAGICAL"))
+		else
+			ParticleManager:CreateParticle("particles/c17/c17t_old_health.vpcf",PATTACH_ABSORIGIN_FOLLOW,v)
+			v:SetHealth(v:GetMaxHealth())
+		end
+	end
+end
