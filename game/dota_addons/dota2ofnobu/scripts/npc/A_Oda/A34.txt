@@ -117,7 +117,7 @@
 		"AbilityCastPoint"	"0.3 0.2 0.1 0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"14 12 10 8"
+		"AbilityCooldown"	"16 14 12 10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"125 145 165 185"
@@ -255,7 +255,7 @@
 		"AnimationPlaybackRate"	"1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"12 10 8 6"
+		"AbilityCooldown"	"12 11 10 9"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100 120 140 160"
@@ -857,9 +857,9 @@
 		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
 
 		"AbilityCastPoint"	"0.3"
-		"AbilityCooldown"	"120"
+		"AbilityCooldown"	"120 110 100"
 		"AbilityManaCost"	"200 250 300"
-		"AbilityDuration"	"30"
+		"AbilityDuration"	"30 40 50"
 
 		"OnSpellStart"
 		{
@@ -883,6 +883,7 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" 		"%add_hp_regen"
 				    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%per_phy_atk"
 				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%add_phy_def"
+				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" 	"%add_def_magic"
 				}
 			}
 		}
@@ -892,7 +893,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"add_hp_regen"	"40 45 50"
+				"add_hp_regen"	"40 60 80"
 			}
 			"02"
 			{
@@ -903,6 +904,11 @@
 			{
 				"var_type"		"FIELD_INTEGER"
 				"add_phy_def"	"10 15 20"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"add_def_magic"	"30 40 50"
 			}
 		}
 	}
