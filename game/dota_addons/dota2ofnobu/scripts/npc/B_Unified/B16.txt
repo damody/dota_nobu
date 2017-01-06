@@ -609,7 +609,6 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
 				"Function"		"B16W_old_SpawnMoonMoon"
-				"baseHP"		"%baseHP"
 			}
 			"RunScript"
 			{
@@ -622,11 +621,11 @@
 		{
 			"modifier_B16W_old_timer" // 什麼都不做 單純提醒玩家月月持續時間
 			{
-				"Duration" "60"
+				"Duration"		"%duration_MM"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 			}
 			"modifier_B16W_old_buff"
 			{
-				"Duration" "60"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%per_atk_spd"
@@ -656,11 +655,6 @@
 					{
 						"ModifierName"	"modifier_B16W_old_timer"
 						"Target" 		"CASTER"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
-						"Function"		"B16W_old_M_OnDestroy"
 					}
 				}
 			}
@@ -713,6 +707,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"per_mov_spd"		"10 20 30 40"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration_MM"	"60"
 			}
 		}
 	}

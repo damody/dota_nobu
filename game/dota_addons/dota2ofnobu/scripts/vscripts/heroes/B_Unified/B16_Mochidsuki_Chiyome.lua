@@ -342,7 +342,6 @@ function MoonMoonAdjust_old( keys )
 	end
 end
 
--- 額外參數 keys.baseHP
 function B16W_old_SpawnMoonMoon( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -365,9 +364,11 @@ function B16W_old_SpawnMoonMoon( keys )
 	moonMoon:SetControllableByPlayer(caster:GetPlayerID(),true)
 
 	-- 安裝修改器
+	local duration_MM = ability:GetLevelSpecialValueFor("duration_MM",ability:GetLevel()-1)
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B16W_old_timer",nil)
 	ability:ApplyDataDrivenModifier(caster,moonMoon,"modifier_B16W_old_forMoonMoon",nil)
 	ability:ApplyDataDrivenModifier(caster,moonMoon,"modifier_B16W_old_buff",nil)
+	moonMoon:AddNewModifier(moonMoon,nil,"modifier_kill",{duration=duration_MM})
 
 	-- 安裝技能
 	local B16MMW_old = moonMoon:AddAbility("B16MMW_old") -- [一擊斬]
@@ -375,14 +376,8 @@ function B16W_old_SpawnMoonMoon( keys )
 	--local B16MMR_old = moonMoon:AddAbility("B16MMR_old") -- [忍法．迅雷]
 	local B16MMT_old = moonMoon:AddAbility("B16MMT_old") -- [永久隱形]
 
-	moonMoon:SetBaseMaxHealth(keys.baseHP + caster:GetLevel()*50)
-end
-
-function B16W_old_M_OnDestroy( keys )
-	local target = keys.target
-	if IsValidEntity(target) then
-		target:Destroy()
-	end
+	local baseHP = ability:GetLevelSpecialValueFor("baseHP",ability:GetLevel()-1)
+	moonMoon:SetBaseMaxHealth(baseHP + caster:GetLevel()*50)
 end
 
 function B16R_old_M_OnCreated( keys )
