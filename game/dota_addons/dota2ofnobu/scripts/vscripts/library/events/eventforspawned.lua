@@ -2,10 +2,7 @@ require("equilibrium_constant")
 LinkLuaModifier( "modifier_record", "items/Addon_Items/record.lua",LUA_MODIFIER_MOTION_NONE )
 --單位創建也會運行
 
-
 _G.CountUsedAbility_Table = {}
-
-
 
 heromap = {
   npc_dota_hero_bristleback = "B15",
@@ -34,7 +31,7 @@ heromap = {
   
   npc_dota_hero_nevermore = "B01",
   npc_dota_hero_pugna = "B25",
-  npc_dota_hero_slardar = "B06",
+  npc_dota_hero_axe = "B06",
   npc_dota_hero_viper = "C01",
   npc_dota_hero_windrunner = "C17",
   npc_dota_hero_keeper_of_the_light = "B05",
@@ -45,6 +42,7 @@ heromap = {
   npc_dota_hero_medusa = "A31",
   npc_dota_hero_magnataur = "B08",
   npc_dota_hero_centaur = "A07",
+  npc_dota_hero_naga_siren = "B16"
 }
 
 function Nobu:OnHeroIngame( keys )
