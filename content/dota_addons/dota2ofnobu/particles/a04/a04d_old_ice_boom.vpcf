@@ -1,0 +1,32 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_Children = 
+	[
+		{
+			m_flDelay = 0.2
+			m_ChildRef = resource:"particles/a04/a04d_old_ice_boom_destroy_flek.vpcf"
+		},
+		{
+			m_flDelay = 0.2
+			m_ChildRef = resource:"particles/a04/a04d_old_ice_boom_destroy_magic.vpcf"
+		},
+		{
+			m_flDelay = 0.2
+			m_ChildRef = resource:"particles/a04/a04d_old_ice_boom_vapor.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/a04/a04d_old_ice_boom_impact_flash.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/a04/a04d_old_ice_boom_glow_pull.vpcf"
+		},
+		{
+			m_flDelay = 0.2
+			m_ChildRef = resource:"particles/a04/a04d_old_ice_boom_smoke.vpcf"
+		},
+	]
+}
