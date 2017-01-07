@@ -42,11 +42,6 @@
 				"EffectName"	"particles/a34w/a34w.vpcf"
 				"MoveSpeed"	"2000"
 			}
-			"Stun"
-			{
-				"Target"	"TARGET"
-				"Duration"	"%stun_duration"
-			}
 			"FireSound"
 			{
 				"Target"	"TARGET"
@@ -60,6 +55,11 @@
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_frost_bite_root_datadriven"
+			}
+			"Stun"
+			{
+				"Target"	"TARGET"
+				"Duration"	"%stun_duration"
 			}
 			"Damage"
 			{
@@ -506,12 +506,7 @@
 			{
 				"Target"	"TARGET"
 				"EffectName"	"particles/a34w/a34w.vpcf"
-				"MoveSpeed"	"2000"
-			}
-			"Stun"
-			{
-				"Target"	"TARGET"
-				"Duration"	"%stun_duration"
+				"MoveSpeed"	"1500"
 			}
 			"FireSound"
 			{
@@ -526,6 +521,11 @@
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_frost_bite_root_datadriven"
+			}
+			"Stun"
+			{
+				"Target"	"TARGET"
+				"Duration"	"%stun_duration"
 			}
 			"Damage"
 			{

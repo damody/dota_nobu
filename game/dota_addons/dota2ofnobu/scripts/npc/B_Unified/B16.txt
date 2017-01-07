@@ -94,7 +94,7 @@
 		"AbilityTextureName"		"custom/guanyu_xzizhan"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"	"0.01"
-		"AbilityCooldown"	"20"
+		"AbilityCooldown"	"20 16 13 10"
 		"AbilityManaCost"	"120 140 160 180"
 		"OnSpellStart"
 		{
@@ -458,26 +458,24 @@
 
 				"OnAttackLanded"
 				{
-					"Random"
+					"RunScript"
 					{
-						"Chance"	"15"
-						"OnSuccess"
-						{
-							"Stun"
-							{
-								"Target"	"TARGET"
-								"Duration"	"0.65"
-								"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Damage"	"60"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-							}
-						}
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"	"B16MMT"
 					}
 				}
+			}
+			"modifier_B16MMT_stun"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"0.65"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
 			}
 		}
 	}
@@ -623,6 +621,7 @@
 			{
 				"Duration"		"%duration_MM"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				
 			}
 			"modifier_B16W_old_buff"
 			{
@@ -721,8 +720,8 @@
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"custom/guanyu_xzizhan"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastPoint"	"0.3"
-		"AbilityCooldown"	"20"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"10 9 8 7"
 		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{
@@ -762,12 +761,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"dmg"			"100 200 300 400"
+				"dmg"			"200 300 400 500"
 			}
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stun_time"		"0.5 1.0 1.5 2.0"
+				"stun_time"		"1.8 2.0 2.2 2.4"
 			}
 		}
 	}
@@ -891,6 +890,28 @@
 		"AbilityTextureName"			"custom/icon_128x128_53"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		// 只是個圖示...傷害寫在B16W_old_attack
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_B16W_old_critical_strike"
+			{
+				"Passive"	"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"	"B16W_old"
+					}
+				}
+				
+				"IsBuff"	"0"
+			}
+		}
 	}
 	// [撕裂攻擊]
 	"B16MME_old"
@@ -910,26 +931,24 @@
 
 				"OnAttackLanded"
 				{
-					"Random"
+					"RunScript"
 					{
-						"Chance"	"15"
-						"OnSuccess"
-						{
-							"Stun"
-							{
-								"Target"	"TARGET"
-								"Duration"	"0.65"
-								"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Damage"	"60"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-							}
-						}
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"	"B16MME_old"
 					}
 				}
+			}
+			"modifier_B16MME_old_stun"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"0.65"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
 			}
 		}
 	}

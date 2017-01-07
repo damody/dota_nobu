@@ -428,15 +428,16 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/icon_128x128_133"
 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 
-		"AoERadius" 					"700"
-		"AbilityCooldown"				"5"
-		"AbilityManaCost"				"200 240 280 320"
+		"AOERadius" 					"800"
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100 140 180 220"
 
 		"precache"
 		{
@@ -483,7 +484,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"health_recover"	"200 270 350 430"
+				"health_recover"	"150 300 450 600"
 			}
 		}
 	}
@@ -494,16 +495,16 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/icon_128x128_131"
 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 
-		"AOERadius"						"700"
-		"AoERadius" 					"700"
-		"AbilityCooldown"				"5"
-		"AbilityManaCost"				"200 240 280 320"
+		"AOERadius"						"800"
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"0"
 
 		"precache"
 		{
@@ -550,7 +551,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"mana_recover"		"140 160 180 200"
+				"mana_recover"		"100 200 300 400"
 			}
 		}
 	}
@@ -569,7 +570,6 @@
 		"AbilityCastPoint"	"0.5"
 		"AbilityCooldown"	"26 23 20 17"
 		"AbilityManaCost"	"80 70 60 50"
-		"AbilityCastRange"	"100 120 140 160"
 		"AoERadius"			"%radius_stun"
 		"AbilityCastRange"	"500"
 		"AbilityDamage"		"100 200 300 400"
@@ -744,9 +744,8 @@
 		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags" 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		
-		"AbilityCastPoint"	"%delay"
-		"AnimationPlaybackRate"	"0.3"
-
+		"AbilityCastPoint"	"1.5 1.0 0.5"
+		"AnimationPlaybackRate"	"0.4"
 		"AbilityCooldown"	"90"
 		"AbilityManaCost"	"200 250 300"
 		"AbilityCastRange"	"1050"
@@ -799,7 +798,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"raduis"			"800"
+				"raduis"			"800 900 1000"
 			}
 			"03"
 			{

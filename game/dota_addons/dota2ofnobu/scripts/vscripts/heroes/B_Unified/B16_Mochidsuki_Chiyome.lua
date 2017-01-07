@@ -1,4 +1,6 @@
 
+LinkLuaModifier( "B16W_old_critical", "scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua",LUA_MODIFIER_MOTION_NONE )
+
 function B16W_Unlock( keys )
 	-- 解鎖[忍法．飛襲令]
 	keys.caster:FindAbilityByName("B16W"):SetActivated(true)
@@ -411,6 +413,61 @@ function B16T_old( keys )
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B16T_old",{duration=10})
 end
 
+B16W_old_critical = class({})
+
+function B16W_old_critical:IsHidden()
+	return true
+end
+
+function B16W_old_critical:DeclareFunctions()
+	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
+end
+
+function B16W_old_critical:GetModifierPreAttack_CriticalStrike()
+	return 200
+end
+
+function B16W_old_critical:CheckState()
+	local state = {
+	}
+	return state
+end
+
+function B16W_old( keys )
+	local caster = keys.caster
+	local skill = keys.ability
+	local ran =  RandomInt(0, 100)
+	
+	if (caster.B16W_old_noncrit_count == nil) then
+		caster.B16W_old_noncrit_count = 0
+	end
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
+		if (ran > 25) then
+			caster.B16W_old_noncrit_count = caster.B16W_old_noncrit_count + 1
+		end
+		if (caster.B16W_old_noncrit_count > 4 or ran <= 25) then
+			caster.B16W_old_noncrit_count = 0
+			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
+			caster:AddNewModifier(caster, skill, "B16W_old_critical", { duration = 0.1 } )
+			print("B16W_old")
+			--SE
+			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
+			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
+			--動作
+				local rate = caster:GetAttackSpeed()
+				--print(tostring(rate))
+
+				--播放動畫
+			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
+				if rate < 1.00 then
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1.00)
+				else
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+				end
+		end
+	end
+end
+
 function B16W_old_attack(keys)
 	--【Basic】
 	local caster = keys.caster
@@ -442,10 +499,32 @@ function B16W_old_attack(keys)
 	end
 	local dmgori = dmg
 	dmg = dmg * per_atk  / 100
-	if RandomInt(0,100) < 25 then
-		dmg = dmg * 2
-	end
-	print(dmgori, damageReduction, dmg)
+	
+	--print(dmgori, damageReduction, dmg)
 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 
+end
+
+function B16MME_old(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local ran =  RandomInt(0, 100)
+	if ran < 15 and not target:IsBuilding() then
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
+		AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
+end
+
+function B16MMT(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local ran =  RandomInt(0, 100)
+	if ran < 15 and not target:IsBuilding() then
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MMT_stun",nil)
+		AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
 end
