@@ -61,6 +61,7 @@ function Nobu:PickHero( keys )
       print("name " .. name)
       if string.match(name, "ancient_apparition")  then --竹中重治
         caster:FindAbilityByName("A04D"):SetLevel(1)
+        GameRules: SendCustomMessage("竹中重治玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "jakiro") then --佐佐木小次郎
         caster:FindAbilityByName("C22D"):SetLevel(1)
       elseif string.match(name, "magnataur") then -- 淺井長政

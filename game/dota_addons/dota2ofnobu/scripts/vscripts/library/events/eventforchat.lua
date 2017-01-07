@@ -85,6 +85,14 @@ local function chat_of_test(keys)
 		caster.isold = true
 		caster:SetAbilityPoints(1)
 		caster.version = "11"
+
+		local am = caster:FindAllModifiers()
+		for _,v in pairs(am) do
+			if not string.match(v:GetName(),"equilibrium_constant") then
+				caster:RemoveModifierByName(v:GetName())
+			end
+		end
+
 		if string.match(caster:GetUnitName(), "centaur") then -- 本多忠勝
 			caster:RemoveAbility("A07W")
 			caster:RemoveAbility("A07E")
@@ -264,6 +272,28 @@ local function chat_of_test(keys)
 			caster:AddAbility("C17R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C17T_old") 
+		elseif string.match(caster:GetUnitName(), "ancient_apparition") then -- 竹中重治
+			caster:RemoveAbility("A04W")
+			caster:RemoveAbility("A04E")
+			caster:RemoveAbility("A04R")
+			caster:RemoveAbility("A04D")
+			caster:RemoveAbility("A04T")
+			caster:RemoveAbility("attribute_bonusx")
+
+			caster:AddAbility("A04W_old")
+			caster:AddAbility("A04E_old")
+			caster:AddAbility("A04R_old")
+			caster:AddAbility("A04D_old")
+			caster:AddAbility("A04F_old"):SetLevel(1)
+			caster:AddAbility("A04T_old")
+			caster:AddAbility("attribute_bonusx")
+			Timers:CreateTimer(1, function()
+				if caster:GetLevel() >= 18 then
+					caster:FindAbilityByName("A04D_old"):SetLevel(1)
+					return nil
+				end
+				return 1
+			end)
 		end
 	end
 	
