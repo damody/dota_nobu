@@ -43,7 +43,7 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"15 14 13 12"
-		"AbilityManaCost"	"100"
+		"AbilityManaCost"	"120 140 160 180"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_fire_ambient_fire_explode.vpcf"
@@ -173,7 +173,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"29"
-		"AbilityManaCost"	"105"
+		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -298,7 +298,7 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"	"120 110 100"
-		"AbilityManaCost"	"125 165 205"
+		"AbilityManaCost"	"200 300 400"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"precache"

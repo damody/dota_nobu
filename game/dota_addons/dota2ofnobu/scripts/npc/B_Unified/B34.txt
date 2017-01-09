@@ -12,7 +12,7 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
 		"AbilityCooldown"	"13"
-		"AbilityManaCost"	"80"
+		"AbilityManaCost"	"80 100 120 140"
 		"AbilityCastRange"	"800"
 		"precache"
 		{
@@ -81,7 +81,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCooldown"	"28 25 22 19"
-		"AbilityManaCost"	"100 110 120 130"
+		"AbilityManaCost"	"100 120 140 180"
 		"AbilityCastRange"	"800"
 		"precache"
 		{
@@ -170,7 +170,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCooldown"	"28 25 22 19"
-		"AbilityManaCost"	"100 110 120 130"
+		"AbilityManaCost"	"100 120 140 160"
 		"AbilityCastRange"	"800"
 
 		"OnSpellStart"
@@ -231,7 +231,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"12"
-		"AbilityManaCost"	"80"
+		"AbilityManaCost"	"100 120 140 160"
 		"precache"
 		{
 			"soundfile"	"sounds/vo/beastmaster/beas_win_03.vsnd"
@@ -484,7 +484,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityCooldown"	"100 90 80"
-		"AbilityManaCost"	"200"
+		"AbilityManaCost"	"200 250 300"
 		"AbilityCastRange"	"1000"
 		"AOERadius"		"1000"
 		"AnimationPlaybackRate"	"3"

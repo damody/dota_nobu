@@ -403,7 +403,7 @@
 		"AbilityCooldown"	"60 45 30"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100 150 200"
+		"AbilityManaCost"	"300 400 500"
 		// Data Driven
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -481,7 +481,7 @@
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
-		"AbilityCastPoint"	"0.3 0.2 0.1 0.1"
+		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"17"
@@ -860,6 +860,7 @@
 		"AbilityCooldown"	"120 110 100"
 		"AbilityManaCost"	"200 250 300"
 		"AbilityDuration"	"30 40 50"
+		"AbilityCastRange"	"1000"
 
 		"OnSpellStart"
 		{

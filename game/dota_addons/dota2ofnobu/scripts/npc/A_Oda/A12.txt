@@ -11,7 +11,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"10"
-		"AbilityManaCost"	"100"
+		"AbilityManaCost"	"120 140 160 180"
 		"precache"
 		{
 			"particle"	"particles/a12w/a12w.vpcf"
@@ -165,7 +165,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"12"
-		"AbilityManaCost"	"100"
+		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -250,7 +250,7 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityCooldown"	"6 6 5 4"
 		"AOERadius"	"%radius"
-		"AbilityManaCost"	"120"
+		"AbilityManaCost"	"120 140 160 180"
 		"AbilityCastRange"	"900"
 		"precache"
 		{
@@ -412,7 +412,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Special_Damage"	"19 26 27"
+				"Special_Damage"	"19 23 27"
 			}
 			"02"
 			{
