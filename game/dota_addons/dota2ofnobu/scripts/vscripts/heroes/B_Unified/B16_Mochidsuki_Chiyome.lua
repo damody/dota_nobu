@@ -340,6 +340,15 @@ function MoonMoonAdjust_old( keys )
 
 		-- Todo: 調整月月能力
 		local caster_level = caster:GetLevel()
+		if (caster_level > 20) then
+			caster_level = caster_level * 3
+		elseif (caster_level > 15) then
+			caster_level = caster_level * 2.5
+		elseif (caster_level > 10) then
+			caster_level = caster_level * 2
+		elseif (caster_level > 5) then
+			caster_level = caster_level * 1.5
+		end
 		moonMoon:FindModifierByName("modifier_B16W_old_forMoonMoon"):SetStackCount(caster_level)
 	end
 end
@@ -449,7 +458,6 @@ function B16W_old( keys )
 			caster.B16W_old_noncrit_count = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 			caster:AddNewModifier(caster, skill, "B16W_old_critical", { duration = 0.1 } )
-			print("B16W_old")
 			--SE
 			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

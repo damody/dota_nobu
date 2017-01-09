@@ -69,6 +69,12 @@ function ShuaGuai( )
 		end
 		local AA_num = 3 + 0.015*ShuaGuai_count
 		local AB_num = 2 + 0.008*ShuaGuai_count
+		if (AA_num > 5) then
+			AA_num = 5
+		end
+		if (AB_num > 4) then
+			AB_num = 4
+		end
 	  	ShuaGuai_Of_AA(AA_num)
 	  	ShuaGuai_Of_AB(AB_num)
 	  	
@@ -83,6 +89,9 @@ function ShuaGuai( )
 	--出兵觸發:火槍兵
  	Timers:CreateTimer( 90,function()
  		local B_num = 2 + 0.003*ShuaGuai_count
+ 		if (B_num > 3) then
+			B_num = 3
+		end
   		ShuaGuai_Of_B(B_num)
 	    local time =  100.00 - 0.5*ShuaGuai_count
 	    if time < 30 then
@@ -95,6 +104,9 @@ function ShuaGuai( )
 	--出兵觸發:騎兵
  	Timers:CreateTimer( 95, function()
  		local C_num = 1 + 0.005*ShuaGuai_count
+ 		if (C_num > 3) then
+			C_num = 3
+		end
   		ShuaGuai_Of_C(C_num)
 	    local time =  70.00 - 0.5*ShuaGuai_count
 	    if time < 30 then
