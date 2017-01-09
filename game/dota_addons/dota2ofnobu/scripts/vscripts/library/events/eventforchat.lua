@@ -81,7 +81,7 @@ local function chat_of_test(keys)
 	end
 	
 	--舊版模式
-	if s == "-old" and caster:GetLevel() == 1 and caster.isold == nil then
+	if s == "-old"  and caster:GetLevel() == 1 and caster.isold == nil then
 		caster.isold = true
 		caster:SetAbilityPoints(1)
 		caster.version = "11"
@@ -93,192 +93,99 @@ local function chat_of_test(keys)
 			end
 		end
 
-		if string.match(caster:GetUnitName(), "centaur") then -- 本多忠勝
-			caster:RemoveAbility("A07W")
-			caster:RemoveAbility("A07E")
-			caster:RemoveAbility("A07R")
-			caster:RemoveAbility("A07D")
-			caster:RemoveAbility("A07T")
-			caster:RemoveAbility("attribute_bonusx")
+		for i = 0, caster:GetAbilityCount() - 1 do
+			local ability = caster:GetAbilityByIndex( i )
+			if ability  then
+				caster:RemoveAbility(ability:GetName())
+			end
+		end
 
+		if string.match(caster:GetUnitName(), "centaur") then -- 本多忠勝
 			caster:AddAbility("A07W_old")
 			caster:AddAbility("A07E_old")
 			caster:AddAbility("A07R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A07T_old")
 		elseif string.match(caster:GetUnitName(), "magnataur") then -- 淺井長政
-			caster:RemoveAbility("B08W")
-			caster:RemoveAbility("B08E")
-			caster:RemoveAbility("B08R")
-			caster:RemoveAbility("B08T")
-
 			caster:AddAbility("B08W_old")
 			caster:AddAbility("B08E_old")
 			caster:AddAbility("B08R_old")
 			caster:AddAbility("B08D_old")
 			caster:AddAbility("B08T_old")
 		elseif string.match(caster:GetUnitName(), "pugna") then -- 本願寺顯如
-			caster:RemoveAbility("B25W")
-			caster:RemoveAbility("B25E")
-			caster:RemoveAbility("B25R")
-			caster:RemoveAbility("B25T")
-
 			caster:AddAbility("B25W")
 			caster:AddAbility("B25E_old")
 			caster:AddAbility("B25R_old")
 			caster:AddAbility("B25T_old")
 		elseif string.match(caster:GetUnitName(), "keeper_of_the_light") then -- 毛利元就
-			caster:RemoveAbility("B05W")
-			caster:RemoveAbility("B05E")
-			caster:RemoveAbility("B05R")
-			caster:RemoveAbility("B05T")
-
 			caster:AddAbility("B05W")
 			caster:AddAbility("B05E")
 			caster:AddAbility("B05R_old")
 			caster:AddAbility("B05T_old")
 		elseif string.match(caster:GetUnitName(), "nevermore") then -- 雜賀孫市
-			caster:RemoveAbility("B01W")
-			caster:RemoveAbility("B01E")
-			caster:RemoveAbility("B01R")
-			caster:RemoveAbility("B01T")
-
 			caster:AddAbility("B01W_old")
 			caster:AddAbility("B01E")
 			caster:AddAbility("B01R_old")
 			caster:AddAbility("B01T")
 		elseif string.match(caster:GetUnitName(), "axe") then -- 真田幸村
-			caster:RemoveAbility("B06W")
-			caster:RemoveAbility("B06E")
-			caster:RemoveAbility("B06R")
-			caster:RemoveAbility("B06T")
-
 			caster:AddAbility("B06W_old")
 			caster:AddAbility("B06E_old")
 			caster:AddAbility("B06R_old")
 			caster:AddAbility("B06T_old")
 		elseif string.match(caster:GetUnitName(), "broodmother") then -- 服部半藏
-			caster:RemoveAbility("A13W")
-			caster:RemoveAbility("A13E")
-			caster:RemoveAbility("A13R")
-			caster:RemoveAbility("A13T")
-			caster:RemoveAbility("A13D")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("A13W_old")
 			caster:AddAbility("A13E_old")
 			caster:AddAbility("A13R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A13T_old")
 		elseif string.match(caster:GetUnitName(), "beastmaster") then -- 武田勝賴
-			caster:RemoveAbility("B34W")
-			caster:RemoveAbility("B34E")
-			caster:RemoveAbility("B34R")
-			caster:RemoveAbility("B34T")
-
 			caster:AddAbility("B34W")
 			caster:AddAbility("B34E_old")
 			caster:AddAbility("B34R_old")
 			caster:AddAbility("B34T_old")
 		elseif string.match(caster:GetUnitName(), "dragon_knight") then -- 上杉謙信
-			caster:RemoveAbility("B32W")
-			caster:RemoveAbility("B32E")
-			caster:RemoveAbility("B32R")
-			caster:RemoveAbility("B32D")
-			caster:RemoveAbility("B32T")
-
 			caster:AddAbility("B32W_old")
 			caster:AddAbility("B32E_old")
 			caster:AddAbility("B32R_old")
 			caster:AddAbility("B32D_old"):SetLevel(1)
 			caster:AddAbility("B32T_old")
 		elseif string.match(caster:GetUnitName(), "troll_warlord") then -- 井伊直政
-			caster:RemoveAbility("A06W")
-			caster:RemoveAbility("A06E")
-			caster:RemoveAbility("A06R")
-			caster:RemoveAbility("A06D")
-			caster:RemoveAbility("A06T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("A06W_old")
 			caster:AddAbility("A06E_old")
 			caster:AddAbility("A06R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A06T_old")
 		elseif string.match(caster:GetUnitName(), "bristleback") then -- 今川義元
-			caster:RemoveAbility("B15W")
-			caster:RemoveAbility("B15E")
-			caster:RemoveAbility("B15R")
-			caster:RemoveAbility("B15D")
-			caster:RemoveAbility("B15T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("B15W_old")
 			caster:AddAbility("B15E_old")
 			caster:AddAbility("B15R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("B15T_old")
 		elseif string.match(caster:GetUnitName(), "templar_assassin") then -- 松姬
-			caster:RemoveAbility("C19W")
-			caster:RemoveAbility("C19E")
-			caster:RemoveAbility("C19R")
-			caster:RemoveAbility("C19D")
-			caster:RemoveAbility("C19T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("C19W_old")
 			caster:AddAbility("C19E_old")
 			caster:AddAbility("C19R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C19T_old")
 		elseif string.match(caster:GetUnitName(), "naga_siren") then -- 望月千代女
-			caster:RemoveAbility("B16W")
-			caster:RemoveAbility("B16E")
-			caster:RemoveAbility("B16R")
-			caster:RemoveAbility("B16D")
-			caster:RemoveAbility("B16MMD")
-			caster:RemoveAbility("B16T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("B16W_old")
 			caster:AddAbility("B16E_old")
 			caster:AddAbility("B16R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("B16T_old")
 		elseif string.match(caster:GetUnitName(), "crystal_maiden") then -- 阿松
-			caster:RemoveAbility("A34W")
-			caster:RemoveAbility("A34E")
-			caster:RemoveAbility("A34R")
-			caster:RemoveAbility("A34D")
-			caster:RemoveAbility("A34T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("A34W_old")
 			caster:AddAbility("A34E_old")
 			caster:AddAbility("A34R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A34T_old")
 		elseif string.match(caster:GetUnitName(), "windrunner") then -- 阿市
-			caster:RemoveAbility("C17W")
-			caster:RemoveAbility("C17E")
-			caster:RemoveAbility("C17R")
-			caster:RemoveAbility("C17D")
-			caster:RemoveAbility("C17T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("C17W_old")
 			caster:AddAbility("C17E_old")
 			caster:AddAbility("C17R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C17T_old") 
 		elseif string.match(caster:GetUnitName(), "ancient_apparition") then -- 竹中重治
-			caster:RemoveAbility("A04W")
-			caster:RemoveAbility("A04E")
-			caster:RemoveAbility("A04R")
-			caster:RemoveAbility("A04D")
-			caster:RemoveAbility("A04T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("A04W_old")
 			caster:AddAbility("A04E_old")
 			caster:AddAbility("A04R_old")
@@ -294,24 +201,12 @@ local function chat_of_test(keys)
 				return 1
 			end)
 		elseif string.match(caster:GetUnitName(), "invoker") then -- 羽柴秀吉
-			caster:RemoveAbility("A28W")
-			caster:RemoveAbility("A28E")
-			caster:RemoveAbility("A28R")
-			caster:RemoveAbility("A28T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("A28W_old")
 			caster:AddAbility("A28E_old")
 			caster:AddAbility("A28R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A28T_old")
 		elseif string.match(caster:GetUnitName(), "viper") then -- 明智光秀
-			caster:RemoveAbility("C01W")
-			caster:RemoveAbility("C01E")
-			caster:RemoveAbility("C01R")
-			caster:RemoveAbility("C01T")
-			caster:RemoveAbility("attribute_bonusx")
-
 			caster:AddAbility("C01W_old")
 			caster:AddAbility("C01E_old")
 			caster:AddAbility("C01R_old")

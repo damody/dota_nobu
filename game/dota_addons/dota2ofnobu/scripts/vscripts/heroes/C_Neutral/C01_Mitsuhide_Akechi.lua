@@ -265,7 +265,7 @@ function C01E_old_spell_start( keys )
 	local channelTime 	= ability:GetChannelTime()
 	local aoe_damage 	= ability:GetAbilityDamage()
 	local aoe_damage_type = ability:GetAbilityDamageType()
-	local wave_delay 	= channelTime/(max_wave-1)
+	local wave_delay 	= (channelTime-0.2)/(max_wave-1)
 
 	-- 搜尋參數
 	local iTeam = caster:GetTeamNumber()
