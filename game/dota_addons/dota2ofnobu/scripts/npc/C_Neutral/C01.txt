@@ -368,4 +368,390 @@
 			}
 		}
 	}	
+
+// 明智光秀 11.2B
+// -----------------------------------------------------------------------------------------------
+
+
+	// 明智光秀 [血刃亂舞]
+	"C01W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/btnability_gouge"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		"AbilityCooldown"	"40 35 30 25"
+		"AbilityManaCost"	"100 120 140 160"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/c01w.vsndevts"
+			"particle"	"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf"
+			"particle"	"particles/c09/c09w_hide.vpcf"
+			"particle"  "particles/generic_gameplay/generic_hit_blood.vpcf"
+			"particle"  "particles/econ/items/juggernaut/jugg_sword_thousand_faces/jugg_weapon_glow_thousand_faces.vpcf"
+			"particle"  "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok.vpcf"
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C01W_old_buff"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C01W_old_buff"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+
+				"EffectName" "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok.vpcf"
+				"EffectAttachType" "follow_origin"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+       				{
+             			"EffectName" "particles/econ/items/juggernaut/jugg_sword_thousand_faces/jugg_weapon_glow_thousand_faces.vpcf"
+             			"EffectAttachType" "attach_attack1"
+             			"Target" "CASTER"
+             			"ControlPointEntities"
+            			{
+                			"CASTER" "attach_attack1"
+            			}
+        			}
+				}		
+
+				"OnAttack"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"CASTER"
+							"Radius"	"%aoe_radius"
+						}
+						"Action"
+						{
+							"RunScript"
+							{
+								"Target"	"CASTER"
+								"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+								"Function"	"C01W_old_action_on_target"
+							}
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"		"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%aoe_damage"
+							}
+						}
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%buff_move_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%buff_attack_speed"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe_damage"	"240"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe_radius"	"240"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"buff_move_speed"	"5 8 11 14" // %
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"buff_attack_speed"	"25 35 45 55" // %
+			}
+			"05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"buff_duration"	"3.0"
+			}
+		}
+	}
+	// 明智光秀 [火雨術]
+	"C01E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_42"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityDamage"			"85 105 125 145"
+		"AbilityCastPoint"		"0"
+		"AbilityCooldown"		"155 145 133"
+		"AbilityManaCost"		"175"
+		"AbilityCastRange"		"1100"
+		"AbilityChannelTime"	"4.5"
+		"AoERadius"	"%aoe_radius"
+		"precache"
+		{
+			"soundfile"	"soundevents/c01t.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"  "particles/c01/c01e_old_fly.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+				"Function"	"C01E_old_spell_start"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			// 被火雨命中的敵人會被安裝這個Debuff，造成持續的燃燒傷害
+			"modifier_C01E_old_debuff"
+			{
+				"IsDebuff"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE" // 允許目標裝上多個燒傷效果._.
+				"Duration"	"%debuff_duration"
+				"ThinkInterval"  "%debuff_damage_delay"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+						"Function"		"C01E_old_apply_debuff_damage"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aoe_radius"	"350"
+			}
+			"02" // 火雨波數
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_wave"	"6"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"debuff_damage"	"12 17 22 27"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"debuff_duration"	"4.0"
+			}
+			"05" // 持續傷害的間隔時間，越小越快
+			{
+				"var_type"	"FIELD_FLOAT"
+				"debuff_damage_delay"	"1.0"
+			}
+			"06" // 對建築的傷害 = AbilityDamage * adjust_damage_at_building
+			{
+				"var_type" "FIELD_FLOAT"
+				"adjust_damage_at_building" "0.5"
+			}
+		}
+	}
+	// 明智光秀 [劍術]
+	"C01R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_50"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"precache"
+		{
+			"particle"  "particles/c01/c01r_old_basher_cast.vpcf"
+			"particle"  "particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_shoulder_ambient_magic.vpcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_C01R_old_passive"
+			{
+				"Passive"			"1"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/econ/items/antimage/antimage_weapon_godeater/antimage_godeater_shoulder_ambient_magic.vpcf"
+						"EffectAttachType"  "attach_attack1"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+            			{
+                			"CASTER" "attach_attack1"
+            			}
+					}
+				}
+
+				"OnAttackLanded"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+						"Function"		"C01R_old_on_attack_landed"
+						"Damage"		"%attack_damage"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01" // 閃避
+			{
+				"var_type"		"FIELD_INTEGER"
+				"evasion"		"4 8 12 16" // %
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage_bonus"	"200 250 300 350" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"chance"		"12"	// %
+			}
+		}
+	}
+	// 明智光秀 [灌頂斬擊]
+	"C01D_old"
+	{
+		"MaxLevel"	"1"
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_120"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityCooldown"				"65"
+		"AbilityManaCost"				"125"
+		"AbilityDamage"					"100"
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+
+		"OnSpellStart"
+		{
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_PURE"
+				"Damage"		"%AbilityDamage"
+			}
+			"Stun"
+			{
+				"Duration"   "1.7"
+				"Target" 	 "TARGET"
+			}
+		}
+	}
+	// 明智光秀 [本能寺燄上]
+	"C01T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/btnhero02d"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		// "SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		// "AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"155 145 133"
+		"AbilityManaCost"	"175"
+		"AbilityCastRange"	"1100"
+		"AbilityChannelTime"	"%C01T_Skill_Duration"
+		"AOERadius"	"%C01T_Radius"
+		"precache"
+		{
+			"soundfile"	"soundevents/c01t.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+				"Function"	"C01T_Mitsuhide_Akechi"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C01T"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%C01T_Duration"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"C01T_Radius"	"700 800 900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"C01T_Duration"	"0.53 0.57 0.61"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"C01T_Skill_Duration"	"4.5 5.2 5.9"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C01T_Amount"	"45 52 59"
+			}
+		}
+	}
+
 }

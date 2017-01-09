@@ -242,3 +242,119 @@ function C01T_Mitsuhide_Akechi( keys )
 end
 
 
+-- 11.2B
+----------------------------------------------------------------------------------
+
+function C01W_old_action_on_target( keys )
+	C01W_sound(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local level = keys.ability:GetLevel()
+	local ifx = ParticleManager:CreateParticle("particles/generic_gameplay/generic_hit_blood.vpcf",PATTACH_POINT,target)
+	ParticleManager:SetParticleControl(ifx,1,Vector(level*1.5,0,0)) -- 出血量
+	ParticleManager:SetParticleControl(ifx,2,Vector(0,0,1500)) -- 血液濺射方向與速度
+end
+
+function C01E_old_spell_start( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local adjust_damage_at_building = ability:GetLevelSpecialValueFor("adjust_damage_at_building",level)
+	local aoe_radius	= ability:GetLevelSpecialValueFor("aoe_radius",level)
+	local max_wave		= ability:GetLevelSpecialValueFor("max_wave",level)
+	local channelTime 	= ability:GetChannelTime()
+	local aoe_damage 	= ability:GetAbilityDamage()
+	local aoe_damage_type = ability:GetAbilityDamageType()
+	local wave_delay 	= channelTime/(max_wave-1)
+
+	-- 搜尋參數
+	local iTeam = caster:GetTeamNumber()
+	local center = keys.target_points[1]
+	local tTeam = ability:GetAbilityTargetTeam()
+	local tType = ability:GetAbilityTargetType()
+	local tFlag = ability:GetAbilityTargetFlags()
+
+	Timers:CreateTimer(0, function()
+		-- 停止施法則中斷
+		if not ability:IsChanneling() then
+			return nil
+		end
+		-- 照亮目標周圍
+		AddFOWViewer(iTeam,center,aoe_radius*1.1,1.0,false)
+		-- 搜尋敵人
+		local units = FindUnitsInRadius(iTeam,center,nil,aoe_radius,tTeam,tType,tFlag,FIND_ANY_ORDER,false)
+		for _,unit in ipairs(units) do
+			local adjust = 1.0
+			if unit:IsBuilding() then
+				adjust = adjust_damage_at_building
+			end
+			-- 傷害參數
+			local damage_table = {
+				attacker = caster,
+				victim = unit,
+				damage = aoe_damage*adjust,
+				damage_type = aoe_damage_type
+			}
+			-- 配合特效延遲傷害造成時間
+			Timers:CreateTimer(0.5, function()
+				ApplyDamage(damage_table)
+				ability:ApplyDataDrivenModifier(caster,unit,"modifier_C01E_old_debuff",{})
+			end)
+		end
+		-- 特效
+		C01E_old_create_meteor_particle_effect(caster, center, aoe_radius)
+		return wave_delay
+	end)
+
+	-- 配合特效延遲砍樹
+	Timers:CreateTimer(0.45, function()
+		GridNav:DestroyTreesAroundPoint(center, aoe_radius, false)
+	end)
+end
+
+function C01E_old_create_meteor_particle_effect( caster, target_pos, radius )
+	local caster_pos = caster:GetAbsOrigin()
+	local ifx = ParticleManager:CreateParticle("particles/c01/c01e_old_fly.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	ParticleManager:SetParticleControl(ifx, 0, caster_pos + Vector (0, 0, 1000)) -- 隕石產生的位置
+	ParticleManager:SetParticleControl(ifx, 1, target_pos) -- 命中位置
+	ParticleManager:SetParticleControl(ifx, 2, Vector(0.5, 0, 0)) -- 效果存活時間
+end
+
+function C01E_old_apply_debuff_damage( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local debuff_damage = ability:GetLevelSpecialValueFor("debuff_damage",level)
+	local adjust = 1.0
+
+	if target:IsBuilding() then
+		adjust = ability:GetLevelSpecialValueFor("adjust_damage_at_building",level)
+	end
+
+	ApplyDamage({
+		attacker = caster,
+		victim = target,
+		damage = debuff_damage*adjust,
+		damage_type = DAMAGE_TYPE_MAGICAL
+	})
+end
+
+function C01R_old_on_attack_landed( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local Damage = keys.Damage
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local chance = ability:GetLevelSpecialValueFor("chance",level)
+	local damage_bonus = ability:GetLevelSpecialValueFor("damage_bonus",level)
+	if chance >= RandomInt(1,100) then
+		ApplyDamage({
+			attacker = caster,
+			victim = target,
+			damage = Damage*damage_bonus/100,
+			damage_type = DAMAGE_TYPE_PHYSICAL
+		})
+		ParticleManager:CreateParticle("particles/c01/c01r_old_basher_cast.vpcf",PATTACH_POINT_FOLLOW,target)
+	end
+end
