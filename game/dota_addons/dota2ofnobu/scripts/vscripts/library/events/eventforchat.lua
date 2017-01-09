@@ -305,6 +305,19 @@ local function chat_of_test(keys)
 			caster:AddAbility("A28R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A28T_old")
+		elseif string.match(caster:GetUnitName(), "viper") then -- 明智光秀
+			caster:RemoveAbility("C01W")
+			caster:RemoveAbility("C01E")
+			caster:RemoveAbility("C01R")
+			caster:RemoveAbility("C01T")
+			caster:RemoveAbility("attribute_bonusx")
+
+			caster:AddAbility("C01W_old")
+			caster:AddAbility("C01E_old")
+			caster:AddAbility("C01R_old")
+			caster:AddAbility("C01D_old"):SetLevel(1)
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C01T_old")
 		end
 	end
 	
