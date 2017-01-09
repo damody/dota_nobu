@@ -1,3 +1,26 @@
+LinkLuaModifier( "C01R_critical", "scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua",LUA_MODIFIER_MOTION_NONE )
+
+
+C01R_critical = class({})
+
+function C01R_critical:IsHidden()
+	return true
+end
+
+function C01R_critical:DeclareFunctions()
+	return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE }
+end
+
+function C01R_critical:GetModifierPreAttack_CriticalStrike()
+	return self.C01R_crit
+end
+
+function C01R_critical:CheckState()
+	local state = {
+	}
+	return state
+end
+
 --global
 	C01E_B = {}
 	C01R_B = {}
@@ -340,7 +363,7 @@ function C01E_old_apply_debuff_damage( keys )
 	})
 end
 
-function C01R_old_on_attack_landed( keys )
+function C01R_old_on_attack_start( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local Damage = keys.Damage
@@ -348,13 +371,77 @@ function C01R_old_on_attack_landed( keys )
 	local level = ability:GetLevel()-1
 	local chance = ability:GetLevelSpecialValueFor("chance",level)
 	local damage_bonus = ability:GetLevelSpecialValueFor("damage_bonus",level)
-	if chance >= RandomInt(1,100) then
-		ApplyDamage({
-			attacker = caster,
-			victim = target,
-			damage = Damage*damage_bonus/100,
-			damage_type = DAMAGE_TYPE_PHYSICAL
-		})
-		ParticleManager:CreateParticle("particles/c01/c01r_old_basher_cast.vpcf",PATTACH_POINT_FOLLOW,target)
+	local ran =  RandomInt(0, 100)
+	if caster.C01R_noncrit_count == nil then
+		caster.C01R_noncrit_count = 0
+	end
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
+		if (ran > chance) then
+			caster.C01R_noncrit_count = caster.C01R_noncrit_count + 1
+		end
+		if (caster.C01R_noncrit_count > 5 or ran <= chance) then
+			caster.C01R_noncrit_count = 0
+			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
+			caster:AddNewModifier(caster, ability, "C01R_critical", { duration = 0.1 } )
+			local hModifier = caster:FindModifierByNameAndCaster("C01R_critical", caster)
+			ParticleManager:CreateParticle("particles/c01/c01r_old_basher_cast.vpcf",PATTACH_POINT_FOLLOW,target)
+			--動作
+				local rate = caster:GetAttackSpeed()
+				--print(tostring(rate))
+
+				--播放動畫
+			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
+				if rate < 1.00 then
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1.00)
+				else
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+				end
+
+			if (hModifier ~= nil) then
+				hModifier.C01R_crit = damage_bonus
+			end
+		end
+	end
+end
+
+
+
+function C01R_on_attack_start( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local Damage = keys.Damage
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local chance = 18
+	local damage_bonus = ability:GetLevelSpecialValueFor("C01R_Crit",level)
+	local ran =  RandomInt(0, 100)
+	if caster.C01R_noncrit_count == nil then
+		caster.C01R_noncrit_count = 0
+	end
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
+		if (ran > chance) then
+			caster.C01R_noncrit_count = caster.C01R_noncrit_count + 1
+		end
+		if (caster.C01R_noncrit_count > 5 or ran <= chance) then
+			caster.C01R_noncrit_count = 0
+			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
+			caster:AddNewModifier(caster, ability, "C01R_critical", { duration = 0.1 } )
+			local hModifier = caster:FindModifierByNameAndCaster("C01R_critical", caster)
+			--動作
+				local rate = caster:GetAttackSpeed()
+				--print(tostring(rate))
+
+				--播放動畫
+			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
+				if rate < 1.00 then
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1.00)
+				else
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+				end
+
+			if (hModifier ~= nil) then
+				hModifier.C01R_crit = damage_bonus
+			end
+		end
 	end
 end

@@ -238,25 +238,11 @@
 				"Properties"	{}
 				"OnAttackStart"
 				{
-					"Random"
+					"RunScript"
 					{
-						"OnSuccess"
-						{
-							"ApplyModifier"
-							{
-								"Target"	"CASTER"
-								"ModifierName"	"modifier_C01R_3"
-							}
-						}
-						"OnFailure"
-						{
-							"RemoveModifier"
-							{
-								"Target"	"CASTER"
-								"ModifierName"	"modifier_C01R_3"
-							}
-						}
-						"Chance"	"18"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+						"Function"		"C01R_on_attack_start"
+						"Damage"		"%attack_damage"
 					}
 				}
 				"IsHidden"	"1"
@@ -380,8 +366,9 @@
 		"AbilityTextureName"	"custom/btnability_gouge"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 
-		"AbilityCooldown"	"40 35 30 25"
-		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"340"
+		"AbilityCooldown"	"35 30 25 15"
+		"AbilityManaCost"	"100 120 140 250"
 
 		"precache"
 		{
@@ -470,17 +457,17 @@
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"aoe_radius"	"240"
+				"aoe_radius"	"340"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"buff_move_speed"	"5 8 11 14" // %
+				"buff_move_speed"	"10 15 20 25" // %
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"buff_attack_speed"	"25 35 45 55" // %
+				"buff_attack_speed"	"25 35 45 125" // %
 			}
 			"05"
 			{
@@ -608,13 +595,12 @@
 					}
 				}
 
-				"OnAttackLanded"
-				// "%attack_damage" is set to the damage value after mitigation
+				"OnAttackStart"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
-						"Function"		"C01R_old_on_attack_landed"
+						"Function"		"C01R_old_on_attack_start"
 						"Damage"		"%attack_damage"
 					}
 				}
@@ -640,7 +626,7 @@
 			"03"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"chance"		"12"	// %
+				"chance"		"16"	// %
 			}
 		}
 	}
