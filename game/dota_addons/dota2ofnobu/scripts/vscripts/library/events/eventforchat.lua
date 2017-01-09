@@ -265,7 +265,6 @@ local function chat_of_test(keys)
 			caster:RemoveAbility("C17D")
 			caster:RemoveAbility("C17T")
 			caster:RemoveAbility("attribute_bonusx")
-			caster:RemoveModifierByName("modifier_C17D")
 
 			caster:AddAbility("C17W_old")
 			caster:AddAbility("C17E_old")
@@ -294,6 +293,18 @@ local function chat_of_test(keys)
 				end
 				return 1
 			end)
+		elseif string.match(caster:GetUnitName(), "invoker") then -- 羽柴秀吉
+			caster:RemoveAbility("A28W")
+			caster:RemoveAbility("A28E")
+			caster:RemoveAbility("A28R")
+			caster:RemoveAbility("A28T")
+			caster:RemoveAbility("attribute_bonusx")
+
+			caster:AddAbility("A28W_old")
+			caster:AddAbility("A28E_old")
+			caster:AddAbility("A28R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A28T_old")
 		end
 	end
 	

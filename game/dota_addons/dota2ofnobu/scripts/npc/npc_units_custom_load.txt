@@ -1728,6 +1728,91 @@
 		"StatusManaRegen"	"10"
 	}
 
+	// 火神‧迦具土
+	"a28_old_Kagutsuchi"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/items/terrorblade/dotapit_s3_fallen_light_metamorphosis/dotapit_s3_fallen_light_metamorphosis.vmdl"
+		"ModelScale"	"1.7"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"RingRadius"        "200"
+		"HealthBarOffset"	"450"
+
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Amnb
+		"Ability1"	""
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"20.00"
+		"MagicalResistance"	"75"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"200.0"
+		"AttackDamageMax"	"250.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"700.00"
+		"AttackRange"	"300"
+		
+		// Add projectile
+		"ProjectileModel"	"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge.vpcf"
+		"ProjectileSpeed"	"900"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"100.0"
+		"BountyGoldMax"	"100.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"		"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"		"300"
+		"MovementTurnRate"	"0.05"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"2000"
+		"StatusHealthRegen"		"1.00"
+		"StatusMana"			"400"
+		"StatusManaRegen"		"10"
+		"StatusStartingMana"	"-1"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"2000"
+		"VisionNighttimeRange"	"1400"
+		// Team
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+
+		"HasInventory" 		"0"
+	}
+
 	// 林卷 伏兵先鋒
 	"forest_soldier1"
 	{

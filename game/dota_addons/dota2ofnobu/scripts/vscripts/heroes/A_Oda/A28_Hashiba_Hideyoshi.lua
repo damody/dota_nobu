@@ -431,3 +431,162 @@ function SplitShotDamage( keys )
 	ApplyDamage(damage_table)
 end
 
+-- 11.2B
+---------------------------------------------------------------------------------------
+function A28R_old_start( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local center = caster:GetAbsOrigin()
+	local castPoint 	= ability:GetCursorPosition()
+	local castRange 	= ability:GetCastRange()
+	local boom_damage	= ability:GetAbilityDamage()
+	local boom_radius 	= ability:GetLevelSpecialValueFor("boom_radius",level)
+	local boom_stun_duration = ability:GetLevelSpecialValueFor("boom_stun_duration",level)
+	local boom_delay 	= ability:GetLevelSpecialValueFor("boom_delay",level)
+	local boom_num 		= ability:GetLevelSpecialValueFor("boom_num",level)
+	local castDir = (castPoint-center):Normalized()
+	local castGap = castRange / boom_num
+	local iTeam = caster:GetTeamNumber()
+	local teams = ability:GetAbilityTargetTeam()
+	local types = ability:GetAbilityTargetType()
+	local flags = ability:GetAbilityTargetFlags()
+	local damageType = ability:GetAbilityDamageType()
+
+	for i=1,boom_num do
+		local targetPoint = center + castDir * castGap * i
+		print("targetPoint: "..tostring(targetPoint))
+		-- 照亮目標
+		AddFOWViewer(iTeam,targetPoint,500,5,false)
+		-- 特效
+		local ifx = ParticleManager:CreateParticle("particles/a28/a28r_old.vpcf",PATTACH_CUSTOMORIGIN,caster)
+		ParticleManager:SetParticleControl(ifx,0,targetPoint)
+		ParticleManager:SetParticleControl(ifx,1,Vector(0.5,0.5,0.5))
+		-- 搜尋
+		local enemies = FindUnitsInRadius(
+							iTeam,
+							targetPoint,
+							nil,
+							boom_radius,
+							teams,
+							types,
+							flags,
+							FIND_ANY_ORDER,
+							false)
+		-- 製造暈眩與傷害
+		for _,enemy in pairs(enemies) do
+			if  enemy.A28R_old == nil then
+				enemy.A28R_old = 1
+				ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A28R_old",{duration=boom_stun_duration})
+				ApplyDamage({
+					attacker=caster,
+					victim=enemy,
+					damage_type=damageType,
+					damage=boom_damage
+				})
+			end
+		end
+	end
+	for i=1,boom_num do
+		local targetPoint = center + castDir * castGap * i
+		local enemies = FindUnitsInRadius(
+							iTeam,
+							targetPoint,
+							nil,
+							boom_radius,
+							teams,
+							types,
+							flags,
+							FIND_ANY_ORDER,
+							false)
+		-- 製造暈眩與傷害
+		for _,enemy in pairs(enemies) do
+			enemy.A28R_old = nil
+		end
+	end
+end
+
+function A28T_old( keys )
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local point = caster:GetAbsOrigin()
+	local dir = caster:GetForwardVector()
+	local point2 = point + dir * 300
+ 	local player = caster:GetPlayerID()
+ 	local level = ability:GetLevel() - 1
+ 	local life_time = ability:GetLevelSpecialValueFor("life_time",level)
+ 	local base_hp = ability:GetLevelSpecialValueFor("base_hp",level)
+
+ 	local Kagutsuchi = CreateUnitByName("a28_old_Kagutsuchi",point2 ,true,caster,caster,caster:GetTeam())
+ 	-- 設定火神數值
+ 	Kagutsuchi:AddAbility("A28TW_old"):SetLevel(ability:GetLevel())
+ 	Kagutsuchi:AddAbility("A28TE_old"):SetLevel(ability:GetLevel())
+ 	Kagutsuchi:SetForwardVector(dir)
+	Kagutsuchi:SetControllableByPlayer(player, true)
+	Kagutsuchi:SetBaseMaxHealth(base_hp)
+	Kagutsuchi:SetHealth(base_hp)
+	Kagutsuchi:SetBaseDamageMax(350+level*300)
+	Kagutsuchi:SetBaseDamageMin(300+level*310)
+	Kagutsuchi:AddNewModifier(Kagutsuchi,nil,"modifier_kill",{duration=life_time})
+	
+	-- 配合特效稍微條快動畫速度
+	Kagutsuchi:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_3, 1.3)
+	-- 特效
+	local ifx = ParticleManager:CreateParticle("particles/a28/a28t_old.vpcf",PATTACH_ABSORIGIN,Kagutsuchi)
+	local scale = 3.0
+	ParticleManager:SetParticleControl(ifx,1,Vector(scale,scale,scale))
+end
+
+function A28TE_old_on_created( keys )
+	local caster = keys.caster
+
+	local ifx = ParticleManager:CreateParticle("particles/a28/a28te_old_burning_pathedge.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	caster.A28TE_old_ifx = ifx
+	local ifx2 = ParticleManager:CreateParticle("particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	caster.A28TE_old_ifx2 = ifx
+end
+
+function A28TE_old_on_destory( keys )
+	local caster = keys.caster
+	ParticleManager:DestroyParticle(caster.A28TE_old_ifx ,false)
+	ParticleManager:DestroyParticle(caster.A28TE_old_ifx2,false)
+end
+
+function A28TE_old_aoe_damage( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
+	local aoe_damage = ability:GetLevelSpecialValueFor("aoe_damage",level)
+
+	local ifx = ParticleManager:CreateParticle("particles/a28/a28te_old_aoeonkey_king_spring_fire_base.vpcf",PATTACH_CUSTOMORIGIN,caster)
+	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
+
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
+		caster:GetAbsOrigin(),
+		nil,
+		aoe_radius,
+		ability:GetAbilityTargetTeam(),
+		ability:GetAbilityTargetType(),
+		ability:GetAbilityTargetFlags(),
+		FIND_ANY_ORDER,
+		false)
+
+	for _,enemy in pairs(enemies) do
+		ApplyDamage({
+			attacker=caster,
+			victim=enemy,
+			damage_type=ability:GetAbilityDamageType(),
+			damage=aoe_damage})
+	end
+end
+
+function DumpTable( tTable )
+	local inspect = require('inspect')
+	local iDepth = 1
+ 	print(inspect(tTable,
+ 		{depth=iDepth} 
+ 	))
+end
