@@ -213,6 +213,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C01D_old"):SetLevel(1)
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C01T_old")
+		elseif string.match(caster:GetUnitName(), "drow_ranger") then -- 最上義姬
+			caster:AddAbility("B33W_old")
+			caster:AddAbility("B33E_old")
+			caster:AddAbility("B33R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("B33T_old")
 		end
 	end
 	

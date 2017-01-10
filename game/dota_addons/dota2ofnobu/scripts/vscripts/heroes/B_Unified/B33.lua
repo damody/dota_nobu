@@ -180,3 +180,17 @@ function B33R_Levelup( keys )
 	keys.caster:CalculateStatBonus()
 end
 
+-- 11.2B
+------------------------------------------------------------
+
+function B33R_old_on_attck_landed( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local poison_duration = ability:GetLevelSpecialValueFor("poison_duration",ability:GetLevel()-1)
+	local poison_damage_delay = ability:GetLevelSpecialValueFor("poison_damage_delay",ability:GetLevel()-1)
+
+	local hideUnit = CreateUnitByName("npc_dummy_unit_new",target:GetAbsOrigin(),false,caster,caster,caster:GetTeam())
+	hideUnit:AddNewModifier(hideUnit,nil,"modifier_kill",{duration=poison_duration})
+	ability:ApplyDataDrivenModifier(hideUnit,hideUnit,"modifier_B33R_old_poision_aura",{})
+end
