@@ -389,15 +389,10 @@
 		}
 		"OnProjectileHitUnit"
 		{
-			"Stun"
+			"RunScript"
 			{
-				"Duration"	"0.1"
-				"Target"	"TARGET"
-			}
-			"Damage"
-			{
-				"Type"	"DAMAGE_TYPE_PURE"
-				"Damage"	"%dmg"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+				"Function"	"B02R_hit"
 				"Target"	"TARGET"
 			}
 		}
@@ -436,6 +431,19 @@
 					}
 				}
 			}
+			"modifier_B02R_3"
+			{
+				"Duration"	"0.05"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
 		}
 		"AbilitySpecial"
 		{
@@ -457,7 +465,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"dmg"	"10 20 30 40"
+				"dmg"	"5 10 15 20"
 			}
 		}
 	}
