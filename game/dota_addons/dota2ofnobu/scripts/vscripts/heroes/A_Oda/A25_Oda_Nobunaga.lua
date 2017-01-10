@@ -272,3 +272,62 @@ function A25T2( keys )
 	
 end
 
+-- 11.2B
+--------------------------------------------------------
+
+function A25R_old_on_attack_start( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
+	local rnd =  RandomInt(1, 100)
+
+	if not target:IsBuilding() and rnd <= crit_chance then
+		-- 爆傷修改器
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A25R_old_crit",{})
+
+		-- 動畫
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,caster:GetAttackSpeed())
+
+		-- 音效
+		StartSoundEvent("Hero_SkeletonKing.CriticalStrike", target)
+	end
+end
+
+function A25D_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+
+	-- Finds the units in a given radius with the given flags. ( iTeamNumber, vPosition, hCacheUnit, flRadius, iTeamFilter, iTypeFilter, iFlagFilter, iOrder, bCanGrowCache )
+	local units = FindUnitsInRadius(
+		caster:GetTeamNumber(),
+		Vector(0,0,0),
+		nil,
+		99999,
+		ability:GetAbilityTargetTeam(),
+		ability:GetAbilityTargetType(),
+		ability:GetAbilityTargetFlags(),
+		FIND_ANY_ORDER,
+		false)
+
+	local i = 1
+	local last = #units
+
+	-- 慢慢加
+	Timers:CreateTimer( 0, function()
+		if i <= last then
+			local unit = units[i]
+			if IsValidEntity(unit) then
+				if unit:IsHero() then
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_A25D_old_buff_for_hero",{})
+				else
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_A25D_old_buff_for_soldier",{})
+				end
+			end
+			i = i + 1
+			return 0.01
+		else
+			return nil
+		end
+	end)
+end

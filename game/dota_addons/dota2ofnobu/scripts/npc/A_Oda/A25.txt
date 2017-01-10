@@ -364,4 +364,474 @@
 		}
 		"AbilityDamage"	"290 450 600"
 	}
+
+// 織田信長 11.2B
+// ----------------------------------------------------------------------------------------------------------------
+	// 織田信長 [天下布武]
+	"A25D_old"
+	{
+		"MaxLevel" 						"1"
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/btnheromitsuhideakechi_iconb"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_A25D_old"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnHeroKilled"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
+						"Function"		"A25D_old"
+					}
+				}
+			}
+			"modifier_A25D_old_buff_for_soldier"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%buff_atk_spd"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%buff_mov_spd" 
+				}
+			}
+			"modifier_A25D_old_buff_for_hero"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+			
+				"EffectName" "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%buff_atk_spd"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%buff_mov_spd" 
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"buff_duration"		"10.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_atk_spd"	"20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_mov_spd"	"15"
+			}
+		}
+	}	
+
+	// 織田信長 [遠雷遙]
+	"A25W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A25W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0.300"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"100 110 120 130"
+		"AbilityCastRange"	"1500"
+		"AbilityDamage"		"200 300 400 500"
+		"precache"
+		{
+			"particle"	"particles/b08t/b08t.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"particle"	"particles/b08w2/b08w2.vpcf"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"particle"	"particles/a17w/a17w.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Ability.Assassinate"
+			}
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/a17w/a17w.vpcf"
+				"MoveSpeed"	"%shock_speed"
+				"StartRadius"	"%shock_width"
+				"StartPosition"	"attach_attack"
+				"EndRadius"	"%shock_width"
+				"FixedDistance"	"%shock_distance"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"0"
+				"ProvidesVision"	"1"
+				"VisionRadius"	"%shock_vision"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
+				"Function"	"A25W"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sniper.AssassinateDamage"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_speed"	"3750"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_width"	"100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_distance"	"2000"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_vision"	"100"
+			}
+		}
+	}
+
+	// 織田信長 [厄災之棘]
+	"A25E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A25E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"25"
+		"AbilityManaCost"	"160 180 200 220"
+		"AbilityCastRange"	"800"
+		"AOERadius"	"%A25E_range"
+		"precache"
+		{
+			"soundfile"	"soundevents/a25e.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
+				"Function"	"A25E"
+				"Target"	"POINT"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A25E_attack"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Lina.DragonSlave"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A25E_attack"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"4"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%A25E_attack"
+				}
+				"IsBuff"	"1"
+			}
+			"modifier_A25E"
+			{
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%C09E_Duration"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01" // 暈眩時間
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A25E_Duration"	"1 1.2 1.4 1.6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A25E_range"	"530"
+			}
+			"03" // 攻擊力上升
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A25E_attack"	"80 100 120 140"
+			}
+			"04" // 技能傷害
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A25E_damage"	"90 140 210 270"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A25E_spike_amount"	"45 50 55 60"
+			}
+		}
+	}
+
+	// 織田信長 [壓切]
+	"A25R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A25R"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+			"particle"	"particles/a25r/a25r.vpcf"
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
+				"Function"	"A25R_Levelup"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A25R_old"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
+						"Function"	"A25R_old_on_attack_start"
+						"Target"	"CASTER"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_attack_speed"
+				}
+			}
+			"modifier_A25R_old_crit"
+			{
+				"IsHidden"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_persent"
+				}
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A25R_old_crit"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A25R_old_crit"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_persent"	"200 250 300 350"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance"	"20"
+			}
+			"03"
+			{
+				"var_type" "FIELD_INTEGER"
+				"buff_attack_speed" "12 24 36 48" //　%
+			}
+		}
+	}
+
+	// 織田信長 [障壁深紅]
+	"A25T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A25T"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"155"
+		"AbilityManaCost"	"200 250 300"
+		"precache"
+		{
+			"particle"	"particles/a17t/a17t_funnel.vpcf"
+			"particle"	"particles/a17t/a17t2_funnel.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A25T"
+				"Target"	"CASTER"
+				"Duration"	"%duration"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
+				"Function"	"A25T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A25T"
+			{
+				"OverrideAnimation"	"ACT_DOTA_VICTORY"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStart"
+						"Target"	"CASTER"
+					}
+				}
+				"OnDestroy"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.BladeFuryStop"
+						"Target"	"CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
+						"Function"	"BladeFuryStop"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bladestorm_damage_tick"	"0.2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bladestorm_radius"	"350"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"8.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Damage"	"290 365 440"
+			}
+		}
+		"AbilityDamage"	"290 450 600"
+	}
 }
