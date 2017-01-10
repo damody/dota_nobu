@@ -563,4 +563,538 @@
 		// Modifier has no support value
 		"AbilityModifierSupportValue"	"0.0"
 	}
+
+// 最上義姬 11.2B
+// ---------------------------------------------------------------------------------------------------
+	// 最上義姬 [腐蝕之箭]
+	"B33W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B33W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate"	"2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"18"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"130 150 170 190"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1000"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+			"particle"	"particles/status_fx/status_effect_poison_viper.vpcf"
+			"particle"	"particles/b33w3/b33w3.vpcf"
+			"particle"	"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+			"particle"  "particles/b33/b33w_old.vpcf"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"	"particles/b33/b33w_old.vpcf"
+				"EffectAttachType"	"start_at_customorigin"
+				"Target"	"CASTER"
+				"ControlPointEntities"
+				{
+					"CASTER"	"attach_mom_l"
+					"CASTER"	"attach_bow_eyes"
+					"CASTER"	"bow_top"
+					"CASTER"	"bow_bot"
+					"CASTER"	"bow_mid"
+				}
+			}
+		}
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/b33w3/b33w3.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"0"
+				"MoveSpeed"	"%projectile_speed"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Viper.viperStrike"
+				"Target"	"CASTER"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Viper.viperStrikeImpact"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_viper_strike_debuff_datadriven"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_viper_strike_slow_datadriven"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_viper_strike_debuff_datadriven"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Duration"	"%duration"
+				"StatusEffectName"	"particles/status_fx/status_effect_poison_viper.vpcf"
+				"StatusEffectPriority"	"15"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"	"TARGET"
+					}
+				}
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+			}
+			"modifier_viper_strike_slow_datadriven"
+			{
+				"IsHidden"	"1"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movement_speed_small"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed_small"
+				}
+				"Duration"	"%duration"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"20 40 60 80"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"1750"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_movement_speed_small"	"-30 -40 -50 -60"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack_speed_small"	"-30 -40 -50 -60"
+			}
+		}
+	}
+	// 最上義姬 [蛛網纏身]
+	"B33E_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B33E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate"	"2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"25"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 120 140 160"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+			"particle"	"particles/b33/b33e_old.vpcf"
+			"particle"	"particles/b33e/b33e.vpcf"
+			"particle"	"particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"	"particles/b33/b33e_old.vpcf"
+				"EffectAttachType"	"start_at_customorigin"
+				"Target"	"CASTER"
+				"ControlPointEntities"
+				{
+					"CASTER"	"attach_mom_l"
+					"CASTER"	"attach_bow_eyes"
+					"CASTER"	"bow_top"
+					"CASTER"	"bow_bot"
+					"CASTER"	"bow_mid"
+				}
+			}
+		}
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/b33e/b33e.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"0"
+				"MoveSpeed"	"%projectile_speed"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Viper.viperStrike"
+				"Target"	"CASTER"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Viper.viperStrikeImpact"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_b33e_debuff_datadriven"
+				"Target"	"TARGET"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%damage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_b33e_debuff_datadriven"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%duration"
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+				"IsPurgable"	"1"
+				"EffectName"	"particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_SOFT_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1 2 3 4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"35 45 55 65"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"1750"
+			}
+		}
+	}
+	// 最上義姬 [毒氣之箭]
+	"B33R_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bristleback_viscous_nasal_goo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityDamage"	"20 40 60 80"
+		"precache"
+		{
+			"particle"	"particles/b33r2/b33r2.vpcf"
+			"particle"	"particles/b33r3/b33r3.vpcf"
+			"particle"	"particles/b33/b33r_old_orb.vpcf"
+			"particle"  "particles/b33/b33r_old_poison.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_B33R_old"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B33.lua"
+						"Function"	"B33R_old_on_attck_landed"
+					}
+				}
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/b33/b33r_old_orb.vpcf"
+				}
+				"AllowIllusionDuplicate"	"1"
+			}
+			// 弓箭命中處會產生隱藏單位並裝上這個修改器
+			"modifier_B33R_old_poision_aura"
+			{
+        		"Aura"        "modifier_B33R_old_debuff"
+        		"Aura_Radius" "%poison_radius"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+			}
+			// 毒霧中的敵方單位會被安裝這個修改器
+			"modifier_B33R_old_debuff"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE" // 可疊 wow
+
+				"StatusEffectName"	"particles/status_fx/status_effect_poison_viper.vpcf"
+				"StatusEffectPriority"	"1"
+
+				"EffectName"	"particles/b33/b33r_old_poison.vpcf"
+				"EffectAttachType" "follow_origin"
+
+				// 首次傷害
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_PURE"
+						"Damage"		"%AbilityDamage"
+					}
+				}
+
+				"ThinkInterval"  	"%poison_damage_delay"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_PURE"
+						"Damage"		"%AbilityDamage"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01" // 毒霧影響範圍
+			{
+				"var_type"	"FIELD_INTEGER"
+				"poison_radius"	"200"
+			}
+			"02" // 毒霧存在時間
+			{
+				"var_type"	"FIELD_FLOAT"
+				"poison_duration"	"2.0"
+			}
+			"03" // 毒霧造成傷害間隔
+			{
+				"var_type"	"FIELD_FLOAT"
+				"poison_damage_delay"	"1.0"
+			}
+		}
+	}
+	// 最上義姬 [蜘蛛纏身]
+	"B33T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"broodmother_insatiable_hunger"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		// Unit Targeting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.2 0.2 0.2 0.2"
+		"AbilityCooldown"	"100"
+		"AbilityManaCost"	"210 260 310"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1000"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"sounds/weapons/hero/broodmother/spiderling_hatch.vsnd"
+			"soundfile"	"sounds/vo/broodmother/broo_win_01.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+			"soundfile"	"soundevents/voscripts/game_sounds_vo_broodmother.vsndevts"
+			"particle"	"particles/b33t7/b33t7.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Broodmother.SpawnSpiderlings"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B33.lua"
+				"Function"	"B33T"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"broodmother_broo_win_01"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_tofly"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"States"
+				{
+					"MODIFIER_STATE_FLYING"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_spawn_spiderlings_datadriven"
+			{
+				"Duration"	"%duration"
+				"EffectName"	"particles/b33t7/b33t7.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"ThinkInterval"	"%damage_delay"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"66 110 125"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage_delay"	"0.5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"1200"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"-50"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed"	"-50"
+			}
+		}
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Modifier has no support value
+		"AbilityModifierSupportValue"	"0.0"
+	}
 }
+
