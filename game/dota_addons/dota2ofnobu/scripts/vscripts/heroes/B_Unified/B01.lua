@@ -15,7 +15,7 @@ function modifier_B01W:GetModifierModelChange()
 	return "models/b01/b01_2.vmdl"
 end
 
-function modifier_B01W:IsHidden() 
+function modifier_B01W:IsHidden() 	
 	return true
 end
 

@@ -42,7 +42,7 @@ heromap = {
   npc_dota_hero_medusa = "A31",
   npc_dota_hero_magnataur = "B08",
   npc_dota_hero_centaur = "A07",
-  npc_dota_hero_naga_siren = "B16"
+  npc_dota_hero_naga_siren = "B16",
 }
 
 function Nobu:OnHeroIngame( keys )

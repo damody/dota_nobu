@@ -1,8 +1,7 @@
 "dota_shops"
 {
-//Home Shop Start
-//--------------------------
 
+//消耗品
 "consumables"
 {
 	"item"      "item_perceive_wine"		//般若湯
@@ -13,6 +12,7 @@
 	"item"      ""
 }
 
+//武器
 "attributes"
 {
 	"item"      "item_katana"			//打刀
@@ -31,7 +31,7 @@
 	"item"      ""			//
 }
 
-
+//基礎物品
 "weapons_armor"
 {
 	"item"      "item_magic_ring"	//法術戒指
@@ -49,6 +49,7 @@
 	"item"      "item_wolverine"			//精鋼爪
 }
 
+//法書
 "misc"
 {
 	"item"		"item_the_club_of_nebula"			//星杵
@@ -68,7 +69,7 @@
 
 }   
 
-
+//高階武器
 "basics"
 {
 	"item"      "item_lightning_katana"			//舞雷刀
@@ -87,7 +88,7 @@
 	"item"      "item_the_dark_yellow_teeth_and_zimbabwe"			//闇牙黃泉津
 }
 
-
+//高階道具
 "support"
 {
 	"item"      "item_dark_boots"			//暗部長靴
@@ -106,7 +107,7 @@
 	"item"      ""			//
 }
 
-
+//高階法書
 "magics"
 {
 
@@ -126,7 +127,7 @@
 	"item"      "item_great_dragon"			//巨龍
 }
 
-
+//高階防具
 "defense"
 {
 	"item"      "item_the_hooate_of_ghost"			//鬼頰當
@@ -143,11 +144,9 @@
 	"item"      "item_ninja_cloth"			//忍者裝束
 	"item"      "item_the_dark_armor"			//黑漆塗五枚胴
 	"item"      "item_reito_lantern"			//靈都宮燈
-	"item"      ""			//
-	"item"      ""			//
 }
 
-
+//高階武器
 "weapons"
 {
 	"item"      "item_izuminokami_kanesada"			//和泉守兼定
@@ -167,7 +166,7 @@
 }
 
 
-
+// 升級類裝備
 "artifacts"
 {
 	"item"      "item_samurai_cloth_2"			//武士服+2
@@ -175,9 +174,13 @@
 	"item"      "item_ronin_jitte_2"			//浪人十手+2
 	"item"      "item_mana_thief_1"		//禦神法輪+1
 	"item"		"item_fubuki_shoulders_1" //吹雪護肩+1
+	"item"      "item_dark_boots_1"			//暗部長靴
+	"item"      "item_mana_boots_1"			//仕手能靴
+	"item"      "item_magic_defence_boots_1"			//禦魔長踏
+	"item"      "item_ryukyu_ronin_clogs_1"			//琉球浪人木屐
 }
 
-
+// 路邊商店
 "sideshop1"
 {
 	"item"      "item_insight_gem"			//洞察寶石
@@ -195,7 +198,7 @@
 	"item"      "item_liquor"				//燒酒
 }
 
-
+// 路邊名刀舖
 "sideshop2"
 {
 	"item"      "item_the_great_sword_of_new_moon"			//三日月宗近．銘刀
@@ -209,7 +212,7 @@
 	"item"      "item_the_great_sword_of_disease"			//池田鬼神丸國重．銘刀
 }
 
-//名刀
+//名刀舖
 "secretshop"
 {
 	"item"      "item_the_great_sword_of_soul"			//菊一文字則．太刀
