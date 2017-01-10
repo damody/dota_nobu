@@ -132,7 +132,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("B06E_old")
 			caster:AddAbility("B06R_old")
 			caster:AddAbility("B06T_old")
-		elseif string.match(caster:GetUnitName(), "broodmother") then -- 服部半藏
+		elseif string.match(caster:GetUnitName(), "undying") then -- 服部半藏
 			caster:AddAbility("A13W_old")
 			caster:AddAbility("A13E_old")
 			caster:AddAbility("A13R_old")
@@ -219,6 +219,13 @@ local function chat_of_test(keys)
 			caster:AddAbility("B33R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("B33T_old")
+		elseif string.match(caster:GetUnitName(), "treant") then -- 織田信長
+			caster:AddAbility("A25W_old")
+			caster:AddAbility("A25E_old")
+			caster:AddAbility("A25R_old")
+			caster:AddAbility("A25D_old"):SetLevel(1)
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A25T_old")
 		end
 	end
 	

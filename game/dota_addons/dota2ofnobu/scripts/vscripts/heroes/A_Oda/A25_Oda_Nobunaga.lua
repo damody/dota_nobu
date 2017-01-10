@@ -27,8 +27,41 @@ function BladeFuryStop( event )
 	caster:StopSound("Hero_Juggernaut.BladeFuryStart")
 end
 --EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-
 function A25E( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local id  = caster:GetPlayerID()
+	local casterLocation = keys.target_points[1]
+	local range = ability:GetLevelSpecialValueFor( "A25E_range", ability:GetLevel() - 1 )
+	local randonint = 5
+	local dura = ability:GetLevelSpecialValueFor( "A25E_Duration", ability:GetLevel() - 1 )
+	local damage = ability:GetLevelSpecialValueFor( "A25E_damage", ability:GetLevel() - 1 )
+	local spike_amount = ability:GetLevelSpecialValueFor( "A25E_spike_amount", ability:GetLevel() - 1 )
+	for i=1,spike_amount do
+		local pos = casterLocation + RandomVector(RandomInt(randonint , range-randonint))
+		local spike = ParticleManager:CreateParticle("particles/a25e/a25e.vpcf", PATTACH_ABSORIGIN, keys.caster)
+		ParticleManager:SetParticleControl(spike, 0, pos)
+		Timers:CreateTimer(5, function() 
+			ParticleManager:DestroyParticle(spike,true)
+		end)
+	end
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), casterLocation, nil, range+50, 
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	for _,it in pairs(enemies) do
+		if (not(it:IsBuilding())) then
+			AMHC:Damage(caster,it, damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
+		end
+	end
+	local dummy = CreateUnitByName( "npc_dummy", casterLocation, false, caster, caster, caster:GetTeamNumber() )
+	dummy:EmitSound( "A25E.spiked_carapace" )
+	Timers:CreateTimer( 0.5, function()
+			dummy:ForceKill( true )
+			return nil
+		end)
+end
+
+function A25E_old( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local id  = caster:GetPlayerID()
@@ -272,3 +305,62 @@ function A25T2( keys )
 	
 end
 
+-- 11.2B
+--------------------------------------------------------
+
+function A25R_old_on_attack_start( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
+	local rnd =  RandomInt(1, 100)
+
+	if not target:IsBuilding() and rnd <= crit_chance then
+		-- 爆傷修改器
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A25R_old_crit",{})
+
+		-- 動畫
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,caster:GetAttackSpeed())
+
+		-- 音效
+		StartSoundEvent("Hero_SkeletonKing.CriticalStrike", target)
+	end
+end
+
+function A25D_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+
+	-- Finds the units in a given radius with the given flags. ( iTeamNumber, vPosition, hCacheUnit, flRadius, iTeamFilter, iTypeFilter, iFlagFilter, iOrder, bCanGrowCache )
+	local units = FindUnitsInRadius(
+		caster:GetTeamNumber(),
+		Vector(0,0,0),
+		nil,
+		99999,
+		ability:GetAbilityTargetTeam(),
+		ability:GetAbilityTargetType(),
+		ability:GetAbilityTargetFlags(),
+		FIND_ANY_ORDER,
+		false)
+
+	local i = 1
+	local last = #units
+
+	-- 慢慢加
+	Timers:CreateTimer( 0, function()
+		if i <= last then
+			local unit = units[i]
+			if IsValidEntity(unit) then
+				if unit:IsHero() then
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_A25D_old_buff_for_hero",{})
+				else
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_A25D_old_buff_for_soldier",{})
+				end
+			end
+			i = i + 1
+			return 0.01
+		else
+			return nil
+		end
+	end)
+end

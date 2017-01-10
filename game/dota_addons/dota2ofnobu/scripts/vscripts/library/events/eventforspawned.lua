@@ -20,7 +20,7 @@ heromap = {
   
   npc_dota_hero_troll_warlord = "A06",
   npc_dota_hero_faceless_void = "B02",
-  npc_dota_hero_broodmother = "A13",
+  npc_dota_hero_undying = "A13",
 
   npc_dota_hero_invoker = "A28",
   npc_dota_hero_omniknight = "A27",

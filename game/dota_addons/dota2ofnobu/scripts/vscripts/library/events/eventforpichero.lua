@@ -15,7 +15,7 @@ heromap = {
   
   npc_dota_hero_troll_warlord = "A06",
   npc_dota_hero_faceless_void = "B02",
-  npc_dota_hero_broodmother = "A13",
+  npc_dota_hero_undying = "A13",
 
   npc_dota_hero_invoker = "A28",
   npc_dota_hero_omniknight = "A27",
@@ -129,6 +129,8 @@ function Nobu:PickHero( keys )
         GameRules: SendCustomMessage("明智光秀玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "drow_ranger") then -- 最上義姬
         GameRules: SendCustomMessage("最上義姬玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "treant") then -- 織田信長
+        GameRules: SendCustomMessage("織田信長玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       end
     end
   end)
