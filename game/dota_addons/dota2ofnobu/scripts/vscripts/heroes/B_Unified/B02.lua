@@ -166,6 +166,20 @@ function B02R(keys)
 	ability:ApplyDataDrivenModifier(dummy,target,"modifier_B02R",nil)--綑綁 
 end
 
+function B02R_hit(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	if not target:IsMagicImmune() then
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B02R_3",nil)
+	end
+	local dmg = ability:GetLevelSpecialValueFor("dmg",level)
+	print("dmg "..dmg)
+	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+end
+
 function B02R_MOVE(keys)
 	--【Basic】
 	local dummy = keys.caster
