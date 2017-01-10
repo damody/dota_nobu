@@ -169,6 +169,7 @@ function Precache( context )
     "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts",
     "soundevents/a07t.vsndevts",
+    "soundevents/a28r.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

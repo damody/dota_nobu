@@ -351,7 +351,7 @@ function Test_main(self)
   -- ListenToGameEvent('npc_spawned', Nobu_Test.OnHeroIngame, self)  ,
   -- ListenToGameEvent('dota_player_used_ability', Nobu_Test.CountUsedAbility, self)  ,
   -- ListenToGameEvent("entity_killed", Nobu_Test.OnUnitKill, self ),
-  ListenToGameEvent("player_chat",Nobu_Test.Chat,self), --玩家對話事件
+  --ListenToGameEvent("player_chat",Nobu_Test.Chat,self), --玩家對話事件
   -- --ListenToGameEvent( "item_purchased", test, self ) --false
   -- --ListenToGameEvent( "dota_item_used", test, self ) --false
   -- --ListenToGameEvent("dota_inventory_item_changed", Nobu_Test.Item_Changed, self ), --false
