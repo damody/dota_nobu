@@ -21,6 +21,15 @@ function A28W(keys)
 	end
 end
 
+function A28W_old(keys)
+	local ability = keys.ability
+	local caster = keys.caster
+	local casterLocation = keys.target
+	local duration = ability:GetLevelSpecialValueFor("duration", ( ability:GetLevel() - 1 ))
+
+	keys.target:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
+		keys.target:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
+end
 
 --[[Author: YOLOSPAGHETTI
 	Date: March 24, 2016
@@ -504,6 +513,7 @@ function A28R_old_start( keys )
 			enemy.A28R_old = nil
 		end
 	end
+	caster:EmitSound("A28R.sound")
 end
 
 function A28T_old( keys )
@@ -527,9 +537,12 @@ function A28T_old( keys )
 	Kagutsuchi:SetControllableByPlayer(player, true)
 	Kagutsuchi:SetBaseMaxHealth(base_hp)
 	Kagutsuchi:SetHealth(base_hp)
-	Kagutsuchi:SetBaseDamageMax(350+level*300)
-	Kagutsuchi:SetBaseDamageMin(300+level*310)
+	Kagutsuchi:SetBaseDamageMax(350+level*200)
+	Kagutsuchi:SetBaseDamageMin(300+level*210)
 	Kagutsuchi:AddNewModifier(Kagutsuchi,nil,"modifier_kill",{duration=life_time})
+	ability:ApplyDataDrivenModifier(caster,Kagutsuchi,"modifier_A28T_old",nil)
+	local hModifier = Kagutsuchi:FindModifierByNameAndCaster("modifier_A28T_old", caster)
+	hModifier:SetStackCount(level+1)
 	
 	-- 配合特效稍微條快動畫速度
 	Kagutsuchi:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_3, 1.3)

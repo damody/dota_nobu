@@ -366,6 +366,7 @@
 		"precache"
 		{
 			"particle"	"particles/a28r/a28r.vpcf"
+			"soundfile"	"soundevents/a28r.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -675,7 +676,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -743,8 +744,8 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-				"Function"		"A28W"
-				"Target"	"POINT"
+				"Function"		"A28W_old"
+				"Target"	"TARGET"
 			}
 		}
 	}
@@ -882,6 +883,7 @@
 		"precache"
 		{
 			"particle"	"particles/a28/a28r_old.vpcf"
+			"soundfile"	"soundevents/a28r.vsndevts"
 		}
 		"Modifiers"
 		{
@@ -969,7 +971,18 @@
 				"Function"	"A28T_old"
 			}
 		}
-		
+		"Modifiers"
+		{
+			"modifier_A28T_old"
+			{
+				"Passive"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+				}
+			}
+		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -1145,6 +1158,22 @@
 						"Function"		"A28TE_old_aoe_damage"
 					}
 				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_A28T"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%radius"
+						"CleaveEffect"	"particles/a07r/a07r.vpcf"
+					}
+				}
 			}
 
 			"modifier_A28TE_old_aura_debuff"
@@ -1170,6 +1199,16 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"aoe_radius"		"600"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"CleaveRadius"	"400"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"CleavePercent"	"50"
 			}
 		}
 	}

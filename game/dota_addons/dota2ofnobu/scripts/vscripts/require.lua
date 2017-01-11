@@ -39,7 +39,7 @@ loadModule ( 'library/common/word' )  --漂浮字系統
 loadModule ( 'computer_system/chubing' ) --出兵
 loadModule ( 'server' ) --6/24增加
 ------test-------
-loadModule ( 'test' ) --6/24增加
+--loadModule ( 'test' ) --6/24增加
 loadModule ( 'physics')
 
 

@@ -14,6 +14,28 @@ function AON_Cleave_B32x(keys)
 
 end
 
+function AON_Cleave_A28T(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	local dmg = keys.dmg
+	local per_atk = 0
+	local targetArmor = target:GetPhysicalArmorValue()
+	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
+	--local dmg = dmg / (1 - damageReduction)
+
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  600 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+
+	for _, it in pairs(group) do
+		AMHC:Damage( caster,it,keys.dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+	end
+
+end
+
 function AON_Cleave_B32(keys)
 	--【Basic】
 	local caster = keys.caster
@@ -48,7 +70,7 @@ function AON_Cleave_A07(keys)
 	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
 
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		nil,  ability:GetLevelSpecialValueFor("radius",level) , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
  
 	for _, it in pairs(group) do
@@ -74,8 +96,9 @@ function AON_Cleave_A07_old(keys)
 	local targetArmor = target:GetPhysicalArmorValue()
 	local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
 	--local dmg = dmg / (1 - damageReduction)
+
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  600 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		nil, 400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 	for _, it in pairs(group) do
@@ -83,34 +106,10 @@ function AON_Cleave_A07_old(keys)
 			ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
 		end
 		if it ~= target then
-			AMHC:Damage( caster,it,keys.dmg*0.4,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			AMHC:Damage( caster,it,keys.dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		else
+			AMHC:Damage( caster,it,keys.dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
-	end
-
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  500 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-
-	for _, it in pairs(group) do
-		AMHC:Damage( caster,it,keys.dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-	end
-
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-
-	for _, it in pairs(group) do
-		if it ~= target then
-			AMHC:Damage( caster,it,keys.dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-		end
-	end
-
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  300 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-
-	for _, it in pairs(group) do
-		AMHC:Damage( caster,it,keys.dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 	end
 end
 

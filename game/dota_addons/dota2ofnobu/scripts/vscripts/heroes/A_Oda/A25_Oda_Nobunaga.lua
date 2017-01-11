@@ -27,8 +27,41 @@ function BladeFuryStop( event )
 	caster:StopSound("Hero_Juggernaut.BladeFuryStart")
 end
 --EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-
 function A25E( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local id  = caster:GetPlayerID()
+	local casterLocation = keys.target_points[1]
+	local range = ability:GetLevelSpecialValueFor( "A25E_range", ability:GetLevel() - 1 )
+	local randonint = 5
+	local dura = ability:GetLevelSpecialValueFor( "A25E_Duration", ability:GetLevel() - 1 )
+	local damage = ability:GetLevelSpecialValueFor( "A25E_damage", ability:GetLevel() - 1 )
+	local spike_amount = ability:GetLevelSpecialValueFor( "A25E_spike_amount", ability:GetLevel() - 1 )
+	for i=1,spike_amount do
+		local pos = casterLocation + RandomVector(RandomInt(randonint , range-randonint))
+		local spike = ParticleManager:CreateParticle("particles/a25e/a25e.vpcf", PATTACH_ABSORIGIN, keys.caster)
+		ParticleManager:SetParticleControl(spike, 0, pos)
+		Timers:CreateTimer(5, function() 
+			ParticleManager:DestroyParticle(spike,true)
+		end)
+	end
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), casterLocation, nil, range+50, 
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+	for _,it in pairs(enemies) do
+		if (not(it:IsBuilding())) then
+			AMHC:Damage(caster,it, damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
+		end
+	end
+	local dummy = CreateUnitByName( "npc_dummy", casterLocation, false, caster, caster, caster:GetTeamNumber() )
+	dummy:EmitSound( "A25E.spiked_carapace" )
+	Timers:CreateTimer( 0.5, function()
+			dummy:ForceKill( true )
+			return nil
+		end)
+end
+
+function A25E_old( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local id  = caster:GetPlayerID()
