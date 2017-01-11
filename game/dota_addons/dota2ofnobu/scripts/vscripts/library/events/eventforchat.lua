@@ -234,6 +234,18 @@ local function chat_of_test(keys)
 			caster:AddAbility("A25D_old"):SetLevel(1)
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A25T_old")
+		elseif string.match(caster:GetUnitName(), "sniper") then -- 佐佐成政
+			caster:AddAbility("A17W_old")
+			caster:AddAbility("A17E_old")
+			caster:AddAbility("A17R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A17T_old")
+		elseif string.match(caster:GetUnitName(), "antimage") then -- 香宗我部親泰
+			caster:AddAbility("C10W_old")
+			caster:AddAbility("C10E_old")
+			caster:AddAbility("C10R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C10T_old")
 		end
 	end
 	

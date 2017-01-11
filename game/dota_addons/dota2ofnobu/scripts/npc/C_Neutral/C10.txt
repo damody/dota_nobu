@@ -378,5 +378,295 @@
 		}
 	}
 
+// 香宗我部親泰 11.2B
+// ----------------------------------------------------------------------------------------------------------------------------
+	"C10_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		"precache"
+		{
+			// C10W_old
+			"particle"  "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+
+			// C10T_old
+			"particle"  "particles/c10w/c10w.vpcf"
+		}
+	}
+	// 香宗我部親泰 [黑龍波]
+	"C10W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_fury2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"150 250 350 450"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"800"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
+			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
+			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
+			"soundfile"	"sounds/weapons/hero/zuus/arc_lightning.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_arc_lightning_datadriven"
+				"Target"	"TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Zuus.ArcLightning.Cast"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C10.lua"
+				"Function"	"C10W_old"
+				"particle"	"particles/c10/c10w_old.vpcf" 
+			}
+			"AttachEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/c10/c10w_old.vpcf" 
+				"EffectAttachType"	"start_at_customorigin"
+				"ControlPointEntities"
+				{
+					"CASTER"	"start_at_origin"
+					"CASTER"	"attach_attack1"
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_arc_lightning_datadriven"
+			{
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C10.lua"
+						"Function"	"C10W_old_Jump"
+						"particle"	"particles/c10/c10w_old.vpcf"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"800"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_count"	"20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"jump_delay"	"0.2"
+			}
+		}
+	}
+	// 香宗我部親泰 [能量奪取]
+	"C10E_old"
+	{
+		"BaseClass"             "ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_77"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityCastPoint"		"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"		"12"
+		"AbilityManaCost"		"100 120 140 160"
+		"AbilityCastRange"		"500"
+		"AbilityDamage"			"100 200 300 400"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"particle"	"particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"		"DAMAGE_TYPE_PURE"
+				"Damage"	"%Heal"
+			}
+			"Heal"
+			{
+				"Target"	"CASTER"
+				"HealAmount"	"%Heal"
+			}
+			"Stun"
+			{
+				"Target"	"TARGET"
+				"Duration"	"%stun_duration"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Antimage.ManaVoid"
+			}
+			"FireEffect"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+				"ControlPoints"
+				{
+					"01"	"10 0 0"
+				}
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Antimage.ManaVoidCast"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Heal"	"100 200 300 400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"1.0"
+			}
+		}
+	}
+	// 香宗我部親泰 [無想轉生]
+	"C10R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/dianwei_yexingzhanhun"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"Modifiers"
+		{
+			"modifier_C10R_old"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"	//閃避
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"		"8 16 24 32"
+			}
+		}
+	}
+	// 香宗我部親泰 [昇龍亂舞]
+	"C10T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_dance2"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityDamage"	"160 235 310"
+
+		"Modifiers"
+		{
+			"modifier_C10T_old"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C10.lua"
+						"Function"		"C10T_old_on_attack"
+					}
+				}
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%buff_phy_atk"
+				}
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"		"DAMAGE_TYPE_PURE"
+				"Damage"	"%AbilityDamage"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_phy_atk"	"25 45 65"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"chance"		"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"245"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"800"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"1380"
+			}
+		}
+	}
 
 }
