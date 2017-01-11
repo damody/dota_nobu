@@ -68,34 +68,12 @@ function shrapnel_fire( keys )
 
 end
 
+function A17T_lock( keys )
+	keys.ability:SetActivated(false)
+end
 
-function A17T( event )
-	-- Variables
-	local caster = event.caster
-	local target = event.target
-	local ability = event.ability
-	local point = caster:GetAbsOrigin() 
-	--local radius =  ability:GetLevelSpecialValueFor( "radius" , ability:GetLevel() - 1  )
-	--local projectile_count =  ability:GetLevelSpecialValueFor( "projectile_count" , ability:GetLevel() - 1  )
-	local projectile_speed =  ability:GetLevelSpecialValueFor( "projectile_speed" , ability:GetLevel() - 1  )
-	local particleName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
-
-	local projTable = {
-		EffectName = particleName,
-		Ability = ability,
-		Target = target,
-		Source = caster,
-		bDodgeable = false,
-		bProvidesVision = false,
-		vSpawnOrigin = point,
-		iMoveSpeed = projectile_speed,
-		iVisionRadius = 0,
-		iVisionTeamNumber = caster:GetTeamNumber(),
-		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
-	}
-	ProjectileManager:CreateTrackingProjectile( projTable )
-
-	--print(projTable)
+function A17T_unlock( keys )
+	keys.ability:SetActivated(true)
 end
 
 function A17T_Succes_Attack( keys )
@@ -108,7 +86,7 @@ function A17T_Succes_Attack( keys )
 	local dmg = keys.dmg
     local group = {}
     local radius = ability:GetLevelSpecialValueFor("attacked_range",level)
-   	local group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+   	local group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
    	local eff1 = ParticleManager:CreateParticle("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_flash_c.vpcf", PATTACH_ABSORIGIN, keys.caster)
 	ParticleManager:SetParticleControl(eff1, 3, point2)
 	target:EmitSound("A17T.sound1")
@@ -136,4 +114,58 @@ function A17T_Succes_Attack2( keys )
 	for i,v in ipairs(group) do
 			AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 	end	
+end
+
+-- 11.2B
+----------------------------------------------------------------------------------------------------------------------
+
+function A17E_old_on_attack_landed( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local chance = ability:GetLevelSpecialValueFor("chance",ability:GetLevel()-1)
+	local rnd = RandomInt(1,100)
+
+	if rnd <= chance then
+		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
+	end
+end
+
+function A17E_old_on_buff_created( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)
+
+	local ifx = ParticleManager:CreateParticle("particles/a17/a17e_old_buff.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	ParticleManager:SetParticleControl(ifx,14,Vector(1.2,1.2,1.0)) -- scale
+	ParticleManager:SetParticleControl(ifx,15,Vector(255,50,50)) -- color
+	ability.pBuff = ifx
+end
+
+function A17E_old_on_buff_ended( keys )
+	local ability = keys.ability
+	ParticleManager:DestroyParticle(ability.pBuff,false)
+end
+
+function A17R_old_on_attack_landed( keys )
+	local dmg = keys.dmg
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability	
+	local level = ability:GetLevel()-1
+	local chance = ability:GetLevelSpecialValueFor("add_chance",level)
+	local rnd = RandomInt(1,100)
+
+	if rnd <= chance then
+		local add_rate = 0
+		if target:IsHero() then 
+			add_rate = ability:GetLevelSpecialValueFor("add_for_hero",level)
+		elseif target:IsCreep() then
+			add_rate = ability:GetLevelSpecialValueFor("add_for_creep",level)
+		elseif target:IsBuilding() then
+			add_rate = ability:GetLevelSpecialValueFor("add_for_building",level)
+		end
+		ApplyDamage({victim = target, attacker = caster, damage = dmg*add_rate, damage_type = ability:GetAbilityDamageType()})
+	end
 end

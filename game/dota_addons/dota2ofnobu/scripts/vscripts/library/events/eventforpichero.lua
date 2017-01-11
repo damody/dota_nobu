@@ -131,6 +131,8 @@ function Nobu:PickHero( keys )
         GameRules: SendCustomMessage("最上義姬玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "treant") then -- 織田信長
         GameRules: SendCustomMessage("織田信長玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "sniper") then -- 佐佐成政
+        GameRules: SendCustomMessage("佐佐成政玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)  
       end
     end
   end)

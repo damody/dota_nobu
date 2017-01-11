@@ -332,6 +332,11 @@
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_A17T"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A17T_locker"
+				"Target" 		"CASTER"
+			}
 		}
 		"OnToggleOff"
 		{
@@ -343,16 +348,33 @@
 		}
 		"Modifiers"
 		{
-			"modifier_A17T"
+			// 暫時鎖住此技能
+			"modifier_A17T_locker"
 			{
-				"States"	{}
-				"OnAttack"
+				"Duration" "3"
+				"OnCreated"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
-						"Function"	"A17T"
+						"Function"		"A17T_lock"
 					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"		"A17T_unlock"
+					}
+				}
+			}
+			"modifier_A17T"
+			{
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
 				}
 				"Properties"
 				{
@@ -414,4 +436,394 @@
 			}
 		}
 	}
+
+// 11.2B
+// -----------------------------------------------------------------------------------------------------------
+	// 預載
+	"A17_precache"
+	{
+		"BaseClass"             	"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		"precache"
+		{			
+			// A17W_old
+			"particle"  "particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+			"particle"  "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+
+			// A17E_old
+			"particle"  "particles/a17/a17e_old_buff.vpcf"
+
+			// A17R_old
+			"particle"  "particles/a17/a17r_old_buff.vpcf"
+
+			// A17T_old
+			"particle"  "particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
+			"particle"  "particles/a17/a17t_old_buff_portrait.vpcf"
+		}
+	}
+// -----------------------------------------------------------------------------------------------------------
+	// 佐佐成政 [硫磺砲]
+	"A17W_old"
+	{
+		"BaseClass"             	"ability_datadriven"
+		"AbilityTextureName"		"custom/icon_128x128_40"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"				"DOTA_ABILITY_TYPE_BASIC"
+		
+		//"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"			"0.3"
+		"AbilityCooldown"			"15"
+		"AbilityManaCost"			"120 140 160 180"
+		"AbilityDamage"				"60 70 80 90"
+		"AbilityCastRange"			"1000"
+
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision" "0"
+				"MoveSpeed"	"%projectile_speed"
+			}	
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A17W_old_debuff"
+				"Target" 		"TARGET"
+				"Duration"	"%debuff_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A17W_old_debuff"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
+				"Duration"	"%debuff_duration"
+				"ThinkInterval"  "%debuff_damage_delay"
+
+				"EffectName" "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+				"EffectAttachType" "follow_origin"
+
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%AbilityDamage"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%debuff_physical_armor"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"debuff_duration"	"6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"debuff_physical_armor"	"-3 -6 -9 -12"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"debuff_damage_delay"	"1"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed" "1500"
+			}
+		}
+	}
+
+	// 佐佐成政 [連擊砲]
+	"A17E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"60 80 100 120"
+		"AbilityDamage"		"80 100 120 140"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17E_old_buff"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A17E_old_buff"
+			{
+				"Duration"	"%duration"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"		"A17E_old_on_attack_landed"
+					}
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"		"A17E_old_on_buff_created"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"		"A17E_old_on_buff_ended"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%buff_atk_spd"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_atk_spd"	"10 20 30 40"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"10.0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"50"
+			}
+		}
+	}
+
+	// 佐佐成政 [雨鐵砲]
+	"A17R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/cps_d01_3 (Copy)"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+		"Modifiers"
+		{
+			"modifier_A17R_old"
+			{
+				"Passive"			"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"		"A17R_old_on_attack_landed"
+						"dmg"			"%attack_damage"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/a17/a17r_old_buff.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+						}
+					}
+				}		
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_chance"		"45"	// %
+			}
+			"02" // 額外傷害 = attack_damage * add_for_(type)
+			{
+				"var_type"			"FIELD_FLOAT"
+				"add_for_hero"		"0.05 0.10 0.15 0.20"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"add_for_creep"		"0.25 0.35 0.45 0.55"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"add_for_building"	"0.20 0.30 0.40 0.50"
+			}
+		}
+	}
+
+	// 佐佐成政 [大筒]
+	"A17T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"gyrocopter_skyhigh_flak_cannon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"	"5"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"110 160 210"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+			"particle"	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_explosion_flash_c.vpcf"
+			"soundfile"	"sounds/ambient/newyear/rocket_explode01.vsnd"
+			"soundfile"	"soundevents/A17.vsndevts"
+		}
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17T_old_buff"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17T_locker"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A17T_old_buff"
+			}
+		}
+		"Modifiers"
+		{
+			// 暫時鎖住此技能
+			"modifier_A17T_locker"
+			{
+				"Duration" "3"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"		"A17T_lock"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"		"A17T_unlock"
+					}
+				}
+			}
+			"modifier_A17T_old_buff"
+			{
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
+				}
+				"EffectName" "particles/a17/a17t_old_buff_portrait.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"%night_sight"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"			"%attack_range_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"		"%attack_bonus"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_atk_spd"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
+						"Function"	"A17T_Succes_Attack"
+						"dmg"	"%attack_damage"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"night_sight"	"500"
+			}
+			"03" // 射程
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_range_bonus"	"300 600 900"
+			}
+			"04" // aoe範圍
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attacked_range"	"350 400 450"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"100 145 190"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"base_atk_spd"	"2.5"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_bonus"	"-100"
+			}
+		}
+	}
+
 }
