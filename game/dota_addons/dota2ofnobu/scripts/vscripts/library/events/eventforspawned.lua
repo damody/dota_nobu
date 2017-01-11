@@ -147,6 +147,7 @@ function Nobu:OnHeroIngame( keys )
       if B16W ~= nil then
         B16W:SetActivated(false)
       end
+      GameRules: SendCustomMessage("<font color=\"#5cb85c\">殺爆全場就是現在</font>",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 1000)
     end
 	Timers:CreateTimer ( 1, function ()
 		if not hero:IsIllusion() then

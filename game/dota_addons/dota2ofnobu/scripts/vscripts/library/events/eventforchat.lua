@@ -79,7 +79,8 @@ local function chat_of_test(keys)
 			end)
 		]]
 	end
-	
+	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
+	DebugScreenTextPretty(500, 500, 10, "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ", 255, 255, 0, 0, 5, "calibri", 30, true)
 	--舊版模式
 	if s == "-old"  and caster:GetLevel() == 1 and caster.isold == nil then
 		caster.isold = true
