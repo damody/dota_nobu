@@ -1,0 +1,75 @@
+#btn{
+        color: #066EFE;
+        border: 2px solid #ECC700;
+}
+ 
+#btn:hover{
+        color: #ECC700;
+        border: 2px solid #066EFE;
+}
+ 
+@keyframes 'btnClickAnim'
+{
+        0%
+        {
+                transform: translateZ(-25px);
+        }
+        100%
+        {
+ 
+        }
+}
+ 
+.btnClick{
+        animation-name:btnClickAnim;
+        animation-duration:0.5s;
+}
+ 
+#label{
+        margin-top: 400px;
+		margin-left: 350px;
+		font-size: 50px;
+		color: #F63322;
+}
+#image{
+        margin-top: 375px;
+		margin-left: 225px;
+        width: 100px;
+        height: 100px;
+}
+#name{
+        margin-top: 500px;
+		margin-left: 225px;
+        width: 200px;
+        height: 200px;
+}
+ 
+#entry{
+        margin-top: 290px;
+		margin-left: 225px;
+}
+ 
+#drop{
+        margin-top: 320px;
+}
+ 
+#toggleBtn_1{
+        margin-top: 440px;
+}
+#toggleBtn_2{
+        margin-top: 470px;
+}
+ 
+#RadioBtn{
+        margin-top: 500px;
+		
+}
+
+#content{
+         flow-children:down;
+         horizontal-align:center;
+         vertical-align:center;
+         background-color: #00454D;
+         animation-name:contentAnimation;
+         animation-duration:0.3s;
+}

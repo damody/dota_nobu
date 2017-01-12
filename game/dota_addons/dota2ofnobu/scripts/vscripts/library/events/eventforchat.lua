@@ -79,7 +79,7 @@ local function chat_of_test(keys)
 			end)
 		]]
 	end
-	CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
+	--CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	if s == "-old"  and caster:GetLevel() == 1 and caster.isold == nil then

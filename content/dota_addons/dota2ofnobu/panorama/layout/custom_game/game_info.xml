@@ -1,0 +1,28 @@
+<root>
+        <styles>
+                <!-- 导入官方css -->
+                <include src="s2r://panorama/styles/dotastyles.vcss_c"/>
+                <!-- file://{resources}/就是指你的地图目录下的panorama -->
+                <include src="file://{resources}/styles/game_info.vcss_c"/>
+        </styles>
+ 
+        <!-- 使用脚本 -->
+        <script>
+                function onBtnClick()
+                {
+                        $("#btn").SetHasClass("btnClick",false)
+                        $("#btn").SetHasClass("btnClick",true)
+                        $.Msg("my button");
+                }
+        </script>
+ 
+        <Panel>
+ 
+                <Panel class="row player" >
+					<DOTAAvatarImage id="image" steamid="local" />
+					<DOTAUserName id="name" steamid="local" />
+				</Panel>
+                <Label id="label" text="殺爆全場就是爽！"/>
+  
+        </Panel>
+</root>
