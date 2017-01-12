@@ -1,61 +1,3 @@
-function new_C15W( keys )
-	local caster = keys.caster
-	--local target = keys.target
-	local ability = keys.ability
-	local point = caster:GetAbsOrigin()
-	local point2 = ability:GetCursorPosition()
-	local level = ability:GetLevel() - 1
-	local particle = ParticleManager:CreateParticle("particles/c15w3/c15w3.vpcf",PATTACH_POINT,caster)
-	ParticleManager:SetParticleControl(particle,0, point)
-	ParticleManager:SetParticleControl(particle,1, point+Vector(0,0,299))
-	--varible
-	local duration = ability:GetLevelSpecialValueFor("duration",level)
-	local radius = ability:GetLevelSpecialValueFor("radius",level)
-	--tem
-	local point_tem = point2
-	local deg = 0
-	local distance = radius
-
-	Timers:CreateTimer(0,function()
-		-- local dummy = CreateUnitByName("Dummy_Ver1",point2 ,false,nil,nil,caster:GetTeam())	
-		-- dummy:FindAbilityByName("majia"):SetLevel(1)
-		--StartSoundEventFromPosition("Ability.StarfallImpact",point_tem)
-		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf",PATTACH_POINT,caster)
-		ParticleManager:SetParticleControl(particle,0, point_tem)
-		ParticleManager:SetParticleControl(particle,1, point_tem)	
-		ParticleManager:SetParticleControl(particle,3, point_tem)	
-
-		for i=1,10 do
-			deg = i * 36
-			local rad = nobu_degtorad(deg)
-			point_tem = Vector(point2.x+distance*math.cos(rad) ,  point2.y+distance*math.sin(rad) , point.z)
-			--point_tem = Vector(point2.x + distance * 	,	point2.y		,	point2.z	)
-
-
-			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf",PATTACH_POINT,caster)
-			ParticleManager:SetParticleControl(particle,0, point_tem)
-			ParticleManager:SetParticleControl(particle,1, point_tem)	
-			ParticleManager:SetParticleControl(particle,3, point_tem)	
-		end		
-
-		distance = distance / 2
-		for i=1,10 do
-			deg = i * 36
-			local rad = nobu_degtorad(deg)
-			point_tem = Vector(point2.x+distance*math.cos(rad) ,  point2.y+distance*math.sin(rad) , point2.z)
-			--point_tem = Vector(point2.x + distance * 	,	point2.y		,	point2.z	)
-
-
-			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf",PATTACH_POINT,caster)
-			ParticleManager:SetParticleControl(particle,0, point_tem)
-			ParticleManager:SetParticleControl(particle,1, point_tem)	
-			ParticleManager:SetParticleControl(particle,3, point_tem)	
-		end
-		
-	end)	
-
-end
-
 function new_C15E( keys )
 	--【Basic】
 	local caster = keys.caster
@@ -263,3 +205,58 @@ end
 -- 		caster:SetAbsOrigin(GetGroundPosition(caster:GetAbsOrigin(), caster) + Vector(0,0,ability.leap_z))
 -- 	end
 -- end
+
+-- 11.2B
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function C15W_old( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+
+	local projectile_max = 3
+	local projectile_delay = 0.1
+
+	for i=0,projectile_max-1 do
+		Timers:CreateTimer(projectile_delay*i,function()
+			-- 產生投射物
+			local info = {
+				Target = target,
+				Source = caster,
+				Ability = ability,
+				EffectName = "particles/units/heroes/hero_mirana/mirana_base_attack.vpcf",
+				bDodgeable = false,
+				bProvidesVision = true,
+				iMoveSpeed = 1500,
+			    iVisionRadius = 0,
+			    iVisionTeamNumber = caster:GetTeamNumber(), -- Vision still belongs to the one that casted the ability
+				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+			}
+			ProjectileManager:CreateTrackingProjectile( info )
+		end)	
+	end
+end
+
+function C15E_old_orb_fire( keys )
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local mana_per_attack = ability:GetLevelSpecialValueFor("mana_per_attack", ability:GetLevel()-1)
+
+	-- 判斷魔力是否足夠，不夠就關掉技能
+	if caster:GetMana() < mana_per_attack then
+		caster:CastAbilityToggle(ability,-1)		
+	else
+		caster:SpendMana(mana_per_attack,ability)
+	end
+end
+
+function C15E_old_orb_apply_damage( keys )
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local dmg = ability:GetLevelSpecialValueFor("damage_bonus", ability:GetLevel()-1)
+	AMHC:Damage( caster,target,dmg,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+end

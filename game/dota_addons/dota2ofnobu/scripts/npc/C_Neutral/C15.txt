@@ -13,118 +13,96 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"mirana_starfall"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"	"1"
+
+		"AbilityCastAnimation" "ACT_DOTA_ATTACK"
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"75 150 225 300"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0"
+		"AbilityCastPoint"	"0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"8"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120"
-		"AbilityCastRange"	"700.00"
+		"AbilityCastRange"	"700"
+
 		"AOERadius"	"%radius"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"particle"	"particles/c15w3/c15w3.vpcf"
-			"particle"	"particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"particle"	"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"particle"	"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+			"particle"	"particles/econ/items/drow/drow_bow_monarch/drow_frost_arrow_monarch.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
 		}
 		"OnSpellStart"
 		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"POINT"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Action"    
+				{
+					"TrackingProjectile"
+					{
+						"Target"           	"TARGET"
+						"EffectName"		"particles/econ/items/drow/drow_bow_monarch/drow_frost_arrow_monarch.vpcf"
+						"Dodgeable"			"0"
+						"ProvidesVision"	"0"
+						"VisionRadius"		"0"
+						"MoveSpeed"        	"1500"
+						"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					}
+				}
+			}
 			"FireSound"
 			{
 				"EffectName"	"Ability.Starfall"
 				"Target"	"CASTER"
 			}
-			"FireEffect"
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Stun"
 			{
-				"EffectName"	"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"	"CASTER"
+				"Target"	"TARGET"
+				"Duration"	"%stun_duration"
 			}
-			"RunScript"
+			"Damage"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
-				"Function"	"new_C15W"
+				"Target"	"TARGET"
+				"Damage"	"%AbilityDamage"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
 			}
-			"DelayedAction"
+			"FireSound"
 			{
-				"Action"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"	"POINT"
-							"Radius"	"%radius"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"Action"
-						{
-							"Stun"
-							{
-								"Target"	"TARGET"
-								"Duration"	"%stun_duration"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Damage"	"%dmg"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-							}
-						}
-					}
-					"FireSound"
-					{
-						"Target"	"POINT"
-						"EffectName"	"Ability.StarfallImpact"
-					}
-				}
-				"Delay"	"0.3"
+				"Target"	"TARGET"
+				"EffectName"	"Ability.StarfallImpact"
 			}
-			"AbilityDuration"	"10.0 10.0 10.0 10.0"
-			// Damage.
-			// -------------------------------------------------------------------------------------------------------------
-			"AbilityDamage"	"75 150 225 300"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"spell_duration"	"0.6"
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"275"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"0.5"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"275.00"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
 				"stun_duration"	"0.6 1.2 1.8 2.4"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"dmg"	"50 100 150 200"
 			}
 		}
 	}
@@ -439,6 +417,323 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"attack_speed"	"1"
+			}
+		}
+	}
+
+// 玉子 11.2B
+// -----------------------------------------------------------------------------------------------------------
+	// 玉子 [三連矢]
+	"C15W_old"
+	{
+		"BaseClass"             	"ability_datadriven"
+		"AbilityTextureName"		"custom/B33W"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"1"
+		"AbilityDamage"	"50 100 150 200"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"30"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 180 260 340"
+		"AbilityCastRange"	"700"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			"particle"  "particles/units/heroes/hero_mirana/mirana_base_attack.vpcf"
+			"particle"	"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Ability.Starfall"
+				"Target"		"CASTER"
+			}
+			"FireEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+				"EffectAttachType"	"attach_origin"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
+				"Function"		"C15W_old"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Stun"
+			{
+				"Target"	"TARGET"
+				"Duration"	"%stun_duration"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Damage"	"%AbilityDamage"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Ability.StarfallImpact"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"0.5"
+			}
+		}
+	}
+	// 玉子 [烈焰箭]
+	"C15E_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			"particle"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+		}
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C15E_old"
+				"Target"	"CASTER"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C15E_old"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C15E_old"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"	"0"
+					"ProjectileName"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
+						"Function"	"C15E_old_orb_fire"
+					}
+				}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
+						"Function"	"C15E_old_orb_apply_damage"
+						"Target"	"TARGET"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Medusa.AttackSplit"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_bonus"	"15 30 45 60"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_per_attack"	"6 8 10 12"
+			}
+		}
+	}
+	// 玉子 [精準之光]
+	"C15R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"mirana_invis"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_C15R"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%per_atk"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"per_atk"	"10 18 26 34"
+			}
+		}
+	}
+	// 玉子 [百箭齊發]
+	"C15T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"drow_ranger_marksmanship"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastPoint"	"0.3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"140"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"250 300 350"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"700"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/base_attacks/ranged_tower_good_explosion.vpcf"
+			"soundfile"	"sounds/weapons/hero/sven/attack02.vsnd"
+			"soundfile"	"sounds/weapons/hero/necrolyte/attack1.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+			"particle"	"particles/c15t7/c15t7.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Disruptor.PreAttack"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
+				"Function"	"new_C15T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C15T"
+			{
+				"EffectName"	"particles/c15t7/c15t7.vpcf"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_dmg"
+				}
+				"States"	{}
+				"Duration"	"%life_duration"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
+						"Function"	"new_C15T_end"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"Function"	"new_C15T_attack"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_LegionCommander.Attack"
+					}
+				}
+			}
+			"modifier_C15T_2"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"%stun_duration"
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"5"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"2.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"life_duration"	"10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_dmg"	"40 65 85"
 			}
 		}
 	}
