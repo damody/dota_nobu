@@ -175,3 +175,95 @@ function A31T_Levelup( keys )
 	keys.caster:ModifyAgility( 10 )
 	keys.caster:CalculateStatBonus()
 end
+
+-- 11.2B
+---------------------------------------------------------------------------------------------------------------------
+
+function A31W_old( keys )
+	local count = 0;
+	Timers:CreateTimer( 0, function()
+		A31W_2(keys)
+		count = count + 1
+		if (count < 100) then
+			return 0.1
+		else
+			return nil
+		end
+		end )
+
+	local ability = keys.ability
+	local caster = keys.caster
+	local casterLocation = keys.target_points[1]
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local abilityDamage = ability:GetLevelSpecialValueFor( "abilityDamage", ( ability:GetLevel() - 1 ) )
+	local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
+	local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	local damageType = ability:GetAbilityDamageType()
+	local second = 0
+	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
+	Timers:CreateTimer( 1, 
+		function()
+			second = second + 1
+			local units = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              casterLocation,
+	                              nil,
+	                              radius,
+	                              targetTeam,
+	                              targetType,
+	                              targetFlag,
+	                              FIND_ANY_ORDER,
+	                              false)
+			for _, it in pairs( units ) do
+				AMHC:Damage(caster, it, abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+			if (second <= 10) then
+				return 1
+			else
+				return nil
+			end
+		end)
+end
+
+function A31T_old_split_shot( keys )
+	local caster = keys.caster
+	local caster_location = caster:GetAbsOrigin()
+	local ability = keys.ability
+	local ability_level = ability:GetLevel() - 1
+
+	-- Targeting variables
+	local target_type = ability:GetAbilityTargetType()
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_flags = ability:GetAbilityTargetFlags()
+	local attack_target = caster:GetAttackTarget()
+
+	-- Ability variables
+	local radius = ability:GetLevelSpecialValueFor("range", ability_level)
+	local max_targets = ability:GetLevelSpecialValueFor("arrow_count", ability_level)
+	local projectile_speed = ability:GetLevelSpecialValueFor("projectile_speed", ability_level)
+	local split_shot_projectile = keys.split_shot_projectile
+
+	local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, target_team, target_type, target_flags, FIND_CLOSEST, false)
+
+	-- Create projectiles for units that are not the casters current attack target
+	for _,v in pairs(split_shot_targets) do
+		if v ~= attack_target then
+			local projectile_info = 
+			{
+				EffectName = split_shot_projectile,
+				Ability = ability,
+				vSpawnOrigin = caster_location,
+				Target = v,
+				Source = caster,
+				bHasFrontalCone = false,
+				iMoveSpeed = projectile_speed,
+				bReplaceExisting = false,
+				bProvidesVision = false
+			}
+			ProjectileManager:CreateTrackingProjectile(projectile_info)
+			max_targets = max_targets - 1
+		end
+		-- If we reached the maximum amount of targets then break the loop
+		if max_targets == 0 then break end
+	end
+end
