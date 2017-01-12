@@ -11,7 +11,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCooldown"	"19"
 		"AbilityManaCost"	"100"
-		"AOERadius"		"%bonus_atk_rng+700"
+		"AbilityCastRange"		"900 1050 1200 1350"
 		"precache"
 		{
 			"particle"	"particles/b01w/b01w.vpcf"
@@ -87,7 +87,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"50"
-		"AOERadius"		"%bonus_atk_rng+700"
+		"AbilityCastRange"		"950 1150 1350 1550"
 		"precache"
 		{
 			"particle"	"particles/b01w/b01w.vpcf"
@@ -98,6 +98,11 @@
 			{
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_B01W"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B01W_locker"
 			}
 			"RunScript"
 			{
@@ -124,6 +129,27 @@
 		}
 		"Modifiers"
 		{
+			// 暫時鎖住此技能
+			"modifier_B01W_locker"
+			{
+				"Duration" "%lock"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"		"B01W_lock"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"		"B01W_unlock"
+					}
+				}
+			}
 			"modifier_B01W"
 			{
 				"Properties"
@@ -145,12 +171,17 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_atk_rng"	"400 550 700 850"
+				"bonus_atk_rng"	"250 450 650 850"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"bonus_sight_rng"	"250 500 750 1000"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"lock"	"2 3 4 5"
 			}
 		}
 	}
