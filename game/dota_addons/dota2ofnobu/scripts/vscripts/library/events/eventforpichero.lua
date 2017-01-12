@@ -137,6 +137,8 @@ function Nobu:PickHero( keys )
         GameRules: SendCustomMessage("香宗我部親泰玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "medusa") then -- 森蘭丸
         GameRules: SendCustomMessage("森蘭丸玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "silencer") then -- 立花道雪
+        GameRules: SendCustomMessage("立花道雪玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       end
     end
   end)

@@ -252,6 +252,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("A31R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A31T_old")
+		elseif string.match(caster:GetUnitName(), "silencer") then -- 立花道雪
+			caster:AddAbility("C07W_old")
+			caster:AddAbility("C07E_old")
+			caster:AddAbility("C07R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C07T_old")
 		end
 	end
 	
