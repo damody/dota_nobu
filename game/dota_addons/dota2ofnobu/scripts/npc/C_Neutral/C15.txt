@@ -13,118 +13,96 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"mirana_starfall"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"	"1"
+
+		"AbilityCastAnimation" "ACT_DOTA_ATTACK"
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"75 150 225 300"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0"
+		"AbilityCastPoint"	"0.3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"8"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120"
-		"AbilityCastRange"	"700.00"
+		"AbilityCastRange"	"700"
+
 		"AOERadius"	"%radius"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
-			"particle"	"particles/c15w3/c15w3.vpcf"
-			"particle"	"particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"particle"	"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"particle"	"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+			"particle"	"particles/econ/items/drow/drow_bow_monarch/drow_frost_arrow_monarch.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
 		}
 		"OnSpellStart"
 		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"POINT"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Action"    
+				{
+					"TrackingProjectile"
+					{
+						"Target"           	"TARGET"
+						"EffectName"		"particles/econ/items/drow/drow_bow_monarch/drow_frost_arrow_monarch.vpcf"
+						"Dodgeable"			"0"
+						"ProvidesVision"	"0"
+						"VisionRadius"		"0"
+						"MoveSpeed"        	"1500"
+						"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					}
+				}
+			}
 			"FireSound"
 			{
 				"EffectName"	"Ability.Starfall"
 				"Target"	"CASTER"
 			}
-			"FireEffect"
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Stun"
 			{
-				"EffectName"	"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"	"CASTER"
+				"Target"	"TARGET"
+				"Duration"	"%stun_duration"
 			}
-			"RunScript"
+			"Damage"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C15.lua"
-				"Function"	"new_C15W"
+				"Target"	"TARGET"
+				"Damage"	"%AbilityDamage"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
 			}
-			"DelayedAction"
+			"FireSound"
 			{
-				"Action"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"	"POINT"
-							"Radius"	"%radius"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"Action"
-						{
-							"Stun"
-							{
-								"Target"	"TARGET"
-								"Duration"	"%stun_duration"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Damage"	"%dmg"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-							}
-						}
-					}
-					"FireSound"
-					{
-						"Target"	"POINT"
-						"EffectName"	"Ability.StarfallImpact"
-					}
-				}
-				"Delay"	"0.3"
+				"Target"	"TARGET"
+				"EffectName"	"Ability.StarfallImpact"
 			}
-			"AbilityDuration"	"10.0 10.0 10.0 10.0"
-			// Damage.
-			// -------------------------------------------------------------------------------------------------------------
-			"AbilityDamage"	"75 150 225 300"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"spell_duration"	"0.6"
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"275"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"0.5"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"275.00"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
 				"stun_duration"	"0.6 1.2 1.8 2.4"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"dmg"	"50 100 150 200"
 			}
 		}
 	}
