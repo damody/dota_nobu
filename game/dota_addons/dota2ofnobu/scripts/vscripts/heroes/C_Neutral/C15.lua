@@ -263,3 +263,58 @@ end
 -- 		caster:SetAbsOrigin(GetGroundPosition(caster:GetAbsOrigin(), caster) + Vector(0,0,ability.leap_z))
 -- 	end
 -- end
+
+-- 11.2B
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function C15W_old( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+
+	local projectile_max = 3
+	local projectile_delay = 0.1
+
+	for i=0,projectile_max-1 do
+		Timers:CreateTimer(projectile_delay*i,function()
+			-- 產生投射物
+			local info = {
+				Target = target,
+				Source = caster,
+				Ability = ability,
+				EffectName = "particles/units/heroes/hero_mirana/mirana_base_attack.vpcf",
+				bDodgeable = false,
+				bProvidesVision = true,
+				iMoveSpeed = 1500,
+			    iVisionRadius = 0,
+			    iVisionTeamNumber = caster:GetTeamNumber(), -- Vision still belongs to the one that casted the ability
+				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+			}
+			ProjectileManager:CreateTrackingProjectile( info )
+		end)	
+	end
+end
+
+function C15E_old_orb_fire( keys )
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local mana_per_attack = ability:GetLevelSpecialValueFor("mana_per_attack", ability:GetLevel()-1)
+
+	-- 判斷魔力是否足夠，不夠就關掉技能
+	if caster:GetMana() < mana_per_attack then
+		caster:CastAbilityToggle(ability,-1)		
+	else
+		caster:SpendMana(mana_per_attack,ability)
+	end
+end
+
+function C15E_old_orb_apply_damage( keys )
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local dmg = ability:GetLevelSpecialValueFor("damage_bonus", ability:GetLevel()-1)
+	AMHC:Damage( caster,target,dmg,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+end

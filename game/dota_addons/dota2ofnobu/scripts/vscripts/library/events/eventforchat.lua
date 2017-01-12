@@ -258,6 +258,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C07R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C07T_old")
+		elseif string.match(caster:GetUnitName(), "mirana") then -- 玉子
+			caster:AddAbility("C15W_old")
+			caster:AddAbility("C15E_old")
+			caster:AddAbility("C15R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C15T_old")
 		end
 	end
 	
