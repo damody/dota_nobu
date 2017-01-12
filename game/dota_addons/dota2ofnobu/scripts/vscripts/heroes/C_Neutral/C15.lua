@@ -245,10 +245,12 @@ function C15E_old_orb_fire( keys )
 	local mana_per_attack = ability:GetLevelSpecialValueFor("mana_per_attack", ability:GetLevel()-1)
 
 	-- 判斷魔力是否足夠，不夠就關掉技能
-	if caster:GetMana() < mana_per_attack then
-		caster:CastAbilityToggle(ability,-1)		
-	else
-		caster:SpendMana(mana_per_attack,ability)
+	if caster.nobuorb1 == nil then
+		if caster:GetMana() < mana_per_attack then
+			caster:CastAbilityToggle(ability,-1)		
+		else
+			caster:SpendMana(mana_per_attack,ability)
+		end
 	end
 end
 
@@ -258,5 +260,7 @@ function C15E_old_orb_apply_damage( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local dmg = ability:GetLevelSpecialValueFor("damage_bonus", ability:GetLevel()-1)
-	AMHC:Damage( caster,target,dmg,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+	if caster.nobuorb1 == nil then
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+	end
 end

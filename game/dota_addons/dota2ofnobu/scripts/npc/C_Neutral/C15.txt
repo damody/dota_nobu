@@ -30,7 +30,7 @@
 		"AbilityCooldown"	"8"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"120"
+		"AbilityManaCost"	"140 160 180 200"
 		"AbilityCastRange"	"700"
 
 		"AOERadius"	"%radius"
@@ -443,8 +443,8 @@
 		"AbilityCooldown"	"30"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"100 180 260 340"
-		"AbilityCastRange"	"700"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"800"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -497,7 +497,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"stun_duration"	"0.5"
+				"stun_duration"	"0.5 1 1.5 2"
 			}
 		}
 	}
@@ -576,12 +576,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_bonus"	"15 30 45 60"
+				"damage_bonus"	"60 100 140 180"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"mana_per_attack"	"6 8 10 12"
+				"mana_per_attack"	"8 10 12 14"
 			}
 		}
 	}
@@ -607,7 +607,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"per_atk"	"10 18 26 34"
+				"per_atk"	"20 30 40 50"
 			}
 		}
 	}
@@ -733,7 +733,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_dmg"	"40 65 85"
+				"attack_dmg"	"60 90 120"
 			}
 		}
 	}
