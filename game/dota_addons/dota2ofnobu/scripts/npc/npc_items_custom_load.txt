@@ -435,6 +435,87 @@
 		}
 	}
 
+	// 天變之書
+	"item_thunderstorms"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"custom/thunderbolt_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"1"
+		"AbilityChannelTime" "10"
+		"AbilityDamage"		"1800" //打滿的傷害
+		"AbilityCooldown"	"40"
+		// Cost
+		"AbilityManaCost"	"380"
+		// Casting
+		"AoERadius"	"%aoe_radius"
+		"AbilityCastRange"	"700"
+		"ID"	"4000"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2425"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"precache"
+		{
+			"particle"	"particles/item/item_thunderstorms.vpcf"
+			"particle"  "particles/item/item_thunderstorms_cloud.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_thunderstorms.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_thunderstorms"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"10.0"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"aoe_delay"		"1.0"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe_radius"	"1200"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe_damage"	"180"
+			}
+		}
+	}
+
 	// 落石
 	"item_rockfall_book"
 	{
