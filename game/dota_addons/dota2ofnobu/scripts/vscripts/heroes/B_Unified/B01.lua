@@ -310,3 +310,10 @@ function C01W_sound( keys )
 	caster:EmitSound( "B01W.sound"..1)
 end
 
+function B01W_lock( keys )
+	keys.ability:SetActivated(false)
+end
+
+function B01W_unlock( keys )
+	keys.ability:SetActivated(true)
+end

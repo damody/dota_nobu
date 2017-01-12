@@ -314,7 +314,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"10 7.5 5"
+		"AbilityCooldown"	"4 6 8"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityManaCost"	"100 175 250"
@@ -351,7 +351,7 @@
 			// 暫時鎖住此技能
 			"modifier_A17T_locker"
 			{
-				"Duration" "3"
+				"Duration" "%lock"
 				"OnCreated"
 				{
 					"RunScript"
@@ -407,7 +407,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"night_sight"	"1000"
+				"night_sight"	"500"
 			}
 			"03"
 			{
@@ -432,7 +432,12 @@
 			"07"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"move_speed_bonus"	"-100"
+				"move_speed_bonus"	"-200"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"lock"	"4 6 8"
 			}
 		}
 	}
@@ -708,7 +713,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"5"
+		"AbilityCooldown"	"4 6 8"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityManaCost"	"110 160 210"
@@ -745,7 +750,7 @@
 			// 暫時鎖住此技能
 			"modifier_A17T_locker"
 			{
-				"Duration" "3"
+				"Duration" "%lock"
 				"OnCreated"
 				{
 					"RunScript"
@@ -801,7 +806,7 @@
 			"03" // 射程
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_range_bonus"	"300 600 900"
+				"attack_range_bonus"	"300 600 700"
 			}
 			"04" // aoe範圍
 			{
@@ -811,7 +816,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_bonus"	"100 145 190"
+				"attack_bonus"	"200 300 400"
 			}
 			"06"
 			{
@@ -821,7 +826,12 @@
 			"07"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"move_speed_bonus"	"-100"
+				"move_speed_bonus"	"-200"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"lock"	"4 6 8"
 			}
 		}
 	}
