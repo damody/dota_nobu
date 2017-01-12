@@ -69,8 +69,8 @@ function ShuaGuai( )
 		end
 		local AA_num = 3 + 0.015*ShuaGuai_count
 		local AB_num = 2 + 0.008*ShuaGuai_count
-		if (AA_num > 5) then
-			AA_num = 5
+		if (AA_num > 4) then
+			AA_num = 4
 		end
 		if (AB_num > 4) then
 			AB_num = 4

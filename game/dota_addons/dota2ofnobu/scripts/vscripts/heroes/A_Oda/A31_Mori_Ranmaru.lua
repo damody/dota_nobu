@@ -25,27 +25,28 @@ function A31E(keys)
 end
 
 function A31W( keys )
-	local count = 0;
-	Timers:CreateTimer( 0, function()
-		A31W_2(keys)
-		count = count + 1
-		if (count < 100) then
-			return 0.1
-		else
-			return nil
-		end
-		end )
-
 	local ability = keys.ability
 	local caster = keys.caster
 	local casterLocation = keys.target_points[1]
 	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local duration =  ability:GetLevelSpecialValueFor( "duration", ( ability:GetLevel() - 1 ) )
 	local abilityDamage = ability:GetLevelSpecialValueFor( "abilityDamage", ( ability:GetLevel() - 1 ) )
 	local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
 	local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	local damageType = ability:GetAbilityDamageType()
 	local second = 0
+	local count = 0;
+	Timers:CreateTimer( 0, function()
+		A31W_2(keys)
+		count = count + 1
+		if (count < duration*10) then
+			return 0.1
+		else
+			return nil
+		end
+		end )
+	
 	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
 	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_A31W", {duration = 10})
 	Timers:CreateTimer( 1, 
@@ -180,27 +181,28 @@ end
 ---------------------------------------------------------------------------------------------------------------------
 
 function A31W_old( keys )
-	local count = 0;
-	Timers:CreateTimer( 0, function()
-		A31W_2(keys)
-		count = count + 1
-		if (count < 100) then
-			return 0.1
-		else
-			return nil
-		end
-		end )
-
 	local ability = keys.ability
 	local caster = keys.caster
 	local casterLocation = keys.target_points[1]
 	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local duration =  ability:GetLevelSpecialValueFor( "duration", ( ability:GetLevel() - 1 ) )
 	local abilityDamage = ability:GetLevelSpecialValueFor( "abilityDamage", ( ability:GetLevel() - 1 ) )
 	local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
 	local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	local damageType = ability:GetAbilityDamageType()
 	local second = 0
+	local count = 0;
+	Timers:CreateTimer( 0, function()
+		A31W_2(keys)
+		count = count + 1
+		if (count < duration*10) then
+			return 0.1
+		else
+			return nil
+		end
+		end )
+	
 	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
 	Timers:CreateTimer( 1, 
 		function()
