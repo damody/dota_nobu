@@ -420,12 +420,6 @@
 				"Function"	"B08E_Action"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B08_Asai_Nagamasa.lua"
 			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
-				"Function"	"anyunitspellability"
-			}
 		}
 		"OnAbilityPhaseStart"
 		{
@@ -533,12 +527,6 @@
 				"Target"	"TARGET"
 				"Function"	"B08E_Action2"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B08_Asai_Nagamasa.lua"
-			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
-				"Function"	"anyunitspellability"
 			}
 		}
 		"OnAbilityPhaseStart"
@@ -745,9 +733,6 @@
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"200 300 400"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"3000"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -831,7 +816,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dragon_slave_width_initial"	"400"
+				"dragon_slave_width_initial"	"500"
 			}
 			"03"
 			{
@@ -841,7 +826,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dragon_slave_distance"	"3000"
+				"dragon_slave_distance"	"30000"
 			}
 		}
 		// Damage.
@@ -873,9 +858,6 @@
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"200 300 400"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"3000"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -959,7 +941,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dragon_slave_width_initial"	"400"
+				"dragon_slave_width_initial"	"500"
 			}
 			"03"
 			{
@@ -969,7 +951,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dragon_slave_distance"	"3000"
+				"dragon_slave_distance"	"30000"
 			}
 		}
 		// Damage.

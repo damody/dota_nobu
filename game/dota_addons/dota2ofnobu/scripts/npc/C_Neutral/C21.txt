@@ -26,12 +26,6 @@
 		}
 		"OnSpellStart"
 		{
-			"RunScript"
-			{
-				"Target"	"CASTER"
-				"ScriptFile"	"scripts/vscripts/library/anyunitspellability.lua"
-				"Function"	"anyunitspellability"
-			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_C21W"
