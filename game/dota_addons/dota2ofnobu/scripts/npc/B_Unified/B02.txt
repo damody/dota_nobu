@@ -591,4 +591,529 @@
 		}
 	}
 
-}
+// 風魔小太郎 11.2B
+// -----------------------------------------------------------------------------------------
+	// 風魔小太郎 [忍法．迷蹤步]
+	"B02W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"riki_smoke_screen"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"16"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 110 120 130"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+				"Target"	"CASTER"
+				"EffectAttachType"	"attach_origin"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_BountyHunter.WindWalk"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_wind_walk_fade_datadriven"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_wind_walk_fade_datadriven"
+			{
+				"Duration"	"%fade_time"
+				"IsHidden"	"0"
+				"IsBuff"	"1"
+				"EffectName"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+						"Duration"	"%duration"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+						"Duration"	"%duration"
+					}
+				}
+			}
+			"modifier_wind_walk_datadriven"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02W_old_first_hit"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fade_time"	"0.90"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"10 15 20 25"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"90 175 260 345"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"speed"	"10 15 20 25"
+			}
+		}
+	}
+	// 風魔小太郎 [忍法．熾烈之徑]
+	"B02E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ogre_magi_ignite"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.15"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"	"11"
+		"AbilityManaCost"	"80 100 120 140"
+		"precache"
+		{
+			"particle"	"particles/b02e5/b02e5.vpcf"
+			"particle"	"particles/b02e5/b02e5.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B02E"
+			}
+		}
+		"Modifiers"
+		{
+			// 火焰路徑產生器
+			"modifier_B02E"
+			{
+				"EffectName"	"particles/b02e5/b02e5.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Duration"	"%duration"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02E_old_fire_path_init"
+					}
+				}
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02E_old_fire_path_creator"
+					}
+				}
+			}
+			// 用來判斷敵人是否踏入燃燒範圍
+			"modifier_B02E_2"
+			{
+				"IsDebuff"	"0"
+
+				"EffectAttachType"	"attach_origin"
+				"EffectName"	"particles/b02e5/b02e5.vpcf"
+
+				"Aura"        "modifier_B02E_3"
+        		"Aura_Radius" "%fire_radius"
+        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_ApplyToCaster" "0"
+			}
+			// 碰到火焰的敵人會被安裝這個debuff
+			"modifier_B02E_3"
+			{
+				"IsDebuff"	"1"
+				"IsHidden"	"0"
+				"ThinkInterval"	"%dmg_delay"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%dmg"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01" // 技能持續時間
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"10"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg"	"22.5 30.0 37.5 45.0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg_delay"	"0.25"
+			}
+			"04" // 可燃燒半徑
+			{
+				"var_type" "FIELD_INTEGER"
+				"fire_radius" "140"
+			}
+			"05" // 地上火焰的存在時間
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fire_duration"	"10"
+			}
+		}
+	}
+	// 風魔小太郎 [忍法．十八方手裏劍]
+	"B02R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"meepo_earthbind"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"37"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"580"
+		"AbilityManaCost"	"170 200 230 260"
+		"precache"
+		{
+			"particle"	"particles/b02r4/b02r4.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+				"Function"	"B02R"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+				"Function"	"B02R_hit"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B02R"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%time"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+			}
+			"modifier_B02R_2"
+			{
+				"IsDebuff"		"1"
+				"Duration"	"1.91"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02R_MOVE"
+					}
+				}
+				"ThinkInterval"	"0.1"
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02R_MOVE"
+					}
+				}
+			}
+			"modifier_B02R_3"
+			{
+				"Duration"	"0.05"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast"	"0.25"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast_D"	"580.00"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"time"	"1.0 1.5 2.0 2.5"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg"	"5 10 15 20"
+			}
+		}
+	}
+	// 風魔小太郎 [忍法密傳．四方導雷]
+	"B02T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"shadow_shaman_ether_shock"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.15"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate"	"5"
+		"AbilityCooldown"	"190 140 90"
+		"AbilityManaCost"	"250 200 150"
+		"AbilityCastRange"	"600"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/leshrac/lightning_storm03.vsnd"
+			"particle"	"particles/b02t3/b02t3.vpcf"
+			"particle"	"particles/b02t3/b02t3.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"particle"	"particles/b02t3/b02t3.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+
+			"particle"  "particles/b02/b02t_old_ball.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B02T_old"
+				"Target" 		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B02T_old"
+			{
+				"Passive"		"0"
+				"IsHidden"		"0"
+				"IsDebuff"		"0"
+				"Duration"		"%view_duration"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02T_old_init"
+						"Target"	"TARGET"
+					}
+				}
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"		"B02T_old_think"
+					}
+				}
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"		"B02T_old_on_unit_move"
+						"Target"	"TARGET"
+					}
+				}
+			}
+			"modifier_B02T_old_stun"
+			{
+				"IsDebuff"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%stun_duration"
+				"EffectName"	"particles/b02t3/b02t3.vpcf"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Leshrac.Lightning_Storm"
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Hero_Leshrac.Lightning_Storm"
+					}
+				}
+			}
+			"modifier_arc_lightning_datadriven"
+			{
+				"IsHidden"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+						"Function"	"B02T_old_Jump"
+						"particle"	"particles/c10/c10w_old.vpcf"
+					}
+				}
+			}
+		} // Modifiers end
+		"AbilitySpecial"
+		{
+			"01" // 閃電球特效也會看這個時間
+			{
+				"var_type"	"FIELD_FLOAT"
+				"view_duration"	"5.0"
+			}
+			"02" // 第一次閃電放出的延遲
+			{
+				"var_type"	"FIELD_FLOAT"
+				"first_hit_delay"	"3.1"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"base_damage"	"200"
+			}
+			"04" // 每次彈跳增加的傷害比例
+			{
+				"var_type" "FIELD_FLOAT"
+				"bonus_damage" "0.05"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_radius"	"700"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_max"	"10"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"jump_delay"	"0.7"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"1.0"
+			}
+			"08" // 閃電數量
+			{
+				"var_type" "FIELD_INTEGER"
+				"wave_num"	"4"
+			}
+		} // AbilitySpecial end
+	} // B02T_old end
+} // DOTAAbilities end

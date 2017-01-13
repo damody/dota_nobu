@@ -264,6 +264,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C15R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C15T_old")
+		elseif string.match(caster:GetUnitName(), "faceless_void") then -- 風魔小太郎
+			caster:AddAbility("B02W_old")
+			caster:AddAbility("B02E_old")
+			caster:AddAbility("B02R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("B02T_old")
 		end
 	end
 	

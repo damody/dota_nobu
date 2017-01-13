@@ -358,3 +358,282 @@ function B02E_Cast(keys)
 
 end
 
+-- 11.2B
+-------------------------------------------------
+
+function B02W_old_first_hit( keys )
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel() - 1
+	
+	--【DMG】
+	local dmg = ability:GetLevelSpecialValueFor("bonus_damage",level)
+	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
+end
+
+function B02E_old_fire_path_init( keys )
+	--【Basic】
+	local ability = keys.ability
+
+	-- init
+	ability.pre_position = Vector(0,0,9999)
+	ability.fire_duration = ability:GetLevelSpecialValueFor("fire_duration",ability:GetLevel()-1)
+end
+
+function B02E_old_fire_path_creator( keys )
+	--【Basic】	
+	local caster = keys.caster
+	local point = caster:GetAbsOrigin()
+	local ability = keys.ability
+
+	if (nobu_distance( point,ability.pre_position )) > 100.00 then
+		ability.pre_position = point
+		local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point,false,caster,caster,caster:GetTeam())	--"npc_dummy_unit_Ver2"
+		dummy:FindAbilityByName("majia"):SetLevel(1)
+		--【MODIFIER】
+		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B02E_2",nil)
+		Timers:CreateTimer(ability.fire_duration, function()
+			dummy:Destroy()
+		end)
+	end
+end
+
+function B02T_old_init( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local first_hit_delay = ability:GetLevelSpecialValueFor("first_hit_delay",level)
+	local view_duration = ability:GetLevelSpecialValueFor("view_duration",level)
+	local wave_num = ability:GetLevelSpecialValueFor("wave_num",ability:GetLevel()-1)
+	
+	-- 延遲一段時間後打出4道閃電
+	Timers:CreateTimer(first_hit_delay, function()
+		B02T_old_fire_thunder( keys )
+	end)
+
+	-- 紀錄粒子效果編號
+	if ability.ball == nil then
+		ability.ball = {}
+	end
+	ability.radius = 300
+
+	-- 產生雷電球
+	local angle_gap = 3.14159*2.0/wave_num
+	local radius = ability.radius
+	for i=1,wave_num do
+		local angle = angle_gap*i
+		local dx = math.cos(angle) * radius
+		local dy = math.sin(angle) * radius
+		local center = target:GetAbsOrigin()
+		local start_pos = Vector(center.x+dx, center.y+dy, center.z+300) 
+		local ifx = ParticleManager:CreateParticle("particles/b02/b02t_old_ball.vpcf", PATTACH_WORLDORIGIN, caster)
+		ParticleManager:SetParticleControl(ifx,0,start_pos)
+		ParticleManager:SetParticleControlEnt(ifx,2,target,PATTACH_POINT,"attach_hitloc",target:GetAbsOrigin(),true)
+		ability.ball[i] = ifx
+		Timers:CreateTimer(view_duration, function() 
+			ParticleManager:DestroyParticle(ifx,false)
+		end)
+	end
+end
+
+function B02T_old_think( keys )
+	local caster = keys.caster
+	local target = keys.target
+
+	-- 持續提供視野
+	AddFOWViewer(caster:GetTeamNumber(),target:GetAbsOrigin(),600,3.0,false)
+end
+
+function B02T_old_on_unit_move( keys )
+	local target = keys.unit
+	local ability = keys.ability
+	local wave_num = ability:GetLevelSpecialValueFor("wave_num",ability:GetLevel()-1)
+
+	-- 隨著目標持續移動特效
+	local radius = ability.radius
+	local angle_gap = 3.14159*2.0/wave_num
+	for i=1,wave_num do
+		local angle = angle_gap*i
+		local dx = math.cos(angle) * radius
+		local dy = math.sin(angle) * radius
+		local center = target:GetAbsOrigin()
+		local start_pos = Vector(center.x+dx, center.y+dy, center.z+300) 
+		ParticleManager:SetParticleControl(ability.ball[i],0,start_pos)
+	end
+end
+
+function B02T_old_fire_thunder( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local base_damage = ability:GetLevelSpecialValueFor("base_damage", ability:GetLevel()-1)
+
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_B02T_old_stun",{})
+	local wave_num = ability:GetLevelSpecialValueFor("wave_num",ability:GetLevel()-1)
+
+	-- 稍微延遲分別打出閃電
+	local angle_gap = 3.14159*2.0/wave_num
+	for i=1,wave_num do
+		Timers:CreateTimer(0.07*(i-1), function()
+			
+			local angle = angle_gap*i
+			local dx = math.cos(angle) * ability.radius
+			local dy = math.sin(angle) * ability.radius
+			local center = target:GetAbsOrigin()
+			local start_pos = Vector(center.x+dx, center.y+dy, center.z+300) 
+			B02T_old_jump_init(keys, start_pos)
+
+			ApplyDamage({victim = target, attacker = caster, damage = base_damage, damage_type = ability:GetAbilityDamageType()})
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_arc_lightning_datadriven",{})
+		end)
+	end
+	
+end
+
+--[[Author: YOLOSPAGHETTI
+	Date: March 24, 2016
+	Keeps track of all instances of the spell (since more than one can be active at once)]]
+function B02T_old_jump_init(keys, start_pos)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	-- Keeps track of the total number of instances of the ability (increments on cast)
+	if ability.instance == nil then
+		ability.instance = 0
+		ability.jump_count = {}
+		ability.target = {}
+		ability.first_target = {}
+	else
+		ability.instance = ability.instance + 1
+	end
+
+	local angel = caster:GetAngles().y
+	local point = Vector(caster:GetAbsOrigin().x+75*math.cos(angel*bj_DEGTORAD) ,  caster:GetAbsOrigin().y+75*math.sin(angel*bj_DEGTORAD), caster:GetAbsOrigin().z + caster:GetBoundingMaxs().z)
+	
+	ability.jump_count[ability.instance] = ability:GetLevelSpecialValueFor("jump_max", (ability:GetLevel() -1))
+	ability.target[ability.instance] = target
+	ability.first_target[ability.instance] = target
+	
+	-- Creates the particle between the caster and the first target
+	local lightningBolt = ParticleManager:CreateParticle("particles/b02/b02t_old_link.vpcf", PATTACH_POINT, caster)
+	ParticleManager:SetParticleControl(lightningBolt,0,start_pos)
+	ParticleManager:SetParticleControlEnt(lightningBolt,1,target,PATTACH_POINT_FOLLOW,"attach_hitloc",target:GetOrigin(),true)
+end
+
+--[[Author: YOLOSPAGHETTI
+	Date: March 24, 2016
+	Finds the next unit to jump to and deals the damage]]
+function B02T_old_Jump(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local jump_delay = ability:GetLevelSpecialValueFor("jump_delay", (ability:GetLevel() -1))
+	local jump_radius = ability:GetLevelSpecialValueFor("jump_radius", (ability:GetLevel() -1))
+	local base_damage = ability:GetLevelSpecialValueFor("base_damage", (ability:GetLevel() -1))
+	local bonus_damage = ability:GetLevelSpecialValueFor("bonus_damage", (ability:GetLevel() -1))
+	local jump_max = ability:GetLevelSpecialValueFor("jump_max", (ability:GetLevel() -1))
+	local team = ability:GetAbilityTargetTeam()
+
+	-- Removes the hidden modifier
+	target:RemoveModifierByName("modifier_arc_lightning_datadriven")
+	local count = 0
+	-- Waits on the jump delay
+
+	Timers:CreateTimer(jump_delay,
+	function()
+	-- Finds the current instance of the ability by ensuring both current targets are the same
+	local current
+	for i=0,ability.instance do
+		if ability.target[i] ~= nil then
+			if ability.target[i] == target then
+				current = i
+			end
+		end
+	end
+
+	-- Adds a global array to the target, so we can check later if it has already been hit in this instance
+	if target.hit == nil then
+		target.hit = {}
+	end
+	-- Sets it to true for this instance
+	target.hit[current] = true
+
+	-- Decrements our jump count for this instance
+	ability.jump_count[current] = ability.jump_count[current] - 1
+
+	-- Checks if there are jumps left
+	if ability.jump_count[current] > 0 then
+		-- Finds units in the jump_radius to jump to
+		local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, jump_radius, team, ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
+		local closest = jump_radius
+		local new_target
+		for i,unit in ipairs(units) do
+			-- Positioning and distance variables
+			local unit_location = unit:GetAbsOrigin()
+			local vector_distance = target:GetAbsOrigin() - unit_location
+			local distance = (vector_distance):Length2D()
+			-- Checks if the unit is closer than the closest checked so far
+			if distance < closest then
+				-- If the unit has not been hit yet, we set its distance as the new closest distance and it as the new target
+				if unit.hit == nil then
+					new_target = unit
+					closest = distance
+				elseif unit.hit[current] == nil then
+					new_target = unit
+					closest = distance
+				end
+			end
+		end
+		-- Checks if there is a new target
+		if new_target ~= nil then
+			AddFOWViewer(caster:GetTeamNumber(),new_target:GetAbsOrigin(),300,2.0,false)
+			-- Creates the particle between the new target and the last target
+			local lightningBolt = ParticleManager:CreateParticle("particles/b02/b02t_old_link.vpcf", PATTACH_POINT_FOLLOW, target)
+			ParticleManager:SetParticleControlEnt(lightningBolt,0,target,PATTACH_POINT_FOLLOW,"attach_hitloc",target:GetOrigin(),true)
+			ParticleManager:SetParticleControlEnt(lightningBolt,1,new_target,PATTACH_POINT_FOLLOW,"attach_hitloc",new_target:GetOrigin(),true)
+			-- Sets the new target as the current target for this instance
+			ability.target[current] = new_target
+			-- Applies the modifer to the new target, which runs this function on it
+			ability:ApplyDataDrivenModifier(caster, new_target, "modifier_arc_lightning_datadriven", {})
+			-- Applies damage to the target
+			local new_damage = base_damage*(1+(jump_max-ability.jump_count[current])*bonus_damage)
+			ApplyDamage({victim = new_target, attacker = caster, damage = new_damage, damage_type = ability:GetAbilityDamageType()})
+		else
+			-- If there are no new targets, we set the current target to nil to indicate this instance is over
+			ability.target[current] = nil
+
+			-- 製造最後一次傷害
+			new_target = ability.first_target[current]
+			if IsValidEntity(new_target) and new_target:IsAlive() and (ability.jump_count[current]<jump_max-1) then
+				--【Particle】
+				local particle = ParticleManager:CreateParticle("particles/b02/b02t_old_final.vpcf",PATTACH_POINT,target)
+				ParticleManager:SetParticleControlEnt(particle,0,target,PATTACH_POINT_FOLLOW,"attach_hitloc",target:GetOrigin(),true)
+				ParticleManager:SetParticleControlEnt(particle,1,new_target,PATTACH_POINT_FOLLOW,"attach_hitloc",new_target:GetOrigin(),true)
+
+				-- Applies damage to the target
+				local new_damage = base_damage*(1+(jump_max-ability.jump_count[current])*bonus_damage)
+				ApplyDamage({victim = new_target, attacker = caster, damage = new_damage, damage_type = ability:GetAbilityDamageType()})
+			end
+		end
+	else
+		-- If there are no more jumps, we set the current target to nil to indicate this instance is over
+		ability.target[current] = nil
+
+		-- 製造最後一次傷害
+		new_target = ability.first_target[current]
+		if IsValidEntity(new_target) and new_target:IsAlive() then
+			--【Particle】
+			local particle = ParticleManager:CreateParticle("particles/b02/b02t_old_final.vpcf",PATTACH_POINT,target)
+			ParticleManager:SetParticleControlEnt(particle,0,target,PATTACH_POINT_FOLLOW,"attach_hitloc",target:GetOrigin(),true)
+			ParticleManager:SetParticleControlEnt(particle,1,new_target,PATTACH_POINT_FOLLOW,"attach_hitloc",new_target:GetOrigin(),true)
+
+			-- Applies damage to the target
+			local new_damage = base_damage*(1+(jump_max-ability.jump_count[current])*bonus_damage)
+			ApplyDamage({victim = new_target, attacker = caster, damage = new_damage, damage_type = ability:GetAbilityDamageType()})
+		end
+	end
+	end)
+end
