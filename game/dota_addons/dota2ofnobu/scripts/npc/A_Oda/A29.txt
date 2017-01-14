@@ -521,7 +521,7 @@
 			{
 				"ModifierName"	"modifier_exorcism"
 				"Target" 		"CASTER"
-				"Duration"		"%AbilityDuration"
+				"Duration"		"%duration"
 			}
 
 			"FireSound"
@@ -550,7 +550,7 @@
 						// "ScriptFile"	"heroes/hero_death_prophet/exorcism.lua"
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
 						"Function"		"ExorcismStart"
-						"DummyName"		"A29T_dummy"
+						"DummyName"		"A29T_old_dummy"
 					}
 
 					"FireSound"
@@ -583,6 +583,7 @@
 
 			"modifier_exorcism_spirit"
 			{	
+				"OverrideAnimation"     "ACT_DOTA_RUN"
 				"OnCreated"
 				{
 					"RunScript"
@@ -601,20 +602,6 @@
 						{
 							"TARGET"	"attach_origin"
 							"CASTER"	"attach_origin"
-						}
-					}
-
-					"AttachEffect"
-					{
-						"EffectName"        "particles/units/heroes/hero_death_prophet/death_prophet_spirit_model.vpcf"
-						"EffectAttachType"  "follow_origin"
-						"Target"            "TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_origin"
-							"TARGET"	"attach_origin"
-							"TARGET"	"attach_origin"
-							"TARGET"	"attach_origin"
 						}
 					}
 				}
@@ -1013,7 +1000,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"170"
-		"AbilityDuration"				"42 45 48"
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"250 300 350"
@@ -1117,7 +1103,7 @@
 			{
 				"ModifierName"	"modifier_exorcism"
 				"Target" 		"CASTER"
-				"Duration"		"%AbilityDuration"
+				"Duration"		"%duration"
 			}
 
 			"FireSound"
