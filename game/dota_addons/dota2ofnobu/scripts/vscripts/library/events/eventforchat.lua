@@ -276,6 +276,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C22R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C22T_old")
+		elseif string.match(caster:GetUnitName(), "oracle") then -- 石田三成
+			caster:AddAbility("A29W_old")
+			caster:AddAbility("A29E_old")
+			caster:AddAbility("A29R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A29T_old")
 		end
 	end
 	

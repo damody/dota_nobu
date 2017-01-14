@@ -33,7 +33,7 @@ function ExorcismStart( event )
 	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
 	local spirits = ability:GetLevelSpecialValueFor( "spirits", ability:GetLevel() - 1 )
 	local delay_between_spirits = ability:GetLevelSpecialValueFor( "delay_between_spirits", ability:GetLevel() - 1 )
-	local unit_name = "A29T_dummy"
+	local unit_name = event.DummyName
 
 	-- Initialize the table to keep track of all spirits
 	ability.spirits = {}
@@ -377,8 +377,7 @@ function ExorcismPhysics( event )
 
 				unit:SetPhysicsVelocity(Vector(0,0,0))
 	        	unit:OnPhysicsFrame(nil)
-	        	unit:ForceKill(false)
-
+	        	unit:Destroy()
 	        end
 	    end
     end)
@@ -425,7 +424,23 @@ function ExorcismDeath( event )
 	        unit:OnPhysicsFrame(nil)
 
 			-- Kill
-	        unit:ForceKill(false)
+	        -- unit:ForceKill(false)
+	        unit:Destroy()
     	end
 	end
+end
+
+-- 11.2B
+----------------------------------------------------------------------------------------------
+
+function ExorcismAttack_old( keys )
+	local ability = keys.ability
+	local target = keys.target
+
+	ability.last_targeted = target
+
+	if ability.aim_effect ~= nil then
+		ParticleManager:DestroyParticle(ability.aim_effect,false)
+	end
+	ability.aim_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_sniper/sniper_crosshair_c.vpcf",PATTACH_OVERHEAD_FOLLOW,target)
 end
