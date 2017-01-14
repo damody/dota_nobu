@@ -292,7 +292,7 @@ function to_war_magic_unit(keys)
 		caster:SetAbsOrigin(pos)
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -346,7 +346,7 @@ function to_war_magic_unit2(keys)
 		caster:SetAbsOrigin(pos)
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -414,7 +414,7 @@ function to_soldier_Oda(keys)
 		caster:SetMana(prestige[2]-payprestige[2])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -486,7 +486,7 @@ function to_soldier_Unified(keys)
 		caster:SetMana(prestige[3]-payprestige[3])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -534,7 +534,7 @@ function to_archer_Oda(keys)
 		caster:SetMana(prestige[2]-payprestige[2])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -582,7 +582,7 @@ function to_archer_Unified(keys)
 		caster:SetMana(prestige[3]-payprestige[3])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -630,7 +630,7 @@ function to_gunner_Oda(keys)
 		caster:SetMana(prestige[2]-payprestige[2])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -678,7 +678,7 @@ function to_gunner_Unified(keys)
 		caster:SetMana(prestige[3]-payprestige[3])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -727,7 +727,7 @@ function to_cavalry_Oda(keys)
 		caster:SetMana(prestige[2]-payprestige[2])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -775,7 +775,7 @@ function to_cavalry_Unified(keys)
 		caster:SetMana(prestige[3]-payprestige[3])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
@@ -932,7 +932,7 @@ function to_sell_ninja_unit(keys)
 		caster:SetMana(prestige[3]-payprestige[3])
 		local order = {
 	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+	 		OrderType = DOTA_UNIT_ORDER_STOP,
 	 		Position = pos, --Optional.  Only used when targeting the ground
 	 		Queue = 0 --Optional.  Used for queueing up abilities
 	 	}
