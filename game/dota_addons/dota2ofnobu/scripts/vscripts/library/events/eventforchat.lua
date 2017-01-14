@@ -290,17 +290,45 @@ local function chat_of_test(keys)
 			caster:AddAbility("A27T_old")
 		end
 	end
+	if string.match(s,"uion") then
+		local GameMode = GameRules:GetGameModeEntity()
+		GameMode:SetHUDVisible(0,  true) --Clock
+		GameMode:SetHUDVisible(1,  true)
+		GameMode:SetHUDVisible(2,  true)
+		GameMode:SetHUDVisible(3,  true) --Action Panel
+		GameMode:SetHUDVisible(4,  true) --Minimap
+		GameMode:SetHUDVisible(5,  true) --Inventory
+		GameMode:SetHUDVisible(6,  true)
+		GameMode:SetHUDVisible(7,  true)
+		GameMode:SetHUDVisible(8,  true)
+		GameMode:SetHUDVisible(9,  true)
+		GameMode:SetHUDVisible(11, true)
+		GameMode:SetHUDVisible(12, true)
+	end
+	if string.match(s,"uioff") then
+		local GameMode = GameRules:GetGameModeEntity()
+		GameMode:SetHUDVisible(0,  false) --Clock
+		GameMode:SetHUDVisible(1,  false)
+		GameMode:SetHUDVisible(2,  false)
+		GameMode:SetHUDVisible(3,  false) --Action Panel
+		GameMode:SetHUDVisible(4,  false) --Minimap
+		GameMode:SetHUDVisible(5,  false) --Inventory
+		GameMode:SetHUDVisible(6,  false)
+		GameMode:SetHUDVisible(7,  false)
+		GameMode:SetHUDVisible(8,  false)
+		GameMode:SetHUDVisible(9,  false)
+		GameMode:SetHUDVisible(11, false)
+		GameMode:SetHUDVisible(12, false)
+	end
 	
 	if string.match(s,"cam") then
 		local dis = tonumber(string.match(s, '%d+'))
-		if IsClient() then
 			GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
 			SendToConsole("r_farz 60000")
 		    Timers:CreateTimer( 1, function()
 		  		SendToConsole("r_farz 60000")
 		      return 1
 		    end)
-		end
 		
 	end
 	sump = 0
@@ -469,7 +497,7 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c6" then
-			local  u = CreateUnitByName("npc_dota_hero_faceless_void",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_drow_ranger",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
@@ -525,7 +553,7 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c66" then
-			local  u = CreateUnitByName("npc_dota_hero_faceless_void",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_drow_ranger",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
