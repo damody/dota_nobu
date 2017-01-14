@@ -61,9 +61,10 @@ function Nobu:PickHero( keys )
       caster.name = heromap[name]
       print("name " .. name)
       if string.match(name, "ancient_apparition")  then --竹中重治
-        caster:FindAbilityByName("A04D"):SetLevel(1)
         GameRules: SendCustomMessage("竹中重治玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+        caster:FindAbilityByName("A04D"):SetLevel(1)
       elseif string.match(name, "jakiro") then --佐佐木小次郎
+        GameRules: SendCustomMessage("佐佐木小次郎玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("C22D"):SetLevel(1)
       elseif string.match(name, "magnataur") then -- 淺井長政
         GameRules: SendCustomMessage("淺井長政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
@@ -75,11 +76,11 @@ function Nobu:PickHero( keys )
           return 1
         end)
       elseif string.match(name, "templar_assassin") then --松姬
-        caster:FindAbilityByName("C19D"):SetLevel(1)
         GameRules: SendCustomMessage("松姬玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+        caster:FindAbilityByName("C19D"):SetLevel(1)
       elseif string.match(name, "centaur") then --本多忠勝
-        caster:FindAbilityByName("A07D"):SetLevel(1)
         GameRules: SendCustomMessage("本多忠勝玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+        caster:FindAbilityByName("A07D"):SetLevel(1)
       elseif string.match(name, "pugna") then --本願寺顯如
         GameRules: SendCustomMessage("本願寺顯如玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "keeper_of_the_light") then -- 毛利元就

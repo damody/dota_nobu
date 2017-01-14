@@ -230,3 +230,95 @@ function C22T_Damage( keys )
 	local particle = ParticleManager:CreateParticle("particles/c20t2/c20t2.vpcf", PATTACH_POINT, caster)
 	ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
 end
+
+-- 佐佐木小次郎 11.2B
+---------------------------------------------------------------
+
+function C22E_old_pull_back( keys )
+	local caster = keys.caster
+	local target = keys.target
+
+	if IsValidEntity(target) and target:IsAlive() then
+		-- 將目標拉回自己面前
+		local new_pos = caster:GetAbsOrigin()+caster:GetForwardVector()*100
+		FindClearSpaceForUnit(target,new_pos,true)
+
+		-- 命令攻擊目標
+		ExecuteOrderFromTable({
+			UnitIndex = caster:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = target:entindex(),
+			Queue = false
+		})
+	end
+end
+
+function C22R_old_on_attack( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
+
+	if RandomInt(1,100) <= crit_chance then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C22R_old_critical_strike_crit",nil)
+	end
+end
+
+function C22R_old_play_crit_animation( keys )
+	local caster = keys.caster
+	local play_back_rate = caster:GetAttackSpeed()
+    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,play_back_rate)
+end
+
+function C22T_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()
+	local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
+	local start_delay = ability:GetLevelSpecialValueFor("start_delay",level)
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_type = ability:GetAbilityTargetType()
+	local target_flags = ability:GetAbilityTargetFlags()
+	local damage_type = ability:GetAbilityDamageType()
+	local ability_damage = ability:GetAbilityDamage()
+	local center = caster:GetAbsOrigin()+caster:GetForwardVector()*100
+
+	Timers:CreateTimer(0.5, function()
+		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf",PATTACH_ABSORIGIN,caster)
+		ParticleManager:SetParticleControl(ifx,0,center)
+		ParticleManager:SetParticleControl(ifx,1,center)
+	end)
+
+	Timers:CreateTimer(start_delay, function()
+		-- 砍樹
+		GridNav:DestroyTreesAroundPoint(center, aoe_radius, false)
+		-- 搜尋
+		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係
+                              center,				-- 搜尋的中心點
+                              nil, 					-- 好像是優化用的參數不懂怎麼用
+                              aoe_radius,			-- 搜尋半徑
+                              target_team,			-- 目標隊伍
+                              target_type,			-- 目標類型
+                              target_flags,			-- 額外選擇或排除特定目標
+                              FIND_ANY_ORDER,		-- 結果的排列方式
+                              false) 				-- 好像是優化用的參數不懂怎麼用
+		-- 處理搜尋結果
+		for _,unit in ipairs(units) do
+			-- 製造傷害
+			local damage_table = {}
+			damage_table.victim = unit
+  			damage_table.attacker = caster
+ 			damage_table.damage_type = damage_type
+ 			damage_table.damage = ability_damage
+			ApplyDamage(damage_table)
+			-- 安裝修改器
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_C22T_old_apply_dot_damage",nil)
+		end
+
+		-- 特效
+		local ifx = ParticleManager:CreateParticle("particles/c22/c22t_old.vpcf",PATTACH_ABSORIGIN,caster)
+		local scale = ability:GetLevelSpecialValueFor("aoe_radius",level)
+		ParticleManager:SetParticleControl(ifx,0,center)
+		ParticleManager:SetParticleControl(ifx,1,Vector(scale,scale,scale))
+		ParticleManager:SetParticleControl(ifx,2,Vector(scale,scale,scale))
+	end)
+end
