@@ -3254,7 +3254,7 @@
 			"RemoveModifier"
             {
                 "Target" "CASTER"
-                "ModifierName" "block_modifier"
+                "ModifierName" "block_modifier4"
             }
 		}
 		"Modifiers"
@@ -3316,7 +3316,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier4"
 			                }
 			            }
 			            "OnFailure"
@@ -3324,13 +3324,13 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier4"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier4"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
@@ -4940,7 +4940,7 @@
 			"RemoveModifier"
             {
                 "Target" "CASTER"
-                "ModifierName" "block_modifier"
+                "ModifierName" "block_modifier1"
             }
 		}
 		"Modifiers"
@@ -4992,7 +4992,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier1"
 			                }
 			            }
 			            "OnFailure"
@@ -5000,13 +5000,13 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier1"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier1"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
@@ -10541,7 +10541,7 @@
 			"RemoveModifier"
             {
                 "Target" "CASTER"
-                "ModifierName" "block_modifier"
+                "ModifierName" "block_modifier2"
             }
 		}
 		"Modifiers"
@@ -10583,7 +10583,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier2"
 			                }
 			            }
 			            "OnFailure"
@@ -10591,13 +10591,13 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier2"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier2"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
@@ -13321,12 +13321,12 @@
 			"RemoveModifier"
             {
                 "Target" "CASTER"
-                "ModifierName" "block_modifier"
+                "ModifierName" "block_modifier3"
             }
 		}
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_ryukyu_ronin_clogs_1"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -13363,7 +13363,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier3"
 			                }
 			            }
 			            "OnFailure"
@@ -13371,13 +13371,13 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier3"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier3"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
