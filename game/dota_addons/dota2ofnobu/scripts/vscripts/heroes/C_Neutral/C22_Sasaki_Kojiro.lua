@@ -238,7 +238,7 @@ function C22E_old_pull_back( keys )
 	local caster = keys.caster
 	local target = keys.target
 
-	if IsValidEntity(target) and target:IsAlive() then
+	if IsValidEntity(target) and target:IsAlive() and target:HasModifier("modifier_C22E_old_stun") then
 		-- 將目標拉回自己面前
 		local new_pos = caster:GetAbsOrigin()+caster:GetForwardVector()*100
 		FindClearSpaceForUnit(target,new_pos,true)

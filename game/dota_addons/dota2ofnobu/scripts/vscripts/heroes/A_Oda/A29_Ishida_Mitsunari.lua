@@ -219,8 +219,8 @@ function ExorcismPhysics( event )
 				-- Focus the last attacked target if there's any
 				local last_targeted = ability.last_targeted
 				local target_enemy = nil
+				local focus_attack = RandomInt(1,100)
 				for _,enemy in pairs(enemies) do
-
 					-- If the caster has a last_targeted and this is in range of the ghost acquisition, set to attack it
 					if last_targeted and enemy == last_targeted then
 						target_enemy = enemy
@@ -228,7 +228,7 @@ function ExorcismPhysics( event )
 				end
 
 				-- Else if we don't have a target_enemy from the last_targeted, get one at random
-				if not target_enemy then
+				if not target_enemy or focus_attack > 50 then
 					target_enemy = enemies[RandomInt(1, #enemies)]
 				end
 				

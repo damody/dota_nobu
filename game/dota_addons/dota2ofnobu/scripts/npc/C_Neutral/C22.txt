@@ -192,7 +192,7 @@
 		"AbilityCastPoint"	"0.2"
 		"AbilityCooldown"	"18"
 		"AbilityManaCost"	"95 120 135 150"
-		"AbilityCastRange"	"400 525 650 775"
+		"AbilityCastRange"	"500 625 750 875"
 		"precache"
 		{
 			"particle"	"particles/c20e/c20e.vpcf"
@@ -492,6 +492,11 @@
 				"Duration"   "%stun_time"
 				"Target" 	 "TARGET"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
 		}
 
 		"AbilitySpecial"
@@ -517,7 +522,7 @@
 		"AbilityCastPoint"	"0.2"
 		"AbilityCooldown"	"22"
 		"AbilityManaCost"	"140 160 180 200"
-		"AbilityCastRange"	"400 525 650 775"
+		"AbilityCastRange"	"500 625 750 875"
 		"precache"
 		{
 			"particle"	"particles/c20e/c20e.vpcf"
@@ -601,7 +606,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"stun_time"	"2.0"
+				"stun_time"	"2.5"
 			}
 			"02" // 命中後拉回的延遲
 			{
@@ -727,7 +732,7 @@
 		"AbilityCastPoint"	"0.2"
 		"AbilityCooldown"	"150"
 		"AbilityManaCost"	"260 310 360"
-		"AbilityDamage"		"750 1050 1350"
+		"AbilityDamage"		"1200 1600 2000"
 		"AoERadius" "%aoe_radius"
 		"precache"
 		{

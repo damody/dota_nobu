@@ -95,7 +95,7 @@ function A17T_Succes_Attack( keys )
 			ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v)
 		end
 		if v~=target then
-			AMHC:Damage( caster,v,dmg*0.8,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
+			AMHC:Damage( caster,v,dmg*0.6,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 		end
 	end	
 end

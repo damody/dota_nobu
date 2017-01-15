@@ -240,7 +240,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"1 2 3 4"
+				"duration"						"1 1.4 1.8 2"
 			}
 			
 			"02"
@@ -251,7 +251,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_interval"				"1"
+				"damage_interval"				"0.99"
 			}
 		}
 
@@ -334,7 +334,7 @@
 			"modifier_A29R"
 			{
 				"Aura"	"modifier_A29R_2"
-				"Aura_Radius"	"1000"
+				"Aura_Radius"	"800"
 				// for testing using:
 				// "Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -415,7 +415,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"160 140 120"
+		"AbilityCooldown"				"150 140 120"
 		
 
 		// Cost
@@ -429,12 +429,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"800 800 800"
+				"radius"				"600 700 800"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirits"				"40"
+				"spirits"				"20"
 			}
 			"03"
 			{
@@ -628,7 +628,7 @@
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"viper_viper_strike"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -640,10 +640,10 @@
 		"AoERadius"						"%aoe_radius"
 		"HotKeyOverride"				"W"
 		
-		"AbilityCastRange"				"600"
+		"AbilityCastRange"				"1000"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		"AbilityCooldown"				"12"
-		"AbilityManaCost"				"100 120 140 160"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"40 50 60 70"
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike.vpcf" // Wonky projectile
@@ -682,7 +682,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown_scepter"		"12"
+				"cooldown_scepter"		"7"
 			}
 			"07"
 			{
@@ -729,25 +729,12 @@
 
 		"OnSpellStart"
 		{
-			"ActOnTargets"
+			"TrackingProjectile"
 			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Center"	"POINT"
-					"Radius"	"%aoe_radius"
-				}
-				"Action"
-				{
-					"TrackingProjectile"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"particles/units/heroes/hero_viper/viper_viper_strike.vpcf"
-						"MoveSpeed"	"%projectile_speed"
-						"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-					}
-				}
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_viper/viper_viper_strike.vpcf"
+				"MoveSpeed"	"%projectile_speed"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
 			}
 			
 			"FireSound"
@@ -935,20 +922,26 @@
 		"BaseClass"             "ability_datadriven"
 		"AbilityTextureName"	"custom/guojia_guanghuan"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+
+		"AOERadius"	"%radius"
+
+		"OnUpgrade"
 		{
-			"01"
+			"RemoveModifier"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"mana_reduction"	"-7 -10 -12 -16"
+				"ModifierName"	"modifier_A29R_old_aura"
+				"Target" 		"CASTER"
 			}
-			"02"
+			"ApplyModifier"
 			{
-				"var_type"		"FIELD_INTEGER"
-				"aoe_radius"	"800 1000 1200 1400"
+				"ModifierName"	"modifier_A29R_old_aura"
+				"Target" 		"CASTER"
 			}
 		}
-
+		
 		"Modifiers"
 		{
 			"modifier_A29R_old_aura"
@@ -958,7 +951,7 @@
 				"TextureName"	"enigma_black_hole"
 				
 				"Aura"	"modifier_A29R_old_debuff"
-				"Aura_Radius"	"%aoe_radius"
+				"Aura_Radius"	"%radius"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				
@@ -976,6 +969,19 @@
 				{
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mana_reduction"
 				}	
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_reduction"	"-8 -16 -24 -32"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"	"800 1000 1200 1400"
 			}
 		}
 	}
@@ -999,7 +1005,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"170"
+		"AbilityCooldown"				"160 150 130"
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"250 300 350"
@@ -1016,7 +1022,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirits"				"28 34 40"
+				"spirits"				"14 17 20"
 			}
 			"03"
 			{
@@ -1036,12 +1042,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"min_damage"			"60 90 120"
+				"min_damage"			"100 150 200"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_damage"			"60 90 120"
+				"max_damage"			"100 150 200"
 			}
 			"08"
 			{
