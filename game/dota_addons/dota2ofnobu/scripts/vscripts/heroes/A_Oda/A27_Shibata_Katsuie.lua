@@ -270,3 +270,136 @@ function A27T( keys )
 	caster:SetHealth(caster:GetHealth()+hp)
 end
 
+-- 11.2B
+--------------------------------------------------------------
+
+function A27R_old_crit_judgment( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
+
+	if RandomInt(1,100)<=crit_chance then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A27R_old_critical_strike",nil)
+	end
+end
+
+--[[
+	Author: Noya
+	Date: 18.01.2015.
+	Creates Illusions, making use of the built in modifier_illusion
+
+	Note: The positions weren't random in the original ability. Fix later
+]]
+--[[
+	Author: Ractidous
+	Date: 27.01.2015.
+	Fixed the random spawn positions.
+]]
+function MirrorImage( event )
+	local caster = event.caster
+	local ability = event.ability
+	local illusions_count = ability:GetLevelSpecialValueFor( "illusions_count", ability:GetLevel() - 1 )
+
+	if illusions_count < 1 then
+		return -- wtf
+	end
+	
+	-- Stop any actions of the caster otherwise its obvious which unit is real
+	caster:Stop()
+
+	local center = caster:GetAbsOrigin()
+
+	local pi = 3.14159
+	local model_radius = ability:GetLevelSpecialValueFor("model_radius",ability:GetLevel()-1)
+	local total = illusions_count+1
+	local delta_theta = pi*2/total
+	local spawn_radius = model_radius/math.sin(delta_theta*0.5)
+	local start_theta = RandomFloat(0,2*pi)
+	local real_index = RandomInt(0,illusions_count)
+	local create_delay = ability:GetLevelSpecialValueFor("create_delay",ability:GetLevel()-1)
+	-- Spawn illusions
+	for i=0, illusions_count do
+		local dx = spawn_radius * math.cos(start_theta+delta_theta*i)
+		local dy = spawn_radius * math.sin(start_theta+delta_theta*i)
+		-- 慢慢產生
+		Timers:CreateTimer(i*create_delay, function()
+			local spawn_point = center + Vector(dx,dy,0)
+			if i == real_index then
+				-- At first, move the main hero to one of the random spawn positions.
+				FindClearSpaceForUnit(caster,spawn_point,true)
+			else
+				CreateMirror(caster,ability,spawn_point)
+			end
+		end)
+	end
+end
+
+function CreateMirror( caster, ability, spawn_point )
+	-- handle_UnitOwner needs to be nil, else it will crash the game.
+	local illusion = CreateUnitByName(caster:GetUnitName(), spawn_point, true, caster, nil, caster:GetTeamNumber())
+
+	local forword = caster:GetForwardVector()
+	local player_id = caster:GetPlayerID()
+
+	illusion:SetForwardVector(forword)
+	illusion:SetPlayerID(player_id)
+	illusion:SetControllableByPlayer(player_id, true)
+		
+	-- Level Up the unit to the casters level
+	local casterLevel = caster:GetLevel()
+	for i=1,casterLevel-1 do
+		illusion:HeroLevelUp(false)
+	end
+
+	-- Set the skill points to 0 and learn the skills of the caster
+	illusion:SetAbilityPoints(0)
+
+	-- 清空鏡像的技能
+	for abilitySlot=0,15 do
+		local ability = illusion:GetAbilityByIndex(abilitySlot)
+		if ability ~= nil then 
+			local abilityLevel = ability:GetLevel()
+			local abilityName = ability:GetAbilityName()
+			local illusionAbility = illusion:FindAbilityByName(abilityName)
+			if illusionAbility ~= nil then
+				illusion:RemoveAbility(abilityName)
+			end
+		end
+	end
+
+	-- 安裝技能至鏡像
+	for abilitySlot=0,15 do
+		local ability = caster:GetAbilityByIndex(abilitySlot)
+		if ability ~= nil then 
+			local abilityLevel = ability:GetLevel()
+			local abilityName = ability:GetAbilityName()
+			local illusionAbility = illusion:FindAbilityByName(abilityName)
+			illusion:AddAbility(abilityName):SetLevel(abilityLevel)
+		end
+	end
+
+	-- Recreate the items of the caster
+	for itemSlot=0,5 do
+		local item = caster:GetItemInSlot(itemSlot)
+		if item ~= nil then
+			local itemName = item:GetName()
+			local newItem = CreateItem(itemName, illusion, illusion)
+			illusion:AddItem(newItem)
+		end
+	end
+
+	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
+	illusion:MakeIllusion()
+
+	local level = ability:GetLevel()-1
+	local duration = ability:GetLevelSpecialValueFor( "illusion_duration", level )
+	local outgoingDamage = ability:GetLevelSpecialValueFor( "illusion_outgoing_damage", level )
+	local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_incoming_damage", level )
+	-- Set the unit as an illusion
+	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+	illusion:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+
+	-- Set the illusion hp to be the same as the caster
+	illusion:SetHealth(caster:GetHealth())
+	illusion:SetMana(caster:GetMana())
+end

@@ -444,4 +444,304 @@
 		"AbilityModifierSupportValue"	"0.35"
 	}
 
+// 柴田勝家 11.2B
+// -------------------------------------------------------------------------------------------------------
+	// 柴田勝家 [鬼柴田]
+	"A27W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_56"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"FightRecapLevel"	"2"
+		"HotKeyOverride"	"W"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"		"650"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"70 80 90 100"
+		"AoERadius"			"%radius"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			"soundfile"	"soundevents/voscripts/game_sounds_vo_stormspirit.vsndevts"
+			"particle"	"particles/A07t2/A07t2.vpcf"
+			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"ModifierName"	"modifier_A27T_old_buff"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_StormSpirit.ElectricVortex"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A27T_old_buff"
+			{
+				"IsBuff"	"1"
+				"AllowIllusionDuplicate"	"1"
+
+				"EffectName" "particles/a27t/a27t.vpcf"
+				"EffectAttachType" "follow_origin"	
+
+				"Duration"	"%buff_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%buff_phy_damage"
+				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%buff_phy_armor" 
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_duration"	"18"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_phy_damage"	"30 45 60 75"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_phy_armor"	"2 4 6 8"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"radius"	"650"
+			}
+		}
+	}
+	// 柴田勝家 [動地鎚]
+	"A27E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_85"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"		"20"
+		"AbilityManaCost"		"100 120 140 160"
+		"AbilityDamage"			"150 250 350 450"
+		"AoERadius" 			"450"
+		"AbilityCastRange"		"450"
+		"AbilityCastPoint"		"0.4"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"450"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun_time"		"1 1.4 1.8 2.2"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "CASTER"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			
+				"Action"    
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+					"Stun"
+					{
+						"Duration"   "%stun_time"
+						"Target" 	 "TARGET"
+					}
+				}
+			}
+		}
+	}
+	// 柴田勝家 [武者之道]
+	"A27R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_67"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"R"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+			"particle"	"particles/A27r/A27r.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A27R_old_passive"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
+						"Function"	"A27R_old_crit_judgment"
+					}
+				}
+			}
+			"modifier_A27R_old_critical_strike"
+			{
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A27R_old_critical_strike"
+						"Target" 		"CASTER"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_bonus"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_bonus"	"180 220 260 300"
+			}
+			"02"
+			{
+				"var_type" "FIELD_INTEGER"
+				"crit_chance" "20" // %
+			}
+			"03" // 閃避
+			{
+				"var_type"	"FIELD_INTEGER"
+				"evasion"	"4 8 12 16" // %
+			}
+		}
+	}
+	// 柴田勝家 [破竹之勢]
+	"A27T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_26"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"165"
+		"AbilityManaCost"	"200 250 300"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
+				"Function"	"MirrorImage"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"illusion_duration"	"28"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"illusion_incoming_damage"	"200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"illusion_outgoing_damage"	"0"
+			}
+			"04" // 鏡像數量
+			{
+				"var_type" "FIELD_INTEGER"
+				"illusions_count" "2 3 4"
+			}
+			"05" // 確保單位不會靠的太近
+			{
+				"var_type" "FIELD_INTEGER"
+				"model_radius" "140"
+			}
+			"06" // 慢慢產生
+			{
+				"var_type"	"FIELD_FLOAT"
+				"create_delay"	"0.1"
+			}
+		}
+	}
 }

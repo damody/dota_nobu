@@ -282,6 +282,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("A29R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A29T_old")
+		elseif string.match(caster:GetUnitName(), "omniknight") then -- 柴田勝家
+			caster:AddAbility("A27W_old")
+			caster:AddAbility("A27E_old")
+			caster:AddAbility("A27R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A27T_old")
 		end
 	end
 	if string.match(s,"uion") then
