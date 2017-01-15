@@ -146,6 +146,8 @@ function Nobu:PickHero( keys )
         GameRules: SendCustomMessage("石田三成玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "omniknight") then -- 柴田勝家
         GameRules: SendCustomMessage("柴田勝家玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      elseif string.match(name, "alchemist") then -- 宮本武藏
+        GameRules: SendCustomMessage("宮本武藏玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       end
     end
   end)

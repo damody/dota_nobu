@@ -312,3 +312,267 @@ function BladeFuryStop( event )
 	
 	caster:StopSound("Hero_Juggernaut.BladeFuryStart")
 end
+
+-- 11.2B
+---------------------------------------------------------------------------------------
+
+function C21W_old_start( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)
+
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21W_old",{duration=duration})
+end
+
+function C21W_old_apply_damage( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
+	local aoe_damage = ability:GetAbilityDamage()
+
+	local center = caster:GetAbsOrigin()
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_type = ability:GetAbilityTargetType()
+	local target_flags = ability:GetAbilityTargetFlags()
+	local damage_type = ability:GetAbilityDamageType()
+
+	-- 搜尋
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係
+                             center,			-- 搜尋的中心點
+                             nil, 				-- 好像是優化用的參數不懂怎麼用
+                             aoe_radius,		-- 搜尋半徑
+                             target_team,		-- 目標隊伍
+                             target_type,		-- 目標類型
+                             target_flags,		-- 額外選擇或排除特定目標
+                             FIND_ANY_ORDER,	-- 結果的排列方式
+                             false) 			-- 好像是優化用的參數不懂怎麼用
+
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+		-- 製造傷害
+		local damage_table = {}
+		damage_table.victim = unit
+  		damage_table.attacker = caster					
+ 		damage_table.damage_type = damage_type
+ 		damage_table.damage = aoe_damage
+		ApplyDamage(damage_table)		
+	end
+
+	if #units > 0 then
+		EmitSoundOn("Hero_Juggernaut.BladeFury.Impact",caster)
+	end
+end
+
+function C21E_old_start( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local attack_count = ability:GetLevelSpecialValueFor("attack_count",level)
+	local attack_delay = ability:GetLevelSpecialValueFor("attack_delay",level)
+
+	-- 安裝無敵修改器！
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21E_old",{duration=attack_count*attack_delay})
+
+	local counter = 0
+	Timers:CreateTimer(attack_delay, function()
+		counter = counter + 1
+
+		-- 目標或施法者死亡則停止
+		if not IsValidEntity(target) or not target:IsAlive() or not IsValidEntity(caster) or not caster:IsAlive() then
+			caster:RemoveModifierByName("modifier_C21E_old")
+			return nil
+		end
+
+		C21E_old_jump_attack(caster, target)
+
+		-- 判斷是否結束追擊
+		if counter >= attack_count then
+			caster:RemoveModifierByName("modifier_C21E_old")
+			return nil
+		else	
+			return attack_delay
+		end
+	end)
+end
+
+function C21E_old_jump_attack( caster, target )
+	local radius = 100
+	local theta = RandomFloat(0,3.14*2)
+	local dx = radius * math.cos(theta)
+	local dy = radius * math.sin(theta)
+	local offset = Vector(dx,dy,0)
+
+	-- 移至目標周圍
+	FindClearSpaceForUnit(caster,target:GetAbsOrigin()+offset,true)
+
+	-- 面向目標
+	local dir = (target:GetAbsOrigin()-caster:GetAbsOrigin())
+	dir.z = 0
+	caster:SetForwardVector(dir:Normalized())
+
+	-- 命令攻擊
+	local order = { UnitIndex = caster:entindex(),
+		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+		TargetIndex = target:entindex()}
+	ExecuteOrderFromTable(order)
+
+	local ifx = ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_ABSORIGIN,target)
+    ParticleManager:ReleaseParticleIndex(ifx)
+end
+
+function C21R_old_crit_judgment( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
+
+	if RandomInt(1,100)<=crit_chance then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21R_old_critical_strike",{duration=0.001})
+	end
+end
+
+C21T_OLD_STATE_GO_UP 	= 0
+C21T_OLD_STATE_GO_DOWN 	= 1
+C21T_OLD_STATE_END		= 2
+
+function C21T_old_start( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+
+	local particle = ParticleManager:CreateParticle("particles/econ/items/legion/legion_fallen/legion_fallen_press.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	ParticleManager:SetParticleControlEnt(particle,1,caster,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+
+	local ifx = ParticleManager:CreateParticle("particles/econ/items/effigies/status_fx_effigies/base_statue_destruction_generic.vpcf",PATTACH_ABSORIGIN,caster)
+	ParticleManager:ReleaseParticleIndex(ifx)
+
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21T_old_on_move",nil)
+
+	local unit = caster
+
+	-- 讓單位能被物理Lib控制
+	Physics:Unit(unit)
+
+	-- 改變基本設定
+	unit:PreventDI(true) -- 阻斷玩家操作
+	unit:SetAutoUnstuck(false) -- 取消自動移動至合法區
+	unit:SetNavCollisionType(PHYSICS_NAV_NOTHING) -- 無視碰撞
+	unit:FollowNavMesh(false) -- 不跟隨Nav
+	unit:SetPhysicsVelocityMax(10000)
+	unit:SetPhysicsFriction(0)
+	unit:Hibernate(false) -- 取消休眠(靜止不動的物體不會執行OnPhysicsFrame)
+	unit:SetGroundBehavior(PHYSICS_GROUND_NOTHING) -- 不理會地面
+
+	local veclocityFactor = 1000
+	local begin_pos = caster:GetAbsOrigin()
+	local end_pos = keys.target_points[1]
+	local mid_pos = Vector(0,0,0)
+	mid_pos.x = begin_pos.x * 0.8 + end_pos.x * 0.2
+	mid_pos.y = begin_pos.y * 0.8 + end_pos.y * 0.2
+	mid_pos.z = end_pos.z + 450
+
+	local initSpeed = 6000
+	local midSpeed = 3000
+	local begin2mid = mid_pos-begin_pos
+	local begin2mid_dir = begin2mid:Normalized()
+	local begin2mid_length = begin2mid:Length()
+	local mid2end = end_pos-mid_pos
+	local mid2end_dir = mid2end:Normalized()
+	local mid2end_length = mid2end:Length()
+
+	AddFOWViewer(caster:GetTeamNumber(),mid_pos,3000.0,1.5,false)
+
+	ability.state = C21T_OLD_STATE_GO_UP
+	unit:OnPhysicsFrame(function(unit)
+		local now_pos = unit:GetAbsOrigin()
+		local now_velocity = unit:GetPhysicsVelocity()
+		local now2end = end_pos - now_pos
+		local now2mid = mid_pos - now_pos
+
+		-- C21T_OLD_STATE_GO_UP
+ 		if ability.state == C21T_OLD_STATE_GO_UP then
+ 			local rate = now2mid:Length()/begin2mid_length
+ 			rate = rate * rate
+ 			unit:SetPhysicsVelocity(begin2mid_dir*initSpeed*rate)
+ 			if now_pos.z > mid_pos.z-50 then 
+ 				ability.state = C21T_OLD_STATE_GO_DOWN
+ 				caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+ 			end
+ 		end
+
+ 		-- C21T_OLD_STATE_GO_DOWN
+ 		if ability.state == C21T_OLD_STATE_GO_DOWN then
+ 			unit:AddPhysicsAcceleration(mid2end_dir*midSpeed)
+ 			if now_pos.z < end_pos.z then
+ 				ability.state = C21T_OLD_STATE_END
+ 			end
+ 		end
+
+ 		-- C21T_OLD_STATE_END
+ 		if ability.state == C21T_OLD_STATE_END then
+ 			unit:SetPhysicsAcceleration(Vector(0,0,0))
+    		unit:SetPhysicsVelocity(Vector(0,0,0))
+    		unit:OnPhysicsFrame(nil)
+    		unit:SetAbsOrigin(end_pos)
+
+    		caster:RemoveModifierByName("modifier_rooted")
+    		caster:RemoveModifierByName("modifier_C21T_old_on_move")
+
+    		local ifx = ParticleManager:CreateParticle("particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_egset.vpcf",PATTACH_WORLDORIGIN,caster)
+    		ParticleManager:SetParticleControl(ifx,0,end_pos)
+    		ParticleManager:ReleaseParticleIndex(ifx)
+
+    		local ifx = ParticleManager:CreateParticle("particles/econ/items/dragon_knight/dk_immortal_dragon/dragon_knight_dragon_tail_iron_dragon.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+    		ParticleManager:SetParticleControlEnt(ifx,2,caster,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+    		ParticleManager:SetParticleControlEnt(ifx,4,caster,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+    		ParticleManager:ReleaseParticleIndex(ifx)
+
+    		ParticleManager:DestroyParticle(particle,false)
+
+    		C21T_old_apply_damage(keys)
+ 		end
+	end)
+
+	local tm = caster:FindAllModifiers()
+	
+end
+
+function C21T_old_apply_damage( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
+	local aoe_damage = ability:GetAbilityDamage()
+
+	local center = caster:GetAbsOrigin()
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_type = ability:GetAbilityTargetType()
+	local target_flags = ability:GetAbilityTargetFlags()
+	local damage_type = ability:GetAbilityDamageType()
+
+	-- 搜尋
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係
+                              center,		-- 搜尋的中心點
+                              nil, 				-- 好像是優化用的參數不懂怎麼用
+                              aoe_radius,		-- 搜尋半徑
+                              target_team,		-- 目標隊伍
+                              target_type,		-- 目標類型
+                              target_flags,		-- 額外選擇或排除特定目標
+                              FIND_ANY_ORDER,	-- 結果的排列方式
+                              false) 			-- 好像是優化用的參數不懂怎麼用
+
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+
+		-- 製造傷害
+		local damage_table = {}
+		damage_table.victim = unit
+		damage_table.attacker = caster					
+		damage_table.damage_type = damage_type
+		damage_table.damage = aoe_damage
+		ApplyDamage(damage_table)
+	end
+
+	-- 砍樹
+	GridNav:DestroyTreesAroundPoint(center, aoe_radius, false)
+end
