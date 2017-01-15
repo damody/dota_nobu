@@ -43,7 +43,7 @@ end
 
 -- e.g. when blocking damage with a stout shield
 function PopupDamageBlock(target, amount)
-    PopupNumbers(target, "block", Vector(255, 255, 255), 1.0, amount, POPUP_SYMBOL_PRE_MINUS, nil)
+    PopupNumbers(target, "block", Vector(255, 200, 100), 1.0, amount, POPUP_SYMBOL_PRE_MINUS, nil)
 end
 
 -- e.g. when last-hitting a creep

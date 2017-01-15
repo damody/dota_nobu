@@ -2598,6 +2598,14 @@
 			"particle"	"particles/item/d01/d01.vpcf"
 			"particle"	"particles/item/d02_4/d02_4_f.vpcf"
 		}
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"shield_modifier"
@@ -2633,6 +2641,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "50"
@@ -3240,7 +3249,14 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -3318,6 +3334,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
@@ -4918,7 +4935,14 @@
 				"Function"	"Shock"
 			}
 		}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"modifier_great_sword_of_teleport"
@@ -4986,6 +5010,8 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Duration"	"0.1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
@@ -9717,7 +9743,14 @@
 				"Target"	"TARGET"
 			}
 		}
-
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -9774,6 +9807,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "100"
@@ -9885,6 +9919,14 @@
                 "Duration"      "10"
             }
 		}
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -9963,6 +10005,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "50"
@@ -10493,7 +10536,14 @@
 				"duration"	"5"
 			}
 		}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -10551,6 +10601,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
@@ -13265,7 +13316,14 @@
 				"duration"	"10"
 			}
 		}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -13323,6 +13381,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
