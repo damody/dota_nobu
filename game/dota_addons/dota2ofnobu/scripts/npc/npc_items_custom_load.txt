@@ -2598,6 +2598,14 @@
 			"particle"	"particles/item/d01/d01.vpcf"
 			"particle"	"particles/item/d02_4/d02_4_f.vpcf"
 		}
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"shield_modifier"
@@ -2633,6 +2641,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "50"
@@ -3240,7 +3249,14 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier4"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -3300,7 +3316,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier4"
 			                }
 			            }
 			            "OnFailure"
@@ -3308,16 +3324,17 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier4"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier4"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
@@ -4918,7 +4935,14 @@
 				"Function"	"Shock"
 			}
 		}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier1"
+            }
+		}
 		"Modifiers"
 		{
 			"modifier_great_sword_of_teleport"
@@ -4968,7 +4992,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier1"
 			                }
 			            }
 			            "OnFailure"
@@ -4976,16 +5000,18 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier1"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier1"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Duration"	"0.1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
@@ -7142,7 +7168,7 @@
 	{
 	    "ID" "3074"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "1000"
+		"ItemCost" "1350"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_samurai_cloth_2"  //合成後物品
@@ -9448,7 +9474,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"4650"
+		"ItemCost"	"5000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
@@ -9717,7 +9743,14 @@
 				"Target"	"TARGET"
 			}
 		}
-
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -9774,6 +9807,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "100"
@@ -9885,6 +9919,14 @@
                 "Duration"      "10"
             }
 		}
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -9963,6 +10005,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "50"
@@ -10493,7 +10536,14 @@
 				"duration"	"5"
 			}
 		}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier2"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -10533,7 +10583,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier2"
 			                }
 			            }
 			            "OnFailure"
@@ -10541,16 +10591,17 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier2"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier2"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
@@ -13265,10 +13316,17 @@
 				"duration"	"10"
 			}
 		}
-		
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "block_modifier3"
+            }
+		}
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_ryukyu_ronin_clogs_1"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -13305,7 +13363,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier3"
 			                }
 			            }
 			            "OnFailure"
@@ -13313,16 +13371,17 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier3"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier3"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"

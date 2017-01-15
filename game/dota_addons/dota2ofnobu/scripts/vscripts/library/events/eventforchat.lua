@@ -89,7 +89,7 @@ local function chat_of_test(keys)
 
 		local am = caster:FindAllModifiers()
 		for _,v in pairs(am) do
-			if not string.match(v:GetName(),"equilibrium_constant") then
+			if v:GetName() ~= "equilibrium_constant" and v:GetName() ~= "modifier_for_record" then
 				caster:RemoveModifierByName(v:GetName())
 			end
 		end

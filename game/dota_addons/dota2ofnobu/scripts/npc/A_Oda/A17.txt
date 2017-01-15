@@ -318,6 +318,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityManaCost"	"100 175 250"
+		"AbilityCastRange"	"1000 1150 1300"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
@@ -417,7 +418,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attacked_range"	"350 400 450"
+				"attacked_range"	"350 375 400"
 			}
 			"05"
 			{
@@ -717,6 +718,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityManaCost"	"110 160 210"
+		"AbilityCastRange"	"1000 1300 1400"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
@@ -811,7 +813,7 @@
 			"04" // aoe範圍
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attacked_range"	"350 400 450"
+				"attacked_range"	"350 375 400"
 			}
 			"05"
 			{
@@ -821,7 +823,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"base_atk_spd"	"2.5"
+				"base_atk_spd"	"2.8"
 			}
 			"07"
 			{

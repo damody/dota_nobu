@@ -557,7 +557,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"		"20"
+		"AbilityCooldown"		"10"
 		"AbilityManaCost"		"100 120 140 160"
 		"AbilityDamage"			"150 250 350 450"
 		"AoERadius" 			"450"
@@ -695,7 +695,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"HotKeyOverride"	"T"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"165"
+		"AbilityCooldown"	"165 150 135"
 		"AbilityManaCost"	"200 250 300"
 		"precache"
 		{
@@ -720,7 +720,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"200"
+				"illusion_incoming_damage"	"100"
 			}
 			"03"
 			{
@@ -735,7 +735,7 @@
 			"05" // 確保單位不會靠的太近
 			{
 				"var_type" "FIELD_INTEGER"
-				"model_radius" "140"
+				"model_radius" "100"
 			}
 			"06" // 慢慢產生
 			{

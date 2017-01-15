@@ -596,7 +596,7 @@
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/juggernaut_blade_dance2"
-
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -631,11 +631,11 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"0"
-			"Damage"
+			"RunScript"
 			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C10.lua"
+				"Function"	"C10T_old_break"
 				"Target"	"TARGET"
-				"Type"		"DAMAGE_TYPE_PURE"
-				"Damage"	"%AbilityDamage"
 			}
 		}
 
@@ -665,6 +665,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"speed"	"1380"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"160 235 310"
 			}
 		}
 	}

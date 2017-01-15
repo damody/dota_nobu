@@ -243,6 +243,13 @@ function C10W_old_Jump(keys)
 	end)
 end
 
+function C10T_old_break( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	AMHC:Damage(caster,target, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+end
+
 function C10T_old_on_attack( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -274,7 +281,7 @@ function C10T_old_on_attack( keys )
 		bHasFrontalCone = false,
 		bReplaceExisting = false,
 		iUnitTargetTeam = ability:GetAbilityTargetTeam(),
-		iUnitTargetFlags = ability:GetAbilityTargetFlags(),
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 		iUnitTargetType = ability:GetAbilityTargetType(),
 		iVisionRadius = radius,
 		iVisionTeamNumber = caster:GetTeamNumber()
