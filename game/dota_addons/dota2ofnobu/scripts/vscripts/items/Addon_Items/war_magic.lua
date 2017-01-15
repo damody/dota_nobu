@@ -289,14 +289,6 @@ function to_war_magic_unit(keys)
 		    caster:AddAbility("war_magic_lessattack"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		local pres = prestige[caster:GetTeamNumber()]
 		local maxmana = math.floor(pres / 60) * 5 + 20
 		if caster:GetMana() > maxmana then
@@ -343,14 +335,6 @@ function to_war_magic_unit2(keys)
 		    caster:AddAbility("war_magic_treecut"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		local pres = prestige[caster:GetTeamNumber()]
 		local maxmana = math.floor(pres / 60) * 5 + 20
 		if caster:GetMana() > maxmana then
@@ -410,15 +394,7 @@ function to_soldier_Oda(keys)
 		    caster:AddAbility("soldier_Oda_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[2]-payprestige[2])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -482,15 +458,7 @@ function to_soldier_Unified(keys)
 		    caster:AddAbility("soldier_Unified_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[3]-payprestige[3])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -530,15 +498,7 @@ function to_archer_Oda(keys)
 		    caster:AddAbility("archer_Oda_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[2]-payprestige[2])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -578,15 +538,7 @@ function to_archer_Unified(keys)
 		    caster:AddAbility("archer_Unified_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[3]-payprestige[3])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -626,15 +578,7 @@ function to_gunner_Oda(keys)
 		    caster:AddAbility("gunner_Oda_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[2]-payprestige[2])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -674,15 +618,7 @@ function to_gunner_Unified(keys)
 		    caster:AddAbility("gunner_Unified_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[3]-payprestige[3])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -723,15 +659,7 @@ function to_cavalry_Oda(keys)
 		    caster:AddAbility("cavalry_Oda_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[2]-payprestige[2])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -771,15 +699,7 @@ function to_cavalry_Unified(keys)
 		    caster:AddAbility("cavalry_Unified_bottom"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[3]-payprestige[3])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -928,15 +848,7 @@ function to_sell_ninja_unit(keys)
 		    caster:AddAbility("near_hero_then_can_use_ability"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetAbsOrigin(pos)
 		caster:SetMana(prestige[3]-payprestige[3])
-		local order = {
-	 		UnitIndex = caster:entindex(), 
-	 		OrderType = DOTA_UNIT_ORDER_STOP,
-	 		Position = pos, --Optional.  Only used when targeting the ground
-	 		Queue = 0 --Optional.  Used for queueing up abilities
-	 	}
-		ExecuteOrderFromTable(order)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
