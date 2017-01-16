@@ -333,6 +333,7 @@ function to_war_magic_unit2(keys)
 		    caster:AddAbility("war_magic_gohome"):SetLevel(1)
 		    caster:AddAbility("war_magic_findanything"):SetLevel(1)
 		    caster:AddAbility("war_magic_treecut"):SetLevel(1)
+		    caster:AddAbility("reward6300"):SetLevel(1)
 		end)
 	Timers:CreateTimer(1, function()
 		local pres = prestige[caster:GetTeamNumber()]
