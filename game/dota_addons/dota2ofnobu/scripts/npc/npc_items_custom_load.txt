@@ -12670,7 +12670,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"200"
+		"ItemCost"	"250"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
 		"ItemStackable"					"1"
@@ -12678,7 +12678,7 @@
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"SecretShop" "1"
+		"SideShop" "1"
 
 		"OnSpellStart"
 		{
@@ -12725,7 +12725,7 @@
 		"ItemInitialCharges"			"6"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SecretShop" "1"
+		"SideShop" "1"
 
 		
 		"OnSpellStart"
@@ -12822,7 +12822,7 @@
 		"ItemCost"	"1850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SecretShop" "1"
+		"SideShop" "1"
 		
 		"OnSpellStart"
 		{
@@ -13745,6 +13745,107 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"560.00"
+			}
+		}
+	}
+
+	// 銀伊予札白糸威胴丸具足
+	"item_the_great_silver_armor"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"custom/cross_spear"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+
+		"SecretShop" "1"
+		"ID"	"2827"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"7000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemRequirements"	{}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_perceive_wine.lua"
+				"Function"	"Shock"
+				"Time"	"10"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_perceive_wine"
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_perceive_wine"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Passive"	"0"
+				"Duration"	"10"
+				"EffectName"	"particles/item/item_perceive_wine.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"IsHidden"	"0"
+			}
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "120" //攻速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"   "150" //跑速
+				}
+			}
+			"Passive_insight_gem"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "600"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
 			}
 		}
 	}
