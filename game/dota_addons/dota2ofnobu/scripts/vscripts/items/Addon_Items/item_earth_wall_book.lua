@@ -31,7 +31,7 @@ function Shock( keys )
 
 		-- 搖晃特效
 		if unit:IsHero() then
-			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, v)
+			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, unit)
 		end
 
 		-- 避免卡住

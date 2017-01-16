@@ -1,5 +1,15 @@
 LinkLuaModifier("modifier_ninja2", "heroes/modifier_ninja2.lua", LUA_MODIFIER_MOTION_NONE)
 
+function reward6300(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local pos = caster:GetAbsOrigin()
+	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",pos ,false,caster,caster,caster:GetTeamNumber())	
+	dummy:FindAbilityByName("majia"):SetLevel(1)
+	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)
+	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
+end
+
 function tofar_goback(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
