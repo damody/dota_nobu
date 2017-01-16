@@ -603,18 +603,18 @@
 		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
 
 		"AbilityCastPoint"	"0.3"
-		"AbilityDamage"		"900 1300 1700"
-		"AbilityCooldown"	"150"
-		"AbilityManaCost"	"250 300 350"
+		"AbilityDamage"		"1200 1600 2000"
+		"AbilityCooldown"	"150 130 110"
+		"AbilityManaCost"	"300 400 500"
 		"AbilityCastRange"	"1300"
-		"AoERadius" 		"%aoe_radius"
+		"AoERadius" 		"800"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"aoe_radius"		"500"
+				"aoe_radius"		"800"
 			}
 		}
 
