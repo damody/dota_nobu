@@ -12537,6 +12537,116 @@
 		}
 	}
 
+	// 忍法．土盾之書
+	"item_earth_wall_book"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"custom/rockfall_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"1"
+		
+		"AbilityDamage"		"150"
+		"AbilityCooldown"	"0.5"
+		"AbilityCastRange"	"1000"
+		"AoERadius"			"%aoe_radius"
+
+		"ID"	"4000"
+		"ItemCost"	"3050"
+		"SideShop"	"1"
+
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		// 充能參數
+		"ItemInitialCharges"	"4"
+		"ItemRequiresCharges"	"1"
+		"ItemDisplayCharges" 	"1"
+		
+		"OnSpellStart"
+		{
+			"SpendCharge" {} // 加了才會消耗次數
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_earth_wall_book.lua"
+				"Function"	"Shock"
+				"Target"	"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_earth_wall_book_auto_charge"
+			{
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"ThinkInterval"  "%charge_delay"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_earth_wall_book.lua"
+						"Function"		"Charge"
+					}
+				}
+			}
+			"Passive_earth_wall_book"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" 		"0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" 		"0"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS"				"0" //血
+					"MODIFIER_PROPERTY_MANA_BONUS"					"0"	//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" 	"0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"			"0" //回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"		"0" //回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"0"	//跑速
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"max_charge"	"4"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"charge_delay"	"13.0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aoe_radius"	"250"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"6.0"
+			}
+		}
+	}
+
 	// 爆烈彈
 	"item_napalm_bomb"
 	{
