@@ -853,6 +853,7 @@
 			"particle"	"particles/a07t2/a07t2.vpcf"
 			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"particle"	"particles/b32/b32t_orb.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -918,6 +919,19 @@
 						"Function"	"AON_Cleave_B32x"
 						"dmg"	"%attack_damage"
 						"Target"	"TARGET"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/b32/b32t_orb.vpcf"
+						"EffectAttachType"  "follow_customorigin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+            			{
+                			"CASTER" "attach_attack1"
+            			}
 					}
 				}
 			}

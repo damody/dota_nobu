@@ -410,12 +410,14 @@
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityCastPoint"	"0.2"
+		"AbilityCastPoint"	"0.5"
 		"AbilityCooldown"	"110"
 		"AbilityManaCost"	"350 450 550"
+		"AoERadius"	"750"
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"  "particles/econ/items/monkey_king/arcana/death/monkey_king_spring_arcana_death.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -446,6 +448,11 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"Stun_Time"	"1.0 1.5 2.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"750"
 			}
 		}
 	}
@@ -729,7 +736,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"	"0.2"
+		"AbilityCastPoint"	"0.6"
 		"AbilityCooldown"	"150 130 110"
 		"AbilityManaCost"	"260 310 360"
 		"AbilityDamage"		"1200 1600 2000"
@@ -737,6 +744,8 @@
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"  "particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf"
+			"particle"  "particles/c22/c22t_old.vpcf"
 		}
 		"OnSpellStart"
 		{

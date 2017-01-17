@@ -12039,6 +12039,133 @@
 		}
 	}
 
+	// 冰計之書
+	"item_ice_book"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"custom/flood_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"1"
+		// Time
+		
+		"AbilityCooldown"	"70"
+		// Cost
+		
+		"AbilityManaCost"	"600"
+		"ID"	"4000"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4250"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilitySpecial"
+		{
+			"01" // 發射間隔時間
+			{
+				"var_type"		"FIELD_FLOAT"
+				"aoe_delay"		"0.8"
+			}
+			"02" // 小冰錐射程
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe_radius"	"300"
+			}
+			"03" // 小冰錐傷害
+			{
+				"var_type"		"FIELD_INTEGER"
+				"ice_damage"	"55"
+			}
+			"04" // 發射次數
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe_count"		"5"
+			}
+			"05" // 一次發射的小冰錐數量
+			{
+				"var_type"		"FIELD_INTEGER"
+				"ice_count"		"22"
+			}
+			"06" // 投射物速度
+			{
+				"var_type"		"FIELD_INTEGER"
+				"speed"			"300"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/item/item_ice_book/ball.vpcf"
+			"particle"  "particles/item/item_ice_book/ice.vpcf"
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ice_book.lua"
+				"Function"		"Shock"
+				"Target"		"POINT"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%ice_damage"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_ice_creator"
+			{
+				"ThinkInterval"  "%aoe_delay"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_ice_book.lua"
+						"Function"		"CreateIce"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"Passive_ice_book"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
 	// 火計之書
 	"item_ignite_book"
 	{

@@ -313,12 +313,60 @@ function C17R_old_OnEnable( keys )
 	target:AddNewModifier(target,nil,"modifier_kill", {duration = max_life_time})
 end
 
-function C17R_old_End( keys )
-	local target = keys.target
+function C17R_old_on_trigger( keys )
+	local target = keys.caster          -- 暈障
+	local ability = keys.ability
+	local caster = ability:GetCaster()	-- 阿市
 
-	if IsValidEntity(target) and target:IsAlive() then
-		target:ForceKill(true)
-	end
+	-- 移除光環，光環在角色死亡時不會刪除，似乎要等到實體被移除後才會刪除
+	target:RemoveModifierByName("modifier_C17R_old_aura")
+
+	-- 殺死暈障
+	target:ForceKill(true)
+
+	local level = ability:GetLevel()-1
+	local delay_stun = ability:GetLevelSpecialValueFor("delay_stun",level)
+	local aoe_radius = ability:GetLevelSpecialValueFor("radius_stun",level)
+	local duration_stun = ability:GetLevelSpecialValueFor("duration_stun",level)
+
+	-- 搜尋參數
+	local center = target:GetAbsOrigin()
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_type = ability:GetAbilityTargetType()
+	local target_flags = ability:GetAbilityTargetFlags()
+	local damage_type = ability:GetAbilityDamageType()
+	local ability_damage = ability:GetAbilityDamage()
+
+	Timers:CreateTimer(delay_stun, function()
+		-- 砍樹
+		GridNav:DestroyTreesAroundPoint(center, aoe_radius, false)
+		-- 搜尋
+		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係
+                              center,				-- 搜尋的中心點
+                              nil, 					-- 好像是優化用的參數不懂怎麼用
+                              aoe_radius,			-- 搜尋半徑
+                              target_team,			-- 目標隊伍
+                              target_type,			-- 目標類型
+                              target_flags,			-- 額外選擇或排除特定目標
+                              FIND_ANY_ORDER,		-- 結果的排列方式
+                              false) 				-- 好像是優化用的參數不懂怎麼用
+		-- 處理搜尋結果
+		for _,unit in ipairs(units) do
+			-- 製造傷害
+			local damage_table = {}
+			damage_table.victim = unit
+  			damage_table.attacker = caster
+ 			damage_table.damage_type = damage_type
+ 			damage_table.damage = ability_damage
+			ApplyDamage(damage_table)
+			-- 暈眩
+			unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
+		end
+		-- 特效
+		local ifx = ParticleManager:CreateParticle("particles/c17/c17r_old_boom.vpcf",PATTACH_ABSORIGIN,caster)
+		ParticleManager:SetParticleControl(ifx,0,center)
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end)
 end
 
 function C17T_old( keys )
