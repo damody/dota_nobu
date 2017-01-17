@@ -410,12 +410,14 @@
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityCastPoint"	"0.2"
+		"AbilityCastPoint"	"0.5"
 		"AbilityCooldown"	"110"
 		"AbilityManaCost"	"350 450 550"
+		"AoERadius"	"750"
 		"precache"
 		{
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"  "particles/econ/items/monkey_king/arcana/death/monkey_king_spring_arcana_death.vpcf"
 		}
 		"OnSpellStart"
 		{
@@ -446,6 +448,11 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"Stun_Time"	"1.0 1.5 2.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"750"
 			}
 		}
 	}

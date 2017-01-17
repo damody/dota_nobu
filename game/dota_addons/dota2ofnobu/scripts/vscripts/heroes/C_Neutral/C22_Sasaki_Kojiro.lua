@@ -206,7 +206,7 @@ function C22T_Damage( keys )
 	-- Finds all the enemies in a radius around the target and then deals damage to each of them
     --獲取攻擊範圍
     local group = {}
-    local radius = 750
+    local radius = ability:GetLevelSpecialValueFor("radius",ability:GetLevel()-1)
 
     --獲取周圍的單位
     group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
@@ -223,12 +223,10 @@ function C22T_Damage( keys )
 		end
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/c20t2/c20t2.vpcf", PATTACH_POINT, caster)
-	ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
-	local particle = ParticleManager:CreateParticle("particles/c20t2/c20t2.vpcf", PATTACH_POINT, caster)
-	ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
-	local particle = ParticleManager:CreateParticle("particles/c20t2/c20t2.vpcf", PATTACH_POINT, caster)
-	ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
+	local particle = ParticleManager:CreateParticle("particles/econ/items/monkey_king/arcana/death/monkey_king_spring_arcana_death.vpcf",PATTACH_ABSORIGIN,caster)
+	ParticleManager:SetParticleControl(particle, 1, Vector(radius,radius,radius))
+	ParticleManager:SetParticleControl(particle, 2, Vector(radius,0,0))
+	ParticleManager:ReleaseParticleIndex(particle)
 end
 
 -- 佐佐木小次郎 11.2B
@@ -286,6 +284,7 @@ function C22T_old( keys )
 	ParticleManager:SetParticleControl(ifx,0,center) -- 起點
 	ParticleManager:SetParticleControl(ifx,1,center) -- 終點
 	ParticleManager:SetParticleControl(ifx,3,Vector(0,1,0)) -- 延遲
+	ParticleManager:ReleaseParticleIndex(ifx)
 
 	Timers:CreateTimer(start_delay, function()
 		-- 砍樹
@@ -319,5 +318,6 @@ function C22T_old( keys )
 		ParticleManager:SetParticleControl(ifx,0,center)
 		ParticleManager:SetParticleControl(ifx,1,Vector(scale,scale,scale))
 		ParticleManager:SetParticleControl(ifx,2,Vector(scale,scale,scale))
+		ParticleManager:ReleaseParticleIndex(ifx)
 	end)
 end
