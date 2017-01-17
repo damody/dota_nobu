@@ -636,65 +636,10 @@
 				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"OnCreated"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_C17R_old_delay_aoe_stun"
-						"Target" 		"CASTER"
-					}
-					"RemoveModifier"
-					{
-						// 由於這個修改器是aura自動裝上去的所以當aura被消滅後這個修改器也會被刪除
-						"ModifierName"	"modifier_C17R_old_aura"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-			"modifier_C17R_old_delay_aoe_stun"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-				"Duration"			"%delay_stun"
-
-				"OnDestroy"
-				{
-					"FireEffect"
-					{
-						"EffectName"        "particles/c17/c17r_old_boom.vpcf"
-						"EffectAttachType"  "follow_origin"
-						"Target"            "TARGET"
-					}
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"%radius_stun"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-					
-						"Action"    
-						{
-							"Stun"
-							{
-								"Duration"   "%duration_stun"
-								"Target" 	 "TARGET"
-							}
-							"Damage"
-							{
-								"Target"		"TARGET"
-								"Type"			"DAMAGE_TYPE_MAGICAL"
-								"Damage"		"%AbilityDamage"
-							}
-
-						}
-					}
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
-						"Function"		"C17R_old_End"
-						"Target"		"CASTER"
+						"Function"		"C17R_old_on_trigger"
 					}
 				}
 			}
