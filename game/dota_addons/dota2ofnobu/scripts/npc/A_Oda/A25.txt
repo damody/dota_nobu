@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"A25_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a25.vsndevts"
+		}
+	}
 	// 織田信長 導雷
 	"A25W"
 	{
@@ -31,6 +40,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A25W.vo1"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -124,6 +138,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A25E.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
@@ -291,6 +310,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A25T.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_A25T"
@@ -479,6 +503,11 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
+				"EffectName"	"A25W_old.vo1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
 				"EffectName"	"Ability.Assassinate"
 			}
 			"LinearProjectile"
@@ -568,6 +597,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A25E_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
@@ -761,6 +795,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A25T_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_A25T"

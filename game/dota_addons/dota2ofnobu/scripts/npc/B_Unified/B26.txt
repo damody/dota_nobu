@@ -1,6 +1,15 @@
 //大熊朝秀
 "DOTAAbilities"
 {
+	"B26_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b26.vsndevts"
+		}
+	}
 	"B26D"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -20,6 +29,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B26D.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B26.lua"
@@ -52,6 +66,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B26W.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B26.lua"
@@ -176,6 +195,11 @@
 		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B26E.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -312,6 +336,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B26T.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"

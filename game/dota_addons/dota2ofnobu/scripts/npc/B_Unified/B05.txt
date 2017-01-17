@@ -1,6 +1,15 @@
 //毛利元就
 "DOTAAbilities"
 {
+	"B05_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b05.vsndevts"
+		}
+	}
 	//毛利元就 鏈鎖閃電
 	"B05W"
 	{
@@ -34,6 +43,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05W.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_arc_lightning_datadriven"
@@ -145,6 +159,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05E.vo1"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -275,6 +294,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05R.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B05_Moari.lua"
@@ -408,6 +432,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05W_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_arc_lightning_datadriven"
@@ -519,6 +548,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05E_old.vo1"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -622,6 +656,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05R_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_B05R"
@@ -744,6 +783,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05T.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"TARGET"
@@ -829,6 +873,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05T_old.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"TARGET"

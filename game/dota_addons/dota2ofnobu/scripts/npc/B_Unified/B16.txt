@@ -1,6 +1,15 @@
 //望月千代女
 "DOTAAbilities"
 {
+	"B16_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b16.vsndevts"
+		}
+	}
 // Todo: 英雄升級時要調整月月能力值
 // 望月技能組
 // -------------------------------------------------------------------------------------------------------------
@@ -18,6 +27,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16W.vo1"
+			}
 			"Damage"
 			{
 				"Target"		"TARGET"
@@ -98,6 +112,11 @@
 		"AbilityManaCost"	"120 140 160 180"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16E.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"		"particles/b16/b16e.vpcf"
@@ -254,6 +273,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16D.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
@@ -326,6 +350,11 @@
 		
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
@@ -404,6 +433,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16MMD.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
@@ -603,6 +637,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16W_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
@@ -725,6 +764,11 @@
 		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16E_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"		"particles/b16/b16e_old.vpcf"
@@ -852,6 +896,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16T_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"        "particles/b16/b16t_old.vpcf"

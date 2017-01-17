@@ -1,6 +1,15 @@
 //秋山信友
 "DOTAAbilities"
 {
+	"B24_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b24.vsndevts"
+		}
+	}
 	//秋山信友 召喚地靈石碑
 	"B24W"
 	{
@@ -25,6 +34,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B24W.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"POINT"
@@ -135,6 +149,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B24E.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
@@ -346,6 +365,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B24T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"

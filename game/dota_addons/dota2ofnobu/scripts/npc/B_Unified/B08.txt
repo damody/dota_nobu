@@ -1,5 +1,14 @@
  "DOTAAbilities"
 {
+	"B08_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b08.vsndevts"
+		}
+	}
 	// 淺井長政 一刀．連牙
 	"B08D_old"
 	{
@@ -34,6 +43,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B08D_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Magnataur.ShockWave.Cast"
@@ -164,6 +178,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"B08W.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_Magnataur.ShockWave.Cast"
 				"Target"	"CASTER"
 			}
@@ -289,6 +308,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"B08W_old.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_Magnataur.ShockWave.Cast"
 				"Target"	"CASTER"
 			}
@@ -412,6 +436,11 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
+				"EffectName"	"B08E.vo1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
 				"EffectName"	"Hero_Sven.StormBoltImpact"
 			}
 			"RunScript"
@@ -517,6 +546,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B08E_old.vo1"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -744,6 +778,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B08T.vo1"
+			}
 			"LinearProjectile"
 			{
 				"Target"	"POINT"
@@ -869,6 +908,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B08T_old.vo1"
+			}
 			"LinearProjectile"
 			{
 				"Target"	"POINT"

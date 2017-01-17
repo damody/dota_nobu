@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"B25_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b25.vsndevts"
+		}
+	}
 	// 本願寺顯如 退魔擊
 	"B25W"
 	{
@@ -34,6 +43,11 @@
 		
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B25W.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"	"particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf"
@@ -87,6 +101,11 @@
 		
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B25W_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"	"particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf"
@@ -152,6 +171,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"B25E.vo1"
+			}
+			"FireSound"
+			{
 				"Target"			"CASTER"
 				"EffectName"		"Hero_Necrolyte.DeathPulse"
 			}
@@ -208,6 +232,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B25E_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
@@ -322,6 +351,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B25R.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -459,6 +493,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B25R_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Lion.FingerOfDeath"
@@ -608,6 +647,11 @@
 		
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B25T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
@@ -718,6 +762,11 @@
 		
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B25T_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"

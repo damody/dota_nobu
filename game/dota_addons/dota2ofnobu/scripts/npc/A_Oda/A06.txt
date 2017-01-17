@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"A06_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a06.vsndevts"
+		}
+	}
 	// 井伊直政 釋放怒炎
 	"A06D"
 	{
@@ -37,6 +46,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06D.vo1"
+			}
 			"LinearProjectile"
 			{
 				"Target"	"POINT"
@@ -132,6 +146,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06W.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -196,6 +215,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06W_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -271,6 +295,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06E.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -302,7 +331,7 @@
 				"EffectAttachType"	"attach_origin"
 				"ControlPointEntities"
 				{
-					" TARGET"	"attach_origin"
+					"TARGET"	"attach_origin"
 					"TARGET"	"attach_origin"
 					"TARGET"	"attach_origin"
 					"TARGET"	"attach_origin"
@@ -372,6 +401,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06E_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
@@ -544,6 +578,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06T_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"

@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"B06_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b06.vsndevts"
+		}
+	}
 	// 真田幸村 真田勇士
 	"B06W"
 	{
@@ -17,6 +26,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06W.vo1"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -84,6 +98,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06W_old.vo1"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -156,6 +175,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06E.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -252,6 +276,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06E_HIDE.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -344,6 +373,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06E_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -556,6 +590,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06T.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -664,6 +703,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06T_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"

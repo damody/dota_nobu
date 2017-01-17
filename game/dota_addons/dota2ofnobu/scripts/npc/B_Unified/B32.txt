@@ -1,6 +1,15 @@
 // 上杉謙信
 "DOTAAbilities"
 {
+	"B32_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b32.vsndevts"
+		}
+	}
 	"Version"		"1"
 
 	"B32D"
@@ -36,6 +45,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32D.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_B32D"
@@ -153,6 +167,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32W.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -275,6 +294,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32W_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -405,6 +429,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32E.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -551,6 +580,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32E_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -760,6 +794,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32R_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_B32D"
@@ -857,6 +896,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32T.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -995,6 +1039,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32T_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"

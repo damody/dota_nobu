@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"A29_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a29.vsndevts"
+		}
+	}
 	// 石田三成 袖毒矢
 	"A29W"
 	{
@@ -99,6 +108,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A29W.vo1"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -257,7 +271,11 @@
 
 		"OnSpellStart"
 		{
-
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A29E.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"    	"modifier_treant_overgrowth"
@@ -505,6 +523,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A29T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
@@ -729,6 +752,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A29W_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -870,6 +898,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A29E_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_A29E_damage_datadriven"
@@ -1093,6 +1126,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A29T_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"

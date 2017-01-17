@@ -1,6 +1,15 @@
 "DOTAAbilities"
 //松姬
 {
+	"C19_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c19.vsndevts"
+		}
+	}
 	//松姬 媚誘目光
 	"C19W"
 	{
@@ -17,6 +26,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C19W.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
@@ -198,6 +212,11 @@
 		"AbilityCastRange"	"1000"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C19E.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"TARGET"
@@ -224,6 +243,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C19E_old.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"POINT"
@@ -374,6 +398,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C19R_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Furion.Teleport_Disappear"
@@ -559,6 +588,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C19D.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Furion.Teleport_Disappear"

@@ -1,5 +1,14 @@
  "DOTAAbilities"
  {
+ 	"A34_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a34.vsndevts"
+		}
+	}
  	// 阿松 寒霜彈
 	"A34W"
 	{
@@ -36,6 +45,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A34W.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -134,6 +148,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A34E.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"	"particles/a34e2/a34e2.vpcf"
@@ -274,6 +293,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A34R.vo1"
+			}
 			"LinearProjectile"
 			{
 				"Target"	"POINT"
@@ -417,6 +441,11 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
+				"EffectName"	"A34T.vo1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
 				"EffectName"	"hero_Crystal.preAttack"
 			}
 			"RunScript"
@@ -475,6 +504,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A34W_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -573,6 +607,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A34E_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"	"particles/a34e2/a34e2.vpcf"
@@ -713,6 +752,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A34R_old.vo1"
+			}
 			"LinearProjectile"
 			{
 				"Target"	"POINT"
@@ -837,6 +881,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A34T_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_A34T_old_buff"

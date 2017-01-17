@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"A31_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a31.vsndevts"
+		}
+	}
 	// 森蘭丸 響雨
 	"A31W"
 	{
@@ -32,6 +41,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A31W.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -142,6 +156,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"A31E.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_Riki.Blink_Strike"
 				"Target"	"CASTER"
 			}
@@ -203,6 +222,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A31R.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -465,6 +489,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A31W_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -556,6 +585,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"A31E_old.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_Riki.Blink_Strike"
 				"Target"	"CASTER"
 			}
@@ -616,6 +650,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A31R_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"

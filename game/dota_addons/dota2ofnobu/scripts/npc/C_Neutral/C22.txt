@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"C22_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c22.vsndevts"
+		}
+	}
 	// 佐佐木小次郎 嚴流
 	"C22D"
 	{
@@ -15,6 +24,11 @@
 		"AbilityManaCost"	"50"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22D.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C22_Sasaki_Kojiro.lua"
@@ -90,6 +104,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22W.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -204,6 +223,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22E.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -421,6 +445,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22T.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"CASTER"
@@ -488,6 +517,11 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22W_old.vo1"
+			}
 			"Damage"
 			{
 				"Target"		"TARGET"
@@ -541,6 +575,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22E_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -749,6 +788,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22T_old.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"CASTER"

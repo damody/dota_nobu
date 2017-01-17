@@ -1,7 +1,15 @@
 //玉子 
 "DOTAAbilities"
 {
-
+	"C15_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c15.vsndevts"
+		}
+	}
 	// Rewrite of the Mirana Sacred Arrow ability
 	// Author: Pizzalol
 	// Date: 26.09.2015.
@@ -43,6 +51,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C15W.vo1"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -138,6 +151,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C15E.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Mirana.ArrowCast"
@@ -325,6 +343,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"C15T.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_Disruptor.PreAttack"
 				"Target"	"CASTER"
 			}
@@ -455,6 +478,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C15W_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Ability.Starfall"
@@ -650,6 +678,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C15T_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Disruptor.PreAttack"

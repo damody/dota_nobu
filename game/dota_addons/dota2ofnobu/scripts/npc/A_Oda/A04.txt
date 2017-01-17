@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"A04_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a04.vsndevts"
+		}
+	}
 	// 竹中重治 霜雀
 	"A04D"
 	{
@@ -71,6 +80,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A04W.vo1"
+			}
 			"SpawnUnit"
 			{
 				"UnitName"	"A04W_SUMMEND_UNIT"
@@ -226,6 +240,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"A04E.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_Jakiro.IcePath"
 				"Target"	"CASTER"
 			}
@@ -328,6 +347,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A04R.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"TARGET"
@@ -526,6 +550,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A04T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
@@ -818,6 +847,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A04D_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
@@ -918,6 +952,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A04W_old.vo1"
+			}
 			"SpawnUnit"
 			{
 				"UnitName"	"A04W_SUMMEND_UNIT"
@@ -1076,6 +1115,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A04E_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Jakiro.IcePath"
@@ -1239,6 +1283,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A04T_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"

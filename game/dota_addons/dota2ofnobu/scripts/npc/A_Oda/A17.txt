@@ -1,6 +1,29 @@
 //佐佐成政
 "DOTAAbilities"
 {
+	"A17_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a17.vsndevts"
+			
+			// A17W_old
+			"particle"  "particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+			"particle"  "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+
+			// A17E_old
+			"particle"  "particles/a17/a17e_old_buff.vpcf"
+
+			// A17R_old
+			"particle"  "particles/a17/a17r_old_buff.vpcf"
+
+			// A17T_old
+			"particle"  "particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
+			"particle"  "particles/a17/a17t_old_buff_portrait.vpcf"
+		}
+	}
 	//佐佐成政 爆烈彈
 	"A17W"
 	{
@@ -32,6 +55,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A17W.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
@@ -204,6 +232,11 @@
 		"AbilityManaCost"	"80 100 120 140"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A17E.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -445,30 +478,6 @@
 
 // 11.2B
 // -----------------------------------------------------------------------------------------------------------
-	// 預載
-	"A17_precache"
-	{
-		"BaseClass"             	"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
-		"precache"
-		{			
-			// A17W_old
-			"particle"  "particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
-			"particle"  "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
-
-			// A17E_old
-			"particle"  "particles/a17/a17e_old_buff.vpcf"
-
-			// A17R_old
-			"particle"  "particles/a17/a17r_old_buff.vpcf"
-
-			// A17T_old
-			"particle"  "particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
-			"particle"  "particles/a17/a17t_old_buff_portrait.vpcf"
-		}
-	}
-// -----------------------------------------------------------------------------------------------------------
 	// 佐佐成政 [硫磺砲]
 	"A17W_old"
 	{
@@ -489,6 +498,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A17W_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -577,6 +591,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A17E_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"

@@ -1,6 +1,15 @@
 //風魔小太郎
 "DOTAAbilities"
 {
+	"B02_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b02.vsndevts"
+		}
+	}
 	//風魔小太郎 風行步
 	"B02D"
 	{
@@ -29,6 +38,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02D.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
@@ -192,6 +206,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"B02W.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_PhantomLancer.SpiritLance.Impact"
 				"Target"	"TARGET"
 			}
@@ -265,6 +284,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02E.vo1"
+			}
 			"RunScript"
 			{
 				"Target"	"CASTER"
@@ -381,6 +405,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02R.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
@@ -501,6 +530,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
@@ -618,6 +652,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02W_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
@@ -751,6 +790,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02E_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -865,6 +909,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02R_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
@@ -987,6 +1036,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02T_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_B02T_old"
