@@ -282,11 +282,10 @@ function C22T_old( keys )
 	local ability_damage = ability:GetAbilityDamage()
 	local center = caster:GetAbsOrigin()+caster:GetForwardVector()*100
 
-	Timers:CreateTimer(0.5, function()
-		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf",PATTACH_ABSORIGIN,caster)
-		ParticleManager:SetParticleControl(ifx,0,center)
-		ParticleManager:SetParticleControl(ifx,1,center)
-	end)
+	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf",PATTACH_ABSORIGIN,caster)
+	ParticleManager:SetParticleControl(ifx,0,center) -- 起點
+	ParticleManager:SetParticleControl(ifx,1,center) -- 終點
+	ParticleManager:SetParticleControl(ifx,3,Vector(0,1,0)) -- 延遲
 
 	Timers:CreateTimer(start_delay, function()
 		-- 砍樹
