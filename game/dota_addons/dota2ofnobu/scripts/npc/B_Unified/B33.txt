@@ -4,6 +4,15 @@
 //最上義姬
 "DOTAAbilities"
 {
+	"B33_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b33.vsndevts"
+		}
+	}
 	"Version"		"1"
 
 	//最上義姬 腐蝕之箭
@@ -60,6 +69,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B33W.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -246,6 +260,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B33E.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -368,6 +387,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B33R.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -480,6 +504,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B33T.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Broodmother.SpawnSpiderlings"
@@ -622,6 +651,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B33W_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -782,6 +816,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B33E_old.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -1008,6 +1047,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B33T_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Broodmother.SpawnSpiderlings"

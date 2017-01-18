@@ -1,6 +1,21 @@
 //香宗我部親泰
 "DOTAAbilities"
 {
+	"C10_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c10.vsndevts"
+
+			// C10W_old
+			"particle"  "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+
+			// C10T_old
+			"particle"  "particles/c10w/c10w.vpcf"
+		}
+	}
 	//香宗我部親泰 黑龍波
 	"C10W"
 	{
@@ -39,6 +54,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C10W.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Magnataur.ShockWave.Cast.Anvil"
@@ -141,6 +161,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C10E.vo1"
+			}
 			"Damage"
 			{
 				"Target"	"TARGET"
@@ -280,6 +305,11 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
+				"EffectName"	"C10T.vo1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
 				"EffectName"	"Hero_Invoker.ChaosMeteor.Impact"
 			}
 			"FireSound"
@@ -380,20 +410,6 @@
 
 // 香宗我部親泰 11.2B
 // ----------------------------------------------------------------------------------------------------------------------------
-	"C10_precache"
-	{
-		"BaseClass"             		"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
-		"precache"
-		{
-			// C10W_old
-			"particle"  "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
-
-			// C10T_old
-			"particle"  "particles/c10w/c10w.vpcf"
-		}
-	}
 	// 香宗我部親泰 [黑龍波]
 	"C10W_old"
 	{
@@ -420,6 +436,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C10W_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_arc_lightning_datadriven"
@@ -508,6 +529,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C10E_old.vo1"
+			}
 			"Damage"
 			{
 				"Target"	"TARGET"

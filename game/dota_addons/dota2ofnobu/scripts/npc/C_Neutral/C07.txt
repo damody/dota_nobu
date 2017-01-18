@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"C07_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c07.vsndevts"
+		}
+	}
 	// 立花道雪 天雷降
 	"C07W"
 	{
@@ -21,6 +30,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C07W.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
@@ -91,6 +105,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C07E.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
@@ -207,6 +226,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C07R.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
@@ -287,6 +311,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C07T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
@@ -546,6 +575,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C07E_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
@@ -662,6 +696,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C07R_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
@@ -741,6 +780,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C07T_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"

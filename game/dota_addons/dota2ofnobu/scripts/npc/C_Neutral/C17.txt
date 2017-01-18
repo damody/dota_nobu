@@ -1,6 +1,15 @@
 //阿市
 "DOTAAbilities"
 {
+	"C17_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c17.vsndevts"
+		}
+	}
 	//阿市 光鍊罰則
 	"C17W"
 	{
@@ -446,6 +455,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C17W_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"        "particles/c17/c17w_old_tmp.vpcf"
@@ -513,6 +527,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C17E_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"        "particles/c17/c17e_old_tmp.vpcf"
@@ -582,6 +601,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C17R_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
@@ -714,6 +738,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C17T_old.vo1"
+			}
 			"FireSound"
 			{
 				"Target"		"CASTER"

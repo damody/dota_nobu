@@ -1,6 +1,15 @@
 // 鳥居元忠
 "DOTAAbilities"
 {
+	"A16_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a16.vsndevts"
+		}
+	}
 	"A16W"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -23,6 +32,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A16W.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -209,6 +223,11 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"A16E.vo1"
+			}
+			"FireSound"
+			{
 				"EffectName"	"Hero_Huskar.Inner_Vitality"
 				"Target"	"TARGET"
 			}
@@ -314,6 +333,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A16T.vo1"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"

@@ -1,6 +1,15 @@
 //今川義元
 "DOTAAbilities"
 {
+	"B15_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b15.vsndevts"
+		}
+	}
 	"Version"		"1"
 
 	// Rewrite of the Lifestealer Rage ability
@@ -32,6 +41,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B15W.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_LifeStealer.Rage"
@@ -125,6 +139,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B15W_old.vo1"
+			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_LifeStealer.Rage"
@@ -589,6 +608,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B15T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"

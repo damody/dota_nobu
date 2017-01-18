@@ -1,6 +1,14 @@
 "DOTAAbilities"
 {
-
+	"C01_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c01.vsndevts"
+		}
+	}
 	// 明智光秀 血刃亂舞
 	"C01W"
 	{
@@ -21,6 +29,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01W.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -145,6 +158,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01E.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
@@ -306,6 +324,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01T.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
@@ -382,6 +405,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01W_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -501,6 +529,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01E_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
@@ -650,6 +683,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01D_old.vo1"
+			}
 			"Damage"
 			{
 				"Target"		"TARGET"
@@ -691,6 +729,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C01T_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"

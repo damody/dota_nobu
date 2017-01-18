@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"C21_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c21.vsndevts"
+		}
+	}
 	// 宮本武藏
 	"C21W"
 	{
@@ -26,6 +35,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C21W.vo1"
+			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_C21W"
@@ -165,6 +179,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C21E.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -315,6 +334,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C21T.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -376,6 +400,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C21W_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
@@ -491,6 +520,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C21E_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
@@ -620,6 +654,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C21T_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"

@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"A07_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a07.vsndevts"
+		}
+	}
 	// 本多忠勝 奮起
 	"A07D"
 	{
@@ -22,6 +31,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07D.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -95,6 +109,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07W.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -206,6 +225,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07W_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -456,6 +480,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07E.vo1"
+			}
 			"DelayedAction"
 			{
 				"Delay"	"0"
@@ -604,6 +633,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07E_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"TARGET"
@@ -703,6 +737,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07T.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -859,6 +898,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07T_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"

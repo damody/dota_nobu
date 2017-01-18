@@ -1,6 +1,15 @@
 //大谷吉繼
 "DOTAAbilities"
 {
+	"A12_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a12.vsndevts"
+		}
+	}
 	//大谷吉繼 智芒乍現
 	"A12W"
 	{
@@ -21,6 +30,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A12W.vo1"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -115,6 +129,11 @@
 		"MaxLevel"	"1"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A12D.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
@@ -168,6 +187,11 @@
 		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A12E.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
@@ -261,6 +285,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A12R.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"

@@ -1,6 +1,14 @@
 "DOTAHeroes"
 {
-
+	"A13_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a13.vsndevts"
+		}
+	}
 	// 服部半藏 忍法．風行步
 	"A13D"
 	{
@@ -25,6 +33,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A13D.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -129,6 +142,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A13W_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -226,6 +244,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A13W.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
@@ -539,6 +562,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A13R_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
@@ -624,6 +652,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A13T.vo1"
+			}
 			"FireSound"
 			{
 				"Target"	"POINT"
@@ -771,6 +804,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A13T_old.vo1"
+			}
 			"FireSound"
 			{
 				"Target"	"POINT"

@@ -1,5 +1,14 @@
 "DOTAAbilities"
 {
+	"A27_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a27.vsndevts"
+		}
+	}
 	// 柴田勝家 暴虐之鎚
 	"A27D"
 	{
@@ -30,6 +39,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A27D.vo1"
+			}
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -127,6 +141,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A27W.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
@@ -213,6 +232,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A27E.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
@@ -369,6 +393,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A27T.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -481,6 +510,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A27W_old.vo1"
+			}
 			"ApplyModifier"
 			{
 				"Target"
@@ -579,6 +613,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A27E_old.vo1"
+			}
 			"FireEffect"
 			{
 				"EffectName"        "particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
@@ -704,6 +743,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A27T_old.vo1"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
