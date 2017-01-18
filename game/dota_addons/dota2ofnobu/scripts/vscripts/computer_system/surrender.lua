@@ -84,7 +84,7 @@ function SurrenderSystem:CheckVoteResults(playerid)
 	end
 
 	if iTeam == DOTA_TEAM_BADGUYS then
-		if res > threshold then
+		if res < threshold then
 			self:SendMsgToAll("聯合軍有意投降: "..msg)
 		else
 			self:SendMsgToAll("聯合軍已經投降")
@@ -93,7 +93,7 @@ function SurrenderSystem:CheckVoteResults(playerid)
 	end
 
 	-- 避免在次投票
-	if res > threshold then
+	if res >= threshold then
 		self.canSurrender = false 
 	end
 end
