@@ -174,8 +174,11 @@ function B15D_SplitShotDamage( keys )
 	damage_table.attacker = caster
 	damage_table.victim = target
 	damage_table.damage_type = ability:GetAbilityDamageType()
-	damage_table.damage = caster:GetAttackDamage()
-
+	if caster:IsIllusion() then
+		damage_table.damage = caster:GetAttackDamage() * 0.3
+	else
+		damage_table.damage = caster:GetAttackDamage()
+	end
 	ApplyDamage(damage_table)
 
 	local b15e = caster:FindAbilityByName("B15E_old")
@@ -208,7 +211,7 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 		local individual_ability = keys.caster:GetAbilityByIndex(ability_slot)
 		if individual_ability ~= nil then 
 			local illusion_ability = illusion:FindAbilityByName(individual_ability:GetAbilityName())
-			if illusion_ability ~= nil and illusion_ability:GetAbilityName() ~= "B15D" then
+			if illusion_ability ~= nil then
 				illusion_ability:SetLevel(individual_ability:GetLevel())
 			end
 		end
