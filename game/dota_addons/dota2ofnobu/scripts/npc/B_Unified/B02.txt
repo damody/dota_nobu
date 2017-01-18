@@ -15,7 +15,7 @@
 		"AbilityCastPoint"	"0.0 0.0 0.0 0.0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"16"
+		"AbilityCooldown"	"16 14 12 10 8"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100 115 130 145 160"
@@ -968,7 +968,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AnimationPlaybackRate"	"5"
 		"AbilityCooldown"	"190 140 90"
-		"AbilityManaCost"	"250 200 150"
+		"AbilityManaCost"	"250 350 450"
 		"AbilityCastRange"	"600"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
@@ -1097,7 +1097,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"jump_max"	"10"
+				"jump_max"	"100"
 			}
 			"06"
 			{
@@ -1112,7 +1112,7 @@
 			"08" // 閃電數量
 			{
 				"var_type" "FIELD_INTEGER"
-				"wave_num"	"4 8 16"
+				"wave_num"	"4 8 12"
 			}
 		} // AbilitySpecial end
 	} // B02T_old end
