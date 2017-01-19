@@ -24,7 +24,7 @@ local function chat_of_test(keys)
 	-- [   VScript ]:    splitscreenplayer               	= -1 (number)
 
 	--local id    = keys.player --BUG:在講話事件裡，讀取不到玩家，是整數。
-	local s   	   = keys.text
+	local s   	   = keys.text:lower()
 	local p 	     = PlayerResource:GetPlayer(keys.playerid)--可以用索引轉換玩家方式，來捕捉玩家
 	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄
 	local point    = caster:GetAbsOrigin()

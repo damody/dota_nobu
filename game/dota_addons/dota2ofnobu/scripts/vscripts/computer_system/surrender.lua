@@ -22,7 +22,7 @@ function SurrenderSystem:OnPlayerChat( keys )
 	-- [   VScript ]:    teamonly                        	= 1 (number)
 	-- [   VScript ]:    userid                          	= 1 (number)
 	-- [   VScript ]:    splitscreenplayer               	= -1 (number)
-	local text = keys.text
+	local text = keys.text:lower()
 
 	-- 排除其他指令
 	if text ~= "-ff" then 
