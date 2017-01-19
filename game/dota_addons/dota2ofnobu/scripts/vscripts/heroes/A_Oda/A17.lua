@@ -68,6 +68,35 @@ function shrapnel_fire( keys )
 
 end
 
+function A17T( event )
+	-- Variables
+	local caster = event.caster
+	local target = event.target
+	local ability = event.ability
+	local point = caster:GetAbsOrigin() 
+	--local radius =  ability:GetLevelSpecialValueFor( "radius" , ability:GetLevel() - 1  )
+	--local projectile_count =  ability:GetLevelSpecialValueFor( "projectile_count" , ability:GetLevel() - 1  )
+	local projectile_speed =  ability:GetLevelSpecialValueFor( "projectile_speed" , ability:GetLevel() - 1  )
+	local particleName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+
+	local projTable = {
+		EffectName = particleName,
+		Ability = ability,
+		Target = target,
+		Source = caster,
+		bDodgeable = false,
+		bProvidesVision = false,
+		vSpawnOrigin = point,
+		iMoveSpeed = projectile_speed,
+		iVisionRadius = 0,
+		iVisionTeamNumber = caster:GetTeamNumber(),
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+	}
+	ProjectileManager:CreateTrackingProjectile( projTable )
+
+	--print(projTable)
+end
+
 function A17T_lock( keys )
 	keys.ability:SetActivated(false)
 end
