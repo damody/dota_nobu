@@ -510,7 +510,7 @@ function A13E_modifier:OnIntervalThink()
 				local hashook = false
 				for _,it in pairs(direUnits) do
 
-					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") then
+					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") and not it:HasAbility("majia") then
 						ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
 							damage_type = self.damage_type, ability = self:GetAbility()})
 						hashook = true
@@ -544,7 +544,7 @@ function A13E_modifier:OnIntervalThink()
 			                          false)
 
 				for _,it in pairs(direUnits) do
-					if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) then
+					if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) and not it:HasAbility("majia") then
 						hashook = true
 						it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
 						local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
