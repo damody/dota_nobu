@@ -141,16 +141,17 @@ function A12T( keys )
 		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == "A12T_On" then
 			if caster.A12T == true then
 				damage = caster:GetMana()*special_dmg/100*3
-				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				AMHC:CreateNumberEffect(target,damage,2,AMHC.MSG_ORIT ,{0,0,225},4)
-				print("A12T"..tostring(damage))		
 			else
 				damage = caster:GetMana()*special_dmg/100
-				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				AMHC:CreateNumberEffect(target,damage,2,AMHC.MSG_ORIT ,{0,0,225},4)
-				print("A12T"..tostring(damage))
-
 			end
+			
+			if (target:IsMagicImmune()) then
+				AMHC:Damage( caster,target,damage*0.35,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+			AMHC:CreateNumberEffect(target,damage,2,AMHC.MSG_ORIT ,{0,0,225},4)
+			print("A12T"..tostring(damage))		
 		end
 	caster.A12T = false
 end
