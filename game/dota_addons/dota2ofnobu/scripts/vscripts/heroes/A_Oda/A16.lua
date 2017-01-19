@@ -98,7 +98,9 @@ function A16R( keys )
 	]]
 	local caster = keys.caster
 	local target = keys.target
-	local dmg = keys.dmg
+	local ability = keys.ability
+	local damage_percent = ability:GetLevelSpecialValueFor("damage_percent",ability:GetLevel()-1)
+	local dmg = keys.dmg * damage_percent
 	--print(dmg) --%attack_damage * %damage_percent
 	--test
 	-- target:Kill(nil,nil)
