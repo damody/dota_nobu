@@ -59,6 +59,14 @@ function Nobu:OnHeroIngame( keys )
     caster:AddNewModifier(caster,ability,"modifier_record",{})
     caster:FindModifierByName("modifier_record").caster = caster
 
+	-- 拿掉天賦樹的技能
+    for i = 0, caster:GetAbilityCount() - 1 do
+        local ability = caster:GetAbilityByIndex(i)
+        if ability and string.match(ability:GetName(),"special") then
+          caster:RemoveAbility(ability:GetName())
+        end
+    end
+
     local name = caster:GetUnitName()
     if string.match(name, "ancient_apparition")  then --竹中重治
       if caster:FindAbilityByName("A04D") ~= nil then

@@ -674,6 +674,7 @@ local function chat_of_test(keys)
 
 		if s == "h" then
 			GameRules: SendCustomMessage("r1 = 產生一個被綁住的淺井",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			GameRules: SendCustomMessage("sa = show ability",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 
 		if s == "r1" then
@@ -683,6 +684,15 @@ local function chat_of_test(keys)
 			for i=1,30 do
 			u:HeroLevelUp(true)
 			end 
+		end
+
+		if s == "sa" then
+			for i = 0, caster:GetAbilityCount() - 1 do
+				local ability = caster:GetAbilityByIndex( i )
+				if ability  then
+					GameRules: SendCustomMessage("[Ability] "..ability:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+				end
+			end
 		end
 
 		--【測試指令】
