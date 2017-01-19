@@ -2612,7 +2612,6 @@
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
-			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "OnAttacked"
 			    {
 			        "Random"
@@ -2626,25 +2625,24 @@
 			                    "ModifierName" "block_modifier"
 			                }
 			            }
-			            "OnFailure"
-			            {
-			                "RemoveModifier"
-			                {
-			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
-			                }
-			            }
 			        }
 			    }
 			}
 			"block_modifier"
 			{
-			    "IsBuff" "1"
+			    "IsBuff" "0"
 			    "IsHidden" "1"
-			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "50"
+			    }
+			    "OnAttacked"
+			    {
+			    	"RemoveModifier"
+			    	{
+			    		"ModifierName"	"block_modifier"
+			    		"Target" 		"CASTER"
+			    	}
 			    }
 			}
 		}
