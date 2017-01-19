@@ -2,6 +2,36 @@
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 "DOTAAbilities"
 {
+	// 買兵力
+	"gold_to_prestige"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_26"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"	"120"
+		"AbilityGoldCost"	"3000"
+
+		"OnSpellStart"
+		{
+			"OnSpellStart"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+					"Function"		"gold_to_prestige"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"add_prestige"		"50"
+			}
+		}
+	}
 	// 犒賞
 	"reward6300"
 	{

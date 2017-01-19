@@ -1,5 +1,12 @@
 LinkLuaModifier("modifier_ninja2", "heroes/modifier_ninja2.lua", LUA_MODIFIER_MOTION_NONE)
 
+function gold_to_prestige( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local add_prestige = ability:GetLevelSpecialValueFor("add_prestige",0)
+	
+end
+
 function reward6300(keys)
 	local caster = keys.caster
 	local ability = keys.ability
