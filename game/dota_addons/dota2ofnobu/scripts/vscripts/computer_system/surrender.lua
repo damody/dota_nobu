@@ -49,7 +49,6 @@ end
 function SurrenderSystem:CheckVoteResults(playerid)
 	local iTeam = PlayerResource:GetTeam(playerid)
 	local votes = self.votes
-	local res = 0
 
 	-- 投票
 	local votes = self.votes
@@ -59,23 +58,25 @@ function SurrenderSystem:CheckVoteResults(playerid)
 		votes[playerid] = not votes[playerid]
 	end
 
-	-- 統計特定隊伍，同意投降的玩家數量
-	for playerid, agree in pairs(votes) do
-		local team = PlayerResource:GetTeam(playerid)
-		local state = PlayerResource:GetConnectionState(playerid)
-		if team == iTeam and agree and state == 2 then -- 2 = connected
-			res = res + 1
+	-- 統計同隊在線玩家數量，與同意人數
+	local connected_players = 0
+	local agree_players = 0
+	for _,hero in ipairs(HeroList:GetAllHeroes()) do
+		local id = hero:GetPlayerID()
+		local team = PlayerResource:GetTeam(id)
+		local state = PlayerResource:GetConnectionState(id)
+		if team == iTeam and state == 2 then -- 2 = connected
+			connected_players = connected_players + 1
+			if votes[id] then agree_players  = agree_players + 1 end
 		end
 	end
-
-	-- 計算投降的門檻
-	local threshold = math.ceil(PlayerResource:GetPlayerCountForTeam(iTeam)*0.5 + 0.1)
+	local threshold = math.ceil(connected_players*0.5 + 0.1)
 
 	-- 顯示投票結果
-	local msg = string.format("同意:%d 門檻:%d", res, threshold)
+	local msg = string.format("同意:%d 門檻:%d", agree_players, threshold)
 
 	if iTeam == DOTA_TEAM_GOODGUYS then
-		if res < threshold then
+		if agree_players < threshold then
 			self:SendMsgToAll("織田軍有意投降: "..msg)
 		else
 			self:SendMsgToAll("織田軍已經投降")
@@ -84,7 +85,7 @@ function SurrenderSystem:CheckVoteResults(playerid)
 	end
 
 	if iTeam == DOTA_TEAM_BADGUYS then
-		if res < threshold then
+		if agree_players < threshold then
 			self:SendMsgToAll("聯合軍有意投降: "..msg)
 		else
 			self:SendMsgToAll("聯合軍已經投降")
@@ -93,7 +94,7 @@ function SurrenderSystem:CheckVoteResults(playerid)
 	end
 
 	-- 避免在次投票
-	if res >= threshold then
+	if agree_players >= threshold then
 		self.canSurrender = false 
 	end
 end
