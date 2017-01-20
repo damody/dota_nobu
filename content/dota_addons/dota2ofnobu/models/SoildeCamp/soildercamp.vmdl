@@ -28,7 +28,7 @@
 		m_bRemoveUnusedBonesEnabled = false
 		m_bDriveMeshesWithBacksolvedJointsOnly = true
 		m_flMatchProxiesToMeshes = 1.0
-		m_flReservedFloat = 0.0
+		m_flFallbackEnvelope = 1.0
 		m_nReservedInt = 0
 		m_bReservedBool1 = false
 		m_bReservedBool2 = false
@@ -61,18 +61,8 @@
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
 								m_sBoneName = "Box12"
-								m_vMinBounds = [ 62.172638, -82.979439, -72.522339 ]
-								m_vMaxBounds = [ 132.931274, 71.610954, 25.20274 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Box21"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Box21"
-								m_vMinBounds = [ -166.54425, -7.082459, -49.158203 ]
-								m_vMaxBounds = [ -1.297943, 63.515068, 39.168831 ]
+								m_vMinBounds = [ 62.172638, -46.39632, -72.522339 ]
+								m_vMaxBounds = [ 132.931274, 40.039856, 25.20274 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},
@@ -129,6 +119,7 @@
 			m_Vanim = [  ]
 			m_sScripts = [  ]
 			m_folderNames = [  ]
+			m_sCompileScripts = [  ]
 		}
 	}
 	m_pMaterialGroupList = 
@@ -175,7 +166,6 @@
 	m_flFbxScale = 1.0
 	m_flQCScale = 1.0
 	m_vOrigin = [ 0.0, 0.0, 0.0 ]
-	m_nLoadDmxAnimVersion = 0
 	m_pPsfList = null
 	m_keyValueText = ""
 	m_bStaticProp = false

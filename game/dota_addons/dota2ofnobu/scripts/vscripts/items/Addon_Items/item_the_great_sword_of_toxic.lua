@@ -6,7 +6,7 @@ function Shock( keys )
 	local int = 0
 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	Timers:CreateTimer( 0,function ()
-		local mod = "particles/item/item_the_great_sword_of_toxic.vpcf"
+		local mod = "particles/b33/b33r_old_poison.vpcf"
 		if int <= 4 then
 			int = int + 1
 			AMHC:Damage( caster,target,50,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
@@ -46,7 +46,7 @@ function Shock2( keys )
 				keys.target.the_great_sword_of_toxic = nil
 			end)
 			Timers:CreateTimer( 0,function ()
-				local mod = "particles/item/item_the_great_sword_of_toxic.vpcf"
+				local mod = "particles/b33/b33r_old_poison.vpcf"
 				if int <= 1 then
 					int = int + 1
 					AMHC:Damage( caster,target,55,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )

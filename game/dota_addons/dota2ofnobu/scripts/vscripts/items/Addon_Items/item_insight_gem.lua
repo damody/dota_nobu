@@ -7,3 +7,18 @@ function Shock( keys )
 
 end
 
+
+function Death( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	for itemSlot=0,5 do
+		local item = caster:GetItemInSlot(itemSlot)
+		if item ~= nil then
+			local itemName = item:GetName()
+			if (itemName == "item_insight_gem_s") then
+				item:Destroy()
+			end
+		end
+	end
+end
+

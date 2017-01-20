@@ -359,7 +359,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
@@ -596,7 +596,8 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.2"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCooldown"	"200 300 400"
+		"AbilityCooldown"	"150 130 110"
+		"AbilityManaCost"	"200 300 400"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AOERadius"	"500"

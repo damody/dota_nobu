@@ -79,8 +79,8 @@ function ShuaGuai( )
 	  	ShuaGuai_Of_AB(AB_num)
 	  	
 	    local time =  26.00 - 0.1*ShuaGuai_count
-	    if time < 15 then
-	    	return 15
+	    if time < 18 then
+	    	return 18
 	  	else
 	  		return time
 	  	end
