@@ -20,7 +20,7 @@ function Shock( keys )
 		if not target:IsBuilding() and target:GetUnitName() ~= "B24W_DUMMY" and target:GetUnitName() ~= "B24T_HIDE" then
 			Physics:Unit(target)
 			target:SetPhysicsVelocity((target:GetAbsOrigin() - point):Normalized()*700)
-			ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 0.5})
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 0.7})
 			AMHC:Damage(caster,target,300,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end
 	end

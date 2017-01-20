@@ -231,6 +231,9 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 	end
 	if (caster:HasModifier("modifier_searing_arrow")) then
 		caster:FindAbilityByName("B15E"):ApplyDataDrivenModifier(illusion,illusion,"modifier_searing_arrow2",{duration=999})
+	else
+		--分身不能用法球
+		illusion.nobuorb1 = "illusion"
 	end
 	
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle 

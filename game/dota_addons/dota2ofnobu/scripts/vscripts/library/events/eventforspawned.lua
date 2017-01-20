@@ -106,7 +106,7 @@ function Nobu:OnHeroIngame( keys )
       if caster:FindAbilityByName("B32W") == nil then
         caster.version = "11"
       end
-    elseif string.match(name, "slardar") then -- 真田幸村
+    elseif string.match(name, "axe") then -- 真田幸村
       if caster:FindAbilityByName("B06W") == nil then
         caster.version = "11"
       end
@@ -121,7 +121,7 @@ function Nobu:OnHeroIngame( keys )
       if caster:FindAbilityByName("A07D") == nil then
         caster.version = "11"
       end
-    elseif string.match(name, "broodmother") then --服部半藏
+    elseif string.match(name, "undying") then --服部半藏
       if caster:FindAbilityByName("A13D") ~= nil and caster:FindAbilityByName("A13D"):GetLevel() == 0 then
         caster:FindAbilityByName("A13D"):SetLevel(1)
       end

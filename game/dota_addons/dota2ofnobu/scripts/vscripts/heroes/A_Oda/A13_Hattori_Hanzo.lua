@@ -187,6 +187,8 @@ function A13W( event )
 				illusion[i]:MakeIllusion()
 
 				illusion[i]:SetHealth(caster:GetHealth())
+				--分身不能用法球
+				illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)
 			end
 		end
@@ -289,6 +291,8 @@ function A13W_old( event )
 				illusion[i]:MakeIllusion()
 
 				illusion[i]:SetHealth(caster:GetHealth())
+				--分身不能用法球
+				illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)
 			end
 		end

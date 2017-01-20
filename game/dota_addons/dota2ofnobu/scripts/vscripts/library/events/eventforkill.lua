@@ -57,7 +57,7 @@ function Nobu:OnUnitKill( keys )
   		-- 這隻角色天生會帶一個modifier我們需要砍掉他
       -- 一般是立花道雪在用他
       
-    elseif string.match(name,"slardar") then --幸村開大
+    elseif string.match(name,"axe") then --幸村開大
       killedUnit:RemoveModifierByName("modifier_B06T")
   	end
 
