@@ -675,6 +675,7 @@ local function chat_of_test(keys)
 		if s == "h" then
 			GameRules: SendCustomMessage("r1 = 產生一個被綁住的淺井",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("sa = show ability",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			GameRules: SendCustomMessage("sm = show modifier",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 
 		if s == "r1" then
@@ -692,6 +693,12 @@ local function chat_of_test(keys)
 				if ability  then
 					GameRules: SendCustomMessage("[Ability] "..ability:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 				end
+			end
+		end
+
+		if s == "sm" then
+			for _,m in ipairs(caster:FindAllModifiers()) do
+				GameRules: SendCustomMessage("[Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			end
 		end
 
