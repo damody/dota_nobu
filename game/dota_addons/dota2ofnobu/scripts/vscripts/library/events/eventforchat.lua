@@ -676,6 +676,7 @@ local function chat_of_test(keys)
 			GameRules: SendCustomMessage("r1 = 產生一個被綁住的淺井",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("sa = show ability",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("sm = show modifier",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			GameRules: SendCustomMessage("cu_es = CreateUnit_EarthShaker",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 
 		if s == "r1" then
@@ -700,6 +701,14 @@ local function chat_of_test(keys)
 			for _,m in ipairs(caster:FindAllModifiers()) do
 				GameRules: SendCustomMessage("[Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			end
+		end
+
+		if s == "cu_es" then
+			local  u = CreateUnitByName("npc_dota_hero_earthshaker",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
 		end
 
 		--【測試指令】

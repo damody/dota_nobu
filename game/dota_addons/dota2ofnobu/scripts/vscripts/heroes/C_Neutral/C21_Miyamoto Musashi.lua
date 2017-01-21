@@ -453,6 +453,9 @@ function C21T_old_start( keys )
 	-- 讓單位能被物理Lib控制
 	Physics:Unit(unit)
 
+	-- 儲存預設值
+	local friction = unit:GetPhysicsFriction()
+
 	-- 改變基本設定
 	unit:PreventDI(true) -- 阻斷玩家操作
 	unit:SetAutoUnstuck(false) -- 取消自動移動至合法區
@@ -515,7 +518,17 @@ function C21T_old_start( keys )
     		unit:OnPhysicsFrame(nil)
     		unit:SetAbsOrigin(end_pos)
 
-    		caster:RemoveModifierByName("modifier_rooted")
+    		-- 還原基本設定
+			unit:PreventDI(false) -- 阻斷玩家操作
+			unit:SetAutoUnstuck(true) -- 取消自動移動至合法區
+			unit:SetNavCollisionType(PHYSICS_NAV_SLIDE) -- 無視碰撞
+			unit:FollowNavMesh(true) -- 不跟隨Nav
+			unit:SetPhysicsVelocityMax(0)
+			unit:SetPhysicsFriction(friction)
+			-- unit:Hibernate(true) -- 這有點奇怪，理論上應該要設定回True可是這麼做之後物理就再也不會生效了，即使改回false也一樣
+			unit:SetGroundBehavior(PHYSICS_GROUND_ABOVE) -- 不理會地面
+
+    		-- caster:RemoveModifierByName("modifier_rooted")
     		caster:RemoveModifierByName("modifier_C21T_old_on_move")
 
     		local ifx = ParticleManager:CreateParticle("particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_egset.vpcf",PATTACH_WORLDORIGIN,caster)
