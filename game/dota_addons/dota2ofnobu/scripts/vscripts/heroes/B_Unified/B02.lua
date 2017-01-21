@@ -639,3 +639,10 @@ function B02T_old_Jump(keys)
 	end
 	end)
 end
+
+function B02T_old(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_B02T_old",nil)
+end

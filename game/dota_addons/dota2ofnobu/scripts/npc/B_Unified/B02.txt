@@ -1041,10 +1041,10 @@
 				"Target"	"CASTER"
 				"EffectName"	"B02T_old.vo1"
 			}
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_B02T_old"
-				"Target" 		"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
+				"Function"	"B02T_old"
 			}
 		}
 		"Modifiers"
