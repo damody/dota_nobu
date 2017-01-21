@@ -243,6 +243,26 @@ function UpdateEntities()
 
 (function()
 { 
+
+  // 暫時先讓所有和天賦樹的UI都點不到
+  var x = $.GetContextPanel().GetParent().GetParent().GetParent();
+  x = x.FindChildTraverse('HUDElements')
+  x = x.FindChildTraverse('lower_hud')
+  //x = x.FindChildTraverse('GlyphScanContainer')
+  //x = x.FindChildTraverse('GlyphButton')
+
+  x = x.FindChildTraverse('center_with_stats')
+  x = x.FindChildTraverse('center_block')
+
+  var lv_stats = x.FindChildTraverse('level_stats_frame')
+  lv_stats.hittest = false
+  lv_stats.hittestchildren = false
+
+  x = x.FindChildTraverse('AbilitiesAndStatBranch')
+  x = x.FindChildTraverse('StatBranch')
+  x.hittest = false
+  x.hittestchildren = false
+
   var pt = "worldpanels_" +  Game.GetLocalPlayerID()
   ScreenHeightWidth(); 
   PositionPanels();
