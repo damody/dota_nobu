@@ -149,7 +149,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("B08T_old")
 		elseif string.match(caster:GetUnitName(), "pugna") then -- 本願寺顯如
-			caster:AddAbility("B25W")
+			caster:AddAbility("B25W_old")
 			caster:AddAbility("B25E_old")
 			caster:AddAbility("B25R_old")
 			caster:AddAbility("attribute_bonusx")

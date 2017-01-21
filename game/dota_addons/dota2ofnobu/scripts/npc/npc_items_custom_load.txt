@@ -14203,7 +14203,7 @@
 		
 		"AbilityCooldown"	"30"
 		
-		"ID"	"2827"
+		"ID"	"2829"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
@@ -14235,7 +14235,7 @@
 		}
 		"Modifiers"
 		{
-			"Passive_insight_gem"
+			"Passive_insight_gem_s"
 			{
 				"Passive"          "1"  
 	            "IsHidden"      "1"
@@ -14260,7 +14260,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
-						"Function"	"Shock"
+						"Function"	"Death"
 					}
 				}
 			}
@@ -14270,9 +14270,9 @@
 	// 洞寶製作單
 	"item_recipe_insight_gem" 
 	{
-	    "ID" "2828"
+	    "ID" "2830"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "0"
+		"ItemCost" "650"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_insight_gem"  //合成後物品
