@@ -124,7 +124,7 @@ function B02R(keys)
 	--【Varible】
 	--local duration = ability:GetLevelSpecialValueFor("duration",level)
 	--local radius = ability:GetLevelSpecialValueFor("radius",level)
-	local time = 2
+	local Time = ability:GetLevelSpecialValueFor("time",level)
 
 	--【Particle】
 	-- local particle = ParticleManager:CreateParticle("particles/c15t5/c15t5.vpcf",PATTACH_POINT,caster)
@@ -136,7 +136,7 @@ function B02R(keys)
 		ParticleManager:SetParticleControl(particle2,0, point2+Vector(0,0,i*40))
 		ParticleManager:SetParticleControl(particle2,1, Vector(1,1,1))	
 		ParticleManager:SetParticleControl(particle2,3, point2)	
-		Timers:CreateTimer(time,function ()
+		Timers:CreateTimer(Time,function ()
 			ParticleManager:DestroyParticle(particle2,true)
 		end	)
 	end
@@ -166,6 +166,19 @@ function B02R(keys)
 	end)	
 	--【MODIFIER】
 	ability:ApplyDataDrivenModifier(dummy,target,"modifier_B02R",nil)--綑綁 
+
+	local sumt = 0
+	Timers:CreateTimer(0.1, function()
+		sumt = sumt + 0.1
+		if sumt < Time then
+			if (not target:HasModifier("modifier_B02R")) then
+				local tt = Time-sumt
+				print("tt "..tt)
+				ability:ApplyDataDrivenModifier(caster, target,"modifier_B02R",{duration=tt})
+			end
+			return 0.1
+		end
+		end)
 end
 
 function B02R_hit(keys)
