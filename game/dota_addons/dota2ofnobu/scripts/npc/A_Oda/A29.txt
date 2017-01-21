@@ -371,6 +371,7 @@
 				"IsBuff"	"1"
 				"EffectName"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
 					//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"3"
@@ -433,7 +434,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"150 140 120"
+		"AbilityCooldown"				"140 130 120"
 		
 
 		// Cost
@@ -1009,7 +1010,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mana_reduction"	"-8 -16 -24 -32"
+				"mana_reduction"	"-16 -32 -48 -64"
 			}
 			"02"
 			{
@@ -1038,7 +1039,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"160 150 130"
+		"AbilityCooldown"				"130 120 110"
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"250 300 350"

@@ -19,7 +19,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCooldown"	"19"
 		"AbilityManaCost"	"100"
-		"AbilityCastRange"		"900 1050 1200 1350"
+		"AbilityCastRange"		"900 1050 1200 1400"
 		"precache"
 		{
 			"particle"	"particles/b01w/b01w.vpcf"
@@ -77,7 +77,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_atk_rng"	"200 350 500 650"
+				"bonus_atk_rng"	"200 350 500 700"
 			}
 			"03"
 			{
@@ -100,7 +100,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"50"
-		"AbilityCastRange"		"950 1150 1350 1550"
+		"AbilityCastRange"		"950 1150 1350 1700"
 		"precache"
 		{
 			"particle"	"particles/b01w/b01w.vpcf"
@@ -184,12 +184,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_atk_rng"	"250 450 650 850"
+				"bonus_atk_rng"	"250 450 650 1000"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_sight_rng"	"200 400 600 800"
+				"bonus_sight_rng"	"250 450 650 1000"
 			}
 			"04"
 			{
