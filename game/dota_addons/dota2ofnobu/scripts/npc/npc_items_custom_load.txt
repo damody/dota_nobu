@@ -974,7 +974,7 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
+				"var_type"	"FIELD_FLOAT"
 				"duration"	"3.5"
 			}
 		}
@@ -3452,7 +3452,7 @@
 	            "IsHidden"      "1"
 
 	            "Aura"        "modifier_show_invi"
-        		"Aura_Radius" "500"
+        		"Aura_Radius" "600"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -10834,7 +10834,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilityCooldown"	"80"
-		"AbilityCastPoint"	"0.4"
+		"AbilityCastPoint"	"0.2"
 		"AbilityManaCost"	"400"
 		
 		"AbilityCastRange"	"400"
@@ -14235,33 +14235,37 @@
 		}
 		"Modifiers"
 		{
-			"Passive_insight_gem_s"
+			"Passive_true_gem"
 			{
 				"Passive"          "1"  
 	            "IsHidden"      "1"
-	            "ThinkInterval"     "0.25"
-	            "OnIntervalThink"
-	            {
-	                "ApplyModifier"
-	                {
-	                    "Target"
-	                    {
-	                        "Center"    "CASTER"
-	                        "Radius"    "600"
-	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
-	                    }
-	                    "ModifierName"      "modifier_truesight"
-	                    "Duration"      "0.50"
-	                }
-	            }
-	            "OnDeath"
+
+	            "Aura"        "modifier_show_invi"
+        		"Aura_Radius" "600"
+        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+        		"OnDeath"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
 						"Function"	"Death"
 					}
+				}
+			}
+			"modifier_show_invi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
 				}
 			}
 		}
@@ -14275,6 +14279,7 @@
 		"ItemCost" "650"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
+		"SideShop"						"1"
 		"ItemResult" "item_insight_gem"  //合成後物品
 		"ItemRequirements"
 		{

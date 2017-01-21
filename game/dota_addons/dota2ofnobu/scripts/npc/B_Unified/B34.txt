@@ -493,6 +493,7 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%speed_bonus"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%attack_bonus"
 				}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"Duration"	"%duration"
@@ -532,11 +533,6 @@
 								"Type"	"DAMAGE_TYPE_MAGICAL"
 								"Damage"	"%AbilityDamage"
 							}
-							"ApplyModifier"
-							{
-								"Target"	"TARGET"
-								"ModifierName"	"modifier_B34T"
-							}
 						}
 					}
 					"AttachEffect"
@@ -558,7 +554,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed_bonus"	"-30"
+				"speed_bonus"	"-20"
 			}
 			"03"
 			{

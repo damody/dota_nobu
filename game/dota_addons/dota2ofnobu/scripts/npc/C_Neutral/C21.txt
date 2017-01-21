@@ -500,6 +500,7 @@
 		"AbilityCooldown"			"27"
 		"AbilityManaCost"			"160 180 200 220"
 		"AbilityDamage"				"100 200 300 400"
+		"AbilityCastRange"		"700"
 		"AbilitySpecial"
 		{
 			"01"
@@ -560,6 +561,11 @@
 				"States"
 				{
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED" // 無敵
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.2"
 				}
 			}
 		}
