@@ -15,6 +15,8 @@ function B02W( keys )
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
+	--分身不能用法球
+	illusion.nobuorb1 = "illusion"
 	
 	if illusion:IsHero() then
 		illusion:SetPlayerID(caster:GetPlayerID())

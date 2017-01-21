@@ -2688,7 +2688,19 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"	"1"
 		"ItemShopTags"		"damage"
-
+		"OnEquip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_flame_armor_aura"
+            }
+            "ApplyModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_flame_armor_aura"
+            }
+		}
 		"precache"
 		{
 			"particle"	"particles/item/d01/d01.vpcf"
@@ -2725,17 +2737,17 @@
 				"IsDebuff"			"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 
-				"EffectName" "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf"
 				"EffectAttachType"	"follow_hitloc"
 
 				"ThinkInterval"	"1.0"
 				"OnIntervalThink"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
+					  	"ScriptFile"	"items/Addon_Items/item_flame_armor.lua"
+						"Function"	"Shock"
 						"Damage"		"40"
+						"Target"	"TARGET"
 					}
 				}
 			}
@@ -4937,7 +4949,6 @@
 				"IsDebuff"		"1"
 				"Passive"	"0"
 				"Duration"			"2"
-				"EffectName"	"particles/item/item_the_great_sword_of_toxic.vpcf"
 				"EffectAttachType"	"follow_origin"
 			}
 		}
@@ -5106,7 +5117,19 @@
 				"Target"	"TARGET"
 			}
 		}
-		
+		"OnEquip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_flame_armor_aura"
+            }
+            "ApplyModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_flame_armor_aura"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -5130,20 +5153,36 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
-			"Passive_flame_armor"
+			"modifier_flame_armor_aura"
 			{
-				"IsHidden"	"1"
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"Aura"        "modifier_flame_armor_debuff"
+        		"Aura_Radius" "500"
+        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+			}
+			"modifier_flame_armor_debuff"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Passive"	"1"
+
+				"EffectAttachType"	"follow_hitloc"
+
 				"ThinkInterval"	"1.0"
 				"OnIntervalThink"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"items/Addon_Items/item_flame_armor.lua"
+					  	"ScriptFile"	"items/Addon_Items/item_flame_armor.lua"
 						"Function"	"Shock"
-						"damage"	"150"
-						"range"		"500"
+						"Damage"		"150"
+						"Target"	"TARGET"
 					}
 				}
 			}
@@ -9722,6 +9761,19 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
+		"OnEquip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_flame_armor_aura"
+            }
+            "ApplyModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_flame_armor_aura"
+            }
+		}
 		"Modifiers"
 		{
 			"Passive_flame_armor"
@@ -9730,36 +9782,36 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Passive"	"1"
 			}
-			"modifier_foxfire_armor_aura"
+			"modifier_flame_armor_aura"
 			{
 				"Passive"			"1"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 			
-				"Aura"        "modifier_foxfire_armor_debuff"
-        		"Aura_Radius" "350"
+				"Aura"        "modifier_flame_armor_debuff"
+        		"Aura_Radius" "400"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
 			}
-			"modifier_foxfire_armor_debuff"
+			"modifier_flame_armor_debuff"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 
-				"EffectName" "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf"
 				"EffectAttachType"	"follow_hitloc"
 
 				"ThinkInterval"	"1.0"
 				"OnIntervalThink"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
+					  	"ScriptFile"	"items/Addon_Items/item_flame_armor.lua"
+						"Function"	"Shock"
 						"Damage"		"80"
+						"Target"	"TARGET"
 					}
 				}
 			}
@@ -14131,6 +14183,102 @@
 	                }
 	            }
 			}
+		}
+	}
+
+	// 寶石碎片
+	"item_insight_gem_s"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"custom/insight_gem_s"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Time
+		
+		"AbilityCooldown"	"30"
+		
+		"ID"	"2829"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"350"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"						"1"
+		"AOERadius"	"1200"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
+				"Function"	"Shock"
+			}
+			"ApplyModifier"
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Radius"    "1200"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+                }
+                "ModifierName"      "modifier_truesight"
+                "Duration"      "10"
+            }
+		}
+		"Modifiers"
+		{
+			"Passive_insight_gem_s"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "600"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
+	            "OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
+						"Function"	"Death"
+					}
+				}
+			}
+		}
+		
+	}
+	// 洞寶製作單
+	"item_recipe_insight_gem" 
+	{
+	    "ID" "2830"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "650"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_insight_gem"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_insight_gem_s"  //合成所需物品
 		}
 	}
 }

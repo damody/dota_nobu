@@ -26,7 +26,7 @@ heromap = {
   
   npc_dota_hero_nevermore = "B01",
   npc_dota_hero_pugna = "B25",
-  npc_dota_hero_slardar = "B06",
+  npc_dota_hero_axe = "B06",
   npc_dota_hero_viper = "C01",
   npc_dota_hero_windrunner = "C17",
   npc_dota_hero_keeper_of_the_light = "B05",
@@ -91,11 +91,11 @@ function Nobu:PickHero( keys )
         GameRules: SendCustomMessage("武田勝賴玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "dragon_knight") then --上杉謙信
         GameRules: SendCustomMessage("上杉謙信玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "slardar") then -- 真田幸村
+      elseif string.match(name, "axe") then -- 真田幸村
         GameRules: SendCustomMessage("真田幸村玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "troll_warlord") then -- 井伊直政
         GameRules: SendCustomMessage("井伊直政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "broodmother") then --服部半藏
+      elseif string.match(name, "undying") then --服部半藏
         GameRules: SendCustomMessage("服部半藏玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("A13D"):SetLevel(1)
       elseif string.match(name, "storm_spirit") then --大谷吉繼

@@ -148,7 +148,10 @@ function Precache( context )
     "particles/a07r/a07r_c.vpcf",
     "particles/shake2.vpcf",
     "particles/shake3.vpcf",
-    
+    -- 冰計
+    "particles/item/item_ice_book/ice.vpcf",
+    "particles/b33/b33r_old_poison.vpcf",
+    "particles/q09_2/q09_2.vpcf",
     -- 洞寶
     "particles/b05t3/b05t3_j0.vpcf",
 

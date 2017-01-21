@@ -57,7 +57,7 @@ function Nobu:OnUnitKill( keys )
   		-- 這隻角色天生會帶一個modifier我們需要砍掉他
       -- 一般是立花道雪在用他
       
-    elseif string.match(name,"slardar") then --幸村開大
+    elseif string.match(name,"axe") then --幸村開大
       killedUnit:RemoveModifierByName("modifier_B06T")
   	end
 
@@ -67,12 +67,12 @@ function Nobu:OnUnitKill( keys )
       else
         killedUnit.death_count = killedUnit.death_count + 1
       end
-      if killedUnit:GetLevel() > 20 then
+      if killedUnit:GetLevel() >= 20 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2.5)
+      elseif killedUnit:GetLevel() >= 10 then
         killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
-      elseif killedUnit:GetLevel() > 10 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1.5)
       else
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1)
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1.5)
       end
       group = FindUnitsInRadius(
           killedUnit:GetTeamNumber(), 

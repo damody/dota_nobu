@@ -193,39 +193,42 @@ function C07_Effect( keys )
 	Timers:CreateTimer(1,function()
 		dummyx:ForceKill(true)
 		end)
-
+	local ii = 0
 	for i,v in ipairs(group) do
-		if i == 1 then
-			StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
-			StartSoundEvent( "Hero_Leshrac.Lightning_Storm", v )
+		if ii == 0 then
+			if dummyx:CanEntityBeSeenByMyTeam(v) then
+				ii = 1
+				StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
+				StartSoundEvent( "Hero_Leshrac.Lightning_Storm", v )
 
-			point2 = v:GetAbsOrigin()
-			local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN , v)
-			-- Raise 1000 if you increase the camera height above 1000
-			ParticleManager:SetParticleControl(particle, 0, point + Vector(0,0,height))
-			ParticleManager:SetParticleControl(particle, 1, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
-			ParticleManager:SetParticleControl(particle, 2, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
+				point2 = v:GetAbsOrigin()
+				local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN , v)
+				-- Raise 1000 if you increase the camera height above 1000
+				ParticleManager:SetParticleControl(particle, 0, point + Vector(0,0,height))
+				ParticleManager:SetParticleControl(particle, 1, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
+				ParticleManager:SetParticleControl(particle, 2, Vector(point2.x,point2.y,point2.z + v:GetBoundingMaxs().z ))
 
-		   	local group2 = FindUnitsInRadius(dummy:GetTeamNumber(),
-                              point2,
-                              nil,
-                              350,
-                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-                              DOTA_UNIT_TARGET_ALL,
-                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-                              FIND_ANY_ORDER,
-                              false)
-			for i2,v2 in ipairs(group2) do
-				if v2:IsHero() then
-					ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v2)
-				end
-				if caster:IsAlive() then
-					AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				else
-					AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-					caster.takedamage = caster.takedamage + dmg
-					if (v2:IsRealHero()) then
-						caster.herodamage = caster.herodamage + dmg
+			   	local group2 = FindUnitsInRadius(dummy:GetTeamNumber(),
+	                              point2,
+	                              nil,
+	                              350,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
+				for i2,v2 in ipairs(group2) do
+					if v2:IsHero() then
+						ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v2)
+					end
+					if caster:IsAlive() then
+						AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					else
+						AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						caster.takedamage = caster.takedamage + dmg
+						if (v2:IsRealHero()) then
+							caster.herodamage = caster.herodamage + dmg
+						end
 					end
 				end
 			end

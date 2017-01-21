@@ -149,7 +149,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("B08T_old")
 		elseif string.match(caster:GetUnitName(), "pugna") then -- 本願寺顯如
-			caster:AddAbility("B25W")
+			caster:AddAbility("B25W_old")
 			caster:AddAbility("B25E_old")
 			caster:AddAbility("B25R_old")
 			caster:AddAbility("attribute_bonusx")
@@ -361,16 +361,7 @@ local function chat_of_test(keys)
 		GameMode:SetHUDVisible(12, false)
 	end
 	
-	if string.match(s,"cam") then
-		local dis = tonumber(string.match(s, '%d+'))
-			GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
-			SendToConsole("r_farz 60000")
-		    Timers:CreateTimer( 1, function()
-		  		SendToConsole("r_farz 60000")
-		      return 1
-		    end)
-		
-	end
+	
 	sump = 0
 	for playerID = 0, 14 do
 		local id       = playerID
@@ -383,6 +374,15 @@ local function chat_of_test(keys)
 		sump = 1
 	end
 	if 1==sump then
+		if string.match(s,"cam") then
+		local dis = tonumber(string.match(s, '%d+'))
+			GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
+			SendToConsole("r_farz 60000")
+		    Timers:CreateTimer( 1, function()
+		  		SendToConsole("r_farz 60000")
+		      return 1
+		    end)
+		end
 		if string.match(s,"-gg") then
 			GameRules:SetCustomGameEndDelay(1)
 			GameRules:SetCustomVictoryMessage("遊戲時間到了喔~")
@@ -529,7 +529,7 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c5" then
-			local  u = CreateUnitByName("npc_dota_hero_broodmother",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_undying",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
@@ -585,7 +585,7 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c55" then
-			local  u = CreateUnitByName("npc_dota_hero_broodmother",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_undying",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)
