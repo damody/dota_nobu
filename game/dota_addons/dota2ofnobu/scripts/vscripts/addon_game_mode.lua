@@ -149,15 +149,15 @@ function Precache( context )
     "particles/shake2.vpcf",
     "particles/shake3.vpcf",
     -- 鐵碎牙．妖刀
-    "particle"  "particles/generic_gameplay/generic_slowed_cold.vpcf",
-    "particle"  "particles/item/item_the_great_sword_of_hurricane.vpcf",
-    "particle"  "particles/item/item_the_great_sword_of_hurricane/tornado.vpcf",
+    "particles/generic_gameplay/generic_slowed_cold.vpcf",
+    "particles/item/item_the_great_sword_of_hurricane.vpcf",
+    "particles/item/item_the_great_sword_of_hurricane/tornado.vpcf",
     -- 鱗片甲
-    "particle"  "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf",
-    "particle"  "particles/item/item_flame_armor/flame_aura.vpcf",
+    "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf",
+    "particles/item/item_flame_armor/flame_aura.vpcf",
     -- 狐火大鎧
-    "particle"  "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf",
-    "particle"  "particles/item/item_foxfire_armor/foxfire_aura.vpcf",
+    "particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf",
+    "particles/item/item_foxfire_armor/foxfire_aura.vpcf",
     -- 冰計
     "particles/item/item_ice_book/ice.vpcf",
     "particles/b33/b33r_old_poison.vpcf",
