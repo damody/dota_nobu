@@ -4235,6 +4235,12 @@
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_soul.lua"
 				"Function"		"Shock"
 			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"1"
+			}
 		}
 		"Modifiers"
 		{
@@ -7013,7 +7019,7 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/the_spear_of_spiders"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -9009,7 +9015,7 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/ninja_cloth"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -11928,7 +11934,7 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/tea_bowl"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -13165,6 +13171,12 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_soul.lua"
 				"Function"		"Shock2"
+			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"1"
 			}
 		}
 		"Modifiers"

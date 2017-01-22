@@ -39,7 +39,7 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		            if (damage_type == DAMAGE_TYPE_MAGICAL) and self.caster.nannbann_armor == true then
+		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.nannbann_armor == true then
 		            	Timers:CreateTimer(0.01, function() 
 		            		self.caster.nannbann_armor = false
 		            		self.caster:Purge( false, true, true, true, true)
