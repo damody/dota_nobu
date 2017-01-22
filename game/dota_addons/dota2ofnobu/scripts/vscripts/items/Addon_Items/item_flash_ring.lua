@@ -33,6 +33,6 @@ function item_blink_datadriven_on_spell_start(keys)
 		ParticleManager:SetParticleControl(particle,1, target_point)		
 	end)		
 
-	print(target_point)
+	ExecuteOrderFromTable({UnitIndex = keys.caster:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP, Queue = false}) 
 end
 
