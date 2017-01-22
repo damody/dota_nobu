@@ -39,8 +39,8 @@ function modifier_magic_talisman:OnTakeDamage(event)
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
-		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		            if (damage_type == DAMAGE_TYPE_MAGICAL) and self.caster.magic_talisman == true then
+		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then 
+		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.magic_talisman == true then
 		            	Timers:CreateTimer(0.01, function() 
 		            		self.caster.magic_talisman = false
 		            		self.caster:Purge( false, true, true, true, true)
