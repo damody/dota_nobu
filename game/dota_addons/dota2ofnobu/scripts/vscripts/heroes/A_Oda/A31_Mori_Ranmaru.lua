@@ -245,11 +245,11 @@ function A31T_old_split_shot( keys )
 	local projectile_speed = ability:GetLevelSpecialValueFor("projectile_speed", ability_level)
 	local split_shot_projectile = keys.split_shot_projectile
 
-	local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, target_team, target_type, target_flags, FIND_CLOSEST, false)
+	local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, target_team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, target_flags, FIND_CLOSEST, false)
 
 	-- Create projectiles for units that are not the casters current attack target
 	for _,v in pairs(split_shot_targets) do
-		if v ~= attack_target then
+		if v ~= attack_target and caster:CanEntityBeSeenByMyTeam(v) and not v:HasModifier("modifier_invisible") then
 			local projectile_info = 
 			{
 				EffectName = split_shot_projectile,
