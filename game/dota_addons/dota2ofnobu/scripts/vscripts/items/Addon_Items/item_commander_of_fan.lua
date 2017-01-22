@@ -20,6 +20,7 @@ function Shock( keys )
 	end)
 	
 	for _,target in pairs(direUnits) do
+		AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		if not target:IsBuilding() then
 			if (target:IsMagicImmune()) then
 				ability:ApplyDataDrivenModifier(caster,target,"modifier_commander_of_fan1",nil)
