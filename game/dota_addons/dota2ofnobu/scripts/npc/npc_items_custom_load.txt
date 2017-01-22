@@ -899,14 +899,14 @@
 		"AbilityTextureName"	"item_custom/perceive_wine"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"30"
+		"AbilityCooldown"	"20"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2600"
 		"ItemQuality"	"component"
 		"Model"							"models/props_gameplay/salve_blue.vmdl"
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
 		// Item Info
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"ItemCost"	"200"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
@@ -973,6 +973,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCooldown"	"30"
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2621"
 		"ItemQuality"	"component"
@@ -10293,7 +10294,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"45"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2808"
 		"ItemQuality"	"component"
@@ -10382,7 +10383,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"45"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2809"
 		"ItemQuality"	"component"
@@ -10471,7 +10472,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"45"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2810"
 		"ItemQuality"	"component"
@@ -10561,7 +10562,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"45"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2811"
 		"ItemQuality"	"component"
@@ -13239,7 +13240,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"60"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
 		"ID"	"2821"
@@ -13329,7 +13330,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"60"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
 		"ID"	"2822"
@@ -13419,7 +13420,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"60"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
 		"ID"	"2823"
@@ -13510,7 +13511,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"60"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
 		"ID"	"2824"
