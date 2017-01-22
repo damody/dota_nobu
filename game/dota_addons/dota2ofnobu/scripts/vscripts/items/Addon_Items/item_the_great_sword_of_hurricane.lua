@@ -1,97 +1,69 @@
 
 function Shock( keys )
 	local caster = keys.caster
-	
-	local flame = ParticleManager:CreateParticle("particles/item/item_the_great_sword_of_hurricane.vpcf", PATTACH_ABSORIGIN, caster)
-	Timers:CreateTimer(20, function ()
-		ParticleManager:DestroyParticle(flame, false)
-	end)
-	local ctime = 0
-	local pos = caster:GetAbsOrigin()
-	Timers:CreateTimer(0, function ()
-		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-	                          pos,
-	                          nil,
-	                          800,
-	                          DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                          DOTA_UNIT_TARGET_ALL,
-	                          DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-	                          FIND_ANY_ORDER,
-	                          false)
-		for _,it in pairs(direUnits) do
-			if (not(it:IsBuilding())) then
-				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_great_sword_of_hurricane", {duration=0.5})
-			end
-		end
-		ctime = ctime + 0.5
-		if (ctime <= 20) then
-			return 0.5
-		else
-			return nil
-		end
-	end)
+	local ability = keys.ability
+	local aura_duration = ability:GetLevelSpecialValueFor("aura_duration",0)
+
+	local dummy = CreateUnitByName("npc_dummy_unit_new",caster:GetAbsOrigin(),false,caster,caster,caster:GetTeamNumber())
+	dummy:AddNewModifier(caster,nil,"modifier_kill",{duration=aura_duration})
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_great_sword_of_hurricane_aura", {duration=aura_duration})
 end
 
 function OnEquip( keys )
 	local caster = keys.caster
-	caster:AddAbility("ability_great_sword_of_hurricane"):SetLevel(1)
 end
 
 function OnUnequip( keys )
 	local caster = keys.caster
-	caster:RemoveAbility("ability_great_sword_of_hurricane")
 end
 
-
---[[Author: Pizzalol
-	Date: 04.03.2015.
-	Creates additional attack projectiles for units within the specified radius around the caster]]
 function SplitShotLaunch( keys )
 	local caster = keys.caster
 	local caster_location = caster:GetAbsOrigin()
 	local ability = keys.ability
-	if ability ~= nil then
-		local ability_level = ability:GetLevel() - 1
 
-		-- Targeting variables
-		local target_type = ability:GetAbilityTargetType()
-		local target_team = ability:GetAbilityTargetTeam()
-		local target_flags = ability:GetAbilityTargetFlags()
-		local attack_target = caster:GetAttackTarget()
+	-- 鏡像不給用:D
+	if caster:IsIllusion() then return end
 
-		-- Ability variables
-		local radius = ability:GetLevelSpecialValueFor("range", ability_level)
-		local max_targets = ability:GetLevelSpecialValueFor("arrow_count", ability_level)
-		local projectile_speed = ability:GetLevelSpecialValueFor("projectile_speed", ability_level)
-		local split_shot_projectile = "particles/units/heroes/hero_invoker/invoker_tornado_funnel.vpcf"
+	-- Targeting variables
+	local target_type = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+	local target_team = DOTA_UNIT_TARGET_TEAM_ENEMY
+	local target_flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
 
-		local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), caster_location, nil, radius, 
-			target_team, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, target_flags, FIND_CLOSEST, false)
+	-- Ability variables
+	local tornado_range = ability:GetLevelSpecialValueFor("tornado_range", 0)
+	local tornado_speed = ability:GetLevelSpecialValueFor("tornado_speed", 0)
+	local split_shot_projectile = "particles/item/item_the_great_sword_of_hurricane/tornado.vpcf"
+	
+	local split_shot_targets = FindUnitsInRadius(caster:GetTeam(), 
+		caster_location, 
+		nil, 
+		tornado_range, 
+		target_team, 
+		target_type, 
+		target_flags, 
+		FIND_ANY_ORDER, 
+		false)
 
-		-- Create projectiles for units that are not the casters current attack target
-		for _,v in pairs(split_shot_targets) do
-			if v ~= attack_target and not v:HasModifier("modifier_invisible") and caster:CanEntityBeSeenByMyTeam(v) then
-				local count = 0
-				local tornado = ParticleManager:CreateParticle(split_shot_projectile, PATTACH_ABSORIGIN, caster)
-				Timers:CreateTimer(0, function()
-					count = count + 0.1
-					ParticleManager:SetParticleControl(tornado, 3, caster_location+(v:GetAbsOrigin()-caster_location)*count)
-					
-					if (count > 1) then
-						AMHC:Damage(caster,v, 400,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-						ParticleManager:DestroyParticle(tornado, true)
-						return nil
-					else
-						return 0.1
-					end
-				end)
-				
-				max_targets = max_targets - 1
-			end
-			-- If we reached the maximum amount of targets then break the loop
-			if max_targets == 0 then break end
-		end
-	end
+	if #split_shot_targets == 0 then return end
+
+	-- 隨機選擇一個敵方單位
+	local rnd = RandomInt(1,#split_shot_targets)
+
+	-- 打出風之傷
+	local info = {
+		Target = split_shot_targets[rnd],
+		Source = caster,
+		Ability = ability,
+		EffectName = split_shot_projectile,
+		bDodgeable = false,
+		bProvidesVision = false,
+		iMoveSpeed = tornado_speed,
+        iVisionRadius = 0,
+        iVisionTeamNumber = caster:GetTeamNumber(),
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+	}
+	ProjectileManager:CreateTrackingProjectile( info )
 end
 
 -- Apply the auto attack damage to the hit unit
@@ -99,7 +71,7 @@ function SplitShotDamage( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	local tornado_damage = ability:GetLevelSpecialValueFor("tornado_damage",0)
 
-	AMHC:Damage(caster, target, 400, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	AMHC:Damage(caster, target, tornado_damage, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 end
-

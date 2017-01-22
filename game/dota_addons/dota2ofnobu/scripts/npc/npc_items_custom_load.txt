@@ -4590,8 +4590,10 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
+		// Time
 		
 		"AbilityCooldown"	"80"
+		// Cost
 		
 		"AbilityManaCost"	"250"
 
@@ -4603,6 +4605,14 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_medusa/medusa_base_attack.vpcf"
+			"particle"	"particles/c09/necronomicon_archer_projectile.vpcf"
+			"particle"	"particles/items_fx/desolator_projectile.vpcf"
+			"particle"  "particles/item/item_the_great_sword_of_hurricane/tornado.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -4629,7 +4639,22 @@
 		}
 		"Modifiers"
 		{
-			"modifier_great_sword_of_hurricane"
+			"modifier_great_sword_of_hurricane_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"EffectName" "particles/item/item_the_great_sword_of_hurricane.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"Aura"        "modifier_great_sword_of_hurricane_debuff"
+        		"Aura_Radius" "800"
+        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+			}
+			"modifier_great_sword_of_hurricane_debuff"
 			{
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
@@ -4662,6 +4687,61 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
 				}
+			}
+			// 在特定範圍持續打出風之傷
+			"modifier_great_sword_of_hurricane_auto_attack"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsDebuff"	"0"
+
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_hurricane.lua"
+						"Function"	"SplitShotLaunch"
+					}
+				}
+			}
+		}
+		// 當風之傷命中目標
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"FireSound"
+			{
+				"EffectName"	"Hero_Medusa.AttackSplit"
+				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_hurricane.lua"
+				"Function"	"SplitShotDamage"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01" // 風之傷鎖敵範圍
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_range"	"1000"
+			}
+			"02" // 風之傷飛行速度
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_speed"	"1200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_damage"	"400"
+			}
+			"04" // 主動技能持續時間
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_duration"	"20"
 			}
 		}
 	}
