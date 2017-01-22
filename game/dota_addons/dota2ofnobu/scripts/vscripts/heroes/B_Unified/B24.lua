@@ -273,13 +273,12 @@ function B24E( keys )
 	local caster = keys.caster
 	local target = keys.target
 
-	-- Clear the force attack target
-	target:SetForceAttackTarget(nil)
-
 	-- Give the attack order if the caster is alive
 	-- otherwise forces the target to sit and do nothing
 	--【ExecuteOrder】
 	if caster:IsAlive() then
+		-- Clear the force attack target
+		target:SetForceAttackTarget(nil)
 		local order = 
 		{
 			UnitIndex = target:entindex(),
@@ -288,18 +287,20 @@ function B24E( keys )
 		}
 
 		ExecuteOrderFromTable(order)
+		-- Set the force attack target to be the caster
+		target:SetForceAttackTarget(caster)
 	else
-		target:Stop()
+		target:RemoveModifierByName("modifier_B24E")
 	end
 
-	-- Set the force attack target to be the caster
-	target:SetForceAttackTarget(caster)
+	
 end
 
 -- Clears the force attack target upon expiration
 function B24E_END( keys )
 	local target = keys.target
 	target:SetForceAttackTarget(nil)
+	target:Stop()
 end
 
 function B24R( keys )
