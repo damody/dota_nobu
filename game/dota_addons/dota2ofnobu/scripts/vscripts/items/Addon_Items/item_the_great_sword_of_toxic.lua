@@ -10,7 +10,10 @@ function Shock( keys )
 		if int <= 4 then
 			int = int + 1
 			AMHC:Damage( caster,target,50,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			ParticleManager:CreateParticle(mod, PATTACH_ABSORIGIN, target)
+			local part = ParticleManager:CreateParticle(mod, PATTACH_ABSORIGIN, target)
+			Timers:CreateTimer(0.9, function ()
+				ParticleManager:DestroyParticle(part, false)
+			end)
 			PopupDamageOverTime(target, 50)
 			return 1
 		else
@@ -51,7 +54,10 @@ function Shock2( keys )
 					int = int + 1
 					AMHC:Damage( caster,target,55,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 					ability:ApplyDataDrivenModifier(caster,target,"modifier_the_great_sword_of_toxic",nil)
-					ParticleManager:CreateParticle(mod, PATTACH_ABSORIGIN, target)
+					local part = ParticleManager:CreateParticle(mod, PATTACH_ABSORIGIN, target)
+					Timers:CreateTimer(0.9, function ()
+						ParticleManager:DestroyParticle(part, false)
+					end)
 					PopupDamageOverTime(target, 55)
 					return 1
 				else

@@ -113,18 +113,20 @@ end
 function A06T_old(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	
-	local ran =  RandomInt(1, 100)
-	if ran > 25 or caster.nextA06T_old == 1 then
-		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  550 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-		for _, it in pairs(group) do
-			AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor( "A06T_ADD_D", ( ability:GetLevel() - 1 ) ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-			AMHC:CreateParticle("particles/b06e4/b06e4_b.vpcf",PATTACH_ABSORIGIN,false,it,0.5,nil)
+	local target = keys.target
+	if not target:IsBuilding() then
+		local ran =  RandomInt(1, 100)
+		if ran > 25 or caster.nextA06T_old == 1 then
+			local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+			nil,  550 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+			for _, it in pairs(group) do
+				AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor( "A06T_ADD_D", ( ability:GetLevel() - 1 ) ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:CreateParticle("particles/b06e4/b06e4_b.vpcf",PATTACH_ABSORIGIN,false,it,0.5,nil)
+			end
+			caster.nextA06T_old = nil
+		else
+			caster.nextA06T_old = 1
 		end
-		caster.nextA06T_old = nil
-	else
-		caster.nextA06T_old = 1
 	end
 end
