@@ -2666,6 +2666,8 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"	"1"
 		"ItemShopTags"		"damage"
+
+		"AoERadius" "%aure_radius"
 		"OnEquip"
 		{
 			"RemoveModifier"
@@ -2683,6 +2685,7 @@
 		{
 			"particle"	"particles/item/d01/d01.vpcf"
 			"particle"	"particles/item/d02_4/d02_4_f.vpcf"
+			"particle"  "particles/item/item_flame_armor/flame_aura.vpcf"
 		}
 		"Modifiers"
 		{
@@ -2703,10 +2706,13 @@
 				"IsDebuff"			"0"
 			
 				"Aura"        "modifier_flame_armor_debuff"
-        		"Aura_Radius" "350"
+        		"Aura_Radius" "%aure_radius"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+
+        		"EffectName" "particles/item/item_flame_armor/flame_aura.vpcf"
+        		"EffectAttachType" "follow_origin"
 			}
 			"modifier_flame_armor_debuff"
 			{
@@ -2728,6 +2734,14 @@
 						"Target"	"TARGET"
 					}
 				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aure_radius"			"350"
 			}
 		}
 	}
@@ -9613,7 +9627,7 @@
 		"ItemCost"	"3150"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
+		"AoERadius" "%aura_radius"
 		"OnEquip"
 		{
 			"RemoveModifier"
@@ -9626,6 +9640,10 @@
                 "Target" "CASTER"
                 "ModifierName" "modifier_flame_armor_aura"
             }
+		}
+		"precache"
+		{
+			"particle"  "particles/item/item_foxfire_armor/foxfire_aura.vpcf"
 		}
 		"Modifiers"
 		{
@@ -9642,10 +9660,13 @@
 				"IsDebuff"			"0"
 			
 				"Aura"        "modifier_flame_armor_debuff"
-        		"Aura_Radius" "400"
+        		"Aura_Radius" "%aura_radius"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+
+        		"EffectName" "particles/item/item_foxfire_armor/foxfire_aura.vpcf"
+        		"EffectAttachType" "follow_origin"
 			}
 			"modifier_flame_armor_debuff"
 			{
@@ -9688,6 +9709,14 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
 				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aura_radius"	"400"
 			}
 		}
 	}
