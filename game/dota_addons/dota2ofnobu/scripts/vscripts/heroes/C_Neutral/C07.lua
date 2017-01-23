@@ -80,6 +80,39 @@ function C07D_ATTACK( keys )
 	end)
 end
 
+function C07R_old( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local point = caster:GetAbsOrigin()
+	local point2 = target:GetAbsOrigin()
+	local vec   = (point2 - point):Normalized()
+	
+	local level = ability:GetLevel() - 1
+	local radius = ability:GetLevelSpecialValueFor("radius",level)
+	local target_count = ability:GetLevelSpecialValueFor("target_count",level)
+    local group = FindUnitsInRadius(caster:GetTeam(), point2, nil, radius , ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+	for i,v in ipairs(group) do
+		if i > target_count then
+			break
+		else
+			local lightningBolt = ParticleManager:CreateParticle("particles/c07r/c07r.vpcf", PATTACH_WORLDORIGIN, caster)
+			ParticleManager:SetParticleControl(lightningBolt,0,Vector(caster:GetAbsOrigin().x,caster:GetAbsOrigin().y,caster:GetAbsOrigin().z + caster:GetBoundingMaxs().z ) + vec * 101 )
+			ParticleManager:SetParticleControl(lightningBolt,1,Vector(v:GetAbsOrigin().x,v:GetAbsOrigin().y,v:GetAbsOrigin().z + v:GetBoundingMaxs().z ))
+			--se
+			local particle = ParticleManager:CreateParticle( "particles/c07e3/c07e3.vpcf", PATTACH_POINT, v )
+			ParticleManager:SetParticleControlEnt(particle, 0, v, PATTACH_POINT, "attach_hitloc", v:GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(particle, 1, v, PATTACH_POINT, "attach_hitloc", v:GetAbsOrigin(), true)
+			Timers:CreateTimer(0.5,function()
+				ParticleManager:DestroyParticle(particle ,true)
+			end)
+			--dmg
+			ability:ApplyDataDrivenModifier(caster,v,"modifier_C07R",nil)
+		end
+	end
+	group = nil
+end
+
 function C07R( keys )
 	local caster = keys.caster
 	local target = keys.target

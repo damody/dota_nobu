@@ -117,78 +117,6 @@
 		}
 	}
 
-	"A16R"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"ursa_enrage"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"precache"
-		{
-			"particle"	"particles/items_fx/aura_assault.vpcf"
-			"particle"	"particles/items_fx/aura_assault.vpcf"
-		}
-		"Modifiers"
-		{
-			"modifier_A16R"
-			{
-				"Passive"	"1"
-				"OnTakeDamage"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-							"Center"	"CASTER"
-							"Radius"	"%effect_range"
-						}
-						"Action"
-						{
-							"RunScript"
-							{
-								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A16.lua"
-								"Function"	"A16R"
-								"dmg"	"%attack_damage"
-							}
-						}
-					}
-				}
-				"EffectName"	"particles/items_fx/aura_assault.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"effect_range"	"300"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"damage_percent"	"0.15 0.25 0.35 0.45"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"attack_speed_bonus"	"20 30 40 50"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"move_speed_bonus"	"8"
-			}
-		}
-	}
-	
 	"A16E"
 	{
 		// General
@@ -262,10 +190,11 @@
 			{
 				"OnTakeDamage"
 				{
-					"Heal"
+					"RunScript"
 					{
-						"Target"	"CASTER"
-						"HealAmount"	"%attack_damage * %heal_percent / 100"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A16.lua"
+						"Function"	"A16E"
+						"dmg"	"%attack_damage"
 					}
 				}
 				"IsDebuff"	"1"
@@ -281,8 +210,8 @@
 		{
 			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"heal_percent"	"20 35 50 65"
+				"var_type"	"FIELD_FLOAT"
+				"heal_percent"	"0.2 0.35 0.5 0.65"
 			}
 			"02"
 			{
@@ -296,6 +225,81 @@
 			}
 		}
 	}
+
+	"A16R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ursa_enrage"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AOERadius"	"500"
+		"precache"
+		{
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_A16R"
+			{
+				"Passive"	"1"
+				"OnTakeDamage"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+							"Center"	"CASTER"
+							"Radius"	"%effect_range"
+						}
+						"Action"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A16.lua"
+								"Function"	"A16R"
+								"dmg"	"%attack_damage"
+							}
+						}
+					}
+				}
+				"EffectName"	"particles/items_fx/aura_assault.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"effect_range"	"500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage_percent"	"0.15 0.25 0.35 0.45"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_bonus"	"20 30 40 50"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed_bonus"	"8"
+			}
+		}
+	}
+
 	// 鳥居元忠
 	"A16T"
 	{

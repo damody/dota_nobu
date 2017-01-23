@@ -682,7 +682,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"10 9 8 7"
+		"AbilityCooldown"	"7"
 		"AbilityManaCost"	"140 160 180 200"
 		"AbilityCastRange"	"1200"
 		"AoERadius"	"500"
@@ -704,7 +704,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
-				"Function"	"C07R"
+				"Function"	"C07R_old"
 			}
 			"FireSound"
 			{
@@ -751,7 +751,7 @@
 				"target_count"	"8"
 			}
 		}
-		"AbilityDamage"	"150 250 350 450"
+		"AbilityDamage"	"300 400 500 600"
 	}
 	// 立花道雪 [雷神之怒]
 	"C07T_old"

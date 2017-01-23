@@ -89,6 +89,23 @@ function A16T( keys )
 	--     7200      1000 2000 3000 4000
 end
 
+function A16E( keys )
+	--[[
+	O在這邊放計時器是因為節省particle的使用
+	O魔免的時候，不能在KV裡面傷害單位
+		要在lua裡面
+	]]
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local damage_percent = ability:GetLevelSpecialValueFor("heal_percent",ability:GetLevel()-1)
+	local dmg = keys.dmg * damage_percent
+	--print(dmg) --%attack_damage * %damage_percent
+	--test
+	-- target:Kill(nil,nil)
+	caster:Heal(dmg,caster)
+end
+
 
 function A16R( keys )
 	--[[
