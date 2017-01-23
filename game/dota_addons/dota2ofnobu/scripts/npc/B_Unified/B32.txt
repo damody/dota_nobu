@@ -1107,6 +1107,19 @@
 						"CleaveEffect"	"particles/a07r/a07r.vpcf"
 					}
 				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/b32/b32t_orb.vpcf"
+						"EffectAttachType"  "follow_customorigin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+            			{
+                			"CASTER" "attach_attack1"
+            			}
+					}
+				}
 			}
 		}
 		// Special
