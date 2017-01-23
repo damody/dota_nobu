@@ -105,5 +105,7 @@ function OnEquip( keys )
 end
 
 function OnUnequip( keys )
-	keys.caster.has_item_protection_amulet = nil
+	if keys.caster ~= nil then
+		keys.caster.has_item_protection_amulet = nil
+	end
 end

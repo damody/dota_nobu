@@ -341,9 +341,9 @@ function MoonMoonAdjust_old( keys )
 		-- Todo: 調整月月能力
 		local caster_level = caster:GetLevel()
 		if (caster_level > 20) then
-			caster_level = caster_level * 3
+			caster_level = caster_level * 2.6
 		elseif (caster_level > 15) then
-			caster_level = caster_level * 2.5
+			caster_level = caster_level * 2.3
 		elseif (caster_level > 10) then
 			caster_level = caster_level * 2
 		elseif (caster_level > 5) then

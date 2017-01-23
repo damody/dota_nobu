@@ -49,7 +49,7 @@ function A06W_old( keys )
 	local level = ability:GetLevel()
 	caster:AddNewModifier(caster,ability,"modifier_A06W_old",{duration=14})
 	caster:FindModifierByName("modifier_A06W_old").caster = caster
-	caster:FindModifierByName("modifier_A06W_old").percent = 0.5
+	caster:FindModifierByName("modifier_A06W_old").percent = 0.7
 end
 
 function A06E_old( keys )
