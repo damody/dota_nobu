@@ -324,6 +324,10 @@
 				"Duration"	"10"
 				"IsDebuff"	"0"
 				"EffectAttachType"	"attach_origin"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"OnIntervalThink"
 				{
 					"ActOnTargets"
@@ -834,7 +838,10 @@
 
 				"EffectAttachType"	"attach_origin"
 				"EffectName"	"particles/b02e5/b02e5.vpcf"
-
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"Aura"        "modifier_B02E_3"
         		"Aura_Radius" "%fire_radius"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"

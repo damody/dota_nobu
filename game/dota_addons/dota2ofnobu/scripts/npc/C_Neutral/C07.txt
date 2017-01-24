@@ -336,6 +336,10 @@
 		{
 			"modifier_C07T"
 			{
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -817,6 +821,10 @@
 					}
 				}
 				"ThinkInterval"	"%tick"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 			}
 			"modifier_C07T_2"
 			{

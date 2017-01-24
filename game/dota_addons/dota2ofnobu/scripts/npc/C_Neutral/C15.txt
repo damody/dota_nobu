@@ -189,6 +189,10 @@
 				"Duration"	"15"
 				"IsDebuff"	"0"
 				"EffectAttachType"	"attach_origin"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"OnIntervalThink"
 				{
 					"ActOnTargets"
@@ -362,11 +366,14 @@
 			"modifier_C15T"
 			{
 				"EffectName"	"particles/c15t7/c15t7.vpcf"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_dmg"
 				}
-				"States"	{}
 				"Duration"	"%life_duration"
 				"OnDestroy"
 				{
@@ -703,7 +710,10 @@
 				{
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_dmg"
 				}
-				"States"	{}
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"Duration"	"%life_duration"
 				"OnDestroy"
 				{

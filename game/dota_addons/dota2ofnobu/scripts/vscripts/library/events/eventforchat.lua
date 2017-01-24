@@ -495,7 +495,7 @@ local function chat_of_test(keys)
 		end
 		
 		if s == "c1" then
-			local  u = CreateUnitByName("npc_dota_hero_magnataur",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_huskar",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)

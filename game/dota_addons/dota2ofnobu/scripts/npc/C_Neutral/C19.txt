@@ -517,11 +517,14 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
+		"OnUpgrade"
+		{
+			
+		}
 		"Modifiers"
 		{
 			"modifier_ninja_cloth"
 			{
-				"IsHidden"	"1"
 				"Passive"	"1"
 				"Properties"
 				{
