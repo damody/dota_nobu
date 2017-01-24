@@ -277,7 +277,7 @@ function B24E_START( keys )
 					v:SetForceAttackTarget(nil)
 					local order = 
 					{
-						UnitIndex = target:entindex(),
+						UnitIndex = v:entindex(),
 						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 						TargetIndex = caster:entindex()
 					}
