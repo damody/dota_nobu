@@ -5405,6 +5405,14 @@
 				}
 			}
 		}
+		"OnUnequip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_great_sword_of_berserker"
+            }
+		}
 		"Modifiers"
 		{
 			"modifier_great_sword_of_berserker"
