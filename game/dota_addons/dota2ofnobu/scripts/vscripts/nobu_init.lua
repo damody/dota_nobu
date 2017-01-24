@@ -15,8 +15,8 @@ function _G.Nobu:InitGameMode()
   -- --GameRules:SetHeroRespawnEnabled( false )
   --設定每隊人數
   --GameRules:SetCustomGameTeamMaxPlayers(4, 7)
-  GameRules:SetCustomGameTeamMaxPlayers(2, 7)
-  GameRules:SetCustomGameTeamMaxPlayers(3, 7)
+  --GameRules:SetCustomGameTeamMaxPlayers(2, 7)
+  --GameRules:SetCustomGameTeamMaxPlayers(3, 7)
 
   GameRules:SetUseUniversalShopMode( false ) --开启/关闭全地图商店模式
   GameRules:SetSameHeroSelectionEnabled( false )

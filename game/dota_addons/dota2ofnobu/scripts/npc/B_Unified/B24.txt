@@ -136,7 +136,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AnimationPlaybackRate"	"1.5"
 		"AbilityCooldown"	"21"
-		"AbilityManaCost"	"110 120 130 140"
+		"AbilityManaCost"	"220 240 260 280"
 		"AbilityCastRange"	"650"
 		"AOERadius"	"290"
 		"precache"
@@ -180,22 +180,6 @@
 				"ThinkInterval"	"0.1"
 				"EffectName"	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_target_c.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"Function"	"B24E_END"
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
-					}
-				}
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B24.lua"
-						"Function"	"B24E"
-					}
-				}
 				"OnCreated"
 				{
 					"Damage"

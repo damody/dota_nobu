@@ -329,7 +329,20 @@ local function chat_of_test(keys)
 			caster:AddAbility("C21T_old")
 		end
 	end
-	if string.match(s,"uion") then
+		
+	sump = 0
+	for playerID = 0, 14 do
+		local id       = playerID
+  		local p        = PlayerResource:GetPlayer(id)
+    	if p ~= nil then
+		  sump = sump + 1
+		end
+	end
+	if string.match(s,"damody:") then
+		sump = 1
+	end
+	if 1==sump then
+		if string.match(s,"uion") then
 		local GameMode = GameRules:GetGameModeEntity()
 		GameMode:SetHUDVisible(0,  true) --Clock
 		GameMode:SetHUDVisible(1,  true)
@@ -343,36 +356,22 @@ local function chat_of_test(keys)
 		GameMode:SetHUDVisible(9,  true)
 		GameMode:SetHUDVisible(11, true)
 		GameMode:SetHUDVisible(12, true)
-	end
-	if string.match(s,"uioff") then
-		local GameMode = GameRules:GetGameModeEntity()
-		GameMode:SetHUDVisible(0,  false) --Clock
-		GameMode:SetHUDVisible(1,  false)
-		GameMode:SetHUDVisible(2,  false)
-		GameMode:SetHUDVisible(3,  false) --Action Panel
-		GameMode:SetHUDVisible(4,  false) --Minimap
-		GameMode:SetHUDVisible(5,  false) --Inventory
-		GameMode:SetHUDVisible(6,  false)
-		GameMode:SetHUDVisible(7,  false)
-		GameMode:SetHUDVisible(8,  false)
-		GameMode:SetHUDVisible(9,  false)
-		GameMode:SetHUDVisible(11, false)
-		GameMode:SetHUDVisible(12, false)
-	end
-	
-	
-	sump = 0
-	for playerID = 0, 14 do
-		local id       = playerID
-  		local p        = PlayerResource:GetPlayer(id)
-    	if p ~= nil then
-		  sump = sump + 1
 		end
-	end
-	if string.match(s,"damody:") then
-		sump = 1
-	end
-	if 1==sump then
+		if string.match(s,"uioff") then
+			local GameMode = GameRules:GetGameModeEntity()
+			GameMode:SetHUDVisible(0,  false) --Clock
+			GameMode:SetHUDVisible(1,  false)
+			GameMode:SetHUDVisible(2,  false)
+			GameMode:SetHUDVisible(3,  false) --Action Panel
+			GameMode:SetHUDVisible(4,  false) --Minimap
+			GameMode:SetHUDVisible(5,  false) --Inventory
+			GameMode:SetHUDVisible(6,  false)
+			GameMode:SetHUDVisible(7,  false)
+			GameMode:SetHUDVisible(8,  false)
+			GameMode:SetHUDVisible(9,  false)
+			GameMode:SetHUDVisible(11, false)
+			GameMode:SetHUDVisible(12, false)
+		end
 		if string.match(s,"cam") then
 		local dis = tonumber(string.match(s, '%d+'))
 			GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)

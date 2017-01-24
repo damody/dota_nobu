@@ -1,44 +1,5 @@
 
-heromap = {
-  npc_dota_hero_bristleback = "B15",
-  npc_dota_hero_earthshaker = "B24",
-  npc_dota_hero_brewmaster = "B26",
-  npc_dota_hero_silencer = "C07",
-  npc_dota_hero_sniper = "A17",
-  npc_dota_hero_beastmaster = "B34",
-  npc_dota_hero_huskar = "A16",
-
-  npc_dota_hero_mirana = "C15",
-  npc_dota_hero_antimage = "C10",
-  npc_dota_hero_crystal_maiden = "A34",
-  npc_dota_hero_storm_spirit = "A12",
-  
-  npc_dota_hero_troll_warlord = "A06",
-  npc_dota_hero_faceless_void = "B02",
-  npc_dota_hero_undying = "A13",
-
-  npc_dota_hero_invoker = "A28",
-  npc_dota_hero_omniknight = "A27",
-  npc_dota_hero_oracle = "A29",
-  npc_dota_hero_ancient_apparition = "A04",
-  npc_dota_hero_dragon_knight = "B32",
-  npc_dota_hero_drow_ranger = "B33",
-  
-  npc_dota_hero_nevermore = "B01",
-  npc_dota_hero_pugna = "B25",
-  npc_dota_hero_axe = "B06",
-  npc_dota_hero_viper = "C01",
-  npc_dota_hero_windrunner = "C17",
-  npc_dota_hero_keeper_of_the_light = "B05",
-  npc_dota_hero_jakiro = "C22",
-  npc_dota_hero_alchemist = "C21",
-  npc_dota_hero_treant = "A25",
-  npc_dota_hero_templar_assassin = "C19",
-  npc_dota_hero_medusa = "A31",
-  npc_dota_hero_magnataur = "B08",
-  npc_dota_hero_centaur = "A07",
-  npc_dota_hero_naga_siren = "B16",
-}
+ heromap = _G.heromap 
 
 function Nobu:PickHero( keys )
   local id       = keys.player
@@ -61,7 +22,7 @@ function Nobu:PickHero( keys )
       caster.name = heromap[name]
       print("name " .. name)
       if string.match(name, "ancient_apparition")  then --竹中重治
-        GameRules: SendCustomMessage("竹中重治玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+        GameRules: SendCustomMessage("竹中重治玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("A04D"):SetLevel(1)
       elseif string.match(name, "jakiro") then --佐佐木小次郎
         GameRules: SendCustomMessage("佐佐木小次郎玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)

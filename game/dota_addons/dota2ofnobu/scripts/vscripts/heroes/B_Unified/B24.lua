@@ -266,7 +266,37 @@ function B24E_START( keys )
 		--v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
 		--print("nobu"..v:GetUnitName())
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_B24E",nil)
-	end			
+	end
+	Timers:CreateTimer(0.1, function ()
+		if caster:IsAlive() then
+			local hasv = false
+			for _,v in ipairs(group) do
+				if v:IsAlive() and v:HasModifier("modifier_B24E") then
+					hasv = true
+					-- Clear the force attack target
+					v:SetForceAttackTarget(nil)
+					local order = 
+					{
+						UnitIndex = target:entindex(),
+						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+						TargetIndex = caster:entindex()
+					}
+
+					ExecuteOrderFromTable(order)
+					-- Set the force attack target to be the caster
+					v:SetForceAttackTarget(caster)
+				end
+			end
+			if hasv then
+				return 0.1
+			else
+				return nil
+			end
+		else
+			return nil
+		end
+		end)
+	
 end
 
 function B24E( keys )

@@ -259,36 +259,37 @@ function C10T_old_on_attack( keys )
 	local level = ability:GetLevel()-1
 	local chance = ability:GetLevelSpecialValueFor("chance",level)
 	local rnd = RandomInt(1,100)
+	if not keys.target:IsBuilding() then
+		-- ***機率不到就什麼都不做***
+		if rnd > chance then
+			return 
+		end
 
-	-- ***機率不到就什麼都不做***
-	if rnd > chance then
-		return 
+		local point  = caster:GetAbsOrigin()
+		local forwardVec = caster:GetForwardVector()
+		local movespeed = ability:GetLevelSpecialValueFor("speed",level)
+		local radius = ability:GetLevelSpecialValueFor("radius",level)
+		local distance = ability:GetLevelSpecialValueFor("distance",level)
+
+		local projectileTable =
+		{
+			EffectName = "particles/c10w/c10w.vpcf",
+			Ability = ability,
+			vSpawnOrigin = point,
+			vVelocity = forwardVec * movespeed,
+			fDistance = distance,
+			fStartRadius = radius,
+			fEndRadius = radius,
+			Source = caster,
+			bHasFrontalCone = false,
+			bReplaceExisting = false,
+			iUnitTargetTeam = ability:GetAbilityTargetTeam(),
+			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+			iUnitTargetType = ability:GetAbilityTargetType(),
+			iVisionRadius = radius,
+			iVisionTeamNumber = caster:GetTeamNumber()
+		}
+		ProjectileManager:CreateLinearProjectile( projectileTable )
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2,caster:GetAttackSpeed())
 	end
-
-	local point  = caster:GetAbsOrigin()
-	local forwardVec = caster:GetForwardVector()
-	local movespeed = ability:GetLevelSpecialValueFor("speed",level)
-	local radius = ability:GetLevelSpecialValueFor("radius",level)
-	local distance = ability:GetLevelSpecialValueFor("distance",level)
-
-	local projectileTable =
-	{
-		EffectName = "particles/c10w/c10w.vpcf",
-		Ability = ability,
-		vSpawnOrigin = point,
-		vVelocity = forwardVec * movespeed,
-		fDistance = distance,
-		fStartRadius = radius,
-		fEndRadius = radius,
-		Source = caster,
-		bHasFrontalCone = false,
-		bReplaceExisting = false,
-		iUnitTargetTeam = ability:GetAbilityTargetTeam(),
-		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		iUnitTargetType = ability:GetAbilityTargetType(),
-		iVisionRadius = radius,
-		iVisionTeamNumber = caster:GetTeamNumber()
-	}
-	ProjectileManager:CreateLinearProjectile( projectileTable )
-	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2,caster:GetAttackSpeed())
 end
