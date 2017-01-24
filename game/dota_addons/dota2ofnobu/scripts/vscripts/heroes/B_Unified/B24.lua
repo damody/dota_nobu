@@ -45,7 +45,7 @@ function B24T( keys )
    		caster:GetTeamNumber(), 
    		caster:GetAbsOrigin(), 
    		nil, 
-   		radius ,
+   		700 ,
    		DOTA_UNIT_TARGET_TEAM_ENEMY, 
    		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
    		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 

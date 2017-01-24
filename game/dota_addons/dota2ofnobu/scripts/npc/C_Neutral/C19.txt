@@ -472,13 +472,21 @@
 		"LevelsBetweenUpgrades"	"6"
 		"Modifiers"
 		{
-			"modifier_blur_datadriven"
+			"modifier_C19T"
 			{
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%bonus_magic_def"
+				}
+			}
+			"modifier_ninja_cloth"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"	//閃避
 				}
 			}
 		}
@@ -511,12 +519,13 @@
 		"LevelsBetweenUpgrades"	"6"
 		"Modifiers"
 		{
-			"modifier_blur_datadriven"
+			"modifier_ninja_cloth"
 			{
+				"IsHidden"	"1"
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"	//閃避
 				}
 			}
 		}

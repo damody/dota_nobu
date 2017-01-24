@@ -5412,7 +5412,6 @@
 		{
 			"modifier_great_sword_of_berserker"
 			{
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"EffectName"	"particles/generic_gameplay/dropped_item_rapier.vpcf"
 				"EffectAttachType"	"attach_attack1"
 				"ControlPointEntities"
@@ -6899,7 +6898,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-18"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-20"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle_2"
@@ -9516,7 +9515,7 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
@@ -14028,7 +14027,7 @@
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
-			"Passive_lightning_katana"
+			"Passive_the_great_silver_armor"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -14036,9 +14035,17 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "90" //攻速
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"   "90" //跑速
+				}
+			}
+			"modifier_ninja_cloth"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
 				}
 			}
 		}
