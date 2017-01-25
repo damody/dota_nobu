@@ -22,13 +22,10 @@ function Nobu:PickHero( keys )
       caster.name = heromap[name]
       print("name " .. name)
       if string.match(name, "ancient_apparition")  then --竹中重治
-        GameRules: SendCustomMessage("竹中重治玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("A04D"):SetLevel(1)
       elseif string.match(name, "jakiro") then --佐佐木小次郎
-        GameRules: SendCustomMessage("佐佐木小次郎玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("C22D"):SetLevel(1)
       elseif string.match(name, "magnataur") then -- 淺井長政
-        GameRules: SendCustomMessage("淺井長政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         Timers:CreateTimer(1, function ()
           if (caster:GetLevel() >= 18) then
             caster:FindAbilityByName("B08D_old"):SetLevel(1)
@@ -37,34 +34,16 @@ function Nobu:PickHero( keys )
           return 1
         end)
       elseif string.match(name, "templar_assassin") then --松姬
-        GameRules: SendCustomMessage("松姬玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("C19D"):SetLevel(1)
       elseif string.match(name, "centaur") then --本多忠勝
-        GameRules: SendCustomMessage("本多忠勝玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("A07D"):SetLevel(1)
-      elseif string.match(name, "pugna") then --本願寺顯如
-        GameRules: SendCustomMessage("本願寺顯如玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "keeper_of_the_light") then -- 毛利元就
-        GameRules: SendCustomMessage("毛利元就玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "nevermore") then --雜賀孫市
-        GameRules: SendCustomMessage("雜賀孫市玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "beastmaster") then --武田勝賴
-        GameRules: SendCustomMessage("武田勝賴玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "dragon_knight") then --上杉謙信
-        GameRules: SendCustomMessage("上杉謙信玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "axe") then -- 真田幸村
-        GameRules: SendCustomMessage("真田幸村玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "troll_warlord") then -- 井伊直政
-        GameRules: SendCustomMessage("井伊直政玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       elseif string.match(name, "undying") then --服部半藏
-        GameRules: SendCustomMessage("服部半藏玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("A13D"):SetLevel(1)
       elseif string.match(name, "storm_spirit") then --大谷吉繼
         caster:FindAbilityByName("A12D"):SetLevel(1)
         caster:FindAbilityByName("A12D"):SetActivated(false)
         caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
       elseif string.match(name, "bristleback") then -- 今川義元
-        GameRules: SendCustomMessage("今川義元玩家可以打 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         Timers:CreateTimer(1, function ()
           if (caster:GetLevel() >= 8) then
             caster:FindAbilityByName("B15D"):SetLevel(1)
@@ -73,42 +52,13 @@ function Nobu:PickHero( keys )
           return 1
         end)
       elseif string.match(name, "silencer") then --立花道雪
-        GameRules: SendCustomMessage("立花道雪玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         -- 這隻角色天生會帶一個modifier我們需要砍掉他
         caster:RemoveModifierByName("modifier_silencer_int_steal")
         caster:FindAbilityByName("C07D"):SetLevel(1)
       elseif string.match(name, "windrunner") then -- 阿市
-        GameRules: SendCustomMessage("阿市玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("C17D"):SetLevel(1)
       elseif string.match(name, "faceless_void") then --風魔小太郎
-        GameRules: SendCustomMessage("風魔小太郎玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
         caster:FindAbilityByName("B02D"):SetLevel(1)
-      elseif string.match(name, "naga_siren") then -- 望月千代女
-        GameRules: SendCustomMessage("望月千代女玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "crystal_maiden") then -- 阿松
-        GameRules: SendCustomMessage("阿松玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "invoker") then -- 羽柴秀吉
-        GameRules: SendCustomMessage("羽柴秀吉玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "viper") then -- 明智光秀
-        GameRules: SendCustomMessage("明智光秀玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "drow_ranger") then -- 最上義姬
-        GameRules: SendCustomMessage("最上義姬玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "treant") then -- 織田信長
-        GameRules: SendCustomMessage("織田信長玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "sniper") then -- 佐佐成政
-        GameRules: SendCustomMessage("佐佐成政玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "antimage") then -- 香宗我部親泰
-        GameRules: SendCustomMessage("香宗我部親泰玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "medusa") then -- 森蘭丸
-        GameRules: SendCustomMessage("森蘭丸玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "mirana") then -- 玉子
-        GameRules: SendCustomMessage("玉子玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "oracle") then -- 石田三成
-        GameRules: SendCustomMessage("石田三成玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "omniknight") then -- 柴田勝家
-        GameRules: SendCustomMessage("柴田勝家玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-      elseif string.match(name, "alchemist") then -- 宮本武藏
-        GameRules: SendCustomMessage("宮本武藏玩家可以在聊天室窗輸入 -old 使用舊版角色",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
       end
     end
   end)

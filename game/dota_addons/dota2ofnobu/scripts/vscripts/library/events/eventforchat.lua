@@ -81,45 +81,18 @@ local function chat_of_test(keys)
 	end
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
-	if s == "-old"  and caster:GetLevel() == 1 and caster.isold == nil then
-		if string.match(caster:GetUnitName(), "centaur")  -- 本多忠勝
-		or string.match(caster:GetUnitName(), "magnataur")  -- 淺井長政
-		or string.match(caster:GetUnitName(), "pugna")  -- 本願寺顯如
-		or string.match(caster:GetUnitName(), "keeper_of_the_light")  -- 毛利元就
-		or string.match(caster:GetUnitName(), "nevermore")  -- 雜賀孫市
-		or string.match(caster:GetUnitName(), "axe")  -- 真田幸村
-		or string.match(caster:GetUnitName(), "undying")  -- 服部半藏
-		or string.match(caster:GetUnitName(), "beastmaster")  -- 武田勝賴
-		or string.match(caster:GetUnitName(), "dragon_knight")  -- 上杉謙信
-		or string.match(caster:GetUnitName(), "troll_warlord")  -- 井伊直政
-		or string.match(caster:GetUnitName(), "bristleback")  -- 今川義元
-		or string.match(caster:GetUnitName(), "templar_assassin")  -- 松姬
-		or string.match(caster:GetUnitName(), "naga_siren")  -- 望月千代女
-		or string.match(caster:GetUnitName(), "crystal_maiden")  -- 阿松
-		or string.match(caster:GetUnitName(), "windrunner")  -- 阿市
-		or string.match(caster:GetUnitName(), "ancient_apparition")  -- 竹中重治
-		or string.match(caster:GetUnitName(), "invoker")  -- 羽柴秀吉
-		or string.match(caster:GetUnitName(), "viper")  -- 明智光秀
-		or string.match(caster:GetUnitName(), "drow_ranger")  -- 最上義姬
-		or string.match(caster:GetUnitName(), "treant")  -- 織田信長
-		or string.match(caster:GetUnitName(), "sniper")  -- 佐佐成政
-		or string.match(caster:GetUnitName(), "antimage")  -- 香宗我部親泰
-		or string.match(caster:GetUnitName(), "medusa")  -- 森蘭丸
-		or string.match(caster:GetUnitName(), "silencer")  -- 立花道雪
-		or string.match(caster:GetUnitName(), "mirana")  -- 玉子
-		or string.match(caster:GetUnitName(), "faceless_void")  -- 風魔小太郎
-		or string.match(caster:GetUnitName(), "jakiro")  -- 佐佐木小次郎
-		or string.match(caster:GetUnitName(), "oracle")  -- 石田三成
-		or string.match(caster:GetUnitName(), "omniknight")  -- 柴田勝家
-		or string.match(caster:GetUnitName(), "alchemist")  -- 宮本武藏
-		then
-		else
-			return
-		end
+	local nobu_id = _G.heromap[caster:GetName()]
+	if s == "-old"  and caster:GetLevel() == 1 and caster.isold == nil 
+		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
+		
+		-- 通知所有玩家該英雄已經變成舊版
+		GameRules:SendCustomMessage("-old ".._G.hero_name_zh[nobu_id],0,0)
+
 		caster.isold = true
 		caster:SetAbilityPoints(1)
 		caster.version = "11"
 
+		-- 拔掉英雄的修改器
 		local am = caster:FindAllModifiers()
 		for _,v in pairs(am) do
 			if v:GetName() ~= "equilibrium_constant" and v:GetName() ~= "modifier_for_record" then
@@ -127,6 +100,7 @@ local function chat_of_test(keys)
 			end
 		end
 
+		-- 拔掉英雄的技能
 		for i = 0, caster:GetAbilityCount() - 1 do
 			local ability = caster:GetAbilityByIndex( i )
 			if ability  then
