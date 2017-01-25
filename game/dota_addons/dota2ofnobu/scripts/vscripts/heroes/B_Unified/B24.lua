@@ -21,7 +21,7 @@ function B24T( keys )
 	ParticleManager:SetParticleControl(particle,0,point)
 
 	--【Group_radius】
-	local radius = 800
+	local radius = 600
    	local group = FindUnitsInRadius(
    		caster:GetTeamNumber(), 
    		caster:GetAbsOrigin(), 
@@ -45,10 +45,10 @@ function B24T( keys )
    		caster:GetTeamNumber(), 
    		caster:GetAbsOrigin(), 
    		nil, 
-   		700 ,
+   		radius ,
    		DOTA_UNIT_TARGET_TEAM_ENEMY, 
    		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
-   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+   		0, 
    		FIND_ANY_ORDER, 
    		false)
 	for _,v in ipairs(group) do
@@ -63,7 +63,7 @@ function B24T( keys )
 	local pointx2
 	local pointy2
 	local a	
-	local maxrock = 16
+	local maxrock = 20
 	for i=1,maxrock do
 		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
 		pointx2 	=  	pointx 	+ 	420.00 	* 	math.cos(a)
@@ -285,6 +285,9 @@ function B24E_START( keys )
 					ExecuteOrderFromTable(order)
 					-- Set the force attack target to be the caster
 					v:SetForceAttackTarget(caster)
+				else
+					v:SetForceAttackTarget(nil)
+					v:Stop()
 				end
 			end
 			if hasv then
@@ -293,6 +296,10 @@ function B24E_START( keys )
 				return nil
 			end
 		else
+			for _,v in ipairs(group) do
+				v:SetForceAttackTarget(nil)
+				v:Stop()
+			end
 			return nil
 		end
 		end)

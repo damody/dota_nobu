@@ -2676,10 +2676,17 @@
                 "Target" "CASTER"
                 "ModifierName" "modifier_flame_armor_aura"
             }
-            "ApplyModifier"
+            "DelayedAction"
             {
-                "Target" "CASTER"
-                "ModifierName" "modifier_flame_armor_aura"
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"ApplyModifier"
+		            {
+		                "Target" "CASTER"
+		                "ModifierName" "modifier_flame_armor_aura"
+		            }
+            	}
             }
 		}
 		"precache"
@@ -5149,10 +5156,17 @@
                 "Target" "CASTER"
                 "ModifierName" "modifier_flame_armor_aura"
             }
-            "ApplyModifier"
+            "DelayedAction"
             {
-                "Target" "CASTER"
-                "ModifierName" "modifier_flame_armor_aura"
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"ApplyModifier"
+		            {
+		                "Target" "CASTER"
+		                "ModifierName" "modifier_flame_armor_aura"
+		            }
+            	}
             }
 		}
 		"Modifiers"
@@ -9725,10 +9739,17 @@
                 "Target" "CASTER"
                 "ModifierName" "modifier_flame_armor_aura"
             }
-            "ApplyModifier"
+            "DelayedAction"
             {
-                "Target" "CASTER"
-                "ModifierName" "modifier_flame_armor_aura"
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"ApplyModifier"
+		            {
+		                "Target" "CASTER"
+		                "ModifierName" "modifier_flame_armor_aura"
+		            }
+            	}
             }
 		}
 		"precache"
