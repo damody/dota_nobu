@@ -146,7 +146,7 @@ function A12T( keys )
 			end
 			
 			if (target:IsMagicImmune()) then
-				AMHC:Damage( caster,target,damage*0.35,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,target,damage*0.30,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			else
 				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end

@@ -93,6 +93,7 @@ function C22R( keys )
 	local ran =  RandomInt(0, 100)
 	local crit_percent = 25
 	local attack_time = 100/crit_percent + 1
+	caster:RemoveModifierByName("C22R_critical")
 	if  caster.C22R_noncrit_count ~= nil then
 			print("@@@UF_SUCCESS")
 		if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
@@ -103,7 +104,8 @@ function C22R( keys )
 			if (caster.C22R_noncrit_count > attack_time or ran <= crit_percent) then
 				caster.C22R_noncrit_count = 0
 				StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-				caster:AddNewModifier(caster, skill, "C22R_critical", { duration = 0.1 } )
+				local rate = caster:GetAttackSpeed()
+				caster:AddNewModifier(caster, skill, "C22R_critical", { duration = rate+0.1 } )
 				local hModifier = caster:FindModifierByNameAndCaster("C22R_critical", caster)
 				if (hModifier ~= nil) then
 					hModifier.C22R_level = caster.C22R_level
@@ -235,8 +237,8 @@ end
 function C22E_old_pull_back( keys )
 	local caster = keys.caster
 	local target = keys.target
-
-	if IsValidEntity(target) and target:IsAlive() and target:HasModifier("modifier_C22E_old_stun") then
+	local dis = (caster:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
+	if IsValidEntity(target) and target:IsAlive() and target:HasModifier("modifier_C22E_old_stun") and dis < 3000 then
 		-- 將目標拉回自己面前
 		local new_pos = caster:GetAbsOrigin()+caster:GetForwardVector()*100
 		FindClearSpaceForUnit(target,new_pos,true)

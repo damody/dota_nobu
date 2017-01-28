@@ -33,6 +33,7 @@ function forest_crit_Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
+	caster:RemoveModifierByName("forest_crit")
 	if (caster.forest_crit_count == nil) then
 		caster.forest_crit_count = 0
 	end
@@ -43,7 +44,8 @@ function forest_crit_Shock( keys )
 	if (caster.forest_crit_count > 1 or ran <= 50) then
 		caster.forest_crit_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-		caster:AddNewModifier(caster, skill, "forest_crit", { duration = 0.1 } )
+		local rate = caster:GetAttackSpeed()
+		caster:AddNewModifier(caster, skill, "forest_crit", { duration = rate+0.1 } )
 		--SE
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 		-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

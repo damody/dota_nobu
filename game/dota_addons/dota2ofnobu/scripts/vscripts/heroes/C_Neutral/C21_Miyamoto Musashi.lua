@@ -276,6 +276,7 @@ function C21R( keys )
 	local skill = keys.ability
 	local id  = caster:GetPlayerID()
 	local ran =  RandomInt(0, 100)
+	caster:RemoveModifierByName("C21R_critical")
 	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
 		if (ran > 20) then
 			caster.C21R_noncrit_count = caster.C21R_noncrit_count + 1
@@ -283,7 +284,8 @@ function C21R( keys )
 		if (caster.C21R_noncrit_count > 2 or ran <= 40) then
 			caster.C21R_noncrit_count = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-			caster:AddNewModifier(caster, skill, "C21R_critical", { duration = 0.1 } )
+			local rate = caster:GetAttackSpeed()
+			caster:AddNewModifier(caster, skill, "C21R_critical", { duration = rate+0.1 } )
 			local hModifier = caster:FindModifierByNameAndCaster("C21R_critical", caster)
 			--SE
 			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)

@@ -333,6 +333,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"enchantress_natures_attendants"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AOERadius"	"1400"
 		"AbilitySpecial"
 		{
 			"01"
@@ -352,7 +353,7 @@
 			"modifier_A29R"
 			{
 				"Aura"	"modifier_A29R_2"
-				"Aura_Radius"	"800"
+				"Aura_Radius"	"1400"
 				// for testing using:
 				// "Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -483,12 +484,12 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"40 60 80"
+				"heal_percent"			"60 70 80"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"average_damage"		"60 90 120"
+				"average_damage"		"60 90 150"
 			}
 			// Extra
 			"10"
@@ -960,7 +961,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 
-		"AOERadius"	"%radius"
+		"AOERadius"	"1400"
 
 		"OnUpgrade"
 		{
@@ -1015,7 +1016,7 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"	"800 1000 1200 1400"
+				"radius"	"1400"
 			}
 		}
 	}
@@ -1086,7 +1087,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"40 60 80"
+				"heal_percent"			"60 70 80"
 			}
 			"09"
 			{

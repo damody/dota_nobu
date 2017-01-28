@@ -28,6 +28,8 @@ function Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
+	caster:RemoveModifierByName("big_tachi")
+
 	if (caster.big_tachi_count == nil) then
 		caster.big_tachi_count = 0
 	end
@@ -37,7 +39,8 @@ function Shock( keys )
 	if (caster.big_tachi_count > 5 or ran <= 20) then
 		caster.big_tachi_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-		caster:AddNewModifier(caster, skill, "big_tachi", { duration = 0.1 } )
+		local rate = caster:GetAttackSpeed()
+		caster:AddNewModifier(caster, skill, "big_tachi", { duration = rate+0.1 } )
 		--SE
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 		-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

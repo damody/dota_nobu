@@ -291,6 +291,17 @@ function A28T(keys)
 	phoenix:SetBaseDamageMax(250+level*100)
 	phoenix:SetBaseDamageMin(200+level*110)
  	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 90})
+ 	Timers:CreateTimer(2, function ()
+ 			if phoenix:IsAlive() then
+				local dis = (phoenix:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
+				if dis > 3000 then 
+					phoenix:SetAbsOrigin(caster:GetAbsOrigin())
+				end
+				return 2
+			else
+				return nil
+			end
+		end)
 				
 end
 

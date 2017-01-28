@@ -1,8 +1,7 @@
 "dota_shops"
 {
-//Home Shop Start
-//--------------------------
 
+//消耗品
 "consumables"
 {
 	"item"      "item_perceive_wine"		//般若湯
@@ -10,9 +9,13 @@
 	"item"      "item_rations"				//軍糧丸
 	"item"      "item_sake"					//清酒
 	"item"      "item_liquor"				//燒酒
-	"item"      ""
+	"item"      "item_napalm_bomb"			//爆烈彈
+	"item"      "item_shuriken"				//手裏劍
+	"item"		"item_earth_wall_book"		//忍法．土遁之書
+	"item"      "item_insight_gem_s"			//寶石碎片
 }
 
+//武器
 "attributes"
 {
 	"item"      "item_katana"			//打刀
@@ -28,10 +31,10 @@
 	"item"      "item_flame_armor"			//鱗片甲
 	"item"      "item_lesser_shield"			//足輕盾
 	"item"      "item_stable_shield"			//番頭盾
-	"item"      ""			//
+	"item"      "item_blowgun"				//吹箭
 }
 
-
+//基礎物品
 "weapons_armor"
 {
 	"item"      "item_magic_ring"	//法術戒指
@@ -47,8 +50,10 @@
 	"item"      "item_energy_ingot"			//能量鋼
 	"item"      "item_ax"					//巨斧
 	"item"      "item_wolverine"			//精鋼爪
+	"item"		"item_ice_book"				//冰計之書
 }
 
+//法書
 "misc"
 {
 	"item"		"item_the_club_of_nebula"			//星杵
@@ -64,11 +69,11 @@
 	"item"      "item_ignite_book"			//火計之書
 	"item"      "item_storm_book"			//狂風之書
 	"item"      "item_spell_book"			//法術書
-	"item"      ""			//
+	"item"      "item_thunderstorms"			//天變之書
 
 }   
-//基本合成
-// Level 1 - Green Recipes
+
+//高階武器
 "basics"
 {
 	"item"      "item_lightning_katana"			//舞雷刀
@@ -86,8 +91,8 @@
 	"item"      "item_glass_mitsutomo"			//琉璃光姬
 	"item"      "item_the_dark_yellow_teeth_and_zimbabwe"			//闇牙黃泉津
 }
-//補助
-// Level 2 - Blue Recipes
+
+//高階道具
 "support"
 {
 	"item"      "item_dark_boots"			//暗部長靴
@@ -106,7 +111,7 @@
 	"item"      ""			//
 }
 
-//魔術合成
+//高階法書
 "magics"
 {
 
@@ -126,9 +131,7 @@
 	"item"      "item_great_dragon"			//巨龍
 }
 
-
-//防具合成
-// Level 3 - Purple Recipes
+//高階防具
 "defense"
 {
 	"item"      "item_the_hooate_of_ghost"			//鬼頰當
@@ -145,12 +148,9 @@
 	"item"      "item_ninja_cloth"			//忍者裝束
 	"item"      "item_the_dark_armor"			//黑漆塗五枚胴
 	"item"      "item_reito_lantern"			//靈都宮燈
-	"item"      ""			//
-	"item"      ""			//
 }
 
-
-//武器合成
+//高階武器
 "weapons"
 {
 	"item"      "item_izuminokami_kanesada"			//和泉守兼定
@@ -170,8 +170,7 @@
 }
 
 
-//聖物
-// Level 4 - Orange / Orb / Artifacts
+// 升級類裝備
 "artifacts"
 {
 	"item"      "item_samurai_cloth_2"			//武士服+2
@@ -179,13 +178,17 @@
 	"item"      "item_ronin_jitte_2"			//浪人十手+2
 	"item"      "item_mana_thief_1"		//禦神法輪+1
 	"item"		"item_fubuki_shoulders_1" //吹雪護肩+1
+	"item"      "item_dark_boots_1"			//暗部長靴
+	"item"      "item_mana_boots_1"			//仕手能靴
+	"item"      "item_magic_defence_boots_1"			//禦魔長踏
+	"item"      "item_ryukyu_ronin_clogs_1"			//琉球浪人木屐
+	"item"      "item_samurai_cloth_x"			//武士服．改
 }
 
-//Sideshop Start - Page 1
-//--------------------------
-//秘密商人
+// 路邊商店
 "sideshop1"
 {
+	"item"      "item_insight_gem_s"			//寶石碎片
 	"item"      "item_insight_gem"			//洞察寶石
 	"item"      "item_healing_totem"		//療癒圖騰
 	"item"      "item_flash_ring"			//閃光輪
@@ -201,9 +204,8 @@
 	"item"      "item_liquor"				//燒酒
 }
 
-
-//Sideshop Page 2
-"sideshop2" 
+// 路邊名刀舖
+"sideshop2"
 {
 	"item"      "item_the_great_sword_of_new_moon"			//三日月宗近．銘刀
 	"item"      "item_the_great_sword_of_toxic"			//梅鶯毒．妖刀
@@ -216,27 +218,22 @@
 	"item"      "item_the_great_sword_of_disease"			//池田鬼神丸國重．銘刀
 }
 
-
-//Secret Shop Start
-//--------------------------   
-//名刀
+//名刀舖
 "secretshop"
 {
 	"item"      "item_the_great_sword_of_soul"			//菊一文字則．太刀
-	"item"      "item_the_great_sword_of_precision"			//長船．太刀
+	"item"      "item_the_great_sword_of_precision"		//長船．太刀
 	"item"      "item_the_great_sword_of_anger"			//鬼撤．妖刀
-	"item"      "item_true_katana"			//正宗．武士刀
+	"item"      "item_true_katana"						//正宗．武士刀
 	"item"      "item_the_great_sword_of_tiger"			//長曾彌虎撤．銘刀
-	"item"      "item_muramasa_katana"			//妖刀．村正
-	"item"      "item_the_great_sword_of_invincible"			//葵紋越前康繼．禦神刀
-	"item"      "item_the_great_spear_of_dragonfly"			//蜻蛉切．銘槍
-	"item"      "item_the_great_sword_of_hurricane"			//鐵碎牙．妖刀
+	"item"      "item_muramasa_katana"					//妖刀．村正
+	"item"      "item_the_great_sword_of_invincible"	//葵紋越前康繼．禦神刀
+	"item"      "item_the_great_spear_of_dragonfly"		//蜻蛉切．銘槍
+	"item"      "item_the_great_sword_of_hurricane"		//鐵碎牙．妖刀
 	"item"      "item_the_great_sword_of_spike"			//鬼丸國鋼．銘刀
-	"item"      "item_napalm_bomb"			//爆烈彈
-	"item"      "item_shuriken"			//手裏劍
-	"item"      "item_blowgun"			//吹箭
-	"item"      ""			//
-
+	"item"      "item_the_great_sword_of_soul_hyper"	//真‧菊一文字則宗．太刀
+	"item"		"item_the_great_silver_armor"			//銀伊予札白糸威胴丸具足
+	
 }
 
 }

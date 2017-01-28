@@ -446,7 +446,7 @@ function B16W_old( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
-	
+	caster:RemoveModifierByName("B16W_old_critical")
 	if (caster.B16W_old_noncrit_count == nil) then
 		caster.B16W_old_noncrit_count = 0
 	end
@@ -457,7 +457,8 @@ function B16W_old( keys )
 		if (caster.B16W_old_noncrit_count > 4 or ran <= 25) then
 			caster.B16W_old_noncrit_count = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-			caster:AddNewModifier(caster, skill, "B16W_old_critical", { duration = 0.1 } )
+			local rate = caster:GetAttackSpeed()
+			caster:AddNewModifier(caster, skill, "B16W_old_critical", { duration = rate+0.1 } )
 			--SE
 			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

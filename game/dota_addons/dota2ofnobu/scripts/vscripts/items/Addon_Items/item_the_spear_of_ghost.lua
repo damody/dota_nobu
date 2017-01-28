@@ -45,7 +45,7 @@ function Shock( keys )
 
 			caster.spear_of_ghost = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-			if (not keys.target:IsMagicImmune() and keys.target.spear_of_ghost == nil) then
+			if (keys.target.spear_of_ghost == nil) then
 				keys.target.spear_of_ghost = 1
 				Timers:CreateTimer(0.1, function() 
 						keys.target.spear_of_ghost = nil
@@ -54,9 +54,13 @@ function Shock( keys )
 				if dmg < keys.MinDmg then
 					dmg = keys.MinDmg
 				end
-
-				AMHC:Damage(caster,keys.target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				AMHC:CreateNumberEffect(keys.target,dmg,1,AMHC.MSG_DAMAGE,'blue')
+				if not keys.target:IsMagicImmune() then
+					AMHC:Damage(caster,keys.target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+					AMHC:CreateNumberEffect(keys.target,dmg,1,AMHC.MSG_DAMAGE,'blue')
+				else
+					AMHC:Damage(caster,keys.target, dmg*1.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+					AMHC:CreateNumberEffect(keys.target,dmg*1.5,1,AMHC.MSG_DAMAGE,{255,100,100})
+				end
 			end
 			--SE
 			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)

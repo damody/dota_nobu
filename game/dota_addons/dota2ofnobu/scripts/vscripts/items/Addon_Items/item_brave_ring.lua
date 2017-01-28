@@ -28,6 +28,7 @@ function Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
+	caster:RemoveModifierByName("brave_ring")
 	if (caster.brave_ring_count == nil) then
 		caster.brave_ring_count = 0
 	end
@@ -37,7 +38,8 @@ function Shock( keys )
 	if (caster.brave_ring_count > 7 or ran <= 15) then
 		caster.brave_ring_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-		caster:AddNewModifier(caster, skill, "brave_ring", { duration = 0.1 } )
+		local rate = caster:GetAttackSpeed()
+		caster:AddNewModifier(caster, skill, "brave_ring", { duration = rate+0.1 } )
 		--SE
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 		-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
