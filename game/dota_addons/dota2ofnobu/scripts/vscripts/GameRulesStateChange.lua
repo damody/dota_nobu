@@ -85,6 +85,25 @@ function Nobu:OnGameRulesStateChange( keys )
     if _G.nobu_chubing_b then
       ShuaGuai()
     end
+
+    -- 提示可以使用舊版英雄，稍微延遲確保herolist已經初始化
+    Timers:CreateTimer(1, function()
+    	local msg = "."
+	    local allHeroes = HeroList:GetAllHeroes()
+	    if allHeroes == nil then return end
+	    for i,unit in ipairs(allHeroes) do
+	    	local nobu_id = _G.heromap[unit:GetName()]
+	    	if _G.heromap_version[nobu_id]["11"] == true then 
+	    		msg = msg.._G.hero_name_zh[nobu_id].."."
+	    	end
+	    end
+	    if msg ~= "." then
+	    	GameRules:SendCustomMessage(msg,0,0)
+	    	GameRules:SendCustomMessage("以上英雄的玩家可以在聊天視窗輸入 -old 使用舊版角色",0,0)
+	    end
+    end)
+    
+
 	elseif(newState == DOTA_GAMERULES_STATE_POST_GAME) then
     if _G.nobu_server_b then
         Nobu:CloseRoom()
