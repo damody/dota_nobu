@@ -14,10 +14,13 @@ end
 
 function A29R_mana_lost( keys )
 	local caster = keys.caster
+	local ability = keys.ability
 	local i = keys.ability:GetLevel() - 1
 	local current_mana = caster:GetMana()
 	local manalost =  math.min( current_mana, keys.ability:GetLevelSpecialValueFor("mana_lost", i) )
-	caster:ReduceMana(manalost)
+	DeepPrintTable(keys)
+	keys.unit:ReduceMana(manalost)
+	ability:ApplyDataDrivenModifier(caster,keys.unit,"modifier_A29R_3",{duration = 5})
 end
 
 --[[

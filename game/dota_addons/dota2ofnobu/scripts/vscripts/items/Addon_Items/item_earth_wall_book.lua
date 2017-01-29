@@ -29,11 +29,6 @@ function Shock( keys )
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
 
-		-- 搖晃特效
-		if unit:IsHero() then
-			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, unit)
-		end
-
 		-- 避免卡住
 		if (unit:GetUnitName() ~= "EARTH_WALL" ) then
 			unit:AddNewModifier(nil,nil,"modifier_phased",{duration=0.001})

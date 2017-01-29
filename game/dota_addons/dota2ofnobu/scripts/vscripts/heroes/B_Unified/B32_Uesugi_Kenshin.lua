@@ -231,7 +231,7 @@ function B32R( keys )
 			{
 				victim = v,
 				attacker = caster,
-				damage = 120,
+				damage = 480,
 				damage_type = DAMAGE_TYPE_MAGICAL
 			}
 			ApplyDamage( damageTable )

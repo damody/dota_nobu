@@ -24,7 +24,7 @@
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
-		"AbilityCastPoint"	"0.3 0.2 0.1 0.1"
+		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"10"
@@ -128,7 +128,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"HotKeyOverride"	"E"
-		"AbilityCastPoint"	"0.3 0.2 0.1 0.1"
+		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"6"
@@ -269,7 +269,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"HotKeyOverride"	"R"
-		"AbilityCastPoint"	"0.3 0.2 0.1 0.1"
+		"AbilityCastPoint"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate"	"1"
 		// Time
@@ -417,7 +417,7 @@
 		// "AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_1"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"	"0.5 0.4 0.3"
+		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_TELEPORT"
 		"AnimationPlaybackRate"	"1.3"
 		"RequiredLevel"	"6"
@@ -587,7 +587,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"HotKeyOverride"	"E"
-		"AbilityCastPoint"	"0.3 0.2 0.1 0.1"
+		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"6"
@@ -728,7 +728,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"HotKeyOverride"	"R"
-		"AbilityCastPoint"	"0.3 0.2 0.1 0.1"
+		"AbilityCastPoint"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate"	"1"
 		// Time
@@ -873,10 +873,10 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
 
-		"AbilityCastPoint"	"0.3"
+		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"120 110 100"
 		"AbilityManaCost"	"200 250 300"
-		"AbilityDuration"	"30 40 50"
+		"AbilityDuration"	"50"
 
 		"OnSpellStart"
 		{
@@ -906,6 +906,7 @@
 				    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%per_phy_atk"
 				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%add_phy_def"
 				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" 	"%add_def_magic"
+				    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" 		"%add_def_magic" 	//回魔
 				}
 			}
 		}
@@ -925,7 +926,7 @@
 			"03"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"add_phy_def"	"10 15 20"
+				"add_phy_def"	"20 25 30"
 			}
 			"04"
 			{

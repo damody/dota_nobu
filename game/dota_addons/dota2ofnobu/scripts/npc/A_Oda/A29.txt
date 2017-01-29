@@ -344,7 +344,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"mana_lost"						"20 40 60 80"
+				"mana_lost"						"60 80 100 120"
 			}
 		}
 
@@ -358,6 +358,8 @@
 				// "Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CUSTOM"
+				"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
 				// for testing using:
 				// "Aura_ApplyToCaster"	"1" 
 				"Aura_ApplyToCaster"	"0"
@@ -372,7 +374,8 @@
 				"IsBuff"	"1"
 				"EffectName"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
 				"EffectAttachType"	"follow_origin"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
+
 				"Properties"
 				{
 					//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"3"
@@ -385,13 +388,7 @@
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
 						"Function"		"A29R_mana_lost"
-					}
-
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_A29R_3"
-						"Target" 		"CASTER"
-						"Duration"		"2.5"
+						"Target"	"TARGET"
 					}
 				}
 				"TextureName"	"enigma_black_hole"
@@ -401,10 +398,10 @@
 			"modifier_A29R_3"
 			{
 				"IsDebuff"		"1"
-
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
 				"StatusEffectPriority"	"10"
-
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-25"
