@@ -79,6 +79,19 @@ local function chat_of_test(keys)
 			end)
 		]]
 	end
+	if s == "-630000" then
+		if PlayerResource:GetGold(keys.playerid) >= 6300 then
+			local gold = PlayerResource:GetGold(keys.playerid)
+			gold = gold -6300
+			print("gold "..gold)
+			PlayerResource:SetGold(keys.playerid,gold,false)
+			local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster.donkey.oripos ,false,caster,caster,caster:GetTeamNumber())	
+			dummy:FindAbilityByName("majia"):SetLevel(1)
+			dummy:AddAbility("reward6300"):SetLevel(1)
+			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)
+			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
+		end
+	end
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
@@ -671,6 +684,12 @@ local function chat_of_test(keys)
 
 		if s == "sm" then
 			for _,m in ipairs(caster:FindAllModifiers()) do
+				GameRules: SendCustomMessage("[Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			end
+		end
+
+		if s == "smsm" then
+			for _,m in ipairs(caster.donkey:FindAllModifiers()) do
 				GameRules: SendCustomMessage("[Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			end
 		end

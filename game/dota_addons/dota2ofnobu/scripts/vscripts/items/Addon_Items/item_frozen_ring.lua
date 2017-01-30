@@ -107,7 +107,7 @@ function Shock3( keys )
 							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							FIND_ANY_ORDER,
 							false)
-			if (not keys.target:IsMagicImmune() and keys.target.kokumo == nil) then
+			if (keys.target.kokumo == nil) then
 					keys.target.kokumo = 1
 			Timers:CreateTimer(0.1, function() 
 							keys.target.kokumo = nil

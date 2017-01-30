@@ -371,11 +371,11 @@
 			"modifier_A29R_2"
 			{
 				"Duration"	"1.00"
-				"IsBuff"	"1"
+				"IsDebuff"	"1"
 				"EffectName"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"Priority" "MODIFIER_PRIORITY_ULTRA"
-
+				"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 				"Properties"
 				{
 					//"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"3"
@@ -401,6 +401,7 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"StatusEffectName"		"particles/status_fx/status_effect_frost_lich.vpcf"
 				"StatusEffectPriority"	"10"
+				"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 				"Priority" "MODIFIER_PRIORITY_ULTRA"
 				"Properties"
 				{

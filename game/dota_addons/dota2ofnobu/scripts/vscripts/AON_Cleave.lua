@@ -111,9 +111,9 @@ function AON_Cleave_A07_old(keys)
 				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
 			end
 			if it ~= target then
-				AMHC:Damage( caster,it,keys.dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 			else
-				AMHC:Damage( caster,it,keys.dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 			end
 		end
 	end

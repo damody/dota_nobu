@@ -91,6 +91,9 @@ function spell_ability ( filterTable )
 	local ordertype = filterTable.order_type
 	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability)
+	if caster:GetUnitName() == "npc_dota_courier" and not string.match(ability:GetName(), "courier") then
+		return false
+	end
 	caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
 
 	if ordertype == DOTA_UNIT_ORDER_CAST_POSITION then --5
@@ -146,6 +149,7 @@ function spell_ability ( filterTable )
 
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE then -- 9
 	end
+	return true
 end
 
 --[[
@@ -212,7 +216,7 @@ function Nobu:eventfororder( filterTable )
 		-- [   VScript       ]:    issuer_player_id_const          	= 0 (number)
 		-- [   VScript       ]: }
 	elseif ordertype >= 5 and ordertype <= 9 then --技能類
-		--spell_ability(filterTable)
+		return spell_ability(filterTable)
 	elseif ordertype == DOTA_UNIT_ORDER_HOLD_POSITION then --10
 		if _G.nobu_debug then
 			test_of_spell( filterTable )

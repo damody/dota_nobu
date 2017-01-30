@@ -43,26 +43,14 @@ function Shock( keys )
 
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
-		if (not(it:IsBuilding())) then
+		if (not(it:IsBuilding()) and not it:IsMagicImmune()) then
 			Physics:Unit(it)
-			
-			Timers:CreateTimer(0.95, function ()
-				if (it:HasModifier("modifier_great_sword_of_spike2")) then
-	    			Timers:CreateTimer(0.1, function()
-	    				keys.ability:ApplyDataDrivenModifier(caster,it,"modifier_great_sword_of_spike",{duration = 1.1})
-	    			end)
-	    		end
-			end)
-			Timers:CreateTimer(0, function ()
-				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_great_sword_of_spike2", {duration=1})
-			end)
+			keys.ability:ApplyDataDrivenModifier(caster,it,"modifier_great_sword_of_spike",{duration = 1.6})
 			Timers:CreateTimer(0.1, function ()
-				if (it:HasModifier("modifier_great_sword_of_spike2")) then
-					it:SetPhysicsVelocity(Vector(0,0,1000))
-					Timers:CreateTimer(0.4, function() 
-						it:SetPhysicsVelocity(Vector(0,0,-1000))
-						end)
-				end
+				it:SetPhysicsVelocity(Vector(0,0,1000))
+				Timers:CreateTimer(0.25, function() 
+					it:SetPhysicsVelocity(Vector(0,0,-1000))
+					end)
 			end)
 			AMHC:Damage(caster, it, 250, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end

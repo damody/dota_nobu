@@ -24,16 +24,10 @@ end
 
 function OnEquip( keys )
 	local caster = keys.caster
-	if (caster.nobuorb1 == nil) then
-		caster.nobuorb1 = "item_the_great_sword_of_toxic"
-	end
 end
 
 function OnUnequip( keys )
 	local caster = keys.caster
-	if (caster.nobuorb1 == "item_the_great_sword_of_toxic") then
-		caster.nobuorb1 = nil
-	end
 end
 
 function Shock2( keys )
@@ -41,8 +35,8 @@ function Shock2( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local int = 0
-	if (caster.nobuorb1 == "item_the_great_sword_of_toxic" or caster.nobuorb1 == nil) and not target:IsBuilding() then
-		caster.nobuorb1 = "item_the_great_sword_of_toxic"
+
+	if not caster:IsIllusion() and not target:IsBuilding() then
 		if (not keys.target:IsMagicImmune() and keys.target.the_great_sword_of_toxic == nil) then
 			keys.target.the_great_sword_of_toxic = 1
 			Timers:CreateTimer(0.1, function() 

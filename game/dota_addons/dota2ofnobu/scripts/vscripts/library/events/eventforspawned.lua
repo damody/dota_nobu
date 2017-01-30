@@ -100,6 +100,19 @@ function Nobu:OnHeroIngame( keys )
     		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
     		donkey:SetOwner(hero)
     		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
+        donkey:FindAbilityByName("courier_return_to_base"):SetLevel(1)
+
+        donkey:FindAbilityByName("courier_go_to_secretshop"):SetLevel(1)
+        donkey:FindAbilityByName("courier_return_stash_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_take_stash_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_transfer_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_burst"):SetLevel(1)
+        donkey:FindAbilityByName("courier_morph"):SetLevel(1)
+        donkey:FindAbilityByName("courier_take_stash_and_transfer_items"):SetLevel(1)
+        donkey:FindAbilityByName("for_magic_immune"):SetLevel(1)
+        donkey.oripos = donkey:GetAbsOrigin()
+        hero.donkey = donkey
+
 
         --[[
         for abilitySlot=0,15 do
@@ -113,13 +126,20 @@ function Nobu:OnHeroIngame( keys )
         ]]
       end
       Timers:CreateTimer(1, function ()
+        for _,m in ipairs(hero.donkey:FindAllModifiers()) do
+          if m:GetName() ~= "modifier_for_magic_immune" and m:GetName() ~= "modifier_courier_transfer_items" then
+            if not string.match(m:GetName(), "Passive_") then
+              hero.donkey:RemoveModifierByName(m:GetName())
+            end
+          end
+        end
           for itemSlot=0,5 do
             local item = hero:GetItemInSlot(itemSlot)
             if item ~= nil then
               item:SetPurchaseTime(100000)
             end
           end
-          return 5
+          return 3
         end)
 		end
 	end)

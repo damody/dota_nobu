@@ -1110,7 +1110,7 @@
  	{
  		// General
  		//----------------------------------------------------------------
- 		"BaseClass"					"npc_dota_courier"	// Class of entity of link to.
+ 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
  		"Model"						"models/props_gameplay/donkey.vmdl"	// Model.
  		"SoundSet"					""					// Name of sound set.
  		"Level"						"0"
@@ -1145,8 +1145,8 @@
 	
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyGoldMin"				"150"		// Gold earned min.
- 		"BountyGoldMax"				"150"		// Gold earned max.
+ 		"BountyGoldMin"				"500"		// Gold earned min.
+ 		"BountyGoldMax"				"500"		// Gold earned max.
 
  			// Status
  		//----------------------------------------------------------------
