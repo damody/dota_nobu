@@ -5652,7 +5652,7 @@
 			"Passive_sake"
 			{
 				"IsPurgable"	"1"
-				"IsDebuff"	"1"
+				"IsDebuff"	"0"
 				"IsBuff"	"1"
 				"Duration"  "10"
 				"EffectName" "particles/units/heroes/hero_lone_druid/lone_druid_rabid_buff_speed_glow.vpcf"
@@ -5712,7 +5712,7 @@
 			"Passive_liquor"
 			{
 				"IsPurgable"	"1"
-				"IsDebuff"	"1"
+				"IsDebuff"	"0"
 				"IsBuff"	"1"
 				"Duration"  "17"
 				"EffectName" "particles/units/heroes/hero_lone_druid/lone_druid_rabid_buff_speed_glow.vpcf"
@@ -9115,7 +9115,7 @@
 			"modifier_dark_armor_aura"
 			{
 				"Passive"			"0"
-				"IsHidden"			"0"
+				"IsHidden"			"1"
 				"IsBuff"			"1"
 				"Duration"      "6"
 
@@ -9124,15 +9124,8 @@
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"  	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				"Aura_ApplyToCaster"	"0"
+				"Aura_ApplyToCaster"	"1"
 
-				"EffectName"		"particles/econ/items/puck/puck_alliance_set/puck_dreamcoil_magic_aproset.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "84"	//回血
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "51"	//回魔
-				}
 				"OnTakeDamage"
 				{
 					"RemoveModifier"
@@ -12071,6 +12064,7 @@
 		{
 			"Passive_thunderbolt_book2"
 			{
+				"IsHidden"	"1"
 				"OnAbilityExecuted"
 				{
 					"RunScript"
