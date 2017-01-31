@@ -319,7 +319,7 @@
 					{
 						"Target"	"TARGET"
 						"Type"		"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage * %damage_interval"
+						"Damage"	"%damage"
 					}
 				}
 			}
@@ -411,7 +411,7 @@
 		}
 	}
 
-	// 石田三成 邪靈大陣
+	// 石田三成 兀鷹群
 	"A29T"
 	{
 		// General
@@ -905,7 +905,7 @@
 			}
 			"ApplyModifier"
 			{
-				"ModifierName"	"modifier_A29E_damage_datadriven"
+				"ModifierName"	"modifier_A29E_old_debuff"
 				"Target" 		"TARGET"
 				"Duration"		"%duration"
 			}
@@ -920,7 +920,7 @@
 
 		"Modifiers"
 		{
-			"modifier_A29E_damage_datadriven"
+			"modifier_A29E_old_debuff"
 			{
 				"States"
 				{
