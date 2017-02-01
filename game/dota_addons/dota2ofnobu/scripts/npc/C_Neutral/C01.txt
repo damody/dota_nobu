@@ -54,29 +54,24 @@
 				"IsBuff"	"1"
 				"OnAttackLanded"
 				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+						"Function"	"C01W2"
+					}
 					"ActOnTargets"
 					{
 						"Target"
 						{
 							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 							"Center"	"CASTER"
 							"Radius"	"400"
 						}
 						"Action"
 						{
-							"RunScript"
-							{
-								"Target"	"CASTER"
-								"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
-								"Function"	"C01W_sound"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Type"	"DAMAGE_TYPE_MAGICAL"
-								"Damage"	"%C01W_DMG"
-							}
 							"AttachEffect"
 							{
 								"Target"	"TARGET"
@@ -442,30 +437,10 @@
 
 				"OnAttack"
 				{
-					"ActOnTargets"
+					"RunScript"
 					{
-						"Target"
-						{
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Center"	"CASTER"
-							"Radius"	"%aoe_radius"
-						}
-						"Action"
-						{
-							"RunScript"
-							{
-								"Target"	"CASTER"
-								"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
-								"Function"	"C01W_old_action_on_target"
-							}
-							"Damage"
-							{
-								"Target"	"TARGET"
-								"Type"		"DAMAGE_TYPE_MAGICAL"
-								"Damage"	"%aoe_damage"
-							}
-						}
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+						"Function"	"C01W_old_action_on_target"
 					}
 				}
 				"Properties"
@@ -480,7 +455,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"aoe_damage"	"240"
+				"aoe_damage"	"240 280 320 360"
 			}
 			"02"
 			{

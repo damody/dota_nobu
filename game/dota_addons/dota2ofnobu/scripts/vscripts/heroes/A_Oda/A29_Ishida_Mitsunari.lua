@@ -18,16 +18,36 @@ function A29R_mana_lost( keys )
 	local i = keys.ability:GetLevel() - 1
 	local current_mana = caster:GetMana()
 	local manalost =  math.min( current_mana, keys.ability:GetLevelSpecialValueFor("mana_lost", i) )
-	DeepPrintTable(keys)
 	keys.unit:ReduceMana(manalost)
 	ability:ApplyDataDrivenModifier(caster,keys.unit,"modifier_A29R_3",{duration = 5})
 end
 
---[[
-	Author: Noya, physics by BMD
-	Date: 26.01.2016.
-	Spawns spirits for exorcism and applies the modifier that takes care of its logic
-]]
+function A29R_debuff( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  1400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	for _,enemy in pairs(group) do
+		if not enemy:HasModifier("modifier_A29R_2") then
+			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_2",{duration = 1})
+		end
+	end
+end
+
+function A29R_old_debuff( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  1400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	for _,enemy in pairs(group) do
+		if not enemy:HasModifier("modifier_A29R_old_debuff") then
+			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old_debuff",{duration = 1})
+		end
+	end
+end
+
 function ExorcismStart( event )
 	local caster = event.caster
 	local ability = event.ability

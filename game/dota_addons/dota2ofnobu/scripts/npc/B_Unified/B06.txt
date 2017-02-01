@@ -7,6 +7,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/b06.vsndevts"
+			"soundfile"	"soundevents/b01.vsndevts"
 		}
 	}
 	// 真田幸村 真田勇士
@@ -90,7 +91,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"10"
-		"AbilityManaCost"	"140 180 220 260"
+		"AbilityManaCost"	"220 260 300 340"
 		"AOERadius"	"500"
 		"precache"
 		{
@@ -544,10 +545,29 @@
 		{
 			"particle"	"particles/b06r/b06r.vpcf"
 		}
-
+		"OnUpgrade"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_ninja_cloth"
+            }
+            "DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"ApplyModifier"
+		            {
+		                "Target" "CASTER"
+		                "ModifierName" "modifier_ninja_cloth"
+		            }
+            	}
+            }
+		}
 		"Modifiers"
 		{
-			"modifier_B06R_miss"
+			"modifier_ninja_cloth"
 			{
 				"IsBuff"	"0"
 				"Properties"
@@ -590,6 +610,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -703,6 +728,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"

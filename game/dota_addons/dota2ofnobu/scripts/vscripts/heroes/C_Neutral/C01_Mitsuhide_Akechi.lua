@@ -26,9 +26,19 @@ end
 	C01R_B = {}
 --ednglobal
 
-function C01W_sound( keys )
+function C01W2( keys )
 	local caster = keys.caster
+	local ability = keys.ability
 	caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
+	local level = ability:GetLevel()-1
+	local damage	= ability:GetLevelSpecialValueFor("C01W_DMG",level)
+	local caster = keys.caster
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	for _,enemy in pairs(group) do
+		AMHC:Damage(caster,enemy, damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	end
 end
 
 function C01W( keys )
@@ -269,13 +279,20 @@ end
 ----------------------------------------------------------------------------------
 
 function C01W_old_action_on_target( keys )
-	C01W_sound(keys)
 	local caster = keys.caster
-	local target = keys.target
-	local level = keys.ability:GetLevel()
-	local ifx = ParticleManager:CreateParticle("particles/generic_gameplay/generic_hit_blood.vpcf",PATTACH_POINT,target)
-	ParticleManager:SetParticleControl(ifx,1,Vector(level*1.5,0,0)) -- 出血量
-	ParticleManager:SetParticleControl(ifx,2,Vector(0,0,1500)) -- 血液濺射方向與速度
+	local ability = keys.ability
+	caster:EmitSound( "C01W.sound"..RandomInt(1, 3) )
+	local level = ability:GetLevel()-1
+	local damage	= ability:GetLevelSpecialValueFor("aoe_damage",level)
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	for _,enemy in pairs(group) do
+		AMHC:Damage(caster,enemy, damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		local ifx = ParticleManager:CreateParticle("particles/generic_gameplay/generic_hit_blood.vpcf",PATTACH_POINT,enemy)
+		ParticleManager:SetParticleControl(ifx,1,Vector((level+1)*1.5,0,0)) -- 出血量
+		ParticleManager:SetParticleControl(ifx,2,Vector(0,0,1500)) -- 血液濺射方向與速度
+	end
 end
 
 function C01E_old_spell_start( keys )

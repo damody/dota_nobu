@@ -192,8 +192,11 @@ function soldier1(keys)
 	--local duration = ability:GetLevelSpecialValueFor("duration",level)
 	--local radius = ability:GetLevelSpecialValueFor("radius",level)
 	local time = 2
-
-	ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = 1} )
+	if target:IsMagicImmune() then
+		ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = 0.5} )
+	else
+		ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = 1} )
+	end
 
 	for i=0,3 do
 		local particle2 = ParticleManager:CreateParticle("particles/b02r3/b02r3.vpcf",PATTACH_POINT,target)

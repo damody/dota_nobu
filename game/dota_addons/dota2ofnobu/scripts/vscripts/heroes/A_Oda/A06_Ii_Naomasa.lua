@@ -90,10 +90,14 @@ end
 function A06D_Use(keys)
 	local caster = keys.caster
 	local hModifier = caster:FindModifierByNameAndCaster("modifier_A06R_to_A06D", hCaster)
-	hModifier:SetStackCount(hModifier:GetStackCount() - 5)
-	if (hModifier:GetStackCount() < 5) then
+	if hModifier~= nil then
+		hModifier:SetStackCount(hModifier:GetStackCount() - 5)
+		if (hModifier:GetStackCount() < 5) then
+			caster:FindAbilityByName("A06D"):SetActivated(false)
+		end	
+	else
 		caster:FindAbilityByName("A06D"):SetActivated(false)
-	end	
+	end
 end
 
 function A06T_Start(keys)

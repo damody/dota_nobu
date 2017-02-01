@@ -7,6 +7,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/a07.vsndevts"
+			"soundfile"	"soundevents/b01.vsndevts"
 		}
 	}
 	// 本多忠勝 奮起
@@ -740,6 +741,11 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
 				"EffectName"	"A07T.vo1"
 			}
 			"ApplyModifier"
@@ -898,6 +904,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"

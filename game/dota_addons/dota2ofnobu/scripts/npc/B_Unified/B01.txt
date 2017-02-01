@@ -483,7 +483,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"C01W.sound1"
+				"EffectName"	"berserkercaster"
 			}
 			"RunScript"
 			{
@@ -540,17 +540,17 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
 				"EffectName"	"B01T_old.vo1"
 			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_B26T"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"C01W.sound1"
 			}
 			"RunScript"
 			{

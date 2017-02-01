@@ -343,11 +343,11 @@ function MoonMoonAdjust_old( keys )
 		if (caster_level > 20) then
 			caster_level = caster_level * 2
 		elseif (caster_level > 15) then
-			caster_level = caster_level * 2
+			caster_level = caster_level * 1.6
 		elseif (caster_level > 10) then
-			caster_level = caster_level * 2
+			caster_level = caster_level * 1.3
 		elseif (caster_level > 5) then
-			caster_level = caster_level * 1.5
+			caster_level = caster_level * 1
 		end
 		moonMoon:FindModifierByName("modifier_B16W_old_forMoonMoon"):SetStackCount(caster_level)
 	end
@@ -521,8 +521,10 @@ function B16MME_old(keys)
 	local ability = keys.ability
 	local ran =  RandomInt(0, 100)
 	if ran < 15 and not target:IsBuilding() then
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
-		AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		if not target:IsMagicImmune() then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
+			AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		end
 	end
 end
 

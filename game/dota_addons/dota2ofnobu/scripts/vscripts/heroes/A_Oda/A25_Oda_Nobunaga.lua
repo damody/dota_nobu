@@ -332,6 +332,7 @@ end
 function A25D_old( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	GameRules: SendCustomMessage("<font color=\"#ff8888\">人生五十年，與天地長久相較，如夢又似幻；一度得生者，豈有不滅者乎？</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
 
 	-- Finds the units in a given radius with the given flags. ( iTeamNumber, vPosition, hCacheUnit, flRadius, iTeamFilter, iTypeFilter, iFlagFilter, iOrder, bCanGrowCache )
 	local units = FindUnitsInRadius(

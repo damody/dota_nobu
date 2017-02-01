@@ -9039,7 +9039,26 @@
 		"ItemCost"	"5450"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemRequirements"	{}
+		"OnEquip"
+		{
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_ninja_cloth"
+            }
+            "DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"ApplyModifier"
+		            {
+		                "Target" "CASTER"
+		                "ModifierName" "modifier_ninja_cloth"
+		            }
+            	}
+            }
+		}
 		
 		"Modifiers"
 		{
@@ -13057,7 +13076,6 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		
 		"AbilityCooldown"	"55"
 		
 		"AbilityManaCost"	"100"
@@ -13325,6 +13343,7 @@
 		"ItemCost" "1100"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
+		"SideShop"						"1"
 		"ItemResult" "item_flash_ring"  //合成後物品
 		"ItemRequirements"
 		{
