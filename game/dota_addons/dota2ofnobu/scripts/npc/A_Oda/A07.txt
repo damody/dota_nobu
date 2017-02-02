@@ -234,7 +234,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_a07w_borrowed_time"
+				"ModifierName"	"modifier_a07w_old_borrowed_time"
 				"Duration"	"%duration"
 			}
 			"FireSound"
@@ -251,7 +251,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_a07w_borrowed_time"
+			"modifier_a07w_old_borrowed_time"
 			{
 				"IsBuff"	"1"
 				"EffectName"	"particles/a07w3/a07w3.vpcf"
@@ -642,7 +642,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"TARGET"
-				"ModifierName"	"modifier_torrent_slow_debuff_datadriven"
+				"ModifierName"	"modifier_A07E_old"
 			}
 			"FireSound"
 			{
@@ -658,7 +658,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_torrent_slow_debuff_datadriven"
+			"modifier_A07E_old"
 			{
 				"IsDebuff"	"1"
 				"Duration"	"%duration"

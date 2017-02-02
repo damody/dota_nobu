@@ -731,6 +731,7 @@
 			}
 			"modifier_A04T"
 			{
+				"IsHidden" "1"
 				"OnAbilityEndChannel"
 				{
 					"RemoveModifier"
@@ -1591,7 +1592,7 @@
 						"dmg"			"%attack_damage"
 					}
 				}
-				"IsHidden"	"0"
+				"IsHidden"	"1"
 				"Passive"	"1"
 			}
 		}
