@@ -271,28 +271,29 @@ function to_war_magic_unit(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_war_magic_unit")
-	
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("war_magic_light"):SetLevel(1)
-		    caster:AddAbility("war_magic_speedup"):SetLevel(1)
-		    caster:AddAbility("war_magic_moreattack"):SetLevel(1)
-		    caster:AddAbility("war_magic_regen"):SetLevel(1)
-		    caster:AddAbility("war_magic_slowattack"):SetLevel(1)
-		    caster:AddAbility("war_magic_lessattack"):SetLevel(1)
+		    donkey:AddAbility("war_magic_light"):SetLevel(1)
+		    donkey:AddAbility("war_magic_speedup"):SetLevel(1)
+		    donkey:AddAbility("war_magic_moreattack"):SetLevel(1)
+		    donkey:AddAbility("war_magic_regen"):SetLevel(1)
+		    donkey:AddAbility("war_magic_slowattack"):SetLevel(1)
+		    donkey:AddAbility("war_magic_lessattack"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		local pres = prestige[caster:GetTeamNumber()]
+		local pres = prestige[donkey:GetTeamNumber()]
 		local maxmana = math.floor(pres / 60) * 5 + 20
-		if caster:GetMana() > maxmana then
-			caster:SetMana(maxmana)
+		if donkey:GetMana() > maxmana then
+			donkey:SetMana(maxmana)
 		end
 		return 0.2
 		end)
@@ -302,16 +303,16 @@ function to_war_magic_unit(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_war_magic", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_war_magic", {})
 	
 end
 
@@ -320,27 +321,28 @@ function to_war_magic_unit2(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_war_magic_unit2")
-
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("war_magic_gohome"):SetLevel(1)
-		    caster:AddAbility("war_magic_findanything"):SetLevel(1)
-		    caster:AddAbility("war_magic_treecut"):SetLevel(1)
-		    caster:AddAbility("reward6300"):SetLevel(1)
-		    --caster:AddAbility("gold_to_prestige"):SetLevel(1)
+		    donkey:AddAbility("war_magic_gohome"):SetLevel(1)
+		    donkey:AddAbility("war_magic_findanything"):SetLevel(1)
+		    donkey:AddAbility("war_magic_treecut"):SetLevel(1)
+		    donkey:AddAbility("reward6300"):SetLevel(1)
+		    --donkey:AddAbility("gold_to_prestige"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		local pres = prestige[caster:GetTeamNumber()]
+		local pres = prestige[donkey:GetTeamNumber()]
 		local maxmana = math.floor(pres / 60) * 5 + 20
-		if caster:GetMana() > maxmana then
-			caster:SetMana(maxmana)
+		if donkey:GetMana() > maxmana then
+			donkey:SetMana(maxmana)
 		end
 		return 0.2
 		end)
@@ -350,16 +352,16 @@ function to_war_magic_unit2(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_war_magic", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_war_magic", {})
 
 end
 
@@ -382,21 +384,23 @@ function to_soldier_Oda(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_soldier_Oda")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("soldier_Oda_top"):SetLevel(1)
-		    caster:AddAbility("soldier_Oda_mid"):SetLevel(1)
-		    caster:AddAbility("soldier_Oda_bottom"):SetLevel(1)
+		    donkey:AddAbility("soldier_Oda_top"):SetLevel(1)
+		    donkey:AddAbility("soldier_Oda_mid"):SetLevel(1)
+		    donkey:AddAbility("soldier_Oda_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[2]-payprestige[2])
+		donkey:SetMana(prestige[2]-payprestige[2])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -405,19 +409,19 @@ function to_soldier_Oda(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_soldier_oda", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_soldier_oda", {})
 
 	-- 統計威望
-	local team = caster:GetTeamNumber()
+	local team = donkey:GetTeamNumber()
 	Timers:CreateTimer(1, function()
 		prestige[2] = 0
 		prestige[3] = 0
@@ -446,21 +450,23 @@ function to_soldier_Unified(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_soldier_Unified")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("soldier_Unified_top"):SetLevel(1)
-		    caster:AddAbility("soldier_Unified_mid"):SetLevel(1)
-		    caster:AddAbility("soldier_Unified_bottom"):SetLevel(1)
+		    donkey:AddAbility("soldier_Unified_top"):SetLevel(1)
+		    donkey:AddAbility("soldier_Unified_mid"):SetLevel(1)
+		    donkey:AddAbility("soldier_Unified_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[3]-payprestige[3])
+		donkey:SetMana(prestige[3]-payprestige[3])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -469,16 +475,16 @@ function to_soldier_Unified(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_soldier_unified", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_soldier_unified", {})
 end
 
 
@@ -486,21 +492,23 @@ function to_archer_Oda(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_archer_Oda")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("archer_Oda_top"):SetLevel(1)
-		    caster:AddAbility("archer_Oda_mid"):SetLevel(1)
-		    caster:AddAbility("archer_Oda_bottom"):SetLevel(1)
+		    donkey:AddAbility("archer_Oda_top"):SetLevel(1)
+		    donkey:AddAbility("archer_Oda_mid"):SetLevel(1)
+		    donkey:AddAbility("archer_Oda_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[2]-payprestige[2])
+		donkey:SetMana(prestige[2]-payprestige[2])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -509,16 +517,16 @@ function to_archer_Oda(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_archer", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_archer", {})
 end
 
 
@@ -526,21 +534,23 @@ function to_archer_Unified(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_archer_Unified")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("archer_Unified_top"):SetLevel(1)
-		    caster:AddAbility("archer_Unified_mid"):SetLevel(1)
-		    caster:AddAbility("archer_Unified_bottom"):SetLevel(1)
+		    donkey:AddAbility("archer_Unified_top"):SetLevel(1)
+		    donkey:AddAbility("archer_Unified_mid"):SetLevel(1)
+		    donkey:AddAbility("archer_Unified_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[3]-payprestige[3])
+		donkey:SetMana(prestige[3]-payprestige[3])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -549,16 +559,16 @@ function to_archer_Unified(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_archer", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_archer", {})
 end
 
 
@@ -566,21 +576,23 @@ function to_gunner_Oda(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_gunner_Oda")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
 		        local ability = caster:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("gunner_Oda_top"):SetLevel(1)
-		    caster:AddAbility("gunner_Oda_mid"):SetLevel(1)
-		    caster:AddAbility("gunner_Oda_bottom"):SetLevel(1)
+		    donkey:AddAbility("gunner_Oda_top"):SetLevel(1)
+		    donkey:AddAbility("gunner_Oda_mid"):SetLevel(1)
+		    donkey:AddAbility("gunner_Oda_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[2]-payprestige[2])
+		donkey:SetMana(prestige[2]-payprestige[2])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -589,16 +601,16 @@ function to_gunner_Oda(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_gunner", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_gunner", {})
 end
 
 
@@ -606,21 +618,23 @@ function to_gunner_Unified(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_gunner_Unified")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("gunner_Unified_top"):SetLevel(1)
-		    caster:AddAbility("gunner_Unified_mid"):SetLevel(1)
-		    caster:AddAbility("gunner_Unified_bottom"):SetLevel(1)
+		    donkey:AddAbility("gunner_Unified_top"):SetLevel(1)
+		    donkey:AddAbility("gunner_Unified_mid"):SetLevel(1)
+		    donkey:AddAbility("gunner_Unified_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[3]-payprestige[3])
+		donkey:SetMana(prestige[3]-payprestige[3])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -629,16 +643,16 @@ function to_gunner_Unified(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_gunner", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_gunner", {})
 end
 
 
@@ -647,21 +661,23 @@ function to_cavalry_Oda(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_cavalry_Oda")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("cavalry_Oda_top"):SetLevel(1)
-		    caster:AddAbility("cavalry_Oda_mid"):SetLevel(1)
-		    caster:AddAbility("cavalry_Oda_bottom"):SetLevel(1)
+		    donkey:AddAbility("cavalry_Oda_top"):SetLevel(1)
+		    donkey:AddAbility("cavalry_Oda_mid"):SetLevel(1)
+		    donkey:AddAbility("cavalry_Oda_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[2]-payprestige[2])
+		donkey:SetMana(prestige[2]-payprestige[2])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -670,16 +686,16 @@ function to_cavalry_Oda(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_cavalry", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_cavalry", {})
 end
 
 
@@ -687,21 +703,23 @@ function to_cavalry_Unified(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_cavalry_Unified")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("cavalry_Unified_top"):SetLevel(1)
-		    caster:AddAbility("cavalry_Unified_mid"):SetLevel(1)
-		    caster:AddAbility("cavalry_Unified_bottom"):SetLevel(1)
+		    donkey:AddAbility("cavalry_Unified_top"):SetLevel(1)
+		    donkey:AddAbility("cavalry_Unified_mid"):SetLevel(1)
+		    donkey:AddAbility("cavalry_Unified_bottom"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[3]-payprestige[3])
+		donkey:SetMana(prestige[3]-payprestige[3])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -710,16 +728,16 @@ function to_cavalry_Unified(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_cavalry", {})
+	donkey:AddNewModifier(caster, ability, "modifier_cavalry", {})
 end
 
 
@@ -843,22 +861,24 @@ function to_sell_ninja_unit(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	print("to_sell_ninja_unit")
+	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
-		          caster:RemoveAbility(abilityName)
+		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    caster:AddAbility("call_ninja1"):SetLevel(1)
-		    caster:AddAbility("call_ninja2"):SetLevel(1)
-		    caster:AddAbility("call_ninja3"):SetLevel(1)
-		    caster:AddAbility("near_hero_then_can_use_ability"):SetLevel(1)
+		    donkey:AddAbility("call_ninja1"):SetLevel(1)
+		    donkey:AddAbility("call_ninja2"):SetLevel(1)
+		    donkey:AddAbility("call_ninja3"):SetLevel(1)
+		    donkey:AddAbility("near_hero_then_can_use_ability"):SetLevel(1)
+		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
-		caster:SetMana(prestige[3]-payprestige[3])
+		donkey:SetMana(prestige[3]-payprestige[3])
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
@@ -867,16 +887,16 @@ function to_sell_ninja_unit(keys)
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if hero:GetTeamNumber() == caster:GetTeamNumber() then
-			  	caster:SetOwner(hero)
-			  	caster:SetControllableByPlayer(hero:GetPlayerID(), true)
+			  if hero:GetTeamNumber() == donkey:GetTeamNumber() then
+			  	donkey:SetOwner(hero)
+			  	donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
 			  	return nil
 			  end
 			end
     	end
 		return 1
     	end)
-	caster:AddNewModifier(caster, ability, "modifier_ninja", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_ninja", {})
 end
 
 

@@ -929,11 +929,6 @@
 				"Function"	"Shock"
 				"Time"	"3.5"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 			"SpendCharge"
 			{}
 		}
@@ -946,7 +941,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -1002,11 +996,6 @@
 				"Function"	"Shock"
 				"Time"	"10"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 			"SpendCharge"
 			{}
 		}
@@ -1019,7 +1008,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -1091,7 +1079,7 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
 				}
 				"Passive"	"0"
-				"Duration"	"5"
+				"Duration"	"1"
 				"EffectName"	"particles/item/d01/d01.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"IsHidden"	"1"
@@ -1100,7 +1088,7 @@
 			{
 				"EffectAttachType"	"attach_origin"
 				"EffectName"	"particles/item/d02_4/d02_4_f.vpcf"
-				"Duration"	"5"
+				"Duration"	"4"
 			}
 		}
 	}
@@ -3185,25 +3173,6 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
 		{
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"1"
-			}
-			"DelayedAction"
-			{
-				"Delay"	"0"
-				"Action"
-				{
-					"ApplyModifier"
-		            {
-		                "Target"	"TARGET"
-		                "ModifierName"      "modifier_soul_adder"
-		                "Duration"      "3"
-		            }
-		        }
-		    }
             "RunScript"
 			{
 			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
@@ -3220,7 +3189,6 @@
 				"IsHidden"			"0"
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
-				"Duration"			"3"
 				"EffectName"	"particles/generic_gameplay/generic_sleep.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"States"
@@ -3377,6 +3345,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Duration"	"1"
 			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
@@ -3940,7 +3909,6 @@
 				{
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Duration"	"0.8"
 				"IsDebuff"	"1"
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
@@ -5091,7 +5059,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
-			    "Duration"	"0.1"
+			    "Duration"	"1"
 			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
@@ -10009,6 +9977,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Duration"	"1"
 			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
@@ -10431,11 +10400,6 @@
 				"Function"	"Shock"
 				"Time"	"5"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -10446,7 +10410,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -10520,11 +10483,6 @@
 				"Function"	"Shock"
 				"Time"	"5"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -10535,7 +10493,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -10609,11 +10566,6 @@
 				"Function"	"Shock"
 				"Time"	"5"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -10624,7 +10576,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -10699,11 +10650,6 @@
 				"Function"	"Shock"
 				"Time"	"5"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -10714,7 +10660,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -10793,6 +10738,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Duration"	"1"
 			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
@@ -11471,7 +11417,7 @@
 			{
 				"EffectAttachType"	"attach_origin"
 				"EffectName"	"particles/item/d02_4/d02_4_f.vpcf"
-				"Duration"	"5"
+				"Duration"	"1"
 				"Aura"	"modifier_art_of_war_mountain_chapter"
 				"Aura_Radius"	"500"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -11718,7 +11664,7 @@
 			{
 				"EffectAttachType"	"attach_origin"
 				"EffectName"	"particles/item/d02_4/d02_4_f.vpcf"
-				"Duration"	"5"
+				"Duration"	"1"
 				"Aura"	"modifier_art_of_war_mountain_chapter"
 				"Aura_Radius"	"500"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -11870,7 +11816,7 @@
 			{
 				"EffectAttachType"	"attach_origin"
 				"EffectName"	"particles/item/d02_4/d02_4_f.vpcf"
-				"Duration"	"5"
+				"Duration"	"1"
 				"Aura"	"modifier_art_of_war_mountain_chapter"
 				"Aura_Radius"	"500"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -13384,11 +13330,6 @@
 				"Function"	"Shock"
 				"Time"	"10"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -13399,7 +13340,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -13474,11 +13414,6 @@
 				"Function"	"Shock"
 				"Time"	"10"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -13489,7 +13424,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -13564,11 +13498,6 @@
 				"Function"	"Shock"
 				"Time"	"10"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -13579,7 +13508,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -13655,11 +13583,6 @@
 				"Function"	"Shock"
 				"Time"	"10"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		"Modifiers"
 		{
@@ -13670,7 +13593,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"%duration"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
@@ -13749,6 +13671,7 @@
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
+			    "Duration"	"1"
 			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
@@ -14032,11 +13955,6 @@
 				"Function"	"Shock"
 				"Time"	"10"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_perceive_wine"
-			}
 		}
 		
 		"AbilitySpecial"
@@ -14057,7 +13975,6 @@
 					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"0"
-				"Duration"	"10"
 				"EffectName"	"particles/item/item_perceive_wine.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"

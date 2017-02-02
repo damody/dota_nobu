@@ -139,7 +139,7 @@ function AON_Cleave_A06(keys)
 
 
 		for _, it in pairs(group) do
-			AMHC:Damage( caster,it,keys.dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage( caster,it,keys.dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
 end

@@ -9,6 +9,7 @@ function Shock( keys )
 			caster:RemoveModifierByName(v:GetName())
 		end
 	end
+	ability:ApplyDataDrivenModifier(caster, caster,"modifier_perceive_wine",{duration=Time})
 	-- Strong Dispel 刪除負面效果
 	caster:Purge( false, true, true, true, true)
 	local sumt = 0
@@ -17,7 +18,7 @@ function Shock( keys )
 		if sumt < Time then
 			if (not caster:HasModifier("modifier_perceive_wine")) and caster.nomagic == nil then
 				local tt = Time-sumt
-				--ability:ApplyDataDrivenModifier(caster, caster,"modifier_perceive_wine",{duration=tt})
+				ability:ApplyDataDrivenModifier(caster, caster,"modifier_perceive_wine",{duration=tt})
 			end
 			return 0.1
 		end

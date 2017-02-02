@@ -22,6 +22,7 @@ end
 function modifier_archer:CheckState()
 	local state = {
 		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_ROOTED] = true,
 	}
 
 	return state

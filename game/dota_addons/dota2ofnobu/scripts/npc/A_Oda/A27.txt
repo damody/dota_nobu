@@ -734,7 +734,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"HotKeyOverride"	"T"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"165 150 135"
+		"AbilityCooldown"	"110"
 		"AbilityManaCost"	"200 250 300"
 		"precache"
 		{
@@ -764,7 +764,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"100"
+				"illusion_incoming_damage"	"0"
 			}
 			"03"
 			{
@@ -774,7 +774,7 @@
 			"04" // 鏡像數量
 			{
 				"var_type" "FIELD_INTEGER"
-				"illusions_count" "2 3 4"
+				"illusions_count" "3 4 5"
 			}
 			"05" // 確保單位不會靠的太近
 			{

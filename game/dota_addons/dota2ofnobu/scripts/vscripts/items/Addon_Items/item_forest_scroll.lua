@@ -197,6 +197,7 @@ function soldier1(keys)
 	else
 		ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = 1} )
 	end
+	AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 
 	for i=0,3 do
 		local particle2 = ParticleManager:CreateParticle("particles/b02r3/b02r3.vpcf",PATTACH_POINT,target)

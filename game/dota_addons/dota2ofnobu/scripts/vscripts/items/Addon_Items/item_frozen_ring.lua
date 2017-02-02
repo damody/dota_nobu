@@ -93,10 +93,10 @@ function Shock3( keys )
 		if (caster.kokumo == nil) then
 			caster.kokumo = 0
 		end
-		if (ran > 20) then
+		if (ran > 16) then
 			caster.kokumo = caster.kokumo + 1
 		end
-		if (caster.kokumo > (100/18) or ran <= 18) then
+		if (caster.kokumo > (100/16) or ran <= 16) then
 			caster.kokumo = 0
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 							target:GetAbsOrigin(),
@@ -107,23 +107,17 @@ function Shock3( keys )
 							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							FIND_ANY_ORDER,
 							false)
-			if (keys.target.kokumo == nil) then
-					keys.target.kokumo = 1
-			Timers:CreateTimer(0.1, function() 
-							keys.target.kokumo = nil
-						end)
-			AMHC:Damage(caster,target,480,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			for _,it in pairs(direUnits) do
-				ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=4.5})
-				if it ~= target then
-					AMHC:Damage(caster,it,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				end
+		AMHC:Damage(caster,target,480,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		for _,it in pairs(direUnits) do
+			ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=4.5})
+			if it ~= target then
+				AMHC:Damage(caster,it,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
-			local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, target)
-			Timers:CreateTimer(4.5, function ()
-				ParticleManager:DestroyParticle(particle, true)
-				end)
-			end
+		end
+		local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, target)
+		Timers:CreateTimer(4.5, function ()
+			ParticleManager:DestroyParticle(particle, true)
+			end)
 		end
 	end
 end

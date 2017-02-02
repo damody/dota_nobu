@@ -97,11 +97,10 @@ function Nobu:OnHeroIngame( keys )
         --hero:AddItem(CreateItem("item_flash_ring", hero, hero))
     		--hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
     		
-    		local donkey = CreateUnitByName("npc_dota_courier", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
+    		local donkey = CreateUnitByName("npc_dota_courier2", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
     		donkey:SetOwner(hero)
     		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
         donkey:FindAbilityByName("courier_return_to_base"):SetLevel(1)
-
         donkey:FindAbilityByName("courier_go_to_secretshop"):SetLevel(1)
         donkey:FindAbilityByName("courier_return_stash_items"):SetLevel(1)
         donkey:FindAbilityByName("courier_take_stash_items"):SetLevel(1)
