@@ -37,7 +37,7 @@ function modifier_kotennmyohiragumo:OnTakeDamage(event)
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type == DAMAGE_TYPE_MAGICAL) then
-		            	self.caster:SetHealth(self.hp)
+		            	self.caster:SetHealth(self.hp+return_damage)
 		            end 
 		        end
 		    end
@@ -58,7 +58,7 @@ function ShockTarget( keys, target )
 	local havetime = 10
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_kotennmyohiragumo", {duration = havetime} )
 	target:FindModifierByName("modifier_kotennmyohiragumo").caster = target
-	target:FindModifierByName("modifier_kotennmyohiragumo").hp = 1
+	target:FindModifierByName("modifier_kotennmyohiragumo").hp = caster:GetHealth()
 	target:FindModifierByName("modifier_kotennmyohiragumo").magic_shield = 1000
 	local shield = ParticleManager:CreateParticle("particles/econ/events/ti6/radiance_owner_ti6_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	target:FindModifierByName("modifier_kotennmyohiragumo").shield_effect = shield

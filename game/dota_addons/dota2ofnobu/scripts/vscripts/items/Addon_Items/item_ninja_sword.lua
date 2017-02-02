@@ -38,8 +38,8 @@ end
 function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=10})
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_ninja_sword", {duration = 10})
+	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=6})
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_ninja_sword", {duration = 6})
 end
 
 

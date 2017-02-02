@@ -53,7 +53,13 @@ function Nobu:PickHero( keys )
         end)
       elseif string.match(name, "silencer") then --立花道雪
         -- 這隻角色天生會帶一個modifier我們需要砍掉他
-        caster:RemoveModifierByName("modifier_silencer_int_steal")
+        Timers:CreateTimer(1, function ()
+          if (caster:HasModifier("modifier_silencer_int_steal")) then
+            caster:RemoveModifierByName("modifier_silencer_int_steal")
+          end
+          return 1
+        end)
+        
         caster:FindAbilityByName("C07D"):SetLevel(1)
       elseif string.match(name, "windrunner") then -- 阿市
         caster:FindAbilityByName("C17D"):SetLevel(1)

@@ -135,7 +135,7 @@ function Nobu:OnUnitKill( keys )
 
 
     print(killedUnit:GetUnitName() )
-    if killedUnit:GetUnitName() == "npc_dota_courier" then
+    if killedUnit:GetUnitName() == "npc_dota_courier2" then
       killedUnit:RespawnUnit()
       killedUnit:SetOrigin(killedUnit.oripos)
     end
