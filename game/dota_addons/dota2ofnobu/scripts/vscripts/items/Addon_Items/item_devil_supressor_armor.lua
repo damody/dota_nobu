@@ -80,7 +80,7 @@ function ShockTarget( keys, target )
 	local havetime = 20
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_devil_supressor_armor", {duration = havetime} )
 	target:FindModifierByName("modifier_devil_supressor_armor").caster = target
-	target:FindModifierByName("modifier_devil_supressor_armor").hp = 1
+	target:FindModifierByName("modifier_devil_supressor_armor").hp = target:GetHealth()
 	target:FindModifierByName("modifier_devil_supressor_armor").magic_shield = 1000
 	local shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	target:FindModifierByName("modifier_devil_supressor_armor").shield_effect = shield
