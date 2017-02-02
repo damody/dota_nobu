@@ -11410,10 +11410,25 @@
 				"Target"	"CASTER"
 				"EffectName"	"ITEM_D02_SOUND"
 			}
-			"ApplyModifier"
+			
+			"ActOnTargets"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_art_of_war_mountain_chapter2"
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_art_of_war_mountain_chapter"
+					}
+				}
 			}
 		}
 		
@@ -11646,11 +11661,24 @@
 				"ScriptFile"	"items/Addon_Items/item_wind_scroll.lua"
 				"Function"	"Shock"
 			}
-			"ApplyModifier"
+			"ActOnTargets"
 			{
-				"ModifierName"	"modifier_art_of_war_mountain_chapter2"
-				"Target" 		"CASTER"
-				"Duration"		"1"
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_art_of_war_mountain_chapter"
+					}
+				}
 			}
 		}
 		"Modifiers"
@@ -11797,11 +11825,24 @@
 				"ScriptFile"	"items/Addon_Items/item_wind_scroll.lua"
 				"Function"	"Shock"
 			}
-			"ApplyModifier"
+			"ActOnTargets"
 			{
-				"ModifierName"	"modifier_art_of_war_mountain_chapter2"
-				"Target" 		"CASTER"
-				"Duration"		"1"
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_art_of_war_mountain_chapter"
+					}
+				}
 			}
 		}
 		
