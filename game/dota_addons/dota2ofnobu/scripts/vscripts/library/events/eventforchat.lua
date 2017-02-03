@@ -708,6 +708,14 @@ local function chat_of_test(keys)
 			end 
 		end
 
+		if s == "a31" then
+			local  u = CreateUnitByName("npc_dota_hero_medusa",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個森蘭丸
+			u:SetControllableByPlayer(keys.playerid,true)
+			for i=1,30 do
+			u:HeroLevelUp(true)
+			end 
+		end
+
 		--【測試指令】
 		if s == "ShuaGuai" then
 			print("ShuaGuai")

@@ -92,6 +92,17 @@
 			}
 		}
 
+		// 目標突然被移除時，也會呼叫這個函式
+		"OnProjectileFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C11.lua"
+				"Function"		"C11W_miss_target"
+				"Target"		"PROJECTILE"
+			}
+		}
+
 		"Modifiers"
 		{
 			// 用來隱藏玩家

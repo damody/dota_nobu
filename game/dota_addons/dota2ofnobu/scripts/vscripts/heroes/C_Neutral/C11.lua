@@ -139,6 +139,15 @@ function C11W_hit_unit( keys )
 	ProjectileManager:CreateTrackingProjectile( projectile_table )
 end
 
+-- 產生一個單位讓他打
+function C11W_miss_target( keys )
+	local caster = keys.caster
+	local dummy = CreateUnitByName("npc_dummy_unit",keys.target_points[1],false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=1})
+	keys.target = dummy
+	C11W_hit_unit(keys)
+end
+
 function C11R_start( keys )
 	local caster = keys.caster
 	local ability = keys.ability
