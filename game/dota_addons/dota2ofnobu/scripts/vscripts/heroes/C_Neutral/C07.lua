@@ -26,11 +26,17 @@ function C07E( keys )
 
 	--
 	caster.C07E_P = particle
+	Timers:CreateTimer(0.2, function ()
+          if not target:HasModifier("modifier_C07E") then
+          	ParticleManager:DestroyParticle(keys.caster.C07E_P,false)
+          	return nil
+          else
+          	return 0.2
+          end
+        end)
+	
 end
 
-function C07E_END( keys )
-	ParticleManager:DestroyParticle(keys.caster.C07E_P,false)
-end
 
 function C07E_SE( keys )
 	local caster = keys.caster

@@ -234,7 +234,7 @@ function C11T_on_attack_landed( keys )
 		victim = target,
 		attacker = caster,
 		damage_type = DAMAGE_TYPE_PURE,
-		damage = 0
+		damage = damage
 	}
 	
 	local current_mana_percentage = target:GetManaPercent()
@@ -244,6 +244,7 @@ function C11T_on_attack_landed( keys )
 		CreateScreenEffect(target)
 	elseif current_mana_percentage <= 40 then
 		damage_table["damage"] = damage * bouns40
+		CreateScreenEffect(target)
 	elseif current_mana_percentage <= 70 then
 		damage_table["damage"] = damage * bouns70
 	else
