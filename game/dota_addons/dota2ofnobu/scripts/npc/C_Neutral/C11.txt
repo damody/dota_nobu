@@ -1,0 +1,343 @@
+// 立花宗茂
+"DOTAAbilities"
+{
+	"C11_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c11.vsndevts"
+			"particle"  "particles/units/heroes/hero_zeus/zues_screen_empty.vpcf"
+		}
+	}
+
+	// 立花宗茂 [雷切]
+	"C11W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/zhuge_leibaoyu"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"9"
+		"AbilityManaCost"				"110 130 150 170"
+		"AbilityDamage"					"100 150 200 250"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_jump"	"5"
+			}
+			"02" // 消去現有法力
+			{
+				"var_type"	"FIELD_INTEGER"
+				"remove_mana_percentage"	"5 7 9 11"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_range"	"700"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"1000"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/c11/c11w.vpcf"
+			"particle"  "particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C11W.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C11.lua"
+				"Function"		"C11W_start"
+				"Target"		"TARGET"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C11.lua"
+				"Function"		"C11W_hit_unit"
+				"Target"		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			// 用來隱藏玩家
+			"modifier_C11W"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	// 立花宗茂 [雷之疾]
+	"C11E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/zhangbao_shandianqiu"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"50 65 80 95"
+		"AbilityDuration"				"20"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_attack_speed"	"20 40 60 80"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_movement_speed"	"7 9 11 13"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/c11/c11e_debuff.vpcf"
+			"particle"  "particles/units/heroes/hero_razor/razor_static_link_buff.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C11E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C11E"
+				"Target" 		"CASTER"
+				"Duration"		"%AbilityDuration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C11E"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				
+				"EffectName"	"particles/c11/c11e_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_razor/razor_static_link_buff.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+
+						"ControlPoints"
+						{
+							"01" "100 0 0"
+						}
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+				}
+			}
+		}
+	}
+
+	// 立花宗茂 [雷之眼]
+	"C11R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/zhangbao_leidun"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"120 140 160 180"
+		"AbilityDamage"					"150 250 350 450"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+
+		"AoERadius"						"350"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun_time"		"0.5 0.8 1.1 1.4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"350"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/c11/c11r.vpcf"
+			"particle"	"particles/item/item_thunderstorms.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C11R.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C11.lua"
+				"Function"		"C11R_start"
+				"Target"		"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C11R_stun"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+		
+				"Duration"	"%stun_time"
+
+				"EffectName"		"particles/c11/c11r.vpcf"
+				"EffectAttachType"	"follow_origin"
+		
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	// 立花宗茂 [西國無雙]
+	"C11T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_9"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityDamage"	"75 95 115"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_all"	"6 9 12"
+			}
+			"02" // 消去現有法力
+			{
+				"var_type"	"FIELD_INTEGER"
+				"remove_mana_percentage" "10"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/c11/c11t_ntimage_manavoid_ti_5.vpcf"
+			"particle"  "particles/units/heroes/hero_zeus/zues_screen_empty.vpcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_C11T_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_all"
+				    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
+				    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_all" 
+				}
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C11.lua"
+						"Function"		"C11T_on_attack_landed"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+	}
+
+} // END DOTAAbilities
