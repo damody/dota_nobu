@@ -27,6 +27,27 @@ function C11W_start( keys )
 	ability.projectile_table = projectile_table
 	ability.first_target = target
 	ability.spell_pos = caster:GetAbsOrigin()
+	local last_count = 0
+	Timers:CreateTimer(2, function ()
+        if ability.jump_count ~= last_count then
+            last_count = ability.jump_count
+            return 1
+        else
+        	caster:RemoveNoDraw()
+			caster:RemoveModifierByName("modifier_C11W")
+			ability.ended = true
+			return nil
+        end
+        end)
+
+	Timers:CreateTimer(5, function ()
+        if caster:HasModifier("modifier_C11W") then
+        	caster:RemoveNoDraw()
+			caster:RemoveModifierByName("modifier_C11W")
+			ability.ended = true
+        end
+        return nil
+        end)
 end
 
 
@@ -103,7 +124,7 @@ function C11W_hit_unit( keys )
 		jump_range,			-- 搜尋半徑
 		target_team,		-- 目標隊伍
 		target_type,		-- 目標類型
-		target_flags,		-- 額外選擇或排除特定目標
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,		-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,		-- 結果的排列方式
 		false) 				-- 好像是優化用的參數不懂怎麼用
 
@@ -261,4 +282,69 @@ function CreateScreenEffect( target )
 		local ifx = ParticleManager:CreateParticleForPlayer(effect_name,PATTACH_ABSORIGIN_FOLLOW,target,player)
 		ParticleManager:ReleaseParticleIndex(ifx)
 	end
+end
+
+-- 11.2B
+
+function C11W_old_M_on_attack_start( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local crit_chance = ability:GetSpecialValueFor("crit_chance")
+
+	local rnd = RandomInt(1,100)
+	caster:RemoveModifierByName("modifier_C11W_old_crit")
+	if crit_chance >= rnd then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C11W_old_crit",nil)
+	end
+end
+
+function C11T_old_on_attack_landed( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	-- 直接離開
+	-----------------------------------------
+	if target:IsBuilding() or target:GetMaxMana() == 0 then return end
+	-----------------------------------------
+
+	local remove_mana = ability:GetSpecialValueFor("remove_mana")
+	local damage_adjust_for_hero = ability:GetSpecialValueFor("damage_adjust_for_hero")
+	local damage_adjust_for_creep = ability:GetSpecialValueFor("damage_adjust_for_creep")
+
+	-- 消去魔力
+	local current_mana = target:GetMana()
+	if current_mana < remove_mana then 
+		remove_mana = current_mana
+	else
+		-- 特效
+		--local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_loadout.vpcf",PATTACH_POINT,target)
+		--local ifx = ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/am_manaburn_basher_ti_5_gold.vpcf",PATTACH_POINT,target)
+		--local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf",PATTACH_POINT,target)
+		local ifx = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
+		ParticleManager:SetParticleControlEnt(ifx,0,target,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+		ParticleManager:SetParticleControlEnt(ifx,1,target,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+		ParticleManager:SetParticleControlEnt(ifx,2,target,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+		ParticleManager:SetParticleControlEnt(ifx,5,target,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end
+	target:ReduceMana(remove_mana)
+	SendOverheadEventMessage(nil,OVERHEAD_ALERT_MANA_LOSS,target,remove_mana,nil)
+
+	-- 傷害參數
+	local damage_table = {
+		victim = target,
+		attacker = caster,
+		damage_type = DAMAGE_TYPE_PURE,
+		damage = 0
+	}
+	
+	if target:IsHero() then
+		damage_table["damage"] = remove_mana * damage_adjust_for_hero
+	else
+		damage_table["damage"] = remove_mana * damage_adjust_for_creep
+	end
+	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,target,damage_table["damage"],nil)
+	ApplyDamage(damage_table)
 end

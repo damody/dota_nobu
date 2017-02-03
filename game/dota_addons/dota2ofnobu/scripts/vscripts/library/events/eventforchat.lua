@@ -314,6 +314,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C21R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C21T_old")
+		elseif string.match(caster:GetUnitName(), "juggernaut") then -- 立花宗茂
+			caster:AddAbility("C11W_old")
+			caster:AddAbility("C11E_old")
+			caster:AddAbility("C11R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C11T_old") 
 		end
 	end
 		
