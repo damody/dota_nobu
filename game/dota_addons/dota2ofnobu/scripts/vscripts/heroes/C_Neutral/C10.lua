@@ -69,9 +69,8 @@ function C10W( keys )
 	local point  = keys.caster:GetAbsOrigin()
 	local point2 = ability:GetCursorPosition()
 	local forwardVec =(point2 - point ):Normalized()
+	forwardVec = caster:GetForwardVector()
 
-	print("1"..tostring(forwardVec))
-	print("2"..tostring(caster:GetForwardVector()))
 	local level = ability:GetLevel() - 1
 
 	-- Necessary variables from KV

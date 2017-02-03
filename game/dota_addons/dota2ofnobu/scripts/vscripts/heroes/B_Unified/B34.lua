@@ -114,6 +114,7 @@ function B34E( keys )
 	local vec = caster:GetForwardVector()
 
 	local dummy = CreateUnitByName("Dummy_B34E",point2 ,false,nil,nil,caster:GetTeam())
+	dummy:AddAbility("for_no_damage"):SetLevel(1)
 	--modifier
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B34E_2",nil)
 
@@ -141,6 +142,7 @@ function B34E( keys )
 
 			dummy = CreateUnitByName("Dummy_B34E",Vector(x2,y2) ,false,nil,nil,caster:GetTeam())
 			dummy:FindAbilityByName("majia"):SetLevel(1)
+			dummy:AddAbility("for_no_damage"):SetLevel(1)
 			--modifier
 			ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B34E_2",nil)
 			--sound
@@ -158,6 +160,7 @@ function B34E( keys )
 
 		dummy = CreateUnitByName("Dummy_B34E",Vector(x3,y3) ,false,nil,nil,caster:GetTeam())
 		dummy:FindAbilityByName("majia"):SetLevel(1)
+		dummy:AddAbility("for_no_damage"):SetLevel(1)
 		--modifier
 		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B34E_2",nil)
 		--sound

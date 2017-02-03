@@ -7,6 +7,25 @@ function Shock( keys )
 	local dummy = CreateUnitByName("npc_dummy_unit_new",caster:GetAbsOrigin(),false,caster,caster,caster:GetTeamNumber())
 	dummy:AddNewModifier(caster,nil,"modifier_kill",{duration=aura_duration})
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_great_sword_of_hurricane_aura", {duration=aura_duration})
+	
+	local count = 0
+	Timers:CreateTimer(1, function ()
+			count = count + 1
+			local group = FindUnitsInRadius(dummy:GetTeamNumber(), dummy:GetAbsOrigin(),
+				nil,  800 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+        	for _,enemy in pairs(group) do
+        		if enemy:IsMagicImmune() then
+					ability:ApplyDataDrivenModifier(dummy,enemy,"modifier_great_sword_of_hurricane_debuff", {duration=1})
+				end
+			end
+			if count < 20 then
+        		return 1
+        	else
+        		return nil
+        	end
+        end)
+	
 end
 
 function OnEquip( keys )

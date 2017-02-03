@@ -29,7 +29,7 @@ function A29R_debuff( keys )
 		nil,  1400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	for _,enemy in pairs(group) do
-		if not enemy:HasModifier("modifier_A29R_2") then
+		if enemy:IsMagicImmune() then
 			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_2",{duration = 1})
 		end
 	end
@@ -42,7 +42,7 @@ function A29R_old_debuff( keys )
 		nil,  1400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	for _,enemy in pairs(group) do
-		if not enemy:HasModifier("modifier_A29R_old_debuff") then
+		if enemy:IsMagicImmune() then
 			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old_debuff",{duration = 1})
 		end
 	end

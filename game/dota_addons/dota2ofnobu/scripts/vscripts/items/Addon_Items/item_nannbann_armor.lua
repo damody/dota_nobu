@@ -94,7 +94,7 @@ function OnEquip( keys )
 	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
 	caster:FindModifierByName("modifier_nannbann_armor").caster = caster
-	caster:FindModifierByName("modifier_nannbann_armor").hp = 1
+	caster:FindModifierByName("modifier_nannbann_armor").hp = caster:GetHealth()
 	caster.has_item_nannbann_armor = true
 	Timers:CreateTimer(1, function() 
 		if (caster:IsAlive() and not caster:HasModifier("modifier_nannbann_armor")) then

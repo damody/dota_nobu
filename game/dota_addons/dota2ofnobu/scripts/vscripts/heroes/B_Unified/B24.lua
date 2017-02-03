@@ -250,6 +250,7 @@ function B24E_START( keys )
 	--local vec = caster:GetForwardVector():Normalized()
 
 	--【Group_radius】
+	local duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel() - 1)
 	local radius = ability:GetLevelSpecialValueFor("radius",ability:GetLevel() - 1)
 	--local radius = 800
    	local group = FindUnitsInRadius(
@@ -303,7 +304,12 @@ function B24E_START( keys )
 			return nil
 		end
 		end)
-	
+	Timers:CreateTimer(duration+0.1, function ()
+			for _,v in ipairs(group) do
+				v:SetForceAttackTarget(nil)
+				v:Stop()
+			end
+		end)
 end
 
 function B24E( keys )

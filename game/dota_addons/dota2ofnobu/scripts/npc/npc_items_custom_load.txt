@@ -658,6 +658,7 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "400" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3"
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔
 				}
 			}
@@ -2041,8 +2042,9 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
-					"MODIFIER_PROPERTY_MANA_BONUS" "2"				//魔
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3"
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔
 				}
 			}
@@ -6419,7 +6421,7 @@
 			}
 			"modifier_ninja_sword"
 			{
-				"Duration"	"10"
+				"Duration"	"6"
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -9009,23 +9011,19 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnEquip"
 		{
-			"RemoveModifier"
-            {
-                "Target" "CASTER"
-                "ModifierName" "modifier_ninja_cloth"
-            }
-            "DelayedAction"
-            {
-            	"Delay"     "0.1"
-            	"Action"    
-            	{
-            		"ApplyModifier"
-		            {
-		                "Target" "CASTER"
-		                "ModifierName" "modifier_ninja_cloth"
-		            }
-            	}
-            }
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnUnequip"
+			}
 		}
 		
 		"Modifiers"
@@ -9033,7 +9031,7 @@
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"1"
+				"Passive"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"25"	//閃避
@@ -9152,7 +9150,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
@@ -9217,6 +9215,22 @@
 				}
 			}
 		}
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		// Special
 		
 		"AbilitySpecial"
@@ -9261,7 +9275,7 @@
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"1"
+				"Passive"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
@@ -9282,7 +9296,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
@@ -9413,7 +9427,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "4" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "3"	//防禦
@@ -10001,13 +10015,28 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-		
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"Modifiers"
 		{
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"1"
+				"Passive"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
@@ -10917,7 +10946,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "2" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
@@ -11106,7 +11135,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
@@ -11156,7 +11185,7 @@
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
@@ -11384,10 +11413,25 @@
 				"Target"	"CASTER"
 				"EffectName"	"ITEM_D02_SOUND"
 			}
-			"ApplyModifier"
+			
+			"ActOnTargets"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_art_of_war_mountain_chapter2"
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_art_of_war_mountain_chapter"
+					}
+				}
 			}
 		}
 		
@@ -11620,11 +11664,24 @@
 				"ScriptFile"	"items/Addon_Items/item_wind_scroll.lua"
 				"Function"	"Shock"
 			}
-			"ApplyModifier"
+			"ActOnTargets"
 			{
-				"ModifierName"	"modifier_art_of_war_mountain_chapter2"
-				"Target" 		"CASTER"
-				"Duration"		"1"
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_art_of_war_mountain_chapter"
+					}
+				}
 			}
 		}
 		"Modifiers"
@@ -11723,7 +11780,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"35"
+		"AbilityCooldown"	"60"
 		
 		"AbilityManaCost"	"120"
 		
@@ -11771,11 +11828,24 @@
 				"ScriptFile"	"items/Addon_Items/item_wind_scroll.lua"
 				"Function"	"Shock"
 			}
-			"ApplyModifier"
+			"ActOnTargets"
 			{
-				"ModifierName"	"modifier_art_of_war_mountain_chapter2"
-				"Target" 		"CASTER"
-				"Duration"		"1"
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Action"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_art_of_war_mountain_chapter"
+					}
+				}
 			}
 		}
 		
@@ -12029,7 +12099,7 @@
 		{
 			"Passive_thunderbolt_book2"
 			{
-				"IsHidden"	"1"
+				"IsHidden"	"0"
 				"OnAbilityExecuted"
 				{
 					"RunScript"
@@ -13940,7 +14010,22 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
+				"Function"	"OnUnequip"
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -13988,7 +14073,7 @@
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"1"
+				"Passive"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避

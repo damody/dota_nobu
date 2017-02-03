@@ -4,12 +4,15 @@ function Shock( keys )
 	local ability = keys.ability
 	local Time = keys.Time
 	local am = caster:FindAllModifiers()
+	ability:ApplyDataDrivenModifier(caster, caster,"modifier_perceive_wine",{duration=Time})
 	for _,v in pairs(am) do
+		if v:GetParent().GetTeamNumber ~= nil then
 		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
 			caster:RemoveModifierByName(v:GetName())
 		end
+		end
 	end
-	ability:ApplyDataDrivenModifier(caster, caster,"modifier_perceive_wine",{duration=Time})
+	
 	-- Strong Dispel 刪除負面效果
 	caster:Purge( false, true, true, true, true)
 	local sumt = 0

@@ -186,7 +186,7 @@ function A17R_old_on_attack_landed( keys )
 	local chance = ability:GetLevelSpecialValueFor("add_chance",level)
 	local rnd = RandomInt(1,100)
 
-	if rnd <= chance then
+	--if rnd <= chance then
 		local add_rate = 0
 		if target:IsHero() then 
 			add_rate = ability:GetLevelSpecialValueFor("add_for_hero",level)
@@ -196,5 +196,5 @@ function A17R_old_on_attack_landed( keys )
 			add_rate = ability:GetLevelSpecialValueFor("add_for_building",level)
 		end
 		ApplyDamage({victim = target, attacker = caster, damage = dmg*add_rate, damage_type = ability:GetAbilityDamageType()})
-	end
+	--end
 end
