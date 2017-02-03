@@ -3802,6 +3802,11 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"-1800"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"-1000"
+				}
 				"States"
 				{
 					// 隐藏血条
@@ -3823,10 +3828,15 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Modifiers"
 		{
-			"modifier_majia"
+			"modifier_majia2"
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"-1800"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"-1000"
+				}
 				"States"
 				{
 					// 隐藏血条

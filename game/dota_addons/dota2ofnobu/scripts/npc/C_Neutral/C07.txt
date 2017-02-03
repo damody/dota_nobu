@@ -125,6 +125,12 @@
 				"Target"	"CASTER"
 				"EffectName"	"Hero_razor.Attack"
 			}
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
 		}
 		"OnChannelFinish"
 		{
@@ -145,11 +151,6 @@
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_C07E"
-			}
-			"RunScript"
-			{
-				"Function"	"C07E_END"
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
 			}
 		}
 		"Modifiers"

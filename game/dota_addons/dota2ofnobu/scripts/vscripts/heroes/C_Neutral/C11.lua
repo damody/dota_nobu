@@ -27,6 +27,27 @@ function C11W_start( keys )
 	ability.projectile_table = projectile_table
 	ability.first_target = target
 	ability.spell_pos = caster:GetAbsOrigin()
+	local last_count = 0
+	Timers:CreateTimer(2, function ()
+        if ability.jump_count ~= last_count then
+            last_count = ability.jump_count
+            return 1
+        else
+        	caster:RemoveNoDraw()
+			caster:RemoveModifierByName("modifier_C11W")
+			ability.ended = true
+			return nil
+        end
+        end)
+
+	Timers:CreateTimer(5, function ()
+        if caster:HasModifier("modifier_C11W") then
+        	caster:RemoveNoDraw()
+			caster:RemoveModifierByName("modifier_C11W")
+			ability.ended = true
+        end
+        return nil
+        end)
 end
 
 
@@ -103,7 +124,7 @@ function C11W_hit_unit( keys )
 		jump_range,			-- 搜尋半徑
 		target_team,		-- 目標隊伍
 		target_type,		-- 目標類型
-		target_flags,		-- 額外選擇或排除特定目標
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,		-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,		-- 結果的排列方式
 		false) 				-- 好像是優化用的參數不懂怎麼用
 
@@ -243,7 +264,7 @@ function C11T_on_attack_landed( keys )
 		victim = target,
 		attacker = caster,
 		damage_type = DAMAGE_TYPE_PURE,
-		damage = 0
+		damage = damage
 	}
 	
 	local current_mana_percentage = target:GetManaPercent()
@@ -253,6 +274,7 @@ function C11T_on_attack_landed( keys )
 		CreateScreenEffect(target)
 	elseif current_mana_percentage <= 40 then
 		damage_table["damage"] = damage * bouns40
+		CreateScreenEffect(target)
 	elseif current_mana_percentage <= 70 then
 		damage_table["damage"] = damage * bouns70
 	else
