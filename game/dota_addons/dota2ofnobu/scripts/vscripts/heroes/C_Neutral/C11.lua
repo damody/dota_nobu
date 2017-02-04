@@ -4,8 +4,10 @@ function C11W_start( keys )
 	local ability = keys.ability
 
 	local projectile_speed = ability:GetSpecialValueFor("projectile_speed")
-
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C11W",nil)
+	Timers:CreateTimer(0.5, function ()
+          ability:ApplyDataDrivenModifier(caster,caster,"modifier_C11W",nil)
+        end)
+	
 	caster:AddNoDraw()
 
 	local projectile_table = {

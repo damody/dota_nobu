@@ -132,13 +132,13 @@ function Nobu:OnHeroIngame( keys )
             end
           end
         end
-          for itemSlot=0,5 do
-            local item = hero:GetItemInSlot(itemSlot)
-            if item ~= nil then
-              item:SetPurchaseTime(100000)
-            end
+        for itemSlot=0,5 do
+          local item = hero:GetItemInSlot(itemSlot)
+          if item ~= nil then
+            item:SetPurchaseTime(100000)
           end
-          return 3
+        end
+        return 3
         end)
 		end
 	end)

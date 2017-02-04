@@ -78,7 +78,6 @@ function B01E(keys)
 	--target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
 	--【Special】
 	if caster.B01E ~= nil then
-		print(caster.B01E)
 		for i,v in ipairs(caster.B01E) do
 			if v ~= nil and not v:IsNull() then
 				if v:IsAlive() then
@@ -95,23 +94,7 @@ function B01E(keys)
 		end
 	end
 	caster.B01E = nil
-	caster.B01E = {}
- 	--【Dummy Kv】
- 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point2 ,false,caster,caster,caster:GetTeam())	
- 	--dummy:SetControllableByPlayer(player,false)
- 	--ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
- 	dummy:FindAbilityByName("majia"):SetLevel(1)		
- 	-- local dummy_ability = dummy:AddAbility("batrider_firefly")
- 	-- dummy_ability:SetLevel(1)
- 	-- ExecuteOrderFromTable({ UnitIndex = dummy:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET, AbilityIndex = dummy_ability:GetEntityIndex(), Queue = false}) 
- 	-- Execute the attack order for the caster
- 	--dummy:SetForwardVector(vec)
- 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B01E",nil)
-
-	--【Timer】
-	Timers:CreateTimer(0.01,function()
-		dummy:ForceKill(true)
-	end)	 				
+	caster.B01E = {} 				
 end
 
 function B01E_CHECK(keys)
