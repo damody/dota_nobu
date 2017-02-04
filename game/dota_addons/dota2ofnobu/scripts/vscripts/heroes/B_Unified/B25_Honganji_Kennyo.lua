@@ -56,7 +56,7 @@ function mana_burn_function( keys )
 end
 
 
-function B25E( keys )
+function B25R_old( keys )
 	local caster = keys.caster
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 200, 1, false)
     AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 200, 1, false)
