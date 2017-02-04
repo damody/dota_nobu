@@ -450,7 +450,7 @@ function A13E_modifier:OnIntervalThink()
 		self.interval_Count = self.interval_Count + 1
 		
 		local angle = math.abs(caster:GetAnglesAsVector().y - self.oriangle)
-		print("angle: "..(angle))
+		--print("angle: "..(angle))
 		if (angle > 45) then
 			if (angle > 80) then
 				angle = angle * 4
@@ -469,7 +469,7 @@ function A13E_modifier:OnIntervalThink()
 			local pts = length / 100 + 1
 			for i=1,pts do
 				hook_pts[i] = self.hook_pos + vDirection:Normalized() * 100 * i
-				print("pts: ".. hook_pts[i].x.." "..hook_pts[i].y.." "..hook_pts[i].z)
+				--print("pts: ".. hook_pts[i].x.." "..hook_pts[i].y.." "..hook_pts[i].z)
 			end
 		end
 
@@ -489,6 +489,8 @@ function A13E_modifier:OnIntervalThink()
 			for _,hookpoint in pairs(hook_pts) do
 				-- 拉到敵人
 				local SEARCH_RADIUS = self.hook_width
+				local z = GetGroundHeight(hookpoint, nil)
+				hookpoint.z = z
 				local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		                              hookpoint,
 		                              nil,
@@ -498,23 +500,10 @@ function A13E_modifier:OnIntervalThink()
 		                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 		                              FIND_ANY_ORDER,
 		                              false)
-				if (table.getn(direUnits) == 0) then
-					local floorpos = hookpoint
-					floorpos.z = 100
-					direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-		                              floorpos,
-		                              nil,
-		                              SEARCH_RADIUS,
-		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-		                              DOTA_UNIT_TARGET_ALL,
-		                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		                              FIND_ANY_ORDER,
-		                              false)
-				end
 				local hashook = false
 				for _,it in pairs(direUnits) do
 
-					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") and not it:HasAbility("majia") then
+					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") and not string.match(it:GetUnitName(), "warrior_souls") and not it:HasAbility("majia") then
 						ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
 							damage_type = self.damage_type, ability = self:GetAbility()})
 						hashook = true

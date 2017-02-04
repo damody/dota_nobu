@@ -2585,7 +2585,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 
  		// Effect
@@ -2660,7 +2660,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 
  		// Effect
@@ -4744,7 +4744,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
 
@@ -5542,6 +5542,77 @@
 		"MinimapIconSize"	"160"
 	}
 
+	// cp點
+	"cp_soldiercamp"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/development/invisiblebox.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
+		"HealthBarOffset"	"140"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0BN
+		"Ability1"	""
+		// Reference: A0BM
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"-5"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"150.0"
+		"BountyGoldMax"	"150.0"
+		"BountyXP"	"30"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"140"
+		"LumberCost"	"140"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1800"
+		"StatusHealthRegen"	"15"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"900"
+		"VisionNighttimeRange"	"600"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"192"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"160"
+	}
+
 	"hide_unit"
 	{
 		"BaseClass"	"npc_dota_thinker"
@@ -5644,7 +5715,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//山賊
@@ -5714,7 +5785,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//刺客
@@ -5784,7 +5855,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//野熊精
@@ -5854,7 +5925,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//執行者
@@ -5924,7 +5995,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//巨大烏龜
@@ -5994,7 +6065,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//恐懼魔狼
@@ -6064,7 +6135,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//熊
@@ -6134,7 +6205,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//忍法操屍
@@ -6204,7 +6275,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//倭寇海民
@@ -6274,7 +6345,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//野蠻人
@@ -6344,7 +6415,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//傾奇者
@@ -6414,7 +6485,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//倭寇頭領
@@ -6484,8 +6555,8 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
- 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
  	}
  	//被放逐的上忍
  	"npc_dota_neutral_130_the_exiled_forbearance"
@@ -6554,8 +6625,8 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
- 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
  	}
  	//受詛咒的武士亡靈
  	"npc_dota_cursed_warrior_souls"
@@ -6624,8 +6695,8 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
- 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
  	}
  	//強盜之王
  	"npc_dota_the_king_of_robbers"
@@ -6694,7 +6765,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//強盜殘兵
@@ -6764,12 +6835,12 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//國一揆
  	"npc_dota_country_riot"
- 	{										
+ 	{
  		// General
  		//----------------------------------------------------------------
  		"Model"						"models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"	// Model.
@@ -6834,12 +6905,12 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//百姓一揆
  	"npc_dota_peasants_revolt"
- 	{										
+ 	{
  		// General
  		//----------------------------------------------------------------
  		"Model"						"models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"	// Model.
@@ -6904,7 +6975,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//強盜軍師
@@ -6974,7 +7045,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
  	//野武士
@@ -7044,7 +7115,7 @@
  		//----------------------------------------------------------------
  		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
  		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
- 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
  		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
  	}
 }
