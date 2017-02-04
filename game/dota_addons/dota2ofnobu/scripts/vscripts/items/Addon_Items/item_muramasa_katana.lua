@@ -26,7 +26,7 @@ function StealLife(keys)
 		local damageReduction = 0
 		if target:IsHero() then
 			local targetArmor = target:GetPhysicalArmorValue()
-			damageReduction = ((0.003 * targetArmor) / (1 + 0.003* targetArmor))
+			damageReduction = ((03 * targetArmor) / (1 + 03* targetArmor))
 		else
 			local targetArmor = target:GetPhysicalArmorValue()
 			damageReduction = ((0.5 * targetArmor) / (1 + 0.5* targetArmor))
@@ -56,7 +56,7 @@ function StealLife2(keys)
 		local damageReduction = 0
 		if target:IsHero() then
 			local targetArmor = target:GetPhysicalArmorValue()
-			damageReduction = ((0.003 * targetArmor) / (1 + 0.003* targetArmor))
+			damageReduction = ((03 * targetArmor) / (1 + 03* targetArmor))
 		else
 			local targetArmor = target:GetPhysicalArmorValue()
 			damageReduction = ((0.5 * targetArmor) / (1 + 0.5* targetArmor))

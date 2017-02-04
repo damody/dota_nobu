@@ -16,7 +16,7 @@ function Shock( keys )
 	for radius=100,800,100 do
 		maxrock = maxrock + 8
 		local maxspike = maxrock
-		Timers:CreateTimer(radius*0.0003, function() 
+		Timers:CreateTimer(radius*003, function() 
 			for i=1,maxspike do
 				a	=	(	(360.0/maxspike)	*	i	)* bj_DEGTORAD
 				pointx2 	=  	pointx 	+ 	radius 	* 	math.cos(a)

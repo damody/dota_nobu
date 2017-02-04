@@ -172,7 +172,7 @@ function AON_Cleave(keys)
 			--[[
 			if it ~= target and it:IsHero() then
 				local targetArmor = it:GetPhysicalArmorValue()
-				local damageReduction = ((0.003 * targetArmor) / (1 + 0.003* targetArmor))
+				local damageReduction = ((03 * targetArmor) / (1 + 03* targetArmor))
 				print(keys.dmg.." damageReduction "..damageReduction)
 				
 			elseif it ~= target then

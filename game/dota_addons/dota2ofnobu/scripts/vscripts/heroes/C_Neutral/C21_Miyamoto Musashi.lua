@@ -296,8 +296,8 @@ function C21R( keys )
 
 				--播放動畫
 			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
-				if rate < 1.00 then
-				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1.00)
+				if rate < 1 then
+				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
 				else
 				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
 				end
@@ -430,7 +430,7 @@ function C21R_old_crit_judgment( keys )
 	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
 
 	if RandomInt(1,100)<=crit_chance then
-		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21R_old_critical_strike",{duration=0.001})
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21R_old_critical_strike",{duration=01})
 	end
 end
 

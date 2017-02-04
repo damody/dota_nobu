@@ -54,8 +54,8 @@ function B08D_old( keys )
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_stun",{duration = 2.2})
 	for i=1,maxrock do
 		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
-		pointx2 	=  	pointx 	+ 	700.00 	* 	math.cos(a)
-		pointy2 	=  	pointy 	+ 	700.00 	*	math.sin(a)
+		pointx2 	=  	pointx 	+ 	700 	* 	math.cos(a)
+		pointy2 	=  	pointy 	+ 	700 	*	math.sin(a)
 		point = Vector(pointx2 ,pointy2 , pointz)
 		local direction = (opoint - point):Normalized()
 		pos[i] = point

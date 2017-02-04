@@ -207,7 +207,7 @@ function B32R( keys )
 	--PopupHealing(caster, health)
 	--【Group】
 	local group = {}
-	local radius = 650.00
+	local radius = 650
 	if (caster.hasB32R == nil) then
 		caster.hasB32R = 1
 		caster:SetMana(caster:GetMana()+40)

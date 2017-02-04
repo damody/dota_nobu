@@ -199,14 +199,14 @@ function C17W(keys)
 		local r2 = 0
 		local time = nil
 		local dis = CalcDistanceBetweenEntityOBB(caster,target)
-		if dis >1000.00 then
-			r=1000.00
+		if dis >1000 then
+			r=1000
 		else
 			r=dis
 		end
-		r2=(1000.00-r)
+		r2=(1000-r)
 		AMHC:Damage( caster,target,r * dmg_special,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		r2=((r2/200.00)+1.00)
+		r2=((r2/200)+1)
 
 		time = r2*udg_C05W_stun[level + 1]
 
