@@ -43,6 +43,11 @@ _G.heromap = {
   npc_dota_hero_jakiro              = "C22",
 }
 
+_G.nobu2dota = {}
+for k,v in pairs(_G.heromap) do
+  _G.nobu2dota[v]=k
+end
+
 _G.heromap_version = {
   A04 = {["11"] = true , ["16"] = true},
   A06 = {["11"] = true , ["16"] = true},
