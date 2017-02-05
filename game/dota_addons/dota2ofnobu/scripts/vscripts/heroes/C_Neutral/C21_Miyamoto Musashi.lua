@@ -444,7 +444,7 @@ function C21T_old_start( keys )
 
 	local particle = ParticleManager:CreateParticle("particles/econ/items/legion/legion_fallen/legion_fallen_press.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControlEnt(particle,1,caster,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
-
+	caster.C21T_old_particle = particle
 	local ifx = ParticleManager:CreateParticle("particles/econ/items/effigies/status_fx_effigies/base_statue_destruction_generic.vpcf",PATTACH_ABSORIGIN,caster)
 	ParticleManager:ReleaseParticleIndex(ifx)
 
@@ -547,6 +547,46 @@ function C21T_old_start( keys )
     		C21T_old_apply_damage(keys)
  		end
 	end)
+
+	Timers:CreateTimer(3, function ()
+		if ability.state ~= C21T_OLD_STATE_END then
+			ability.state = C21T_OLD_STATE_END
+			unit:SetPhysicsAcceleration(Vector(0,0,0))
+			unit:SetPhysicsVelocity(Vector(0,0,0))
+			unit:OnPhysicsFrame(nil)
+			unit:SetAbsOrigin(end_pos)
+
+			-- 還原基本設定
+			unit:PreventDI(false) -- 阻斷玩家操作
+			unit:SetAutoUnstuck(true) -- 取消自動移動至合法區
+			unit:SetNavCollisionType(PHYSICS_NAV_SLIDE) -- 無視碰撞
+			unit:FollowNavMesh(true) -- 不跟隨Nav
+			unit:SetPhysicsVelocityMax(0)
+			unit:SetPhysicsFriction(friction)
+			-- unit:Hibernate(true) -- 這有點奇怪，理論上應該要設定回True可是這麼做之後物理就再也不會生效了，即使改回false也一樣
+			unit:SetGroundBehavior(PHYSICS_GROUND_ABOVE) -- 不理會地面
+
+			-- caster:RemoveModifierByName("modifier_rooted")
+			caster:RemoveModifierByName("modifier_C21T_old_on_move")
+
+			local ifx = ParticleManager:CreateParticle("particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_egset.vpcf",PATTACH_WORLDORIGIN,caster)
+			ParticleManager:SetParticleControl(ifx,0,end_pos)
+			ParticleManager:ReleaseParticleIndex(ifx)
+
+			local ifx = ParticleManager:CreateParticle("particles/econ/items/dragon_knight/dk_immortal_dragon/dragon_knight_dragon_tail_iron_dragon.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+			ParticleManager:SetParticleControlEnt(ifx,2,caster,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+			ParticleManager:SetParticleControlEnt(ifx,4,caster,PATTACH_ABSORIGIN_FOLLOW,"attach_hitloc",Vector(0,0,0),true)
+			ParticleManager:ReleaseParticleIndex(ifx)
+
+			ParticleManager:DestroyParticle(particle,false)
+
+			C21T_old_apply_damage(keys)
+		end
+		if caster:HasModifier("modifier_C21T_old_on_move") then
+			caster:RemoveModifierByName("modifier_C21T_old_on_move")
+			ParticleManager:DestroyParticle(particle,false)
+		end
+		end)
 
 	local tm = caster:FindAllModifiers()
 	

@@ -3851,6 +3851,31 @@
 			}
 		}
 	}
+	// CP馬甲 施法輔助用
+	"majia_no_vison"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_majia_cp"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"-1800"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"-1000"
+				}
+				"States"
+				{
+					// 隐藏血条
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
 	// 馬甲 施法輔助用
 	"majia_2"
 	{
