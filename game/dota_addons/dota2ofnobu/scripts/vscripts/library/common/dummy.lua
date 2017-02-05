@@ -19,8 +19,9 @@ function CP_Posistion( keys )
           	if caster:IsAlive() then
           		return 1
           	else
-          		donkey:ForceKill(true)
-          		donkey:Destroy()
+              Timers:CreateTimer(10, function ()
+          		  donkey:ForceKill(true)
+                end)
           	end
         	end)  	
           return nil
