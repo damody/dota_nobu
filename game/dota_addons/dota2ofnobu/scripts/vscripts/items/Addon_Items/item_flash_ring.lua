@@ -6,9 +6,13 @@
 	Additional parameters: keys.MaxBlinkRange and keys.BlinkRangeClamp
 ================================================================================================================= ]]
 function item_blink_datadriven_on_spell_start(keys)
-	ProjectileManager:ProjectileDodge(keys.caster)  --Disjoints disjointable incoming projectiles.
+	local caster = keys.caster
+	ProjectileManager:ProjectileDodge(caster)  --Disjoints disjointable incoming projectiles.
 	
-	ParticleManager:CreateParticle("particles/item/c05/c05.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	local dummy = CreateUnitByName("npc_dummy_unit",caster:GetAbsOrigin(),false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=1})
+
+	ParticleManager:CreateParticle("particles/item/c05/c05.vpcf", PATTACH_ABSORIGIN, dummy)
 	--keys.caster:EmitSound("Greevil.Strike.Start")	
 	keys.caster:EmitSound("DOTA_Item.BlinkDagger.Activate")
 	--keys.caster:EmitSound("Hero_QueenOfPain.Pick")	
