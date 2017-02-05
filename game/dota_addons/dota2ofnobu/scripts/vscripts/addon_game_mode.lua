@@ -33,6 +33,7 @@ _G.heromap = {
   npc_dota_hero_beastmaster         = "B34",
 
   npc_dota_hero_viper               = "C01",
+  npc_dota_hero_legion_commander    = "C02",
   npc_dota_hero_silencer            = "C07",
   npc_dota_hero_antimage            = "C10",
   npc_dota_hero_juggernaut          = "C11",
@@ -78,6 +79,7 @@ _G.heromap_version = {
   B34 = {["11"] = true , ["16"] = true},
 
   C01 = {["11"] = true , ["16"] = true},
+  C02 = {["11"] = false , ["16"] = true},
   C07 = {["11"] = true , ["16"] = true},
   C10 = {["11"] = true , ["16"] = true},
   C11 = {["11"] = true , ["16"] = true},
