@@ -655,6 +655,7 @@ local function chat_of_test(keys)
 			GameRules: SendCustomMessage("sa = show ability",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("sm = show modifier",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("cu_es = CreateUnit_EarthShaker",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			GameRules: SendCustomMessage("team + nobu_id = 可以產生該英雄team=0(織田軍), team=1(聯合軍), e.g. 0C01=織田軍-明智光秀 ",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 
 		if s == "r1" then
@@ -695,12 +696,26 @@ local function chat_of_test(keys)
 			end 
 		end
 
-		if s == "a31" then
-			local  u = CreateUnitByName("npc_dota_hero_medusa",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個森蘭丸
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
+		local upper = s:upper()
+		local team = upper:sub(1,1)
+		local nobu_id = upper:sub(2)
+		local dota_hero_name = _G.nobu2dota[nobu_id]
+		if dota_hero_name ~= nil then
+			if team == "0" then
+				-- 織田軍
+				local u = CreateUnitByName(dota_hero_name,caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_GOODGUYS)
+				u:SetControllableByPlayer(keys.playerid,true)
+				for i=1,30 do
+				u:HeroLevelUp(true)
+				end
+			elseif team == "1" then
+				-- 聯合軍
+				local u = CreateUnitByName(dota_hero_name,caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)
+				u:SetControllableByPlayer(keys.playerid,true)
+				for i=1,30 do
+				u:HeroLevelUp(true)
+				end
+			end
 		end
 
 		--【測試指令】

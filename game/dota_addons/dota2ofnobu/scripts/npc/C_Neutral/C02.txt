@@ -1,0 +1,156 @@
+// 明智秀滿
+"DOTAAbilities"
+{
+	"C02_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c02.vsndevts"
+		}
+	}
+
+	// 明智秀滿 [蜃氣襲]
+	"C02W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/A12W"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"120 140 160 180"
+		"AbilityDamage"					"200 300 400 500"
+
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST3_STATUE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"illusion_duration"	"8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"illusion_incoming_damage"	"300"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"illusion_outgoing_damage"	"30"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/c02/c02w.vpcf"
+			"particle"  "particles/units/heroes/hero_siren/naga_siren_portrait.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C02W.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
+				"Function"		"C02W_launch_projectile"
+				"Target"		"POINT"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%AbilityDamage"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
+				"Function"		"C02W_clone_hero"
+				"Target"		"TARGET"
+			}
+		}
+	}
+
+	// 明智秀滿 [幻移]
+	"C02E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/liubei_hujia"
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C02E.vo1"
+			}
+		}
+	}
+
+	// 明智秀滿 [鏡花水月]
+	"C02R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_7"
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_ambient_b.vpcf"
+			"particle"  "particles/econ/items/lich/forbidden_knowledge/lich_forbidden_knowledge_ambient_book.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C02R.vo1"
+			}
+		}
+	}
+
+	// 明智秀滿 [汰選斬擊]
+	"C02T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_27"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_siren/naga_siren_riptide.vpcf"
+			"particle"  "particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
+			"particle"  "particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+			"particle"  "particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_frostnova.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C02T.vo1"
+			}
+		}
+	}
+}

@@ -33,6 +33,7 @@ _G.heromap = {
   npc_dota_hero_beastmaster         = "B34",
 
   npc_dota_hero_viper               = "C01",
+  npc_dota_hero_legion_commander    = "C02",
   npc_dota_hero_silencer            = "C07",
   npc_dota_hero_antimage            = "C10",
   npc_dota_hero_juggernaut          = "C11",
@@ -42,6 +43,11 @@ _G.heromap = {
   npc_dota_hero_alchemist           = "C21",
   npc_dota_hero_jakiro              = "C22",
 }
+
+_G.nobu2dota = {}
+for k,v in pairs(_G.heromap) do
+  _G.nobu2dota[v]=k
+end
 
 _G.heromap_version = {
   A04 = {["11"] = true , ["16"] = true},
@@ -73,6 +79,7 @@ _G.heromap_version = {
   B34 = {["11"] = true , ["16"] = true},
 
   C01 = {["11"] = true , ["16"] = true},
+  C02 = {["11"] = false , ["16"] = true},
   C07 = {["11"] = true , ["16"] = true},
   C10 = {["11"] = true , ["16"] = true},
   C11 = {["11"] = true , ["16"] = true},
