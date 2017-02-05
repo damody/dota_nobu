@@ -258,7 +258,7 @@ function B02T(keys)
 	
 	--【Timer】
 	height = 125
-	distance = 245.00
+	distance = 245
 	local dmg = ability:GetLevelSpecialValueFor("dmg",level)
 	Timers:CreateTimer(1,function() 
 		if num == 0 or not target:IsAlive() then
@@ -309,7 +309,7 @@ function B02E(keys)
 	-- ParticleManager:SetParticleControl(particle,11, Vector(1,0,0))
 	-- --【Timer】
 	-- -- height = 125
-	-- -- distance = 245.00
+	-- -- distance = 245
 	-- -- local dmg = ability:GetLevelSpecialValueFor("dmg",level)
 	-- -- local duration = 0.05
 	-- -- local num = 300
@@ -359,7 +359,7 @@ function B02E_Cast(keys)
 	--【Particle】	
 	--ParticleManager:SetParticleControl(caster.B02E_particle,0, point)
 	--print(nobu_distance( point,caster.B02E_Location ))
-	if (nobu_distance( point,caster.B02E_Location )) > 100.00 then
+	if (nobu_distance( point,caster.B02E_Location )) > 100 then
 		caster.B02E_Location = point
 		local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point,false,caster,caster,caster:GetTeam())	--"npc_dummy_unit_Ver2"
 		dummy:FindAbilityByName("majia"):SetLevel(1)
@@ -403,7 +403,7 @@ function B02E_old_fire_path_creator( keys )
 	local point = caster:GetAbsOrigin()
 	local ability = keys.ability
 
-	if (nobu_distance( point,ability.pre_position )) > 100.00 then
+	if (nobu_distance( point,ability.pre_position )) > 100 then
 		ability.pre_position = point
 		local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point,false,caster,caster,caster:GetTeam())	--"npc_dummy_unit_Ver2"
 		dummy:FindAbilityByName("majia"):SetLevel(1)

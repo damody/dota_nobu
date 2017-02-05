@@ -79,19 +79,6 @@ local function chat_of_test(keys)
 			end)
 		]]
 	end
-	if s == "-630000" then
-		if PlayerResource:GetGold(keys.playerid) >= 6300 then
-			local gold = PlayerResource:GetGold(keys.playerid)
-			gold = gold -6300
-			print("gold "..gold)
-			PlayerResource:SetGold(keys.playerid,gold,false)
-			local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster.donkey.oripos ,false,caster,caster,caster:GetTeamNumber())	
-			dummy:FindAbilityByName("majia"):SetLevel(1)
-			dummy:AddAbility("reward6300"):SetLevel(1)
-			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)
-			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
-		end
-	end
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
@@ -528,7 +515,7 @@ local function chat_of_test(keys)
 		end
 
 		if s == "c6" then
-			local  u = CreateUnitByName("npc_dota_hero_drow_ranger",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
+			local  u = CreateUnitByName("npc_dota_hero_windrunner",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
 			u:SetControllableByPlayer(keys.playerid,true)
 			for i=1,30 do
 			u:HeroLevelUp(true)

@@ -3,9 +3,34 @@ function C11W_start( keys )
 	local target = keys.target
 	local ability = keys.ability
 
+	Timers:CreateTimer(3, function ()
+		if caster:HasModifier("modifier_C11W") then
+          caster:RemoveAbility("modifier_C11W") 
+          caster:RemoveNoDraw()
+          ability.ended = true
+        end
+		end)
+	Timers:CreateTimer(6, function ()
+		if caster:HasModifier("modifier_C11W") then
+          caster:RemoveAbility("modifier_C11W") 
+          caster:RemoveNoDraw()
+          ability.ended = true
+        end
+		end)
+	Timers:CreateTimer(9, function ()
+		if caster:HasModifier("modifier_C11W") then
+          caster:RemoveAbility("modifier_C11W") 
+          caster:RemoveNoDraw()
+          ability.ended = true
+        end
+		end)
 	local projectile_speed = ability:GetSpecialValueFor("projectile_speed")
-
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C11W",nil)
+	Timers:CreateTimer(0.5, function ()
+		if ability.ended == false then
+          ability:ApplyDataDrivenModifier(caster,caster,"modifier_C11W",nil)
+        end
+        end)
+	
 	caster:AddNoDraw()
 
 	local projectile_table = {
@@ -26,6 +51,8 @@ function C11W_start( keys )
 	ability.ended = false
 	ability.projectile_table = projectile_table
 	ability.first_target = target
+
+	
 end
 
 

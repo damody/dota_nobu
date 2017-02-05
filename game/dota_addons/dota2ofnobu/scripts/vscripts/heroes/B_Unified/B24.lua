@@ -66,8 +66,8 @@ function B24T( keys )
 	local maxrock = 20
 	for i=1,maxrock do
 		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
-		pointx2 	=  	pointx 	+ 	420.00 	* 	math.cos(a)
-		pointy2 	=  	pointy 	+ 	420.00 	*	math.sin(a)
+		pointx2 	=  	pointx 	+ 	420 	* 	math.cos(a)
+		pointy2 	=  	pointy 	+ 	420 	*	math.sin(a)
 		point = Vector(pointx2 ,pointy2 , pointz)
 
 		

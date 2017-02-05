@@ -319,38 +319,31 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
 				"Function"	"B01E"
 			}
-		}
-		"Modifiers"
-		{
-			// modifier_shadow_shaman_serpent_ward is the Built-In, to give green damage to the wards
-			"modifier_B01E"
+			"SpawnUnit"
 			{
-				"IsHidden"	"1"
-				"OnCreated"
+				"UnitName"	"B01W_UNIT"
+				"UnitCount"	"%count"
+				"Duration"	"10000"
+				"GrantsGold"	"5"
+				"OnSpawn"
 				{
-					"SpawnUnit"
+					"ApplyModifier"
 					{
-						"UnitName"	"B01W_UNIT"
+						"ModifierName"	"modifier_phased"
 						"Target"	"TARGET"
-						"UnitCount"	"%count"
-						"SpawnRadius"	"?10 100"
-						"OnSpawn"
-						{
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_phased"
-								"Target"	"TARGET"
-								"Duration"	"0.03"
-							}
-							"RunScript"
-							{
-								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
-								"Function"	"B01E_CHECK"
-							}
-						}
+						"Duration"	"0.03"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01E_CHECK"
 					}
 				}
 			}
+		}
+		"Modifiers"
+		{
+			
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -401,38 +394,30 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
 				"Function"	"B01E"
 			}
-		}
-		"Modifiers"
-		{
-			// modifier_shadow_shaman_serpent_ward is the Built-In, to give green damage to the wards
-			"modifier_B01E"
+			"SpawnUnit"
 			{
-				"IsHidden"	"1"
-				"OnCreated"
+				"UnitName"	"B01W_UNIT"
+				"UnitCount"	"%count"
+				"Duration"	"10000"
+				"GrantsGold"	"5"
+				"OnSpawn"
 				{
-					"SpawnUnit"
+					"ApplyModifier"
 					{
-						"UnitName"	"B01W_UNIT"
+						"ModifierName"	"modifier_phased"
 						"Target"	"TARGET"
-						"UnitCount"	"%count"
-						"SpawnRadius"	"?10 100"
-						"OnSpawn"
-						{
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_phased"
-								"Target"	"TARGET"
-								"Duration"	"0.03"
-							}
-							"RunScript"
-							{
-								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
-								"Function"	"B01E_CHECK"
-							}
-						}
+						"Duration"	"0.03"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01E_CHECK"
 					}
 				}
 			}
+		}
+		"Modifiers"
+		{
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------

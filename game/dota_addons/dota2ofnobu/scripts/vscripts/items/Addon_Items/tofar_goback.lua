@@ -11,8 +11,11 @@ function reward6300(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local pos = caster:GetAbsOrigin()
-	
-	GameRules: SendCustomMessage("犒賞維修中",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster.donkey.oripos ,false,caster,caster,caster:GetTeamNumber())	
+	dummy:FindAbilityByName("majia"):SetLevel(1)
+	dummy:AddAbility("reward6300"):SetLevel(1)
+	dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)
+	dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
 end
 
 function tofar_goback(keys)

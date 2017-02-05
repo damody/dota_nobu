@@ -135,10 +135,10 @@ function B34E( keys )
 	local y3
 	local a1 = nobu_atan2( point,point2 )
 	for i=1,8 do
-		x2 = x1 + 138.00*i*math.cos(a1+90.00*3.14159/180)
-		y2 = y1 + 138.00*i*math.sin(a1+90.00*3.14159/180)
-		x3 = x1 + 138.00*i*math.cos(a1-90.00*3.14159/180)
-		y3 = y1 + 138.00*i*math.sin(a1-90.00*3.14159/180)
+		x2 = x1 + 138*i*math.cos(a1+90*3.14159/180)
+		y2 = y1 + 138*i*math.sin(a1+90*3.14159/180)
+		x3 = x1 + 138*i*math.cos(a1-90*3.14159/180)
+		y3 = y1 + 138*i*math.sin(a1-90*3.14159/180)
 
 			dummy = CreateUnitByName("Dummy_B34E",Vector(x2,y2) ,false,nil,nil,caster:GetTeam())
 			dummy:FindAbilityByName("majia"):SetLevel(1)

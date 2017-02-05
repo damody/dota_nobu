@@ -28,7 +28,7 @@ ShuaGuai_Of_Cavalry_num=1 --騎兵
 ShuaGuai_Of_Gunner_num=2 --火槍兵
 
 --紀錄出兵起始點、路徑 (必須要用計時器，初始化時物體還沒建造)
-Timers:CreateTimer( 2.00, function()
+Timers:CreateTimer( 2, function()
 	ShuaGuai_entity={
 		Entities:FindByName(nil,"chubinluxian_location_of_nobu_button"),
 		Entities:FindByName(nil,"chubinluxian_location_of_nobu_middle"),
@@ -78,7 +78,7 @@ function ShuaGuai( )
 	  	ShuaGuai_Of_AA(AA_num)
 	  	ShuaGuai_Of_AB(AB_num)
 	  	
-	    local time =  26.00 - 0.1*ShuaGuai_count
+	    local time =  26 - 0.1*ShuaGuai_count
 	    if time < 18 then
 	    	return 18
 	  	else
@@ -93,7 +93,7 @@ function ShuaGuai( )
 			B_num = 3
 		end
   		ShuaGuai_Of_B(B_num)
-	    local time =  100.00 - 0.5*ShuaGuai_count
+	    local time =  100 - 0.5*ShuaGuai_count
 	    if time < 30 then
 	    	return 30
 	  	else
@@ -108,7 +108,7 @@ function ShuaGuai( )
 			C_num = 3
 		end
   		ShuaGuai_Of_C(C_num)
-	    local time =  70.00 - 0.5*ShuaGuai_count
+	    local time =  70 - 0.5*ShuaGuai_count
 	    if time < 30 then
 	    	return 30
 	  	else

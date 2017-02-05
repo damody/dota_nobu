@@ -169,15 +169,17 @@ function C17W(keys)
 	local duration = ability:GetLevelSpecialValueFor("duration",level)
 	local stun_duration = ability:GetLevelSpecialValueFor("stun_duration",level)
 	--local vec = caster:GetForwardVector():Normalized()
-	--【Particle】
-	-- local particle = ParticleManager:CreateParticle("particles/c15t5/c15t5.vpcf",PATTACH_POINT,caster)
-	-- ParticleManager:SetParticleControl(particle,0, point)
-	-- ParticleManager:SetParticleControl(particle,1, point)m
-	-- local height = 4
-	-- local particle2 = ParticleManager:CreateParticle("particles/c17w/c17w.vpcf",PATTACH_POINT,target)
-	-- ParticleManager:SetParticleControl(particle2,0, point)
-	-- ParticleManager:SetParticleControl(particle2,1, point2)	
-	-- ParticleManager:SetParticleControl(particle2,6, Vector(height,height,height))	
+	local ctime = 0
+	Timers:CreateTimer(0.2, function ()
+		ctime = ctime + 0.2
+          AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 0.3, false)
+          AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 0.3, false)
+          if ctime < duration+0.3 then
+          	return 0.2
+          else
+          	return nil
+          end
+        end)
 
 	-- Fire the explosion effect
 	local height = 3
@@ -199,14 +201,14 @@ function C17W(keys)
 		local r2 = 0
 		local time = nil
 		local dis = CalcDistanceBetweenEntityOBB(caster,target)
-		if dis >1000.00 then
-			r=1000.00
+		if dis >1000 then
+			r=1000
 		else
 			r=dis
 		end
-		r2=(1000.00-r)
+		r2=(1000-r)
 		AMHC:Damage( caster,target,r * dmg_special,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		r2=((r2/200.00)+1.00)
+		r2=((r2/200)+1)
 
 		time = r2*udg_C05W_stun[level + 1]
 

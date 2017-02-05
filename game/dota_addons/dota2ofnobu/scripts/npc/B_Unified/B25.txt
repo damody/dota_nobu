@@ -509,7 +509,11 @@
 				"EffectName"	"Hero_Lion.FingerOfDeathImpact"
 				"Target"		"TARGET"
 			}
-
+			"RunScript"
+			{
+				"ScriptFile"			"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
+				"Function"				"B25R_old"
+			}
 			"FireEffect"
 			{
 				"EffectName"	"particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf"
