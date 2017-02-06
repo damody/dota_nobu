@@ -225,6 +225,7 @@ function C11R_start( keys )
 	local dummy = CreateUnitByName("npc_dummy_unit",center,false,nil,nil,caster:GetTeamNumber())
 	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
 	EmitSoundOn("ITEM_D09.sound",dummy)
+	AddFOWViewer(caster:GetTeamNumber(), center, radius, 0.5, false)
 end
 
 function C11T_on_attack_landed( keys )
