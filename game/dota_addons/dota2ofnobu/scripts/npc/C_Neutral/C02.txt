@@ -54,6 +54,7 @@
 		"precache"
 		{
 			"particle"  "particles/c02/c02w.vpcf" // 水月斬
+			"particle"  "particles/c02/c02w_hit.vpcf" // hit effect
 		}
 
 		"OnAbilityPhaseStart"
@@ -83,6 +84,17 @@
 				"Target"		"TARGET"
 				"Type"			"DAMAGE_TYPE_MAGICAL"
 				"Damage"		"%AbilityDamage"
+			}
+			"AttachEffect"
+			{
+				"EffectName"        "particles/c02/c02w_hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"	"TARGET"
+				"ControlPointEntities"
+	            {
+	                "TARGET" "follow_origin"
+	                "CASTER" "follow_origin"
+	            }
 			}
 			"RunScript"
 			{
