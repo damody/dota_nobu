@@ -243,31 +243,16 @@
 			"modifier_A16R"
 			{
 				"Passive"	"1"
-				"OnTakeDamage"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-							"Center"	"CASTER"
-							"Radius"	"%effect_range"
-						}
-						"Action"
-						{
-							"RunScript"
-							{
-								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A16.lua"
-								"Function"	"A16R"
-								"dmg"	"%attack_damage"
-							}
-						}
-					}
-				}
 				"EffectName"	"particles/items_fx/aura_assault.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A16.lua"
+						"Function"	"A16R_OnUpgrade"
+					}
+				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"

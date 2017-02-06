@@ -36,7 +36,7 @@ function modifier_A07W:OnTakeDamage(event)
 	    	if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster and self.hp ~= nil then
 		        local dmg = self.hp - self.caster:GetHealth()
 		        dmg = math.abs(dmg)
-				self.caster:SetHealth(self.caster:GetHealth() + dmg*2)
+				self.caster:SetHealth(self.caster:GetHealth() + dmg)
 			end
 		end
 	end

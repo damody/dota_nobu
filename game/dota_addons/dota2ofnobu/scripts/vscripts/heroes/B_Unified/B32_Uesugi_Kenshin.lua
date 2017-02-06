@@ -206,6 +206,7 @@ function B32R( keys )
 	local dmg = keys.dmg
 	--PopupHealing(caster, health)
 	--【Group】
+	local level  = keys.ability:GetLevel()
 	local group = {}
 	local radius = 650
 	if (caster.hasB32R == nil) then
@@ -231,7 +232,7 @@ function B32R( keys )
 			{
 				victim = v,
 				attacker = caster,
-				damage = 480,
+				damage = level*120,
 				damage_type = DAMAGE_TYPE_MAGICAL
 			}
 			ApplyDamage( damageTable )

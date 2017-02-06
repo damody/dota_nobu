@@ -25,6 +25,12 @@ function modifier_protection_amulet:OnIntervalThink()
 end
 
 function modifier_protection_amulet:OnTakeDamage(event)
+	local inspect = require('inspect')
+	local iDepth = 1
+	DeepPrintTable(event)
+ 	print(inspect(event,
+ 		{depth=iDepth} 
+ 	))
 	if IsServer() then
 	    local attacker = event.unit
 	    local victim = event.attacker

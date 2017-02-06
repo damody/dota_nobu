@@ -1,3 +1,84 @@
+LinkLuaModifier( "modifier_A16R2", "scripts/vscripts/heroes/A_Oda/A16.lua",LUA_MODIFIER_MOTION_NONE )
+modifier_A16R2 = class({})
+
+--------------------------------------------------------------------------------
+
+function modifier_A16R2:DeclareFunctions()
+    local funcs = {
+        MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
+
+    return funcs
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_A16R2:OnCreated( event )
+	self:StartIntervalThink(0.2)
+end
+
+function modifier_A16R2:OnIntervalThink()
+	if (self.caster ~= nil) and IsValidEntity(self.caster) then
+		self.hp = self.caster:GetHealth()
+	end
+end
+
+function modifier_A16R2:OnTakeDamage(event)
+	if IsServer() then
+	    local attacker = event.unit
+	    local victim = event.attacker
+	    local caster = self.caster
+	    local return_damage = event.original_damage
+	    local damage_type = event.damage_type
+	    local damage_flags = event.damage_flags
+	    local ability = self:GetAbility()
+	    local dmg = {0.35, 0.45, 0.55, 0.65}
+	    if (caster ~= nil) and IsValidEntity(caster) then
+
+		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
+		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
+
+	            	if (IsValidEntity(caster) and caster:IsAlive()) then
+		            	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+							nil,  500 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+							DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+		            	for _,enemy in pairs(group) do
+							local damageTable = {
+						        victim = enemy, 
+						        attacker = caster,
+						        damage = return_damage,
+						        damage_type = DAMAGE_TYPE_PURE,
+						        damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
+						    }
+						    ApplyDamage(damageTable)
+						end
+					end
+		        end 
+		    end
+		end
+	end
+end
+
+function A16R_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_A16R2", {} )
+	caster:FindModifierByName("modifier_A16R2").caster = caster
+	caster:FindModifierByName("modifier_A16R2").level = ability:GetLevel()
+	if ability:GetLevel() == 1 then
+		Timers:CreateTimer(1,function()
+			if not caster:HasModifier("modifier_A16R2") then
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_A16R2", {} )
+				caster:FindModifierByName("modifier_A16R2").caster = caster
+				caster:FindModifierByName("modifier_A16R2").level = ability:GetLevel()
+			end
+			return 1
+		end)
+	end
+end
+
+
+
 function A16T( keys )
 	local caster = keys.caster
 	local ability = keys.ability

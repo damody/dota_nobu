@@ -270,6 +270,14 @@ function A27T( keys )
 	caster:SetHealth(caster:GetHealth()+hp)
 end
 
+function A27D( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	AMHC:Damage(caster,keys.target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_A27D",nil)
+end
+
 -- 11.2B
 --------------------------------------------------------------
 

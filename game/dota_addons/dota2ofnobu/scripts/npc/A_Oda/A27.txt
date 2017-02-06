@@ -19,9 +19,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"HotKeyOverride"	"E"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
 		"MaxLevel"	"1"
 		"RequiredLevel"	"1"
 		"LevelsBetweenUpgrades"	"0"
@@ -46,7 +45,11 @@
 			}
 			"TrackingProjectile"
 			{
-				"Target"	"TARGET"
+				"Target"
+				{
+				    "Center" "TARGET"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
 				"EffectName"	"particles/units/heroes/hero_huskar/huskar_base_attack.vpcf"
 				"Dodgeable"	"1"
 				"ProvidesVision"	"1"
@@ -59,6 +62,7 @@
 				"Target"	"CASTER"
 				"EffectName"	"Hero_Sven.StormBolt"
 			}
+			
 		}
 		"OnProjectileHitUnit"
 		{
@@ -81,23 +85,11 @@
 					"TARGET"	"attach_origin"
 				}
 			}
-			"ActOnTargets"
+			"RunScript"
 			{
-				"Target"	"TARGET"
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_A27D"
-					}
-					"Damage"
-					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"1"
-					}
-				}
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
+				"Function"	"A27D"
+				"Target" "TARGET"
 			}
 		}
 		"Modifiers"
