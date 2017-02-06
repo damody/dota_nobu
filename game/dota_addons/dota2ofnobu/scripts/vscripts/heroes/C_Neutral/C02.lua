@@ -363,3 +363,71 @@ function C02T_OnAttack( keys )
 		ParticleManager:ReleaseParticleIndex(ifx)
 	end
 end
+
+function C02W_old_launch_projectile( keys )
+	local caster = keys.caster
+	local center = caster:GetAbsOrigin()
+	local point = keys.target_points[1]
+	local ability = keys.ability
+	local speed = 2000
+	local range = ability:GetCastRange()
+	local start_width = ability:GetSpecialValueFor("start_width")
+	local ended_width = ability:GetSpecialValueFor("ended_width")
+
+	-- 計算攻擊方向
+	local angle = VectorToAngles(point-center).y
+	local dx = math.cos(angle*(3.14/180))
+	local dy = math.sin(angle*(3.14/180))
+	local dir = Vector(dx,dy,0)
+
+	-- 實際造成傷害的投射物
+	ProjectileManager:CreateLinearProjectile({
+		Ability				= ability,
+		EffectName			= "",
+		vSpawnOrigin		= center+Vector(0,0,100),
+		fDistance			= range,
+		fStartRadius		= start_width,
+		fEndRadius			= ended_width,
+		Source				= caster,
+		bHasFrontalCone		= true,
+		bReplaceExisting	= false,
+		iUnitTargetTeam		= ability:GetAbilityTargetTeam(),
+		iUnitTargetFlags	= ability:GetAbilityTargetFlags(),
+		iUnitTargetType		= ability:GetAbilityTargetType(),
+		fExpireTime			= GameRules:GetGameTime() + 2,
+		bDeleteOnHit		= false,
+		vVelocity			= dir*speed,
+		bProvidesVision		= false,
+		iVisionRadius		= 0,
+		iVisionTeamNumber	= caster:GetTeamNumber(),
+	})
+
+	-- 特效投射物
+	local num = 3
+	local delta_angle = 2
+	for i=-num,num do
+		local new_angle = angle+delta_angle*i
+		dir.x = math.cos(new_angle*(3.14/180))
+		dir.y = math.sin(new_angle*(3.14/180))
+		ProjectileManager:CreateLinearProjectile({
+			Ability				= ability,
+			EffectName			= "particles/c02/c02w.vpcf",
+			vSpawnOrigin		= center+Vector(0,0,100),
+			fDistance			= range,
+			fStartRadius		= start_width,
+			fEndRadius			= ended_width,
+			Source				= caster,
+			bHasFrontalCone		= true,
+			bReplaceExisting	= false,
+			iUnitTargetTeam		= DOTA_UNIT_TARGET_TEAM_NONE,
+			iUnitTargetFlags	= DOTA_UNIT_TARGET_FLAG_NONE,
+			iUnitTargetType		= DOTA_UNIT_TARGET_NONE,
+			fExpireTime			= GameRules:GetGameTime() + 2,
+			bDeleteOnHit		= false,
+			vVelocity			= dir*speed,
+			bProvidesVision		= false,
+			iVisionRadius		= 0,
+			iVisionTeamNumber	= caster:GetTeamNumber(),
+		})
+	end
+end
