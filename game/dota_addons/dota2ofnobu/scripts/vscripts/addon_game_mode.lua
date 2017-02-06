@@ -328,6 +328,9 @@ function Precache( context )
 
     "particles/item/item_perceive_wine.vpcf",
 
+    --國鋼
+    "particles/item/item_the_great_sword_of_spike.vpcf",
+
     "particles/item/war_speedup3.vpcf",
     "particles/item/war_light.vpcf",
     "particles/econ/courier/courier_onibi/courier_onibi_green_ambient_c.vpcf",

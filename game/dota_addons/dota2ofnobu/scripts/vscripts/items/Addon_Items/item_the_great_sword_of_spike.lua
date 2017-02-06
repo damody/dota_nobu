@@ -16,7 +16,7 @@ function Shock( keys )
 	for radius=100,800,100 do
 		maxrock = maxrock + 8
 		local maxspike = maxrock
-		Timers:CreateTimer(radius*003, function() 
+		Timers:CreateTimer(radius*0.0003, function() 
 			for i=1,maxspike do
 				a	=	(	(360.0/maxspike)	*	i	)* bj_DEGTORAD
 				pointx2 	=  	pointx 	+ 	radius 	* 	math.cos(a)
@@ -43,7 +43,7 @@ function Shock( keys )
 
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
-		if (not(it:IsBuilding()) and not it:IsMagicImmune()) then
+		if (not(it:IsBuilding()) and not it:IsMagicImmune() and not it:IsInvulnerable()) then
 			Physics:Unit(it)
 			keys.ability:ApplyDataDrivenModifier(caster,it,"modifier_great_sword_of_spike",{duration = 1.6})
 			Timers:CreateTimer(0.1, function ()

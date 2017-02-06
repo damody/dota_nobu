@@ -258,6 +258,8 @@ function C01T_Mitsuhide_Akechi( keys )
 	--轉半徑
 	sk_radius = sk_radius*0.5
 	Timers:CreateTimer(0.1, function()
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
 		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 0.5, false)
 		if ( RandomInt(1, 10) > 3) then
 			C01T_Mitsuhide_Akechi_Effect(keys, point + RandomVector(RandomInt(sk_radius*0.7, sk_radius)))
