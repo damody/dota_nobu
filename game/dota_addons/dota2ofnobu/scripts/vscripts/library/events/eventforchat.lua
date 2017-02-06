@@ -307,6 +307,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C11R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C11T_old") 
+		elseif string.match(caster:GetUnitName(), "legion_commander") then -- 明智秀滿
+			caster:AddAbility("C02W_old")
+			caster:AddAbility("C02E_old")
+			caster:AddAbility("C02R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C02T_old") 
 		end
 	end
 		
