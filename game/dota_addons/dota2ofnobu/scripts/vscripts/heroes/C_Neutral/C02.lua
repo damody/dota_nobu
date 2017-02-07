@@ -431,3 +431,246 @@ function C02W_old_launch_projectile( keys )
 		})
 	end
 end
+
+require('libraries/animations')
+
+function C02E_old_OnAbilityPhaseStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+
+	local repeat_delay = 2.1
+	Timers:CreateTimer(0, function()
+		if ability:IsChanneling() then 
+			-- 吸收動畫
+			StartAnimation(caster, {
+				activity=ACT_DOTA_CAST_ABILITY_4, 
+				translate="dualwield",
+				duration=repeat_delay+0.1,
+				rate=0.5
+			})
+			return repeat_delay
+		end
+	end)
+end
+
+function C02E_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02E_old",nil)
+
+	-- 吸收特效
+	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_life_drain.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW,caster)
+	ParticleManager:SetParticleControlEnt(ifx,0,caster,PATTACH_POINT_FOLLOW,"attach_attack2",Vector(0),true)
+	ParticleManager:SetParticleControlEnt(ifx,1,target,PATTACH_POINT_FOLLOW,"attach_hitloc",Vector(0),true)
+	ParticleManager:SetParticleControl(ifx,10,Vector(1))
+	ParticleManager:SetParticleControl(ifx,11,Vector(1))
+	target.C02E_old_ifx = ifx
+end
+
+function C02E_old_OnChannelFinish( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	target:RemoveModifierByNameAndCaster("modifier_C02E_old",caster)
+	EndAnimation(caster)
+
+	-- 刪除吸收特效
+	ParticleManager:DestroyParticle(target.C02E_old_ifx,false)
+end
+
+function C02E_old_steal( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local steal_hp = ability:GetSpecialValueFor("steal_hp")
+	local steal_mp = ability:GetSpecialValueFor("steal_mp")
+	local hp = target:GetHealth()
+	local mp = target:GetMana()
+	if steal_hp > hp then steal_hp = hp end
+	if steal_mp > mp then steal_mp = mp end
+	ApplyDamage({
+		attacker=caster,
+		victim=target,
+		damage_type=DAMAGE_TYPE_PURE,
+		damage=steal_hp
+	})
+	target:ReduceMana(steal_mp)
+	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,target,steal_hp,nil)
+	SendOverheadEventMessage(nil,OVERHEAD_ALERT_MANA_LOSS,target,steal_mp,nil)
+	caster:SetHealth(caster:GetHealth()+steal_hp)
+	caster:SetMana(caster:GetMana()+steal_mp)
+	SendOverheadEventMessage(nil,OVERHEAD_ALERT_HEAL,caster,steal_hp,nil)
+	SendOverheadEventMessage(nil,OVERHEAD_ALERT_MANA_ADD,caster,steal_mp,nil)
+end
+
+function C02E_old_OnUnitMoved( keys )
+	local caster = keys.caster
+	local target = keys.unit
+	local ability = keys.ability
+	local max_range = ability:GetSpecialValueFor("max_range")
+	local delta = target:GetAbsOrigin()-caster:GetAbsOrigin()
+	delta.z = 0
+	caster:SetForwardVector( delta:Normalized() )
+	if delta:Length2D() > max_range then
+		ability:EndChannel(true)
+	end
+end
+
+function modifier_C02E_old_OnDestroy( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	if ability:IsChanneling() then
+		ability:EndChannel(true)
+	end
+end
+
+function C02R_old_OnAttackStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local crit_chance = ability:GetSpecialValueFor("crit_chance")
+	local rnd = RandomInt(1,100)
+	caster:RemoveModifierByName("modifier_C02R_old_crit")
+	if crit_chance >= rnd then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02R_old_crit",nil)
+	end
+end
+
+require('libraries/animations')
+
+function C02T_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local damage = ability:GetAbilityDamage()
+	local damage_type = ability:GetAbilityDamageType()
+	local play_time = ability:GetSpecialValueFor("play_time")
+	local duration = ability:GetSpecialValueFor("duration")
+
+	caster:Stop()
+	target:Stop()
+
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_aoe",{duration=play_time+duration})
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_playing",{duration=play_time})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_playing",{duration=play_time})
+
+	local arena = ParticleManager:CreateParticle("particles/c02/c02t_old_arena.vpcf",PATTACH_ABSORIGIN,target)
+
+	local hit_num = 20
+	local hit_delay = (play_time-0.5)/hit_num
+	local center = target:GetAbsOrigin()
+	AddFOWViewer(caster:GetTeamNumber(),center,500,play_time,false)
+	for i=1,hit_num do
+		Timers:CreateTimer((i-1)*hit_delay, function()
+			local angle = RandomInt(1,360)
+			local dx = math.cos(angle)
+			local dy = math.sin(angle)
+			local dir = Vector(dx,dy,0)
+			local attack_point = center-dir*150+Vector(0,0,800)
+			local cast_point = attack_point-Vector(0,0,100)
+			caster:SetAbsOrigin(cast_point)
+			caster:SetForwardVector(dir)
+			-- 失能動畫
+			StartAnimation(target, {
+				duration=hit_delay-0.1,
+				activity=ACT_DOTA_IDLE,
+			})
+			-- 攻擊動畫
+			StartAnimation(caster, {
+				duration=hit_delay-0.1,
+				activity=ACT_DOTA_ATTACK, 
+				rate=hit_num
+			})
+			local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_odds_hero_arrow_parent.vpcf",PATTACH_POINT,target)
+			ParticleManager:SetParticleControl(ifx,0,center+dir*RandomFloat(0,100))
+			ParticleManager:SetParticleControl(ifx,6,attack_point)
+			ParticleManager:ReleaseParticleIndex(ifx)
+			Timers:CreateTimer(0.1, function ()
+				local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger.vpcf",PATTACH_POINT,target)
+				ParticleManager:SetParticleControlForward(ifx,0,dir)
+				ParticleManager:SetParticleControl(ifx,1,center)
+				ParticleManager:SetParticleControlForward(ifx,1,dir)
+				ParticleManager:ReleaseParticleIndex(ifx)
+			end)
+		end)
+	end
+
+	Timers:CreateTimer(play_time-0.5,function ()
+		FindClearSpaceForUnit(caster,caster:GetAbsOrigin(),true)
+		local diff = center-caster:GetAbsOrigin()
+		diff.z = 0
+		caster:SetForwardVector( diff:Normalized() )
+		-- 跳砍動畫
+		StartAnimation(caster, {
+			duration=0.5,
+			activity=ACT_DOTA_ATTACK, 
+			translate="duel_kill"
+		})
+	end)
+	Timers:CreateTimer(play_time, function()
+		ParticleManager:DestroyParticle(arena,false)
+		-- 爆炸特效
+		local ifx = ParticleManager:CreateParticle("particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf",PATTACH_ABSORIGIN,target)
+		ParticleManager:SetParticleControl(ifx,1,Vector(1))
+		ParticleManager:ReleaseParticleIndex(ifx)
+		target:RemoveModifierByNameAndCaster("modifier_C02T_old_playing",caster)
+		ApplyDamage({
+			attacker=caster,
+			victim=target,
+			damage_type=damage_type,
+			damage=damage
+		})
+		-- 命令攻擊
+		ExecuteOrderFromTable({
+			UnitIndex = caster:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = target:entindex(),
+			Queue = false
+		})
+	end)
+end
+
+function C02T_old_OnAttackLanded( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local damage_type = ability:GetAbilityDamageType()
+	local aoe_chance = ability:GetSpecialValueFor("aoe_chance")
+	local aoe_damage = ability:GetSpecialValueFor("aoe_damage")
+	local aoe_radius = ability:GetSpecialValueFor("aoe_radius")
+
+	-- 機率不到
+	if aoe_chance < RandomInt(1,100) then return end
+
+	-- 搜尋參數
+	local center = caster:GetAbsOrigin()
+	local target_team = ability:GetAbilityTargetTeam()
+	local target_type = ability:GetAbilityTargetType()
+	local target_flags = ability:GetAbilityTargetFlags()
+
+	-- 搜尋
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		center,				-- 搜尋的中心點
+		nil, 				-- 好像是優化用的參數不懂怎麼用
+		aoe_radius,			-- 搜尋半徑
+		target_team,		-- 目標隊伍
+		target_type,		-- 目標類型
+		target_flags,		-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,		-- 結果的排列方式
+		false) 				-- 好像是優化用的參數不懂怎麼用
+
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+		-- 製造傷害
+		ApplyDamage({
+			victim = unit,
+			attacker = caster,
+			damage_type = damage_type,
+			damage = aoe_damage,
+		})
+		local ifx = ParticleManager:CreateParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",PATTACH_ABSORIGIN_FOLLOW,unit)
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end
+end
