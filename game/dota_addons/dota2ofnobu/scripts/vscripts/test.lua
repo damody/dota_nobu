@@ -418,3 +418,19 @@ function target_test( event )
     --DeepPrintTable(event)
     print("~~~")
 end
+
+--[[
+"RunScript"
+{
+  "ScriptFile"  "test.lua"
+  "Function"    "DumpTable"
+  "Depth"     "1"
+}
+--]]
+function DumpTable( tTable )
+  local inspect = require('inspect')
+  local iDepth = tTable.Depth or 1
+  print(inspect(tTable,
+    {depth=iDepth} 
+  ))
+end
