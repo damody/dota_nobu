@@ -420,6 +420,12 @@ function target_test( event )
 end
 
 --[[
+1) at lua
+require('test')
+keys.Depth = 1
+DumpTable( keys )
+
+2) at kv
 "RunScript"
 {
   "ScriptFile"  "test.lua"

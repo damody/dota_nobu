@@ -68,7 +68,7 @@ function _G.Nobu:InitGameMode()
   GameMode:SetFountainConstantManaRegen(-1) --溫泉回魔(固定值)
   GameMode:SetFountainPercentageHealthRegen(-1) --溫泉回血(百分比)
   GameMode:SetFountainPercentageManaRegen(-1) --溫泉回魔(百分比)
-  GameMode:SetMaximumAttackSpeed( 600 ) --最大攻擊速度
+  GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
   GameMode:SetMinimumAttackSpeed(-1000) --最小攻擊速度
   GameMode:SetGoldSoundDisabled( false )
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢

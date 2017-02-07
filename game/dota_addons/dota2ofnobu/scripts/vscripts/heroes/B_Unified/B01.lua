@@ -167,7 +167,7 @@ function B01R3(keys)
 		local dmgori = dmg
 		dmg = dmg * per_atk  / 100
 		--print(dmgori, damageReduction, dmg)
-		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 
 	end
 end
@@ -201,7 +201,7 @@ function B01R2(keys)
 		local dmgori = dmg
 		dmg = dmg * per_atk  / 100
 		--print(dmgori, damageReduction, dmg)
-		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 
 	end
 end
@@ -232,7 +232,7 @@ function B01R(keys)
 		local dmgori = dmg
 		dmg = dmg * per_atk  / 100
 		--print(dmgori, damageReduction, dmg)
-		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
 		ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
 		Timers:CreateTimer(1, function()
@@ -276,7 +276,7 @@ function B01R_old(keys)
 			local dmgori = dmg
 			dmg = dmg * per_atk  / 100
 			--print(dmgori, damageReduction, dmg)
-			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			
 			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
 			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))

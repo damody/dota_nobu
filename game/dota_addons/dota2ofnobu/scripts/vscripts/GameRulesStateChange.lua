@@ -68,9 +68,9 @@ function Nobu:OnGameRulesStateChange( keys )
     if _G.nobu_server_b then
       Nobu:OpenRoom()
     end
-    GameRules:SendCustomMessage("歡迎來到 Dota2 信長之野望", DOTA_TEAM_GOODGUYS, 0)
-    GameRules:SendCustomMessage("作者: David & Damody & 螺絲  | 美術：阿荒老師 | 顧問：FN" , DOTA_TEAM_GOODGUYS, 0)
-    GameRules:SendCustomMessage("目前還在測試階段 如有bug 請多見諒", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("歡迎來到 Dota2 信長之野望 20.0C", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("不能開圖，斷線重連！" , DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("目前作者: Damody, BrokenStar", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
 		--刪除建築物無敵
 	  local allBuildings = Entities:FindAllByClassname('npc_dota_building')
