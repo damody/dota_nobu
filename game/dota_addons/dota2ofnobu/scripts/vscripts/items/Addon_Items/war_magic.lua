@@ -433,6 +433,9 @@ function to_soldier_Oda(keys)
 			  if (hero.kill_count ~= nil) then
 			  	prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_count
 			  end
+			  if (hero.kill_hero_count ~= nil) then
+			  	prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_hero_count*5
+			  end
 			end
     	end
     	return 1
@@ -449,9 +452,6 @@ function to_soldier_Oda(keys)
   		local p        = PlayerResource:GetPlayer(id)
   		local steamid = PlayerResource:GetSteamAccountID(id)
   		local res = PlayerResource:GetConnectionState(id)
-  		if res == 2 then
-  			sum = sum + 1
-  		end
     	if p ~= nil and (p:GetAssignedHero()) ~= nil and res ~= 2 then
    			local hero = p:GetAssignedHero()
    			if hero.stop == nil then

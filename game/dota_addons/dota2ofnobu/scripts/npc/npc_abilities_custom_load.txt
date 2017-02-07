@@ -3611,10 +3611,10 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"Modifiers"
 		{
-			"modifier_for_move500"
+			"modifier_for_no_collision"
 			{
 				"Passive"	"1"
-				"IsHidden"	"1"
+				"IsHidden"	"0"
 				"States"
 				{
 					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"

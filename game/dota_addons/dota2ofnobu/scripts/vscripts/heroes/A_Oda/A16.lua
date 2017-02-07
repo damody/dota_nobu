@@ -33,11 +33,10 @@ function modifier_A16R2:OnTakeDamage(event)
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
 	    local dmg = {0.35, 0.45, 0.55, 0.65}
+	    local dmg2 = event.damage*dmg[self.level]
 	    if (caster ~= nil) and IsValidEntity(caster) then
-
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-
 	            	if (IsValidEntity(caster) and caster:IsAlive()) then
 		            	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
 							nil,  500 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -46,7 +45,7 @@ function modifier_A16R2:OnTakeDamage(event)
 							local damageTable = {
 						        victim = enemy, 
 						        attacker = caster,
-						        damage = return_damage,
+						        damage = dmg2,
 						        damage_type = DAMAGE_TYPE_PURE,
 						        damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
 						    }

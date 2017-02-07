@@ -294,6 +294,12 @@ function Nobu:eventfororder( filterTable )
 		end
 		print(DeepPrintTable(_G.CountUsedAbility_Table))
 	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17
+		local inspect = require('inspect')
+		local iDepth = 1
+		DeepPrintTable(filterTable)
+	 	print(inspect(filterTable,
+	 		{depth=iDepth} 
+	 	))
 	elseif ordertype == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM then --18
 	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	 then --20

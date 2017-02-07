@@ -7021,6 +7021,7 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
 				"Duration"			"1"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
 			
 				"Properties"
 				{
@@ -7051,7 +7052,7 @@
 				"Aura_Radius"	"500"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 			}
 		}
 	}
@@ -9012,27 +9013,30 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnEquip"
 		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnEquip"
-			}
+			"RemoveModifier"
+            {
+                "Target" "CASTER"
+                "ModifierName" "modifier_ninja_cloth"
+            }
+            "DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"ApplyModifier"
+		            {
+		                "Target" "CASTER"
+		                "ModifierName" "modifier_ninja_cloth"
+		            }
+            	}
+            }
 		}
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnUnequip"
-			}
-		}
-		
 		"Modifiers"
 		{
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"0"
+				"Passive"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"25"	//閃避
@@ -9216,22 +9220,6 @@
 				}
 			}
 		}
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnEquip"
-			}
-		}
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnUnequip"
-			}
-		}
 		// Special
 		
 		"AbilitySpecial"
@@ -9276,7 +9264,7 @@
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"0"
+				"Passive"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
@@ -10016,28 +10004,13 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnEquip"
-			}
-		}
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnUnequip"
-			}
-		}
+
 		"Modifiers"
 		{
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"0"
+				"Passive"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
@@ -14065,7 +14038,7 @@
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "90" //攻速
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"   "90" //跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"   "150" //跑速
 				}
 			}
 			"modifier_ninja_cloth"
@@ -14223,7 +14196,7 @@
 	}
 
 	//禦神法輪‧二階製作單
-	"item_recipe_mana_thief_1" 
+	"item_recipe_mana_thief_2" 
 	{
 	    "ID" "3832"
 	    "BaseClass" "item_recipe_arcane_boots"

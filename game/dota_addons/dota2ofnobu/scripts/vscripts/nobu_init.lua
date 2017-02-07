@@ -46,7 +46,7 @@ function _G.Nobu:InitGameMode()
 
   --【Set game GameMode rules】
   -- GameMode = GameRules:GetGameModeEntity()
-  GameMode:SetRecommendedItemsDisabled( true )--禁止推薦
+  GameMode:SetRecommendedItemsDisabled( false )--禁止推薦
   GameMode:SetBuybackEnabled( false ) --關閉英雄買活功能
   GameMode:SetTopBarTeamValuesOverride ( false )
   --GameMode:SetTopBarTeamValuesVisible( true ) --?
@@ -68,7 +68,7 @@ function _G.Nobu:InitGameMode()
   GameMode:SetFountainConstantManaRegen(-1) --溫泉回魔(固定值)
   GameMode:SetFountainPercentageHealthRegen(-1) --溫泉回血(百分比)
   GameMode:SetFountainPercentageManaRegen(-1) --溫泉回魔(百分比)
-  GameMode:SetMaximumAttackSpeed( 5000 ) --最大攻擊速度
+  GameMode:SetMaximumAttackSpeed( 600 ) --最大攻擊速度
   GameMode:SetMinimumAttackSpeed(-1000) --最小攻擊速度
   GameMode:SetGoldSoundDisabled( false )
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢

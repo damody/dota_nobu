@@ -93,6 +93,11 @@
 				"Function"		"C11W_start"
 				"Target"		"TARGET"
 			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C11W"
+			}
 		}
 
 		"OnProjectileHitUnit"
@@ -125,10 +130,9 @@
 				"Passive"			"0"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
-
+				"Duration"		"3"
 				"States"
 				{
-					"MODIFIER_STATE_ROOTED"			"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}

@@ -118,18 +118,11 @@ end
 
 function OnToggleOn( keys )
 	local caster = keys.caster
-	if (caster.nobuorb1 == nil) then
-		caster.nobuorb1 = "A12T_On"
-		caster.abilityName = "A12T"
-	end
+	caster.nobuorb1 = nil
 end
 
 function OnToggleOff( keys )
 	local caster = keys.caster
-	if (caster.nobuorb1 == "A12T_On") then
-		caster.nobuorb1 = nil
-		caster.abilityName = "A12T"
-	end
 end
 
 function A12T( keys )
@@ -138,7 +131,7 @@ function A12T( keys )
 	local ability = keys.ability
 	local special_dmg = ability:GetLevelSpecialValueFor("Special_Damage",ability:GetLevel() - 1)
 	local damage = 0 
-		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == "A12T_On" then
+		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == nil then
 			if caster.A12T == true then
 				damage = caster:GetMana()*special_dmg/100*3
 			else

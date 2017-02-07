@@ -104,7 +104,7 @@
 				"Duration"	"12"
 				"Properties"
 				{
-					
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%C01W_ATTACK_SPEED"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%C01W_SPEED"
 				}
 				"IsHidden"	"1"
@@ -612,10 +612,16 @@
 						"Damage"		"%attack_damage"
 					}
 				}
+			}
+			"modifier_ninja_cloth"
+			{
+				"IsBuff"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
 				}
+				"Passive"	"1"
+				"IsHidden"	"1"
 			}
 		}
 

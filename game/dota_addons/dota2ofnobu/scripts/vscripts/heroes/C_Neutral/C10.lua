@@ -44,7 +44,7 @@ function C10T_END( keys )
 	local point = keys.caster:GetAbsOrigin()
 	keys.caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	for i,v in ipairs(keys.caster.C10T_T) do
-		if CalcDistanceBetweenEntityOBB(keys.caster, v) < 5500 then
+		if (keys.caster:GetAbsOrigin() - v:GetAbsOrigin()):Length2D() < 5500 then
 			if v:IsHero() then
 				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
 			end
