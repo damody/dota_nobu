@@ -553,6 +553,8 @@ function C02T_old_OnSpellStart( keys )
 	target:Stop()
 
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_aoe",{duration=play_time+duration})
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_stunned",{duration=play_time+1})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_stunned",{duration=play_time+1})
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_playing",{duration=play_time})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_playing",{duration=play_time})
 
@@ -562,7 +564,7 @@ function C02T_old_OnSpellStart( keys )
 	local hit_delay = (play_time-0.5)/hit_num
 	local center = target:GetAbsOrigin()
 	AddFOWViewer(caster:GetTeamNumber(),center,500,play_time,false)
-	for i=1,hit_num do
+	for i=1,hit_num-1 do
 		Timers:CreateTimer((i-1)*hit_delay, function()
 			local angle = RandomInt(1,360)
 			local dx = math.cos(angle)
@@ -629,6 +631,11 @@ function C02T_old_OnSpellStart( keys )
 			TargetIndex = target:entindex(),
 			Queue = false
 		})
+		-- 延遲一個frame在移除暈眩狀態
+		Timers:CreateTimer(0, function ()
+			caster:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster)
+			target:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster)
+		end)
 	end)
 end
 
