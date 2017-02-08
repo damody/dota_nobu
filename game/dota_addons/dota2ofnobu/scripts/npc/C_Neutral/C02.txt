@@ -8,7 +8,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/c02.vsndevts"
-
+			"soundfile"	"soundevents/c01w.vsndevts"
 			"particle"  "particles/units/heroes/hero_siren/naga_siren_portrait.vpcf" // 複製用螢幕特效
 
 			// C02W_old
@@ -457,7 +457,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"5"
 		"AbilityManaCost"				"110 130 150 170"
 		"AbilityDamage"					"250 350 450 550"
 
@@ -727,8 +727,9 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastRange"				"128"
+		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.1"
 
 		"AbilityCooldown"				"130"
@@ -798,6 +799,10 @@
 			{
 				"Duration"	"%play_time"
 				"Priority" "MODIFIER_PRIORITY_ULTRA"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
+				}
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"

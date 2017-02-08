@@ -278,7 +278,7 @@ function C02T_OnSpellStart( keys )
 	local force_kill_hp = ability:GetSpecialValueFor("force_kill_hp")
 	local stun_time = ability:GetSpecialValueFor("stun_time")
 	local damage = ability:GetAbilityDamage()
-
+	caster:EmitSound( "C02T.end")
 	if target:GetHealth() < force_kill_hp then
 		-- 製造傷害
 		ApplyDamage({
@@ -562,7 +562,7 @@ function C02T_old_OnSpellStart( keys )
 	local hit_delay = (play_time-0.5)/hit_num
 	local center = target:GetAbsOrigin()
 	AddFOWViewer(caster:GetTeamNumber(),center,500,play_time,false)
-	for i=1,hit_num do
+	for i=1,hit_num-2 do
 		Timers:CreateTimer((i-1)*hit_delay, function()
 			local angle = RandomInt(1,360)
 			local dx = math.cos(angle)
@@ -573,6 +573,7 @@ function C02T_old_OnSpellStart( keys )
 			caster:SetAbsOrigin(cast_point)
 			caster:SetForwardVector(dir)
 			-- 失能動畫
+			caster:EmitSound( "C01W.sound"..RandomInt(1, 3))
 			StartAnimation(target, {
 				duration=hit_delay-0.1,
 				activity=ACT_DOTA_IDLE,
@@ -629,6 +630,7 @@ function C02T_old_OnSpellStart( keys )
 			TargetIndex = target:entindex(),
 			Queue = false
 		})
+		caster:EmitSound( "C02T.end")
 	end)
 end
 
@@ -667,7 +669,7 @@ function C02T_old_OnAttackLanded( keys )
 		ApplyDamage({
 			victim = unit,
 			attacker = caster,
-			damage_type = damage_type,
+			damage_type = DAMAGE_TYPE_PURE,
 			damage = aoe_damage,
 		})
 		local ifx = ParticleManager:CreateParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",PATTACH_ABSORIGIN_FOLLOW,unit)
