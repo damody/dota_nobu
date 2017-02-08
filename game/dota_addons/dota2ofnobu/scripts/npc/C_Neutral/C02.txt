@@ -805,8 +805,16 @@
 				}
 				"States"
 				{
-					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_C02T_old_stunned"
+			{
+				"IsHidden"			"1"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"modifier_C02T_old_aoe"

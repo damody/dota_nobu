@@ -167,7 +167,7 @@ function B01R3(keys)
 		local dmgori = dmg
 		dmg = dmg * per_atk  / 100
 		--print(dmgori, damageReduction, dmg)
-		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 
 	end
 end

@@ -278,8 +278,9 @@ function C02T_OnSpellStart( keys )
 	local force_kill_hp = ability:GetSpecialValueFor("force_kill_hp")
 	local stun_time = ability:GetSpecialValueFor("stun_time")
 	local damage = ability:GetAbilityDamage()
-	caster:EmitSound( "C02T.end")
+	
 	if target:GetHealth() < force_kill_hp then
+		caster:EmitSound( "C02T.end")
 		-- 製造傷害
 		ApplyDamage({
 			attacker=caster,
@@ -553,6 +554,8 @@ function C02T_old_OnSpellStart( keys )
 	target:Stop()
 
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_aoe",{duration=play_time+duration})
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_stunned",{duration=play_time+1})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_stunned",{duration=play_time+1})
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_playing",{duration=play_time})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_playing",{duration=play_time})
 
@@ -631,6 +634,11 @@ function C02T_old_OnSpellStart( keys )
 			Queue = false
 		})
 		caster:EmitSound( "C02T.end")
+		-- 延遲一個frame在移除暈眩狀態
+		Timers:CreateTimer(0, function ()
+			caster:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster)
+			target:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster)
+		end)
 	end)
 end
 
