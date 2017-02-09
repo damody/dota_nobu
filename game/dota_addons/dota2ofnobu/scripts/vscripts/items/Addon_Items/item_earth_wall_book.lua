@@ -31,7 +31,7 @@ function Shock( keys )
 
 		-- 避免卡住
 		if (unit:GetUnitName() ~= "EARTH_WALL" ) then
-			unit:AddNewModifier(nil,nil,"modifier_phased",{duration=01})
+			unit:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
 		end
 
 		-- 製造傷害

@@ -33,8 +33,8 @@ function _G.Nobu:InitGameMode()
   GameRules:SetGoldTickTime(3)--金錢跳錢秒數
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
-  GameRules:SetCustomGameEndDelay(10) --遊戲結束時間 --正常30
-  GameRules:SetCustomVictoryMessageDuration(1)  --遊戲結束發送訊息時間
+  GameRules:SetCustomGameEndDelay(30) --遊戲結束時間 --正常30
+  GameRules:SetCustomVictoryMessageDuration(3)  --遊戲結束發送訊息時間
   GameRules:SetCustomVictoryMessage("天下布武！")
   -- GameRules:SetCustomGameSetupTimeout(20)
   -- GameRules:SetHeroMinimapIconScale( 1 )

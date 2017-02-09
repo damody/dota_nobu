@@ -400,6 +400,7 @@ function target_test( event )
     if target then print("TARGET: "..target:GetUnitName()) end
     if unit then print("UNIT: "..unit:GetUnitName()) end
     if attacker then print("ATTACKER: "..attacker:GetUnitName()) end
+    if ability then print("ABILITY: "..ability:GetAbilityName()) end
     if Damage then print("DAMAGE: "..Damage) end
 
     if target_points then

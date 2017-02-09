@@ -56,12 +56,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"300"
+				"illusion_incoming_damage"	"200"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_outgoing_damage"	"30"
+				"illusion_outgoing_damage"	"-70"
 			}
 		}
 
@@ -143,12 +143,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"300"
+				"illusion_incoming_damage"	"200"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_outgoing_damage"	"30"
+				"illusion_outgoing_damage"	"-70"
 			}
 			"04"
 			{
@@ -231,12 +231,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"300"
+				"illusion_incoming_damage"	"200"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_outgoing_damage"	"80"
+				"illusion_outgoing_damage"	"-20"
 			}
 			"04"
 			{
@@ -688,6 +688,16 @@
 
 		"Modifiers"
 		{
+			"modifier_ninja_cloth"
+			{
+				"IsBuff"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
 			"modifier_C02R_old_passive"
 			{
 				"Passive"			"1"
@@ -699,10 +709,6 @@
 						"Function"		"C02R_old_OnAttackStart"
 						"Target"		"TARGET"
 					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
 				}
 			}
 			"modifier_C02R_old_crit"

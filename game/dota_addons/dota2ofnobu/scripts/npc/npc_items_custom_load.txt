@@ -7737,7 +7737,7 @@
 	{
 	    "ID" "3043"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "1450"
+		"ItemCost" "2450"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_nannbann_armor"  //合成後物品
@@ -9638,7 +9638,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"4600"
+		"ItemCost"	"5600"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnEquip"
@@ -9671,7 +9671,7 @@
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "780" 			//血
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "800" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
@@ -9940,7 +9940,7 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
-			"shield_modifier"
+			"shield_modifier2"
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
@@ -9955,7 +9955,7 @@
 			                "ApplyModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier2"
 			                }
 			            }
 			            "OnFailure"
@@ -9963,13 +9963,13 @@
 			                "RemoveModifier"
 			                {
 			                    "Target" "CASTER"
-			                    "ModifierName" "block_modifier"
+			                    "ModifierName" "block_modifier2"
 			                }
 			            }
 			        }
 			    }
 			}
-			"block_modifier"
+			"block_modifier2"
 			{
 			    "IsBuff" "1"
 			    "IsHidden" "1"
@@ -13981,22 +13981,7 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnEquip"
-			}
-		}
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_ninja_cloth.lua"
-				"Function"	"OnUnequip"
-			}
-		}
+		
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -14044,7 +14029,7 @@
 			"modifier_ninja_cloth"
 			{
 				"IsHidden"	"1"
-				"Passive"	"0"
+				"Passive"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避

@@ -157,26 +157,12 @@ function A12T_Start( keys )
 	local damage = 0
 	local SpendMana = ability:GetLevelSpecialValueFor("SpendMana",ability:GetLevel() - 1)
 	
-	if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == "A12T_On" then	
+	if caster:GetMana() > 30 and not target:IsBuilding() then
+		print("SpendManaSpendMana")
 		caster:SpendMana(SpendMana,ability)	--消耗mana
 		if caster:GetMana() < SpendMana then
 		else
 			caster.A12D_Time  = caster.A12D_Time  + 1
-
-			-- local projectile_info = 
-			-- {
-			-- 	EffectName = "particles/a12t2/a12t2.vpcf",
-			-- 	Ability = ability,
-			-- 	vSpawnOrigin = caster:GetAbsOrigin(),
-			-- 	Target = target,
-			-- 	Source = caster,
-			-- 	bHasFrontalCone = false,
-			-- 	iMoveSpeed = 1700,
-			-- 	bReplaceExisting = false,
-			-- 	bProvidesVision = false
-			-- }
-			-- ProjectileManager:CreateTrackingProjectile(projectile_info)
-
 			if caster.A12D_Time  == 4 then
 				caster:FindAbilityByName("A12D"):SetLevel(1)
 			end
