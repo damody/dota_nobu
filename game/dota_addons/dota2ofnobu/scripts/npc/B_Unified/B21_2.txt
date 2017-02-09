@@ -1,0 +1,101 @@
+"DOTAHeroes"
+{
+	// 馬場信房
+	"B21"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_chaos_knight"
+		"ModelScale"	"1"
+
+		// Abilities
+		// ---------------
+		"Ability1"	"B21W"
+		"Ability2"	"B21E"
+		"Ability3"	"B21R"
+		"Ability4"	"attribute_bonusx"
+		"Ability5"	"B21T"
+		"Ability6"	"B21_precache"
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Ability17" ""
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5"
+		"MagicalResistance"	"30"
+
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"119"
+		"AttackDamageMax"	"137"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"	"41"
+		"AttributeStrengthGain"	"2.70"
+		"AttributeBaseAgility"	"25"
+		"AttributeAgilityGain"	"2.10"
+		"AttributeBaseIntelligence"	"25"
+		"AttributeIntelligenceGain"	"2.00"
+		
+		// Bounty
+		// ----------------------------------------------------------------
+		// "BountyXP"		"0"  
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
+
+		// Bounds
+		// ----------------------------------------------------------------
+		// "BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		// "HealthBarOffset"	"140"
+
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"310"
+		"MovementTurnRate"	"1.50"
+
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"-1" // -1 = full
+
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+
+		// Combat
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+
+		// RelationShip
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_BADGUYS"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+	}
+}
