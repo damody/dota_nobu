@@ -766,7 +766,7 @@ end
 
 function Death(keys)
   print("@@@@ : Death Event Run")
-  DeepPrintTable(keys)    --详细打印传递进来的表
+  --DeepPrintTable(keys)    --详细打印传递进来的表
 
   -- 储存被击杀的单位
   local killedUnit = EntIndexToHScript( keys.entindex_killed )

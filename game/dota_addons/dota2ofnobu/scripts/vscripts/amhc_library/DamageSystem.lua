@@ -90,7 +90,7 @@ function DamageSystem:__call( ... )
 		local data = self:data(mt,str)
 		local n,o = self:think(data)
 
-		print('DamageSystem:',str,'-->',o..' = '..tostring(n),mt.unit:GetUnitName())
+		--print('DamageSystem:',str,'-->',o..' = '..tostring(n),mt.unit:GetUnitName())
 
 		if mt.victim ~= nil and type(mt.victim) == 'table' and mt.damage_type ~= nil then
 			return ApplyDamage

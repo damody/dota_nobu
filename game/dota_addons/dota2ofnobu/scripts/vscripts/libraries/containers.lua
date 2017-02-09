@@ -2938,7 +2938,7 @@ end
 
 function Containers:PrintTable(t)
   if CONTAINERS_DEBUG then 
-    DeepPrintTable(t)
+    --DeepPrintTable(t)
   end
 end
 

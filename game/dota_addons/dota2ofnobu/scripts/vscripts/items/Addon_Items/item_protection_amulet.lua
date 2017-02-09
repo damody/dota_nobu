@@ -25,12 +25,6 @@ function modifier_protection_amulet:OnIntervalThink()
 end
 
 function modifier_protection_amulet:OnTakeDamage(event)
-	local inspect = require('inspect')
-	local iDepth = 1
-	DeepPrintTable(event)
- 	print(inspect(event,
- 		{depth=iDepth} 
- 	))
 	if IsServer() then
 	    local attacker = event.unit
 	    local victim = event.attacker
@@ -72,7 +66,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 							end
 							Timers:CreateTimer(30, function() 
 								self.caster.protection_amulet = true
-								print("self.caster.protection_amulet")
+								
 							end)
 						end
 		            else
@@ -92,7 +86,7 @@ function OnEquip( keys )
 	if (caster.protection_amulet == nil) then
 		caster.protection_amulet = true
 	end
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
+	caster:AddNewModifier(caster, ability, "modifier_protection_amulet", {} )
 	caster:FindModifierByName("modifier_protection_amulet").caster = caster
 	caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
 	caster.has_item_protection_amulet = true

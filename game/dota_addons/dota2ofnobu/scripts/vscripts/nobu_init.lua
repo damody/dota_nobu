@@ -29,7 +29,7 @@ function _G.Nobu:InitGameMode()
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
-  GameRules:SetGoldPerTick(15)-- 設置金錢
+  GameRules:SetGoldPerTick(20)-- 設置金錢
   GameRules:SetGoldTickTime(3)--金錢跳錢秒數
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
@@ -68,7 +68,7 @@ function _G.Nobu:InitGameMode()
   GameMode:SetFountainConstantManaRegen(-1) --溫泉回魔(固定值)
   GameMode:SetFountainPercentageHealthRegen(-1) --溫泉回血(百分比)
   GameMode:SetFountainPercentageManaRegen(-1) --溫泉回魔(百分比)
-  GameMode:SetMaximumAttackSpeed( 500 ) --最大攻擊速度
+  GameMode:SetMaximumAttackSpeed( 600 ) --最大攻擊速度
   GameMode:SetMinimumAttackSpeed(-1000) --最小攻擊速度
   GameMode:SetGoldSoundDisabled( false )
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢

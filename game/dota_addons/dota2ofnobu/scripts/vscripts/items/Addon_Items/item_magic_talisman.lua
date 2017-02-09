@@ -76,7 +76,6 @@ function modifier_magic_talisman:OnTakeDamage(event)
 							end
 							Timers:CreateTimer(20, function() 
 								self.caster.magic_talisman = true
-								print("self.caster.magic_talisman")
 							end)
 						end
 		            end 

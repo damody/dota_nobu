@@ -194,14 +194,15 @@ function B01R2(keys)
 			Timers:CreateTimer(1, function()
 				ParticleManager:DestroyParticle(particle,false)
 			end)
+			local dmgori = dmg
+			dmg = dmg * per_atk  / 100
+			--print(dmgori, damageReduction, dmg)
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		else
 			per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
 			--print("unit")
 		end
-		local dmgori = dmg
-		dmg = dmg * per_atk  / 100
-		--print(dmgori, damageReduction, dmg)
-		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		
 
 	end
 end

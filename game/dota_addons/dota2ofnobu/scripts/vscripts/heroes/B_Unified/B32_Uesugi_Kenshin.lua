@@ -145,7 +145,7 @@ function FireEffect_IcePath2( event )
 
 	-- Generate projectiles
 	if pathRadius < 32 then
-		print( "Set the proper value of path_radius in ice_path_datadriven." )
+		--print( "Set the proper value of path_radius in ice_path_datadriven." )
 		return
 	end
 

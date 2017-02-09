@@ -18,7 +18,7 @@ function A25E_Damage( event )
 	end
 
 	--debug
-	print("傷害值"..tostring(damage))
+	--print("傷害值"..tostring(damage))
 
 end
 
@@ -29,6 +29,6 @@ function A25E_Ability_Start( event )
 	caster.A25E_Damage_Count = (ability:GetLevel() - 1)
 
 	--debug
-	print("抵擋次數"..tostring(caster.A25E_Damage_Count))
+	--print("抵擋次數"..tostring(caster.A25E_Damage_Count))
 
 end

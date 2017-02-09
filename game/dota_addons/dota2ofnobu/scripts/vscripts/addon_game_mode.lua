@@ -203,7 +203,6 @@ else
   for i,v in ipairs(Nobu.Event) do
     StopListeningToGameEvent(v)
   end
-  -- print(#Nobu.Event)
 
   --停止filter
 

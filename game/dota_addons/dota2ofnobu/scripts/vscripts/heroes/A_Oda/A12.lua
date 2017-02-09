@@ -52,7 +52,7 @@ function A12E( keys )
 		ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	end
 
-	print("@@" .. tostring(caster.A12D_B) .. "   +   " ..  tostring(caster.A12D_Time))
+	--print("@@" .. tostring(caster.A12D_B) .. "   +   " ..  tostring(caster.A12D_Time))
 	caster.A12D_B = false --最後一定要加	
 end
 
@@ -63,7 +63,7 @@ function A12E_Attack( keys )
 	local ability = keys.ability
 	local cure_count = ability:GetLevelSpecialValueFor("CureMana",ability:GetLevel() - 1) 
 	local chance = ability:GetLevelSpecialValueFor("Chance",ability:GetLevel() - 1) 
-	print("CHANCE"..tostring(caster.A12E_CHANCE))
+	--print("CHANCE"..tostring(caster.A12E_CHANCE))
 	if caster:IsAlive()  then
 		if caster.A12E_CHANCE >= 7 then 
 			caster.A12E_CHANCE = RandomInt(0,10)
@@ -144,7 +144,7 @@ function A12T( keys )
 				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 			AMHC:CreateNumberEffect(target,damage,2,AMHC.MSG_ORIT ,{0,0,225},4)
-			print("A12T"..tostring(damage))		
+			--print("A12T"..tostring(damage))		
 		end
 	caster.A12T = false
 end
@@ -198,7 +198,7 @@ function A12D_HIDE( keys )
 	
 	Timers:CreateTimer(0.1, function()
 		local name = caster.abilityName
-		print("A12D_HIDE ",name)
+		--print("A12D_HIDE ",name)
 		if  name == "A12D" then
 			caster:FindAbilityByName("A12D"):SetActivated(false)
 			caster.A12D_B = true

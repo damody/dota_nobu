@@ -157,7 +157,6 @@ function Nobu:Attachment_UpdateUnit(args)
   --DebugPrintTable(args)
 
   local unit = EntIndexToHScript(args.index)
-  print("args")
   -- if not unit then
   --   --Notify(args.PlayerID, "Invalid Unit.")
   --   return
@@ -193,7 +192,6 @@ end
 function Nobu:Init_Event_and_Filter_GameMode()
   local self =  _G.Nobu
 
-  print(self)
 
   --【Filter】
   GameRules:GetGameModeEntity():SetExecuteOrderFilter( Nobu.eventfororder, self )

@@ -41,7 +41,7 @@ function new_C15E( keys )
 	end)	
 
 	--【DEBUG】
-	print(level)
+	--print(level)
 
 end
 
@@ -137,7 +137,7 @@ function new_C15T( keys )
 
 
 	--【DEBUG】
-	print(vec)
+	--print(vec)
 end
 
 function new_C15T_attack( keys )

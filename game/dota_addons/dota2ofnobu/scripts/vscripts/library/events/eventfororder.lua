@@ -279,7 +279,6 @@ function Nobu:eventfororder( filterTable )
     	local itemName = Containers.itemIDs[itemID]
     	
     	local unit = EntIndexToHScript(filterTable.units["0"])
-    	print("unit:GetPlayerOwnerID()" .. unit:GetPlayerOwnerID())
     	itemName = itemName.."_buy"
     	if _G.CountUsedAbility_Table == nil then
     		_G.CountUsedAbility_Table = {}
@@ -292,14 +291,15 @@ function Nobu:eventfororder( filterTable )
     	else
     		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] = _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] + 1
 		end
-		print(DeepPrintTable(_G.CountUsedAbility_Table))
+		--print(DeepPrintTable(_G.CountUsedAbility_Table))
 	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17
+		--[[
 		local inspect = require('inspect')
 		local iDepth = 1
 		DeepPrintTable(filterTable)
 	 	print(inspect(filterTable,
 	 		{depth=iDepth} 
-	 	))
+	 	))]]
 	elseif ordertype == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM then --18
 	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	 then --20

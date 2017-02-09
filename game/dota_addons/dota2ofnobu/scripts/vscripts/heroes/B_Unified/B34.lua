@@ -19,13 +19,13 @@ function B34W( keys )
 
         --temp_point = nobu_move_ver2( temp_point , distance ,RandomFloat(0,-30))
 
-        print(nobu_radtodeg(math.atan2(point2.y-point.y,point2.x-point.x)))
+        --print(nobu_radtodeg(math.atan2(point2.y-point.y,point2.x-point.x)))
 
 		if nobu_distance( temp_point,point2 ) < 50  or not target:IsAlive()  then
 			ability:ApplyDataDrivenModifier(caster,target,"modifier_B34W",nil)
 			ParticleManager:DestroyParticle(particle,false)
 
-			print("Stop")
+			--print("Stop")
 			return nil
 		else
 			ParticleManager:SetParticleControl(particle,0,temp_point)

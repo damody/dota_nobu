@@ -475,7 +475,7 @@ function A28R_old_start( keys )
 
 	for i=1,boom_num do
 		local targetPoint = center + castDir * castGap * i
-		print("targetPoint: "..tostring(targetPoint))
+		--print("targetPoint: "..tostring(targetPoint))
 		-- 照亮目標
 		AddFOWViewer(iTeam,targetPoint,500,5,false)
 		-- 特效

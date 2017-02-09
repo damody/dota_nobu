@@ -69,7 +69,7 @@ function C22R_critical:DeclareFunctions()
 end
 
 function C22R_critical:GetModifierPreAttack_CriticalStrike()
-	print("C22R_level ".. self.C22R_level)
+	--print("C22R_level ".. self.C22R_level)
 	return self.C22R_level*50 + 100
 end
 

@@ -96,7 +96,6 @@ function A07R_old( keys )
 			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
 			--動作
 			local rate = caster:GetAttackSpeed()
-			--print(tostring(rate))
 
 			--播放動畫
 		    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
@@ -199,8 +198,6 @@ end
 
 function A07W_BorrowedTimePurge( event )
 	local caster = event.caster
-
-	print("stronk dispel")
 
 	-- Strong Dispel
 	local RemovePositiveBuffs = false

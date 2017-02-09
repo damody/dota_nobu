@@ -130,7 +130,7 @@ function A27E(keys)
 			unit:SetHealth(unit:GetMaxHealth()*0.01*level + unit:GetHealth())
 		end
 		if roubang:IsAlive() then
-			print("roubang:IsAlive()"..radius)
+			--print("roubang:IsAlive()"..radius)
 			return 1
 		else
 			return nil

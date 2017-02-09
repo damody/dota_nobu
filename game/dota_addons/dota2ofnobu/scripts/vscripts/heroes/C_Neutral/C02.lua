@@ -466,7 +466,10 @@ function C02E_old_OnSpellStart( keys )
 	ParticleManager:SetParticleControlEnt(ifx,1,target,PATTACH_POINT_FOLLOW,"attach_hitloc",Vector(0),true)
 	ParticleManager:SetParticleControl(ifx,10,Vector(1))
 	ParticleManager:SetParticleControl(ifx,11,Vector(1))
-	target.C02E_old_ifx = ifx
+	caster.C02E_old_ifx = ifx
+	Timers:CreateTimer(10, function ()
+		  ParticleManager:DestroyParticle(ifx,false)
+		end)
 end
 
 function C02E_old_OnChannelFinish( keys )
@@ -477,7 +480,7 @@ function C02E_old_OnChannelFinish( keys )
 	EndAnimation(caster)
 
 	-- 刪除吸收特效
-	ParticleManager:DestroyParticle(target.C02E_old_ifx,false)
+	ParticleManager:DestroyParticle(caster.C02E_old_ifx,false)
 end
 
 function C02E_old_steal( keys )
@@ -552,11 +555,21 @@ function C02T_old_OnSpellStart( keys )
 
 	caster:Stop()
 	target:Stop()
+	ApplyDamage({
+		attacker=caster,
+		victim=target,
+		damage_type=damage_type,
+		damage=1
+	})
 
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_aoe",{duration=play_time+duration})
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_stunned",{duration=play_time+1})
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_stunned",{duration=play_time+1})
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02T_old_playing",{duration=play_time})
+	Timers:CreateTimer(0.15, function ()
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_stunned",{duration=play_time+1})
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_playing",{duration=play_time})
+		end)
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_stunned",{duration=play_time+1})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02T_old_playing",{duration=play_time})
 
 	local arena = ParticleManager:CreateParticle("particles/c02/c02t_old_arena.vpcf",PATTACH_ABSORIGIN,target)
@@ -620,6 +633,7 @@ function C02T_old_OnSpellStart( keys )
 		ParticleManager:SetParticleControl(ifx,1,Vector(1))
 		ParticleManager:ReleaseParticleIndex(ifx)
 		target:RemoveModifierByNameAndCaster("modifier_C02T_old_playing",caster)
+		
 		ApplyDamage({
 			attacker=caster,
 			victim=target,

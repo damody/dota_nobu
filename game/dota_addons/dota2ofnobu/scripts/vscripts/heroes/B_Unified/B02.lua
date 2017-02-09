@@ -173,7 +173,7 @@ function B02R(keys)
 		if sumt < Time then
 			if (not target:HasModifier("modifier_B02R")) then
 				local tt = Time-sumt
-				print("tt "..tt)
+				--print("tt "..tt)
 				ability:ApplyDataDrivenModifier(caster, target,"modifier_B02R",{duration=tt})
 			end
 			return 0.1
