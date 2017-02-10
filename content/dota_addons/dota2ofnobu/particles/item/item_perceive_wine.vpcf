@@ -72,7 +72,13 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 17, 255, 0, 255 ]
+			m_ColorMax = [ 16, 255, 0, 255 ]
+			m_ColorMin = [ 201, 255, 201, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.6
+			m_fLifetimeMax = 0.6
 		},
 	]
 	m_Emitters = 

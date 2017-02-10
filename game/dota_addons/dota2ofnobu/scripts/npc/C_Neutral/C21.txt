@@ -598,6 +598,11 @@
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
 						"Function"	"C21R_old_crit_judgment"
 					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_C21R_old_no_miss"
+					}
 				}
 			}
 			"modifier_C21R_old_critical_strike"
@@ -606,6 +611,16 @@
 				"IsHidden"	"1"
 				"IsBuff"	"0"
 				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"
+				}
+			}
+			"modifier_C21R_old_no_miss"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"IsDebuff"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"

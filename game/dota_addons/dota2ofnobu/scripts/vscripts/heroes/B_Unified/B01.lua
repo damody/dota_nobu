@@ -197,7 +197,7 @@ function B01R2(keys)
 			local dmgori = dmg
 			dmg = dmg * per_atk  / 100
 			--print(dmgori, damageReduction, dmg)
-			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		else
 			per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
 			--print("unit")
