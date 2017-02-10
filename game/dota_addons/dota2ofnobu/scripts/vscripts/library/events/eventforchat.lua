@@ -313,6 +313,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C02R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C02T_old") 
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_chaos_knight") then -- 馬場信房
+			caster:AddAbility("B21W_old")
+			caster:AddAbility("B21E_old")
+			caster:AddAbility("B21R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("B21T_old") 
 		end
 	end
 		

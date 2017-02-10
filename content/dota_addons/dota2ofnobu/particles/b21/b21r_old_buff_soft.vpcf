@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 6
-	m_flConstantRadius = 185.0
+	m_flConstantRadius = 160.0
 	m_ConstantColor = [ 86, 209, 228, 150 ]
 	m_Renderers = 
 	[
@@ -60,10 +60,10 @@
 			m_nAlphaMax = 100
 		},
 		{
-			_class = "C_INIT_RemapParticleCountToScalar"
-			m_nInputMax = 6
-			m_flOutputMin = 0.7
-			m_bScaleInitialRange = true
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 1000.0
+			m_flOutputMax = 1000.0
 		},
 	]
 	m_Emitters = 
