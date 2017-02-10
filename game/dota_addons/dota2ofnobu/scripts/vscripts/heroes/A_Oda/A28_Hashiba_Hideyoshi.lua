@@ -294,7 +294,7 @@ function A28T(keys)
  	Timers:CreateTimer(2, function ()
  			if phoenix:IsAlive() then
 				local dis = (phoenix:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
-				if dis > 3000 then 
+				if dis > 1500 then 
 					phoenix:SetAbsOrigin(caster:GetAbsOrigin())
 				end
 				return 2
@@ -357,8 +357,18 @@ function A28TE( keys )
 	--轉半徑
 	Timers:CreateTimer(0.1, function()
 		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 1.0, false)
-		for i=1,10 do
-			A28TE_Effect(keys, point + RandomVector(radius))
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
+		local maxrock = 5
+		for i=1,maxrock do
+			local pointx = point.x
+			local pointy = point.y
+			local pointz = point.z
+			a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
+			pointx2 	=  	pointx 	+ 	radius 	* 	math.cos(a)
+			pointy2 	=  	pointy 	+ 	radius 	*	math.sin(a)
+			point = Vector(pointx2 ,pointy2 , pointz)
+			A28TE_Effect(keys, point)
 		end
 		caster:StartGesture( ACT_DOTA_CAST_ABILITY_1 )
 		Timers:CreateTimer(0.45, 
