@@ -198,3 +198,146 @@ function B21T_OnHealthChange( keys )
 		modifier:SetStackCount(stack)
 	end
 end
+
+-- 馬場信房 11.2B
+
+require('libraries/animations')
+
+function B21W_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local target_point = keys.target_points[1]
+	local ability = keys.ability
+	local speed = ability:GetSpecialValueFor("projectile_speed")
+
+	local diff = target_point-caster:GetAbsOrigin()
+	diff.z = 0
+	local dir = diff:Normalized()
+	if dir == Vector(0,0,0) then
+		dir = caster:GetForwardVector()
+	end
+
+	local projectile_table = {
+		Ability				= ability,
+		EffectName			= "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf",
+		vSpawnOrigin		= caster:GetAbsOrigin(),
+		fDistance			= ability:GetCastRange(),
+		fStartRadius		= 200,
+		fEndRadius			= 200,
+		Source				= caster,
+		bHasFrontalCone		= false,
+		bReplaceExisting	= false,
+		iUnitTargetTeam		= ability:GetAbilityTargetTeam(),
+		iUnitTargetFlags	= ability:GetAbilityTargetFlags(),
+		iUnitTargetType		= ability:GetAbilityTargetType(),
+		fExpireTime			= GameRules:GetGameTime() + 5.0,
+		bDeleteOnHit		= false,
+		vVelocity			= dir*speed,
+		bProvidesVision		= false,
+		iVisionRadius		= 0,
+		iVisionTeamNumber	= caster:GetTeamNumber(),
+	}
+
+	local channel_time = ability:GetChannelTime() - 0.05 -- 避免最後一次出不來
+	local fire_num = 3
+	local fire_delay = channel_time / (fire_num+1)
+
+	for i=1,fire_num do
+		Timers:CreateTimer(fire_delay*i,function()
+			if ability:IsChanneling() then
+				ProjectileManager:CreateLinearProjectile(projectile_table)
+				EmitSoundOn("Hero_DragonKnight.BreathFire",caster)
+			end
+		end)
+	end
+
+	-- 儲存投射物方向給命中特效使用
+	ability.dir = dir
+end
+
+function B21W_old_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local ifx = ParticleManager:CreateParticle("particles/econ/items/lina/lina_head_headflame/lina_spell_dragon_slave_impact_headflame.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
+	ParticleManager:SetParticleControlForward(ifx,1,ability.dir)
+	ParticleManager:ReleaseParticleIndex(ifx)
+
+	ApplyDamage({
+		victim = target,
+		attacker = caster,
+		ability = ability,
+		damage_type = ability:GetAbilityDamageType(),
+		damage = ability:GetAbilityDamage(),
+	})
+end
+
+function B21E_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local buff_duration = ability:GetSpecialValueFor("buff_duration")
+	local stun_time = ability:GetSpecialValueFor("stun_time")
+	local hp_threshold = ability:GetSpecialValueFor("hp_threshold")
+
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration=stun_time})
+	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_queenofpain/queen_scream_of_pain_owner.vpcf",PATTACH_ABSORIGIN,target)
+	ParticleManager:ReleaseParticleIndex(ifx)
+
+	if target:GetHealthPercent() <= hp_threshold then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21E_old_buff",{duration=buff_duration})
+	end
+
+	ExecuteOrderFromTable({
+		UnitIndex = caster:entindex(),
+		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+		TargetIndex = target:entindex(),
+		Queue = false
+	})
+
+	EmitSoundOn("Hero_ChaosKnight.ChaosStrike",caster)
+end
+
+function B21R_old_buff_OnCreated( keys )
+	local target = keys.target
+	local ifx = ParticleManager:CreateParticle("particles/b21/b21r_old_buff_soft.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
+	ParticleManager:SetParticleControl(ifx,1,Vector(target:BoundingRadius2D()*4))
+	target.ifx_B21R_old_buff = ifx
+end
+
+function B21R_old_buff_OnDestroy( keys )
+	local target = keys.target
+	ParticleManager:DestroyParticle(target.ifx_B21R_old_buff,false)
+end
+
+function B21T_old_OnHealthChange( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local hp_threshold = ability:GetSpecialValueFor("hp_threshold")
+	local hp = caster:GetHealth()
+
+	if ability.modifier == nil then
+		if hp < hp_threshold then
+			ability.modifier = ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old",nil)
+		end
+	else
+		if hp >= hp_threshold then
+			caster:RemoveModifierByNameAndCaster("modifier_B21T_old",caster)
+			ability.modifier = nil
+		end
+	end
+end
+
+function B21T_old_OnCreated( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local ifx = ParticleManager:CreateParticle("particles/b21/b21t_buff.vpcf",PATTACH_CUSTOMORIGIN,caster)
+	ParticleManager:SetParticleControl(ifx,0,Vector(50))
+	ability.ifx = ifx
+end
+
+function B21T_old_OnDestroy( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	ParticleManager:DestroyParticle(ability.ifx,false)
+end
