@@ -11,6 +11,10 @@ function ShowEffect( keys )
 end
 
 function Shock( keys )
+
+	-- 開關型技能不能用
+	if keys.event_ability:IsToggle() then return end
+
 	local caster = keys.caster
 	local ability = keys.ability
 	if (caster:GetMana() >= 75) then
