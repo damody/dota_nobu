@@ -82,7 +82,7 @@ local function chat_of_test(keys)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
-	if s == "-old"  and caster:GetLevel() == 1 and caster.isold == nil 
+	if (s == "-old" or s == "-11") and caster:GetLevel() == 1 and caster.isold == nil 
 		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
 		
 		-- 通知所有玩家該英雄已經變成舊版

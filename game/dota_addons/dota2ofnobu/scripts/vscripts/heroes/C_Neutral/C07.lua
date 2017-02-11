@@ -98,11 +98,8 @@ function C07R_old( keys )
 	local level = ability:GetLevel() - 1
 	local radius = ability:GetLevelSpecialValueFor("radius",level)
 	local target_count = ability:GetLevelSpecialValueFor("target_count",level)
-    local group = FindUnitsInRadius(caster:GetTeam(), point2, nil, radius , ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+    local group = FindUnitsInRadius(caster:GetTeam(), point2, nil, radius , ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 	for i,v in ipairs(group) do
-		if i > target_count then
-			break
-		else
 			local lightningBolt = ParticleManager:CreateParticle("particles/c07r/c07r.vpcf", PATTACH_WORLDORIGIN, caster)
 			ParticleManager:SetParticleControl(lightningBolt,0,Vector(caster:GetAbsOrigin().x,caster:GetAbsOrigin().y,caster:GetAbsOrigin().z + caster:GetBoundingMaxs().z ) + vec * 101 )
 			ParticleManager:SetParticleControl(lightningBolt,1,Vector(v:GetAbsOrigin().x,v:GetAbsOrigin().y,v:GetAbsOrigin().z + v:GetBoundingMaxs().z ))
@@ -115,7 +112,6 @@ function C07R_old( keys )
 			end)
 			--dmg
 			ability:ApplyDataDrivenModifier(caster,v,"modifier_C07R",nil)
-		end
 	end
 	group = nil
 end

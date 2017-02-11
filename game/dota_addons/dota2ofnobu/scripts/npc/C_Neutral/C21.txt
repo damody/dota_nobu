@@ -325,7 +325,7 @@
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityCooldown"	"115 95 75"
+		"AbilityCooldown"	"95 85 75"
 		"AbilityManaCost"	"250 350 450"
 		"AbilityCastRange"	"600"
 		"precache"
@@ -365,8 +365,8 @@
 				}
 				"States"
 				{
-					//"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					//"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"10"
 			}
@@ -598,11 +598,6 @@
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
 						"Function"	"C21R_old_crit_judgment"
 					}
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_C21R_old_no_miss"
-					}
 				}
 			}
 			"modifier_C21R_old_critical_strike"
@@ -618,12 +613,12 @@
 			}
 			"modifier_C21R_old_no_miss"
 			{
-				"Passive"	"1"
+				"Passive"	"0"
 				"IsHidden"	"0"
 				"IsDebuff"	"1"
-				"Properties"
+				"States"
 				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -637,7 +632,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"crit_chance" "40 45 50 55" // %
+				"crit_chance" "40 50 60 70" // %
 			}
 		}
 	}
