@@ -184,8 +184,10 @@ function Nobu:FilterGold( filterTable )
       else
         return false
       end
+    elseif reason == DOTA_ModifyGold_SellItem then
+      print("DOTA_ModifyGold_SellItem")
     end
-
+    print("DOTA_ModifyGold_WTF")
     return true
 end
 

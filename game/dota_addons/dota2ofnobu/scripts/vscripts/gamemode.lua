@@ -158,3 +158,5 @@ function GameMode:ExampleConsoleCommand()
 
   print( '*********************************************' )
 end
+
+print("fuckingmode")

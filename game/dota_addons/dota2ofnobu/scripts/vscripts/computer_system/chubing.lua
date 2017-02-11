@@ -1,6 +1,6 @@
 --print ('[Nobu-lua] chubing lua script Starting..' )
 --if _G.nobu_chubing_b then --"Nobu" then
-print("[Nobu-lua]".."_G.nobu_chubing_b")
+print("[Nobu-lua] _G.nobu_chubing_b")
 --[[
 IDEA:
 	O先把秒數用全局紀錄下來，可以作成動態管理出兵秒數
