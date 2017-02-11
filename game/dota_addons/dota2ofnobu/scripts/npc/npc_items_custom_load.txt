@@ -4269,7 +4269,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"40"
+		"AbilityCooldown"	"25"
 		
 		"AbilityManaCost"	"300"
 		"AbilityCastPoint"	"0.1"
@@ -4420,7 +4420,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"9850"
+		"ItemCost"	"11850"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
@@ -5204,7 +5204,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"70"
+		"AbilityCooldown"	"40"
 		
 		"AbilityManaCost"	"285"
 		"AbilityCastPoint"	"0.1"
@@ -5266,7 +5266,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"70"
+		"AbilityCooldown"	"40"
 		
 		"AbilityManaCost"	"300"
 		"AbilityCastPoint"	"0.1"
@@ -5401,10 +5401,10 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-25"	//魔法防禦
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-50"	//魔法防禦
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-15"	//防禦
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "70" //攻速
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "25" //攻擊
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "50" //攻擊
 				} 
 			}
 			"Passive_great_sword_of_berserker"

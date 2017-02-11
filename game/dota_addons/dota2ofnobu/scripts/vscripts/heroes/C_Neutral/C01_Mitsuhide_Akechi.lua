@@ -321,6 +321,8 @@ function C01E_old_spell_start( keys )
 		if not ability:IsChanneling() then
 			return nil
 		end
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 1, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 1, false)
 		-- 照亮目標周圍
 		AddFOWViewer(iTeam,center,aoe_radius*1.1,1.0,false)
 		-- 搜尋敵人

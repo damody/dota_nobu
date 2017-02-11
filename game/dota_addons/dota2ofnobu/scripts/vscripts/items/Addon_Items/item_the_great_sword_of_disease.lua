@@ -77,16 +77,13 @@ function attackgo( keys )
                                   nil,
                                   300,
                                   DOTA_UNIT_TARGET_TEAM_ENEMY,
-                                  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                                  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
                                   DOTA_UNIT_TARGET_FLAG_NONE,
                                   FIND_ANY_ORDER,
                                   false)
 
-        --effect:傷害+暈眩
         for _,it in pairs(direUnits) do
-            if (not(it:IsBuilding())) then
-                AMHC:Damage(caster,it,320,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-            end
+          AMHC:Damage(caster,it,320,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
         end
     end
 end
