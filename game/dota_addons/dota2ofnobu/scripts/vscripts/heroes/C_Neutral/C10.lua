@@ -52,7 +52,7 @@ function C10T_END( keys )
 			if not string.match(v:GetUnitName(), "com_general") then
 				v:SetAbsOrigin(point)
 				if not (v:HasModifier("modifier_C10T")) then
-					ability:ApplyDataDrivenModifier(caster,v,"modifier_C10T",{duration=3})
+					keys.ability:ApplyDataDrivenModifier(caster,v,"modifier_C10T",{duration=3})
 				end
 			end
 		end

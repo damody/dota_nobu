@@ -133,6 +133,6 @@ local InitTrig_Game_Init  = function ( )
 		Test ( )
 	end
 end
-
+print("fuckinginit")
 --【Init】
-Timers:CreateTimer (  0.01 ,  InitTrig_Game_Init )
+--Timers:CreateTimer (  0.01 ,  InitTrig_Game_Init )
