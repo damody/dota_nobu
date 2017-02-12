@@ -127,7 +127,7 @@
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 
-		"AbilityCooldown"				"25 22 19 16"
+		"AbilityCooldown"				"20 15 10 5"
 		"AbilityManaCost"				"135 150 165 180"
 
 		"AbilityCastRange"				"650"
@@ -148,7 +148,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_outgoing_damage"	"-70"
+				"illusion_outgoing_damage"	"-20"
 			}
 			"04"
 			{
@@ -540,7 +540,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 
 		"AbilityCooldown"				"15"
-		"AbilityManaCost"				"100 120 140 160"
+		"AbilityManaCost"				"50"
 
 		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0"
@@ -557,17 +557,17 @@
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"steal_hp"		"80 100 120 140"
+				"steal_hp"		"160 200 240 280"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"steal_mp"		"10 15 20 25"
+				"steal_mp"		"20 30 40 50"
 			}
 			"04"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"max_range"		"1000"
+				"max_range"		"2000"
 			}
 		}
 
