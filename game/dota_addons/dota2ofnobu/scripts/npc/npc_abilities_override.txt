@@ -18295,5 +18295,23 @@
 			}
 		}
 	}
-		
+
+	"techies_minefield_sign"
+	{
+		"AbilityCooldown"				"60.0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"125"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifetime"				"180"
+			}
+		}
+	}
 }
