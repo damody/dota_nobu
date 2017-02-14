@@ -65,7 +65,7 @@ function Nobu:OnHeroIngame( keys )
       end
       -- 這隻角色天生會帶一個modifier我們需要砍掉他
       caster:RemoveModifierByName("modifier_silencer_int_steal")
-    elseif string.match(name, "windrunner") then -- 阿市
+    elseif string.match(name, "npc_dota_hero_puck") then -- 阿市
       if caster:FindAbilityByName("C17D") ~= nil then
         caster:FindAbilityByName("C17D"):SetLevel(1)
       end

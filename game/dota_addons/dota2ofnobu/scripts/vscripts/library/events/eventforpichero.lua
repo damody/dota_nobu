@@ -61,7 +61,7 @@ function Nobu:PickHero( keys )
         end)
         
         caster:FindAbilityByName("C07D"):SetLevel(1)
-      elseif string.match(name, "windrunner") then -- 阿市
+      elseif string.match(name, "npc_dota_hero_puck") then -- 阿市
         caster:FindAbilityByName("C17D"):SetLevel(1)
       elseif string.match(name, "faceless_void") then --風魔小太郎
         caster:FindAbilityByName("B02D"):SetLevel(1)

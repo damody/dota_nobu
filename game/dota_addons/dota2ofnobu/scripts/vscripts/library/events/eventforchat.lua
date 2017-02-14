@@ -194,7 +194,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("A34R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A34T_old")
-		elseif string.match(caster:GetUnitName(), "windrunner") then -- 阿市
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_puck") then -- 阿市
 			caster:AddAbility("C17W_old")
 			caster:AddAbility("C17E_old")
 			caster:AddAbility("C17R_old")
