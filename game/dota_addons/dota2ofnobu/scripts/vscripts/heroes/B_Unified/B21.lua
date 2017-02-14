@@ -201,8 +201,6 @@ end
 
 -- 馬場信房 11.2B
 
-require('libraries/animations')
-
 function B21W_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local target_point = keys.target_points[1]
