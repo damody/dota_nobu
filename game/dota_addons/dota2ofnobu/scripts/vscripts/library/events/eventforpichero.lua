@@ -65,6 +65,9 @@ function Nobu:PickHero( keys )
         caster:FindAbilityByName("C17D"):SetLevel(1)
       elseif string.match(name, "faceless_void") then --風魔小太郎
         caster:FindAbilityByName("B02D"):SetLevel(1)
+      elseif string.match(name, "npc_dota_hero_techies") then -- 濃姬
+        local A26D = caster:FindAbilityByName("A26D")
+        if A26D then A26D:SetLevel(1) end
       end
     end
   end)

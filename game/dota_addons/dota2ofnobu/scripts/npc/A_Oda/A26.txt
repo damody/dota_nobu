@@ -8,6 +8,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/a26.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		}
 	}
 
@@ -30,6 +31,11 @@
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf"
+		}
 
 		"OnAbilityPhaseStart"
 		{
@@ -82,6 +88,11 @@
 				"var_type"		"FIELD_INTEGER"
 				"knockback_speed"	"700"
 			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf"
 		}
 
 		"OnAbilityPhaseStart"
@@ -177,6 +188,7 @@
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/caoren_fengqun"
+		"MaxLevel"              		"5"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
@@ -193,7 +205,7 @@
 		"AbilityCastPoint"				"0"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 
-		"AoERadius"		"250"
+		"AoERadius"		"250" // 顯示布置範圍
 
 		"AbilitySpecial"
 		{
@@ -202,26 +214,36 @@
 				"var_type"		"FIELD_INTEGER"
 				"duration"		"90"
 			}
-			"02"
+			"02" // 傷害範圍
 			{
 				"var_type"		"FIELD_INTEGER"
 				"radius_explosion"	"150"
 			}
-			"03"
+			"03" // 觸發範圍
 			{
 				"var_type"		"FIELD_INTEGER"
 				"radius_trigger"	"100"
 			}
-			"04"
+			"04" // 外圍地雷放置距離
 			{
 				"var_type"		"FIELD_INTEGER"
-				"radius_setup"	"200"
+				"radius_sub_mine"	"200"
 			}
 			"05"
 			{
 				"var_type"		"FIELD_INTEGER"
 				"number_of_sub_mine"	"2"
 			}
+			"06" // 生效延遲 -- 放下去不會馬上爆炸
+			{
+				"var_type"		"FIELD_FLOAT"
+				"active_delay"	"1.0"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
 		}
 
 		"OnAbilityPhaseStart"
@@ -245,6 +267,22 @@
 
 		"Modifiers"
 		{
+			"modifier_A26D_mine_passive"
+			{
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%radius_explosion" // 把地雷的攻擊距離拿來顯示爆炸範圍
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE" 			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
 			"modifier_A26D_mine_aura"
 			{
 				"Aura"	"modifier_A26D_mine_trigger"
@@ -257,23 +295,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_INVISIBLE" 			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
-
-				}
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%radius_explosion"
-				}
-
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
-						"Function"		"A26D_OnCreated"
-					}
 				}
 			}
 
@@ -304,7 +326,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 
 		"AbilityCooldown"				"4"
 		"AbilityManaCost"				"80"
@@ -314,7 +336,7 @@
 		"AbilityCastPoint"				"0.1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
-		"AoERadius"						"600"
+		"AoERadius"						"400"
 
 		"AbilitySpecial"
 		{
@@ -326,13 +348,22 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"projectile_speed"	"1000"
+				"projectile_speed"	"2000"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"600"
+				"radius"			"400"
 			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/a26/a26t_overhead.vpcf"
+			"particle"  "particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf"
+			"particle"  "particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion.vpcf"
+			"particle"  "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack.vpcf"
 		}
 
 		"OnAbilityPhaseStart"
@@ -369,6 +400,8 @@
 		{
 			"modifier_A26T_big_bomb"
 			{
+				"EffectName"		"particles/a26/a26t_overhead.vpcf"
+				"EffectAttachType"	"follow_overhead"
 			}
 		}
 	}
