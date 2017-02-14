@@ -65,8 +65,9 @@ function modifier_protection_amulet:OnTakeDamage(event)
 								end
 							end
 							Timers:CreateTimer(30, function() 
-								self.caster.protection_amulet = true
-								
+								if IsValidEntity(self.caster) then
+									self.caster.protection_amulet = true
+								end
 							end)
 						end
 		            else
@@ -91,6 +92,9 @@ function OnEquip( keys )
 	caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
 	caster.has_item_protection_amulet = true
 	Timers:CreateTimer(1, function() 
+		if not IsValidEntity(caster) then
+			return nil
+		end
 		if (caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet")) then
 			ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 			caster:FindModifierByName("modifier_protection_amulet").caster = caster

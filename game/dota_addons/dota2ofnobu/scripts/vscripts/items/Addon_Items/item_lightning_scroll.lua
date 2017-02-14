@@ -214,6 +214,7 @@ function Shock2( keys )
 	local end_distance = ability:GetLevelSpecialValueFor("end_distance", level )
 	local targets = ability:GetLevelSpecialValueFor("targets", level )
 	local damage = ability:GetLevelSpecialValueFor("damage", level )
+	local chance = ability:GetLevelSpecialValueFor("chance", level )
 	local AbilityDamageType = ability:GetAbilityDamageType()
 	local particleName = "particles/item/d09/d09.vpcf"
 	local vec = caster:GetForwardVector():Normalized()
@@ -237,10 +238,10 @@ function Shock2( keys )
 		if (caster.raikiri == nil) then
 			caster.raikiri = 0
 		end
-		if (ran > 16) then
+		if (ran > chance) then
 			caster.raikiri = caster.raikiri + 1
 		end
-		if (caster.raikiri > (100/16+1) or ran <= 16) then
+		if (caster.raikiri > (100/chance+1) or ran <= chance) then
 			caster.raikiri = 0
 			--【KV】
 			--caster:SetForwardVector(vec)

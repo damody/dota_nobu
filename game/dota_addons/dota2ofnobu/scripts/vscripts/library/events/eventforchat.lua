@@ -367,11 +367,6 @@ local function chat_of_test(keys)
 		if string.match(s,"cam") then
 		local dis = tonumber(string.match(s, '%d+'))
 			GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
-			SendToConsole("r_farz 60000")
-		    Timers:CreateTimer( 1, function()
-		  		SendToConsole("r_farz 60000")
-		      return 1
-		    end)
 		end
 		if string.match(s,"-gg") then
 			GameRules:SetCustomGameEndDelay(1)

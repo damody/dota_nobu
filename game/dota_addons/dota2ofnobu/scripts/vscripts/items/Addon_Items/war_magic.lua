@@ -446,6 +446,7 @@ function to_soldier_Oda(keys)
 		return 180
 		end)
 	-- 把中離馬變無敵
+	--[[
 	Timers:CreateTimer(3, function()
 	for playerID = 0, 14 do
 		local id       = playerID
@@ -471,6 +472,7 @@ function to_soldier_Oda(keys)
    	end
    	return 3
    	end)
+   	]]
 end
 
 

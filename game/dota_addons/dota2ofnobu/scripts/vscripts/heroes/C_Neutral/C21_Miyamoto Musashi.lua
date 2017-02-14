@@ -142,7 +142,14 @@ function Trig_C21TActions( keys )
         --如果元素大於0個單位才隨機抓取
         if #group > 0 and ti ~= 0 then
         	u2 = group[RandomInt(1,#group)]
-
+        	if u2:GetUnitName() == "B24T_HIDE" then
+        		for _,xx in pairs(group) do
+        			if xx:GetUnitName() ~= "B24T_HIDE" then
+        				u2 = xx
+        				break
+        			end
+        		end
+        	end
         	--call function
 			C21T_Copy(u,i, u2)
 			C21T_Effect(u,u2,i)
@@ -200,6 +207,11 @@ function Trig_C21EActions(keys)
 
 				--讓創造單位移動、轉向目標單位
 				point3 = Vector(x2+100*math.cos(a*bj_DEGTORAD) ,  y2+100*math.sin(a*bj_DEGTORAD), point2.z)--需要Z軸 要不然會低於地圖
+				if (point3-point):Length2D() > 1500 then
+					u:RemoveModifierByName("modifier_C21E")
+                	u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.5})
+                	return nil
+                end
 				u:SetOrigin(point3)
 				u:SetForwardVector((point-point2):Normalized())
 
