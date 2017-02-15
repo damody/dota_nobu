@@ -299,7 +299,11 @@ function C07_Effect( keys )
 					if caster:IsAlive() then
 						AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 					else
-						AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						if v2:IsBuilding() then
+							AMHC:Damage( dummyx,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						else
+							AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						end
 						caster.takedamage = caster.takedamage + dmg
 						if (v2:IsRealHero()) then
 							caster.herodamage = caster.herodamage + dmg

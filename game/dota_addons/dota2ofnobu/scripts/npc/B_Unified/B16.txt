@@ -888,7 +888,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"	"custom/zhangliao_cizhenkuijia_01"
 		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"		"170 120 70"
+		"AbilityCooldown"		"130 100 70"
 		"AbilityManaCost"		"300 600 900"
 		"MaxLevel"					"3"
 		"RequiredLevel"				"6"
@@ -911,6 +911,11 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
 				"Function"		"B16T_old"
+			}
+			"Stun"
+			{
+				"Duration"   "5"
+				"Target" 	 "CASTER"
 			}
 		}
 		"Modifiers"

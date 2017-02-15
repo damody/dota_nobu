@@ -106,35 +106,39 @@ end
 
 -- 這個function會收到全場的傷害事件，無論目標是誰...
 function modifier_b21r_lua:OnTakeDamage( keys )
-	if IsClient() then return end
+	if IsServer() then
 
-	local unit = self:GetParent()
+		local unit = self:GetParent()
 
-	-- 判斷目標是否是自己
-	if keys.unit ~= unit then return end
+		-- 判斷目標是否是自己
+		if keys.unit ~= unit then return end
 
-	-- 只反彈物理傷害
-	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
+		-- 如果要反彈的人還是可靠的
+		if not IsValidEntity(keys.attacker) then return end
 
-	-- 不能反彈反彈傷害
-	if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return end
+		-- 只反彈物理傷害
+		if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
 
-	local attacker = keys.attacker
-	local ability = self:GetAbility()
+		-- 不能反彈反彈傷害
+		if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return end
 
-	ApplyDamage({
-		victim = attacker,
-		attacker = unit,
-		ability = self:GetAbility(),
-		damage = ability:GetAbilityDamage(),
-		damage_type = ability:GetAbilityDamageType(),
-		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
-	})
+		local attacker = keys.attacker
+		local ability = self:GetAbility()
 
-	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf",PATTACH_POINT_FOLLOW,unit)
-	ParticleManager:SetParticleControlEnt(ifx,0,unit,PATTACH_POINT_FOLLOW,"attach_hitloc",unit:GetAbsOrigin(),true)
-	ParticleManager:SetParticleControlEnt(ifx,1,attacker,PATTACH_POINT_FOLLOW,"attach_hitloc",attacker:GetAbsOrigin(),true)
-	ParticleManager:ReleaseParticleIndex(ifx)
+		ApplyDamage({
+			victim = attacker,
+			attacker = unit,
+			ability = self:GetAbility(),
+			damage = ability:GetAbilityDamage(),
+			damage_type = ability:GetAbilityDamageType(),
+			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
+		})
+
+		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf",PATTACH_POINT_FOLLOW,unit)
+		ParticleManager:SetParticleControlEnt(ifx,0,unit,PATTACH_POINT_FOLLOW,"attach_hitloc",unit:GetAbsOrigin(),true)
+		ParticleManager:SetParticleControlEnt(ifx,1,attacker,PATTACH_POINT_FOLLOW,"attach_hitloc",attacker:GetAbsOrigin(),true)
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end
 end
 
 function B21R_OnCreated( keys )

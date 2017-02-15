@@ -1,4 +1,4 @@
-require("libraries/containers")
+require('libraries/containers')
 --idea test
 
 
@@ -30,6 +30,7 @@ function EventForAttackTarget( filterTable )
 	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability)
 	local target = EntIndexToHScript( f.entindex_target )
+	if not IsValidEntity(caster) or not IsValidEntity(target) then return false end
 	if caster:GetTeamNumber() == target:GetTeamNumber() then
 		return false
 	end

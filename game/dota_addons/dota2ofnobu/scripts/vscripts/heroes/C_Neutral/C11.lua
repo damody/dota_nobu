@@ -44,7 +44,8 @@ function C11W_hit_unit( keys )
 		caster:RemoveModifierByName("modifier_C11W")
 		local first_target = ability.first_target
 		-- 如果一開始選的目標還活著則出現在目標周圍，並且命令攻擊他
-		if IsValidEntity(first_target) and first_target:IsAlive() then
+		if IsValidEntity(first_target) and first_target:IsAlive() and 
+			(first_target:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D() < 2000 then
 			FindClearSpaceForUnit(caster,first_target:GetAbsOrigin(),true)
 			-- 命令攻擊
 			local order = {
@@ -145,7 +146,7 @@ end
 function C11W_miss_target( keys )
 	local caster = keys.caster
 	local dummy = CreateUnitByName("npc_dummy_unit",keys.target_points[1],false,nil,nil,caster:GetTeamNumber())
-	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=1})
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
 	keys.target = dummy
 	C11W_hit_unit(keys)
 end

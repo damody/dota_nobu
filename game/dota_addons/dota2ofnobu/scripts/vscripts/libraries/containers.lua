@@ -2951,9 +2951,3 @@ function IsValidContainer(c)
 end
 
 if not Containers.containers then Containers:start() end
-
-
-
-
-
-print("fuckingday")

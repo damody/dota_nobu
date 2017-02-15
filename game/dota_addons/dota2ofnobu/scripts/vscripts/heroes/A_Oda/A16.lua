@@ -210,7 +210,9 @@ function A16R( keys )
 	if target.A16R == true then
 		target.A16R = false
 		Timers:CreateTimer(0.8,function ()
-			target.A16R = true
+			if IsValidEntity(target) then
+				target.A16R = true
+			end
 		end)
 
 		local particle=ParticleManager:CreateParticle("particles/a16r3/a16r3.vpcf",PATTACH_POINT,target)
