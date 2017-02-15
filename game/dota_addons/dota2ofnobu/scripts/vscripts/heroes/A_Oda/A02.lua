@@ -8,7 +8,7 @@ function A02W_OnAttackStart( keys )
 
 	-- 判斷魔力與法球刀
 	if caster.nobuorb1 or caster:GetMana() < mana_cost then
-		caster:ToggleAbility()
+		ability:ToggleAbility()
 	else
 		caster:SpendMana(mana_cost,ability)
 	end
