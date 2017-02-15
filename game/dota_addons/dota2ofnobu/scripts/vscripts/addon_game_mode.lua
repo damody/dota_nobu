@@ -4,6 +4,7 @@ print ( '[Nobu-lua] ADDON INIT EXECUTED' )
 _G.CountUsedAbility_Table = {}
 
 _G.heromap = {
+  npc_dota_hero_windrunner          = "A02",
   npc_dota_hero_ancient_apparition  = "A04",
   npc_dota_hero_troll_warlord       = "A06",
   npc_dota_hero_centaur             = "A07",
@@ -51,6 +52,7 @@ for k,v in pairs(_G.heromap) do
 end
 
 _G.heromap_version = {
+  A02 = {["11"] = false , ["16"] = true},
   A04 = {["11"] = true , ["16"] = true},
   A06 = {["11"] = true , ["16"] = true},
   A07 = {["11"] = true , ["16"] = true},
