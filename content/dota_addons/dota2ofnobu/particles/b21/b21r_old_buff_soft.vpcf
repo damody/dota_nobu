@@ -56,8 +56,6 @@
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 75
-			m_nAlphaMax = 100
 		},
 		{
 			_class = "C_INIT_RemapCPtoScalar"
@@ -70,7 +68,7 @@
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 6
+			m_nParticlesToEmit = 1
 		},
 	]
 }
