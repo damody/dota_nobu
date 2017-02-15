@@ -94,7 +94,7 @@ function Shock( keys )
 	                              nil,
 	                              SEARCH_RADIUS,
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
 	                              false)
