@@ -1,16 +1,49 @@
 -- 稻姬
 
+function A02W_OnToggleOn( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A02W",{})
+
+	-- 儲存當前的法球
+	ability.save_nobu_orb = caster.nobuorb1
+	caster.nobuorb1 = "A02W"
+end
+
+function A02W_OnToggleOff( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster:RemoveModifierByName("modifier_A02W")
+
+	-- 還原法球效果
+	caster.nobuorb1 = ability.save_nobu_orb
+end
+
 function A02W_OnAttackStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
 	local mana_cost = ability:GetManaCost(-1)
 
-	-- 判斷魔力與法球刀
-	if caster.nobuorb1 or caster:GetMana() < mana_cost then
+	-- 當玩家裝備新的法球時，自動關閉技能
+	if caster.nobuorb1 ~= "A02W" then
+		ability.save_nobu_orb = caster.nobuorb1
 		ability:ToggleAbility()
-	else
+		return
+	end
+
+	-- 當魔力不足時自動關閉技能
+	if caster:GetMana() < mana_cost then
+		ability:ToggleAbility()
+		return
+	end
+
+	-- 當目標是英雄或小兵才作用
+	if target:IsHero() or target:IsCreep() then
 		caster:SpendMana(mana_cost,ability)
+		caster:PerformAttack(target,true,true,false,false,true,false,true)
+	else
+		caster:PerformAttack(target,false,true,false,false,true,false,false)
 	end
 end
 
@@ -20,7 +53,8 @@ function A02W_OnOrbImpact( keys )
 	local ability = keys.ability
 	local damage = ability:GetAbilityDamage()
 
-	if target:IsHero() or target:IsCreep() then
+	-- 對魔免單位無效
+	if not target:IsMagicImmune() then
 		ApplyDamage({
 			victim = target,
 			attacker = caster,
