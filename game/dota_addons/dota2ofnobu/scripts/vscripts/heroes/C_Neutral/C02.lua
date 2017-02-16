@@ -460,35 +460,37 @@ function C02E_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02E_old",nil)
+	ability.modifier = ability:ApplyDataDrivenModifier(caster,target,"modifier_C02E_old",nil)
+end
 
+function C02E_old_OnChannelFinish( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if ability.modifier then ability.modifier:Destroy() end
+	EndAnimation(caster)
+end
+
+function modifier_C02E_old_OnCreated( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
 	-- 吸收特效
 	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_life_drain.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControlEnt(ifx,0,caster,PATTACH_POINT_FOLLOW,"attach_attack2",Vector(0),true)
 	ParticleManager:SetParticleControlEnt(ifx,1,target,PATTACH_POINT_FOLLOW,"attach_hitloc",Vector(0),true)
 	ParticleManager:SetParticleControl(ifx,10,Vector(1))
 	ParticleManager:SetParticleControl(ifx,11,Vector(1))
-	caster.C02E_old_ifx = ifx
+	target.C02E_old_ifx = ifx
 	Timers:CreateTimer(10, function ()
-		  ParticleManager:DestroyParticle(ifx,false)
-		end)
-end
-
-function C02E_old_OnChannelFinish( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	target:RemoveModifierByNameAndCaster("modifier_C02E_old",caster)
-	EndAnimation(caster)
-
-	-- 刪除吸收特效
-	ParticleManager:DestroyParticle(caster.C02E_old_ifx,false)
+		ParticleManager:DestroyParticle(ifx,false)
+	end)
 end
 
 function C02E_old_steal( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+
 	local steal_hp = ability:GetSpecialValueFor("steal_hp")
 	local steal_mp = ability:GetSpecialValueFor("steal_mp")
 	local hp = target:GetHealth()
@@ -519,7 +521,7 @@ function C02E_old_OnUnitMoved( keys )
 	delta.z = 0
 	caster:SetForwardVector( delta:Normalized() )
 	if delta:Length2D() > max_range then
-		ability:EndChannel(true)
+		target:RemoveModifierByNameAndCaster("modifier_C02E_old",caster)
 	end
 end
 
@@ -527,9 +529,9 @@ function modifier_C02E_old_OnDestroy( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	if ability:IsChanneling() then
-		ability:EndChannel(true)
-	end
+	if ability:IsChanneling() then ability:EndChannel(true)	end
+	-- 刪除吸收特效
+	ParticleManager:DestroyParticle(target.C02E_old_ifx,false)
 end
 
 function C02R_old_OnAttackStart( keys )
