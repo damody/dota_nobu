@@ -95,8 +95,9 @@ function spell_ability ( filterTable )
 	if caster:GetUnitName() == "npc_dota_courier2" and not string.match(ability:GetName(), "courier") then
 		return false
 	end
-	caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
-
+	if ability then
+		caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
+	end
 	if ordertype == DOTA_UNIT_ORDER_CAST_POSITION then --5
 		-- [   VScript             ]: {
 		-- [   VScript             ]:    entindex_ability                	= 461 (number)
