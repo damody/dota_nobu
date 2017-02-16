@@ -123,10 +123,7 @@ function equilibrium_constant:GetModifierMoveSpeed_Limit( params )
 end
 
 function equilibrium_constant:x_Start()
-    if equilibrium_constant.initOnce == nil then
-        equilibrium_constant.initOnce = true
-        ListenToGameEvent( "npc_spawned", Dynamic_Wrap( equilibrium_constant, "x_OnNPCSpawned" ), self )
-    end
+    ListenToGameEvent( "npc_spawned", Dynamic_Wrap( equilibrium_constant, "x_OnNPCSpawned" ), self )
 end
 
 function equilibrium_constant:x_OnNPCSpawned(keys)
@@ -141,4 +138,4 @@ function equilibrium_constant:x_OnNPCSpawned(keys)
 end
 
 LinkLuaModifier("equilibrium_constant","equilibrium_constant.lua",LUA_MODIFIER_MOTION_NONE)
-equilibrium_constant:x_Start()
+equilibrium_constant():x_Start()
