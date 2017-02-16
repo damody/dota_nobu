@@ -23,7 +23,7 @@ function A02W_OnAttackStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local mana_cost = ability:GetSpecialValueFor("ManaCost")
+	local mana_cost = ability:GetSpecialValueFor("mana_cost")
 
 	-- 當玩家裝備新的法球時，自動關閉技能
 	if caster.nobuorb1 ~= "A02W" then
@@ -41,9 +41,8 @@ function A02W_OnAttackStart( keys )
 	-- 當目標是英雄或小兵才作用
 	if not target:IsBuilding() and not target:IsMagicImmune() then
 		caster:SpendMana(mana_cost,ability)
-		caster:PerformAttack(target,true,true,false,false,true,false,true)
 	else
-		caster:PerformAttack(target,false,true,false,false,true,false,false)
+		caster:PerformAttack(target,false,false,false,false,true,false,false)
 	end
 end
 
@@ -53,19 +52,16 @@ function A02W_OnOrbImpact( keys )
 	local ability = keys.ability
 	local damage = ability:GetAbilityDamage()
 
-	-- 對魔免單位無效
-	if not target:IsMagicImmune() and (not target:IsBuilding()) then
-		ApplyDamage({
-			victim = target,
-			attacker = caster,
-			ability = ability,
-			damage = damage,
-			damage_type = ability:GetAbilityDamageType(),
-			-- damage_flags = DOTA_DAMAGE_FLAG_NONE
-		})
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_A02W_debuff",{})
-		SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_POISON_DAMAGE,target,damage,nil)
-	end
+	ApplyDamage({
+		victim = target,
+		attacker = caster,
+		ability = ability,
+		damage = damage,
+		damage_type = ability:GetAbilityDamageType(),
+		-- damage_flags = DOTA_DAMAGE_FLAG_NONE
+	})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_A02W_debuff",{})
+	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_POISON_DAMAGE,target,damage,nil)
 end
 
 function A02E_OnSpellStart( keys )
