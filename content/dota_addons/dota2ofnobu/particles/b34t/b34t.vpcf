@@ -70,6 +70,8 @@
 			_class = "C_OP_InterpolateRadius"
 			m_flStartScale = 0.0
 			m_flBias = 0.95
+			m_flEndTime = 2.0
+			m_flEndScale = 2.0
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
@@ -89,8 +91,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 92.0
-			m_flRadiusMax = 92.0
+			m_flRadiusMin = 150.0
+			m_flRadiusMax = 150.0
 		},
 		{
 			_class = "C_INIT_RemapParticleCountToScalar"
@@ -133,7 +135,6 @@
 		},
 		{
 			m_ChildRef = resource:"particles/b34t/b34t_b.vpcf"
-			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/b34t/b34tz.vpcf"

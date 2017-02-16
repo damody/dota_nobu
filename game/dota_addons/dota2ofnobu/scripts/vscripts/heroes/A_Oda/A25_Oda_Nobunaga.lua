@@ -244,7 +244,7 @@ function A25T( keys )
 	Timers:CreateTimer(0, function()
 		local pos = caster:GetAbsOrigin()
 		ParticleManager:SetParticleControl(tornado, 3, pos)
-		timecount = timecount + 0.1
+		timecount = timecount + 0.2
 		small_tornado_count = small_tornado_count + 1
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
                               caster:GetAbsOrigin(),
@@ -259,16 +259,16 @@ function A25T( keys )
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
-				AMHC:Damage(caster,it,AbilityDamage*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage(caster,it,AbilityDamage*0.4,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 			else
-				AMHC:Damage(caster,it,AbilityDamage*0.1,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage(caster,it,AbilityDamage*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 			end
 		end
 		if (small_tornado_count % 4 == 0) then
 			A25T2(keys)
 		end
 		if (caster:HasModifier("modifier_A25T")) then
-			return 0.1
+			return 0.2
 		else
 			ParticleManager:DestroyParticle(tornado, false)
 			return nil
@@ -293,12 +293,12 @@ function A25T2( keys )
 		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos, nil, 150, 
 			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 		for _,it in pairs(enemies) do
-			AMHC:Damage(caster,it, 6,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			AMHC:Damage(caster,it, 12,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end
 
-		timecount = timecount + 0.1
+		timecount = timecount + 0.2
 		if (timecount < 7) then
-			return 0.1
+			return 0.2
 		else
 			ParticleManager:DestroyParticle(tornado, false)
 			return nil

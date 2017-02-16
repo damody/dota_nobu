@@ -136,6 +136,8 @@ function A13W( event )
 	local origin_pos = caster:GetOrigin()
 
 	local am = caster:FindAllModifiers()
+
+
 	for _,v in pairs(am) do
 		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
 			caster:RemoveModifierByName(v:GetName())
@@ -217,6 +219,7 @@ function A13W( event )
 				return nil
 			end )
 	end
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.3})
 end
 
 
@@ -321,6 +324,7 @@ function A13W_old( event )
 				return nil
 			end )
 	end
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.3})
 end
 
 

@@ -76,10 +76,10 @@ function B15E( keys )
 
 	--【扣魔】
 	if caster:GetMana() < spe_value then
-		caster:CastAbilityToggle(ability,-1)		
-		caster:SetMana(0)
+		caster:CastAbilityToggle(ability,-1)
+		caster:SpendMana(spe_value, ability)
 	else
-		caster:SetMana(caster:GetMana() - spe_value)
+		caster:SpendMana(spe_value, ability)
 	end
 end
 
