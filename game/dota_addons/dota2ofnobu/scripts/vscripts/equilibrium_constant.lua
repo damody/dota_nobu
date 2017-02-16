@@ -80,6 +80,7 @@ function equilibrium_constant:GetModifierPhysicalArmorBonus( params )
         local owner = self:GetParent()
         local agi = owner:GetAgility()
         local ArmorBonus = ARMOR_PER_AGI_DIFF * agi
+        owner.ArmorBonus = ArmorBonus
         return ArmorBonus
     end
 end

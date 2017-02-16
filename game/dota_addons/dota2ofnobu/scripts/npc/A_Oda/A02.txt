@@ -23,7 +23,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityManaCost"				"6 8 10 12"
+		
 		"AbilityDamage"					"60 120 180 240"
 
 		"AbilitySpecial"
@@ -42,6 +42,11 @@
 			{
 				"var_type"		"FIELD_INTEGER"
 				"debuff_movement_speed"		"-15 -20 -25 -30"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"ManaCost"		"8 12 16 20"
 			}
 		}
 

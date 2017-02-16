@@ -23,7 +23,7 @@ function A02W_OnAttackStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local mana_cost = ability:GetManaCost(-1)
+	local mana_cost = ability:GetSpecialValueFor("ManaCost")
 
 	-- 當玩家裝備新的法球時，自動關閉技能
 	if caster.nobuorb1 ~= "A02W" then
@@ -39,7 +39,7 @@ function A02W_OnAttackStart( keys )
 	end
 
 	-- 當目標是英雄或小兵才作用
-	if target:IsHero() or target:IsCreep() then
+	if not target:IsBuilding() and not target:IsMagicImmune() then
 		caster:SpendMana(mana_cost,ability)
 		caster:PerformAttack(target,true,true,false,false,true,false,true)
 	else
@@ -54,7 +54,7 @@ function A02W_OnOrbImpact( keys )
 	local damage = ability:GetAbilityDamage()
 
 	-- 對魔免單位無效
-	if not target:IsMagicImmune() then
+	if not target:IsMagicImmune() and (not target:IsBuilding()) then
 		ApplyDamage({
 			victim = target,
 			attacker = caster,

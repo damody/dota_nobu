@@ -83,7 +83,6 @@ function Shock( keys )
 					return nil
 				end)
 
-
 	local count = 0
 	Timers:CreateTimer(1, function ()
 		count = count + 1
@@ -94,7 +93,7 @@ function Shock( keys )
 	                              nil,
 	                              SEARCH_RADIUS,
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
 	                              false)
