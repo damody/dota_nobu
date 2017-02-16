@@ -318,7 +318,13 @@ local function chat_of_test(keys)
 			caster:AddAbility("B21E_old")
 			caster:AddAbility("B21R_old")
 			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B21T_old") 
+			caster:AddAbility("B21T_old")
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_windrunner") then -- 稻姬
+			caster:AddAbility("A02W_old")
+			caster:AddAbility("A02E_old")
+			caster:AddAbility("A02R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A02T_old") 
 		end
 	end
 		
