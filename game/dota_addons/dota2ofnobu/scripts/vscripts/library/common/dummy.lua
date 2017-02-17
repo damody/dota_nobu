@@ -2,7 +2,9 @@ function killdummy( keys )
 	local dummy = keys.target
 	--print(dummy:GetUnitName())
 	if dummy ~= nil then
-		dummy:ForceKill(true)
+    if IsValidEntity(dummy) then
+		  dummy:ForceKill(true)
+    end
 		print(dummy:GetUnitName())
 	end
 end

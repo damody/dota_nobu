@@ -13,7 +13,6 @@ function Shock( keys )
 	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
 	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
 	local right = caster:GetRightVector()
-	caster:AddSpeechBubble(1,"今天的風兒有點囂張~",3.0,0,-50)
 
 	--casterLoc = keys.target_points[1] - right:Normalized() * 300
 	

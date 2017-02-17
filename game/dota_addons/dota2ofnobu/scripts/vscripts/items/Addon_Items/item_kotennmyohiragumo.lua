@@ -55,7 +55,7 @@ end
 function ShockTarget( keys, target )
 	local caster = keys.caster
 	local ability = keys.ability
-	local havetime = 10
+	local havetime = tonumber(keys.Time)
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_kotennmyohiragumo", {duration = havetime} )
 	target:FindModifierByName("modifier_kotennmyohiragumo").caster = target
 	target:FindModifierByName("modifier_kotennmyohiragumo").hp = caster:GetHealth()

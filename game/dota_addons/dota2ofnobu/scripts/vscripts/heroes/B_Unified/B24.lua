@@ -96,7 +96,9 @@ end
 
 function B24T2_Kill( keys )
 	local dummy	= keys.caster
-	dummy:ForceKill(true)
+	if IsValidEntity(dummy) then
+		dummy:ForceKill(true)
+	end
 end
 
 function B24W( keys )

@@ -59,6 +59,9 @@ end
 function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	keys.SHP1 = tonumber(keys.SHP1)
+	keys.SHP2 = tonumber(keys.SHP2)
+
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	          caster:GetAbsOrigin(),
 	          nil,
@@ -81,7 +84,11 @@ function ShockTarget( keys, target )
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_devil_supressor_armor", {duration = havetime} )
 	target:FindModifierByName("modifier_devil_supressor_armor").caster = target
 	target:FindModifierByName("modifier_devil_supressor_armor").hp = target:GetHealth()
-	target:FindModifierByName("modifier_devil_supressor_armor").magic_shield = 1000
+	if target:IsHero() then
+		target:FindModifierByName("modifier_devil_supressor_armor").magic_shield = keys.SHP2
+	else
+		target:FindModifierByName("modifier_devil_supressor_armor").magic_shield = keys.SHP1
+	end
 	local shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	target:FindModifierByName("modifier_devil_supressor_armor").shield_effect = shield
 	local sumtime = 0
