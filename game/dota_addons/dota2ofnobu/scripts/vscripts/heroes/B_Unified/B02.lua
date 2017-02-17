@@ -162,7 +162,9 @@ function B02R(keys)
 	--【Timer】
 	local num = 0
 	Timers:CreateTimer(3,function()
-		dummy:ForceKill(true)
+		if IsValidEntity(dummy) then
+			dummy:ForceKill(true)
+		end
 	end)	
 	--【MODIFIER】
 	ability:ApplyDataDrivenModifier(dummy,target,"modifier_B02R",nil)--綑綁 
@@ -366,7 +368,9 @@ function B02E_Cast(keys)
 		--【MODIFIER】
 		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_B02E_2",nil) 	
 		Timers:CreateTimer(10, function()
-			dummy:ForceKill(true)
+			if IsValidEntity(dummy) then
+				dummy:ForceKill(true)
+			end
 			end)
 	end
 	

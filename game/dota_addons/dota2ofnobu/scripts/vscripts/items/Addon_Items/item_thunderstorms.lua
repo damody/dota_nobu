@@ -21,7 +21,11 @@ function Shock( keys )
 	-- 需要手動刪除
 	local ifx_cloud = ParticleManager:CreateParticle("particles/item/item_thunderstorms_cloud.vpcf",PATTACH_CUSTOMORIGIN,caster)
 	ParticleManager:SetParticleControl(ifx_cloud,0,target_point)
-
+	Timers:CreateTimer(10, function()
+		if ifx_cloud ~= nil then
+			ParticleManager:DestroyParticle(ifx_cloud,false)
+		end
+		end)
 	local time = 0.01 -- 初始化計時器 防止多打一次
 	Timers:CreateTimer(0, function()
 		-- 搜尋
@@ -60,6 +64,7 @@ function Shock( keys )
 			return aoe_delay
 		else
 			ParticleManager:DestroyParticle(ifx_cloud,false)
+			ifx_cloud = nil
 			return nil
 		end
 	end)

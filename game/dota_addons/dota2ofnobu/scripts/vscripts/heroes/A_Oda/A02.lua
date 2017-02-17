@@ -51,17 +51,18 @@ function A02W_OnOrbImpact( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local damage = ability:GetAbilityDamage()
-
-	ApplyDamage({
-		victim = target,
-		attacker = caster,
-		ability = ability,
-		damage = damage,
-		damage_type = ability:GetAbilityDamageType(),
-		-- damage_flags = DOTA_DAMAGE_FLAG_NONE
-	})
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_A02W_debuff",{})
-	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_POISON_DAMAGE,target,damage,nil)
+	if not target:IsBuilding() and not target:IsMagicImmune() then
+		ApplyDamage({
+			victim = target,
+			attacker = caster,
+			ability = ability,
+			damage = damage,
+			damage_type = ability:GetAbilityDamageType(),
+			-- damage_flags = DOTA_DAMAGE_FLAG_NONE
+		})
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_A02W_debuff",{})
+		SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_POISON_DAMAGE,target,damage,nil)
+	end
 end
 
 function A02E_OnSpellStart( keys )

@@ -310,7 +310,9 @@ function Shock2( keys )
 			dummy:EmitSound("ITEM_D09.sound")
 			Timers:CreateTimer(2,function()
 				dummy:StopSound("ITEM_D09.sound")
-				dummy:ForceKill(true)
+				if IsValidEntity(dummy) then
+					dummy:ForceKill(true)
+				end
 			end)
 		end
 	end

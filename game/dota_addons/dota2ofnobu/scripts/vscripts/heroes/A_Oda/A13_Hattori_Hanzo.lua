@@ -603,7 +603,9 @@ function A13T( keys )
 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
 	dummy:FindAbilityByName("majia"):SetLevel(1)
 	Timers:CreateTimer( 5, function()
-		dummy:ForceKill(true)
+		if IsValidEntity(dummy) then
+			dummy:ForceKill(true)
+		end
 	end)
 	caster.dummy = dummy
 
@@ -689,7 +691,9 @@ function A13T_old( keys )
 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
 	dummy:FindAbilityByName("majia"):SetLevel(1)
 	Timers:CreateTimer( 5, function()
-		dummy:ForceKill(true)
+		if IsValidEntity(dummy) then
+			dummy:ForceKill(true)
+		end
 	end)
 	caster.dummy = dummy
 

@@ -55,7 +55,9 @@ function Shock( keys )
 			ParticleManager:DestroyParticle(particle,false)
 			ParticleManager:DestroyParticle(particle2,true)
 			ParticleManager:DestroyParticle(particle3,true)
-			dummy:ForceKill(true)
+			if IsValidEntity(dummy) then
+				dummy:ForceKill(true)
+			end
 			return nil
 		else
  			ParticleManager:DestroyParticle(particle,false)

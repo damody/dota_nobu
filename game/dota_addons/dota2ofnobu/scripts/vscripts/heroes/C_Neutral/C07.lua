@@ -195,7 +195,9 @@ function C07T( keys )
 	Timers:CreateTimer(life_time,function()
 		ParticleManager:DestroyParticle(particle,false)
 		ParticleManager:DestroyParticle(particle2,true)
-		dummy:ForceKill(true)
+		if IsValidEntity(dummy) then
+			dummy:ForceKill(true)
+		end
 		--print("@@@@".."dead")
 	end	)
 end
