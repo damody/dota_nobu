@@ -1,0 +1,412 @@
+// 前田慶次
+"DOTAAbilities"
+{
+	"C05_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/c05.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+		}
+	}
+
+	// 前田慶次 [松風]
+	"C05W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/invoker_tornado"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"80 100 120 140"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"buff_duration"			"20"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_movement_speed"		"10 20 30 40"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_attack_speed"		"40 60 80 100"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/world_shrine/radiant_shrine_regen.vpcf"
+			"particle"  "particles/items_fx/armlet.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05W.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C05W_buff"
+				"Target" 		"CASTER"
+				"Duration"		"%buff_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C05W_buff"
+			{
+				"IsBuff"			"1"
+
+				"EffectName" "particles/items_fx/armlet.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/world_shrine/radiant_shrine_regen.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"            "TARGET"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+				}
+			}
+		}
+	}
+
+	// 前田慶次 [雷舞]
+	"C05E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/obsidian_destroyer_arcane_orb"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"11 9 7 5"
+		"AbilityManaCost"				"90"
+		"AbilityDamage"					"200 300 400 500"
+
+		"AbilityCastRange"				"1300"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
+
+		"AoERadius" "1300"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"projectile_speed"		"2000"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_base_attack_immortal_lightning.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05E_OnSpellStart"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05E_OnProjectileHitUnit"
+				"Target"		"TARGET" 
+			}
+		}
+	}
+
+	// 前田慶次 [雷鳴豪槍]
+	"C05R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/obsidian_destroyer_astral_imprisonment"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"add_attack_damage"	"15 25 35 45"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"3.0"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_attack_speed"	"-15 -30 -45 -60"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_movement_speed"	"-10 -13 -16 -20"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/razor/razor_apostle_tempest/razor_tempest_ambient_e.vpcf"
+			"particle"  "particles/neutral_fx/harpy_chain_lightning_head.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05R.vo1"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C05R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%add_attack_damage"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+						"Function"		"C05R_OnAttackLanded"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_C05R_debuff"
+			{
+				"IsDebuff"			"1"
+				"Duration"			"%duration"
+		
+				"EffectName"		"particles/econ/items/razor/razor_apostle_tempest/razor_tempest_ambient_e.vpcf"
+				"EffectAttachType"	"follow_origin"
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%debuff_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%debuff_movement_speed" 
+				}
+			}
+		}
+	}
+
+	// 前田慶次 [瞬雷閃]
+	"C05T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/obsidian_destroyer_sanity_eclipse"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"110 95 80"
+		"AbilityManaCost"				"150"
+		"AbilityDamage"					"400 700 1000"
+
+		"AbilityCastPoint"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
+		"AnimationPlaybackRate"			"2.0"
+
+		"AbilityChannelTime" 			"1.5"
+
+		"AoERadius" "600"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"600"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"delay"		"1.5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_time"		"1.0"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/zeus/arcana_chariot/zeus_arcana_blink_start.vpcf"
+			"particle"  "particles/econ/items/zeus/arcana_chariot/zeus_arcana_blink_end.vpcf"
+			"particle"  "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
+			"particle"  "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_mana_loss.vpcf"
+			"particle"  "particles/c05/c05t_aoe_hint.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05T.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05T_OnSpellStart"
+				"Target"		"POINT"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05T_OnChannelInterrupted"
+			}
+		}
+
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05T_OnChannelSucceeded"
+				"Target"		"POINT"
+			}
+		}
+	}
+
+	// 前田慶次 11.2B []
+	"C05W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"ability_name"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05W_old.vo1"
+			}
+		}
+	}
+
+	// 前田慶次 11.2B []
+	"C05E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"ability_name"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05E_old.vo1"
+			}
+		}
+	}
+
+	// 前田慶次 11.2B []
+	"C05R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"ability_name"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05R_old.vo1"
+			}
+		}
+	}
+
+	// 前田慶次 11.2B []
+	"C05T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"ability_name"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05T_old.vo1"
+			}
+		}
+	}
+} // end DOTAAbilities
