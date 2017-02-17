@@ -1775,6 +1775,7 @@ ACT_DOTA_OVERRIDE_ABILITY_1 = 1516
 ACT_DOTA_OVERRIDE_ABILITY_2 = 1517
 ACT_DOTA_OVERRIDE_ABILITY_3 = 1518
 ACT_DOTA_OVERRIDE_ABILITY_4 = 1519
+ACT_DOTA_OVERRIDE_ARCANA = 1725
 ACT_DOTA_PET_LEVEL = 1701
 ACT_DOTA_PET_WARD_OBSERVER = 1699
 ACT_DOTA_PET_WARD_SENTRY = 1700
@@ -2500,6 +2501,11 @@ function CBaseEntity:SetContextNum( pName, fValue, duration ) end
 -- @param hThinkFunc handle
 -- @param flInterval float
 function CBaseEntity:SetContextThink( pszContextName, hThinkFunc, flInterval ) end
+
+---[[ CBaseEntity:SetEntityName  Set the name of an entity. ]]
+-- @return void
+-- @param pName string
+function CBaseEntity:SetEntityName( pName ) end
 
 ---[[ CBaseEntity:SetForwardVector  Set the orientation of the entity to have this forward vector. ]]
 -- @return void
