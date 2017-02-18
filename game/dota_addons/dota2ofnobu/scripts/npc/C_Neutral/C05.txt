@@ -9,6 +9,25 @@
 		{
 			"soundfile"	"soundevents/c05.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+
+			"particle"  "particles/units/heroes/hero_zeus/zues_screen_empty.vpcf"
+
+			// C05W_old
+			"particle"  "particles/world_shrine/radiant_shrine_regen.vpcf"
+			"particle"  "particles/items_fx/armlet.vpcf"
+
+			// C05E_old
+			"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_base_attack_immortal_lightning.vpcf"
+			"particle"  "particles/units/heroes/hero_rubick/rubick_fade_bolt_debuff.vpcf"
+			"particle"  "particles/items2_fx/rod_of_atos.vpcf"
+
+			// C05R_old
+			"particle"  "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+
+			// C05T_old
+			"particle"  "particles/econ/items/invoker/invoker_ti6/invoker_deafening_blast_disarm_ti6_debuff.vpcf"
+			"particle"  "particles/units/heroes/hero_zuus/zuus_arc_lightning_impact.vpcf"
+			"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_bodyarc_immortal_lightningyzuus_lightning_bolt_bodyarc_immortal_lightning.vpcf"
 		}
 	}
 
@@ -342,12 +361,42 @@
 		}
 	}
 
-	// 前田慶次 11.2B []
+	// 前田慶次 11.2B [騎術]
 	"C05W_old"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"ability_name"
+		"AbilityTextureName"			"custom/icon_128x128_110"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"80 90 100 110"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"buff_duration"			"14 16 18 20"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_movement_speed"		"25 30 35 40"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_attack_speed"		"25 30 35 40"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/world_shrine/radiant_shrine_regen.vpcf"
+			"particle"  "particles/items_fx/armlet.vpcf"
+		}
 
 		"OnAbilityPhaseStart"
 		{
@@ -357,14 +406,103 @@
 				"EffectName"	"C05W_old.vo1"
 			}
 		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C05W_old_buff"
+				"Target" 		"CASTER"
+				"Duration"		"%buff_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C05W_old_buff"
+			{
+				"IsBuff"			"1"
+
+				"EffectName" "particles/items_fx/armlet.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/world_shrine/radiant_shrine_regen.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"            "TARGET"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+				}
+			}
+		}
 	}
 
-	// 前田慶次 11.2B []
+	// 前田慶次 11.2B [雷舞]
 	"C05E_old"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"ability_name"
+		"AbilityTextureName"			"dota2/obsidian_destroyer_arcane_orb"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"22"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"100 200 300 400"
+
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
+
+		"AoERadius" "400"
+
+		"precache"
+		{
+			"particle"  "particles/items2_fx/rod_of_atos.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"projectile_speed"		"2000"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"debuff_attack_speed"		"-20 -30 -40 -50"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"debuff_movement_speed"		"-20 -30 -40 -50"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"debuff_duration"		"4.0"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_base_attack_immortal_lightning.vpcf"
+			"particle"  "particles/units/heroes/hero_rubick/rubick_fade_bolt_debuff.vpcf"
+			"particle"  "particles/items2_fx/rod_of_atos.vpcf"
+		}
 
 		"OnAbilityPhaseStart"
 		{
@@ -374,14 +512,77 @@
 				"EffectName"	"C05E_old.vo1"
 			}
 		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05E_OnSpellStart"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05E_old_OnProjectileHitUnit"
+				"Target"		"TARGET" 
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C05E_old_debuff"
+			{
+				"IsDebuff"		"1"
+				"Duration" 		"%debuff_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%debuff_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%debuff_movement_speed" 
+				}
+				"EffectName" "particles/items2_fx/rod_of_atos.vpcf"
+				"EffectAttachType" "follow_origin"
+			}
+		}
 	}
 
-	// 前田慶次 11.2B []
+	// 前田慶次 11.2B [雷擊]
 	"C05R_old"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"ability_name"
+		"AbilityTextureName"			"custom/zhangbao_shandianqiu"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"150 250 350 450"
+
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_time"			"0.5 1 1.5 2"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+		}
 
 		"OnAbilityPhaseStart"
 		{
@@ -391,14 +592,56 @@
 				"EffectName"	"C05R_old.vo1"
 			}
 		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+				"Function"		"C05R_old_OnSpellStart"
+				"Target"		"TARGET"
+			}
+		}
 	}
 
-	// 前田慶次 11.2B []
+	// 前田慶次 11.2B [雷鳴豪槍]
 	"C05T_old"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"ability_name"
+		"AbilityTextureName"			"dota2/obsidian_destroyer_astral_imprisonment"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_per_think"	"60 100 140"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"debuff_duration"		"7.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"debuff_attack_speed"	"-40 -60 -80"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/invoker/invoker_ti6/invoker_deafening_blast_disarm_ti6_debuff.vpcf"
+			"particle"  "particles/units/heroes/hero_zuus/zuus_arc_lightning_impact.vpcf"
+			"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_bodyarc_immortal_lightningyzuus_lightning_bolt_bodyarc_immortal_lightning.vpcf"
+		}
 
 		"OnAbilityPhaseStart"
 		{
@@ -406,6 +649,49 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"C05T_old.vo1"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C02T_old_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+						"Function"		"C02T_old_OnAttackLanded"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_C05T_old_debuff"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"%debuff_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%debuff_attack_speed"
+				}
+
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
+						"Function"		"C05T_old_OnIntervalThink"
+						"Target"		"TARGET"
+					}
+				}
+
+				"EffectName"		"particles/econ/items/invoker/invoker_ti6/invoker_deafening_blast_disarm_ti6_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 	}

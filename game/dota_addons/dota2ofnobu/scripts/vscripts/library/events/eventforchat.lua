@@ -328,6 +328,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("A02R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A02T_old") 
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_obsidian_destroyer") then -- 前田慶次
+			caster:AddAbility("C05W_old")
+			caster:AddAbility("C05E_old")
+			caster:AddAbility("C05R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C05T_old") 
 		end
 	end
 		
