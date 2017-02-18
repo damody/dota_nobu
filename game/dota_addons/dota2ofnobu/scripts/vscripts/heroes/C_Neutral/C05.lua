@@ -108,12 +108,12 @@ function C05T_OnSpellStart( keys )
 	local ability = keys.ability
 	
 	-- 提示攻擊範圍
-	--[[
+	
 	local dummy = CreateUnitByName("npc_dummy_unit_new",point,false,nil,nil,caster:GetTeamNumber())
 	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
-	local ifx = ParticleManager:CreateParticle("particles/c05/c05t_aoe_hint.vpcf",PATTACH_ABSORIGIN,dummy)
+	local ifx = ParticleManager:CreateParticleForTeam("particles/c05/c05t_aoe_hint.vpcf",PATTACH_ABSORIGIN,dummy, caster:GetTeamNumber())
 	ParticleManager:ReleaseParticleIndex(ifx)
-	]]
+	
 
 	Timers:CreateTimer(ability:GetChannelTime()-0.3, function()
 		if ability:IsChanneling() then
