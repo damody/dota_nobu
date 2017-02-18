@@ -27,6 +27,7 @@ local function chat_of_test(keys)
 	local s   	   = keys.text:lower()
 	local p 	     = PlayerResource:GetPlayer(keys.playerid)--可以用索引轉換玩家方式，來捕捉玩家
 	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄
+	if caster == nil then return end
 	local point    = caster:GetAbsOrigin()
 	-- if string.match(s,"test") then
 	-- 	local pID = tonumber(string.match(s, '%d+'))
@@ -93,12 +94,14 @@ local function chat_of_test(keys)
 		caster.version = "11"
 
 		-- 拔掉英雄的修改器
+		--[[
 		local am = caster:FindAllModifiers()
 		for _,v in pairs(am) do
 			if v:GetName() ~= "equilibrium_constant" and v:GetName() ~= "modifier_for_record" then
 				caster:RemoveModifierByName(v:GetName())
 			end
 		end
+		]]
 
 		-- 拔掉英雄的技能
 		for i = 0, caster:GetAbilityCount() - 1 do

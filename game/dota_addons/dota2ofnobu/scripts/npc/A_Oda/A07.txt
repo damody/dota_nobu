@@ -131,6 +131,7 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
 				"Function"	"A07W_SE"
 				"Target"	"CASTER"
+				"Time"	"%duration"
 			}
 		}
 		"Modifiers"
@@ -247,6 +248,7 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
 				"Function"	"A07W_SE"
 				"Target"	"CASTER"
+				"Time"	"%duration"
 			}
 		}
 		"Modifiers"
@@ -256,15 +258,6 @@
 				"IsBuff"	"1"
 				"EffectName"	"particles/a07w3/a07w3.vpcf"
 				"EffectAttachType"	"follow_origin"
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
-						"Function"	"A07W_BorrowedTimeHeal"
-						"DamageTaken"	"%attack_damage"
-					}
-				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-300"
@@ -272,6 +265,15 @@
 				}
 				"States"	{}
 				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+						"Function"	"A07W_EndShieldParticle"
+					}
+				}
+				"OnDeath"
 				{
 					"RunScript"
 					{

@@ -9,7 +9,7 @@ function Nobu:PickHero( keys )
   local owner = caster:GetPlayerOwner()
 --CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
   Timers:CreateTimer(1, function ()
-    if not caster:IsIllusion() then
+    if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
       if _G.CountUsedAbility_Table == nil then
         _G.CountUsedAbility_Table = {}
       end

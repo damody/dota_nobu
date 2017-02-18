@@ -198,8 +198,10 @@ function B21T_OnHealthChange( keys )
 		if modifier == nil then 
 			modifier = ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_stack",nil)
 			ability.modifier = modifier
+		else
+			modifier:SetStackCount(stack)
 		end
-		modifier:SetStackCount(stack)
+		
 	end
 end
 

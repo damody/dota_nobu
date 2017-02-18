@@ -15,6 +15,7 @@ LinkLuaModifier( "C21R_critical", "scripts/vscripts/heroes/C_Neutral/C21_Miyamot
 --ednglobal
 
 function C21T_Effect(u,u2,i)
+	if u2 == nil or not IsValidEntity(u2) then return end
 	local  r = 0
 	local  point = u:GetAbsOrigin()
 	local  x = point.x

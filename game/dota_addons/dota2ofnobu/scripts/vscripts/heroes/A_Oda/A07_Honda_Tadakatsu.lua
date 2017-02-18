@@ -15,13 +15,10 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_A07W:OnCreated( event )
-	self:StartIntervalThink(0.05)
+	self:StartIntervalThink(0.1)
 end
 
 function modifier_A07W:OnIntervalThink()
-	if (self.caster ~= nil) and IsValidEntity(self.caster) then
-		self.hp = self.caster:GetHealth()
-	end
 end
 
 function modifier_A07W:OnTakeDamage(event)
@@ -33,10 +30,10 @@ function modifier_A07W:OnTakeDamage(event)
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
-	    	if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster and self.hp ~= nil then
-		        local dmg = self.hp - self.caster:GetHealth()
-		        dmg = math.abs(dmg)
-				self.caster:SetHealth(self.caster:GetHealth() + dmg)
+	    	if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
+	    		if (damage_type ~= DAMAGE_TYPE_PHYSICAL) then
+					self.caster:SetHealth(self.caster:GetHealth() + event.damage*2)
+				end
 			end
 		end
 	end
@@ -146,7 +143,7 @@ function A07W_SE( event )
 	local ability = event.ability
 	local shield_size = 30 -- could be adjusted to model scale
 
-	caster:AddNewModifier(caster,ability,"modifier_A07W",{duration=10})
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A07W",{duration=10})
 	caster:FindModifierByName("modifier_A07W").caster = caster
 	-- -- Strong Dispel 刪除負面效果
 	-- local RemovePositiveBuffs = false
@@ -191,7 +188,7 @@ function A07W_BorrowedTimeHeal( event )
 	local ability = event.ability
 	
 	if damage > 0 then
-		caster:Heal(damage*2, caster)
+		caster:Heal(damage, caster)
 	end
 	
 end
