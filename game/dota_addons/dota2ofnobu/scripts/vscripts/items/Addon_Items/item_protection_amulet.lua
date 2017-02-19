@@ -97,7 +97,7 @@ function OnEquip( keys )
 		if not IsValidEntity(caster) then
 			return nil
 		end
-		if (caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet")) then
+		if IsValidEntity(caster) and caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet") then
 			ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 			caster:FindModifierByName("modifier_protection_amulet").caster = caster
 		end

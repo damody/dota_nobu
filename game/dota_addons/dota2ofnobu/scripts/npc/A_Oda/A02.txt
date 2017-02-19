@@ -401,7 +401,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityDamage"					"6 12 18 24" // dot
+		"AbilityDamage"					"3 6 9 12" // dot
 
 		"AbilitySpecial"
 		{
@@ -423,7 +423,7 @@
 			"04"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"mana_cost"		"6 8 10 12" // per hit
+				"mana_cost"		"5" // per hit
 			}
 		}
 
@@ -496,6 +496,7 @@
 				"Duration"	"%debuff_duration"
 				"StatusEffectName"		"particles/status_fx/status_effect_poison_viper.vpcf"
 				"StatusEffectPriority"	"15"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 
 				"Properties"
 				{
@@ -551,12 +552,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"buff_movement_speed"	"30 50 70 90" // %
+				"buff_movement_speed"	"20 30 40 50" // %
 			}
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"buff_attack_speed"		"30 50 70 90" // %
+				"buff_attack_speed"		"50 80 110 140" // %
 			}
 			"03"
 			{

@@ -348,7 +348,7 @@ local function chat_of_test(keys)
 	if string.match(s,"damody:") then
 		sump = 1
 	end
-	if 1==sump then
+	if sump <= 2 then
 		if string.match(s,"uion") then
 		local GameMode = GameRules:GetGameModeEntity()
 		GameMode:SetHUDVisible(0,  true) --Clock

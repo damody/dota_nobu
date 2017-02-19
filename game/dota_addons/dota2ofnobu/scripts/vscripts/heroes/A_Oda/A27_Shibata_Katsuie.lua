@@ -165,7 +165,9 @@ function A27E_dead(keys)
 		end)
 	caster:ForceKill(false)
 	Timers:CreateTimer(1.5, function()
-		caster:Destroy()
+		if IsValidEntity(caster) then
+			caster:Destroy()
+		end
 		end)
 	local count = 0
 	Timers:CreateTimer(function()

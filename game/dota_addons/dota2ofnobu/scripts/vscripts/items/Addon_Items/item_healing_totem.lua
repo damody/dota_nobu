@@ -6,7 +6,9 @@ function Shock( keys )
 	local roubang = CreateUnitByName("healing_totem_unit",point ,false,caster,caster,caster:GetTeamNumber())
 	roubang:FindAbilityByName("healing_totem"):SetLevel(1)
 	Timers:CreateTimer(15, function ()
-		roubang:ForceKill(true)
+		if IsValidEntity(roubang) and roubang:IsAlive() then
+			roubang:ForceKill(true)
+		end
 	end)
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	          roubang:GetAbsOrigin(),

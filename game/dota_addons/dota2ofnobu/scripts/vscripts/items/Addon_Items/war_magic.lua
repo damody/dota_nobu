@@ -367,14 +367,16 @@ end
 function set_level_1(keys)
 	local caster = keys.caster
 	Timers:CreateTimer(1, function()
-		for abilitySlot=0,15 do
-	        local ability = caster:GetAbilityByIndex(abilitySlot)
-	        if ability ~= nil then 
-	          local abilityLevel = ability:GetLevel()
-	          local abilityName = ability:GetAbilityName()
-	          ability:SetLevel(1)
-	        end
-	    end
+		if IsValidEntity(caster) then
+			for abilitySlot=0,15 do
+		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        if ability ~= nil then 
+		          local abilityLevel = ability:GetLevel()
+		          local abilityName = ability:GetAbilityName()
+		          ability:SetLevel(1)
+		        end
+		    end
+		end
     end)
 end
 
