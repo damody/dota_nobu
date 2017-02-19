@@ -8,43 +8,56 @@ function modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_followi
 
 function modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_lua:DeclareFunctions()
 	return {
-		MODIFIER_EVENT_ON_TAKEDAMAGE -- OnTakeDamage
+		MODIFIER_EVENT_ON_TAKEDAMAGE, -- OnTakeDamage
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 	}
+end
+
+function modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_lua:GetModifierIncomingDamage_Percentage()
+	if #self.link_table == 0 then
+		return 0
+	else
+		return -50
+	end
+end
+
+function modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_lua:OnCreated( keys )
+	self.link_table = self:GetAbility().link_table
 end
 
 -- 這個function會收到全場的傷害事件，無論目標是誰...
 function modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_lua:OnTakeDamage( keys )
-	if IsServer() and keys.unit == self:GetParent() then
-		local inspect = require('inspect')
-		print(inspect(keys,
-			{depth=1} 
-		))
-		local ability = self:GetAbility()
-		local link_table = ability.link_table
-		local link_count = #link_table
+	if IsServer() then
+		local caster = self:GetParent()
 
-		-- 沒有連結任何目標則什麼都不做
-		if link_count == 0 then return end
+		-- 判斷目標是否是自己
+		if keys.unit ~= caster then return end
+
+		local attacker = keys.attacker
+
+		if not IsValidEntity(attacker) then return end
 
 		-- 不能反彈反彈傷害
 		if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return end
 
-		local caster = self:GetParent()
-		local ifx_table = {}
-		local half_damage = keys.damage * 0.5
-		local share_damage = half_damage / link_count
+		local link_table = self.link_table
+		local link_count = #link_table
 
-		caster:SetHealth(caster:GetHealth()+half_damage)
+		if link_count == 0 then return end
+
+		local half_damage = keys.damage
+		local share_damage = half_damage / link_count
 
 		local damage_table = {
 			victim = nil,
-			attacker = keys.attacker,
+			attacker = attacker,
 			ability = keys.ability,
 			damage = share_damage,
 			damage_type = keys.damage_type,
 			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
 		}
 
+		local ifx_table = {}
 		for i,unit in ipairs(link_table) do
 			if IsValidEntity(unit) then
 				damage_table.victim = unit
@@ -56,7 +69,7 @@ function modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_followi
 			end
 		end
 
-		Timers:CreateTimer(0.5, function()
+		Timers:CreateTimer(0.3, function()
 			for _,ifx in ipairs(ifx_table) do
 				ParticleManager:DestroyParticle(ifx, false)
 			end
@@ -67,19 +80,20 @@ end
 function Init( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-
 	-- 用來儲存被連結的目標
 	if ability.link_table == nil then
 		ability.link_table = {}
 	end
-
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_lua",{})
 end
 
 function End( keys )
 	local caster = keys.caster
-	caster.half_damage = false
-	caster:RemoveModifierByName("modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_lua")
+	local target = keys.target
+	local ability = keys.ability
+	local link_table = ability.link_table
+	local link_count = #link_table
+	caster:RemoveModifierByNameAndCaster("modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_lua",caster)
 end
 
 function LinkTarget( keys )
@@ -88,7 +102,6 @@ function LinkTarget( keys )
 	local ability = keys.ability
 	local link_table = ability.link_table
 	local link_count = #link_table
-	caster.half_damage = true
 	table.insert(link_table, target)
 end
 
@@ -103,6 +116,4 @@ function UnlinkTarget( keys )
 			break
 		end
 	end
-	local link_count = #link_table
-	if link_count == 0 then caster.half_damage = false end
 end
