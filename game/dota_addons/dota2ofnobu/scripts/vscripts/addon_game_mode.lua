@@ -361,6 +361,8 @@ function Precache( context )
     "particles/q09_2/q09_2.vpcf",
     -- 洞寶
     "particles/b05t3/b05t3_j0.vpcf",
+    -- 葵紋越前康繼．禦神刀 11.2B
+    "particles/item/item_the_great_sword_of_sunflower_pattern_echizen_kang_following/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.vpcf",
 
     --注意要加,
     }

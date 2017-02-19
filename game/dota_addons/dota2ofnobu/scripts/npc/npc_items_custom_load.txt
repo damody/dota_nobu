@@ -3012,6 +3012,132 @@
 		}
 	}
 
+	// 葵紋越前康繼．禦神刀 11.2B
+	"item_the_great_sword_of_sunflower_pattern_echizen_kang_following"
+	{
+		// General
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"	"item_custom/the_great_sword_of_invincible"
+		"FightRecapLevel"	"1"
+		"ID"	"4001"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		
+		"ItemCost"	"8950"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SecretShop" "1"
+		"ItemShopTags"		"damage"
+		"AbilityCooldown"	"55"
+		"AbilityManaCost"	"320"
+		"AbilityCastRange"				"600"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"21"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"link_radius"		"600"
+			}
+		}
+
+		"precache"
+		{
+			"particle"	"particles/item/item_the_great_sword_of_sunflower_pattern_echizen_kang_following/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_aura"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_item_the_great_sword_of_sunflower_pattern_echizen_kang_following"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "25"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "25"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "25"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+				}
+			}
+			"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_aura"
+			{
+				"Aura"	"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_linker"
+				"Aura_Radius"	"%link_radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"	"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"Init"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"End"
+					}
+				}
+			}
+			"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_linker"
+			{
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"LinkTarget"
+						"Target"	"TARGET"
+					}
+					"AttachEffect"
+					{
+						"EffectName"        "particles/item/item_the_great_sword_of_sunflower_pattern_echizen_kang_following/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.vpcf"
+						"EffectAttachType"  "follow_hitloc"
+						"Target"            "TARGET"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"UnlinkTarget"
+						"Target"	"TARGET"
+					}
+				}
+			}
+		}
+	}
+
 	// 御守
 	"item_protection_amulet"
 	{
