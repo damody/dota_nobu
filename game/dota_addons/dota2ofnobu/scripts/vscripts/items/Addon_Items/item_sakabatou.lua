@@ -13,10 +13,10 @@ function Shock( keys )
 					Timers:CreateTimer(0.1, function() 
 						caster.sakabatou = nil
 					end)
-			if (ran > 11) then
+			if (ran > 9) then
 				caster.sakabatou_count = caster.sakabatou_count + 1
 			end
-			if (caster.sakabatou_count > 10 or ran <= 11) then
+			if (caster.sakabatou_count > 11 or ran <= 9) then
 				caster.sakabatou_count = 0
 				StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 

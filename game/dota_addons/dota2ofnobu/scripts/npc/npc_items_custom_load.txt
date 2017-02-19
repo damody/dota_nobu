@@ -726,6 +726,7 @@
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"200"
+		"AOERadius"	"425"
 		// Stats
 		
 		// Valve's version of this item uses the ID "1".
@@ -815,6 +816,7 @@
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"250"
+		"AOERadius"	"850"
 		// Stats
 		
 		// Valve's version of this item uses the ID "1".
@@ -1437,6 +1439,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q03_2/q03_2.vpcf"
+		"AbilitySharedCooldown" "the_art_of_war"
 		// Item Info
 		
 		"ItemCost"	"2350"
@@ -4010,7 +4013,7 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "15"	//力
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "35"	//攻
@@ -7369,7 +7372,7 @@
 	{
 	    "ID" "3089"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "630"
+		"ItemCost" "930"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_samurai_cloth_x"  //合成後物品
@@ -8936,7 +8939,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "32"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
@@ -9033,7 +9036,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "42"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
@@ -9130,7 +9133,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"		//敏
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "40"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "55"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
@@ -9326,7 +9329,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"300"
+				"damage"	"400"
 			}
 			"07"
 			{
@@ -9440,7 +9443,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"400"
+				"damage"	"500"
 			}
 			"07"
 			{
@@ -9554,7 +9557,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"500"
+				"damage"	"600"
 			}
 			"07"
 			{
@@ -9657,9 +9660,9 @@
 		"AbilityCastRange"				"700"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"20"
+		"AbilityCooldown"	"12"
 		
-		"AbilityManaCost"	"100"
+		"AbilityManaCost"	"0"
 
 		"ID"	"2529"
 		"ItemQuality"	"component"
@@ -9932,9 +9935,9 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"11"
+		"AbilityCooldown"	"8"
 		
-		"AbilityManaCost"	"60"
+		"AbilityManaCost"	"0"
 		"ID"	"2594"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10067,7 +10070,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"4700"
+		"ItemCost"	"5000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
@@ -10087,14 +10090,14 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "50" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "10"	//魔抗
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"10"	//10%基礎攻擊
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"	//10%基礎攻擊
 				}
 			}
 		}
@@ -12256,10 +12259,9 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySharedCooldown" "the_art_of_war"
 		"FightRecapLevel"	"1"
-		
 		"AbilityCooldown"	"29"
-		
 		"AbilityManaCost"	"200"
 
 		"ID"	"2534"
@@ -12522,6 +12524,7 @@
 		"FightRecapLevel"	"1"		
 		"AbilityCooldown"	"60"		
 		"AbilityManaCost"	"500"		
+		"AbilitySharedCooldown" "the_art_of_war"
 		
 		"ID"	"2536"
 		"ItemQuality"	"component"

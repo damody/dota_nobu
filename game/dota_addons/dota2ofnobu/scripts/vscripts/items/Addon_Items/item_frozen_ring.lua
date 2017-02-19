@@ -111,7 +111,7 @@ function Shock3( keys )
 		for _,it in pairs(direUnits) do
 			ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=2})
 			if it ~= target then
-				AMHC:Damage(caster,it,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(caster,it,100,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
 		local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, target)
@@ -151,11 +151,11 @@ function Shock4( keys )
 							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							FIND_ANY_ORDER,
 							false)
-		AMHC:Damage(caster,target,450,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		AMHC:Damage(caster,target,400,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		for _,it in pairs(direUnits) do
 			ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=3})
 			if it ~= target then
-				AMHC:Damage(caster,it,250,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(caster,it,100,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
 		local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, target)
@@ -195,11 +195,11 @@ function Shock5( keys )
 							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							FIND_ANY_ORDER,
 							false)
-		AMHC:Damage(caster,target,600,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		AMHC:Damage(caster,target,500,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		for _,it in pairs(direUnits) do
 			ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=4})
 			if it ~= target then
-				AMHC:Damage(caster,it,300,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(caster,it,100,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
 		local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, target)

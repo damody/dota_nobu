@@ -308,24 +308,10 @@
 		}
 		"OnUpgrade"
 		{
-			"ActOnTargets"
+			"RunScript"
 			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-					"Center"	"POINT"
-					"Radius"	"100000"
-				}
-				"Action"
-				{
-					"Stun"
-					{
-						"Target"	"TARGET"
-						"Duration"	"1"
-					}
-				}
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B21.lua"
+				"Function"		"B21T_OnUpgrade"
 			}
 		}
 		"precache"
@@ -335,6 +321,19 @@
 
 		"Modifiers"
 		{
+			"modifier_B21T_stun"
+			{
+				"Duration"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
 			"modifier_B21T_passive"
 			{
 				"Passive"			"1"
@@ -681,24 +680,10 @@
 		}
 		"OnUpgrade"
 		{
-			"ActOnTargets"
+			"RunScript"
 			{
-				"Target"
-				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-					"Center"	"POINT"
-					"Radius"	"100000"
-				}
-				"Action"
-				{
-					"Stun"
-					{
-						"Target"	"TARGET"
-						"Duration"	"1"
-					}
-				}
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B21.lua"
+				"Function"		"B21T_OnUpgrade"
 			}
 		}
 
@@ -709,6 +694,19 @@
 
 		"Modifiers"
 		{
+			"modifier_B21T_stun"
+			{
+				"Duration"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
 			"modifier_B21T_old_passive"
 			{
 				"Passive"			"1"

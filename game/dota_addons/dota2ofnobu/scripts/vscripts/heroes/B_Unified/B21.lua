@@ -340,6 +340,22 @@ function B21T_old_OnCreated( keys )
 	ability.ifx = ifx
 end
 
+function B21T_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	Timers:CreateTimer(1, function ()
+		if IsValidEntity(caster) and not caster:IsIllusion() then
+			local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+				nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+			for _,enemy in pairs(group) do
+				ability:ApplyDataDrivenModifier(enemy,enemy,"modifier_B21T_stun",{duration=1})
+			end
+		end
+	end)
+	
+end
+
 function B21T_old_OnDestroy( keys )
 	local caster = keys.caster
 	local ability = keys.ability
