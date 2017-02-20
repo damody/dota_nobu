@@ -4864,6 +4864,116 @@
 		}
 	}
 
+	// 鐵碎牙．妖刀 11.2B
+	"item_the_great_sword_of_iron_fragmentor"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_great_sword_of_hurricane"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"280"
+		"AbilityDamage"		"400"
+		"AbilityCastRange"	"700"
+		"AbilityCastPoint"  "0.1"
+		"AoERadius"			"500"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"13"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aoe_radius" "500"
+			}
+		}
+
+		"ID"	"4002"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"11200"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SecretShop" "1"
+		"precache"
+		{
+			"particle"  "particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor.vpcf"
+			"particle"  "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+			"particle"  "particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor_hit.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+				"Function"		"Spell"
+				"Target"		"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_the_great_sword_of_iron_fragmentor"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "60"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "500"			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+				}
+			}
+			"modifier_the_great_sword_of_iron_fragmentor"
+			{
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+						"Function"		"DealDamage"
+					}
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+						"Function"		"DealDamage"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+						"Function"		"End"
+					}
+				}
+			}
+		}
+	}
+
 	// 鬼丸國鋼．銘刀
 	"item_the_great_sword_of_spike"
 	{
