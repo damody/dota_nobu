@@ -4724,6 +4724,34 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
+		"AbilitySpecial"
+		{
+			"01" // 風之傷鎖敵範圍
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_range"	"1000"
+			}
+			"02" // 風之傷飛行速度
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_speed"	"1200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_damage"	"400"
+			}
+			"04" // 主動技能持續時間
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_duration"	"20"
+			}
+			"05" // 主動技能影響範圍
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aura_radius"		"800"
+			}
+		}
 		"precache"
 		{
 			"particle"  "particles/generic_gameplay/generic_slowed_cold.vpcf"
@@ -4767,7 +4795,7 @@
 				"EffectAttachType"	"follow_origin"
 
 				"Aura"        "modifier_great_sword_of_hurricane_debuff"
-        		"Aura_Radius" "800"
+        		"Aura_Radius" "%aura_radius"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
@@ -4837,29 +4865,6 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_hurricane.lua"
 				"Function"	"SplitShotDamage"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01" // 風之傷鎖敵範圍
-			{
-				"var_type"	"FIELD_INTEGER"
-				"tornado_range"	"1000"
-			}
-			"02" // 風之傷飛行速度
-			{
-				"var_type"	"FIELD_INTEGER"
-				"tornado_speed"	"1200"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"tornado_damage"	"400"
-			}
-			"04" // 主動技能持續時間
-			{
-				"var_type"	"FIELD_INTEGER"
-				"aura_duration"	"20"
 			}
 		}
 	}

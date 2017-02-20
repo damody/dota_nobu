@@ -2,7 +2,7 @@
 --[[
 
 local dummy = CreateUnitByName("npc_dummy_unit_new",caster:GetAbsOrigin(),false,nil,nil,caster:GetTeamNumber())
-local table = {
+local spell_hint_table = {
 	duration   = 1000,				-- 持續時間
 	radius     = 300,				-- 半徑
 	thinkness  = 10,				-- 線的粗細
@@ -11,7 +11,7 @@ local table = {
 	color_self = Vector(0,255,0),	-- 己方顏色
 	color_enemy= Vector(255,0,0),	-- 敵方顏色
 }
-dummy:AddNewModifier(dummy,nil,"nobu_modifier_spell_hint",table)
+dummy:AddNewModifier(dummy,nil,"nobu_modifier_spell_hint",spell_hint_table)
 
 --]]
 
