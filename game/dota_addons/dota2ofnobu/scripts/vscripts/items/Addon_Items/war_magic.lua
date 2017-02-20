@@ -448,33 +448,31 @@ function to_soldier_Oda(keys)
 		return 180
 		end)
 	-- 把中離馬變無敵
-	--[[
+
 	Timers:CreateTimer(3, function()
-	for playerID = 0, 14 do
-		local id       = playerID
-  		local p        = PlayerResource:GetPlayer(id)
-  		local steamid = PlayerResource:GetSteamAccountID(id)
-  		local res = PlayerResource:GetConnectionState(id)
-    	if p ~= nil and (p:GetAssignedHero()) ~= nil and res ~= 2 then
-   			local hero = p:GetAssignedHero()
-   			if hero.stop == nil then
-   				hero.stop = 1
-   				hero.donkey:AddAbility("majia"):SetLevel(1)
-   				hero.donkey:SetAbsOrigin(Vector(0,0,0))
-   			end
-   		elseif p ~= nil and (p:GetAssignedHero()) ~= nil and res == 2 then
-   			local hero = p:GetAssignedHero()
-   			if hero.stop == 1 then
-   				hero.stop = nil
-   				hero.donkey:RemoveAbility("majia")
-   				hero.donkey:RemoveModifierByName("modifier_majia")
-   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
-   			end
-   		end
-   	end
+		for _,hero in ipairs(HeroList:GetAllHeroes()) do
+			local id = hero:GetPlayerID()
+			local team = PlayerResource:GetTeam(id)
+			local state = PlayerResource:GetConnectionState(id)
+			if state ~= 2 then -- 2 = connected
+				if hero.stop == nil and hero.donkey ~= nil then
+	   				hero.stop = 1
+	   				hero.donkey:AddAbility("majia"):SetLevel(1)
+	   				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
+	   				hero:SetAbsOrigin(Vector(99999,99999,0))
+	   			end
+	   		elseif state == 2 then
+	   			if hero.stop == 1 and hero.donkey ~= nil then
+	   				hero.stop = nil
+	   				hero.donkey:RemoveAbility("majia")
+	   				hero.donkey:RemoveModifierByName("modifier_majia")
+	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
+	   				FindClearSpaceForUnit(hero,hero.donkey.oripos,true)
+	   			end
+			end
+		end
    	return 3
    	end)
-   	]]
 end
 
 

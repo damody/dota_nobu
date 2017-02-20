@@ -67,3 +67,6 @@ loadModule ( 'GameRulesStateChange' ) --6/24增加
 --require('internal/util')
 -- require('gamemode')
 --
+
+-- nobu
+loadModule ( 'nobu_modifiers/nobu_modifier_spell_hint' ) -- 可以顯示施法範圍
