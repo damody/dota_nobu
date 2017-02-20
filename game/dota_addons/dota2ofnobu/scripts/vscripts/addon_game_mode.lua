@@ -368,6 +368,10 @@ function Precache( context )
     "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf",
     "particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor_hit.vpcf",
 
+    -- 施法提示
+    "particles/spell_hint/spell_hint_circle.vpcf",
+    "particles/spell_hint/spell_hint_circle_fog.vpcf",
+
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do
