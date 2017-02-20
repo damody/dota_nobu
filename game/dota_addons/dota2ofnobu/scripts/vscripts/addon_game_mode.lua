@@ -21,6 +21,7 @@ _G.heromap = {
 
   npc_dota_hero_nevermore           = "B01",
   npc_dota_hero_faceless_void       = "B02",
+  npc_dota_hero_clinkz              = "B04",
   npc_dota_hero_keeper_of_the_light = "B05",
   npc_dota_hero_axe                 = "B06",  
   npc_dota_hero_magnataur           = "B08",
@@ -70,6 +71,7 @@ _G.heromap_version = {
 
   B01 = {["11"] = true , ["16"] = true},
   B02 = {["11"] = true , ["16"] = true},
+  B04 = {["11"] = false , ["16"] = true},
   B05 = {["11"] = true , ["16"] = true},
   B06 = {["11"] = true , ["16"] = true},
   B08 = {["11"] = true , ["16"] = true},
