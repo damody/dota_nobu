@@ -1,21 +1,31 @@
 "DOTAHeroes"
 {
-	// 馬場信房
-	"B21"
+	// 伊達政宗
+	"B04"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"override_hero"	"npc_dota_hero_chaos_knight"
-		"ModelScale"	"0.9"
+		"override_hero"	"npc_dota_hero_clinkz"
+		// "Model"         "models/heroes/dragon_knight/dragon_knight.vmdl"
+		"ModelScale"	"1"
+		// "MinimapIcon"		"minimap_candybucket"
+		// "MinimapIconSize"	"1000"
+		// "UnitLabel"          "hero" // -- :GetUnitLabel()
+
+		// Sounds
+		// ----------------------------------------------------------------
+		// "SoundSet"	"Hero_DragonKnight"
+		// "GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+		// "IdleSoundLoop"	"Hero_DragonKnight.Tutorial_Intro"
 
 		// Abilities
-		// ---------------
-		"Ability1"	"B21W"
-		"Ability2"	"B21E"
-		"Ability3"	"B21R"
+		// ----------------------------------------------------------------
+		"Ability1"	"B04W"
+		"Ability2"	"B04E"
+		"Ability3"	"B04R"
 		"Ability4"	"attribute_bonusx"
-		"Ability5"	"B21T"
-		"Ability6"	"B21_precache"
+		"Ability5"	"B04T"
+		"Ability6"	"B04_precache"
 		"Ability7"	""
 		"Ability8"	""
 		"Ability9"	""
@@ -28,31 +38,46 @@
 		"Ability16"	""
 		"Ability17" ""
 
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"38"
+		"AttributeStrengthGain"	"2.10"
+		"AttributeBaseAgility"	"30"
+		"AttributeAgilityGain"	"2.70"
+		"AttributeBaseIntelligence"	"26"
+		"AttributeIntelligenceGain"	"2.00"
+
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"5"
+		"ArmorPhysical"	"6"
 		"MagicalResistance"	"30"
 
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"119"
-		"AttackDamageMax"	"137"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.80"
-		"AttackAcquisitionRange"	"500"
+		"AttackDamageMin"	"109"
+		"AttackDamageMax"	"125"
+		"AttackRate"	"1.65"
+		// "AttackAnimationPoint"	"0.75"
+		"AttackAcquisitionRange"	"500"	// Range within a target can be acquired.
 		"AttackRange"	"128"
+		// "AttackRangeBuffer"	"250"	// Extra range the target can move without canceling the attack
 
-		// Attributes
+		// Ranged Attack Projectiles
 		// ----------------------------------------------------------------
-		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"	"41"
-		"AttributeStrengthGain"	"2.70"
-		"AttributeBaseAgility"	"25"
-		"AttributeAgilityGain"	"2.10"
-		"AttributeBaseIntelligence"	"25"
-		"AttributeIntelligenceGain"	"2.00"
-		
+		"ProjectileModel"	"particles/b04/b04_base_attack.vpcf"
+		"ProjectileSpeed"	"5000"
+
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"310"
+		"MovementTurnRate"	"1.50"
+		// "FollowRange"	"100"
+		// "HasAggressiveStance"	"0"
+
 		// Bounty
 		// ----------------------------------------------------------------
 		// "BountyXP"		"0"  
@@ -65,12 +90,6 @@
 		// "HealthBarOffset"	"140"
 		// "RingRadius" "100"
 
-		// Movement
-		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"310"
-		"MovementTurnRate"	"1.50"
-
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"0"
@@ -82,7 +101,7 @@
 		"StatusHealthRegen"	"0.25"
 		"StatusMana"	"0"
 		"StatusManaRegen"	"0.01"
-		"StatusStartingMana"	"-1" // -1 = full
+		// "StatusStartingMana"	"-1" // -1 = full
 
 		// Vision
 		// ----------------------------------------------------------------

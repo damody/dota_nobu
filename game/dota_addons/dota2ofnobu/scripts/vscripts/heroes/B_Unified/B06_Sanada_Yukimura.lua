@@ -31,36 +31,29 @@ function modifier_item_blade_mail_rework_damage_return:OnTakeDamage(event)
     local damage_flags = event.damage_flags
     local ability = self:GetAbility()
 
-    local damage = {
-        victim = victim, 
-        attacker = attacker,
-        damage = return_damage,
-        damage_type = damage_type,
-        damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
-        ability = ability 
-    }
-
     if victim:GetTeam() ~= attacker:GetTeam() then
         if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
             if damage_type == DAMAGE_TYPE_MAGICAL and self.caster.B06R_Buff == true then
-            	self.caster.B06R_Buff = false
-            	self.caster:SetHealth(self.hp)
-            	self.caster:FindAbilityByName("B06R"):ApplyDataDrivenModifier(self.caster, self.caster, "modifier_B06R", {duration = 3.0})
-            	AmpDamageParticle = ParticleManager:CreateParticle("particles/a07w4/a07w4_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
-				Timers:CreateTimer(1.0, function() 
-					ParticleManager:DestroyParticle(AmpDamageParticle, false)
-				end)
+            	if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
+	            	self.caster.B06R_Buff = false
+	            	self.caster:SetHealth(self.hp)
+	            	self.caster:FindAbilityByName("B06R"):ApplyDataDrivenModifier(self.caster, self.caster, "modifier_B06R", {duration = 3.0})
+	            	AmpDamageParticle = ParticleManager:CreateParticle("particles/a07w4/a07w4_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+					Timers:CreateTimer(1.0, function() 
+						ParticleManager:DestroyParticle(AmpDamageParticle, false)
+					end)
 
-				local count = 0
-				Timers:CreateTimer(1.0, function() 
-					if count == 2 then
-						return nil
-					else
-						self.caster.AmpDamageParticle = ParticleManager:CreateParticle("particles/b06r3/b06r4.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
-						count = count + 1
-						return 1.0
-					end
-				end)
+					local count = 0
+					Timers:CreateTimer(1.0, function() 
+						if count == 2 then
+							return nil
+						else
+							self.caster.AmpDamageParticle = ParticleManager:CreateParticle("particles/b06r3/b06r4.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+							count = count + 1
+							return 1.0
+						end
+					end)
+				end
             end 
         end 
     end 
