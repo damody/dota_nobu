@@ -162,8 +162,8 @@ function C05T_OnChannelSucceeded( keys )
 		FIND_ANY_ORDER,										-- 結果的排列方式
 		false)												-- 好像是優化用的參數不懂怎麼用
 
-	damage_table = {
-		victim = nil,
+	local damage_table = {
+		--victim = nil,
 		attacker = caster,
 		ability = ability,
 		damage = ability:GetAbilityDamage(),
