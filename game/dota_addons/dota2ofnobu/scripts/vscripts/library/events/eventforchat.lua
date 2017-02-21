@@ -338,6 +338,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("B04W_old")
 			caster:AddAbility("B04E_old")
 			caster:AddAbility("B04R_old")
+			caster:AddAbility("B04D_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("B04T_old") 
 		end

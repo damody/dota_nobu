@@ -13893,8 +13893,15 @@
 				"VisionRadius"	"225"
 				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
 			}
-			"SpendCharge"
-			{}
+			"DelayedAction"
+            {
+            	"Delay"     "1"
+            	"Action"    
+            	{
+            		"SpendCharge"
+					{}
+            	}
+            }
 		}
 
 		"OnProjectileHitUnit"
@@ -15305,7 +15312,7 @@
 		}
 	}
 
-	// 蜻蛉切．銘槍
+	// 真蜻蛉切．銘槍
 	"item_the_great_spear_of_dragonfly_x"
 	{
 		// General
@@ -15323,7 +15330,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"9150"
+		"ItemCost"	"8450"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
@@ -15362,7 +15369,7 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "2" //回血%
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
 				}
 			}
 		}
