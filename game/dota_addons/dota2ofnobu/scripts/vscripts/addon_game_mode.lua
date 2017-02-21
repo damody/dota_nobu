@@ -64,7 +64,7 @@ _G.heromap_version = {
   A16 = {["11"] = false , ["16"] = true},
   A17 = {["11"] = true , ["16"] = true},
   A25 = {["11"] = true , ["16"] = true},
-  A26 = {["11"] = false , ["16"] = true},
+  A26 = {["11"] = true , ["16"] = true},
   A27 = {["11"] = true , ["16"] = true},
   A28 = {["11"] = true , ["16"] = true},
   A29 = {["11"] = true , ["16"] = true},
