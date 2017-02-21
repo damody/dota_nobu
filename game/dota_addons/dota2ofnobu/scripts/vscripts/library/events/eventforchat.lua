@@ -334,6 +334,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("C05R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("C05T_old") 
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_clinkz") then -- 伊達政宗
+			caster:AddAbility("B04W_old")
+			caster:AddAbility("B04E_old")
+			caster:AddAbility("B04R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("B04T_old") 
 		end
 	end
 		
@@ -571,6 +577,14 @@ local function chat_of_test(keys)
 		end
 
 		if s == "`" then
+			local spell_hint_table = {
+				duration   = 1,		-- 持續時間
+				radius     = 300,	-- 半徑
+			}
+			local thinker = CreateModifierThinker(caster,nil,"nobu_modifier_spell_hint",spell_hint_table,caster:GetAbsOrigin(),caster:GetTeamNumber(),false)
+			Timers:CreateTimer(0, function() print(thinker:IsNull()) end)
+			Timers:CreateTimer(1, function() print(thinker:IsNull()) end)
+			Timers:CreateTimer(2, function() print(thinker:IsNull()) end)
 		end
 
 		if s == "r1" then
