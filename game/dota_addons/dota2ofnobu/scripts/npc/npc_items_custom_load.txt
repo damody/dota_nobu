@@ -3020,7 +3020,9 @@
 	{
 		// General
 		"BaseClass"	"item_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"	"item_custom/the_great_sword_of_invincible"
 		"FightRecapLevel"	"1"
 		"ID"	"4001"
@@ -3037,6 +3039,7 @@
 		"AbilityCooldown"	"55"
 		"AbilityManaCost"	"320"
 		"AbilityCastRange"				"600"
+		"AbilityCastPoint"	"0.1"
 
 		"AbilitySpecial"
 		{
@@ -3058,11 +3061,11 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_aura"
-				"Duration"	"%duration"
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+				"Function"	"Spell"
+				"Target"	"TARGET"
 			}
 		}
 		"Modifiers"
@@ -3081,6 +3084,7 @@
 			}
 			"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_aura"
 			{
+				"Duration"	"%duration"
 				"Aura"	"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_linker"
 				"Aura_Radius"	"%link_radius"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"

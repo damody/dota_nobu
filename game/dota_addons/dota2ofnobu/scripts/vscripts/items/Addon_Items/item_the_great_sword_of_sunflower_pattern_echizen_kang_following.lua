@@ -77,6 +77,14 @@ function modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_followi
 	end
 end
 
+function Spell( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	ability:ApplyDataDrivenModifier(target,target,"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_aura",{})
+end
+
 function Init( keys )
 	local caster = keys.caster
 	local ability = keys.ability
