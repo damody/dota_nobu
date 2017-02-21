@@ -127,6 +127,9 @@ function B04E_OnSpellStart( keys )
 		damage_table.victim = unit
 		ApplyDamage(damage_table)
 	end
+
+	-- 砍樹
+	GridNav:DestroyTreesAroundPoint(point, radius, false)
 end
 
 function B04T_OnCreated( keys )
@@ -157,4 +160,44 @@ function B04T_OnAttackStart( keys )
 			ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration=stun_time})
 		end
 	end
+end
+
+-- 伊達政宗 11.2B
+
+function B04W_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local center = caster:GetAbsOrigin()
+	local point = keys.target_points[1]
+	local ability = keys.ability
+	local speed = ability:GetSpecialValueFor("speed")
+	local dir = (point-center):Normalized()
+	-- 防呆
+	if dir == Vector(0,0,0) then 
+		dir = caster:GetForwardVector() 
+		point = center + dir
+	end
+	local fake_center = center - dir
+	local distance = (point-center):Length()
+	local duration = distance/speed
+	-- 把自己踢過去
+	local knockbackProperties =
+	{
+	    center_x = fake_center.x,
+	    center_y = fake_center.y,
+	    center_z = fake_center.z,
+	    duration = duration,
+	    knockback_duration = duration,
+	    knockback_distance = distance,
+	    knockback_height = 0,
+	    should_stun = 0,
+	}
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_knockback",knockbackProperties)
+	caster:RemoveGesture(ACT_DOTA_FLAIL)
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B04W_old_aura",{duration=duration})
+	caster:StartGesture(ACT_DOTA_VERSUS)
+	Timers:CreateTimer(duration, function()
+		if IsValidEntity(caster) then
+			caster:RemoveGesture(ACT_DOTA_VERSUS)
+		end
+	end)
 end
