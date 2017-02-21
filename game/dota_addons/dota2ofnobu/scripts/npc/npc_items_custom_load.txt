@@ -3031,7 +3031,7 @@
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
 		// Item Info
 		
-		"ItemCost"	"8950"
+		"ItemCost"	"9550"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
@@ -3073,6 +3073,7 @@
 			"Passive_item_the_great_sword_of_sunflower_pattern_echizen_kang_following"
 			{
 				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Passive"	"1"
 				"Properties"
 				{
@@ -4677,17 +4678,28 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
 				}
 				
+			}
+			"Passive_great_spear_of_dragonfly_speed"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
+				}
 			}
 			"Passive_great_spear_of_dragonfly2"
 			{
 				"IsHidden"	"1"
 				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
+				}
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -15332,10 +15344,26 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "2" //回血%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "70" //攻速
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
 				}	
+			}
+			"Passive_great_spear_of_dragonfly_speed"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
+				}
+			}
+			"Passive_great_spear_of_dragonfly_x"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "2" //回血%
+				}
 			}
 		}
 	}
