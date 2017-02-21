@@ -467,7 +467,7 @@ function to_soldier_Oda(keys)
 	   				hero.donkey:RemoveAbility("majia")
 	   				hero.donkey:RemoveModifierByName("modifier_majia")
 	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
-	   				FindClearSpaceForUnit(hero,hero.donkey.oripos,true)
+	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
 	   			end
 			end
 		end

@@ -57,6 +57,16 @@ function B04W_Start( keys )
 	ability.locked_targets = {}
 end
 
+function B04W_old_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("B04E_old")
+	local level = keys.ability:GetLevel()
+	
+	if ability ~= nil then
+		ability:SetLevel(level)
+	end
+end
+
 function B04W_OnProjectileHitUnit( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -94,6 +104,7 @@ function B04E_OnSpellStart( keys )
 	local point = keys.target_points[1]
 	local ability = keys.ability
 	local radius = ability:GetSpecialValueFor("radius")
+	local stun_time = ability:GetSpecialValueFor("stun_time")
 
 	local spell_hint_table = {
 		duration   = 1,		-- 持續時間
@@ -126,6 +137,7 @@ function B04E_OnSpellStart( keys )
 	for _,unit in ipairs(units) do
 		damage_table.victim = unit
 		ApplyDamage(damage_table)
+		ability:ApplyDataDrivenModifier(caster, unit, "modifier_stunned", {duration=stun_time})
 	end
 
 	-- 砍樹
@@ -200,4 +212,18 @@ function B04W_old_OnSpellStart( keys )
 			caster:RemoveGesture(ACT_DOTA_VERSUS)
 		end
 	end)
+end
+
+function B04T_old_OnAttackStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local stun_chance = ability:GetSpecialValueFor("stun_chance")
+	local stun_time = ability:GetSpecialValueFor("stun_time")
+	
+	if target:IsHero() or target:IsCreep() then
+		if not target:IsMagicImmune() and stun_chance >= RandomInt(1,100) then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration=stun_time})
+		end
+	end
 end
