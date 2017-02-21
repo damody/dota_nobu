@@ -14,7 +14,6 @@ function Spell( keys )
 	Timers:CreateTimer(duration, function()
 		ParticleManager:DestroyParticle(ifx,false)
 	end)
-
 	EmitSoundOn("Item.Iron_Fragmentor.Tornado",dummy)
 end
 

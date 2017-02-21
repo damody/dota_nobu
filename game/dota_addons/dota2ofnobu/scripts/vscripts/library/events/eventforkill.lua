@@ -94,6 +94,17 @@ function Nobu:OnUnitKill( keys )
         local xp = killedUnit:GetLevel() * 35 / #group
         for _,v in ipairs(group) do
           v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
+          if v:IsHero() then
+            if killedUnit:GetLevel() > v:GetLevel()+4 then
+              v:AddExperience(xp*3, DOTA_ModifyGold_HeroKill, false, false)
+            elseif killedUnit:GetLevel() > v:GetLevel()+3 then
+              v:AddExperience(xp*2, DOTA_ModifyGold_HeroKill, false, false)
+            elseif killedUnit:GetLevel() > v:GetLevel()+2 then
+              v:AddExperience(xp*1, DOTA_ModifyGold_HeroKill, false, false)
+            elseif killedUnit:GetLevel() > v:GetLevel()+1 then
+              v:AddExperience(xp*0.5, DOTA_ModifyGold_HeroKill, false, false)
+            end
+          end
         end
       end
 
@@ -105,7 +116,7 @@ function Nobu:OnUnitKill( keys )
       local unitname = name
       local pos = killedUnit:GetAbsOrigin()
       local team = killedUnit:GetTeamNumber()
-      Timers:CreateTimer(130, function()
+      Timers:CreateTimer(70, function()
         if (killedUnit.origin_pos) then
           pos = killedUnit.origin_pos
           local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
@@ -123,7 +134,7 @@ function Nobu:OnUnitKill( keys )
       local unitname = name
       local pos = killedUnit:GetAbsOrigin()
       local team = killedUnit:GetTeamNumber()
-      Timers:CreateTimer(160, function()
+      Timers:CreateTimer(100, function()
         if (killedUnit.origin_pos) then
           pos = killedUnit.origin_pos
           local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
