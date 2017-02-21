@@ -1798,6 +1798,17 @@
 		"Ability15"	""
 		"Ability16"	""
 		"StatusManaRegen"	"10"
+
+		"Creature"
+		{
+		    "AttachWearables"
+		    {
+		    	"1" { "ItemDef" "535" }
+		    	"2" { "ItemDef" "592" }
+		    	"3" { "ItemDef" "626" }
+		        "4" { "ItemDef" "630" }
+		    }
+		}
 	}
 
 	// 火神‧迦具土
@@ -2796,6 +2807,12 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
+
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"0"
+		"VisionNighttimeRange"	"0"
 	}
 
 	// =================================================================================
@@ -3731,6 +3748,7 @@
 		"AttackAcquisitionRange"	"1100"
 		"AttackRange"	"1100"
 		"ProjectileSpeed"	"1800"
+		"ProjectileModel"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
 		// Bounty
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"1300.0"
@@ -4046,9 +4064,9 @@
 		"ProjectileSpeed"	"10000"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"43.0"
-		"BountyGoldMax"	"45.0"
-		"BountyXP"	"15"
+		"BountyGoldMin"	"23.0"
+		"BountyGoldMax"	"25.0"
+		"BountyXP"	"20"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -4124,9 +4142,9 @@
 		"ProjectileSpeed"	"10000"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"43.0"
-		"BountyGoldMax"	"45.0"
-		"BountyXP"	"15"
+		"BountyGoldMin"	"23.0"
+		"BountyGoldMax"	"25.0"
+		"BountyXP"	"20"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"0"
@@ -4286,7 +4304,7 @@
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"63.0"
 		"BountyGoldMax"	"65.0"
-		"BountyXP"	"20"
+		"BountyXP"	"50"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"0"
@@ -4363,8 +4381,8 @@
 		"ProjectileSpeed"	"1800"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"26.0"
-		"BountyGoldMax"	"28.0"
+		"BountyGoldMin"	"36.0"
+		"BountyGoldMax"	"38.0"
 		"BountyXP"	"20"
 		// Movement
 		// ----------------------------------------------------------------
@@ -4564,8 +4582,8 @@
 		"ProjectileSpeed"	"1800"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"36.0"
-		"BountyGoldMax"	"38.0"
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"27.0"
 		"BountyXP"	"20"
 		// Movement
 		// ----------------------------------------------------------------
@@ -4639,8 +4657,8 @@
 		"ProjectileSpeed"	"1800"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"36.0"
-		"BountyGoldMax"	"38.0"
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"27.0"
 		"BountyXP"	"20"
 		// Movement
 		// ----------------------------------------------------------------
@@ -4714,9 +4732,9 @@
 		"ProjectileSpeed"	"1800"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"26.0"
-		"BountyGoldMax"	"28.0"
-		"BountyXP"	"20"
+		"BountyGoldMin"	"76.0"
+		"BountyGoldMax"	"78.0"
+		"BountyXP"	"50"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -4861,8 +4879,8 @@
 		"ProjectileSpeed"	"3000"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"71.0"
-		"BountyGoldMax"	"73.0"
+		"BountyGoldMin"	"51.0"
+		"BountyGoldMax"	"53.0"
 		"BountyXP"	"30"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
@@ -4943,9 +4961,9 @@
 		"ProjectileSpeed"	"3000"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"161.0"
-		"BountyGoldMax"	"163.0"
-		"BountyXP"	"30"
+		"BountyGoldMin"	"101.0"
+		"BountyGoldMax"	"103.0"
+		"BountyXP"	"60"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"60"
@@ -5024,8 +5042,8 @@
 		"ProjectileSpeed"	"10000"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"81.0"
-		"BountyGoldMax"	"83.0"
+		"BountyGoldMin"	"51.0"
+		"BountyGoldMax"	"53.0"
 		"BountyXP"	"30"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
@@ -5105,8 +5123,8 @@
 		"ProjectileSpeed"	"10000"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"61.0"
-		"BountyGoldMax"	"63.0"
+		"BountyGoldMin"	"81.0"
+		"BountyGoldMax"	"83.0"
 		"BountyXP"	"30"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
@@ -5186,9 +5204,9 @@
 		"ProjectileSpeed"	"10000"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"61.0"
-		"BountyGoldMax"	"63.0"
-		"BountyXP"	"30"
+		"BountyGoldMin"	"161.0"
+		"BountyGoldMax"	"163.0"
+		"BountyXP"	"90"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"60"
@@ -5501,7 +5519,7 @@
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"150.0"
 		"BountyGoldMax"	"150.0"
-		"BountyXP"	"30"
+		"BountyXP"	"0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"110"
@@ -5578,7 +5596,7 @@
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"150.0"
 		"BountyGoldMax"	"150.0"
-		"BountyXP"	"30"
+		"BountyXP"	"0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"140"
@@ -5751,8 +5769,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"28"		// Damage range min.
- 		"AttackDamageMax"			"29"		// Damage range max.	
+ 		"AttackDamageMin"			"88"		// Damage range min.
+ 		"AttackDamageMax"			"99"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
@@ -5767,9 +5785,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
- 		"BountyGoldMin"				"26"		// Gold earned min.
- 		"BountyGoldMax"				"28"		// Gold earned max.
+ 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyGoldMin"				"56"		// Gold earned min.
+ 		"BountyGoldMax"				"68"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -5821,8 +5839,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"26"		// Damage range min.
- 		"AttackDamageMax"			"29"		// Damage range max.	
+ 		"AttackDamageMin"			"66"		// Damage range min.
+ 		"AttackDamageMax"			"79"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -5837,9 +5855,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
- 		"BountyGoldMin"				"21"		// Gold earned min.
- 		"BountyGoldMax"				"23"		// Gold earned max.
+ 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyGoldMin"				"31"		// Gold earned min.
+ 		"BountyGoldMax"				"43"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -5891,8 +5909,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"34"		// Damage range min.
- 		"AttackDamageMax"			"39"		// Damage range max.	
+ 		"AttackDamageMin"			"64"		// Damage range min.
+ 		"AttackDamageMax"			"79"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -5907,9 +5925,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
- 		"BountyGoldMin"				"27"		// Gold earned min.
- 		"BountyGoldMax"				"31"		// Gold earned max.
+ 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyGoldMin"				"37"		// Gold earned min.
+ 		"BountyGoldMax"				"41"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -5961,8 +5979,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"32"		// Damage range min.
- 		"AttackDamageMax"			"40"		// Damage range max.	
+ 		"AttackDamageMin"			"122"		// Damage range min.
+ 		"AttackDamageMax"			"130"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -5977,9 +5995,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"40"		// Experience earn.
- 		"BountyGoldMin"				"30"		// Gold earned min.
- 		"BountyGoldMax"				"34"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"75"		// Gold earned min.
+ 		"BountyGoldMax"				"84"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6031,8 +6049,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"48"		// Damage range min.
- 		"AttackDamageMax"			"53"		// Damage range max.	
+ 		"AttackDamageMin"			"168"		// Damage range min.
+ 		"AttackDamageMax"			"173"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -6047,9 +6065,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"30"		// Experience earn.
- 		"BountyGoldMin"				"38"		// Gold earned min.
- 		"BountyGoldMax"				"44"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"98"		// Gold earned min.
+ 		"BountyGoldMax"				"114"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6101,9 +6119,9 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"55"		// Damage range min.
- 		"AttackDamageMax"			"61"		// Damage range max.	
- 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackDamageMin"			"105"		// Damage range min.
+ 		"AttackDamageMax"			"111"		// Damage range max.	
+ 		"AttackRate"				"0.9"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -6117,9 +6135,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"40"		// Experience earn.
- 		"BountyGoldMin"				"44"		// Gold earned min.
- 		"BountyGoldMax"				"52"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"84"		// Gold earned min.
+ 		"BountyGoldMax"				"92"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6171,9 +6189,9 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"55"		// Damage range min.
- 		"AttackDamageMax"			"61"		// Damage range max.	
- 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackDamageMin"			"105"		// Damage range min.
+ 		"AttackDamageMax"			"111"		// Damage range max.	
+ 		"AttackRate"				"0.9"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -6187,9 +6205,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"40"		// Experience earn.
- 		"BountyGoldMin"				"44"		// Gold earned min.
- 		"BountyGoldMax"				"52"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"84"		// Gold earned min.
+ 		"BountyGoldMax"				"92"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6241,9 +6259,9 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"86"		// Damage range min.
- 		"AttackDamageMax"			"93"		// Damage range max.	
- 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackDamageMin"			"156"		// Damage range min.
+ 		"AttackDamageMax"			"163"		// Damage range max.	
+ 		"AttackRate"				"0.9"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -6257,9 +6275,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"50"		// Experience earn.
- 		"BountyGoldMin"				"67"		// Gold earned min.
- 		"BountyGoldMax"				"81"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"117"		// Gold earned min.
+ 		"BountyGoldMax"				"121"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6311,8 +6329,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"55"		// Damage range min.
- 		"AttackDamageMax"			"61"		// Damage range max.	
+ 		"AttackDamageMin"			"165"		// Damage range min.
+ 		"AttackDamageMax"			"171"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -6327,9 +6345,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"40"		// Experience earn.
- 		"BountyGoldMin"				"45"		// Gold earned min.
- 		"BountyGoldMax"				"50"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"65"		// Gold earned min.
+ 		"BountyGoldMax"				"70"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6381,8 +6399,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"32"		// Damage range min.
- 		"AttackDamageMax"			"36"		// Damage range max.	
+ 		"AttackDamageMin"			"102"		// Damage range min.
+ 		"AttackDamageMax"			"106"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -6397,9 +6415,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"20"		// Experience earn.
- 		"BountyGoldMin"				"49"		// Gold earned min.
- 		"BountyGoldMax"				"57"		// Gold earned max.
+ 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyGoldMin"				"59"		// Gold earned min.
+ 		"BountyGoldMax"				"67"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6434,7 +6452,7 @@
  		"BaseClass"					"npc_dota_creep_neutral"
  		"SoundSet"					"n_creep_Melee"
  		"Level"						"5"
- 		"ModelScale" 					"1.50"
+ 		"ModelScale" 				"1.50"
  		"IsNeutralUnitType"			"1"
 
  		// Abilities
@@ -6451,9 +6469,9 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"55"		// Damage range min.
- 		"AttackDamageMax"			"65"		// Damage range max.	
- 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackDamageMin"			"155"		// Damage range min.
+ 		"AttackDamageMax"			"185"		// Damage range max.	
+ 		"AttackRate"				"0.9"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
  		"AttackRange"				"400"		// Range within a target can be attacked.
@@ -6467,9 +6485,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"50"		// Experience earn.
- 		"BountyGoldMin"				"55"		// Gold earned min.
- 		"BountyGoldMax"				"65"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"115"		// Gold earned min.
+ 		"BountyGoldMax"				"125"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6521,8 +6539,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"63"		// Damage range min.
- 		"AttackDamageMax"			"68"		// Damage range max.	
+ 		"AttackDamageMin"			"123"		// Damage range min.
+ 		"AttackDamageMax"			"128"		// Damage range max.	
  		"AttackRate"				"1.35"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -6537,9 +6555,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"50"		// Experience earn.
- 		"BountyGoldMin"				"55"		// Gold earned min.
- 		"BountyGoldMax"				"65"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"85"		// Gold earned min.
+ 		"BountyGoldMax"				"95"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6591,8 +6609,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"131"		// Damage range min.
- 		"AttackDamageMax"			"139"		// Damage range max.	
+ 		"AttackDamageMin"			"271"		// Damage range min.
+ 		"AttackDamageMax"			"309"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
@@ -6607,9 +6625,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"60"		// Experience earn.
- 		"BountyGoldMin"				"105"		// Gold earned min.
- 		"BountyGoldMax"				"125"		// Gold earned max.
+ 		"BountyXP"					"30"		// Experience earn.
+ 		"BountyGoldMin"				"235"		// Gold earned min.
+ 		"BountyGoldMax"				"255"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6661,8 +6679,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"101"		// Damage range min.
- 		"AttackDamageMax"			"107"		// Damage range max.	
+ 		"AttackDamageMin"			"301"		// Damage range min.
+ 		"AttackDamageMax"			"407"		// Damage range max.	
  		"AttackRate"				"1.2"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -6677,9 +6695,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"60"		// Experience earn.
- 		"BountyGoldMin"				"108"		// Gold earned min.
- 		"BountyGoldMax"				"124"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"258"		// Gold earned min.
+ 		"BountyGoldMax"				"274"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -6801,8 +6819,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"226"		// Damage range min.
- 		"AttackDamageMax"			"245"		// Damage range max.	
+ 		"AttackDamageMin"			"426"		// Damage range min.
+ 		"AttackDamageMax"			"445"		// Damage range max.	
  		"AttackRate"				"0.5"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -6817,14 +6835,14 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"500"		// Experience earn.
- 		"BountyGoldMin"				"300"		// Gold earned min.
- 		"BountyGoldMax"				"300"		// Gold earned max.
+ 		"BountyXP"					"600"		// Experience earn.
+ 		"BountyGoldMin"				"600"		// Gold earned min.
+ 		"BountyGoldMax"				"600"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
  		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
- 		"MovementSpeed"				"300"		// Speed.
+ 		"MovementSpeed"				"600"		// Speed.
 
  		// Status
  		//----------------------------------------------------------------
@@ -7081,9 +7099,9 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"60"		// Damage range min.
- 		"AttackDamageMax"			"69"		// Damage range max.	
- 		"AttackRate"				"1.8"		// Speed of attack.
+ 		"AttackDamageMin"			"100"		// Damage range min.
+ 		"AttackDamageMax"			"109"		// Damage range max.	
+ 		"AttackRate"				"0.9"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"400"		// Range within a target can be acquired.
  		"AttackRange"				"400"		// Range within a target can be attacked.
@@ -7097,9 +7115,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"40"		// Experience earn.
- 		"BountyGoldMin"				"55"		// Gold earned min.
- 		"BountyGoldMax"				"55"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"105"		// Gold earned min.
+ 		"BountyGoldMax"				"115"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
@@ -7151,8 +7169,8 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"80"		// Damage range min.
- 		"AttackDamageMax"			"87"		// Damage range max.	
+ 		"AttackDamageMin"			"180"		// Damage range min.
+ 		"AttackDamageMax"			"187"		// Damage range max.	
  		"AttackRate"				"0.9"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
@@ -7167,9 +7185,9 @@
 
  		// Bounty
  		//----------------------------------------------------------------
- 		"BountyXP"					"25"		// Experience earn.
- 		"BountyGoldMin"				"105"		// Gold earned min.
- 		"BountyGoldMax"				"105"		// Gold earned max.
+ 		"BountyXP"					"20"		// Experience earn.
+ 		"BountyGoldMin"				"155"		// Gold earned min.
+ 		"BountyGoldMax"				"155"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------

@@ -28,7 +28,7 @@ function A28W_old(keys)
 	local duration = ability:GetLevelSpecialValueFor("duration", ( ability:GetLevel() - 1 ))
 
 	keys.target:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
-		keys.target:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
+	keys.target:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
 end
 
 --[[Author: YOLOSPAGHETTI
@@ -290,7 +290,7 @@ function A28T(keys)
 	phoenix:SetHealth(phoenix:GetMaxHealth())
 	phoenix:SetBaseDamageMax(250+level*100)
 	phoenix:SetBaseDamageMin(200+level*110)
- 	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 90})
+ 	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 60})
  	Timers:CreateTimer(2, function ()
  			if phoenix:IsAlive() then
 				local dis = (phoenix:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()

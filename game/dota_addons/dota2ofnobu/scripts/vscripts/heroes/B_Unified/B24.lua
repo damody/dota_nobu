@@ -96,7 +96,9 @@ end
 
 function B24T2_Kill( keys )
 	local dummy	= keys.caster
-	dummy:ForceKill(true)
+	if IsValidEntity(dummy) then
+		dummy:ForceKill(true)
+	end
 end
 
 function B24W( keys )
@@ -272,7 +274,7 @@ function B24E_START( keys )
 		if caster:IsAlive() then
 			local hasv = false
 			for _,v in ipairs(group) do
-				if v:IsAlive() and v:HasModifier("modifier_B24E") then
+				if IsValidEntity(v) and v:IsAlive() and v:HasModifier("modifier_B24E") then
 					hasv = true
 					-- Clear the force attack target
 					v:SetForceAttackTarget(nil)
@@ -298,16 +300,20 @@ function B24E_START( keys )
 			end
 		else
 			for _,v in ipairs(group) do
-				v:SetForceAttackTarget(nil)
-				v:Stop()
+				if IsValidEntity(v) then
+					v:SetForceAttackTarget(nil)
+					v:Stop()
+				end
 			end
 			return nil
 		end
 		end)
 	Timers:CreateTimer(duration+0.1, function ()
 			for _,v in ipairs(group) do
-				v:SetForceAttackTarget(nil)
-				v:Stop()
+				if IsValidEntity(v) then
+					v:SetForceAttackTarget(nil)
+					v:Stop()
+				end
 			end
 		end)
 end
@@ -424,8 +430,10 @@ function B24R( keys )
 			   		FIND_ANY_ORDER, 
 			   		false)
 				for _,v in ipairs(group) do
-					AMHC:Damage( caster,v,damage2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-					if not v:IsMagicImmune() then
+					if IsValidEntity(v) then
+						AMHC:Damage( caster,v,damage2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					end
+					if IsValidEntity(v) and not v:IsMagicImmune() then
 						AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 						ability:ApplyDataDrivenModifier(caster,v,"modifier_B24R_2",nil)
 					end

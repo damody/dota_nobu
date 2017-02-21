@@ -34,7 +34,9 @@ function new_C15E( keys )
 			AddFOWViewer ( caster:GetTeam(), point_tem, 200, 12, true)
 			num = num + 1
 			Timers:CreateTimer(15, function()
-				dummy:ForceKill(true)
+				if IsValidEntity(dummy) then
+					dummy:ForceKill(true)
+				end
 				end)
 			return 0.03
 		end

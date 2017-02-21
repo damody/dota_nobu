@@ -7,8 +7,12 @@
 function A31E(keys)
 	ProjectileManager:ProjectileDodge(keys.caster)  --Disjoints disjointable incoming projectiles.
 	
-	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, keys.caster)
-	keys.caster:EmitSound("DOTA_Item.BlinkDagger.Activate")
+	local caster = keys.caster
+	local dummy = CreateUnitByName("npc_dummy_unit",caster:GetAbsOrigin(),false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(nil,nil,"modifier_kill",{duration=5})
+	local ifx = ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, dummy)
+	ParticleManager:ReleaseParticleIndex(ifx)
+	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", dummy)
 	
 	local origin_point = keys.caster:GetAbsOrigin()
 	local target_point = keys.target_points[1]

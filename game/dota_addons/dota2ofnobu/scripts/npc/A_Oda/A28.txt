@@ -63,21 +63,24 @@
 				"duration"				"1.0 1.5 2.0 2.5"
 			}
 		}
-		"modifier_A28W"
+		"Modifiers"
 		{
-			"IsPurgable"	"1"
-			"IsDebuff"		"1"
-			"Properties"
+			"modifier_A28W"
 			{
-				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
-			}
-			"OnCreated"
-			{
-				"Damage"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Properties"
 				{
-					"Target"	"TARGET"
-					"Type"	"DAMAGE_TYPE_MAGICAL"
-					"Damage"	"1"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
+				}
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"1"
+					}
 				}
 			}
 		}
@@ -760,21 +763,24 @@
 				"duration"				"2 3 4 5"
 			}
 		}
-		"modifier_A28W"
+		"Modifiers"
 		{
-			"IsPurgable"	"1"
-			"IsDebuff"		"1"
-			"Properties"
+			"modifier_A28W"
 			{
-				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
-			}
-			"OnCreated"
-			{
-				"Damage"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Properties"
 				{
-					"Target"	"TARGET"
-					"Type"	"DAMAGE_TYPE_MAGICAL"
-					"Damage"	"1"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
+				}
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"1"
+					}
 				}
 			}
 		}

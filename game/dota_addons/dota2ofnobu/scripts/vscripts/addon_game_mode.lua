@@ -4,6 +4,7 @@ print ( '[Nobu-lua] ADDON INIT EXECUTED' )
 _G.CountUsedAbility_Table = {}
 
 _G.heromap = {
+  npc_dota_hero_windrunner          = "A02",
   npc_dota_hero_ancient_apparition  = "A04",
   npc_dota_hero_troll_warlord       = "A06",
   npc_dota_hero_centaur             = "A07",
@@ -36,11 +37,12 @@ _G.heromap = {
 
   npc_dota_hero_viper               = "C01",
   npc_dota_hero_legion_commander    = "C02",
+  npc_dota_hero_obsidian_destroyer  = "C05",
   npc_dota_hero_silencer            = "C07",
   npc_dota_hero_antimage            = "C10",
   npc_dota_hero_juggernaut          = "C11",
   npc_dota_hero_mirana              = "C15",
-  npc_dota_hero_windrunner          = "C17",
+  npc_dota_hero_puck                = "C17",
   npc_dota_hero_templar_assassin    = "C19",
   npc_dota_hero_alchemist           = "C21",
   npc_dota_hero_jakiro              = "C22",
@@ -52,6 +54,7 @@ for k,v in pairs(_G.heromap) do
 end
 
 _G.heromap_version = {
+  A02 = {["11"] = true , ["16"] = true},
   A04 = {["11"] = true , ["16"] = true},
   A06 = {["11"] = true , ["16"] = true},
   A07 = {["11"] = true , ["16"] = true},
@@ -84,6 +87,7 @@ _G.heromap_version = {
 
   C01 = {["11"] = true , ["16"] = true},
   C02 = {["11"] = true , ["16"] = true},
+  C05 = {["11"] = true , ["16"] = true},
   C07 = {["11"] = true , ["16"] = true},
   C10 = {["11"] = true , ["16"] = true},
   C11 = {["11"] = true , ["16"] = true},
@@ -359,6 +363,16 @@ function Precache( context )
     "particles/q09_2/q09_2.vpcf",
     -- 洞寶
     "particles/b05t3/b05t3_j0.vpcf",
+    -- 葵紋越前康繼．禦神刀 11.2B
+    "particles/item/item_the_great_sword_of_sunflower_pattern_echizen_kang_following/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.vpcf",
+    -- 鐵碎牙．妖刀 11.2B
+    "particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor.vpcf",
+    "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf",
+    "particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor_hit.vpcf",
+
+    -- 施法提示
+    "particles/spell_hint/spell_hint_circle.vpcf",
+    "particles/spell_hint/spell_hint_circle_fog.vpcf",
 
     --注意要加,
     }
@@ -378,6 +392,9 @@ function Precache( context )
     "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts",
     "soundevents/a07t.vsndevts",
     "soundevents/a28r.vsndevts",
+    "soundevents/nobu_sounds_items.vsndevts",
+    --"soundevents/game_sounds_creeps.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

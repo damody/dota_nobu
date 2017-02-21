@@ -24,7 +24,7 @@ loadModule ( 'util_of_nobu') --自訂義的api
 --loadModule ( 'computer_system/Game_Init' ) --6/17增加
 ------------------
 --loadModule ( 'library/chetcodeselfmode' )
---loadModule ( 'library/events/eventfordamage' )
+loadModule ( 'library/events/eventfordamage' )
 loadModule ( 'library/events/eventfororder' )
 loadModule ( 'library/events/eventforlevelup' )
 loadModule ( 'library/events/eventforpichero' )
@@ -32,7 +32,7 @@ loadModule ( 'library/events/eventforspawned' )
 loadModule ( 'library/events/eventforchat' )
 loadModule ( 'library/events/eventforkill' )
 loadModule ( 'library/common/dummy' ) --馬甲系統
---loadModule ( 'library/common/word' )  --漂浮字系統
+loadModule ( 'library/common/word' )  --漂浮字系統
 --loadModule ( 'libraries/selection')
 --loadModule ( 'libraries/gatherer')
 ------電腦系統-----
@@ -67,3 +67,6 @@ loadModule ( 'GameRulesStateChange' ) --6/24增加
 --require('internal/util')
 -- require('gamemode')
 --
+
+-- nobu
+loadModule ( 'nobu_modifiers/nobu_modifier_spell_hint' ) -- 可以顯示施法範圍

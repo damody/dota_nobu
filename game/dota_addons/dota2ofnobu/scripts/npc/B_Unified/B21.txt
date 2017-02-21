@@ -306,7 +306,14 @@
 				"stack_hp"			"20" // %
 			}
 		}
-
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B21.lua"
+				"Function"		"B21T_OnUpgrade"
+			}
+		}
 		"precache"
 		{
 			"particle"  "particles/b21/b21t_buff.vpcf"
@@ -314,6 +321,19 @@
 
 		"Modifiers"
 		{
+			"modifier_B21T_stun"
+			{
+				"Duration"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
 			"modifier_B21T_passive"
 			{
 				"Passive"			"1"
@@ -658,6 +678,14 @@
 				"hp_threshold"		"1600 1600 1600"
 			}
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B21.lua"
+				"Function"		"B21T_OnUpgrade"
+			}
+		}
 
 		"precache"
 		{
@@ -666,6 +694,19 @@
 
 		"Modifiers"
 		{
+			"modifier_B21T_stun"
+			{
+				"Duration"	"1"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
 			"modifier_B21T_old_passive"
 			{
 				"Passive"			"1"

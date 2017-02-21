@@ -2,16 +2,17 @@ function killdummy( keys )
 	local dummy = keys.target
 	--print(dummy:GetUnitName())
 	if dummy ~= nil then
-		dummy:ForceKill(true)
+    if IsValidEntity(dummy) then
+		  dummy:ForceKill(true)
+    end
 		print(dummy:GetUnitName())
 	end
 end
 
 function CP_Posistion( keys )
 	local caster = keys.caster
-	
+	caster.origin_pos = caster:GetAbsOrigin()
 	Timers:CreateTimer(1, function ()
-		  caster.origin_pos = caster:GetAbsOrigin()
         if not caster:IsIllusion() then
           local donkey = CreateUnitByName("cp_soldiercamp", caster.origin_pos, true, caster, caster, caster:GetTeamNumber())
           donkey:SetAbsOrigin(caster.origin_pos)

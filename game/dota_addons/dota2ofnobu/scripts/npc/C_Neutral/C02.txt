@@ -99,16 +99,11 @@
 				"Type"			"DAMAGE_TYPE_MAGICAL"
 				"Damage"		"%AbilityDamage"
 			}
-			"AttachEffect"
+			"RunScript"
 			{
-				"EffectName"        "particles/c02/c02w_hit.vpcf"
-				"EffectAttachType"  "follow_origin"
-				"Target"	"TARGET"
-				"ControlPointEntities"
-	            {
-	                "TARGET" "follow_origin"
-	                "CASTER" "follow_origin"
-	            }
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
+				"Function"		"C02W_OnProjectileHitUnit"
+				"Target"		"TARGET"
 			}
 			"RunScript"
 			{
@@ -513,16 +508,11 @@
 				"Type"			"DAMAGE_TYPE_MAGICAL"
 				"Damage"		"%AbilityDamage"
 			}
-			"AttachEffect"
+			"RunScript"
 			{
-				"EffectName"        "particles/c02/c02w_hit.vpcf"
-				"EffectAttachType"  "follow_origin"
-				"Target"	"TARGET"
-				"ControlPointEntities"
-	            {
-	                "TARGET" "follow_origin"
-	                "CASTER" "follow_origin"
-	            }
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
+				"Function"		"C02W_old_OnProjectileHitUnit"
+				"Target"		"TARGET"
 			}
 		}
 	}
@@ -607,7 +597,6 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
 				"Function"		"C02E_old_OnChannelFinish"
-				"Target" 		"TARGET"
 			}
 		}
 
@@ -632,6 +621,15 @@
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
 						"Function"		"C02E_old_OnUnitMoved"
+					}
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
+						"Function"		"modifier_C02E_old_OnCreated"
+						"Target"		"TARGET"
 					}
 				}
 				"OnDestroy"
@@ -836,7 +834,7 @@
 						"Target"            "TARGET"
 						"ControlPointEntities"
 						{
-							"TARGET"	"follow_origin"
+							"TARGET"	"attach_origin"
 							"TARGET"	"attach_attack1"
 							"TARGET"	"attach_attack1"
 							"TARGET"	"attach_attack1"

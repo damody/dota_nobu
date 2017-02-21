@@ -37,7 +37,7 @@ function modifier_kotennmyohiragumo:OnTakeDamage(event)
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) then
-		            	self.caster:SetHealth(self.hp+return_damage)
+		            	self.caster:Heal(return_damage*2, self.caster)
 		            end 
 		        end
 		    end
@@ -55,7 +55,7 @@ end
 function ShockTarget( keys, target )
 	local caster = keys.caster
 	local ability = keys.ability
-	local havetime = 10
+	local havetime = tonumber(keys.Time)
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_kotennmyohiragumo", {duration = havetime} )
 	target:FindModifierByName("modifier_kotennmyohiragumo").caster = target
 	target:FindModifierByName("modifier_kotennmyohiragumo").hp = caster:GetHealth()

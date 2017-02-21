@@ -106,35 +106,39 @@ end
 
 -- 這個function會收到全場的傷害事件，無論目標是誰...
 function modifier_b21r_lua:OnTakeDamage( keys )
-	if IsClient() then return end
+	if IsServer() then
 
-	local unit = self:GetParent()
+		local unit = self:GetParent()
 
-	-- 判斷目標是否是自己
-	if keys.unit ~= unit then return end
+		-- 判斷目標是否是自己
+		if keys.unit ~= unit then return end
 
-	-- 只反彈物理傷害
-	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
+		-- 如果要反彈的人還是可靠的
+		if not IsValidEntity(keys.attacker) then return end
 
-	-- 不能反彈反彈傷害
-	if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return end
+		-- 只反彈物理傷害
+		if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
 
-	local attacker = keys.attacker
-	local ability = self:GetAbility()
+		-- 不能反彈反彈傷害
+		if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return end
 
-	ApplyDamage({
-		victim = attacker,
-		attacker = unit,
-		ability = self:GetAbility(),
-		damage = ability:GetAbilityDamage(),
-		damage_type = ability:GetAbilityDamageType(),
-		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
-	})
+		local attacker = keys.attacker
+		local ability = self:GetAbility()
 
-	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf",PATTACH_POINT_FOLLOW,unit)
-	ParticleManager:SetParticleControlEnt(ifx,0,unit,PATTACH_POINT_FOLLOW,"attach_hitloc",unit:GetAbsOrigin(),true)
-	ParticleManager:SetParticleControlEnt(ifx,1,attacker,PATTACH_POINT_FOLLOW,"attach_hitloc",attacker:GetAbsOrigin(),true)
-	ParticleManager:ReleaseParticleIndex(ifx)
+		ApplyDamage({
+			victim = attacker,
+			attacker = unit,
+			ability = self:GetAbility(),
+			damage = ability:GetAbilityDamage(),
+			damage_type = ability:GetAbilityDamageType(),
+			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
+		})
+
+		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf",PATTACH_POINT_FOLLOW,unit)
+		ParticleManager:SetParticleControlEnt(ifx,0,unit,PATTACH_POINT_FOLLOW,"attach_hitloc",unit:GetAbsOrigin(),true)
+		ParticleManager:SetParticleControlEnt(ifx,1,attacker,PATTACH_POINT_FOLLOW,"attach_hitloc",attacker:GetAbsOrigin(),true)
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end
 end
 
 function B21R_OnCreated( keys )
@@ -194,8 +198,10 @@ function B21T_OnHealthChange( keys )
 		if modifier == nil then 
 			modifier = ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_stack",nil)
 			ability.modifier = modifier
+		else
+			modifier:SetStackCount(stack)
 		end
-		modifier:SetStackCount(stack)
+		
 	end
 end
 
@@ -332,6 +338,22 @@ function B21T_old_OnCreated( keys )
 	local ifx = ParticleManager:CreateParticle("particles/b21/b21t_buff.vpcf",PATTACH_CUSTOMORIGIN,caster)
 	ParticleManager:SetParticleControl(ifx,0,Vector(50))
 	ability.ifx = ifx
+end
+
+function B21T_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	Timers:CreateTimer(1, function ()
+		if IsValidEntity(caster) and not caster:IsIllusion() then
+			local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+				nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+			for _,enemy in pairs(group) do
+				ability:ApplyDataDrivenModifier(enemy,enemy,"modifier_B21T_stun",{duration=1})
+			end
+		end
+	end)
+	
 end
 
 function B21T_old_OnDestroy( keys )

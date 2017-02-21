@@ -83,7 +83,6 @@ function Shock( keys )
 					return nil
 				end)
 
-
 	local count = 0
 	Timers:CreateTimer(1, function ()
 		count = count + 1
@@ -94,18 +93,20 @@ function Shock( keys )
 	                              nil,
 	                              SEARCH_RADIUS,
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
 	                              DOTA_UNIT_TARGET_FLAG_NONE,
 	                              FIND_ANY_ORDER,
 	                              false)
 		for _,it in pairs(direUnits) do
-			if (not(it:IsBuilding())) then
+			if (not(it:IsBuilding())) and IsValidEntity(it) then
 				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				ability:ApplyDataDrivenModifier(dummy, it,"modifier_the_overflame_art_of_war",nil)
-				local rock_effect = ParticleManager:CreateParticle("particles/b26t/b26t.vpcf", PATTACH_ABSORIGIN, it)
-				ParticleManager:SetParticleControl(rock_effect, 0, it:GetAbsOrigin())
+				if IsValidEntity(it) then
+					local rock_effect = ParticleManager:CreateParticle("particles/b26t/b26t.vpcf", PATTACH_ABSORIGIN, it)
+					ParticleManager:SetParticleControl(rock_effect, 0, it:GetAbsOrigin())
+				end
 			else
-				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
 		if count > 13 then

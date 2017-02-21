@@ -1,4 +1,4 @@
-require("libraries/containers")
+require('libraries/containers')
 --idea test
 
 
@@ -11,16 +11,6 @@ function EventForSpellTarget( filterTable )
 	local unitname = caster:GetUnitName()
 	local targetname = target:GetUnitName()
 
-	--信村R技能
-	if targetname == "npc_dota_hero_elder_titan" then
-		local casterplayerNum = caster:GetTeamNumber() --print
-		local targetplayerNum = target:GetTeamNumber()
-		if casterplayerNum ~= targetplayerNum then --概念:不是一樣ID就是敵方
-			if target.B06R_Buff ~=nil and target.B06R_Buff then
-				B06R_BeSpelled(target,ability)
-			end
-		end
-	end
 
 end
 
@@ -30,6 +20,7 @@ function EventForAttackTarget( filterTable )
 	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability)
 	local target = EntIndexToHScript( f.entindex_target )
+	if not IsValidEntity(caster) or not IsValidEntity(target) then return false end
 	if caster:GetTeamNumber() == target:GetTeamNumber() then
 		return false
 	end
@@ -94,8 +85,9 @@ function spell_ability ( filterTable )
 	if caster:GetUnitName() == "npc_dota_courier2" and not string.match(ability:GetName(), "courier") then
 		return false
 	end
-	caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
-
+	if ability then
+		caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
+	end
 	if ordertype == DOTA_UNIT_ORDER_CAST_POSITION then --5
 		-- [   VScript             ]: {
 		-- [   VScript             ]:    entindex_ability                	= 461 (number)
@@ -277,19 +269,20 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_PURCHASE_ITEM then --16
 		local itemID = filterTable.entindex_ability
     	local itemName = Containers.itemIDs[itemID]
-    	
-    	local unit = EntIndexToHScript(filterTable.units["0"])
-    	itemName = itemName.."_buy"
-    	if _G.CountUsedAbility_Table == nil then
-    		_G.CountUsedAbility_Table = {}
-    	end
-    	if _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1] == nil then
-    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1] = {}
-    	end
-    	if _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] == nil then
-    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] = 1
-    	else
-    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] = _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] + 1
+    	if filterTable.units ~= nil and filterTable.units["0"] ~= nil then
+	    	local unit = EntIndexToHScript(filterTable.units["0"])
+	    	itemName = itemName.."_buy"
+	    	if _G.CountUsedAbility_Table == nil then
+	    		_G.CountUsedAbility_Table = {}
+	    	end
+	    	if _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1] == nil then
+	    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1] = {}
+	    	end
+	    	if _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] == nil then
+	    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] = 1
+	    	else
+	    		_G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] = _G.CountUsedAbility_Table[unit:GetPlayerOwnerID()+1][itemName] + 1
+			end
 		end
 		--print(DeepPrintTable(_G.CountUsedAbility_Table))
 	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17

@@ -66,7 +66,7 @@ function A16R_OnUpgrade( keys )
 	caster:FindModifierByName("modifier_A16R2").level = ability:GetLevel()
 	if ability:GetLevel() == 1 then
 		Timers:CreateTimer(1,function()
-			if not caster:HasModifier("modifier_A16R2") then
+			if IsValidEntity(caster) and not caster:HasModifier("modifier_A16R2") then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_A16R2", {} )
 				caster:FindModifierByName("modifier_A16R2").caster = caster
 				caster:FindModifierByName("modifier_A16R2").level = ability:GetLevel()
@@ -210,7 +210,9 @@ function A16R( keys )
 	if target.A16R == true then
 		target.A16R = false
 		Timers:CreateTimer(0.8,function ()
-			target.A16R = true
+			if IsValidEntity(target) then
+				target.A16R = true
+			end
 		end)
 
 		local particle=ParticleManager:CreateParticle("particles/a16r3/a16r3.vpcf",PATTACH_POINT,target)

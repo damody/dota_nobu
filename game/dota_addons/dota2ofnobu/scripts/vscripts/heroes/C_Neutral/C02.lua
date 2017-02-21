@@ -85,10 +85,10 @@ function C02W_launch_projectile( keys )
 	local dy = math.sin(angle*(3.14/180))
 	local dir = Vector(dx,dy,0)
 
-	-- 實際造成傷害的投射物
-	ProjectileManager:CreateLinearProjectile({
+	-- 投射物資訊
+	projectile_table = {
 		Ability				= ability,
-		EffectName			= "",
+		EffectName			= "particles/c02/c02w.vpcf",
 		vSpawnOrigin		= center+Vector(0,0,100),
 		fDistance			= range,
 		fStartRadius		= 150,
@@ -101,40 +101,41 @@ function C02W_launch_projectile( keys )
 		iUnitTargetType		= ability:GetAbilityTargetType(),
 		fExpireTime			= GameRules:GetGameTime() + 2,
 		bDeleteOnHit		= false,
-		vVelocity			= dir*speed,
+		vVelocity			= 0,
 		bProvidesVision		= false,
 		iVisionRadius		= 0,
 		iVisionTeamNumber	= caster:GetTeamNumber(),
-	})
+	}
+
+	-- 實際造成傷害的投射物
+	projectile_table.vVelocity = dir*speed
+	ProjectileManager:CreateLinearProjectile(projectile_table)
 
 	-- 特效投射物
+	projectile_table.iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_NONE
+	projectile_table.iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE
+	projectile_table.iUnitTargetType = DOTA_UNIT_TARGET_NONE
 	local num = 3
 	local delta_angle = 2
 	for i=-num,num do
 		local new_angle = angle+delta_angle*i
 		dir.x = math.cos(new_angle*(3.14/180))
 		dir.y = math.sin(new_angle*(3.14/180))
-		ProjectileManager:CreateLinearProjectile({
-			Ability				= ability,
-			EffectName			= "particles/c02/c02w.vpcf",
-			vSpawnOrigin		= center+Vector(0,0,100),
-			fDistance			= range,
-			fStartRadius		= 150,
-			fEndRadius			= 400,
-			Source				= caster,
-			bHasFrontalCone		= true,
-			bReplaceExisting	= false,
-			iUnitTargetTeam		= DOTA_UNIT_TARGET_TEAM_NONE,
-			iUnitTargetFlags	= DOTA_UNIT_TARGET_FLAG_NONE,
-			iUnitTargetType		= DOTA_UNIT_TARGET_NONE,
-			fExpireTime			= GameRules:GetGameTime() + 2,
-			bDeleteOnHit		= false,
-			vVelocity			= dir*speed,
-			bProvidesVision		= false,
-			iVisionRadius		= 0,
-			iVisionTeamNumber	= caster:GetTeamNumber(),
-		})
+		projectile_table.vVelocity = dir*speed
+		ProjectileManager:CreateLinearProjectile(projectile_table)
 	end
+
+	ability.spell_point = caster:GetAbsOrigin()
+end
+
+function C02W_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local ifx = ParticleManager:CreateParticle("particles/c02/c02w_hit.vpcf",PATTACH_POINT_FOLLOW,target)
+	ParticleManager:SetParticleControl(ifx,1,ability.spell_point)
+	ParticleManager:ReleaseParticleIndex(ifx)
 end
 
 function C02W_clone_hero( keys )
@@ -381,10 +382,10 @@ function C02W_old_launch_projectile( keys )
 	local dy = math.sin(angle*(3.14/180))
 	local dir = Vector(dx,dy,0)
 
-	-- 實際造成傷害的投射物
-	ProjectileManager:CreateLinearProjectile({
+	-- 投射物資訊
+	projectile_table = {
 		Ability				= ability,
-		EffectName			= "",
+		EffectName			= "particles/c02/c02w.vpcf",
 		vSpawnOrigin		= center+Vector(0,0,100),
 		fDistance			= range,
 		fStartRadius		= start_width,
@@ -397,40 +398,41 @@ function C02W_old_launch_projectile( keys )
 		iUnitTargetType		= ability:GetAbilityTargetType(),
 		fExpireTime			= GameRules:GetGameTime() + 2,
 		bDeleteOnHit		= false,
-		vVelocity			= dir*speed,
+		vVelocity			= 0,
 		bProvidesVision		= false,
 		iVisionRadius		= 0,
 		iVisionTeamNumber	= caster:GetTeamNumber(),
-	})
+	}
+
+	-- 實際造成傷害的投射物
+	projectile_table.vVelocity = dir*speed
+	ProjectileManager:CreateLinearProjectile(projectile_table)
 
 	-- 特效投射物
+	projectile_table.iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_NONE
+	projectile_table.iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE
+	projectile_table.iUnitTargetType = DOTA_UNIT_TARGET_NONE
 	local num = 3
 	local delta_angle = 2
 	for i=-num,num do
 		local new_angle = angle+delta_angle*i
 		dir.x = math.cos(new_angle*(3.14/180))
 		dir.y = math.sin(new_angle*(3.14/180))
-		ProjectileManager:CreateLinearProjectile({
-			Ability				= ability,
-			EffectName			= "particles/c02/c02w.vpcf",
-			vSpawnOrigin		= center+Vector(0,0,100),
-			fDistance			= range,
-			fStartRadius		= start_width,
-			fEndRadius			= ended_width,
-			Source				= caster,
-			bHasFrontalCone		= true,
-			bReplaceExisting	= false,
-			iUnitTargetTeam		= DOTA_UNIT_TARGET_TEAM_NONE,
-			iUnitTargetFlags	= DOTA_UNIT_TARGET_FLAG_NONE,
-			iUnitTargetType		= DOTA_UNIT_TARGET_NONE,
-			fExpireTime			= GameRules:GetGameTime() + 2,
-			bDeleteOnHit		= false,
-			vVelocity			= dir*speed,
-			bProvidesVision		= false,
-			iVisionRadius		= 0,
-			iVisionTeamNumber	= caster:GetTeamNumber(),
-		})
+		projectile_table.vVelocity = dir*speed
+		ProjectileManager:CreateLinearProjectile(projectile_table)
 	end
+
+	ability.spell_point = caster:GetAbsOrigin()
+end
+
+function C02W_old_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local ifx = ParticleManager:CreateParticle("particles/c02/c02w_hit.vpcf",PATTACH_POINT_FOLLOW,target)
+	ParticleManager:SetParticleControl(ifx,1,ability.spell_point)
+	ParticleManager:ReleaseParticleIndex(ifx)
 end
 
 require('libraries/animations')
@@ -458,35 +460,37 @@ function C02E_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_C02E_old",nil)
+	ability.modifier = ability:ApplyDataDrivenModifier(caster,target,"modifier_C02E_old",nil)
+end
 
+function C02E_old_OnChannelFinish( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if ability.modifier then ability.modifier:Destroy() end
+	EndAnimation(caster)
+end
+
+function modifier_C02E_old_OnCreated( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
 	-- 吸收特效
 	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_life_drain.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControlEnt(ifx,0,caster,PATTACH_POINT_FOLLOW,"attach_attack2",Vector(0),true)
 	ParticleManager:SetParticleControlEnt(ifx,1,target,PATTACH_POINT_FOLLOW,"attach_hitloc",Vector(0),true)
 	ParticleManager:SetParticleControl(ifx,10,Vector(1))
 	ParticleManager:SetParticleControl(ifx,11,Vector(1))
-	caster.C02E_old_ifx = ifx
+	target.C02E_old_ifx = ifx
 	Timers:CreateTimer(10, function ()
-		  ParticleManager:DestroyParticle(ifx,false)
-		end)
-end
-
-function C02E_old_OnChannelFinish( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	target:RemoveModifierByNameAndCaster("modifier_C02E_old",caster)
-	EndAnimation(caster)
-
-	-- 刪除吸收特效
-	ParticleManager:DestroyParticle(caster.C02E_old_ifx,false)
+		ParticleManager:DestroyParticle(ifx,false)
+	end)
 end
 
 function C02E_old_steal( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+
 	local steal_hp = ability:GetSpecialValueFor("steal_hp")
 	local steal_mp = ability:GetSpecialValueFor("steal_mp")
 	local hp = target:GetHealth()
@@ -502,7 +506,7 @@ function C02E_old_steal( keys )
 	target:ReduceMana(steal_mp)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,target,steal_hp,nil)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_MANA_LOSS,target,steal_mp,nil)
-	caster:SetHealth(caster:GetHealth()+steal_hp)
+	caster:Heal(steal_hp,caster)
 	caster:SetMana(caster:GetMana()+steal_mp)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_HEAL,caster,steal_hp,nil)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_MANA_ADD,caster,steal_mp,nil)
@@ -517,7 +521,7 @@ function C02E_old_OnUnitMoved( keys )
 	delta.z = 0
 	caster:SetForwardVector( delta:Normalized() )
 	if delta:Length2D() > max_range then
-		ability:EndChannel(true)
+		target:RemoveModifierByNameAndCaster("modifier_C02E_old",caster)
 	end
 end
 
@@ -525,9 +529,9 @@ function modifier_C02E_old_OnDestroy( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	if ability:IsChanneling() then
-		ability:EndChannel(true)
-	end
+	if ability:IsChanneling() then ability:EndChannel(true)	end
+	-- 刪除吸收特效
+	ParticleManager:DestroyParticle(target.C02E_old_ifx,false)
 end
 
 function C02R_old_OnAttackStart( keys )
@@ -650,8 +654,8 @@ function C02T_old_OnSpellStart( keys )
 		caster:EmitSound( "C02T.end")
 		-- 延遲一個frame在移除暈眩狀態
 		Timers:CreateTimer(0, function ()
-			caster:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster)
-			target:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster)
+			if IsValidEntity(caster) then caster:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster) end
+			if IsValidEntity(target) then target:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster) end
 		end)
 	end)
 end

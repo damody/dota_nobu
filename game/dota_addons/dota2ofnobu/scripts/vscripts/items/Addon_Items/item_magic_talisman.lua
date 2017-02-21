@@ -75,7 +75,9 @@ function modifier_magic_talisman:OnTakeDamage(event)
 								end
 							end
 							Timers:CreateTimer(20, function() 
-								self.caster.magic_talisman = true
+								if IsValidEntity(self.caster) then
+									self.caster.magic_talisman = true
+								end
 							end)
 						end
 		            end 
@@ -96,8 +98,11 @@ function OnEquip( keys )
 	caster:FindModifierByName("modifier_magic_talisman").caster = caster
 	caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
 	caster.has_item_magic_talisman = true
-	Timers:CreateTimer(1, function() 
-		if (caster:IsAlive() and not caster:HasModifier("modifier_magic_talisman")) then
+	Timers:CreateTimer(1, function()
+		if not IsValidEntity(caster) then
+			return nil
+		end
+		if IsValidEntity(caster) and (caster:IsAlive() and not caster:HasModifier("modifier_magic_talisman")) then
 			ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
 			caster:FindModifierByName("modifier_magic_talisman").caster = caster
 			caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
@@ -189,7 +194,12 @@ function ShockTarget( keys, target )
 			isend = true
 		end)
 	Timers:CreateTimer(0, function() 
-			ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
+			if IsValidEntity(target) then
+				ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
+			else
+				ParticleManager:DestroyParticle(shield, false)
+				return nil
+			end
 			if not isend then
 				return 0.2
 			else

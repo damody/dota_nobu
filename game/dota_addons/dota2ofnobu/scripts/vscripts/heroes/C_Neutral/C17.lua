@@ -73,7 +73,7 @@ function new_C17D( keys )
 		local mana = v:GetMaxMana() * 0.04 
 		local health = v:GetMaxHealth() * 0.05
 		v:SetMana(mana + v:GetMana())
-		v:SetHealth(health + v:GetHealth())
+		v:Heal(health,v)
 
 		--【DEBUG】
 		--print(health)

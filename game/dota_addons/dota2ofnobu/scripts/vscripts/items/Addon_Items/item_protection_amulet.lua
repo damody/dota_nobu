@@ -42,7 +42,9 @@ function modifier_protection_amulet:OnTakeDamage(event)
 		            		self.caster:Purge( false, true, true, true, true)
 		            		local am = self.caster:FindAllModifiers()
 							for _,v in pairs(am) do
-								if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
+								if not IsValidEntity(v:GetParent()) or not IsValidEntity(v:GetCaster()) then
+									self.caster:RemoveModifierByName(v:GetName())
+								elseif v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
 									self.caster:RemoveModifierByName(v:GetName())
 								end
 							end
@@ -53,10 +55,10 @@ function modifier_protection_amulet:OnTakeDamage(event)
 			            	-- Strong Dispel 刪除負面效果
 			            	self.caster:Purge( false, true, true, true, true)
 							local count = 0
-							AmpDamageParticle = ParticleManager:CreateParticle("particles/a07w4/a07w4_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
-							Timers:CreateTimer(1.0, function() 
-								ParticleManager:DestroyParticle(AmpDamageParticle, false)
-							end)
+							AmpDamageParticle = ParticleManager:CreateParticle("particles/econ/items/puck/puck_merry_wanderer/puck_illusory_orb_explode_merry_wanderer.vpcf", PATTACH_POINT_FOLLOW, self.caster)
+							ParticleManager:SetParticleControlEnt(AmpDamageParticle,3,self.caster,PATTACH_POINT_FOLLOW,"attach_hitloc",self.caster:GetAbsOrigin(),true)
+							ParticleManager:ReleaseParticleIndex(AmpDamageParticle)
+							EmitSoundOn("DOTA_Item.VeilofDiscord.Activate",self.caster)
 							for itemSlot=0,5 do
 								local item = self.caster:GetItemInSlot(itemSlot)
 								if item ~= nil and item:GetName() == "item_protection_amulet" then
@@ -65,8 +67,9 @@ function modifier_protection_amulet:OnTakeDamage(event)
 								end
 							end
 							Timers:CreateTimer(30, function() 
-								self.caster.protection_amulet = true
-								
+								if IsValidEntity(self.caster) then
+									self.caster.protection_amulet = true
+								end
 							end)
 						end
 		            else
@@ -91,7 +94,10 @@ function OnEquip( keys )
 	caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
 	caster.has_item_protection_amulet = true
 	Timers:CreateTimer(1, function() 
-		if (caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet")) then
+		if not IsValidEntity(caster) then
+			return nil
+		end
+		if IsValidEntity(caster) and caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet") then
 			ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 			caster:FindModifierByName("modifier_protection_amulet").caster = caster
 		end

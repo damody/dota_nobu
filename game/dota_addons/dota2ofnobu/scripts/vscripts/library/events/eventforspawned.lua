@@ -8,7 +8,7 @@ function Nobu:OnHeroIngame( keys )
   --PrintTable(keys)
   local hero = EntIndexToHScript( keys.entindex )
     
-  if hero:IsHero() then
+  if hero ~= nil and IsValidEntity(hero) and hero:IsHero() then
     local caster = hero
     if caster:HasModifier("modifier_record") then
       caster:RemoveModifierByName("modifier_record")
@@ -65,7 +65,7 @@ function Nobu:OnHeroIngame( keys )
       end
       -- 這隻角色天生會帶一個modifier我們需要砍掉他
       caster:RemoveModifierByName("modifier_silencer_int_steal")
-    elseif string.match(name, "windrunner") then -- 阿市
+    elseif string.match(name, "npc_dota_hero_puck") then -- 阿市
       if caster:FindAbilityByName("C17D") ~= nil then
         caster:FindAbilityByName("C17D"):SetLevel(1)
       end
@@ -85,7 +85,7 @@ function Nobu:OnHeroIngame( keys )
       --GameRules: SendCustomMessage("<font color=\"#5cb85c\">殺爆全場就是現在</font>",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 1000)
     end
 	Timers:CreateTimer ( 1, function ()
-		if not hero:IsIllusion() then
+	  if hero ~= nil and IsValidEntity(hero) and not hero:IsIllusion() then
       if hero.init1 == nil then
         hero.init1 = true
         hero.kill_count = 0

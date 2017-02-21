@@ -77,7 +77,7 @@ function B08D_old( keys )
 				Source = caster,
 				bHasFrontalCone = false,
 				bReplaceExisting = false,
-				iUnitTargetTeam = caster:GetTeamNumber(),
+				iUnitTargetTeam = target:GetTeamNumber(),
 				iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 				bProvidesVision = true,
@@ -100,14 +100,14 @@ function B08E_Action( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local level  = keys.ability:GetLevel()
-
+	
 	--move
 	caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
 	caster:SetAbsOrigin(target:GetAbsOrigin())
 	if not target:IsMagicImmune() then
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_stun",{duration = 1.1})
 	end
-	
+	if target:IsMagicImmune() then return end
 	local dmg = keys.ability:GetLevelSpecialValueFor("B08E_Damage", keys.ability:GetLevel() - 1 )
 	AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 
@@ -159,17 +159,15 @@ function B08E_Action2( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local level  = keys.ability:GetLevel()
-
+	
 	--move
 	caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
 	caster:SetAbsOrigin(target:GetAbsOrigin())
 	if not target:IsMagicImmune() then
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_stun",{duration = 0.5})
+		local dmg = keys.ability:GetLevelSpecialValueFor("B08E_Damage", keys.ability:GetLevel() - 1 )
+		AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
-	
-	local dmg = keys.ability:GetLevelSpecialValueFor("B08E_Damage", keys.ability:GetLevel() - 1 )
-	AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-
 end
 
 

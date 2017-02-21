@@ -136,6 +136,8 @@ function A13W( event )
 	local origin_pos = caster:GetOrigin()
 
 	local am = caster:FindAllModifiers()
+
+
 	for _,v in pairs(am) do
 		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
 			caster:RemoveModifierByName(v:GetName())
@@ -217,6 +219,7 @@ function A13W( event )
 				return nil
 			end )
 	end
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.3})
 end
 
 
@@ -321,6 +324,7 @@ function A13W_old( event )
 				return nil
 			end )
 	end
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.3})
 end
 
 
@@ -401,12 +405,14 @@ end
 function A13E_hook_back:OnIntervalThink()
 	if (self.path ~= nil) then
 		local target = self:GetParent()
-		if (self.interval_Count > 1) then
-			target:SetOrigin(self.path[self.interval_Count])
-			self.interval_Count = self.interval_Count - 1
-		else
-			target:AddNewModifier(target,self:GetAbility(),"modifier_phased",{duration=0.1})
-			target:RemoveModifierByName("A13E_hook_back")
+		if IsValidEntity(self:GetParent()) then
+			if (self.interval_Count > 1) then
+				target:SetOrigin(self.path[self.interval_Count])
+				self.interval_Count = self.interval_Count - 1
+			else
+				target:AddNewModifier(target,self:GetAbility(),"modifier_phased",{duration=0.1})
+				target:RemoveModifierByName("A13E_hook_back")
+			end
 		end
 	end
 end
@@ -426,22 +432,25 @@ end
 A13E_modifier = class ({})
 
 function A13E_modifier:OnCreated( event )
-	local ability = self:GetAbility()
-	self.hook_width = ability:GetSpecialValueFor("hook_width")
-	self.hook_distance = ability:GetSpecialValueFor("hook_distance")
-	self.hook_damage = ability:GetSpecialValueFor("hook_damage")
 	if IsServer() then
-		self.damage_type = ability:GetAbilityDamageType()
+		local ability = self:GetAbility()
+		self.hook_width = ability:GetSpecialValueFor("hook_width")
+		self.hook_distance = ability:GetSpecialValueFor("hook_distance")
+		self.hook_damage = ability:GetSpecialValueFor("hook_damage")
+		if IsServer() then
+			self.damage_type = ability:GetAbilityDamageType()
+		end
+		self.distance_sum = 0
+		self.interval_Count = 0
+		self.path = {}
+		self.particle = {}
+		if IsValidEntity(self:GetParent()) then
+			self.oriangle = self:GetParent():GetAnglesAsVector().y
+			self.hook_pos = self:GetParent():GetOrigin()
+			self.oripos = self:GetParent():GetOrigin()
+			self:StartIntervalThink(0.05) 
+		end
 	end
-	self.distance_sum = 0
-	self.interval_Count = 0
-	self.path = {}
-	self.particle = {}
-	self.oriangle = self:GetParent():GetAnglesAsVector().y
-	self.hook_pos = self:GetParent():GetOrigin()
-	self.oripos = self:GetParent():GetOrigin()
-	self:StartIntervalThink(0.05) 
-
 end
 
 function A13E_modifier:OnIntervalThink()
@@ -593,10 +602,12 @@ function A13T( keys )
 	local right = caster:GetRightVector()
 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
 	dummy:FindAbilityByName("majia"):SetLevel(1)
-	dummy:AddSpeechBubble(1,"臨兵鬥者皆陣列在前",3.0,0,-50)
-	Timers:CreateTimer( 2, function()
-		dummy:ForceKill(true)
+	Timers:CreateTimer( 5, function()
+		if IsValidEntity(dummy) then
+			dummy:ForceKill(true)
+		end
 	end)
+	caster.dummy = dummy
 
 	casterLoc = keys.target_points[1] - right:Normalized() * 300
 	Timers:CreateTimer( 0.3, function()
@@ -679,10 +690,12 @@ function A13T_old( keys )
 	local right = caster:GetRightVector()
 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
 	dummy:FindAbilityByName("majia"):SetLevel(1)
-	dummy:AddSpeechBubble(1,"臨兵鬥者皆陣列在前",3.0,0,-50)
-	Timers:CreateTimer( 2, function()
-		dummy:ForceKill(true)
+	Timers:CreateTimer( 5, function()
+		if IsValidEntity(dummy) then
+			dummy:ForceKill(true)
+		end
 	end)
+	caster.dummy = dummy
 
 	casterLoc = keys.target_points[1] - right:Normalized() * 300
 	Timers:CreateTimer( 0.6, function()
@@ -768,17 +781,12 @@ function A13T_break( keys )
 	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
-	local dummy = CreateUnitByName( "npc_dummy", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
-			
-	Timers:CreateTimer(4,function()
-		dummy:ForceKill(true)
-		end)
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			if caster:IsAlive() then
 				AMHC:Damage(caster, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			else
-				AMHC:Damage(dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage(caster.dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				caster.takedamage = caster.takedamage + dmg
 				if (it:IsRealHero()) then
 					caster.herodamage = caster.herodamage + dmg

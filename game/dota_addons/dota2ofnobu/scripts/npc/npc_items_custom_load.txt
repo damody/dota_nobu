@@ -726,6 +726,7 @@
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"200"
+		"AOERadius"	"425"
 		// Stats
 		
 		// Valve's version of this item uses the ID "1".
@@ -815,6 +816,7 @@
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"250"
+		"AOERadius"	"850"
 		// Stats
 		
 		// Valve's version of this item uses the ID "1".
@@ -1437,6 +1439,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q03_2/q03_2.vpcf"
+		"AbilitySharedCooldown" "the_art_of_war"
 		// Item Info
 		
 		"ItemCost"	"2350"
@@ -3012,6 +3015,136 @@
 		}
 	}
 
+	// 葵紋越前康繼．禦神刀 11.2B
+	"item_the_great_sword_of_sunflower_pattern_echizen_kang_following"
+	{
+		// General
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"	"item_custom/the_great_sword_of_invincible"
+		"FightRecapLevel"	"1"
+		"ID"	"4001"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		
+		"ItemCost"	"8950"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SecretShop" "1"
+		"ItemShopTags"		"damage"
+		"AbilityCooldown"	"55"
+		"AbilityManaCost"	"320"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"	"0.1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"21"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"link_radius"		"600"
+			}
+		}
+
+		"precache"
+		{
+			"particle"	"particles/item/item_the_great_sword_of_sunflower_pattern_echizen_kang_following/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+				"Function"	"Spell"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_item_the_great_sword_of_sunflower_pattern_echizen_kang_following"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "30"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "30"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+				}
+			}
+			"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_aura"
+			{
+				"Duration"	"%duration"
+				"Aura"	"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_linker"
+				"Aura_Radius"	"%link_radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"	"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"Init"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"End"
+					}
+				}
+			}
+			"modifier_item_the_great_sword_of_sunflower_pattern_echizen_kang_following_linker"
+			{
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"LinkTarget"
+						"Target"	"TARGET"
+					}
+					"AttachEffect"
+					{
+						"EffectName"        "particles/item/item_the_great_sword_of_sunflower_pattern_echizen_kang_following/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.vpcf"
+						"EffectAttachType"  "follow_hitloc"
+						"Target"            "TARGET"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_sunflower_pattern_echizen_kang_following.lua"
+						"Function"	"UnlinkTarget"
+						"Target"	"TARGET"
+					}
+				}
+			}
+		}
+	}
+
 	// 御守
 	"item_protection_amulet"
 	{
@@ -3877,14 +4010,14 @@
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_sakabatou1"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "15"	//力
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "35"	//攻
@@ -3896,6 +4029,11 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
 				}
+			}
+			"Passive_sakabatou2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -4357,7 +4495,7 @@
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_tiger1"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -4376,6 +4514,11 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 				}
+			}
+			"Passive_tiger2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -4539,6 +4682,12 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
 				}
+				
+			}
+			"Passive_great_spear_of_dragonfly2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -4579,6 +4728,34 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
+		"AbilitySpecial"
+		{
+			"01" // 風之傷鎖敵範圍
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_range"	"1000"
+			}
+			"02" // 風之傷飛行速度
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_speed"	"1200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_damage"	"400"
+			}
+			"04" // 主動技能持續時間
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_duration"	"20"
+			}
+			"05" // 主動技能影響範圍
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aura_radius"		"800"
+			}
+		}
 		"precache"
 		{
 			"particle"  "particles/generic_gameplay/generic_slowed_cold.vpcf"
@@ -4622,7 +4799,7 @@
 				"EffectAttachType"	"follow_origin"
 
 				"Aura"        "modifier_great_sword_of_hurricane_debuff"
-        		"Aura_Radius" "800"
+        		"Aura_Radius" "%aura_radius"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
@@ -4694,27 +4871,114 @@
 				"Function"	"SplitShotDamage"
 			}
 		}
+	}
+
+	// 鐵碎牙．妖刀 11.2B
+	"item_the_great_sword_of_iron_fragmentor"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_great_sword_of_hurricane"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"280"
+		"AbilityDamage"		"800"
+		"AbilityCastRange"	"1200"
+		"AbilityCastPoint"  "0.1"
+		"AoERadius"			"500"
+
 		"AbilitySpecial"
 		{
-			"01" // 風之傷鎖敵範圍
+			"01"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"tornado_range"	"1000"
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"13"
 			}
-			"02" // 風之傷飛行速度
+			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"tornado_speed"	"1200"
+				"aoe_radius" "500"
 			}
-			"03"
+		}
+
+		"ID"	"4002"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"11200"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SecretShop" "1"
+		"precache"
+		{
+			"particle"  "particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor.vpcf"
+			"particle"  "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+			"particle"  "particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor_hit.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"tornado_damage"	"400"
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+				"Function"		"Spell"
+				"Target"		"POINT"
 			}
-			"04" // 主動技能持續時間
+		}
+		"Modifiers"
+		{
+			"Passive_the_great_sword_of_iron_fragmentor"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"aura_duration"	"20"
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "60"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "500"			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+				}
+			}
+			"modifier_the_great_sword_of_iron_fragmentor"
+			{
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+						"Function"		"DealDamage"
+					}
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+						"Function"		"DealDamage"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_iron_fragmentor.lua"
+						"Function"		"End"
+					}
+				}
 			}
 		}
 	}
@@ -7227,7 +7491,7 @@
 	{
 	    "ID" "3089"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "630"
+		"ItemCost" "930"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_samurai_cloth_x"  //合成後物品
@@ -8786,7 +9050,7 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-30"
 				}
 			}
-			"Passive_lightning_katana"
+			"Passive_kokumo1"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -8795,6 +9059,103 @@
 				{
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "32"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+			"Passive_kokumo2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_frozen_ring.lua"
+						"Function"	"Shock3"
+					}
+				}
+			}
+		}
+	}
+
+	// 凍雲 二階
+	"item_kokumo_1"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/kokumo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"0"
+		
+		"AbilityManaCost"	"0"
+		"ID"	"3836"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"5750"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemRequirements"	{}
+
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_frozen_ring.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_frozen_ring.lua"
+				"Function"	"OnUnequip"
+			}
+		}
+		
+		"Modifiers"
+		{
+
+			"modifier_frozen_ring"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"EffectName"	"particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-30"	//跑速
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-30"
+				}
+			}
+			"Passive_kokumo1"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "42"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
@@ -8806,13 +9167,114 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
-
+			}
+			"Passive_kokumo2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
 				"OnAttackLanded"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"items/Addon_Items/item_frozen_ring.lua"
-						"Function"	"Shock3"
+						"Function"	"Shock4"
+					}
+				}
+			}
+		}
+	}
+
+	// 凍雲 三階
+	"item_kokumo_2"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/kokumo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"0"
+		
+		"AbilityManaCost"	"0"
+		"ID"	"3837"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"6950"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemRequirements"	{}
+
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_frozen_ring.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_frozen_ring.lua"
+				"Function"	"OnUnequip"
+			}
+		}
+		
+		"Modifiers"
+		{
+
+			"modifier_frozen_ring"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"EffectName"	"particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-30"	//跑速
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-30"
+				}
+			}
+			"Passive_kokumo1"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "40"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "55"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+			"Passive_kokumo2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_frozen_ring.lua"
+						"Function"	"Shock5"
 					}
 				}
 			}
@@ -8931,7 +9393,7 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "80"	//攻
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "65"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
@@ -8941,6 +9403,11 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
+			}
+			"Passive_raikiri2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -8950,7 +9417,6 @@
 					}
 				}
 			}
-			
 		}
 		"AbilitySpecial"
 		{
@@ -8977,12 +9443,245 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"targets"	"6"
+				"targets"	"5"
 			}
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"400"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"16"
+			}
+		}
+	}
+
+	// 雷切 二階
+	"item_raikiri_1"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/raikiri"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"ID"	"3834"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"6420"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemRequirements"	{}
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+				"Function"	"OnUnequip"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "75"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "35" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+			"Passive_raikiri2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+						"Function"	"Shock2"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_distance"	"510"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"start_radius"	"125"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_radius"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_distance"	"720"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"targets"	"8"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"500"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"18"
+			}
+		}
+	}
+
+	// 雷切 三階
+	"item_raikiri_2"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/raikiri"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"ID"	"3835"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"7620"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemRequirements"	{}
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+				"Function"	"OnUnequip"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "85"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "40" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+			"Passive_raikiri2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_lightning_scroll.lua"
+						"Function"	"Shock2"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_distance"	"510"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"start_radius"	"125"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_radius"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_distance"	"720"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"targets"	"11"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"600"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"20"
 			}
 		}
 	}
@@ -9080,9 +9779,9 @@
 		"AbilityCastRange"				"700"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"20"
+		"AbilityCooldown"	"12"
 		
-		"AbilityManaCost"	"100"
+		"AbilityManaCost"	"0"
 
 		"ID"	"2529"
 		"ItemQuality"	"component"
@@ -9355,9 +10054,9 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"11"
+		"AbilityCooldown"	"8"
 		
-		"AbilityManaCost"	"60"
+		"AbilityManaCost"	"0"
 		"ID"	"2594"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -9490,7 +10189,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"4700"
+		"ItemCost"	"5000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemRequirements"	{}
@@ -9510,14 +10209,14 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "20"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "10"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "50" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "10"	//魔抗
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"10"	//10%基礎攻擊
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"	//10%基礎攻擊
 				}
 			}
 		}
@@ -9633,7 +10332,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"30"
+		"AbilityCooldown"	"40"
 		"ID"	"2596"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10215,6 +10914,8 @@
 			{
 			  	"ScriptFile"	"items/Addon_Items/item_devil_supressor_armor.lua"
 				"Function"	"Shock"
+				"SHP1"	"1000"
+				"SHP2"	"500"
 			}
 		}
 		
@@ -10240,6 +10941,130 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20" //魔抗
+				}
+			}
+		}
+	}
+
+	// 制魔腹卷 二階
+	"item_devil_supressor_armor_1"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/devil_supressor_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"45"
+		
+		"AbilityManaCost"	"210"
+		"ID"	"3844"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3200"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_devil_supressor_armor.lua"
+				"Function"	"Shock"
+				"SHP1"	"2000"
+				"SHP2"	"900"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "30"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "25" //魔抗
+				}
+			}
+		}
+	}
+
+	// 制魔腹卷 三階
+	"item_devil_supressor_armor_2"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/devil_supressor_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"45"
+		
+		"AbilityManaCost"	"210"
+		"ID"	"3845"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3200"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_devil_supressor_armor.lua"
+				"Function"	"Shock"
+				"SHP1"	"3000"
+				"SHP2"	"1300"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "40"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "30" //魔抗
 				}
 			}
 		}
@@ -10884,8 +11709,8 @@
 		
 		"AbilityCooldown"	"48"
 		"AbilityCastPoint"	"0.1"
-		"AbilityManaCost"	"200"
-		"AbilityCastRange"	"800"
+		"AbilityManaCost"	"800"
+		"AbilityCastRange"	"1000"
 		"ID"	"2814"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -10900,6 +11725,7 @@
 				"ScriptFile"	"items/Addon_Items/item_kotennmyohiragumo.lua"
 				"Function"	"Shock"
 				"Target"	"TARGET"
+				"Time"	"5"
 			}
 		}
 		
@@ -10919,6 +11745,69 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "300" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	// 平蜘蛛釜 二階
+	"item_kotennmyohiragumo_1"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/kotennmyohiragumo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"48"
+		"AbilityCastPoint"	"0.1"
+		"AbilityManaCost"	"1200"
+		"AbilityCastRange"	"1000"
+		"ID"	"3842"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"6350"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_kotennmyohiragumo.lua"
+				"Function"	"Shock"
+				"Target"	"TARGET"
+				"Time"	"10"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"Passive_kotennmyohiragumo"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "600" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "40"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
@@ -11489,10 +12378,9 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySharedCooldown" "the_art_of_war"
 		"FightRecapLevel"	"1"
-		
 		"AbilityCooldown"	"29"
-		
 		"AbilityManaCost"	"200"
 
 		"ID"	"2534"
@@ -11755,6 +12643,7 @@
 		"FightRecapLevel"	"1"		
 		"AbilityCooldown"	"60"		
 		"AbilityManaCost"	"500"		
+		"AbilitySharedCooldown" "the_art_of_war"
 		
 		"ID"	"2536"
 		"ItemQuality"	"component"
@@ -14180,7 +15069,7 @@
 		}
 	}
 
-	//禦神法輪‧二階製作單
+	//禦神法輪‧三階製作單
 	"item_recipe_mana_thief_2" 
 	{
 	    "ID" "3832"
@@ -14214,7 +15103,7 @@
 		"AbilityManaCost"	"200"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"800"
-		"ID"	"25782"
+		"ID"	"3833"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
@@ -14296,6 +15185,157 @@
 						"Function"	"Shock3"
 					}
 				}
+			}
+		}
+	}
+
+	//雷切二階製作單
+	"item_recipe_raikiri_1" 
+	{
+	    "ID" "3838"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_raikiri_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_raikiri"  //合成所需物品
+		}
+	}
+	//雷切三階製作單
+	"item_recipe_raikiri_2" 
+	{
+	    "ID" "3839"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_raikiri_2"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_raikiri_1"  //合成所需物品
+		}
+	}
+
+	//凍雲二階製作單
+	"item_recipe_kokumo_1" 
+	{
+	    "ID" "3840"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_kokumo_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_kokumo"  //合成所需物品
+		}
+	}
+
+	//凍雲三階製作單
+	"item_recipe_kokumo_2" 
+	{
+	    "ID" "3841"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_kokumo_2"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_kokumo_1"  //合成所需物品
+		}
+	}
+
+	//平蜘蛛釜二階製作單
+	"item_recipe_kotennmyohiragumo_1" 
+	{
+	    "ID" "3843"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "3000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_kotennmyohiragumo_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_kotennmyohiragumo"  //合成所需物品
+		}
+	}
+
+	//制魔腹卷二階製作單
+	"item_recipe_devil_supressor_armor_1" 
+	{
+	    "ID" "3846"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_devil_supressor_armor_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_devil_supressor_armor"  //合成所需物品
+		}
+	}
+
+	//制魔腹卷三階製作單
+	"item_recipe_devil_supressor_armor_2" 
+	{
+	    "ID" "3847"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_devil_supressor_armor_2"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_devil_supressor_armor_1"  //合成所需物品
+		}
+	}
+
+	// 蜻蛉切．銘槍
+	"item_the_great_spear_of_dragonfly_x"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_great_spear_of_dragonfly"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+
+		"ID"	"3848"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"9150"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SecretShop" "1"
+		
+		"Modifiers"
+		{
+			"Passive_great_spear_of_dragonfly"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "26"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "44"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "2" //回血%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "70" //攻速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "15" //跑速%
+				}	
 			}
 		}
 	}

@@ -27,6 +27,7 @@ local function chat_of_test(keys)
 	local s   	   = keys.text:lower()
 	local p 	     = PlayerResource:GetPlayer(keys.playerid)--可以用索引轉換玩家方式，來捕捉玩家
 	local caster 	   = p:GetAssignedHero() --获取该玩家的英雄
+	if caster == nil then return end
 	local point    = caster:GetAbsOrigin()
 	-- if string.match(s,"test") then
 	-- 	local pID = tonumber(string.match(s, '%d+'))
@@ -93,12 +94,14 @@ local function chat_of_test(keys)
 		caster.version = "11"
 
 		-- 拔掉英雄的修改器
+		--[[
 		local am = caster:FindAllModifiers()
 		for _,v in pairs(am) do
 			if v:GetName() ~= "equilibrium_constant" and v:GetName() ~= "modifier_for_record" then
 				caster:RemoveModifierByName(v:GetName())
 			end
 		end
+		]]
 
 		-- 拔掉英雄的技能
 		for i = 0, caster:GetAbilityCount() - 1 do
@@ -194,7 +197,7 @@ local function chat_of_test(keys)
 			caster:AddAbility("A34R_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("A34T_old")
-		elseif string.match(caster:GetUnitName(), "windrunner") then -- 阿市
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_puck") then -- 阿市
 			caster:AddAbility("C17W_old")
 			caster:AddAbility("C17E_old")
 			caster:AddAbility("C17R_old")
@@ -318,7 +321,19 @@ local function chat_of_test(keys)
 			caster:AddAbility("B21E_old")
 			caster:AddAbility("B21R_old")
 			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B21T_old") 
+			caster:AddAbility("B21T_old")
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_windrunner") then -- 稻姬
+			caster:AddAbility("A02W_old")
+			caster:AddAbility("A02E_old")
+			caster:AddAbility("A02R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A02T_old") 
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_obsidian_destroyer") then -- 前田慶次
+			caster:AddAbility("C05W_old")
+			caster:AddAbility("C05E_old")
+			caster:AddAbility("C05R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("C05T_old") 
 		end
 	end
 		
@@ -333,7 +348,7 @@ local function chat_of_test(keys)
 	if string.match(s,"damody:") then
 		sump = 1
 	end
-	if 1==sump then
+	if sump <= 2 then
 		if string.match(s,"uion") then
 		local GameMode = GameRules:GetGameModeEntity()
 		GameMode:SetHUDVisible(0,  true) --Clock
@@ -367,11 +382,6 @@ local function chat_of_test(keys)
 		if string.match(s,"cam") then
 		local dis = tonumber(string.match(s, '%d+'))
 			GameRules: GetGameModeEntity() :SetCameraDistanceOverride(dis)
-			SendToConsole("r_farz 60000")
-		    Timers:CreateTimer( 1, function()
-		  		SendToConsole("r_farz 60000")
-		      return 1
-		    end)
 		end
 		if string.match(s,"-gg") then
 			GameRules:SetCustomGameEndDelay(1)
@@ -552,11 +562,15 @@ local function chat_of_test(keys)
 		end
 
 		if s == "h" then
+			GameRules: SendCustomMessage("` = 快速測試，內容不一定",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("r1 = 產生一個被綁住的淺井",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("sa = show ability",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("sm = show modifier",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("cu_es = CreateUnit_EarthShaker",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			GameRules: SendCustomMessage("team + nobu_id = 可以產生該英雄team=0(織田軍), team=1(聯合軍), e.g. 0C01=織田軍-明智光秀 ",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+		end
+
+		if s == "`" then
 		end
 
 		if s == "r1" then

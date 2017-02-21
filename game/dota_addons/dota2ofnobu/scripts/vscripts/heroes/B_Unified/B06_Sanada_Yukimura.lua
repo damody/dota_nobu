@@ -46,8 +46,9 @@ function modifier_item_blade_mail_rework_damage_return:OnTakeDamage(event)
             	self.caster.B06R_Buff = false
             	self.caster:SetHealth(self.hp)
             	self.caster:FindAbilityByName("B06R"):ApplyDataDrivenModifier(self.caster, self.caster, "modifier_B06R", {duration = 3.0})
-            	Timers:CreateTimer(0.01, function() 
-					target.AmpDamageParticle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, target)
+            	AmpDamageParticle = ParticleManager:CreateParticle("particles/a07w4/a07w4_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+				Timers:CreateTimer(1.0, function() 
+					ParticleManager:DestroyParticle(AmpDamageParticle, false)
 				end)
 
 				local count = 0

@@ -2,11 +2,18 @@
 function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local aura_duration = ability:GetLevelSpecialValueFor("aura_duration",0)
+	local aura_duration = ability:GetSpecialValueFor("aura_duration")
+	local aura_radius = ability:GetSpecialValueFor("aura_radius")
 
 	local dummy = CreateUnitByName("npc_dummy_unit_new",caster:GetAbsOrigin(),false,caster,caster,caster:GetTeamNumber())
 	dummy:AddNewModifier(caster,nil,"modifier_kill",{duration=aura_duration})
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_great_sword_of_hurricane_aura", {duration=aura_duration})
+
+	local spell_hint_table = {
+		duration   = aura_duration,		-- 持續時間
+		radius     = aura_radius,		-- 半徑
+	}
+	dummy:AddNewModifier(dummy,nil,"nobu_modifier_spell_hint",spell_hint_table)
 	
 	local count = 0
 	Timers:CreateTimer(1, function ()

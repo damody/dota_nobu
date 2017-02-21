@@ -67,11 +67,13 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 								local item = self.caster:GetItemInSlot(itemSlot)
 								if item ~= nil and item:GetName() == "item_nannbann_armor" then
 									hasitem = true
-									item:StartCooldown(30)
+									item:StartCooldown(40)
 								end
 							end
-							Timers:CreateTimer(30, function() 
-								self.caster.nannbann_armor = true
+							Timers:CreateTimer(40, function() 
+								if IsValidEntity(self.caster) then
+									self.caster.nannbann_armor = true
+								end
 							end)
 						end
 		            else
@@ -97,7 +99,10 @@ function OnEquip( keys )
 	caster:FindModifierByName("modifier_nannbann_armor").hp = caster:GetHealth()
 	caster.has_item_nannbann_armor = true
 	Timers:CreateTimer(1, function() 
-		if (caster:IsAlive() and not caster:HasModifier("modifier_nannbann_armor")) then
+		if not IsValidEntity(caster) then
+			return nil
+		end
+		if IsValidEntity(caster) and (caster:IsAlive() and not caster:HasModifier("modifier_nannbann_armor")) then
 			ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
 			caster:FindModifierByName("modifier_nannbann_armor").caster = caster
 		end

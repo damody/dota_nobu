@@ -1,0 +1,781 @@
+﻿// 稻姬
+"DOTAAbilities"
+{
+	"A02_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a02.vsndevts"
+
+			// A02W_old
+			"particle"  "particles/b33/b33r_old_orb.vpcf"
+			"particle"  "particles/status_fx/status_effect_poison_viper.vpcf"
+			"particle"  "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+
+			// A02E_old
+			"particle"  "particles/a02/a02e_old_buff.vpcf"
+			"particle"  "particles/a02/a02e_old_cast_flash.vpcf"
+
+			// A02R_old
+			"particle"  "particles/units/heroes/hero_enchantress/enchantress_natures_attendants_lvl2.vpcf"
+			"particle"  "particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal.vpcf"
+
+			// A02T_old
+			"particle"  "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+			"particle"  "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+		}
+	}
+
+	// 稻姬 [蠍毒箭]
+	"A02W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/gnoll_assassin_envenomed_weapon"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		
+		"AbilityDamage"					"50 80 110 140"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"debuff_duration"			"4.0"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_attack_speed"			"-15 -20 -25 -30"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_movement_speed"		"-15 -20 -25 -30"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"mana_cost"		"8 12 16 20"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/b33/b33r_old_orb.vpcf"
+			"particle"  "particles/status_fx/status_effect_poison_viper.vpcf"
+			"particle"  "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02W.vo1"
+			}
+		}
+
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+				"Function"		"A02W_OnToggleOn"
+			}
+		}
+
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+				"Function"		"A02W_OnToggleOff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02W"
+			{
+				"IsHidden" "1"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/b33/b33r_old_orb.vpcf"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+						"Function"	"A02W_OnAttackStart"
+						"Target"	"TARGET"
+					}
+				}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+						"Function"	"A02W_OnOrbImpact"
+						"Target"	"TARGET"
+					}
+				}
+			}
+			"modifier_A02W_debuff"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%debuff_duration"
+				"StatusEffectName"		"particles/status_fx/status_effect_poison_viper.vpcf"
+				"StatusEffectPriority"	"15"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%debuff_movement_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+						"EffectAttachType"	"attach_hitloc"	
+						"Target"			"TARGET"
+					}
+
+				}
+			}
+		}
+	}
+
+	// 稻姬 [風之祈]
+	"A02E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/skywrath_mage_concussive_shot"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilityCooldown"				"15 14 13 12"
+		"AbilityManaCost"				"130 150 170 190"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"hp_recover"	"100 200 300 400"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_attack_speed"		"40 70 100 130" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_duration"	"10"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
+			"particle"  "particles/a02/a02e.vpcf"
+			"particle"  "particles/a02/a02e_bow.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+				"Function"		"A02E_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02E_buff"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+		
+				"EffectName"		"particles/a02/a02e.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_attack_speed"
+					"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "focusfire"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/a02/a02e_bow.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"bow_mid1"
+							"CASTER"	"bow_top"
+							"CASTER"	"bow_bot"
+							"CASTER"	"bow_mid1"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 稻姬 [遊風行身]
+	"A02R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/windrunner_windrun"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"outgoing_damage_percentage"			"6 9 12 15"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"magical_resistance_bonus"		"7 13 19 25"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02R.vo1"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02R_passive"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%outgoing_damage_percentage"
+				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magical_resistance_bonus" 
+				}
+			}
+		}
+	}
+
+	// 稻姬 [融影術]
+	"A02T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/windrunner_windrun_sylvan"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilityCooldown"				"140 130 120"
+		"AbilityManaCost"				"200 225 250"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"20 22 24"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"base_attack_time"		"0.9"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"add_move_speed"	"60"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+			"particle"  "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02T.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A02T"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02T"
+			{
+				"Duration"	"%duration"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%add_move_speed"
+					"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "windrun"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPoints"
+						{
+							"01"	"1 0 0"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 稻姬 11.2B [蠍毒箭]
+	"A02W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/gnoll_assassin_envenomed_weapon"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityDamage"					"3 6 9 12" // dot
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"debuff_duration"	"4 6 8 10"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_attack_speed"	"-3 -5 -7 -9"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_movement_speed"	"-3 -5 -7 -9"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"mana_cost"		"5" // per hit
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/b33/b33r_old_orb.vpcf"
+			"particle"  "particles/status_fx/status_effect_poison_viper.vpcf"
+			"particle"  "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02W_old.vo1"
+			}
+		}
+
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+				"Function"		"A02W_OnToggleOn"
+			}
+		}
+
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+				"Function"		"A02W_OnToggleOff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02W"
+			{
+				"IsHidden" "1"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/b33/b33r_old_orb.vpcf"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+						"Function"	"A02W_old_OnAttackStart"
+						"Target"	"TARGET"
+					}
+				}
+				"OnOrbImpact"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_A02W_old_debuff"
+						"Target" 		"TARGET"
+						"Duration"		"%debuff_duration"
+					}
+				}
+			}
+			"modifier_A02W_old_debuff"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%debuff_duration"
+				"StatusEffectName"		"particles/status_fx/status_effect_poison_viper.vpcf"
+				"StatusEffectPriority"	"15"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%debuff_movement_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
+					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+						"EffectAttachType"	"attach_hitloc"	
+						"Target"			"TARGET"
+					}
+				}
+
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+						"Function"		"A02W_old_apply_dot"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+	}
+
+	// 稻姬 11.2B [風之力]
+	"A02E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/skywrath_mage_concussive_shot"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"120 140 160 180"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_movement_speed"	"20 30 40 50" // %
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_attack_speed"		"50 80 110 140" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_duration"	"15"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/a02/a02e_old_buff.vpcf"
+			"particle"  "particles/a02/a02e_old_cast_flash.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02E_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A02E_old_buff"
+				"Target" 		"TARGET"
+				"Duration"		"%buff_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02E_old_buff"
+			{
+				"IsBuff"	"1"
+		
+				"EffectName"		"particles/a02/a02e_old_buff.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%buff_movement_speed"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/a02/a02e_old_cast_flash.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPointEntities"
+						{
+							"CASTER"	"bow_mid"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 稻姬 11.2B [自我恢復]
+	"A02R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/c17d"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"100 120 140 160"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"add_hp_regen"	"40 60 80 100" // per second
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"buff_duration"		"10.0"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_enchantress/enchantress_natures_attendants_lvl2.vpcf"
+			"particle"  "particles/units/heroes/hero_enchantress/enchantress_natures_attendants_heal.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02R_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
+				"Function"		"A02R_old_OnSpellStart"
+				"Target"		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02R_old"
+			{
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%add_hp_regen"
+				}
+			}
+		}
+	}
+
+	// 稻姬 11.2B [融影術]
+	"A02T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/windrunner_windrun_sylvan"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilityCooldown"				"110 100 90"
+		"AbilityManaCost"				"240 280 320"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"14 16 18"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"base_attack_time"		"0.9"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+			"particle"  "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A02T_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A02T_old"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A02T_old"
+			{
+				"Duration"	"%duration"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
+					"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "windrun"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPoints"
+						{
+							"01"	"1 0 0"
+						}
+					}
+				}
+			}
+		}
+	}
+} // end DOTAAbilities
