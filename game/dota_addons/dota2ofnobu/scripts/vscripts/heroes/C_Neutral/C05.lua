@@ -69,7 +69,7 @@ function C05R_OnAttackLanded( keys )
 		ParticleManager:ReleaseParticleIndex(ifx)
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_C05R_debuff",{})
 
-		EmitSoundOn("Hero_Zuus.ProjectileImpact",target)
+		EmitSoundOn("Hero_Zuus.ArcLightning.Cast",target)
 	end
 end
 
