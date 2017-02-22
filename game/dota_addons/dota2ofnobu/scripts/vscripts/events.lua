@@ -23,7 +23,6 @@ end
 
 function Nobu:OnDisconnect( keys ) --代測試
 
-  DeepPrintTable(keys)
 end
 
 function Nobu:OnItemPurchased( keys )

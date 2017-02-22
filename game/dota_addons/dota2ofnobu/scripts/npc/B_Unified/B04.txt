@@ -49,6 +49,7 @@
 
 		"precache"
 		{
+			"particle"	"particles/b04w/b04w.vpcf"
 			"particle"  "particles/b04/b04w.vpcf"
 			"particle"  "particles/b04/b04w_body.vpcf"
 			"particle"  "particles/b04/b04w_path.vpcf"
@@ -268,6 +269,7 @@
 
 		"precache"
 		{
+			"soundfile"	"soundevents/b01.vsndevts"
 			"particle"  "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
 			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
 		}
@@ -288,6 +290,11 @@
 				"ModifierName"	"modifier_B04T"
 				"Target" 		"CASTER"
 				"Duration"		"%duration"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
 			}
 		}
 
@@ -359,7 +366,6 @@
 		"AbilityCastRange"	"1100"
 		"precache"
 		{
-			"particle"	"particles/b04w/b04w.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
 		}
 		"OnUpgrade"
@@ -715,6 +721,11 @@
 				"Target"	"CASTER"
 				"EffectName"	"B04T_old.vo1"
 			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
 		}
 
 		"OnSpellStart"
@@ -731,6 +742,8 @@
 		{
 			"modifier_B04T_old"
 			{
+				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+				"EffectAttachType"  "follow_origin"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%add_base_attack"

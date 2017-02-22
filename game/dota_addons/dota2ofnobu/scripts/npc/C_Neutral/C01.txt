@@ -52,6 +52,15 @@
 			"modifier_C01W"
 			{
 				"IsBuff"	"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+						"Function"	"C01Wjump"
+					}
+				}
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -434,7 +443,15 @@
             			}
         			}
 				}		
-
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
+						"Function"	"C01Wjump"
+					}
+				}
 				"OnAttack"
 				{
 					"RunScript"

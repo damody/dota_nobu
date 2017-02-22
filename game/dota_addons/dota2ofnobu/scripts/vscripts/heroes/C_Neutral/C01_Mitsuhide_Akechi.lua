@@ -41,6 +41,13 @@ function C01W2( keys )
 	end
 end
 
+function C01Wjump( keys )
+	local caster = keys.caster
+	local skill = keys.ability
+	local rate = caster:GetAttackSpeed()
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+end
+
 function C01W( keys )
 	local caster = keys.caster
 	local skill = keys.ability
