@@ -77,8 +77,9 @@ end
 function C05T_CreateParticle( point, radius, team_number )
 	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf",PATTACH_WORLDORIGIN,nil)
 	ParticleManager:SetParticleControl(ifx,0,point)
-	ParticleManager:SetParticleControl(ifx,1,Vector(radius,radius,radius))
-	ParticleManager:SetParticleControl(ifx,2,Vector(radius,radius,radius))
+	ParticleManager:SetParticleControl(ifx,1,Vector(radius,radius,1.5))
+	ParticleManager:SetParticleControl(ifx,2,Vector(1,1,radius))
+	ParticleManager:SetParticleControl(ifx,3,point)
 	ParticleManager:ReleaseParticleIndex(ifx)
 end
 
