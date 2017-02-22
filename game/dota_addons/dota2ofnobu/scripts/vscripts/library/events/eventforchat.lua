@@ -578,14 +578,6 @@ local function chat_of_test(keys)
 		end
 
 		if s == "`" then
-			local spell_hint_table = {
-				duration   = 1,		-- 持續時間
-				radius     = 300,	-- 半徑
-			}
-			local thinker = CreateModifierThinker(caster,nil,"nobu_modifier_spell_hint",spell_hint_table,caster:GetAbsOrigin(),caster:GetTeamNumber(),false)
-			Timers:CreateTimer(0, function() print(thinker:IsNull()) end)
-			Timers:CreateTimer(1, function() print(thinker:IsNull()) end)
-			Timers:CreateTimer(2, function() print(thinker:IsNull()) end)
 		end
 
 		if s == "r1" then

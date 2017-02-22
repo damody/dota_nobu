@@ -8,6 +8,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/b04.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
 		}
 	}
 
@@ -19,7 +20,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"FightRecapLevel"	"1"
 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -39,6 +40,19 @@
 				"var_type"		"FIELD_INTEGER"
 				"speed"			"3000"
 			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"300"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/b04/b04w.vpcf"
+			"particle"  "particles/b04/b04w_body.vpcf"
+			"particle"  "particles/b04/b04w_path.vpcf"
+			"particle"  "particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf"
 		}
 
 		"OnAbilityPhaseStart"
@@ -68,6 +82,43 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B04.lua"
 				"Function"		"B04W_OnProjectileHitUnit"
 				"Target"		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B04W_aura"
+			{
+				"IsHidden"		"1"
+				"Aura"	"modifier_B04W_trigger"
+				"Aura_Radius"	"%radius"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"	"0"
+
+				"EffectName" "particles/b04/b04w_body.vpcf"
+				"EffectAttachType" "follow_origin"
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B04W_aura"
+						"Target" 		"TARGET"
+					}
+				}
+			}
+			"modifier_B04W_trigger"
+			{
+				"IsHidden" "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B04.lua"
+						"Function"		"B04W_OnTrigger"
+						"Target"		"TARGET"
+					}
+				}
 			}
 		}
 	}
@@ -108,6 +159,12 @@
 				"var_type"		"FIELD_FLOAT"
 				"stun_time"		"0.5 0.8 1.1 1.4"
 			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_ember_spirit/emberspirit_flame_shield_aoe_impact.vpcf"
+			"particle"  "particles/econ/items/monkey_king/arcana/fire/monkey_king_spring_arcana_fire.vpcf"
 		}
 
 		"OnAbilityPhaseStart"
@@ -178,7 +235,7 @@
 
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.1"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
 
 		"AbilitySpecial"
 		{
@@ -207,6 +264,12 @@
 				"var_type"		"FIELD_FLOAT"
 				"stun_time"		"0.22"
 			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+			"particle"  "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
 		}
 
 		"OnAbilityPhaseStart"
@@ -245,6 +308,12 @@
 						"Function"		"B04T_OnCreated"
 						"Target"		"TARGET"
 					}
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
 				}
 				"OnDestroy"
 				{
@@ -260,10 +329,12 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B04.lua"
-						"Function"		"B04T_OnAttackStart"
+						"Function"		"B04T_OnAttack"
 						"Target"		"TARGET"
 					}
 				}
+				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+				"EffectAttachType"  "follow_origin"
 			}
 		}
 	}
@@ -412,7 +483,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"FightRecapLevel"	"1"
 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
