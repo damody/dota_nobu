@@ -1052,6 +1052,7 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
 				"Function"	"B02T_old"
+				"Target" "TARGET"
 			}
 		}
 		"Modifiers"
@@ -1086,7 +1087,6 @@
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
 						"Function"		"B02T_old_on_unit_move"
-						"Target"	"TARGET"
 					}
 				}
 			}
@@ -1150,10 +1150,6 @@
 				"var_type" "FIELD_FLOAT"
 				"bonus_damage" "0.05"
 			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-			}
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
@@ -1173,6 +1169,11 @@
 			{
 				"var_type" "FIELD_INTEGER"
 				"wave_num"	"4 8 12"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_radius"	"1000"
 			}
 		} // AbilitySpecial end
 	} // B02T_old end
