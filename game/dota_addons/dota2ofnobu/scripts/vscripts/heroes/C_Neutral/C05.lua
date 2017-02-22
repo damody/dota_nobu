@@ -75,31 +75,12 @@ end
 
 -- 範圍攻擊特效
 function C05T_CreateParticle( point, radius, team_number )
-	local dummy = CreateUnitByName("npc_dummy_unit",point,false,nil,nil,team_number)
-	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
-	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf",PATTACH_ABSORIGIN,dummy)
-	ParticleManager:SetParticleControl(ifx,1,Vector(1,1,1))
-	ParticleManager:SetParticleControl(ifx,2,Vector(1,1,1))
+	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf",PATTACH_WORLDORIGIN,nil)
+	ParticleManager:SetParticleControl(ifx,0,point)
+	ParticleManager:SetParticleControl(ifx,1,Vector(radius,radius,1.5))
+	ParticleManager:SetParticleControl(ifx,2,Vector(1,1,radius))
+	ParticleManager:SetParticleControl(ifx,3,point)
 	ParticleManager:ReleaseParticleIndex(ifx)
-
-	---[[
-	local sub_num = 6
-	local sub_radius = radius * 0.33
-	local angle_offset = RandomInt(1,360)
-	local angle_delta = 360/sub_num
-	for i=1,sub_num do
-		local angle = angle_offset + i*angle_delta
-		local dx = math.cos(angle*3.14/180) * sub_radius
-		local dy = math.sin(angle*3.14/180) * sub_radius
-		local sub_point = point + Vector(dx,dy,0)
-		local dummy = CreateUnitByName("npc_dummy_unit",sub_point,false,nil,nil,team_number)
-		dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
-		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf",PATTACH_ABSORIGIN,dummy)
-		ParticleManager:SetParticleControl(ifx,1,Vector(3,3,3))
-		ParticleManager:SetParticleControl(ifx,2,Vector(3,3,3))
-		ParticleManager:ReleaseParticleIndex(ifx)
-	end
-	--]]
 end
 
 function C05T_OnSpellStart( keys )

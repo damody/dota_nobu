@@ -430,7 +430,9 @@ function B02T_old_init( keys )
 	
 	-- 延遲一段時間後打出4道閃電
 	Timers:CreateTimer(first_hit_delay, function()
-		B02T_old_fire_thunder( keys )
+		if IsValidEntity(caster) and IsValidEntity(target) then
+			B02T_old_fire_thunder( keys )
+		end
 	end)
 
 	-- 紀錄粒子效果編號
@@ -497,16 +499,17 @@ function B02T_old_fire_thunder( keys )
 	local angle_gap = 3.14159*2.0/wave_num
 	for i=1,wave_num do
 		Timers:CreateTimer(0.07*(i-1), function()
-			
-			local angle = angle_gap*i
-			local dx = math.cos(angle) * ability.radius
-			local dy = math.sin(angle) * ability.radius
-			local center = target:GetAbsOrigin()
-			local start_pos = Vector(center.x+dx, center.y+dy, center.z+300) 
-			B02T_old_jump_init(keys, start_pos)
+			if IsValidEntity(caster) and IsValidEntity(target) then
+				local angle = angle_gap*i
+				local dx = math.cos(angle) * ability.radius
+				local dy = math.sin(angle) * ability.radius
+				local center = target:GetAbsOrigin()
+				local start_pos = Vector(center.x+dx, center.y+dy, center.z+300) 
+				B02T_old_jump_init(keys, start_pos)
 
-			ApplyDamage({victim = target, attacker = caster, damage = base_damage, damage_type = ability:GetAbilityDamageType()})
-			ability:ApplyDataDrivenModifier(caster,target,"modifier_arc_lightning_datadriven",{})
+				ApplyDamage({victim = target, attacker = caster, damage = base_damage, damage_type = ability:GetAbilityDamageType()})
+				ability:ApplyDataDrivenModifier(caster,target,"modifier_arc_lightning_datadriven",{})
+			end
 		end)
 	end
 	
@@ -566,7 +569,7 @@ function B02T_old_Jump(keys)
 	-- Finds the current instance of the ability by ensuring both current targets are the same
 	local current
 	for i=0,ability.instance do
-		if ability.target[i] ~= nil then
+		if IsValidEntity(ability.target[i]) then
 			if ability.target[i] == target then
 				current = i
 			end
