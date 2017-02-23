@@ -60,6 +60,8 @@ function B34R_limit( keys )
 end
 
 function B34T( keys )
+	-- 開關型技能不能用
+	if keys.event_ability:IsToggle() then return end
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
