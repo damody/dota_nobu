@@ -578,6 +578,10 @@ local function chat_of_test(keys)
 		end
 
 		if s == "`" then
+			local mds = {}
+			for _,m in ipairs(mds) do
+				GameRules: SendCustomMessage("[Act-Trans:Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			end
 		end
 
 		if s == "r1" then

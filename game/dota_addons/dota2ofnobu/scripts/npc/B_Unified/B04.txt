@@ -10,6 +10,36 @@
 			"soundfile"	"soundevents/b04.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
 		}
+
+		"Modifiers"
+		{
+			"modifier_aggressive_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttack"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_aggressive"
+						"Target" 		"CASTER"
+						"Duration"		"2.5"
+					}
+				}
+			}
+
+			"modifier_aggressive"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "aggressive"
+				}
+			}
+		}
 	}
 
 	// 伊達政宗 [踏火無痕]
@@ -235,7 +265,7 @@
 
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.1"
-		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
 		"AbilitySpecial"
 		{
@@ -298,7 +328,8 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%add_base_attack"
-				    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%add_attack_range" 
+				    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%add_attack_range"
+				    "MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "alternate"
 				}
 				"OnCreated"
 				{

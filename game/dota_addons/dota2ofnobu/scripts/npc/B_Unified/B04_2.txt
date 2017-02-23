@@ -6,8 +6,9 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_clinkz"
-		// "Model"         "models/heroes/dragon_knight/dragon_knight.vmdl"
-		"ModelScale"	"1"
+		"Model"         "models/b04/b04.vmdl"
+		"DisableWearables"	"1"
+		"ModelScale"	"1.5"
 		// "MinimapIcon"		"minimap_candybucket"
 		// "MinimapIconSize"	"1000"
 		// "UnitLabel"          "hero" // -- :GetUnitLabel()
@@ -87,7 +88,7 @@
 		// Bounds
 		// ----------------------------------------------------------------
 		// "BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		// "HealthBarOffset"	"140"
+		"HealthBarOffset"	"140"
 		// "RingRadius" "100"
 
 		// Gold and Lumber
