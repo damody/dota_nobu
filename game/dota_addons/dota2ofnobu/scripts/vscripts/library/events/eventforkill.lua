@@ -130,6 +130,24 @@ function Nobu:OnUnitKill( keys )
           unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
         end
         end)
+    elseif string.match(name, "npc_dota_cursed_warrior_souls") then
+      local unitname = name
+      local pos = killedUnit:GetAbsOrigin()
+      local team = killedUnit:GetTeamNumber()
+      Timers:CreateTimer(300, function()
+        if (killedUnit.origin_pos) then
+          pos = killedUnit.origin_pos
+          local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
+          unit.origin_pos = pos
+          local CP_Monster = _G.CP_Monster
+          local hp = unit:GetMaxHealth()
+          unit:SetBaseMaxHealth(hp+CP_Monster * 50)
+          local dmgmax = unit:GetBaseDamageMax()
+          local dmgmin = unit:GetBaseDamageMin()
+          unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
+          unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
+        end
+        end)
     elseif string.match(name, "neutral_160") then
       local unitname = name
       local pos = killedUnit:GetAbsOrigin()

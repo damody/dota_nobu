@@ -443,9 +443,9 @@ function to_soldier_Oda(keys)
     	return 1
     	end)
 	--強化cp怪
-	Timers:CreateTimer(180, function()
+	Timers:CreateTimer(60, function()
 		CP_Monster = CP_Monster + 1
-		return 180
+		return 60
 		end)
 	-- 把中離馬變無敵
 
