@@ -65,6 +65,11 @@ function Nobu:PickHero( keys )
         caster:FindAbilityByName("C17D"):SetLevel(1)
       elseif string.match(name, "faceless_void") then --風魔小太郎
         caster:FindAbilityByName("B02D"):SetLevel(1)
+      elseif string.match(name, "npc_dota_hero_clinkz") then -- 伊達政宗
+        local B04_precache = caster:FindAbilityByName("B04_precache")
+        if B04_precache then
+          B04_precache:SetLevel(1)
+        end
       end
     end
   end)
