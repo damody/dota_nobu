@@ -45,7 +45,34 @@
 	{
 		m_pObject = null
 	}
-	m_pHitBoxSetLists = [  ]
+	m_pHitBoxSetLists = 
+	[
+		{
+			m_pObject = 
+			{
+				m_HitBoxSets = 
+				[
+					{
+						m_name = "default"
+						m_HitBoxes = 
+						[
+							{
+								m_name = "BoneHorseBONE_ABDOMEN"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "BoneHorseBONE_ABDOMEN"
+								m_vMinBounds = [ -72.647705, -56.165806, -64.712036 ]
+								m_vMaxBounds = [ 88.061363, 56.767143, 68.676468 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+						]
+					},
+				]
+				m_AutoCreateSetName = ""
+			}
+		},
+	]
 	m_pAttachmentLists = 
 	[
 		{

@@ -714,7 +714,7 @@
 
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.1"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
 		"AbilitySpecial"
 		{
@@ -779,6 +779,7 @@
 				{
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%add_base_attack"
 				    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%add_attack_range" 
+				    "MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "alternate"
 				}
 				"OnCreated"
 				{
