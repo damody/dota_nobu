@@ -454,7 +454,7 @@ function to_soldier_Oda(keys)
 			local id = hero:GetPlayerID()
 			local team = PlayerResource:GetTeam(id)
 			local state = PlayerResource:GetConnectionState(id)
-			if state ~= 2 then -- 2 = connected
+			if state == 3 then -- 2 = connected
 				if hero.stop == nil and hero.donkey ~= nil then
 	   				hero.stop = 1
 	   				hero.donkey:AddAbility("majia"):SetLevel(1)
