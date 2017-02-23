@@ -28,7 +28,7 @@
 		m_bRemoveUnusedBonesEnabled = false
 		m_bDriveMeshesWithBacksolvedJointsOnly = true
 		m_flMatchProxiesToMeshes = 1.0
-		m_flReservedFloat = 0.0
+		m_flFallbackEnvelope = 1.0
 		m_nReservedInt = 0
 		m_bReservedBool1 = false
 		m_bReservedBool2 = false
@@ -300,8 +300,8 @@
 						[
 							{
 								m_influenceName = "Bone_Chest"
-								m_vTranslationOffset = [ -0.164752, -0.000002, 6.250145 ]
-								m_vRotationOffset = [ -0.0, 0.0, -0.000042 ]
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
 								m_flWeight = 1.0
 								m_bRoot = false
 							},
@@ -313,8 +313,8 @@
 						[
 							{
 								m_influenceName = "Bone_Hand_R"
-								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
-								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vTranslationOffset = [ -0.000057, -93.372894, -4.89209 ]
+								m_vRotationOffset = [ -0.000013, -0.000003, 0.0 ]
 								m_flWeight = 1.0
 								m_bRoot = false
 							},
@@ -715,6 +715,7 @@
 			]
 			m_sScripts = [  ]
 			m_folderNames = [  ]
+			m_sCompileScripts = [  ]
 		}
 	}
 	m_pMaterialGroupList = 
@@ -769,7 +770,6 @@
 	m_flFbxScale = 1.0
 	m_flQCScale = 1.0
 	m_vOrigin = [ 0.0, 0.0, 0.0 ]
-	m_nLoadDmxAnimVersion = 0
 	m_pPsfList = null
 	m_keyValueText = ""
 	m_bStaticProp = false
@@ -781,5 +781,6 @@
 	m_bMakeUniqueVMeshes = false
 	m_bMakeImplicitBindPoseSequence = false
 	m_bAdjustSkeletonFromBoneFlags = false
+	m_bHiddenAssetFlag = false
 	m_pAnimGroups = [  ]
 }
