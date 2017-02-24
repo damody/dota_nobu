@@ -1,25 +1,4 @@
-modifier_B01W = class({})
 
---[[Author: Noya
-	Date: 27.01.2016.
-	Changes the model of the unit into the Dragon Knight Elder Dragon Form model as long as the modifier is active]]
-function modifier_B01W:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MODEL_CHANGE
-	}
-
-	return funcs
-end
-
-function modifier_B01W:GetModifierModelChange()
-	return "models/b01/b01_2.vmdl"
-end
-
-function modifier_B01W:IsHidden() 	
-	return true
-end
-
-LinkLuaModifier("modifier_B01W", "heroes/B_Unified/B01.lua", LUA_MODIFIER_MOTION_NONE)
 function B01W( keys )
 	--【Basic】
 	local caster = keys.caster
@@ -35,7 +14,6 @@ function B01W( keys )
 	--【Translation】
 	local modifier = keys.modifier_one-- Deciding the transformation level
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = duration})
-	caster:AddNewModifier(caster,ability,"modifier_B01W",{duration = duration})--變身
 
 	--【Particle】
 	local particle = ParticleManager:CreateParticle("particles/b01w/b01w.vpcf",PATTACH_POINT_FOLLOW,caster)
@@ -54,7 +32,6 @@ function B01W_end( keys )
 	--local target = keys.target
 	local ability = keys.ability
 
-	caster:RemoveModifierByName("modifier_B01W")--變身
 
 	ParticleManager:DestroyParticle(caster.B01W_effect,false)	
 
