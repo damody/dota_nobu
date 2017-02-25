@@ -61,7 +61,7 @@ function A13W_Levelup( keys )
 	local ability = caster:FindAbilityByName("A13D")
 	local level = keys.ability:GetLevel()
 	
-	if (ability:GetLevel() < level+1) then
+	if (ability~= nil and ability:GetLevel() < level+1) then
 		ability:SetLevel(level+1)
 	end
 end
@@ -71,7 +71,7 @@ function A13E_Levelup( keys )
 	local ability = caster:FindAbilityByName("A13D")
 	local level = keys.ability:GetLevel()
 	
-	if (ability:GetLevel() < level+1) then
+	if (ability~= nil and ability:GetLevel() < level+1) then
 		ability:SetLevel(level+1)
 	end
 end
@@ -81,7 +81,7 @@ function A13R_Levelup( keys )
 	local ability = caster:FindAbilityByName("A13D")
 	local level = keys.ability:GetLevel()
 	
-	if (ability:GetLevel() < level+1) then
+	if (ability~= nil and ability:GetLevel() < level+1) then
 		ability:SetLevel(level+1)
 	end
 end
@@ -784,10 +784,20 @@ function A13T_break( keys )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			if caster:IsAlive() then
-				AMHC:Damage(caster, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				if it:IsMagicImmune() then
+					AMHC:Damage(caster, it, dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				else
+					AMHC:Damage(caster, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			else
-				AMHC:Damage(caster.dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				caster.takedamage = caster.takedamage + dmg
+				if it:IsMagicImmune() then
+					AMHC:Damage(caster.dummy, it, dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					caster.takedamage = caster.takedamage + dmg*0.5
+				else
+					AMHC:Damage(caster.dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					caster.takedamage = caster.takedamage + dmg
+				end
+				
 				if (it:IsRealHero()) then
 					caster.herodamage = caster.herodamage + dmg
 				end

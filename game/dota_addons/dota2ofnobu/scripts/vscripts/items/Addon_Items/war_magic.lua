@@ -455,18 +455,36 @@ function to_soldier_Oda(keys)
 			local team = PlayerResource:GetTeam(id)
 			local state = PlayerResource:GetConnectionState(id)
 			if state == 3 then -- 2 = connected
-				if hero.stop == nil and hero.donkey ~= nil then
-	   				hero.stop = 1
-	   				hero.donkey:AddAbility("majia"):SetLevel(1)
-	   				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
-	   				hero:SetAbsOrigin(Vector(99999,99999,0))
+				if (hero.stop == nil or hero.stop <= 3) and hero.donkey ~= nil then
+	   				if hero.stop == nil then
+	   					hero.stop = 1
+	   				else
+	   					hero.stop = hero.stop + 1
+	   					if hero.stop > 3 then
+	   						hero.donkey:AddAbility("majia"):SetLevel(1)
+			   				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
+			   				hero:AddAbility("majia"):SetLevel(1)
+			   				hero:SetAbsOrigin(Vector(99999,99999,0))
+			   			end
+	   				end
 	   			end
 	   		elseif state == 2 then
-	   			if hero.stop == 1 and hero.donkey ~= nil then
+	   			if hero.stop ~= nil and hero.donkey ~= nil then
 	   				hero.stop = nil
 	   				hero.donkey:RemoveAbility("majia")
 	   				hero.donkey:RemoveModifierByName("modifier_majia")
 	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
+	   				hero:RemoveAbility("majia")
+	   				hero:RemoveModifierByName("modifier_majia")
+	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+	   			end
+	   			if hero:HasModifier("modifier_majia") then
+	   				hero.stop = nil
+	   				hero.donkey:RemoveAbility("majia")
+	   				hero.donkey:RemoveModifierByName("modifier_majia")
+	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
+	   				hero:RemoveAbility("majia")
+	   				hero:RemoveModifierByName("modifier_majia")
 	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
 	   			end
 			end

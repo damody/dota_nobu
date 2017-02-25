@@ -258,15 +258,25 @@ function C05T_old_OnIntervalThink( keys )
 	local target = keys.target
 	local caster = target:FindModifierByName("modifier_C05T_old_debuff").caster
 	local ability = keys.ability
-
-		ApplyDamage({
-			victim = target,
-			attacker = caster,
-			ability = ability,
-			damage = ability:GetSpecialValueFor("damage_per_think"),
-			damage_type = ability:GetAbilityDamageType(),
-			--damage_flags = DOTA_DAMAGE_FLAG_NONE
-		})
+		if target:IsMagicImmune() then
+			ApplyDamage({
+				victim = target,
+				attacker = caster,
+				ability = ability,
+				damage = ability:GetSpecialValueFor("damage_per_think")*0.5,
+				damage_type = ability:GetAbilityDamageType(),
+				--damage_flags = DOTA_DAMAGE_FLAG_NONE
+			})
+		else
+			ApplyDamage({
+				victim = target,
+				attacker = caster,
+				ability = ability,
+				damage = ability:GetSpecialValueFor("damage_per_think"),
+				damage_type = ability:GetAbilityDamageType(),
+				--damage_flags = DOTA_DAMAGE_FLAG_NONE
+			})
+		end
 
 		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning_impact.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
 		ParticleManager:SetParticleControlEnt(ifx,1,target,PATTACH_ABSORIGIN_FOLLOW,nil,target:GetAbsOrigin(),true)

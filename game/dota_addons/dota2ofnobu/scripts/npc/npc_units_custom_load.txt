@@ -4120,7 +4120,7 @@
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creep_lane"
+		"BaseClass"	"npc_dota_creature"
 		// Add model
 		"Model"	"models/ashigaru/ashigaru.vmdl"
 		"ModelScale"	"1.2"
@@ -4130,7 +4130,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: A0GD
-		"Ability1"	""
+		"Ability1"	"tofar_goback"
 		// Reference: A0GW
 		"Ability2"	""
 		// Armor
@@ -4211,9 +4211,9 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: A0GD
-		"Ability1"	""
+		"Ability1"	"attack_building"
 		// Reference: A0GW
-		"Ability2"	""
+		"Ability2"	"set_level_1"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"20"
@@ -4280,7 +4280,7 @@
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creep_lane"
+		"BaseClass"	"npc_dota_creature"
 		// Add model
 		"Model"	"models/archer/archer.vmdl"
 		"ModelScale"	"1.2"
@@ -4643,7 +4643,7 @@
 		// Reference: A0GD
 		"Ability1"	"archer_attack"
 		// Reference: A0GW
-		"Ability2"	""
+		"Ability2"	"attack_building"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"10"
@@ -4682,7 +4682,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability3"	""
+		"Ability3"	"set_level_1"
 		"Ability4"	""
 		"Ability5"	""
 		"Ability6"	""
@@ -4870,7 +4870,7 @@
 		// Reference: A0NH
 		"Ability1"	"gunner_attack"
 		// Reference: A0GD
-		"Ability2"	""
+		"Ability2"	"attack_building"
 		// Reference: A0GW
 		"Ability3"	""
 		// Armor
@@ -4919,7 +4919,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability4"	""
+		"Ability4"	"set_level_1"
 		"Ability5"	""
 		"Ability6"	""
 		"Ability7"	""
@@ -5022,7 +5022,7 @@
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creep_lane"
+		"BaseClass"	"npc_dota_creature"
 		// Add model
 		"Model"	"models/cavalry/cavalry.vmdl"
 		"ModelScale"	"1.3"
@@ -5115,7 +5115,7 @@
 		// Reference: A0GD
 		"Ability1"	"for_no_collision"
 		// Reference: A0GW
-		"Ability2"	""
+		"Ability2"	"attack_building"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"20"
@@ -5161,7 +5161,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability3"	""
+		"Ability3"	"set_level_1"
 		"Ability4"	""
 		"Ability5"	""
 		"Ability6"	""

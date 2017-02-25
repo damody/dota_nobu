@@ -337,7 +337,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"4 6 8"
+		"AbilityCooldown"	"5 7 9"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityManaCost"	"100 175 250"
@@ -707,7 +707,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"add_for_building"	"0.20 0.25 0.3 0.35"
+				"add_for_building"	"0.05 0.10 0.15 0.20"
 			}
 		}
 	}
@@ -723,7 +723,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"4 6 8"
+		"AbilityCooldown"	"7 9 11"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityManaCost"	"110 160 210"
@@ -842,7 +842,7 @@
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"lock"	"4 6 8"
+				"lock"	"6 8 10"
 			}
 		}
 	}

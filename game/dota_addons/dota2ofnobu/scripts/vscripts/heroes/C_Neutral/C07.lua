@@ -264,13 +264,21 @@ function C07_Effect( keys )
 				if v2:IsBuilding() then
 					AMHC:Damage( caster,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				else
-					AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					if v2:IsMagicImmune() then
+						AMHC:Damage( caster,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					else
+						AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					end
 				end
 			else
 				if v2:IsBuilding() then
 					AMHC:Damage( dummyx,v2*0.5,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				else
-					AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					if v2:IsMagicImmune() then
+						AMHC:Damage( dummyx,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					else
+						AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					end
 				end
 				caster.takedamage = caster.takedamage + dmg
 				if (v2:IsRealHero()) then
@@ -310,13 +318,21 @@ function C07_Effect( keys )
 						if v2:IsBuilding() then
 							AMHC:Damage( caster,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 						else
-							AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+							if v2:IsMagicImmune() then
+								AMHC:Damage( caster,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+							else
+								AMHC:Damage( caster,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+							end
 						end
 					else
 						if v2:IsBuilding() then
 							AMHC:Damage( dummyx,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 						else
-							AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+							if v2:IsMagicImmune() then
+								AMHC:Damage( dummyx,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+							else
+								AMHC:Damage( dummyx,v2,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+							end
 						end
 						caster.takedamage = caster.takedamage + dmg
 						if (v2:IsRealHero()) then

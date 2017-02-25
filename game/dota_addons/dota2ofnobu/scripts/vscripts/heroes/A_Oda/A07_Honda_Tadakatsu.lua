@@ -19,6 +19,7 @@ function modifier_A07W:OnCreated( event )
 end
 
 function modifier_A07W:OnIntervalThink()
+	self.hp = self.caster:GetHealth()
 end
 
 function modifier_A07W:OnTakeDamage(event)
@@ -32,7 +33,10 @@ function modifier_A07W:OnTakeDamage(event)
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
 	    	if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 	    		if (damage_type ~= DAMAGE_TYPE_PHYSICAL) then
-					self.caster:SetHealth(self.caster:GetHealth() + event.damage*2)
+					self.caster:SetHealth(self.hp + event.original_damage)
+					self.hp = self.hp + event.original_damage
+				else
+					self.caster:SetHealth(self.hp)
 				end
 			end
 		end
@@ -145,6 +149,7 @@ function A07W_SE( event )
 
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A07W",{duration=10})
 	caster:FindModifierByName("modifier_A07W").caster = caster
+	caster:FindModifierByName("modifier_A07W").hp = caster:GetHealth()
 	-- -- Strong Dispel 刪除負面效果
 	-- local RemovePositiveBuffs = false
 	-- local RemoveDebuffs = true

@@ -50,6 +50,7 @@ function C21T_Effect(u,u2,i)
 
 	--傷害
 	AMHC:Damage( u,u2,125,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	AMHC:Damage( u,u2,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	AMHC:Damage( u,u2,u:GetAttackDamage(),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 
 	--發動攻擊	 

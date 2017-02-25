@@ -22,7 +22,7 @@ function C22W_Damage( keys )
 		----print(v:GetUnitName())
 		if caster:HasModifier("modifier_C22D") then
 			if v:IsMagicImmune() then
-				AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,v,damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			else
 				AMHC:Damage( caster,v,damage*0.3,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
@@ -218,9 +218,11 @@ function C22T_Damage( keys )
 			ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
 		end
 		local damage = 500 + 0.28*v:GetHealth()
-		AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_C22T",nil)
 		if v:IsMagicImmune() then
+			AMHC:Damage( caster,v,damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		else
 			AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end

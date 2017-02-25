@@ -434,6 +434,28 @@
 			}
 		}
 	}
+	//走遠了要回來
+	"attack_building"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_attack_building"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"attack_building"
+					}
+				}
+			}
+		}
+	}
 
 	//鐵炮兵打英雄小兵兩倍痛
 	"gunner_attack"
@@ -2269,7 +2291,7 @@
 		"AbilityManaCost"	"100"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"500"
+		"AbilityCastRange"	"750"
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"

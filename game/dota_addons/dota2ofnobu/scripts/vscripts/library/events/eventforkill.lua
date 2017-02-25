@@ -94,7 +94,7 @@ function Nobu:OnUnitKill( keys )
         local xp = killedUnit:GetLevel() * 35 / #group
         for _,v in ipairs(group) do
           v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
-          if v:IsHero() and killedUnit:GetLevel() > 10 then
+          if v:IsHero() and killedUnit:GetLevel() > 7 then
             if killedUnit:GetLevel() > v:GetLevel()+4 then
               v:AddExperience(xp*3, DOTA_ModifyGold_HeroKill, false, false)
             elseif killedUnit:GetLevel() > v:GetLevel()+3 then

@@ -49,7 +49,7 @@ function SplitShotLaunch( keys )
 	local ability = keys.ability
 
 	-- 鏡像不給用:D
-	if caster:IsIllusion() then return end
+	
 
 	-- Targeting variables
 	local target_type = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
@@ -98,6 +98,9 @@ function SplitShotDamage( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local tornado_damage = ability:GetLevelSpecialValueFor("tornado_damage",0)
-
-	AMHC:Damage(caster, target, tornado_damage, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	if caster:IsIllusion() then
+		AMHC:Damage(caster, target, tornado_damage*0.5, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	else
+		AMHC:Damage(caster, target, tornado_damage, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
 end

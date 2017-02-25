@@ -38,6 +38,26 @@ function tofar_goback(keys)
 		end)
 end
 
+function attack_building(keys)
+	local caster = keys.caster
+	local pos = caster:GetAbsOrigin()
+
+	Timers:CreateTimer(3, function()
+		if IsValidEntity(caster) then
+			local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+				nil,  1000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING,
+				DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+			if #group > 0 then
+				caster:SetForceAttackTarget(group[1])
+			else
+				caster:SetForceAttackTarget(nil)
+			end
+			return 3
+		end
+		end)
+end
+
+
 function dead_give_item(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
