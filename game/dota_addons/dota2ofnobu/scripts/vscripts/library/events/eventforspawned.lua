@@ -129,7 +129,7 @@ function Nobu:OnHeroIngame( keys )
       Timers:CreateTimer(1, function ()
         for _,m in ipairs(hero.donkey:FindAllModifiers()) do
           if m:GetName() ~= "modifier_for_magic_immune" and m:GetName() ~= "modifier_courier_transfer_items" then
-            if not string.match(m:GetName(), "Passive_") then
+            if not string.match(m:GetName(), "Passive_") and not string.match(m:GetName(), "courier_burst") then
               hero.donkey:RemoveModifierByName(m:GetName())
             end
           end
@@ -140,7 +140,7 @@ function Nobu:OnHeroIngame( keys )
             item:SetPurchaseTime(100000)
           end
         end
-        return 3
+        return 5
         end)
 		end
 	end)

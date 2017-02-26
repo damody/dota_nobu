@@ -211,11 +211,13 @@ function B01R(keys)
 		dmg = dmg * per_atk  / 100
 		--print(dmgori, damageReduction, dmg)
 		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-		local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
-		ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
-		Timers:CreateTimer(1, function()
-			ParticleManager:DestroyParticle(particle,false)
-			end)
+		if IsValidEntity(target) then
+			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+			Timers:CreateTimer(1, function()
+				ParticleManager:DestroyParticle(particle,false)
+				end)
+		end
 	end
 end
 
@@ -255,12 +257,13 @@ function B01R_old(keys)
 			dmg = dmg * per_atk  / 100
 			--print(dmgori, damageReduction, dmg)
 			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-			
-			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
-			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
-			Timers:CreateTimer(1, function()
-				ParticleManager:DestroyParticle(particle,false)
-				end)
+			if IsValidEntity(target) then
+				local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+				ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+				Timers:CreateTimer(1, function()
+					ParticleManager:DestroyParticle(particle,false)
+					end)
+			end
 		end
 	end
 end

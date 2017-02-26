@@ -19,7 +19,9 @@ function modifier_A07W:OnCreated( event )
 end
 
 function modifier_A07W:OnIntervalThink()
-	self.hp = self.caster:GetHealth()
+	if self.caster ~= nil then
+		self.hp = self.caster:GetHealth()
+	end
 end
 
 function modifier_A07W:OnTakeDamage(event)
@@ -113,33 +115,6 @@ function A07R_old( keys )
 	end
 end
 
-function A07W_BorrowedTimeActivate( event )
-	-- Variables
-	local caster = event.caster --接受傷害單位
-	local ability = event.ability --技能
-	-- local threshold = ability:GetLevelSpecialValueFor( "hp_threshold" , ability:GetLevel() - 1  ) --獲取健值的等級素質
-	-- local cooldown = ability:GetCooldown( ability:GetLevel() ) --獲取冷卻時間(依照等級)
-	-- local dur = ability:GetLevelSpecialValueFor( "duration" , ability:GetLevel() - 1  ) --【須驗證】數組是從0開始?
-
-	--驅散負面效果
-	--BorrowedTimePurge( event )
-
-	--特別魔法效果:判別是不是魔法傷害、物理傷害
-	-- ability:ApplyDataDrivenModifier( caster, caster, "modifier_a07w_borrowed_time", { duration = dur })
-
-	--添加特效
-	A07W_SE( event )
-
-	-- -- Apply the modifier
-	-- if caster:GetHealth() < 400 and ability:GetCooldownTimeRemaining() == 0 then
-	-- 	BorrowedTimePurge( event )
-	-- 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_borrowed_time", { duration = dur })
-	-- 	ability:StartCooldown( cooldown )--開始技能CD
-	-- 	caster:Stop()--停止命令
-	-- 	caster:EmitSound("Hero_Abaddon.BorrowedTime")
-	-- end
-end
-
 function A07W_SE( event )
 	-- Variables
 	local target = event.caster
@@ -147,7 +122,7 @@ function A07W_SE( event )
 	local ability = event.ability
 	local shield_size = 30 -- could be adjusted to model scale
 
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A07W",{duration=10})
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A07W",{duration=event.Time})
 	caster:FindModifierByName("modifier_A07W").caster = caster
 	caster:FindModifierByName("modifier_A07W").hp = caster:GetHealth()
 	-- -- Strong Dispel 刪除負面效果
@@ -259,8 +234,10 @@ function A07R_Learn_Skill( keys )
 	local level = keys.ability:GetLevel()
 
 	local ability = caster:FindAbilityByName("A07D")
-	ability:SetLevel(level+1)
-	ability:SetActivated(true)
+	if ability ~= nil then
+		ability:SetLevel(level+1)
+		ability:SetActivated(true)
+	end
 end
 
 --[[Author: LinWeiHan

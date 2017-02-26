@@ -34,7 +34,7 @@ function Shock( keys )
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
 				if it:GetUnitName() == "npc_dota_cursed_warrior_souls" then
-					AMHC:Damage(dummy,it, it:GetMaxHealth()*02,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.005,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				elseif it:IsMagicImmune() then
 					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.011,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				else
