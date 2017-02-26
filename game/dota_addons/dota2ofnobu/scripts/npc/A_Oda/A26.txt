@@ -1,0 +1,675 @@
+// 濃姬
+"DOTAAbilities"
+{
+	"A26_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a26.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+		}
+	}
+
+	// 濃姬 [連銃]
+	"A26W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_fury2"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"17 14 11 8"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"250 350 450 550"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26W.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26W_OnSpellStart"
+			}
+		}
+	}
+
+	// 濃姬 [火藥踢擊]
+	"A26E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_17"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"25 20 15 10"
+		"AbilityManaCost"				"80 105 130 155"
+		"AbilityDamage"					"200"
+
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"0.8 1.1 1.4 1.7"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"knockback_speed"	"700"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26E_OnSpellStart"
+			}
+		}
+	}
+
+	// 濃姬 [二丁銃]
+	"A26R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_58"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"crit_chance"		"15 22 29 36"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"crit_bonus"		"200"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26R.vo1"
+			}
+		}
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26R_OnUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A26R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+						"Function"		"A26R_OnAttackStart"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_A26R_crit"
+			{
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_bonus"
+				}
+			}
+		}
+	}
+
+	// 濃姬 [隱雷]
+	"A26D"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/caoren_fengqun"
+		"MaxLevel"              		"5"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"20 18 16 14 12"
+		"AbilityManaCost"				"120"
+		"AbilityDamage"					"350"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+		"AoERadius"		"250" // 顯示布置範圍
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"90"
+			}
+			"02" // 傷害範圍
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius_explosion"	"150"
+			}
+			"03" // 觸發範圍
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius_trigger"	"100"
+			}
+			"04" // 外圍地雷放置距離
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius_sub_mine"	"200"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"number_of_sub_mine"	"2"
+			}
+			"06" // 生效延遲 -- 放下去不會馬上爆炸
+			{
+				"var_type"		"FIELD_FLOAT"
+				"active_delay"	"1.0"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26D.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26D_OnSpellStart"
+				"Target"		"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A26D_mine_passive"
+			{
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%radius_explosion" // 把地雷的攻擊距離拿來顯示爆炸範圍
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE" 			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_A26D_mine_aura"
+			{
+				"Aura"	"modifier_A26D_mine_trigger"
+				"Aura_Radius"	"%radius_trigger"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster"	"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE" 			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_A26D_mine_trigger"
+			{
+				"IsHidden"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+						"Function"		"A26D_OnTrigger"
+					}
+				}
+			}
+		}
+	}
+
+
+	// 濃姬 [灼熱爆裂投擲]
+	"A26T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_60"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"80"
+		"AbilityDamage"					"160 220 280"
+
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		"AoERadius"						"400"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_time"			"1.5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"projectile_speed"	"2000"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"400"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/a26/a26t_overhead.vpcf"
+			"particle"  "particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf"
+			"particle"  "particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion.vpcf"
+			"particle"  "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26T.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26T_OnSpellStart"
+				"Target"		"POINT"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26T_OnProjectileHitUnit"
+				"Target"		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A26T_big_bomb"
+			{
+				"EffectName"		"particles/a26/a26t_overhead.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+	}
+
+	// 濃姬 11.2B [四連彈]
+	"A26W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_fury2"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"250 350 450 550"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26W_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26W_old_OnSpellStart"
+			}
+		}
+	}
+
+	// 濃姬 11.2B [三味火]
+	"A26E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_17"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"200 300 400 500"
+
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"knockback_duration"	"1.0"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"knockback_speed"	"700"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"debuff_duration"	"4.0"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_attack_speed"	"-30 -40 -50 -60"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_movement_speed"	"-30 -40 -50 -60"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26E_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26E_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A26E_old_debuff"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%debuff_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%debuff_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%debuff_movement_speed" 
+				}
+			}
+		}
+	}
+
+	// 濃姬 11.2B [二丁銃]
+	"A26R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_58"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"crit_chance"		"10 15 20 25"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"crit_bonus"		"200"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26R_old.vo1"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A26R_old_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+						"Function"		"A26R_old_OnAttackStart"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_A26R_old_crit"
+			{
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_bonus"
+				}
+			}
+		}
+	}
+
+	// 濃姬 11.2B [一擊必殺]
+	"A26T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_60"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"155"
+		"AbilityManaCost"				"200 250 300"
+		"AbilityDamage"					"900 1300 1700"
+
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		"AoERadius"						"%radius"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"projectile_speed"	"2000"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"700"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/a26/a26t_overhead.vpcf"
+			"particle"  "particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf"
+			"particle"  "particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion.vpcf"
+			"particle"  "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26T_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26T_old_OnSpellStart"
+				"Target"		"POINT"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
+				"Function"		"A26T_old_OnProjectileHitUnit"
+				"Target"		"TARGET"
+			}
+		}
+	}
+} // end DOTAAbilities

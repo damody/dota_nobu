@@ -341,6 +341,12 @@ local function chat_of_test(keys)
 			caster:AddAbility("B04D_old")
 			caster:AddAbility("attribute_bonusx")
 			caster:AddAbility("B04T_old") 
+		elseif string.match(caster:GetUnitName(), "npc_dota_hero_techies") then -- 濃姬
+			caster:AddAbility("A26W_old")
+			caster:AddAbility("A26E_old")
+			caster:AddAbility("A26R_old")
+			caster:AddAbility("attribute_bonusx")
+			caster:AddAbility("A26T_old") 
 		end
 	end
 		

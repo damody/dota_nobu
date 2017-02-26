@@ -13,6 +13,7 @@ _G.heromap = {
   npc_dota_hero_huskar              = "A16",
   npc_dota_hero_sniper              = "A17",
   npc_dota_hero_treant              = "A25",
+  npc_dota_hero_techies             = "A26",
   npc_dota_hero_omniknight          = "A27",
   npc_dota_hero_invoker             = "A28",
   npc_dota_hero_oracle              = "A29",
@@ -63,6 +64,7 @@ _G.heromap_version = {
   A16 = {["11"] = false , ["16"] = true},
   A17 = {["11"] = true , ["16"] = true},
   A25 = {["11"] = true , ["16"] = true},
+  A26 = {["11"] = true , ["16"] = true},
   A27 = {["11"] = true , ["16"] = true},
   A28 = {["11"] = true , ["16"] = true},
   A29 = {["11"] = true , ["16"] = true},
@@ -422,3 +424,7 @@ end, "c")
 debug.bHookIsSet = true
 end
 ]]
+
+function CDOTA_BaseNPC:GetMagicalArmorValue()
+  return 30.0
+end

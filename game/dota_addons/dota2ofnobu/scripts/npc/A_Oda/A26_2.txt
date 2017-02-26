@@ -1,0 +1,123 @@
+"DOTAHeroes"
+{
+	// 濃姬
+	"A26"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_techies"
+		// "Model"         "models/heroes/dragon_knight/dragon_knight.vmdl"
+		"ModelScale"	"1"
+		// "MinimapIcon"		"minimap_candybucket"
+		// "MinimapIconSize"	"1000"
+		// "UnitLabel"          "hero" // -- :GetUnitLabel()
+
+		// Sounds
+		// ----------------------------------------------------------------
+		"SoundSet"	"Hero_Techies"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+		// "IdleSoundLoop"	"Hero_DragonKnight.Tutorial_Intro"
+		// "VoiceFile"		"soundevents/voscripts/game_sounds_vo_dragon_knight.vsndevts"
+
+		// Abilities
+		// ----------------------------------------------------------------
+		"Ability1"	"A26W"
+		"Ability2"	"A26E"
+		"Ability3"	"A26R"
+		"Ability4"	"A26D"
+		"Ability5"	"techies_minefield_sign"
+		"Ability6"	"A26T"
+		"Ability7"	"attribute_bonusx"
+		"Ability8"	"A26_precache"
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Ability17" ""
+
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"33"
+		"AttributeStrengthGain"	"2.30"
+		"AttributeBaseAgility"	"30"
+		"AttributeAgilityGain"	"2.90"
+		"AttributeBaseIntelligence"	"22"
+		"AttributeIntelligenceGain"	"2.40"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"4"
+		"MagicalResistance"	"30"
+
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackDamageMin"	"109"
+		"AttackDamageMax"	"123"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		// "AttackAnimationPoint"	"0.75"
+		"AttackAcquisitionRange"	"500"	// Range within a target can be acquired.
+		"AttackRange"	"700"
+		// "AttackRangeBuffer"	"250"	// Extra range the target can move without canceling the attack
+
+		// Ranged Attack Projectiles
+		// ----------------------------------------------------------------
+		// "ProjectileModel"	"particles/units/heroes/hero_lina/lina_base_attack.vpcf"
+		// "ProjectileSpeed"	"900"
+
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1.50"
+		// "FollowRange"	"100"
+		// "HasAggressiveStance"	"0"
+
+		// Bounty
+		// ----------------------------------------------------------------
+		// "BountyXP"		"0"  
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
+
+		// Bounds
+		// ----------------------------------------------------------------
+		// "BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		// "HealthBarOffset"	"140"
+		// "RingRadius" "100"
+
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		// "StatusStartingMana"	"-1" // -1 = full
+
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+
+		// Combat
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+
+		// RelationShip
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_BADGUYS"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+	}
+}
