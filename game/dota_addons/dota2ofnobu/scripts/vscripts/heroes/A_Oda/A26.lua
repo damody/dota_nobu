@@ -377,7 +377,11 @@ function A26R_old_OnAttackStart( keys )
 	local ability = keys.ability
 	local crit_chance = ability:GetSpecialValueFor("crit_chance")
 	local rnd = RandomInt(1,100)
-	caster:RemoveModifierByName("modifier_A26R_old_crit")
+	if 50 >= rnd then
+		caster:RemoveModifierByName("modifier_A26R_old_crit")
+		caster:PerformAttack(target, true, true, true, true, true, false, true)
+	end
+	
 	if crit_chance >= rnd then
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A26R_old_crit",{})
 	end

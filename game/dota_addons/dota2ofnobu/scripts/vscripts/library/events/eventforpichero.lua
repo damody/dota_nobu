@@ -68,9 +68,14 @@ function Nobu:PickHero( keys )
       elseif string.match(name, "npc_dota_hero_clinkz") then -- 伊達政宗
         local B04_precache = caster:FindAbilityByName("B04_precache")
         if B04_precache then
+          B04_precache:SetLevel(1)
+        end
       elseif string.match(name, "npc_dota_hero_techies") then -- 濃姬
         local A26D = caster:FindAbilityByName("A26D")
-        if A26D then A26D:SetLevel(1) end      end
+        if A26D then 
+          A26D:SetLevel(1) 
+        end      
+      end
     end
   end)
   --【英雄名稱判別】

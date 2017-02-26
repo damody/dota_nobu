@@ -6,8 +6,8 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_techies"
-		// "Model"         "models/heroes/dragon_knight/dragon_knight.vmdl"
-		"ModelScale"	"1"
+		"Model"         "models/a26/a26.vmdl"
+		"ModelScale"	"1.4"
 		// "MinimapIcon"		"minimap_candybucket"
 		// "MinimapIconSize"	"1000"
 		// "UnitLabel"          "hero" // -- :GetUnitLabel()
@@ -119,5 +119,6 @@
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_BADGUYS"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		"DisableWearables"	"1"
 	}
 }

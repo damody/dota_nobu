@@ -455,6 +455,7 @@ function to_soldier_Oda(keys)
 			local team = PlayerResource:GetTeam(id)
 			local state = PlayerResource:GetConnectionState(id)
 			if state == 3 then -- 2 = connected
+				hero:AddNewModifier(nil, nil, 'modifier_stunned', nil)
 				if (hero.stop == nil or hero.stop <= 3) and hero.donkey ~= nil then
 	   				if hero.stop == nil then
 	   					hero.stop = 1
