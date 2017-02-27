@@ -48,8 +48,11 @@ function Shock( keys )
   			damage_table.attacker = caster					
  			damage_table.damage_type = damage_type
  			damage_table.damage = aoe_damage
+ 			if not unit:IsHero() then
+ 				damage_table.damage = aoe_damage*2
+ 			end
 			ApplyDamage(damage_table)
-
+			
 			-- 特效
 			local ifx = ParticleManager:CreateParticle("particles/item/item_thunderstorms.vpcf",PATTACH_CUSTOMORIGIN,unit)
 			ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())

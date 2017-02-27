@@ -28,7 +28,7 @@
 		"AbilityManaCost"				"100 120 140 160"
 		"AbilityDamage"					"250 350 450 550"
 
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"1000"
 		"AbilityCastPoint"				"0.1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
@@ -67,6 +67,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilityCooldown"				"25 20 15 10"
 		"AbilityManaCost"				"80 105 130 155"
@@ -74,7 +75,7 @@
 
 		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.1"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		"AbilitySpecial"
 		{
@@ -128,7 +129,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"crit_chance"		"15 25 35 45"
+				"crit_chance"		"20 30 40 50"
 			}
 			"02"
 			{
@@ -327,6 +328,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilityCooldown"				"4"
 		"AbilityManaCost"				"80"
@@ -417,8 +419,9 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCooldown"				"4"
+		"AbilityCooldown"				"6"
 		"AbilityManaCost"				"20 40 60 80"
 		"AbilityDamage"					"250 350 450 550"
 
@@ -468,7 +471,7 @@
 
 		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.1"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		"AbilitySpecial"
 		{
@@ -551,7 +554,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"crit_chance"		"10 15 20 25"
+				"crit_chance"		"10 20 30 40"
 			}
 			"02"
 			{
@@ -609,11 +612,11 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityCooldown"				"155"
+		"AbilityCooldown"				"110"
 		"AbilityManaCost"				"200 250 300"
 		"AbilityDamage"					"1500 2000 2500"
 
-		"AbilityCastRange"				"1200"
+		"AbilityCastRange"				"1500"
 		"AbilityCastPoint"				"0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
@@ -624,7 +627,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"projectile_speed"	"2000"
+				"projectile_speed"	"1000"
 			}
 			"02"
 			{

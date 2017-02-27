@@ -99,8 +99,19 @@ function A26R_OnAttackStart( keys )
 	local crit_chance = ability:GetSpecialValueFor("crit_chance")
 	local rnd = RandomInt(1,100)
 	caster:RemoveModifierByName("modifier_A26R_crit")
-	if crit_chance >= rnd then
+	if caster.A26R_count == nil then
+		caster.A26R_count = 0
+	end
+	caster.A26R_count = caster.A26R_count + 1
+	if crit_chance >= rnd or caster.A26R_count > 1 then
+		caster.A26R_count = 0
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A26R_crit",{})
+		local rate = caster:GetAttackSpeed()
+		if rate < 1 then
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+		else
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+		end
 	end
 end
 
@@ -128,6 +139,7 @@ function CreateMine( ability, position, duration )
 	local caster = ability:GetCaster()
 	local active_delay = ability:GetSpecialValueFor("active_delay")
 	local mine = CreateUnitByName("A26_MINE",position,true,caster,caster,caster:GetTeamNumber())
+	mine:SetOwner(caster)
 	mine:SetHullRadius(ability:GetSpecialValueFor("radius_trigger"))
 	ability:ApplyDataDrivenModifier(caster,mine,"modifier_A26D_mine_passive",{})
 	Timers:CreateTimer(active_delay, function()
@@ -163,7 +175,7 @@ function A26D_OnTrigger( keys )
 	for _,unit in ipairs(units) do
 		ApplyDamage({
 			victim = unit,
-			attacker = attacker,
+			attacker = caster,
 			ability = ability,
 			damage = ability:GetAbilityDamage(),
 			damage_type = ability:GetAbilityDamageType(),
@@ -249,14 +261,26 @@ function A26T_OnProjectileHitUnit( keys )
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
 		-- 製造傷害
-		ApplyDamage({
-			victim = unit,
-			attacker = caster,
-			ability = ability,
-			damage = ability:GetAbilityDamage() + caster:GetLevel()*10,
-			damage_type = ability:GetAbilityDamageType(),
-			damage_flags = DOTA_DAMAGE_FLAG_NONE
-		})
+		if unit:IsMagicImmune() then
+			ApplyDamage({
+				victim = unit,
+				attacker = caster,
+				ability = ability,
+				damage = (ability:GetAbilityDamage() + caster:GetLevel()*10)*0.5,
+				damage_type = ability:GetAbilityDamageType(),
+				damage_flags = DOTA_DAMAGE_FLAG_NONE
+			})
+		else
+			ApplyDamage({
+				victim = unit,
+				attacker = caster,
+				ability = ability,
+				damage = ability:GetAbilityDamage() + caster:GetLevel()*10,
+				damage_type = ability:GetAbilityDamageType(),
+				damage_flags = DOTA_DAMAGE_FLAG_NONE
+			})
+		end
+		
 		if ability.need_stun then
 			ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration=stun_time})
 		end
@@ -306,7 +330,7 @@ function A26W_old_OnSpellStart( keys )
 			damage_type = ability:GetAbilityDamageType(),
 			damage_flags = DOTA_DAMAGE_FLAG_NONE,
 		})
-
+		caster:PerformAttack(unit, true, true, true, true, true, false, true)
 		local dir = (caster:GetAbsOrigin()-unit:GetAbsOrigin()):Normalized()
 		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf",PATTACH_POINT,unit)
 		ParticleManager:SetParticleControlEnt(ifx,3,unit,PATTACH_POINT,"attach_hitloc",unit:GetAbsOrigin()+Vector(0,0,200),true)
@@ -377,13 +401,21 @@ function A26R_old_OnAttackStart( keys )
 	local ability = keys.ability
 	local crit_chance = ability:GetSpecialValueFor("crit_chance")
 	local rnd = RandomInt(1,100)
-	if 50 >= rnd then
-		caster:RemoveModifierByName("modifier_A26R_old_crit")
-		caster:PerformAttack(target, true, true, true, true, true, false, true)
+	--caster:RemoveModifierByName("modifier_A26R_old_crit")
+	if caster.A26R_count == nil then
+		caster.A26R_count = 0
 	end
-	
-	if crit_chance >= rnd then
-		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A26R_old_crit",{})
+	caster.A26R_count = caster.A26R_count + 1
+	if crit_chance >= rnd or caster.A26R_count > 2 then
+		caster.A26R_count = 0
+		--ability:ApplyDataDrivenModifier(caster,caster,"modifier_A26R_old_crit",{})
+		caster:PerformAttack(target, true, true, true, true, true, false, true)
+		local rate = caster:GetAttackSpeed()
+		if rate < 1 then
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+		else
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+		end
 	end
 end
 
@@ -445,7 +477,13 @@ function A26T_old_OnProjectileHitUnit( keys )
 	for _,unit in ipairs(units) do
 		-- 製造傷害
 		damage_table.victim = unit
-		ApplyDamage(damage_table)
+		if unit:IsHero() then
+			ApplyDamage(damage_table)
+		else
+			for i=1,10 do
+				ApplyDamage(damage_table)
+			end
+		end
 	end
 
 	GridNav:DestroyTreesAroundPoint(center, radius, false)

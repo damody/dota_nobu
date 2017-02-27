@@ -14,7 +14,17 @@ function _G.Nobu:InitGameMode()
   -- --LimitPathingSearchDepth(0.5)
   -- --GameRules:SetHeroRespawnEnabled( false )
   --設定每隊人數
-  --GameRules:SetCustomGameTeamMaxPlayers(4, 7)
+  --GameRules:SetCustomGameTeamMaxPlayers(6, 4)
+  Timers:CreateTimer(60, function ()
+    for i=-3,3 do
+      for j=-3,3 do
+        AddFOWViewer(6, Vector(i*5000,j*5000,0), 10000, 99999, false)
+      end
+    end
+  end)
+  SetTeamCustomHealthbarColor(2,255,100,100)
+  SetTeamCustomHealthbarColor(3,100,100,255)
+  
   --GameRules:SetCustomGameTeamMaxPlayers(2, 7)
   --GameRules:SetCustomGameTeamMaxPlayers(3, 7)
 

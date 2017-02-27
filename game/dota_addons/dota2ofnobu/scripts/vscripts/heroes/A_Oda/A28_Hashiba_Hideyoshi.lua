@@ -357,8 +357,8 @@ function A28TE( keys )
 	--轉半徑
 	Timers:CreateTimer(0.1, function()
 		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 1.0, false)
-		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
-		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 500, 0.5, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 500, 0.5, false)
 		local maxrock = 5
 		for i=1,maxrock do
 			local pointx = point.x
@@ -386,11 +386,15 @@ function A28TE( keys )
 
 			--effect:傷害+暈眩
 			for _,it in pairs(direUnits) do
-				AMHC:Damage(caster,it,100*level,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				if it:IsBuilding() then
+					AMHC:Damage(caster,it,100*level,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				else
+					AMHC:Damage(caster,it,100*level,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 			end)
 
-		if  (caster:IsChanneling() ) then
+		if  (caster:IsAlive() and caster:IsChanneling() ) then
 			return 1
 		else
 			return nil
