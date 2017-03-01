@@ -426,9 +426,9 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"9"
 		"AbilityManaCost"				"100 120 140 160"
-		"AbilityDamage"					"150 250 350 450"
+		"AbilityDamage"					"250 350 450 550"
 		"AbilityCastPoint"				"0.2"
 		"AbilityCastRange"				"800"
 		"precache"
@@ -521,12 +521,12 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
-		"AbilityCastPoint"		"0.2"
+		"AbilityCastPoint"		"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCooldown"		"12"
 		"AbilityManaCost"		"100 120 140 160"
 		"AbilityCastRange"		"500"
-		"AbilityDamage"			"100 200 300 400"
+		"AbilityDamage"			"300 400 500 600"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
@@ -585,7 +585,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Heal"	"100 200 300 400"
+				"Heal"	"300 400 500 600"
 			}
 			"02"
 			{

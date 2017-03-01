@@ -10,6 +10,34 @@ function Nobu:PickHero( keys )
 --CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
   Timers:CreateTimer(1, function ()
     if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
+      caster.version = "16"
+      -- 預設切換為舊版
+      local nobu_id = _G.heromap[caster:GetName()]
+      if _G.heromap_version[nobu_id]["11"] == true then
+        caster.version = "11"
+        for i = 0, caster:GetAbilityCount() - 1 do
+          local ability = caster:GetAbilityByIndex( i )
+          if ability  then
+            caster:RemoveAbility(ability:GetName())
+          end
+        end
+        local skill = _G.heromap_skill[nobu_id]["11"]
+        for si=1,#skill do
+          if si == #skill and #skill < 6 then
+            caster:AddAbility("attribute_bonusx")
+          end
+          caster:AddAbility(nobu_id..skill:sub(si,si).."_old")
+        end
+        if #skill >= 6 then
+          caster:AddAbility("attribute_bonusx")
+        end
+        -- 要自動學習的技能
+        local askill = _G.heromap_autoskill[nobu_id]["11"]
+        for si=1,#askill do
+          caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
+        end
+      end
+
       if _G.CountUsedAbility_Table == nil then
         _G.CountUsedAbility_Table = {}
       end
@@ -18,35 +46,46 @@ function Nobu:PickHero( keys )
       end
       --【英雄名稱判別】
       local name = caster:GetUnitName()
-      caster.version = "16"
+      
       caster.name = heromap[name]
-      print("name " .. name)
-      if string.match(name, "ancient_apparition")  then --竹中重治
-        caster:FindAbilityByName("A04D"):SetLevel(1)
-      elseif string.match(name, "jakiro") then --佐佐木小次郎
-        caster:FindAbilityByName("C22D"):SetLevel(1)
-      elseif string.match(name, "magnataur") then -- 淺井長政
-        Timers:CreateTimer(1, function ()
-          if (caster:GetLevel() >= 18) then
-            caster:FindAbilityByName("B08D_old"):SetLevel(1)
+      local askill = _G.heromap_autoskill[nobu_id]["16"]
+      for si=1,#askill do
+        local skname = nobu_id..askill:sub(si,si)
+        if caster:FindAbilityByName(skname) then
+          caster:FindAbilityByName(skname):SetLevel(1)
+        end
+      end
+      if nobu_id == "A04" then -- 竹中重治
+        Timers:CreateTimer(1, function()
+          if caster:GetLevel() >= 18 then
+            print("A04D_old")
+            if caster:FindAbilityByName("A04D_old") then
+              caster:FindAbilityByName("A04D_old"):SetLevel(1)
+            end
             return nil
           end
           return 1
         end)
-      elseif string.match(name, "templar_assassin") then --松姬
-        caster:FindAbilityByName("C19D"):SetLevel(1)
-      elseif string.match(name, "centaur") then --本多忠勝
-        caster:FindAbilityByName("A07D"):SetLevel(1)
-      elseif string.match(name, "undying") then --服部半藏
-        caster:FindAbilityByName("A13D"):SetLevel(1)
-      elseif string.match(name, "storm_spirit") then --大谷吉繼
+      elseif nobu_id == "B08" then -- 淺井長政
+        Timers:CreateTimer(1, function ()
+          if (caster:GetLevel() >= 18) then
+            if caster:FindAbilityByName("B08D_old") then
+              caster:FindAbilityByName("B08D_old"):SetLevel(1)
+            end
+            return nil
+          end
+          return 1
+        end)
+      elseif nobu_id == "A12" then --大谷吉繼
         caster:FindAbilityByName("A12D"):SetLevel(1)
         caster:FindAbilityByName("A12D"):SetActivated(false)
         caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
-      elseif string.match(name, "bristleback") then -- 今川義元
+      elseif nobu_id == "B15" then -- 今川義元
         Timers:CreateTimer(1, function ()
           if (caster:GetLevel() >= 8) then
-            caster:FindAbilityByName("B15D"):SetLevel(1)
+            if caster:FindAbilityByName("B15D") then
+              caster:FindAbilityByName("B15D"):SetLevel(1)
+            end
             return nil
           end
           return 1
@@ -59,24 +98,17 @@ function Nobu:PickHero( keys )
           end
           return 1
         end)
-        
-        caster:FindAbilityByName("C07D"):SetLevel(1)
-      elseif string.match(name, "npc_dota_hero_puck") then -- 阿市
-        caster:FindAbilityByName("C17D"):SetLevel(1)
-      elseif string.match(name, "faceless_void") then --風魔小太郎
-        caster:FindAbilityByName("B02D"):SetLevel(1)
-      elseif string.match(name, "npc_dota_hero_clinkz") then -- 伊達政宗
+      elseif nobu_id == "B04" then -- 伊達政宗
         local B04_precache = caster:FindAbilityByName("B04_precache")
+        if B04_precache==nil then
+          B04_precache = caster:AddAbility("B04_precache")
+        end
         if B04_precache then
           B04_precache:SetLevel(1)
         end
-      elseif string.match(name, "npc_dota_hero_techies") then -- 濃姬
-        local A26D = caster:FindAbilityByName("A26D")
-        if A26D then 
-          A26D:SetLevel(1) 
-        end      
       end
-    end
+
+    end -- if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
   end)
   --【英雄名稱判別】
 

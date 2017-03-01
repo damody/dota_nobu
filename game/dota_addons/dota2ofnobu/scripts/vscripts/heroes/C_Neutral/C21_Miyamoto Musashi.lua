@@ -15,7 +15,7 @@ LinkLuaModifier( "C21R_critical", "scripts/vscripts/heroes/C_Neutral/C21_Miyamot
 --ednglobal
 
 function C21T_Effect(u,u2,i)
-	if u2 == nil or not IsValidEntity(u2) then return end
+	if not IsValidEntity(u2) then return end
 	local  r = 0
 	local  point = u:GetAbsOrigin()
 	local  x = point.x
@@ -50,18 +50,9 @@ function C21T_Effect(u,u2,i)
 
 	--傷害
 	AMHC:Damage( u,u2,125,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-	AMHC:Damage( u,u2,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-	AMHC:Damage( u,u2,u:GetAttackDamage(),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-
-	--發動攻擊	 
-	local order_target = 
-	{
-		UnitIndex = u:entindex(),
-		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-		TargetIndex = u2:entindex()
-	}
-
-    --ExecuteOrderFromTable(order_target)
+	if IsValidEntity(u2) then
+		u:PerformAttack(u2, true, true, true, true, true, false, true)
+	end
 
     --播放動畫
     u:StartGesture( ACT_DOTA_CAST_ABILITY_4 )	
@@ -225,15 +216,18 @@ function Trig_C21EActions(keys)
 					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 					TargetIndex = u2:entindex(), Queue = false
 				}
-		 
-		        ExecuteOrderFromTable(order_target)
+		 		if IsValidEntity(u2) then
+		        	ExecuteOrderFromTable(order_target)
+		        end
 
 				--紀錄次數
 				time = time - 1
 
 				--閃爍的粒子特效
-    			local p1 = ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_ABSORIGIN,u2)
-    			ParticleManager:ReleaseParticleIndex(p1)
+				if IsValidEntity(u2) then
+	    			local p1 = ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_ABSORIGIN,u2)
+	    			ParticleManager:ReleaseParticleIndex(p1)
+	    		end
 
 				return 0.5
 			end	

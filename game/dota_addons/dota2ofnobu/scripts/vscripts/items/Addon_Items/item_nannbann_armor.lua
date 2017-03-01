@@ -41,15 +41,17 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.nannbann_armor == true then
 		            	Timers:CreateTimer(0.01, function() 
-		            		self.caster.nannbann_armor = false
-		            		self.caster:Purge( false, true, true, true, true)
-		            		event.caster = self.caster
-			            	event.ability = self:GetAbility()
-			            	ShockTarget(event, self.caster)
-			            	local am = self.caster:FindAllModifiers()
-							for _,v in pairs(am) do
-								if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-									self.caster:RemoveModifierByName(v:GetName())
+		            		if IsValidEntity(self.caster) then
+			            		self.caster.nannbann_armor = false
+			            		self.caster:Purge( false, true, true, true, true)
+			            		event.caster = self.caster
+				            	event.ability = self:GetAbility()
+				            	ShockTarget(event, self.caster)
+				            	local am = self.caster:FindAllModifiers()
+								for _,v in pairs(am) do
+									if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
+										self.caster:RemoveModifierByName(v:GetName())
+									end
 								end
 							end
 		            		end)
@@ -95,9 +97,17 @@ function OnEquip( keys )
 		caster.nannbann_armor = true
 	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
-	caster:FindModifierByName("modifier_nannbann_armor").caster = caster
-	caster:FindModifierByName("modifier_nannbann_armor").hp = caster:GetHealth()
-	caster.has_item_nannbann_armor = true
+	Timers:CreateTimer(1, function() 
+			if caster:FindModifierByName("modifier_nannbann_armor") then
+				caster:FindModifierByName("modifier_nannbann_armor").caster = caster
+				caster:FindModifierByName("modifier_nannbann_armor").hp = caster:GetHealth()
+				caster.has_item_nannbann_armor = true
+				return nil
+			else
+				return 1
+			end
+		end)
+	
 	Timers:CreateTimer(1, function() 
 		if not IsValidEntity(caster) then
 			return nil
@@ -182,19 +192,26 @@ function ShockTarget( keys, target )
 	local caster = keys.caster
 	local ability = keys.ability
 	local havetime = 10
+	local shield
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_nannbann_armor2", {duration = havetime} )
-	target:FindModifierByName("modifier_nannbann_armor2").caster = target
-	target:FindModifierByName("modifier_nannbann_armor2").hp = target:GetHealth()
-	target:FindModifierByName("modifier_nannbann_armor2").magic_shield = 1000
-	local shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-	target:FindModifierByName("modifier_nannbann_armor2").shield_effect = shield
+	if target:FindModifierByName("modifier_nannbann_armor2") then
+		target:FindModifierByName("modifier_nannbann_armor2").caster = target
+		target:FindModifierByName("modifier_nannbann_armor2").hp = target:GetHealth()
+		target:FindModifierByName("modifier_nannbann_armor2").magic_shield = 1000
+		shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		target:FindModifierByName("modifier_nannbann_armor2").shield_effect = shield
+	end
 	local sumtime = 0
 	local isend = false
 	Timers:CreateTimer(havetime, function() 
 			isend = true
 		end)
 	Timers:CreateTimer(0, function() 
-			ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
+			if IsValidEntity(target) then
+				ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
+			else
+				isend = true
+			end
 			if not isend then
 				return 0.2
 			else

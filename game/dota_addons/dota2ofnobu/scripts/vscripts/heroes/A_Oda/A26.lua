@@ -406,7 +406,7 @@ function A26R_old_OnAttackStart( keys )
 		caster.A26R_count = 0
 	end
 	caster.A26R_count = caster.A26R_count + 1
-	if crit_chance >= rnd or caster.A26R_count > 2 then
+	if crit_chance >= rnd or caster.A26R_count > 4 then
 		caster.A26R_count = 0
 		--ability:ApplyDataDrivenModifier(caster,caster,"modifier_A26R_old_crit",{})
 		caster:PerformAttack(target, true, true, true, true, true, false, true)
@@ -426,7 +426,7 @@ function A26T_old_OnSpellStart( keys )
 	local projectile_speed = ability:GetSpecialValueFor("projectile_speed")
 
 	local dummy = CreateUnitByName("npc_dummy_unit",point,false,nil,nil,caster:GetTeamNumber())
-	dummy:AddNewModifier(nil,nil,"modifier_kill",{duration=20})
+	dummy:AddNewModifier(nil,nil,"modifier_kill",{duration=5})
 	local diff = point-caster:GetAbsOrigin()
 	diff.z = 0
 	dummy:SetForwardVector(diff:Normalized())

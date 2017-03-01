@@ -83,6 +83,36 @@ local function chat_of_test(keys)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
+	if (s == "-new" or s == "-16") and caster:GetLevel() == 1 and caster.isnew == nil 
+		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
+		-- 通知所有玩家該英雄已經變成新版
+		GameRules:SendCustomMessage("-new ".._G.hero_name_zh[nobu_id],0,0)
+		caster.isnew = true
+		caster:SetAbilityPoints(1)
+		caster.version = "16"
+
+		for i = 0, caster:GetAbilityCount() - 1 do
+          local ability = caster:GetAbilityByIndex( i )
+          if ability  then
+            caster:RemoveAbility(ability:GetName())
+          end
+        end
+        local skill = _G.heromap_skill[nobu_id]["16"]
+        for si=1,#skill do
+          if si == #skill and #skill < 6 then
+            caster:AddAbility("attribute_bonusx")
+          end
+          caster:AddAbility(nobu_id..skill:sub(si,si))
+        end
+        if #skill >= 6 then
+          caster:AddAbility("attribute_bonusx")
+        end
+        -- 要自動學習的技能
+        local askill = _G.heromap_autoskill[nobu_id]["16"]
+        for si=1,#askill do
+          caster:FindAbilityByName(nobu_id..askill:sub(si,si)):SetLevel(1)
+        end
+	end
 	if (s == "-old" or s == "-11") and caster:GetLevel() == 1 and caster.isold == nil 
 		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
 		
@@ -110,244 +140,27 @@ local function chat_of_test(keys)
 				caster:RemoveAbility(ability:GetName())
 			end
 		end
-
-		if string.match(caster:GetUnitName(), "centaur") then -- 本多忠勝
-			caster:AddAbility("A07W_old")
-			caster:AddAbility("A07E_old")
-			caster:AddAbility("A07R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A07T_old")
-		elseif string.match(caster:GetUnitName(), "magnataur") then -- 淺井長政
-			caster:AddAbility("B08W_old")
-			caster:AddAbility("B08E_old")
-			caster:AddAbility("B08R_old")
-			caster:AddAbility("B08D_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B08T_old")
-		elseif string.match(caster:GetUnitName(), "pugna") then -- 本願寺顯如
-			caster:AddAbility("B25W_old")
-			caster:AddAbility("B25E_old")
-			caster:AddAbility("B25R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B25T_old")
-		elseif string.match(caster:GetUnitName(), "keeper_of_the_light") then -- 毛利元就
-			caster:AddAbility("B05W_old")
-			caster:AddAbility("B05E_old")
-			caster:AddAbility("B05R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B05T_old")
-		elseif string.match(caster:GetUnitName(), "nevermore") then -- 雜賀孫市
-			caster:AddAbility("B01W_old")
-			caster:AddAbility("B01E_old")
-			caster:AddAbility("B01R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B01T_old")
-		elseif string.match(caster:GetUnitName(), "axe") then -- 真田幸村
-			caster:AddAbility("B06W_old")
-			caster:AddAbility("B06E_old")
-			caster:AddAbility("B06R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B06T_old")
-		elseif string.match(caster:GetUnitName(), "undying") then -- 服部半藏
-			caster:AddAbility("A13W_old")
-			caster:AddAbility("A13E_old")
-			caster:AddAbility("A13R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A13T_old")
-		elseif string.match(caster:GetUnitName(), "beastmaster") then -- 武田勝賴
-			caster:AddAbility("B34W_old")
-			caster:AddAbility("B34E_old")
-			caster:AddAbility("B34R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B34T_old")
-		elseif string.match(caster:GetUnitName(), "dragon_knight") then -- 上杉謙信
-			caster:AddAbility("B32W_old")
-			caster:AddAbility("B32E_old")
-			caster:AddAbility("B32R_old")
-			caster:AddAbility("B32D_old"):SetLevel(1)
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B32T_old")
-		elseif string.match(caster:GetUnitName(), "troll_warlord") then -- 井伊直政
-			caster:AddAbility("A06W_old")
-			caster:AddAbility("A06E_old")
-			caster:AddAbility("A06R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A06T_old")
-		elseif string.match(caster:GetUnitName(), "bristleback") then -- 今川義元
-			caster:AddAbility("B15W_old")
-			caster:AddAbility("B15E_old")
-			caster:AddAbility("B15R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B15T_old")
-		elseif string.match(caster:GetUnitName(), "templar_assassin") then -- 松姬
-			caster:AddAbility("C19W_old")
-			caster:AddAbility("C19E_old")
-			caster:AddAbility("C19R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C19T_old")
-		elseif string.match(caster:GetUnitName(), "naga_siren") then -- 望月千代女
-			caster:AddAbility("B16W_old")
-			caster:AddAbility("B16E_old")
-			caster:AddAbility("B16R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B16T_old")
-		elseif string.match(caster:GetUnitName(), "crystal_maiden") then -- 阿松
-			caster:AddAbility("A34W_old")
-			caster:AddAbility("A34E_old")
-			caster:AddAbility("A34R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A34T_old")
-		elseif string.match(caster:GetUnitName(), "npc_dota_hero_puck") then -- 阿市
-			caster:AddAbility("C17W_old")
-			caster:AddAbility("C17E_old")
-			caster:AddAbility("C17R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C17T_old") 
-		elseif string.match(caster:GetUnitName(), "ancient_apparition") then -- 竹中重治
-			caster:AddAbility("A04W_old")
-			caster:AddAbility("A04E_old")
-			caster:AddAbility("A04R_old")
-			caster:AddAbility("A04D_old")
-			caster:AddAbility("A04F_old"):SetLevel(1)
-			caster:AddAbility("A04T_old")
-			caster:AddAbility("attribute_bonusx")
-			Timers:CreateTimer(1, function()
-				if caster:GetLevel() >= 18 then
-					caster:FindAbilityByName("A04D_old"):SetLevel(1)
-					return nil
-				end
-				return 1
-			end)
-		elseif string.match(caster:GetUnitName(), "invoker") then -- 羽柴秀吉
-			caster:AddAbility("A28W_old")
-			caster:AddAbility("A28E_old")
-			caster:AddAbility("A28R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A28T_old")
-		elseif string.match(caster:GetUnitName(), "viper") then -- 明智光秀
-			caster:AddAbility("C01W_old")
-			caster:AddAbility("C01E_old")
-			caster:AddAbility("C01R_old")
-			caster:AddAbility("C01D_old"):SetLevel(1)
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C01T_old")
-		elseif string.match(caster:GetUnitName(), "drow_ranger") then -- 最上義姬
-			caster:AddAbility("B33W_old")
-			caster:AddAbility("B33E_old")
-			caster:AddAbility("B33R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B33T_old")
-		elseif string.match(caster:GetUnitName(), "treant") then -- 織田信長
-			caster:AddAbility("A25W_old")
-			caster:AddAbility("A25E_old")
-			caster:AddAbility("A25R_old")
-			caster:AddAbility("A25D_old"):SetLevel(1)
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A25T_old")
-		elseif string.match(caster:GetUnitName(), "sniper") then -- 佐佐成政
-			caster:AddAbility("A17W_old")
-			caster:AddAbility("A17E_old")
-			caster:AddAbility("A17R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A17T_old")
-		elseif string.match(caster:GetUnitName(), "antimage") then -- 香宗我部親泰
-			caster:AddAbility("C10W_old")
-			caster:AddAbility("C10E_old")
-			caster:AddAbility("C10R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C10T_old")
-		elseif string.match(caster:GetUnitName(), "medusa") then -- 森蘭丸
-			caster:AddAbility("A31W_old")
-			caster:AddAbility("A31E_old")
-			caster:AddAbility("A31R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A31T_old")
-		elseif string.match(caster:GetUnitName(), "silencer") then -- 立花道雪
-			caster:AddAbility("C07W_old")
-			caster:AddAbility("C07E_old")
-			caster:AddAbility("C07R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C07T_old")
-		elseif string.match(caster:GetUnitName(), "mirana") then -- 玉子
-			caster:AddAbility("C15W_old")
-			caster:AddAbility("C15E_old")
-			caster:AddAbility("C15R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C15T_old")
-		elseif string.match(caster:GetUnitName(), "faceless_void") then -- 風魔小太郎
-			caster:AddAbility("B02W_old")
-			caster:AddAbility("B02E_old")
-			caster:AddAbility("B02R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B02T_old")
-		elseif string.match(caster:GetUnitName(), "jakiro") then -- 佐佐木小次郎
-			caster:AddAbility("C22W_old")
-			caster:AddAbility("C22E_old")
-			caster:AddAbility("C22R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C22T_old")
-		elseif string.match(caster:GetUnitName(), "oracle") then -- 石田三成
-			caster:AddAbility("A29W_old")
-			caster:AddAbility("A29E_old")
-			caster:AddAbility("A29R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A29T_old")
-		elseif string.match(caster:GetUnitName(), "omniknight") then -- 柴田勝家
-			caster:AddAbility("A27W_old")
-			caster:AddAbility("A27E_old")
-			caster:AddAbility("A27R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A27T_old")
-		elseif string.match(caster:GetUnitName(), "alchemist") then -- 宮本武藏
-			caster:AddAbility("C21W_old")
-			caster:AddAbility("C21E_old")
-			caster:AddAbility("C21R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C21T_old")
-		elseif string.match(caster:GetUnitName(), "juggernaut") then -- 立花宗茂
-			caster:AddAbility("C11W_old")
-			caster:AddAbility("C11E_old")
-			caster:AddAbility("C11R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C11T_old") 
-		elseif string.match(caster:GetUnitName(), "legion_commander") then -- 明智秀滿
-			caster:AddAbility("C02W_old")
-			caster:AddAbility("C02E_old")
-			caster:AddAbility("C02R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C02T_old") 
-		elseif string.match(caster:GetUnitName(), "npc_dota_hero_chaos_knight") then -- 馬場信房
-			caster:AddAbility("B21W_old")
-			caster:AddAbility("B21E_old")
-			caster:AddAbility("B21R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B21T_old")
-		elseif string.match(caster:GetUnitName(), "npc_dota_hero_windrunner") then -- 稻姬
-			caster:AddAbility("A02W_old")
-			caster:AddAbility("A02E_old")
-			caster:AddAbility("A02R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A02T_old") 
-		elseif string.match(caster:GetUnitName(), "npc_dota_hero_obsidian_destroyer") then -- 前田慶次
-			caster:AddAbility("C05W_old")
-			caster:AddAbility("C05E_old")
-			caster:AddAbility("C05R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("C05T_old") 
-		elseif string.match(caster:GetUnitName(), "npc_dota_hero_clinkz") then -- 伊達政宗
-			caster:AddAbility("B04W_old")
-			caster:AddAbility("B04E_old")
-			caster:AddAbility("B04R_old")
-			caster:AddAbility("B04D_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("B04T_old") 
-		elseif string.match(caster:GetUnitName(), "npc_dota_hero_techies") then -- 濃姬
-			caster:AddAbility("A26W_old")
-			caster:AddAbility("A26E_old")
-			caster:AddAbility("A26R_old")
-			caster:AddAbility("attribute_bonusx")
-			caster:AddAbility("A26T_old") 
-		end
+		for i = 0, caster:GetAbilityCount() - 1 do
+          local ability = caster:GetAbilityByIndex( i )
+          if ability  then
+            caster:RemoveAbility(ability:GetName())
+          end
+        end
+        local skill = _G.heromap_skill[nobu_id]["11"]
+        for si=1,#skill do
+          if si == #skill and #skill < 6 then
+            caster:AddAbility("attribute_bonusx")
+          end
+          caster:AddAbility(nobu_id..skill:sub(si,si).."_old")
+        end
+        if #skill >= 6 then
+          caster:AddAbility("attribute_bonusx")
+        end
+        -- 要自動學習的技能
+        local askill = _G.heromap_autoskill[nobu_id]["11"]
+        for si=1,#askill do
+          caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
+        end
 	end
 		
 	sump = 0

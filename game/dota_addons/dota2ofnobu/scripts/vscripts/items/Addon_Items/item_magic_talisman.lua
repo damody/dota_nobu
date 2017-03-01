@@ -42,15 +42,17 @@ function modifier_magic_talisman:OnTakeDamage(event)
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then 
 		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.magic_talisman == true then
 		            	Timers:CreateTimer(0.01, function() 
-		            		self.caster.magic_talisman = false
-		            		self.caster:Purge( false, true, true, true, true)
-		            		event.caster = self.caster
-			            	event.ability = self:GetAbility()
-			            	ShockTarget(event, self.caster)
-			            	local am = self.caster:FindAllModifiers()
-							for _,v in pairs(am) do
-								if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-									self.caster:RemoveModifierByName(v:GetName())
+		            		if IsValidEntity(self.caster) then
+			            		self.caster.magic_talisman = false
+			            		self.caster:Purge( false, true, true, true, true)
+			            		event.caster = self.caster
+				            	event.ability = self:GetAbility()
+				            	ShockTarget(event, self.caster)
+				            	local am = self.caster:FindAllModifiers()
+								for _,v in pairs(am) do
+									if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
+										self.caster:RemoveModifierByName(v:GetName())
+									end
 								end
 							end
 		            		end)
@@ -94,24 +96,31 @@ function OnEquip( keys )
 	if (caster.magic_talisman == nil) then
 		caster.magic_talisman = true
 	end
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
-	caster:FindModifierByName("modifier_magic_talisman").caster = caster
-	caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
-	caster.has_item_magic_talisman = true
+	Timers:CreateTimer(1, function() 
+			if caster:FindModifierByName("modifier_magic_talisman") then
+				caster:FindModifierByName("modifier_magic_talisman").caster = caster
+				caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
+				caster.has_item_nannbann_armor = true
+				return nil
+			else
+				return 1
+			end
+		end)
 	Timers:CreateTimer(1, function()
 		if not IsValidEntity(caster) then
 			return nil
 		end
-		if IsValidEntity(caster) and (caster:IsAlive() and not caster:HasModifier("modifier_magic_talisman")) then
-			ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
-			caster:FindModifierByName("modifier_magic_talisman").caster = caster
-			caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
-		end
-		if caster.has_item_magic_talisman == true then
-			return 1
-		else
-			caster:RemoveModifierByName("modifier_magic_talisman")
-			return nil
+		if caster:IsAlive() then
+			if not caster:HasModifier("modifier_magic_talisman") then
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
+				caster:FindModifierByName("modifier_magic_talisman").caster = caster
+				caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
+			elseif caster.has_item_magic_talisman == true then
+				return 1
+			else
+				caster:RemoveModifierByName("modifier_magic_talisman")
+				return nil
+			end
 		end
 		end)
 end
@@ -182,12 +191,15 @@ function ShockTarget( keys, target )
 	local caster = keys.caster
 	local ability = keys.ability
 	local havetime = 5
+	local shield
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_magic_talisman2", {duration = havetime} )
-	target:FindModifierByName("modifier_magic_talisman2").caster = target
-	target:FindModifierByName("modifier_magic_talisman2").hp = target:GetHealth()
-	target:FindModifierByName("modifier_magic_talisman2").magic_shield = 500
-	local shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-	target:FindModifierByName("modifier_magic_talisman2").shield_effect = shield
+	if target:FindModifierByName("modifier_nannbann_armor2") then
+		target:FindModifierByName("modifier_magic_talisman2").caster = target
+		target:FindModifierByName("modifier_magic_talisman2").hp = target:GetHealth()
+		target:FindModifierByName("modifier_magic_talisman2").magic_shield = 500
+		shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		target:FindModifierByName("modifier_magic_talisman2").shield_effect = shield
+	end
 	local sumtime = 0
 	local isend = false
 	Timers:CreateTimer(havetime, function() 

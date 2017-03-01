@@ -48,9 +48,6 @@ function Shock( keys )
   			damage_table.attacker = caster					
  			damage_table.damage_type = damage_type
  			damage_table.damage = aoe_damage
- 			if not unit:IsHero() then
- 				damage_table.damage = aoe_damage*2
- 			end
 			ApplyDamage(damage_table)
 			
 			-- 特效
@@ -58,7 +55,7 @@ function Shock( keys )
 			ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
 			ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
 
-			unit:EmitSound("ITEM_D09.sound")
+			unit:EmitSound("lightningbolt")
 		end
 
 

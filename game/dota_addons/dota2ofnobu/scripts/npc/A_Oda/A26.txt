@@ -464,6 +464,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilityCooldown"				"30"
 		"AbilityManaCost"				"100 120 140 160"
@@ -554,7 +555,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"crit_chance"		"10 20 30 40"
+				"crit_chance"		"10 15 20 25"
 			}
 			"02"
 			{

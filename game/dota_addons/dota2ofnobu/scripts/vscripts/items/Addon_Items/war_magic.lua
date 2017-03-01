@@ -99,24 +99,30 @@ function slowattack( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
 	local ability = keys.ability
+	local dummy = CreateUnitByName("npc_dummy_unit",point,false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=6})
 	
 	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍即將發動阻撓戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動阻撓戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 	else
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍即將發動阻撓戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動阻撓戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
 	end
-	Timers:CreateTimer(3, function()
-		if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-			GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動阻撓戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-		else
-			GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動阻撓戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
-		end
+	local count = 0
+	Timers:CreateTimer(1, function()
+		count = count + 1
+		local particle = ParticleManager:CreateParticle("particles/slow/slow.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+		ParticleManager:ReleaseParticleIndex(particle)
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), point,
 			nil,  800 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
+			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 		for _, it in pairs(group) do
-			ability:ApplyDataDrivenModifier(caster,it,"modifier_slowattack",{duration = 10})
+			ability:ApplyDataDrivenModifier(caster,it,"modifier_slowattack",{duration = 5})
+		end
+		if count < 10 then
+			return 1
+		else
+			return nil
 		end
 	end)
 end

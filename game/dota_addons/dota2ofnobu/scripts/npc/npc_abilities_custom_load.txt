@@ -1849,12 +1849,12 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 
-		"AbilityCooldown"	"40"
+		"AbilityCooldown"	"60"
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityManaCost"	"15"
-		"AOERadius"		"600"
+		"AbilityManaCost"	"25"
+		"AOERadius"		"800"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -1870,14 +1870,15 @@
 			{
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
-				"EffectName"	"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"	"particles/generic_gameplay/move_slow_2.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-20"
-					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"15"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-10"
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"5"
 				}
-				"Duration"	"10"
+				"Duration"	"5"
 				"TextureName"	"icon_128x128_100"
 			}
 		}

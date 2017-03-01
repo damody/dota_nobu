@@ -406,6 +406,70 @@
 		}
 	}
 
+	"B16F"
+	{
+		"MaxLevel"	"1"
+		"HotKeyOverride"	"D"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/liubei_hujia"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"35"
+		"AbilityManaCost"	"0"
+
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B16MMD.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+				"Function"		"B16MMD"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B16MMD"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16MMD_M_OnCreated"
+					}
+				}
+
+				"ThinkInterval"	"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"B16MMD_M_Think"
+					}
+				}
+			}
+		}
+	}
+
 // 月月技能組
 // -------------------------------------------------------------------------------------------------------------
 	// 月月[相移]

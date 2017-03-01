@@ -22,9 +22,10 @@ function _G.Nobu:InitGameMode()
       end
     end
   end)
-  SetTeamCustomHealthbarColor(2,255,100,100)
-  SetTeamCustomHealthbarColor(3,100,100,255)
-  
+  --自定血條顏色
+  --SetTeamCustomHealthbarColor(2,255,100,100)
+  --SetTeamCustomHealthbarColor(3,100,100,255)
+
   --GameRules:SetCustomGameTeamMaxPlayers(2, 7)
   --GameRules:SetCustomGameTeamMaxPlayers(3, 7)
 

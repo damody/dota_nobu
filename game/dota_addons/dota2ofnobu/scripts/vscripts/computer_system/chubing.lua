@@ -117,13 +117,14 @@ function ShuaGuai( )
 	end)
 end
 
-A_count = -1
-B_count = -1
-C_count = -1
+_G.A_count = -1
+_G.B_count = -1
+_G.C_count = -1
 --【足輕 、 弓箭手】
 function ShuaGuai_Of_AA(num )
-	
+	A_count = _G.A_count
 	A_count = A_count + 1
+	print("A_count "..A_count)
 	local tem_count = 0
 	--總共六個出發點 6
 	local function ltt()
@@ -194,7 +195,7 @@ function ShuaGuai_Of_AA(num )
 end
 
 function ShuaGuai_Of_AB(num )
-	
+	A_count = _G.A_count
 	local tem_count = 0
 	--總共六個出發點 6
 	local function ltt()
@@ -268,7 +269,9 @@ end
 --【鐵炮兵】
 function ShuaGuai_Of_B(num )
 	local tem_count = 0
+	B_count = _G.B_count
 	B_count = B_count + 1
+	A_count = _G.A_count
 	--總共六個出發點 6
 	local function ltt()
 		tem_count = tem_count + 1
@@ -335,7 +338,9 @@ end
 --【騎兵】
 function ShuaGuai_Of_C(num )
 	local tem_count = 0
+	C_count = _G.C_count
 	C_count = C_count + 1
+	A_count = _G.A_count
 	--總共六個出發點 6
 	local function ltt()
 		tem_count = tem_count + 1
@@ -404,6 +409,7 @@ function soldier_Oda_top( )
 	payprestige[2] = payprestige[2] + 50
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -420,7 +426,7 @@ function soldier_Oda_top( )
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 5)
+			unit:SetBaseMaxHealth(hp+A_count * 15)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
 			unit:SetBaseDamageMax(dmgmax+A_count*1)
@@ -453,6 +459,7 @@ function soldier_Oda_mid( )
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -468,7 +475,7 @@ function soldier_Oda_mid( )
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 5)
+			unit:SetBaseMaxHealth(hp+A_count * 15)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
 			unit:SetBaseDamageMax(dmgmax+A_count*1)
@@ -502,6 +509,7 @@ function soldier_Oda_bottom()
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -517,7 +525,7 @@ function soldier_Oda_bottom()
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 5)
+			unit:SetBaseMaxHealth(hp+A_count * 15)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
 			unit:SetBaseDamageMax(dmgmax+A_count*1)
@@ -549,6 +557,7 @@ function soldier_Unified_top( )
 	payprestige[3] = payprestige[3] + 50
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -565,7 +574,7 @@ function soldier_Unified_top( )
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 5)
+			unit:SetBaseMaxHealth(hp+A_count * 15)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
 			unit:SetBaseDamageMax(dmgmax+A_count*1)
@@ -598,6 +607,7 @@ function soldier_Unified_mid( )
 	local tem_count = 0
 	local pos = 5
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -613,7 +623,7 @@ function soldier_Unified_mid( )
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 5)
+			unit:SetBaseMaxHealth(hp+A_count * 15)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
 			unit:SetBaseDamageMax(dmgmax+A_count*1)
@@ -647,6 +657,7 @@ function soldier_Unified_bottom()
 	local tem_count = 0
 	local pos = 4
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -662,7 +673,7 @@ function soldier_Unified_bottom()
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 5)
+			unit:SetBaseMaxHealth(hp+A_count * 15)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
 			unit:SetBaseDamageMax(dmgmax+A_count*1)
@@ -694,6 +705,7 @@ function archer_Oda_top( )
 	payprestige[2] = payprestige[2] + 70
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -742,6 +754,7 @@ function archer_Oda_mid( )
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -790,6 +803,7 @@ function archer_Oda_bottom()
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -837,6 +851,7 @@ function archer_Unified_top( )
 	payprestige[3] = payprestige[3] + 70
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -885,6 +900,7 @@ function archer_Unified_mid( )
 	local tem_count = 0
 	local pos = 5
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -933,6 +949,7 @@ function archer_Unified_bottom()
 	local tem_count = 0
 	local pos = 4
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -980,6 +997,7 @@ function gunner_Oda_top( )
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -1028,6 +1046,7 @@ function gunner_Oda_mid( )
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -1076,6 +1095,7 @@ function gunner_Oda_bottom()
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -1123,6 +1143,7 @@ function gunner_Unified_top( )
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -1171,6 +1192,7 @@ function gunner_Unified_mid( )
 	local tem_count = 0
 	local pos = 5
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -1219,6 +1241,7 @@ function gunner_Unified_bottom()
 	local tem_count = 0
 	local pos = 4
 	--總共六個出發點 6
+	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -1265,6 +1288,8 @@ function cavalry_Oda_top( )
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
+	print("A_count "..A_count)
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -1282,10 +1307,10 @@ function cavalry_Oda_top( )
 			unit:AddAbility("set_level_1"):SetLevel(1)
 
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 3)
+			unit:SetBaseMaxHealth(hp+A_count * 20)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
-			unit:SetBaseDamageMax(dmgmax+A_count*5)
+			unit:SetBaseDamageMax(dmgmax+A_count*15)
 			unit:SetBaseDamageMax(dmgmin+A_count*5)
 			local armor = unit:GetPhysicalArmorBaseValue()
 			unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)
@@ -1313,6 +1338,8 @@ function cavalry_Oda_mid( )
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
+	A_count = _G.A_count
+	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -1328,10 +1355,10 @@ function cavalry_Oda_mid( )
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 3)
+			unit:SetBaseMaxHealth(hp+A_count * 20)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
-			unit:SetBaseDamageMax(dmgmax+A_count*5)
+			unit:SetBaseDamageMax(dmgmax+A_count*15)
 			unit:SetBaseDamageMax(dmgmin+A_count*5)
 			local armor = unit:GetPhysicalArmorBaseValue()
 			unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)
@@ -1361,6 +1388,8 @@ function cavalry_Oda_bottom()
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
+	A_count = _G.A_count
+	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -1377,10 +1406,10 @@ function cavalry_Oda_bottom()
 			unit:AddAbility("set_level_1"):SetLevel(1)
 
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 3)
+			unit:SetBaseMaxHealth(hp+A_count * 20)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
-			unit:SetBaseDamageMax(dmgmax+A_count*5)
+			unit:SetBaseDamageMax(dmgmax+A_count*15)
 			unit:SetBaseDamageMax(dmgmin+A_count*5)
 			local armor = unit:GetPhysicalArmorBaseValue()
 			unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)
@@ -1408,6 +1437,8 @@ function cavalry_Unified_top( )
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	--總共六個出發點 6
+	A_count = _G.A_count
+	print("A_count "..A_count)
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -1425,10 +1456,10 @@ function cavalry_Unified_top( )
 			unit:AddAbility("set_level_1"):SetLevel(1)
 
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 3)
+			unit:SetBaseMaxHealth(hp+A_count * 20)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
-			unit:SetBaseDamageMax(dmgmax+A_count*5)
+			unit:SetBaseDamageMax(dmgmax+A_count*15)
 			unit:SetBaseDamageMax(dmgmin+A_count*5)
 			local armor = unit:GetPhysicalArmorBaseValue()
 			unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)
@@ -1455,7 +1486,9 @@ function cavalry_Unified_mid( )
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 5
+	A_count = _G.A_count
 	--總共六個出發點 6
+	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
 		if tem_count > 6 then return nil
@@ -1471,10 +1504,10 @@ function cavalry_Unified_mid( )
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
 			unit:AddAbility("set_level_1"):SetLevel(1)
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 3)
+			unit:SetBaseMaxHealth(hp+A_count * 20)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
-			unit:SetBaseDamageMax(dmgmax+A_count*5)
+			unit:SetBaseDamageMax(dmgmax+A_count*15)
 			unit:SetBaseDamageMax(dmgmin+A_count*5)
 			local armor = unit:GetPhysicalArmorBaseValue()
 			unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)
@@ -1503,6 +1536,8 @@ function cavalry_Unified_bottom()
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 4
+	A_count = _G.A_count
+	print("A_count "..A_count)
 	--總共六個出發點 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
@@ -1520,10 +1555,10 @@ function cavalry_Unified_bottom()
 			unit:AddAbility("set_level_1"):SetLevel(1)
 
 			local hp = unit:GetMaxHealth()
-			unit:SetBaseMaxHealth(hp+A_count * 3)
+			unit:SetBaseMaxHealth(hp+A_count * 20)
 			local dmgmax = unit:GetBaseDamageMax()
 			local dmgmin = unit:GetBaseDamageMin()
-			unit:SetBaseDamageMax(dmgmax+A_count*5)
+			unit:SetBaseDamageMax(dmgmax+A_count*15)
 			unit:SetBaseDamageMax(dmgmin+A_count*5)
 			local armor = unit:GetPhysicalArmorBaseValue()
 			unit:SetPhysicalArmorBaseValue(armor+A_count*0.05)

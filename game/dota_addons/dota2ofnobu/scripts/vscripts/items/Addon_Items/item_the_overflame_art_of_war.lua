@@ -84,7 +84,7 @@ function Shock( keys )
 				end)
 
 	local count = 0
-	Timers:CreateTimer(1, function ()
+	Timers:CreateTimer(0, function ()
 		count = count + 1
 		local SEARCH_RADIUS = 650
 		GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)

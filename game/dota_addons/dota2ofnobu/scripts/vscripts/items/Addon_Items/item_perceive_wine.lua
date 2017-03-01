@@ -6,10 +6,10 @@ function Shock( keys )
 	local am = caster:FindAllModifiers()
 	ability:ApplyDataDrivenModifier(caster, caster,"modifier_perceive_wine",{duration=Time})
 	for _,v in pairs(am) do
-		if v:GetParent().GetTeamNumber ~= nil then
-		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
-			caster:RemoveModifierByName(v:GetName())
-		end
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
+			end
 		end
 	end
 	

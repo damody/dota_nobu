@@ -214,16 +214,19 @@ function C22T_Damage( keys )
     group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
 
 	for _,v in ipairs(group) do
-		if v:IsHero() then
-			ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
-		end
-		local damage = 500 + 0.28*v:GetHealth()
-		
-		ability:ApplyDataDrivenModifier(caster,v,"modifier_C22T",nil)
-		if v:IsMagicImmune() then
-			AMHC:Damage( caster,v,damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-		else
-			AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		if IsValidEntity(v) then
+			if v:IsHero() then
+				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
+			end
+			local damage = 500 + 0.28*v:GetHealth()
+			
+			ability:ApplyDataDrivenModifier(caster,v,"modifier_C22T",nil)
+			
+			if v:IsMagicImmune() then
+				AMHC:Damage( caster,v,damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 	end
 

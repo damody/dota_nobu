@@ -459,8 +459,8 @@
 		"AbilityDamage"		"1800" //打滿的傷害
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"380"
-		"AoERadius"	"1200"
-		"AbilityCastRange"	"1400"
+		"AoERadius"			"1200"
+		"AbilityCastRange"	"1200"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"2825"
 		"ItemQuality"	"component"
@@ -3382,11 +3382,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		
-		"AbilityCooldown"	"55"
-		
-		"AbilityManaCost"	"175"
-		
+				
 		"AOERadius"		"900"
 		"ID"	"2572"
 		"ItemQuality"	"component"
@@ -8844,11 +8840,11 @@
 				"Passive"	"1"
 				"OnAbilityExecuted"
 				{
-					"ApplyModifier"
+					"RunScript"
 					{
 						"Target"	"CASTER"
-						"ModifierName"	"modifier_bizennosafunekanemitsu"
-						"Duration"			"5"
+						"ScriptFile"	"items/Addon_Items/item_bizennosafunekanemitsu.lua"
+						"Function"	"Shock"
 					}
 				}
 				"Properties"
@@ -14745,9 +14741,6 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"20"
-		
-		"AbilityManaCost"	"250"
 		
 		"AbilityCastRange"	"800"
 		"ID"	"3087"
@@ -14814,12 +14807,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		
-		"AbilityCooldown"	"20"
-		
-		"AbilityManaCost"	"250"
-		
-		"AbilityCastRange"	"800"
+				
 		"ID"	"3088"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"

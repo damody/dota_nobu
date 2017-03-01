@@ -249,7 +249,12 @@ function C10T_old_break( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	AMHC:Damage(caster,target, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	if target:IsMagicImmune() then
+		AMHC:Damage(caster,target, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 )*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	else
+		AMHC:Damage(caster,target, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	end
+	
 end
 
 function C10T_old_on_attack( keys )

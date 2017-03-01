@@ -149,6 +149,9 @@ function B16_AbilityAdjust( keys )
 	local B16R = caster:FindAbilityByName("B16R")
 	local B16W = caster:FindAbilityByName("B16W")
 	local B16F = caster:FindAbilityByName("B16MMD")
+	if B16F == nil then
+		B16F = caster:FindAbilityByName("B16F")
+	end
 
 	-- 利用[忍法．飛襲令]的等級判斷是否學會技能
 	if B16W ~= nil then

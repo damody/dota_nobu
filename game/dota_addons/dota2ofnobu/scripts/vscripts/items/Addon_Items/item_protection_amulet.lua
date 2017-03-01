@@ -38,14 +38,16 @@ function modifier_protection_amulet:OnTakeDamage(event)
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.protection_amulet == true then
 		            	Timers:CreateTimer(0.01, function() 
-		            		self.caster.protection_amulet = false
-		            		self.caster:Purge( false, true, true, true, true)
-		            		local am = self.caster:FindAllModifiers()
-							for _,v in pairs(am) do
-								if not IsValidEntity(v:GetParent()) or not IsValidEntity(v:GetCaster()) then
-									self.caster:RemoveModifierByName(v:GetName())
-								elseif v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-									self.caster:RemoveModifierByName(v:GetName())
+		            		if IsValidEntity(self.caster) then
+			            		self.caster.protection_amulet = false
+			            		self.caster:Purge( false, true, true, true, true)
+			            		local am = self.caster:FindAllModifiers()
+								for _,v in pairs(am) do
+									if not IsValidEntity(v:GetParent()) or not IsValidEntity(v:GetCaster()) then
+										self.caster:RemoveModifierByName(v:GetName())
+									elseif v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
+										self.caster:RemoveModifierByName(v:GetName())
+									end
 								end
 							end
 		            		end)
@@ -89,10 +91,16 @@ function OnEquip( keys )
 	if (caster.protection_amulet == nil) then
 		caster.protection_amulet = true
 	end
-	caster:AddNewModifier(caster, ability, "modifier_protection_amulet", {} )
-	caster:FindModifierByName("modifier_protection_amulet").caster = caster
-	caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
-	caster.has_item_protection_amulet = true
+	Timers:CreateTimer(1, function() 
+			if caster:FindModifierByName("modifier_protection_amulet") then
+				caster:FindModifierByName("modifier_protection_amulet").caster = caster
+				caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
+				caster.has_item_nannbann_armor = true
+				return nil
+			else
+				return 1
+			end
+		end)
 	Timers:CreateTimer(1, function() 
 		if not IsValidEntity(caster) then
 			return nil
