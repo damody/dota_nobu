@@ -5261,65 +5261,254 @@
 		"Level"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
 		"HealthBarOffset"	"140"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference:
-		"Ability1"	"A0BM"
-		// Armor
-		// ----------------------------------------------------------------
+		"Ability1"	""
 		"ArmorPhysical"	"25"
 		"MagicalResistance"	"0"
-		// Attack
-		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0"
 		"AttackAcquisitionRange"	"500"
-		// Bounty
-		// ----------------------------------------------------------------
 		"BountyGoldMin"	"750.0"
 		"BountyGoldMax"	"750.0"
 		"BountyXP"	"200"
-		// Gold and Lumber
-		// ----------------------------------------------------------------
 		"GoldCost"	"0"
 		"LumberCost"	"0"
-		// Movement
-		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
-		// Status
-		// ----------------------------------------------------------------
 		"StatusHealth"	"4500"
 		"StatusHealthRegen"	"20"
-		// Vision
-		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1100"
 		"VisionNighttimeRange"	"1100"
-		// Team
-		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
-		"Ability2"	""
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
 		"RingRadius"	"288"
 		"MinimapIcon"	"minimap_tower90"
 		"MinimapIconSize"	"320"
 	}
+
+	"com_soldiercamp_oda_top"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"2"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		"Ability1"	"for_top_broken"
+		"ArmorPhysical"	"25"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"500"
+		"BountyGoldMin"	"750.0"
+		"BountyGoldMax"	"750.0"
+		"BountyXP"	"200"
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"20"
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	"com_soldiercamp_oda_mid"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"2"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		"Ability1"	"for_mid_broken"
+		"ArmorPhysical"	"25"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"500"
+		"BountyGoldMin"	"750.0"
+		"BountyGoldMax"	"750.0"
+		"BountyXP"	"200"
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"20"
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	"com_soldiercamp_oda_down"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"2"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		"Ability1"	"for_down_broken"
+		"ArmorPhysical"	"25"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"500"
+		"BountyGoldMin"	"750.0"
+		"BountyGoldMax"	"750.0"
+		"BountyXP"	"200"
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"20"
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	"com_soldiercamp_unified_top"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"2"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		"Ability1"	"for_top_broken"
+		"ArmorPhysical"	"25"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"500"
+		"BountyGoldMin"	"750.0"
+		"BountyGoldMax"	"750.0"
+		"BountyXP"	"200"
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"20"
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	"com_soldiercamp_unified_mid"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"2"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		"Ability1"	"for_mid_broken"
+		"ArmorPhysical"	"25"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"500"
+		"BountyGoldMin"	"750.0"
+		"BountyGoldMax"	"750.0"
+		"BountyXP"	"200"
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"20"
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
+	"com_soldiercamp_unified_down"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"2"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_TOWER"
+		"HealthBarOffset"	"140"
+		"Ability1"	"for_down_broken"
+		"ArmorPhysical"	"25"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0"
+		"AttackAcquisitionRange"	"500"
+		"BountyGoldMin"	"750.0"
+		"BountyGoldMax"	"750.0"
+		"BountyXP"	"200"
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"20"
+		"VisionDaytimeRange"	"1100"
+		"VisionNighttimeRange"	"1100"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"288"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"320"
+	}
+
 	// 石田三成的大
 	"A29T_dummy"
 	{

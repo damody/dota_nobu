@@ -1,3 +1,23 @@
+
+function top_broken( keys )
+  local caster = keys.caster
+  local team = caster:GetTeamNumber()
+  _G.team_broken[team]["top"] = _G.team_broken[team]["top"] + 1
+end
+
+function mid_broken( keys )
+  local caster = keys.caster
+  local team = caster:GetTeamNumber()
+  _G.team_broken[team]["mid"] = _G.team_broken[team]["mid"] + 1
+end
+
+function down_broken( keys )
+  local caster = keys.caster
+  local team = caster:GetTeamNumber()
+  _G.team_broken[team]["down"] = _G.team_broken[team]["down"] + 1
+end
+
+
 function killdummy( keys )
 	local dummy = keys.target
 	--print(dummy:GetUnitName())
@@ -8,6 +28,7 @@ function killdummy( keys )
 		print(dummy:GetUnitName())
 	end
 end
+
 
 function CP_Posistion( keys )
 	local caster = keys.caster

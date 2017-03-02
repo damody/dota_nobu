@@ -97,13 +97,14 @@ function OnEquip( keys )
 		caster.nannbann_armor = true
 	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
-	Timers:CreateTimer(1, function() 
+	Timers:CreateTimer(0, function() 
 			if caster:FindModifierByName("modifier_nannbann_armor") then
 				caster:FindModifierByName("modifier_nannbann_armor").caster = caster
 				caster:FindModifierByName("modifier_nannbann_armor").hp = caster:GetHealth()
 				caster.has_item_nannbann_armor = true
 				return nil
 			else
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
 				return 1
 			end
 		end)
@@ -112,16 +113,19 @@ function OnEquip( keys )
 		if not IsValidEntity(caster) then
 			return nil
 		end
-		if IsValidEntity(caster) and (caster:IsAlive() and not caster:HasModifier("modifier_nannbann_armor")) then
-			ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
-			caster:FindModifierByName("modifier_nannbann_armor").caster = caster
+		if caster:IsAlive() then
+			if not caster:HasModifier("modifier_nannbann_armor") then
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
+				caster:FindModifierByName("modifier_nannbann_armor").caster = caster
+			end
+			if caster.has_item_nannbann_armor == true then
+				return 1
+			else
+				caster:RemoveModifierByName("modifier_nannbann_armor")
+				return nil
+			end
 		end
-		if caster.has_item_nannbann_armor == true then
-			return 1
-		else
-			caster:RemoveModifierByName("modifier_nannbann_armor")
-			return nil
-		end
+		return 1
 		end)
 end
 

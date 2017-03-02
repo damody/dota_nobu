@@ -467,7 +467,6 @@ function to_soldier_Oda(keys)
 	   				else
 	   					hero.stop = hero.stop + 1
 	   					if hero.stop > 3 and not hero:HasModifier("modifier_majia") then
-	   						hero.donkey:AddAbility("majia"):SetLevel(1)
 			   				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
 			   				hero:SetAbsOrigin(Vector(99999,99999,0))
 			   			end
@@ -478,11 +477,15 @@ function to_soldier_Oda(keys)
 	   		elseif state == 2 then
 	   			if hero.stop ~= nil then
 	   				hero.stop = nil
-	   				hero.donkey:RemoveAbility("majia")
-	   				hero.donkey:RemoveModifierByName("modifier_majia")
 	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
 	   				hero:RemoveModifierByName("modifier_stunned")
 	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+	   			end
+	   			if hero:GetAbsOrigin().x > 90000 then
+	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+	   			end
+	   			if hero.donkey:GetAbsOrigin().x > 90000 then
+	   				FindClearSpaceForUnit(hero.donkey,hero.donkey.oripos,true)
 	   			end
 			end
 		end

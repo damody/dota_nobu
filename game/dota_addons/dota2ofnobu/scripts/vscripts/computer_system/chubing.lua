@@ -27,6 +27,20 @@ ShuaGuai_Of_Walker_num=3 --足輕
 ShuaGuai_Of_Cavalry_num=1 --騎兵
 ShuaGuai_Of_Gunner_num=2 --火槍兵
 
+_G.A_count = -1
+_G.B_count = -1
+_G.C_count = -1
+
+_G.team_broken = {}
+_G.team_broken[2] = {}
+_G.team_broken[2]["top"] = 0
+_G.team_broken[2]["mid"] = 0
+_G.team_broken[2]["down"] = 0
+_G.team_broken[3] = {}
+_G.team_broken[3]["top"] = 0
+_G.team_broken[3]["mid"] = 0
+_G.team_broken[3]["down"] = 0
+
 --紀錄出兵起始點、路徑 (必須要用計時器，初始化時物體還沒建造)
 Timers:CreateTimer( 2, function()
 	ShuaGuai_entity={
@@ -117,9 +131,7 @@ function ShuaGuai( )
 	end)
 end
 
-_G.A_count = -1
-_G.B_count = -1
-_G.C_count = -1
+
 --【足輕 、 弓箭手】
 function ShuaGuai_Of_AA(num )
 	A_count = _G.A_count
@@ -284,44 +296,66 @@ function ShuaGuai_Of_B(num )
 				--DOTA_TEAM_GOODGUYS = 2
 				--DOTA_TEAM_BADGUYS = 3
 				--超過三的時候出兵變為聯合軍
-				local team = nil
-				local unit_name = nil
-				if i > 3 then
-					team = 3
-				else
-					team = 2
+
+				local ok = false
+				if _G.team_broken[2]["top"] < 2 and i == 3 then
+					ok = true
 				end
-				unit_name = "com_gunner"
-				--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
+				if _G.team_broken[2]["mid"] < 2 and i == 2 then
+					ok = true
+				end
+				if _G.team_broken[2]["down"] < 2 and i == 1 then
+					ok = true
+				end
+				if _G.team_broken[3]["top"] < 2 and i == 4 then
+					ok = true
+				end
+				if _G.team_broken[3]["mid"] < 2 and i == 5 then
+					ok = true
+				end
+				if _G.team_broken[3]["down"] < 2 and i == 6 then
+					ok = true
+				end
+				if ok then
+					local team = nil
+					local unit_name = nil
+					if i > 3 then
+						team = 3
+					else
+						team = 2
+					end
+					unit_name = "com_gunner"
+					--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
-				
-				--創建單位
-				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
-				unit:AddAbility("set_level_1"):SetLevel(1)
-				local hp = unit:GetMaxHealth()
-				unit:SetBaseMaxHealth(hp+A_count * 8)
-				local dmgmax = unit:GetBaseDamageMax()
-				local dmgmin = unit:GetBaseDamageMin()
-				unit:SetBaseDamageMax(dmgmax+A_count*8)
-				unit:SetBaseDamageMax(dmgmin+A_count*8)
-				local armor = unit:GetPhysicalArmorBaseValue()
-				unit:SetPhysicalArmorBaseValue(armor+A_count*0.1)
-				--creep:SetContextNum("isshibing",1,0)
+					
+					--創建單位
+					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
+					unit:AddAbility("set_level_1"):SetLevel(1)
+					local hp = unit:GetMaxHealth()
+					unit:SetBaseMaxHealth(hp+A_count * 8)
+					local dmgmax = unit:GetBaseDamageMax()
+					local dmgmin = unit:GetBaseDamageMin()
+					unit:SetBaseDamageMax(dmgmax+A_count*8)
+					unit:SetBaseDamageMax(dmgmin+A_count*8)
+					local armor = unit:GetPhysicalArmorBaseValue()
+					unit:SetPhysicalArmorBaseValue(armor+A_count*0.1)
+					--creep:SetContextNum("isshibing",1,0)
 
-				--單位面向角度
-				unit:SetForwardVector(ShuaGuai_entity_forvec[i])
+					--單位面向角度
+					unit:SetForwardVector(ShuaGuai_entity_forvec[i])
 
-				--禁止單位尋找最短路徑
-				unit:SetMustReachEachGoalEntity(false)
+					--禁止單位尋找最短路徑
+					unit:SetMustReachEachGoalEntity(false)
 
-				--讓單位沿著設置好的路線開始行動
-				unit:SetInitialGoalEntity(ShuaGuai_entity[i])
+					--讓單位沿著設置好的路線開始行動
+					unit:SetInitialGoalEntity(ShuaGuai_entity[i])
 
-				--顏色
-				if team == 2 then
-					unit:SetRenderColor(255,100,100)
-				elseif team == 3 then
-					unit:SetRenderColor(100,255,100)
+					--顏色
+					if team == 2 then
+						unit:SetRenderColor(255,100,100)
+					elseif team == 3 then
+						unit:SetRenderColor(100,255,100)
+					end
 				end
 				--碰撞面積
 				--unit:SetHullRadius(40)
@@ -353,50 +387,68 @@ function ShuaGuai_Of_C(num )
 				--DOTA_TEAM_GOODGUYS = 2
 				--DOTA_TEAM_BADGUYS = 3
 				--超過三的時候出兵變為聯合軍
-				local team = nil
-				local unit_name = nil
-				if i > 3 then
-					team = 3
-				else
-					team = 2
+				local ok = false
+				if _G.team_broken[2]["top"] == 0 and i == 3 then
+					ok = true
 				end
-				unit_name = "com_cavalry"
-				--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
+				if _G.team_broken[2]["mid"] == 0 and i == 2 then
+					ok = true
+				end
+				if _G.team_broken[2]["down"] == 0 and i == 1 then
+					ok = true
+				end
+				if _G.team_broken[3]["top"] == 0 and i == 4 then
+					ok = true
+				end
+				if _G.team_broken[3]["mid"] == 0 and i == 5 then
+					ok = true
+				end
+				if _G.team_broken[3]["down"] == 0 and i == 6 then
+					ok = true
+				end
+				if ok then
+					local team = nil
+					local unit_name = nil
+					if i > 3 then
+						team = 3
+					else
+						team = 2
+					end
+					unit_name = "com_cavalry"
+					--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
-				--【騎兵】
-				--創建單位
-				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
-				
-				local hp = unit:GetMaxHealth()
-				unit:SetBaseMaxHealth(hp+A_count * 20)
-				local dmgmax = unit:GetBaseDamageMax()
-				local dmgmin = unit:GetBaseDamageMin()
-				unit:SetBaseDamageMax(dmgmax+A_count*10)
-				unit:SetBaseDamageMax(dmgmin+A_count*10)
-				local armor = unit:GetPhysicalArmorBaseValue()
-				unit:SetPhysicalArmorBaseValue(armor+A_count*0.2)
-				--creep:SetContextNum("isshibing",1,0)
+					--【騎兵】
+					--創建單位
+					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
+					
+					local hp = unit:GetMaxHealth()
+					unit:SetBaseMaxHealth(hp+A_count * 20)
+					local dmgmax = unit:GetBaseDamageMax()
+					local dmgmin = unit:GetBaseDamageMin()
+					unit:SetBaseDamageMax(dmgmax+A_count*10)
+					unit:SetBaseDamageMax(dmgmin+A_count*10)
+					local armor = unit:GetPhysicalArmorBaseValue()
+					unit:SetPhysicalArmorBaseValue(armor+A_count*0.2)
+					--creep:SetContextNum("isshibing",1,0)
 
-				--單位面向角度
-				unit:SetForwardVector(ShuaGuai_entity_forvec[i])
+					--單位面向角度
+					unit:SetForwardVector(ShuaGuai_entity_forvec[i])
 
-				--禁止單位尋找最短路徑
-				unit:SetMustReachEachGoalEntity(false)
+					--禁止單位尋找最短路徑
+					unit:SetMustReachEachGoalEntity(false)
 
-				--讓單位沿著設置好的路線開始行動
-				unit:SetInitialGoalEntity(ShuaGuai_entity[i])
+					--讓單位沿著設置好的路線開始行動
+					unit:SetInitialGoalEntity(ShuaGuai_entity[i])
 
-				--顏色
-				if team == 2 then
-					unit:SetRenderColor(255,100,100)
-				elseif team == 3 then
-					unit:SetRenderColor(100,255,100)
+					--顏色
+					if team == 2 then
+						unit:SetRenderColor(255,100,100)
+					elseif team == 3 then
+						unit:SetRenderColor(100,255,100)
+					end
 				end
 				--碰撞面積
 				--unit:SetHullRadius(40)
-
-				--?
-				--FindClearSpaceForUnit(unit,unit:GetAbsOrigin(), false)
 			end
 			return 0.5
 		end

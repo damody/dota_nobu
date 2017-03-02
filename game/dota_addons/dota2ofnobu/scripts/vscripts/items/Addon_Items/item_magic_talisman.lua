@@ -56,8 +56,8 @@ function modifier_magic_talisman:OnTakeDamage(event)
 								end
 							end
 		            		end)
-
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
+
 		            		if self.caster:HasModifier("modifier_magic_talisman2") then
 		            			self.caster:RemoveModifierByName("modifier_magic_talisman2")
 		            		end 
@@ -96,13 +96,15 @@ function OnEquip( keys )
 	if (caster.magic_talisman == nil) then
 		caster.magic_talisman = true
 	end
-	Timers:CreateTimer(1, function() 
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
+	Timers:CreateTimer(0, function() 
 			if caster:FindModifierByName("modifier_magic_talisman") then
 				caster:FindModifierByName("modifier_magic_talisman").caster = caster
 				caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
-				caster.has_item_nannbann_armor = true
+				caster.has_item_magic_talisman = true
 				return nil
 			else
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
 				return 1
 			end
 		end)
@@ -122,6 +124,7 @@ function OnEquip( keys )
 				return nil
 			end
 		end
+		return 1
 		end)
 end
 

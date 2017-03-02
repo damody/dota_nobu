@@ -91,13 +91,15 @@ function OnEquip( keys )
 	if (caster.protection_amulet == nil) then
 		caster.protection_amulet = true
 	end
-	Timers:CreateTimer(1, function() 
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
+	Timers:CreateTimer(0, function() 
 			if caster:FindModifierByName("modifier_protection_amulet") then
 				caster:FindModifierByName("modifier_protection_amulet").caster = caster
 				caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
-				caster.has_item_nannbann_armor = true
+				caster.has_item_protection_amulet = true
 				return nil
 			else
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 				return 1
 			end
 		end)
@@ -105,16 +107,19 @@ function OnEquip( keys )
 		if not IsValidEntity(caster) then
 			return nil
 		end
-		if IsValidEntity(caster) and caster:IsAlive() and not caster:HasModifier("modifier_protection_amulet") then
-			ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
-			caster:FindModifierByName("modifier_protection_amulet").caster = caster
+		if caster:IsAlive() then
+			if not caster:HasModifier("modifier_protection_amulet") then
+				ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
+				caster:FindModifierByName("modifier_protection_amulet").caster = caster
+			end
+			if caster.has_item_protection_amulet == true then
+				return 1
+			else
+				caster:RemoveModifierByName("modifier_protection_amulet")
+				return nil
+			end
 		end
-		if caster.has_item_protection_amulet == true then
-			return 1
-		else
-			caster:RemoveModifierByName("modifier_protection_amulet")
-			return nil
-		end
+		return 1
 		end)
 end
 
