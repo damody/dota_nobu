@@ -127,7 +127,7 @@ function Trig_C21TActions( keys )
         local radius = 400
         local teams = DOTA_UNIT_TARGET_TEAM_ENEMY
         local types = DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO     --+DOTA_UNIT_TARGET_BUILDING
-        local flags = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES 
+        local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES 
 
         --獲取周圍的單位
         group = FindUnitsInRadius(u:GetTeamNumber(),point,nil,radius,teams,types,flags,FIND_ANY_ORDER,true)

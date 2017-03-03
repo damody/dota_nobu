@@ -36,6 +36,9 @@ function Nobu:PickHero( keys )
         for si=1,#askill do
           caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
         end
+        if nobu_id == "C17" then
+          caster:RemoveModifierByName("modifier_C17D")
+        end
       end
 
       if _G.CountUsedAbility_Table == nil then

@@ -113,11 +113,11 @@ function slowattack( keys )
 		local particle = ParticleManager:CreateParticle("particles/slow/slow.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
 		ParticleManager:ReleaseParticleIndex(particle)
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), point,
-			nil,  800 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 		for _, it in pairs(group) do
-			ability:ApplyDataDrivenModifier(caster,it,"modifier_slowattack",{duration = 5})
+			ability:ApplyDataDrivenModifier(caster,it,"modifier_slowattack",{duration = 3.9})
 		end
 		if count < 10 then
 			return 1

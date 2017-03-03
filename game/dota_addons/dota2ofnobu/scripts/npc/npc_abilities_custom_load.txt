@@ -1854,7 +1854,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityManaCost"	"25"
-		"AOERadius"		"800"
+		"AOERadius"		"400"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -1878,7 +1878,6 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-10"
 					"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"5"
 				}
-				"Duration"	"5"
 				"TextureName"	"icon_128x128_100"
 			}
 		}

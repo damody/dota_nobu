@@ -89,13 +89,15 @@ function new_C17D_DMG( keys )
 	--local target = keys.target
 	local ability = keys.ability
 	local dmg = keys.dmg
-	local cure = ability:GetLevelSpecialValueFor("cure",ability:GetLevel() - 1)
-	--【KV】
-	if caster:GetHealth() > 21 and caster.damagetype ==1 then
-		if dmg < cure then
-			caster:SetHealth(dmg + caster:GetHealth())
-		else
-			caster:SetHealth(cure + caster:GetHealth())
+	if ability ~= nil then
+		local cure = ability:GetLevelSpecialValueFor("cure",ability:GetLevel() - 1)
+		--【KV】
+		if caster:GetHealth() > 21 and caster.damagetype ==1 then
+			if dmg < cure then
+				caster:SetHealth(dmg + caster:GetHealth())
+			else
+				caster:SetHealth(cure + caster:GetHealth())
+			end
 		end
 	end
 	--【DEBUG】
@@ -104,33 +106,6 @@ function new_C17D_DMG( keys )
 	----print(mana)	
 end
 
-function new_C17D_OnCreated( keys )
-	--【Basic】
-	local caster = keys.caster
-	local ability = keys.ability
-	local ta = {damage_reduction = 1000,damage_cleanse = 1000,amage_reset_interval =100}
-			-- "01"
-			-- {
-			-- 	"var_type"				"FIELD_INTEGER"
-			-- 	"damage_reduction"		"12 24 36 48"
-			-- }
-			-- "02"
-			-- {
-			-- 	"var_type"				"FIELD_INTEGER"
-			-- 	"damage_cleanse"		"600 550 500 450"
-			-- }
-			-- "03"
-			-- {
-			-- 	"var_type"				"FIELD_FLOAT"
-			-- 	"damage_reset_interval"	"6.0 6.0 6.0 6.0"
-			-- }
-	caster:AddNewModifier(caster,nil,"modifier_tidehunter_kraken_shell",ta)
-	--【DEBUG】
-	if caster:HasModifier("modifier_tidehunter_kraken_shell") then
-		--print("C17_SUCCEESS")
-		--print(caster:GetUnitName())
-	end
-end
 
 function C17E(keys)
 	--【Basic】
