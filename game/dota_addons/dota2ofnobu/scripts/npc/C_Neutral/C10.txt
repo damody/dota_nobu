@@ -363,7 +363,6 @@
 			{
 				"ModifierName"	"modifier_C10T_self"
 				"Target" 		"CASTER"
-				"Duration"		"6"
 			}
 		}
 		"Modifiers"
@@ -372,9 +371,10 @@
 			{
 				"IsHidden"	"0"
 				"Passive"	"0"
+				"Duration"	"%slow_duration"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "100" //攻速
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "400" //攻速
 				}
 			}
 			"modifier_C10T"
