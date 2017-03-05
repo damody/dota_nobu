@@ -209,6 +209,41 @@
 			}
 		}
 	}
+	"models/c24/c24.vmdl"
+	{
+		"PortraitLightPosition"			"0 0 0"
+		"PortraitLightAngles"			"0 0 0"
+		"PortraitLightFOV"				"76"
+		"PortraitLightDistance"			"116"
+		"PortraitLightColor"			"155 77 77"
+		"PortraitLightScale"			"5"
+
+		"PortraitShadowColor"			"130 120 120"
+		"PortraitShadowScale"			"5"
+
+		"PortraitAmbientColor"			"155 155 155"
+		"PortraitAmbientScale"			"5"
+
+		"PortraitSpecularColor"			"255 255 255"
+
+		"PortraitBackgroundTexture"		"materials/vgui/hud/heroportraits/portraitbackground_whiteexterior.vmat" //materials/vgui/hud/heroportraits/portraitbackground_gradient_top.vmat"
+		"PortraitBackgroundColor1"		"1 1 1"
+		"PortraitBackgroundColor2"		"1 1 1"
+		"PortraitBackgroundColor3"		"1 1 1"
+
+		"PortraitGroundShadowScale"		"1.50"
+		"PortraitAmbientDirection"		"50 50 50"
+		"PortraitAnimationActivity"		"ACT_DOTA_ATTACK"
+		"cameras"
+		{
+			"default"
+			{
+				"PortraitPosition"		"230 -2 108"
+				"PortraitAngles"		"0 180 0"
+				"PortraitFOV"			"7"
+			}
+		}
+	}
 	"models/hero14/hero14.vmdl" // A13 服部半藏
 	{
 		"PortraitLightPosition"			"0 0 0"

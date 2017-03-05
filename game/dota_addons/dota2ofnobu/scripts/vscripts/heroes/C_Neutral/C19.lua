@@ -9,8 +9,6 @@ function C15W( keys )
 		target:SetMana(mana+target:GetMana())
 		return nil
 	end )
-
-	caster:AddSpeechBubble(1,"    喜歡我嗎?",3.0,0,-50)
 end
 
 function C15E( keys )
@@ -29,8 +27,6 @@ function C15E( keys )
 		caster:Heal(heal/2,caster)
 		AMHC:CreateNumberEffect(caster,heal/2,2,AMHC.MSG_HEAL,"green",0)
 	end
-
-	-- caster:AddSpeechBubble(1,"    婉約誓言",3.0,0,-50)
 end
 
 --[[

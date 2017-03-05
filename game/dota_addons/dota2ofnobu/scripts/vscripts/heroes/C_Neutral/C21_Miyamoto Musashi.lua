@@ -437,10 +437,10 @@ function C21R_old_crit_judgment( keys )
 	local ability = keys.ability
 	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
 	caster:RemoveModifierByName("modifier_C21R_old_critical_strike")
+		
 	if RandomInt(1,100)<=crit_chance then
 		local rate = caster:GetAttackSpeed()+0.1
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21R_old_critical_strike",{duration=rate})
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_C21R_old_no_miss",{duration=rate})
 	end
 end
 
