@@ -48,6 +48,7 @@ _G.heromap = {
   npc_dota_hero_templar_assassin    = "C19",
   npc_dota_hero_alchemist           = "C21",
   npc_dota_hero_jakiro              = "C22",
+  npc_dota_hero_night_stalker       = "C24",
 }
 
 _G.nobu2dota = {}
@@ -100,7 +101,7 @@ _G.heromap_version = {
   C19 = {["11"] = true , ["16"] = true},
   C21 = {["11"] = true , ["16"] = true},
   C22 = {["11"] = true , ["16"] = true},
-  C24 = {["11"] = false , ["16"] = true},
+  C24 = {["11"] = true , ["16"] = true},
 }
 
 _G.heromap_skill = {
