@@ -34,6 +34,13 @@ function A26W_OnSpellStart( keys )
 	end
 end
 
+A26E_EXCLUDE_TARGET_NAME = {
+	npc_dota_cursed_warrior_souls	= true,
+	npc_dota_the_king_of_robbers	= true,
+	com_general = true,
+	com_general2 = true,
+}
+
 function A26E_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -54,32 +61,34 @@ function A26E_OnSpellStart( keys )
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
-		ApplyDamage({
-			victim = unit,
-			attacker = caster,
-			ability = ability,
-			damage = ability:GetAbilityDamage(),
-			damage_type = ability:GetAbilityDamageType(),
-			damage_flags = DOTA_DAMAGE_FLAG_NONE,
-		})
-		ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration=duration})
-		Physics:Unit(unit)
-		local diff = unit:GetAbsOrigin()-center
-		diff.z = 0
-		local dir = diff:Normalized()
-		unit:SetVelocity(Vector(0,0,-9.8))
-		unit:AddPhysicsVelocity(dir*knockback_speed)
+		if A26E_EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+			ApplyDamage({
+				victim = unit,
+				attacker = caster,
+				ability = ability,
+				damage = ability:GetAbilityDamage(),
+				damage_type = ability:GetAbilityDamageType(),
+				damage_flags = DOTA_DAMAGE_FLAG_NONE,
+			})
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration=duration})
+			Physics:Unit(unit)
+			local diff = unit:GetAbsOrigin()-center
+			diff.z = 0
+			local dir = diff:Normalized()
+			unit:SetVelocity(Vector(0,0,-9.8))
+			unit:AddPhysicsVelocity(dir*knockback_speed)
 
 
-		local ifx = ParticleManager:CreateParticle("particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf",PATTACH_ABSORIGIN,caster)
-		local attack_point = caster:GetAbsOrigin() + dir*100
-		attack_point.z = 200
-		ParticleManager:SetParticleControl(ifx,0,attack_point)
-		ParticleManager:SetParticleControl(ifx,7,attack_point)
-		ParticleManager:SetParticleControlForward(ifx,0,dir)
-		ParticleManager:SetParticleControl(ifx,15,Vector(255,255,255))
-		ParticleManager:SetParticleControl(ifx,16,Vector(1,0,0))
-		ParticleManager:ReleaseParticleIndex(ifx)
+			local ifx = ParticleManager:CreateParticle("particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf",PATTACH_ABSORIGIN,caster)
+			local attack_point = caster:GetAbsOrigin() + dir*100
+			attack_point.z = 200
+			ParticleManager:SetParticleControl(ifx,0,attack_point)
+			ParticleManager:SetParticleControl(ifx,7,attack_point)
+			ParticleManager:SetParticleControlForward(ifx,0,dir)
+			ParticleManager:SetParticleControl(ifx,15,Vector(255,255,255))
+			ParticleManager:SetParticleControl(ifx,16,Vector(1,0,0))
+			ParticleManager:ReleaseParticleIndex(ifx)
+		end
 	end
 end
 
@@ -371,27 +380,29 @@ function A26E_old_OnSpellStart( keys )
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
-		damage_table.victim = unit
-		ApplyDamage(damage_table)
-		ability:ApplyDataDrivenModifier(caster,unit,"modifier_rooted",{duration=knockback_duration})
-		Physics:Unit(unit)
-		local diff = unit:GetAbsOrigin()-center
-		diff.z = 0
-		local dir = diff:Normalized()
-		unit:SetVelocity(Vector(0,0,-9.8))
-		unit:AddPhysicsVelocity(dir*knockback_speed)
+		if A26E_EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+			damage_table.victim = unit
+			ApplyDamage(damage_table)
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_rooted",{duration=knockback_duration})
+			Physics:Unit(unit)
+			local diff = unit:GetAbsOrigin()-center
+			diff.z = 0
+			local dir = diff:Normalized()
+			unit:SetVelocity(Vector(0,0,-9.8))
+			unit:AddPhysicsVelocity(dir*knockback_speed)
 
-		ability:ApplyDataDrivenModifier(caster,unit,"modifier_A26E_old_debuff",{})
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_A26E_old_debuff",{})
 
-		local ifx = ParticleManager:CreateParticle("particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf",PATTACH_ABSORIGIN,caster)
-		local attack_point = caster:GetAbsOrigin() + dir*100
-		attack_point.z = 200
-		ParticleManager:SetParticleControl(ifx,0,attack_point)
-		ParticleManager:SetParticleControl(ifx,7,attack_point)
-		ParticleManager:SetParticleControlForward(ifx,0,dir)
-		ParticleManager:SetParticleControl(ifx,15,Vector(255,255,255))
-		ParticleManager:SetParticleControl(ifx,16,Vector(1,0,0))
-		ParticleManager:ReleaseParticleIndex(ifx)
+			local ifx = ParticleManager:CreateParticle("particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf",PATTACH_ABSORIGIN,caster)
+			local attack_point = caster:GetAbsOrigin() + dir*100
+			attack_point.z = 200
+			ParticleManager:SetParticleControl(ifx,0,attack_point)
+			ParticleManager:SetParticleControl(ifx,7,attack_point)
+			ParticleManager:SetParticleControlForward(ifx,0,dir)
+			ParticleManager:SetParticleControl(ifx,15,Vector(255,255,255))
+			ParticleManager:SetParticleControl(ifx,16,Vector(1,0,0))
+			ParticleManager:ReleaseParticleIndex(ifx)
+		end
 	end
 end
 

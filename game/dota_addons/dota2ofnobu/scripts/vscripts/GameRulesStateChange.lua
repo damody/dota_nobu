@@ -99,7 +99,23 @@ function Nobu:OnGameRulesStateChange( keys )
 	    end
 	    if msg ~= "." then
 	    	GameRules:SendCustomMessage(msg,0,0)
-	    	GameRules:SendCustomMessage("以上英雄的玩家可以在聊天視窗輸入 -old 使用舊版角色",0,0)
+	    	GameRules:SendCustomMessage("以上英雄的玩家可以在聊天視窗輸入 -old 或 -11 使用舊版角色",0,0)
+	    end
+    end)
+
+    Timers:CreateTimer(1.1, function()
+    	local msg = "."
+	    local allHeroes = HeroList:GetAllHeroes()
+	    if allHeroes == nil then return end
+	    for i,unit in ipairs(allHeroes) do
+	    	local nobu_id = _G.heromap[unit:GetName()]
+	    	if _G.heromap_version[nobu_id]["16"] == true then 
+	    		msg = msg.._G.hero_name_zh[nobu_id].."."
+	    	end
+	    end
+	    if msg ~= "." then
+	    	GameRules:SendCustomMessage(msg,0,0)
+	    	GameRules:SendCustomMessage("以上英雄的玩家可以在聊天視窗輸入 -new 或 -16 使用新版角色",0,0)
 	    end
     end)
     

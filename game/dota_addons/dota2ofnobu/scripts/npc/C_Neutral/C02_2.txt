@@ -6,7 +6,8 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_legion_commander"
-		"ModelScale"	"0.9"
+		"Model"         "models/c02/c02.vmdl"
+		"ModelScale"	"1.4"
 		// Abilities
 		// ----------------------------------------------------------------
 		"Ability1"	"C02W"
@@ -96,6 +97,7 @@
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		"DisableWearables"	"1"
 	}
 
 }

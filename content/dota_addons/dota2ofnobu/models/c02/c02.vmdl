@@ -5,8 +5,8 @@
 		m_meshList = 
 		[
 			{
-				m_meshName = "c11"
-				m_meshFile = "models/c11/c11.fbx"
+				m_meshName = "c02"
+				m_meshFile = "models/c02/c02.fbx"
 				m_materialSearchPath = ""
 				m_bSkinParentedObjects = true
 				m_bLegacySkinParentedTransforms = false
@@ -57,12 +57,12 @@
 						m_HitBoxes = 
 						[
 							{
-								m_name = "Glow_Hero"
+								m_name = "Bone_Hero"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
-								m_sBoneName = "Glow_Hero"
-								m_vMinBounds = [ -43.666595, -40.027706, -2.0 ]
-								m_vMaxBounds = [ 34.809341, 42.023468, 140.366364 ]
+								m_sBoneName = "Bone_Hero"
+								m_vMinBounds = [ -51.553776, -41.904934, -2.0 ]
+								m_vMaxBounds = [ 66.936478, 40.389816, 125.838661 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},
@@ -86,7 +86,7 @@
 						m_influences = 
 						[
 							{
-								m_influenceName = "Glow_Hero"
+								m_influenceName = "Bone_Hero"
 								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
 								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
 								m_flWeight = 1.0
@@ -112,9 +112,9 @@
 						m_influences = 
 						[
 							{
-								m_influenceName = "Weapon"
-								m_vTranslationOffset = [ 44.410198, -0.000008, 0.0 ]
-								m_vRotationOffset = [ 0.0, 0.0, -0.00001 ]
+								m_influenceName = "Weapon Ref"
+								m_vTranslationOffset = [ -13.487053, 0.503475, 0.000023 ]
+								m_vRotationOffset = [ 0.0, 0.0, -0.000079 ]
 								m_flWeight = 1.0
 								m_bRoot = false
 							},
@@ -146,7 +146,7 @@
 			[
 				{
 					m_Animationname = "Attack 2"
-					m_Filepath = "models/c11/anims/Attack 2.dmx"
+					m_Filepath = "models/c02/anims/Attack 2.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 27
 					m_flFps = 24.0
@@ -168,7 +168,7 @@
 					m_Activities = 
 					[
 						{
-							m_Name = "ACT_DOTA_ATTACK"
+							m_Name = "ACT_DOTA_ATTACK2"
 							m_nWeight = 1
 						},
 					]
@@ -209,7 +209,7 @@
 				},
 				{
 					m_Animationname = "Attack Slam"
-					m_Filepath = "models/c11/anims/Attack Slam.dmx"
+					m_Filepath = "models/c02/anims/Attack Slam.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 27
 					m_flFps = 24.0
@@ -272,7 +272,7 @@
 				},
 				{
 					m_Animationname = "Attack"
-					m_Filepath = "models/c11/anims/Attack.dmx"
+					m_Filepath = "models/c02/anims/Attack.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 28
 					m_flFps = 24.0
@@ -291,7 +291,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_ATTACK"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = 
 					[
@@ -328,8 +334,8 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "bind"
-					m_Filepath = "models/c11/anims/bind.dmx"
+					m_Animationname = "blind"
+					m_Filepath = "models/c02/anims/blind.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 1
 					m_flFps = 24.0
@@ -369,7 +375,7 @@
 				},
 				{
 					m_Animationname = "Death"
-					m_Filepath = "models/c11/anims/Death.dmx"
+					m_Filepath = "models/c02/anims/Death.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 46
 					m_flFps = 24.0
@@ -432,7 +438,7 @@
 				},
 				{
 					m_Animationname = "Dissipate"
-					m_Filepath = "models/c11/anims/Dissipate.dmx"
+					m_Filepath = "models/c02/anims/Dissipate.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 81
 					m_flFps = 24.0
@@ -471,10 +477,10 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "Portrait 2"
-					m_Filepath = "models/c11/anims/Portrait 2.dmx"
+					m_Animationname = "Spell Channel"
+					m_Filepath = "models/c02/anims/Spell Channel.dmx"
 					m_nStartframe = 0
-					m_nEndframe = 160
+					m_nEndframe = 34
 					m_flFps = 24.0
 					m_Loop = 
 					{
@@ -491,127 +497,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
-					m_AnimationEvents = [  ]
-					m_MotionFrames = [  ]
-					m_pIkRules = [  ]
-					m_pAlignAnimation = null
-					m_adjustAnimation = 
-					{
-						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
-					}
-					m_Keywords = [  ]
-					m_sequenceParams = 
-					{
-						m_flFadeInTime = 0.2
-						m_flFadeOutTime = 0.2
-					}
-					m_folderName = ""
-					m_MotionFramesRootBone = ""
-				},
-				{
-					m_Animationname = "Portrait Talk 2"
-					m_Filepath = "models/c11/anims/Portrait Talk 2.dmx"
-					m_nStartframe = 0
-					m_nEndframe = 120
-					m_flFps = 24.0
-					m_Loop = 
-					{
-						m_bLoop = false
-						m_bSmoothLoop = false
-						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
-						m_StartLoop = 
+					m_Activities = 
+					[
 						{
-							_class = "CVAnimCmdStartLoop"
-							m_bEnabled = false
-							m_nLoopRestart = 0
-						}
-					}
-					m_bHidden = false
-					m_bDisable = false
-					m_Activities = [  ]
-					m_AnimationEvents = [  ]
-					m_MotionFrames = [  ]
-					m_pIkRules = [  ]
-					m_pAlignAnimation = null
-					m_adjustAnimation = 
-					{
-						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
-					}
-					m_Keywords = [  ]
-					m_sequenceParams = 
-					{
-						m_flFadeInTime = 0.2
-						m_flFadeOutTime = 0.2
-					}
-					m_folderName = ""
-					m_MotionFramesRootBone = ""
-				},
-				{
-					m_Animationname = "Portrait Talk"
-					m_Filepath = "models/c11/anims/Portrait Talk.dmx"
-					m_nStartframe = 0
-					m_nEndframe = 40
-					m_flFps = 24.0
-					m_Loop = 
-					{
-						m_bLoop = false
-						m_bSmoothLoop = false
-						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
-						m_StartLoop = 
-						{
-							_class = "CVAnimCmdStartLoop"
-							m_bEnabled = false
-							m_nLoopRestart = 0
-						}
-					}
-					m_bHidden = false
-					m_bDisable = false
-					m_Activities = [  ]
-					m_AnimationEvents = [  ]
-					m_MotionFrames = [  ]
-					m_pIkRules = [  ]
-					m_pAlignAnimation = null
-					m_adjustAnimation = 
-					{
-						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
-					}
-					m_Keywords = [  ]
-					m_sequenceParams = 
-					{
-						m_flFadeInTime = 0.2
-						m_flFadeOutTime = 0.2
-					}
-					m_folderName = ""
-					m_MotionFramesRootBone = ""
-				},
-				{
-					m_Animationname = "Portrait"
-					m_Filepath = "models/c11/anims/Portrait.dmx"
-					m_nStartframe = 0
-					m_nEndframe = 86
-					m_flFps = 24.0
-					m_Loop = 
-					{
-						m_bLoop = false
-						m_bSmoothLoop = false
-						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
-						m_StartLoop = 
-						{
-							_class = "CVAnimCmdStartLoop"
-							m_bEnabled = false
-							m_nLoopRestart = 0
-						}
-					}
-					m_bHidden = false
-					m_bDisable = false
-					m_Activities = [  ]
+							m_Name = "ACT_DOTA_CAST_ABILITY_1_END"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -632,9 +524,9 @@
 				},
 				{
 					m_Animationname = "Spell"
-					m_Filepath = "models/c11/anims/Spell.dmx"
+					m_Filepath = "models/c02/anims/Spell.dmx"
 					m_nStartframe = 0
-					m_nEndframe = 16
+					m_nEndframe = 24
 					m_flFps = 24.0
 					m_Loop = 
 					{
@@ -678,7 +570,7 @@
 				},
 				{
 					m_Animationname = "Stand 2"
-					m_Filepath = "models/c11/anims/Stand 2.dmx"
+					m_Filepath = "models/c02/anims/Stand 2.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 85
 					m_flFps = 24.0
@@ -724,9 +616,9 @@
 				},
 				{
 					m_Animationname = "Stand Ready"
-					m_Filepath = "models/c11/anims/Stand Ready.dmx"
+					m_Filepath = "models/c02/anims/Stand Ready.dmx"
 					m_nStartframe = 0
-					m_nEndframe = 34
+					m_nEndframe = 1
 					m_flFps = 24.0
 					m_Loop = 
 					{
@@ -764,7 +656,7 @@
 				},
 				{
 					m_Animationname = "Stand"
-					m_Filepath = "models/c11/anims/Stand.dmx"
+					m_Filepath = "models/c02/anims/Stand.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 28
 					m_flFps = 24.0
@@ -783,7 +675,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -804,7 +702,7 @@
 				},
 				{
 					m_Animationname = "Walk"
-					m_Filepath = "models/c11/anims/Walk.dmx"
+					m_Filepath = "models/c02/anims/Walk.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 18
 					m_flFps = 24.0
@@ -903,19 +801,11 @@
 		m_vMaterialRemapList = 
 		[
 			{
-				m_sSearchMaterial = "herocloth.vmat"
-				m_sReplaceMaterial = "materials/heromitsuhideakechi/herocloth.vmat"
-			},
-			{
-				m_sSearchMaterial = "heromuneshigetachibana.vmat"
-				m_sReplaceMaterial = "models/c11/c11_main.vmat"
+				m_sSearchMaterial = "herosamanosukeakechi.vmat"
+				m_sReplaceMaterial = "materials/c02/c02.vmat"
 			},
 			{
 				m_sSearchMaterial = "katana.vmat"
-				m_sReplaceMaterial = "materials/heromitsuhideakechi/katana.vmat"
-			},
-			{
-				m_sSearchMaterial = ".vmat"
 				m_sReplaceMaterial = "materials/heromitsuhideakechi/katana.vmat"
 			},
 		]

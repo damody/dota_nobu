@@ -484,7 +484,7 @@ function to_soldier_Oda(keys)
 	   			if hero:GetAbsOrigin().x > 90000 then
 	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
 	   			end
-	   			if hero.donkey:GetAbsOrigin().x > 90000 then
+	   			if hero.donkey ~= nil and hero.donkey:GetAbsOrigin().x > 90000 then
 	   				FindClearSpaceForUnit(hero.donkey,hero.donkey.oripos,true)
 	   			end
 			end

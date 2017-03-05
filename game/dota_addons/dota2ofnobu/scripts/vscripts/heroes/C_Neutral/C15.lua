@@ -15,12 +15,12 @@ function new_C15E( keys )
 	--【Varible Of Tem】
 	local point_tem = point + Vector(100*vec.x,100*vec.y) 
 	local deg = 0 
-	local distance = 50
+	local distance = 100
 
 	--【Timer】
 	local num = 0
 	Timers:CreateTimer(0.03,function()
-		if num == 60 then
+		if num == 25 then
 			return nil
 		else
 			point_tem = Vector(point_tem.x+distance*vec.x ,  point_tem.y+distance*vec.y , point_tem.z)
