@@ -1,49 +1,48 @@
+//島津義弘
 "DOTAHeroes"
  {
- //今川義元
-	"B15"
+	"C03"
 	{
 	 //General
 	 //--------------------------------------------------------------
-		"ModelScale"	"1.3"
+		"ModelScale"	"1.1"
 		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"140"
-		"override_hero"	"npc_dota_hero_bristleback"
+		"override_hero"	"npc_dota_hero_ogre_magi"
 	 	//Abilities
 		//--------------------------------------------------------------
 
-		"Ability1"	"B15W"
-		"Ability2"	"B15E"
-		"Ability3"	"B15R"
-		"Ability4"	"B15D"
+		"Ability1"	"C03W"
+		"Ability2"	"C03E"
+		"Ability3"	"C03R"
+		"Ability4"	"C03D"
 		"Ability5"	"attribute_bonusx"
-		"Ability6"	"B15T"
-		"Ability7"	"B15_precache"
+		"Ability6"	"C03T"
+		"Ability7"	"C03_precache"
 		//Armor
 		// --------------------------------------------------------------
-		"ArmorPhysical"	"3"
+		"ArmorPhysical"	"7"
 		"MagicalResistance"	"30"
 		//Attack
 		// --------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"	"85.0"
-		"AttackDamageMax"	"99.0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"115.0"
+		"AttackDamageMax"	"133.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.80"
+		"AttackRate"	"1.8"
 		"AttackAnimationPoint"	"0.70"
 		"AttackAcquisitionRange"	"700"
-		"AttackRange"	"700"
-		"ProjectileSpeed"	"1800"
+		"AttackRange"	"128"
 		//Attributes
 		// --------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"	"39"
-		"AttributeStrengthGain"	"2.75"
-		"AttributeBaseIntelligence"	"25"
-		"AttributeIntelligenceGain"	"2.45"
+		"AttributeBaseStrength"	"46"
+		"AttributeStrengthGain"	"2.7"
 		"AttributeBaseAgility"	"26"
-		"AttributeAgilityGain"	"2.0"
+		"AttributeAgilityGain"	"2.6"
+		"AttributeBaseIntelligence"	"21"
+		"AttributeIntelligenceGain"	"2"
 		//Bounty
 		// --------------------------------------------------------------
 		"BountyGoldMin"	"300"
@@ -83,9 +82,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"Model"	"models/heroyoshimotoimagawa/heroyoshimotoimagawa.vmdl"
-		"ProjectileModel"	"particles/b13e/b13e.vpcf"
 		"AbilityLayout"	"5"
-		"DisableWearables"	"1"
+		
 	}
 }	

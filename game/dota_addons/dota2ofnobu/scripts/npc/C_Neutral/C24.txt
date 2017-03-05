@@ -1,0 +1,617 @@
+// 柳生宗嚴
+"DOTAAbilities"
+{
+	"C24_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/C24.vsndevts"
+			"particle"  "particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_buff.vpcf"
+			"particle"  "particles/c19e/c19e.vpcf"
+			"soundfile"	"soundevents/c01w.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		}
+	}
+	// 柳生宗嚴 柳生新陰流．神取
+	"C24W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_w"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"14 11 8 5"
+		"AbilityManaCost"	"65"
+		"AbilityCastRange"	"200"
+		"AbilityDamage"		"100 200 300 400"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C24W.vo1"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C24W"
+				"Target"	"CASTER"
+				"Duration"	"%duration"
+			}
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+				"Function"	"C24W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C24W"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "3"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damagein"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damagein"	"-5 -10 -15 -20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regen"	"3"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"3"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"roottime"	"0.5"
+			}
+		}
+	}
+
+	// 柳生宗嚴 柳生新陰流．浮舟
+	"C24E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_e"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"AbilityCooldown"	"9"
+		"AbilityManaCost"	"85 110 135 160"
+		"AbilityCastRange"	"500 600 700 800"
+		"AOERadius"			"300"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C24E.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C24E"
+			}
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+				"Function"	"C24E_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C24E"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"Duration"			"8"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspd"
+				}
+				"EffectName"		"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_buff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+			"modifier_C24E_debuff"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"0"
+				
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%stime"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atkspd"	"35 60 85 110"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stime"	"2 2.5 3 3.5"
+			}
+		}
+	}
+
+	// 柳生宗嚴 柳生新陰流．全劍
+	"C24R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_r"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"R"
+		"AbilityCooldown"	"8"
+		"AbilityManaCost"	"100 110 120 130"
+		"MaxLevel"	"4"
+		"AOERadius"						"300"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C24E.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C24R2"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C24R"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%hpadd"
+				}
+				"States"	{}
+				"IsBuff"	"0"
+			}
+			"modifier_C24R2"
+			{
+				"IsBuff"	"0"
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Duration"	"6"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespd"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+						"Function"	"C24E_OnAttackLanded"
+						"Target"		"TARGET"
+						"dmg"			"%attack_damage"
+					}
+				}
+				
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hpadd"	"250 400 550 700"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespd"	"0 5 10 15"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stime"	"0.5 0.6 0.7 0.8"
+			}
+		}
+	}
+
+	// 柳生宗嚴 柳生新陰流．最期一生
+	"C24T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_t"
+
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCastPoint"				"0.1"
+
+		"AbilityCooldown"				"105 95 85"
+		"AbilityManaCost"				"125"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regen"	"30 40 50"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C24T.vo1"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/c24.lua"
+				"Function"	"C24T_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C24T"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"80"
+				}
+				"Duration"	"15"
+			}
+		}
+	}	
+
+// 柳生宗嚴 11.2B
+// --------------------------------------------------------------------------------------
+// 柳生宗嚴 柳生新陰流．無刀取
+	"C24W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_w_old"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"14 13 11 9"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"200"
+		"AbilityDamage"				"150 250 350 450"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22W_old.vo1"
+			}
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%AbilityDamage"
+			}
+			"Stun"
+			{
+				"Duration"   "%stun_time"
+				"Target" 	 "TARGET"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+				"Function"	"C24W_old_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_time"			"1.5 2 2.5 3"
+			}
+		}
+		
+	}
+
+	// 柳生宗嚴 柳生新陰流．浮舟
+	"C24E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_e"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"AbilityCooldown"	"13 11 9 7"
+		"AbilityManaCost"	"120 140 160 180"
+		
+		"AOERadius"			"850"
+		"AbilityDamage"				"250 350 450 550"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C24E.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C24E"
+			}
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+				"Function"	"C24E_old_OnSpellStart"
+			}
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/a17w/a17w.vpcf"
+				"MoveSpeed"	"2500"
+				"StartRadius"	"150"
+				"StartPosition"	"attach_attack"
+				"EndRadius"	"150"
+				"FixedDistance"	"850"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"0"
+				"ProvidesVision"	"1"
+				"VisionRadius"	"0"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sniper.AssassinateDamage"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atkspd"	"35 60 85 110"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stime"	"2 2.5 3 3.5"
+			}
+		}
+	}
+
+	// 柳生宗嚴 柳生新陰流
+	"C24R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_r"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"4"
+
+		"Modifiers"
+		{
+			"modifier_C24R_old"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+						"Function"	"C24R_old_OnAttackStart"
+					}
+				}
+			}
+			"modifier_ninja_cloth"
+			{
+				"IsBuff"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%miss"
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}
+			"modifier_C24R2_old"
+			{
+				"IsBuff"	"0"
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit"
+
+				}
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"miss"	"6 12 18 24"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance"	"6 7 8 9"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"crit"	"200 300 400 500"
+			}
+		}
+	}
+
+	// 柳生宗嚴 柳生新陰流．激‧雙嵐陣
+	"C24T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dota2/c24_t"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.1"
+
+		"AbilityCooldown"				"90"
+		"AbilityManaCost"				"200 250 300"
+		"AbilityDamage"					"1300 1600 2000"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"play_time"		"5"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_legion_commander/legion_commander_press_owner.vpcf" // buff
+			"particle"  "particles/C24/C24t_old_arena.vpcf" // 競技場
+			"particle"  "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf" // 爆破
+			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger.vpcf" // 噴血
+			"particle"  "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"	// aoe
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C24T_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+				"Function"		"C24T_old_OnSpellStart"
+				"Target"		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C24T_old_playing"
+			{
+				"Duration"	"%play_time"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_C24T_old_stunned"
+			{
+				"IsHidden"			"1"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+}

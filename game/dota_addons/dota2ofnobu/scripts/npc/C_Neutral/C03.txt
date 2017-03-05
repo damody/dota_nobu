@@ -1,0 +1,347 @@
+//島津義弘
+"DOTAAbilities"
+{
+	"C03_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/C03.vsndevts"
+			"particle"	"particles/b15w3/b15w3.vpcf"
+		}
+	}
+	"Version"		"1"
+
+	//島津義弘 鐵布衫
+	"C03W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ogre_magi_frost_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"32"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"110 130 150 170"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C03W.vo1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_LifeStealer.Rage"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C03w"
+				"Target"	"CASTER"
+				
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/C03_Imagawa_Yoshimoto.lua"
+				"Function"	"C03W_on_spell_start"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C03w"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+				"Duration"	"6"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"	//防禦
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "%hpadd"	//防禦
+				}
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/b15w3/b15w3.vpcf"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"15 30 45 60"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"armor"	"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"hpadd"	"200 300 400 500"
+			}
+		}
+	}
+
+	//島津義弘 震地斧
+	"C03E"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_98"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCooldown"				"16 15 14 13"
+		"AbilityManaCost"				"115 135 155 175"
+		"AbilityDamage"					"200 300 400 500"
+
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilitySpecial"
+		{
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_attack_speed"	"-65"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_movement_speed"	"-9 -18 -27 -36"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A26E_old.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C03.lua"
+				"Function"		"C03E_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A26E_old_debuff"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%debuff_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%debuff_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%debuff_movement_speed" 
+				}
+			}
+		}
+	
+	}
+
+	//島津義弘 暴雷怒擊
+	"C03E"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_105"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"50"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"175"
+	
+	}
+	//島津義弘 虛張聲勢
+	"C03T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"tiny_grow"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"110 100 90"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AOERadius"	"500"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+			"particle"	"particles/C03t/C03t.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C03T.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/C03_Imagawa_Yoshimoto.lua"
+				"Function"	"C03T"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Brewmaster_Storm.Attack"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C03T"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%stun_time"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"1"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"stun_time"	"0.1 1.0 1.5"
+			}
+		}
+	}
+	//島津義弘 多重箭
+	"C03T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"windrunner_focusfire"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/b13e/b13e.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"FireSound"
+			{
+				"EffectName"	"Hero_Medusa.AttackSplit"
+				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/C03_Imagawa_Yoshimoto.lua"
+				"Function"	"C03D_SplitShotDamage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_split_shot_datadriven"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsDebuff"	"0"
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/C03_Imagawa_Yoshimoto.lua"
+						"Function"	"C03D_SplitShotLaunch"
+						"split_shot_projectile"	"particles/b13e/b13e.vpcf"
+					}
+				}
+				"Properties"	{}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"arrow_count"	"2 4 5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"800"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"projectile_speed"	"1800"
+			}
+		}
+	}
+}
