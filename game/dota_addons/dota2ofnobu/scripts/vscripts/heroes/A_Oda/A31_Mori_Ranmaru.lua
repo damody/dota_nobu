@@ -28,6 +28,11 @@ function A31E(keys)
 	ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, keys.caster)
 end
 
+function OB(keys)
+	local target_point = keys.target_points[1]
+	FindClearSpaceForUnit(keys.caster, target_point, false)
+end
+
 function A31W( keys )
 	local ability = keys.ability
 	local caster = keys.caster

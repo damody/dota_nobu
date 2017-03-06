@@ -68,12 +68,12 @@ end
 
 function Nobu:PlayerSay( keys ) --代測試
 
-  DeepPrintTable(keys)
+--DeepPrintTable(keys)
 end
 
 function Nobu:Item_Changed( keys ) --代測試
 
-  DeepPrintTable(keys)
+--DeepPrintTable(keys)
 end
 
 function Nobu:ModifyGoldFilter(filterTable)

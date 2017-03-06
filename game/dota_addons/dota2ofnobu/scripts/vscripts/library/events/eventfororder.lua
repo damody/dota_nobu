@@ -289,7 +289,6 @@ function Nobu:eventfororder( filterTable )
 		--[[
 		local inspect = require('inspect')
 		local iDepth = 1
-		DeepPrintTable(filterTable)
 	 	print(inspect(filterTable,
 	 		{depth=iDepth} 
 	 	))]]

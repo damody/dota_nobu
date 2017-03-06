@@ -11,9 +11,20 @@ function Nobu:PickHero( keys )
   Timers:CreateTimer(1, function ()
     if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
       caster.version = "16"
+      local name = caster:GetUnitName()
+      if name == "npc_dota_hero_slardar" then
+        --caster:AddAbility("OBW"):SetLevel(1)
+        --caster:AddAbility("majia"):SetLevel(1)
+        --caster:AddAbility("for_no_damage"):SetLevel(1)
+        --caster:AddNoDraw()
+        Timers:CreateTimer(0,function()
+          caster:SetAbilityPoints(0)
+          return 1
+        end)
+      end
       -- 預設切換為舊版
       local nobu_id = _G.heromap[caster:GetName()]
-      if _G.heromap_version[nobu_id]["11"] == true then
+      if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["11"] == true then
         caster.version = "11"
         for i = 0, caster:GetAbilityCount() - 1 do
           local ability = caster:GetAbilityByIndex( i )
@@ -48,14 +59,16 @@ function Nobu:PickHero( keys )
         _G.CountUsedAbility_Table[id] = {}
       end
       --【英雄名稱判別】
-      local name = caster:GetUnitName()
+      
       
       caster.name = heromap[name]
-      local askill = _G.heromap_autoskill[nobu_id]["16"]
-      for si=1,#askill do
-        local skname = nobu_id..askill:sub(si,si)
-        if caster:FindAbilityByName(skname) then
-          caster:FindAbilityByName(skname):SetLevel(1)
+      if _G.heromap_version[nobu_id] ~= nil then
+        local askill = _G.heromap_autoskill[nobu_id]["16"]
+        for si=1,#askill do
+          local skname = nobu_id..askill:sub(si,si)
+          if caster:FindAbilityByName(skname) then
+            caster:FindAbilityByName(skname):SetLevel(1)
+          end
         end
       end
       if nobu_id == "A04" then -- 竹中重治

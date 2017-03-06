@@ -267,7 +267,7 @@
 
 		"AbilityCastPoint"				"0.1"
 
-		"AbilityCooldown"				"105 95 85"
+		"AbilityCooldown"				"150 140 130"
 		"AbilityManaCost"				"125"
 
 		"AbilitySpecial"
@@ -298,6 +298,7 @@
 			{
 				"IsBuff"	"1"
 				"IsHidden"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"80"
@@ -318,7 +319,6 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
@@ -381,8 +381,8 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"E"
-		"AbilityCooldown"	"13 11 9 7"
-		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCooldown"	"13 11 7 4"
+		"AbilityManaCost"	"100 120 140 160"
 		
 		"AOERadius"			"850"
 		"AbilityDamage"				"250 350 450 550"

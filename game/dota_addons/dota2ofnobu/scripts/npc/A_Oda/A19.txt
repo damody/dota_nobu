@@ -1,0 +1,840 @@
+// 黑田孝高
+"DOTAAbilities"
+{
+	"A19_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/A19.vsndevts"
+			"particle"  "particles/a19/a19eshot_projectile_trail_b.vpcf"
+			"particle"  "particles/a19/a19_wfire/monkey_king_spring_arcana_fire.vpcf"
+			"particle"  "particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf"
+			"particle"  "particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion.vpcf"
+			"particle"  "particles/a19/a19_t.vpcf"
+			"particle"  "particles/a19/a19w_oldchar.vpcf"
+		}
+	}
+
+	// 黑田孝高 鬼謀．火攻
+	"A19W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_w"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"14 12 10 8"
+		"AbilityManaCost"				"105 135 165 195"
+		"AbilityDamage"					"150 300 450 600"
+
+		"AbilityCastRange"				"1000"
+		"AOERadius"						"450"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg"		"75 150 225 300"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"time"	"2"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg2"		"10 20 30 40"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A19W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+				"Function"		"A19W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A19W"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"5"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+
+				"ThinkInterval"	"0.99"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%dmg2"
+					}
+				}
+			}
+		}
+	}
+
+	// 黑田孝高 連環火	
+	"A19E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_e"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"150 170 190 210"
+		"AbilityDamage"					"200"
+
+		"AbilityCastRange"				"800"
+		"AOERadius"						"450"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg"		"50 85 120 155"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"armor"	"-4 -8 -12 -16"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"slow"	"-30 -40 -50 -60"
+			}
+		}
+
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A19E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/a19/a19eshot_projectile_trail_b.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"1100"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Sven.StormBolt"
+			}
+			
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+				"Function"		"A19E_OnProjectileHitUnit"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A19E"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"3"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"	//防禦
+				}
+				"ThinkInterval"	"0.99"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%dmg"
+					}
+				}
+			}
+		}
+	}
+
+	// 黑田孝高 火焰返響
+	"A19R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_r"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		
+		"AOERadius"						"800"
+		"AbilityCastRange"				"800"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"addint"		"8 16 24 32"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg"		"0.4 0.6 0.8 1.0"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A19R.vo1"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_A19R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%addint"
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+						"Function"		"A19R_OnAbilityExecuted"
+					}
+				}
+			}
+		}
+	}
+
+	// 黑田孝高 [籠城之火]
+	"A19T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_t"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"135 110 95"
+		"AbilityManaCost"				"300"
+		"AbilityDamage"					"320 480 640"
+
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Mirana.ArrowCast"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+				"Function"	"A19T_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A19T_2"
+			{
+				"ThinkInterval"	"0.1"
+				"Duration"	"12"
+				"IsDebuff"	"0"
+				"EffectAttachType"	"attach_origin"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"TARGET"
+							"Radius"	"%arrow_width"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_A19T_3"
+							}
+						}
+					}
+				}
+				"EffectName"	"particles/a19/a19_t.vpcf"
+			}
+			"modifier_A19T_3"
+			{
+				"ThinkInterval"	"0.25"
+				"Duration"	"1.01"
+				"IsDebuff"	"0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%dmg"
+					}
+				}
+				"IsHidden"	"1"
+			}
+			"modifier_A19T_4"
+			{
+				"ThinkInterval"	"0.1"
+				"Duration"	"12"
+				"IsDebuff"	"0"
+				"EffectAttachType"	"attach_origin"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_BUILDING"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"TARGET"
+							"Radius"	"%arrow_width"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_A19T_5"
+							}
+						}
+					}
+				}
+			}
+			"modifier_A19T_5"
+			{
+				"ThinkInterval"	"0.25"
+				"Duration"	"1.01"
+				"IsDebuff"	"0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"20"
+					}
+				}
+				"IsHidden"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"spell_duration"	"0.6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"arrow_speed"	"2666"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"arrow_width"	"200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"arrow_range"	"3000"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"80 120 160"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"13"
+			}
+		}
+	}
+
+		// 黑田孝高 鬼謀．火攻
+	"A19W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_w"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"105 135 165 195"
+		"AbilityDamage"					"150 300 450 600"
+
+		"AbilityCastRange"				"1000"
+		"AOERadius"						"450"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg1"		"100 200 300 400"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"time1"	"5"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"time2"	"5"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg2"		"50 100 150 200"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A19W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+				"Function"		"A19W_old_OnSpellStart"
+			}
+		}
+	}
+
+	// 黑田孝高 連環火	
+	"A19E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_e"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"10 9 8 7"
+		"AbilityManaCost"				"150 170 190 210"
+		"AbilityDamage"					"250 300 350 400"
+
+		"AbilityCastRange"				"800"
+		"AOERadius"						"250"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg"		"50 60 70 80"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"armor"	"-4 -6 -8 -10"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"slow"	"-16 -26 -36 -46"
+			}
+		}
+
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A19E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/a19/a19eshot_projectile_trail_b.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"1100"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Sven.StormBolt"
+			}
+			
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+				"Function"		"A19E_old_OnProjectileHitUnit"
+				"Target"		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A19E_old"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"5"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"	//防禦
+				}
+				"ThinkInterval"	"0.99"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%dmg"
+					}
+				}
+			}
+		}
+	}
+
+	// 黑田孝高 焰之附著
+	"A19R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_r"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		
+		"AOERadius"						"800"
+		"AbilityCastRange"				"800"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg"		"10 20 30 40"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmg2"		"100 200 300 400"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A19R.vo1"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A19R_old_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+						"Function"		"A19R_old_OnAttackLanded"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_A19R_old"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"Duration"			"5"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+						"Function"		"A19R_old_OnDeath"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+	}
+
+	// 黑田孝高 [籠城之火]
+	"A19T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/a19_t"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"105 95 85"
+		"AbilityManaCost"				"300"
+		"AbilityDamage"					"320 480 640"
+
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Mirana.ArrowCast"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A19.lua"
+				"Function"	"A19T_old_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A19T_old_2"
+			{
+				"ThinkInterval"	"0.1"
+				"Duration"	"12"
+				"IsDebuff"	"0"
+				"EffectAttachType"	"attach_origin"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"TARGET"
+							"Radius"	"%arrow_width"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_A19T_old_3"
+							}
+						}
+					}
+				}
+				"EffectName"	"particles/a19/a19_t.vpcf"
+			}
+			"modifier_A19T_old_3"
+			{
+				"ThinkInterval"	"0.25"
+				"Duration"	"1.01"
+				"IsDebuff"	"0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%dmg"
+					}
+				}
+				"IsHidden"	"1"
+			}
+			"modifier_A19T_old_4"
+			{
+				"ThinkInterval"	"0.1"
+				"Duration"	"12"
+				"IsDebuff"	"0"
+				"EffectAttachType"	"attach_origin"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_BUILDING"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"TARGET"
+							"Radius"	"%arrow_width"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"TARGET"
+								"ModifierName"	"modifier_A19T_old_5"
+							}
+						}
+					}
+				}
+			}
+			"modifier_A19T_old_5"
+			{
+				"ThinkInterval"	"0.25"
+				"Duration"	"1.01"
+				"IsDebuff"	"0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"20"
+					}
+				}
+				"IsHidden"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"spell_duration"	"0.6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"arrow_speed"	"2666"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"arrow_width"	"250"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"arrow_range"	"4000"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"80 120 160"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"13"
+			}
+		}
+	}
+
+}

@@ -68,7 +68,7 @@ function Nobu:OnGameRulesStateChange( keys )
     if _G.nobu_server_b then
       Nobu:OpenRoom()
     end
-    GameRules:SendCustomMessage("歡迎來到 Dota2 信長之野望 20.1C", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("歡迎來到 Dota2 信長之野望 20.1D", DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("不能開圖，斷線重連！" , DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("目前作者: Damody, BrokenStar", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
@@ -93,7 +93,7 @@ function Nobu:OnGameRulesStateChange( keys )
 	    if allHeroes == nil then return end
 	    for i,unit in ipairs(allHeroes) do
 	    	local nobu_id = _G.heromap[unit:GetName()]
-	    	if _G.heromap_version[nobu_id]["11"] == true then 
+	    	if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["11"] == true then 
 	    		msg = msg.._G.hero_name_zh[nobu_id].."."
 	    	end
 	    end
@@ -109,7 +109,7 @@ function Nobu:OnGameRulesStateChange( keys )
 	    if allHeroes == nil then return end
 	    for i,unit in ipairs(allHeroes) do
 	    	local nobu_id = _G.heromap[unit:GetName()]
-	    	if _G.heromap_version[nobu_id]["16"] == true then 
+	    	if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["16"] == true then 
 	    		msg = msg.._G.hero_name_zh[nobu_id].."."
 	    	end
 	    end

@@ -39,6 +39,7 @@ _G.heromap = {
 
   npc_dota_hero_viper               = "C01",
   npc_dota_hero_legion_commander    = "C02",
+  npc_dota_hero_ogre_magi           = "C03",
   npc_dota_hero_obsidian_destroyer  = "C05",
   npc_dota_hero_silencer            = "C07",
   npc_dota_hero_antimage            = "C10",
@@ -92,7 +93,7 @@ _G.heromap_version = {
 
   C01 = {["11"] = true , ["16"] = true},
   C02 = {["11"] = true , ["16"] = true},
-  C03 = {["11"] = false , ["16"] = true},
+  C03 = {["11"] = true , ["16"] = true},
   C05 = {["11"] = true , ["16"] = true},
   C07 = {["11"] = true , ["16"] = true},
   C10 = {["11"] = true , ["16"] = true},

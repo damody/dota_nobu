@@ -3559,6 +3559,35 @@
 		"StatusHealth"	"5555"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 	}
+	// 島津義弘 的大XX
+	"C03T_UNIT"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"majia"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/disruptor/lightning_strike_weapon/lightning_strike_weapon.vmdl"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"MovementSpeed"	"100"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"StatusHealth"	"55555"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"ModelScale"	"10"
+	}
 
 	"A26_MINE"
 	{
@@ -5846,27 +5875,27 @@
 		"Ability2"	""
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"-5"
-		"MagicalResistance"	"0"
+		"ArmorPhysical"	"999"
+		"MagicalResistance"	"100"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"150.0"
-		"BountyGoldMax"	"150.0"
-		"BountyXP"	"30"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		"BountyXP"	"0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
-		"GoldCost"	"140"
-		"LumberCost"	"140"
+		"GoldCost"	"0"
+		"LumberCost"	"0"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"1800"
+		"StatusHealth"	"18000"
 		"StatusHealthRegen"	"15"
 		// Vision
 		// ----------------------------------------------------------------
