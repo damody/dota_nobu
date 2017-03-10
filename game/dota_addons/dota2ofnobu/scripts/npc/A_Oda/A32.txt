@@ -1,0 +1,414 @@
+// 瀧川一益
+"DOTAAbilities"
+{
+	"A32_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle" 	"particles/econ/items/sand_king/sandking_barren_crown/sandking_rubyspire_cracks.vpcf"
+			"particle" 	"particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_green_ambient.vpcf"
+			"particle" 	"particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
+			"particle" 	"particles/units/heroes/hero_death_prophet/death_prophet_spiritsiphon.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+
+		}
+	}
+
+	//瀧川一益
+	"A32W"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_AOE"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "invoker_tornado"
+
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		//-------------------------------------------------------------------------------------------------------------
+		"AOERadius"                                 "%A32W_Radius"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "12 11 10 9"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "100 120 140 160"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"                        	"A32W_knockBack"
+				"Target"							"POINT"
+			}
+	
+			"DelayedAction" 
+			{
+				"Delay" 							"%A32W_flyTime"
+				"Action"
+				{ 
+					"RunScript"
+					{
+						"ScriptFile"           		"scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"            		"A32W_stunAndDamage"
+						"Target"
+						{
+							"Types"              	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+							"Teams"                	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"                	"DOTA_UNIT_TARGET_FLAG_NONE"
+							"Center"     		   	"POINT"
+							"Radius"     		   	"%A32W_Radius"
+						}
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Hero_Brewmaster.ThunderClap"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			//傷害 暈眩時間 在空中時間(跳) 傷害半徑
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32W_damage"                		"150 250 350 450"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"A32W_stunDuration"                	"0.5 0.8 1.1 1.4"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"A32W_flyTime"            			"0.6"
+			}
+			"04"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"A32W_Radius"            			"300"
+			}
+		}
+	}
+
+
+
+	"A32D"
+	{
+		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_AOE|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "invoker_tornado"
+		"AbilityCastAnimation"                      "ACT_DOTA_ATTACK_EVENT"
+		"AnimationPlaybackRate" 					"0.3"
+		"AOERadius"                                 "%A32W2_Radius"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCastRange"							"1000"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                        	"5"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "80"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"                        	"A32W_knockBack"
+				"Target"							"POINT"
+			}
+
+			"DelayedAction" 
+			{
+				"Delay" 							"%A32W_flyTime"
+				"Action"
+				{ 
+					"RunScript"
+					{
+						"ScriptFile"                "scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"                  "A32W2_stunAndDamage"
+						"Target"
+						{
+							"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+							"Teams"            	    "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"            	    "DOTA_UNIT_TARGET_FLAG_NONE"
+							"Center"     			"POINT"
+							"Radius"     		   	"%A32W2_Radius"
+						}
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Hero_Brewmaster.ThunderClap"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			//傷害 暈眩時間 在空中時間(跳) 傷害半徑
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32W2_damage"                		"150 250 350 450"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"A32W2_stunDuration"                "0.5 0.8 1.1 1.4"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"A32W_flyTime"            			"0.6"
+			}
+			"04"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"A32W2_Radius"            			"300"
+			}
+		}
+	}
+
+
+	"A32E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityCastRange"              			"500"  
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityTextureName"    					"death_prophet_spirit_siphon"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL" 
+		"AbilityCooldown"                   		"20 18 16 14"
+		"AbilityManaCost"                      		"80"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"         				"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"                			"A32E"
+			}
+		}
+		"AbilitySpecial"
+		{
+			//持續時間 斷線距離 每秒傷害
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32E_duration"                		"6"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32E_distance"                		"850"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32E_damage"                		"60 95 130 160"
+			}
+		}
+	}
+	
+	"A32R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"12"
+		"AbilityManaCost"           				"120 140 160 180"
+		"AbilityTextureName"                        "legion_commander_moment_of_courage"
+
+        "OnSpellStart" 
+        {
+        	"ApplyModifier"
+        	{
+        		"Target"            				"TARGET"
+        		"ModifierName"      				"modifier_A32R_Banish"
+        	}
+        	//"FireEffect"
+        	//{
+        	//	"EffectName"                "particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_green_ambient.vpcf"
+        	//	"EffectAttachType"  	"follow_origin"
+        	//	"Target"                           "TARGET"
+        	//}
+        	"RunScript"
+			{
+				"ScriptFile"         				"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"                			"A32R"
+			}
+        }
+
+        "Modifiers"
+        {
+           //放逐
+        	"modifier_A32R_Banish"
+        	{
+                "Passive"           				"0"  
+                "Duration"          				"%A32R_duration" 
+                "IsHidden"         					"0"  
+                "IsDebuff"          				"1"  
+                "IsPurgable"        				"0"  
+                "EffectName"                "particles/a32/a32r.vpcf"
+				"EffectAttachType"        "attach_hitloc"
+                "States"
+                {
+
+                	//不能攻擊且無法被攻擊
+                	"MODIFIER_STATE_ATTACK_IMMUNE"  "MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_DISARMED"    	"MODIFIER_STATE_VALUE_ENABLED"
+                }
+
+                "Properties" 
+                {
+                	//傷害增加 緩速
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%A32R_damageIncrease"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%A32R_speedDecrease"
+                }
+            }
+
+            //爆擊
+            "modifier_A32R_Crit"
+            {
+            	"Passive" "1"
+            	"OnAttackStart"
+            	{
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_A32R_Crit2"
+						"Target"					"CASTER"
+					}
+					"Random"
+					{
+						"Chance"					"20"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"		"modifier_A32R_Crit2"
+								"Target"			"CASTER"
+							}
+						}
+					}
+
+            	}
+            }
+
+            "modifier_A32R_Crit2"
+       		{
+          		"Properties"
+           		{
+                "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "%A32R_CritScale"
+           		}
+           		"OnAttackLanded"
+				{
+
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_A32R_Crit2"
+						"Target"					"CASTER"
+					}
+				}
+       		}
+        }
+        "AbilitySpecial"
+		{
+			//爆擊傷害 放逐時間 減速 魔法增商
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32R_CritScale"                	"200 230 260 290"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32R_duration"                		"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32R_speedDecrease"                "-50"
+			}
+			"04"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A32R_damageIncrease"               "33"
+			}
+		}
+    }
+
+	"A32T"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                          		"ability_datadriven"
+		"AbilityTextureName"                        "queenofpain_sonic_wave"
+		"AbilityCastAnimation"                     	"ACT_DOTA_ATTACK_EVENT"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                         	"0.1"
+		"AbilityCastRange"							"1200"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                         	"90 80 70"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                         	"185"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"							"A32T_SaveCastPosition"
+			}
+
+			"LinearProjectile"
+			{
+				"Target"      						"POINT"
+			    "EffectName"  						"particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
+			    "MoveSpeed"   						"1000"
+			    "StartRadius"   					"100"
+			    "StartPosition" 					"attach_origin"
+			    "EndRadius"     					"500"
+			    "FixedDistance" 					"1200"
+			    "TargetTeams"   					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			    "TargetTypes"   					"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			    "TargetFlags"   					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			    "HasFrontalCone"    				"1"
+			    "ProvidesVision" 					"1"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"		"A32T_OnProjectileHit"
+				"Damage"	"%A32T_DAMAGE"
+			}
+		}
+		"AbilitySpecial"
+		{
+			//當前血量的傷害 %
+			"01"
+			{
+				"var_type"                "FIELD_INTEGER"
+				"A32T_DAMAGE"                "20 25 30"
+			}
+		}
+	}
+} // END DOTAAbilities
