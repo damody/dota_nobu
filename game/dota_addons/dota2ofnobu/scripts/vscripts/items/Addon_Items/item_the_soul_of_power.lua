@@ -21,10 +21,10 @@ function Shock( keys )
 					local itemName = item:GetName()
 					if (itemName == "item_the_soul_of_power") then
 						item:Destroy()
+						break
 					end
 				end
 			end
-
 			end)
 		end
 		end)

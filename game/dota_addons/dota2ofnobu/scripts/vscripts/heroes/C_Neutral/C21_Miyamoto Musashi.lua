@@ -441,6 +441,11 @@ function C21R_old_crit_judgment( keys )
 	if RandomInt(1,100)<=crit_chance then
 		local rate = caster:GetAttackSpeed()+0.1
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21R_old_critical_strike",{duration=rate})
+		if rate < 1 then
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+		else
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+		end
 	end
 end
 

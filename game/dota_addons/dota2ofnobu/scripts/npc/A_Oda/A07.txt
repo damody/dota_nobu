@@ -460,9 +460,9 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"HotKeyOverride"	"E"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
-		"AnimationPlaybackRate"	"1.0"
+		"AnimationPlaybackRate"	"2"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"10"
@@ -812,7 +812,7 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%bonus_movement_speed"
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%damage"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"60"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"90"
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1"
 				}
 				"Duration"	"%duration"

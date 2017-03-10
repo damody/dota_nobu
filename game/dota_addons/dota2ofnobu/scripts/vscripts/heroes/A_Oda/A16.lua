@@ -49,6 +49,9 @@ function modifier_A16R2:OnTakeDamage(event)
 						        damage_type = DAMAGE_TYPE_PURE,
 						        damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
 						    }
+						    if enemy:IsMagicImmune() then
+						    	damageTable.damage = dmg2*0.5
+						    end
 						    ApplyDamage(damageTable)
 						end
 					end

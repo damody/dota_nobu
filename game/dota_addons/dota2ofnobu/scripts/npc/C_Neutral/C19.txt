@@ -187,7 +187,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"atk"	"10 20 30 40"
+				"atk"	"90 100 110 120"
 			}
 			"03"
 			{
@@ -335,7 +335,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_moveandattackspeed"	"-10 -13 -16 -19"
+				"bonus_moveandattackspeed"	"-15 -20 -25 -30"
 			}
 			"02"
 			{
@@ -448,6 +448,18 @@
 					}
 				}
 			}
+			"modifier_C19R_old2"
+			{
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-50"
+				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"Duration"  "5"
+			}
 			"modifier_C15D"
 			{
 				"IsHidden"	"1"
@@ -473,23 +485,7 @@
 		"LevelsBetweenUpgrades"	"6"
 		"OnUpgrade"
 		{
-			"RemoveModifier"
-            {
-                "Target" "CASTER"
-                "ModifierName" "modifier_ninja_cloth"
-            }
-            "DelayedAction"
-            {
-            	"Delay"     "0.1"
-            	"Action"    
-            	{
-            		"ApplyModifier"
-		            {
-		                "Target" "CASTER"
-		                "ModifierName" "modifier_ninja_cloth"
-		            }
-            	}
-            }
+			
 		}
 		"Modifiers"
 		{
@@ -500,14 +496,32 @@
 				{
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%bonus_magic_def"
 				}
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnIntervalThink"
+					}
+				}
 			}
 			"modifier_ninja_cloth"
 			{
-				"IsHidden"	"1"
+				"IsHidden"	"0"
 				"Passive"	"1"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"	//閃避
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnOnCreated"
+					}
 				}
 			}
 		}
@@ -534,38 +548,50 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"enchantress_enchant"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"OnUpgrade"
+		"AbilityCooldown"	"100"
+		"AbilityManaCost"	"200 250 300"
+		"OnSpellStart"
 		{
-			"RemoveModifier"
-            {
-                "Target" "CASTER"
-                "ModifierName" "modifier_ninja_cloth"
-            }
-            "DelayedAction"
-            {
-            	"Delay"     "0.1"
-            	"Action"    
-            	{
-            		"ApplyModifier"
-		            {
-		                "Target" "CASTER"
-		                "ModifierName" "modifier_ninja_cloth"
-		            }
-            	}
-            }
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+				"Function"	"C19T_old_OnSpellStart"
+				"Target"	"POINT"
+			}
 		}
 		"Modifiers"
 		{
+			"modifier_C19T"
+			{
+				"Passive"	"1"
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnIntervalThink"
+					}
+				}
+			}
 			"modifier_ninja_cloth"
 			{
 				"Passive"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%bonus_evasion"	//閃避
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnOnCreated"
+					}
 				}
 			}
 		}
@@ -576,7 +602,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_evasion"	"40 50 60"
+				"bonus_evasion"	"30 40 50"
 			}
 		}
 	}
@@ -695,6 +721,18 @@
 					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_FROZEN"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
+			}
+			"modifier_C19D2"
+			{
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-50"
+				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"IsDebuff"	"1"
+				"Duration"  "5"
 			}
 		}
 	}

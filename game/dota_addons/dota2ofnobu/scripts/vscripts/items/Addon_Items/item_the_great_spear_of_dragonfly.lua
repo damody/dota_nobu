@@ -37,7 +37,11 @@ function Shock( keys )
 						Timers:CreateTimer(0.3, function ()
 							ParticleManager:DestroyParticle(flame, false)
 						end)
-						AMHC:Damage(caster,it,300,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						if it:IsMagicImmune() then
+							AMHC:Damage(caster,it,100,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						else
+							AMHC:Damage(caster,it,300,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						end
 					end
 				end
 				--SE

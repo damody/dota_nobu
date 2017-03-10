@@ -39,6 +39,7 @@ function A27W( event )
 	local radius = 700
 	local people = 1
 	local origin_pos = caster:GetOrigin()
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.5})
 
 	for i=1,people do
 			-- handle_UnitOwner needs to be nil, else it will crash the game.
@@ -309,7 +310,7 @@ function MirrorImage( event )
 	local caster = event.caster
 	local ability = event.ability
 	local illusions_count = ability:GetLevelSpecialValueFor( "illusions_count", ability:GetLevel() - 1 )
-
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=1})
 	if illusions_count < 1 then
 		return -- wtf
 	end

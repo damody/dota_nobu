@@ -136,7 +136,7 @@ function A13W( event )
 	local origin_pos = caster:GetOrigin()
 
 	local am = caster:FindAllModifiers()
-
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.5})
 
 	for _,v in pairs(am) do
 		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
@@ -192,6 +192,9 @@ function A13W( event )
 				--分身不能用法球
 				illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)
+				if caster:HasModifier("modifier_perceive_wine") then
+					ability:ApplyDataDrivenModifier(illusion[i],illusion[i],"modifier_perceive_wine",nil)
+				end
 			end
 		end
 		
@@ -219,7 +222,7 @@ function A13W( event )
 				return nil
 			end )
 	end
-	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.3})
+	
 end
 
 
@@ -241,6 +244,7 @@ function A13W_old( event )
 	local origin_go_index = RandomInt(1, people)
 	local random_angle = RandomInt(-20, 20) * 0.1
 	local origin_pos = caster:GetOrigin()
+	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.5})
 
 	local am = caster:FindAllModifiers()
 	for _,v in pairs(am) do
@@ -324,7 +328,6 @@ function A13W_old( event )
 				return nil
 			end )
 	end
-	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.3})
 end
 
 

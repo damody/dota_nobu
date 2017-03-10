@@ -448,7 +448,7 @@ function A26T_old_OnSpellStart( keys )
 		Ability = ability,
 		EffectName = "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf",
 		bDodgeable = false,
-		bProvidesVision = false,
+		bProvidesVision = true,
 		iMoveSpeed = projectile_speed,
 		iVisionRadius = 0,
 		iVisionTeamNumber = caster:GetTeamNumber(),

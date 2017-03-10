@@ -77,7 +77,7 @@ function B08D_old( keys )
 				Source = caster,
 				bHasFrontalCone = false,
 				bReplaceExisting = false,
-				iUnitTargetTeam = target:GetTeamNumber(),
+				iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 				iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 				iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 				bProvidesVision = true,

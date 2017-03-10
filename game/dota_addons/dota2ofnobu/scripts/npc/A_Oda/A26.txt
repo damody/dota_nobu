@@ -619,8 +619,9 @@
 		"AbilityDamage"					"1500 2000 2500"
 
 		"AbilityCastRange"				"1500"
-		"AbilityCastPoint"				"0.5"
+		"AbilityCastPoint"				"1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate"			"0.5"
 
 		"AoERadius"						"%radius"
 
@@ -629,7 +630,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"projectile_speed"	"1000"
+				"projectile_speed"	"1600"
 			}
 			"02"
 			{

@@ -55,6 +55,10 @@ function GameCanPlay(callback)
     return true
 end
 
+_G.blacklist = {
+	"317992815",
+}
+
 local cannotplay = {}
 function Nobu:OnPlayerConnectFull(keys)
     local player = PlayerInstanceFromIndex(keys.index + 1)
@@ -65,6 +69,11 @@ function Nobu:OnPlayerConnectFull(keys)
 		_G.homeisme = true
 	end
     print("keys.index"..keys.index.." steamID "..steamID)
+    for _,v in ipairs(_G.blacklist) do
+    	if v == tostring(steamID) then
+    		--player:Destroy()
+    	end
+    end
     -- 中離檢查
     --[[
     PlayerCanPlay(function()

@@ -36,12 +36,22 @@ end
 ]]
 function Teleport( event )
 	local caster = event.caster
+	local ability = event.ability
 	--local point = event.target_points[1]
 	local point = event.target:GetAbsOrigin()
 	
     FindClearSpaceForUnit(caster, point, true)
     caster:Stop() 
-    EndTeleport(event)   
+    EndTeleport(event)
+    local units1 = FindUnitsInRadius(caster:GetTeamNumber(),	
+				caster:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+		   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		   		0, 
+		   		0, 
+				false) 	
+	for _,unit in ipairs(units1) do
+    	ability:ApplyDataDrivenModifier(caster,unit,"modifier_C19D2",nil)
+    end
 end
 
 function CreateTeleportParticles( event )
@@ -70,10 +80,20 @@ end
 function Teleport2( event )
 	local caster = event.caster
 	local point = event.target_points[1]
+	local ability = event.ability
 	
     FindClearSpaceForUnit(caster, point, true)
     caster:Stop() 
-    EndTeleport(event)   
+    EndTeleport(event)  
+    local units1 = FindUnitsInRadius(caster:GetTeamNumber(),	
+				caster:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+		   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		   		0, 
+		   		0, 
+				false) 	
+	for _,unit in ipairs(units1) do
+    	ability:ApplyDataDrivenModifier(caster,unit,"modifier_C19R_old2",nil)
+    end 
 end
 
 function CreateTeleportParticles2( event )
@@ -134,3 +154,38 @@ function C19E_old( keys )
 	end)
 end
 
+function C19T_OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if not caster:HasModifier("modifier_ninja_cloth") then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_ninja_cloth",nil)
+	else
+		local nc = caster:FindModifierByName("modifier_ninja_cloth")
+		if nc:GetStackCount() < 1 then
+			caster:RemoveModifierByName("modifier_ninja_cloth")
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_ninja_cloth",nil)
+			nc = caster:FindModifierByName("modifier_ninja_cloth")
+			nc:SetStackCount(1)
+		end
+	end
+end
+
+
+function C19T_OnOnCreated( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local nc = caster:FindModifierByName("modifier_ninja_cloth")
+	nc:SetStackCount(1)
+end
+
+function C19T_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster:RemoveModifierByName("modifier_ninja_cloth")
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_ninja_cloth",nil)
+	nc = caster:FindModifierByName("modifier_ninja_cloth")
+	nc:SetStackCount(2)
+	Timers:CreateTimer(10,function()
+		nc:SetStackCount(1)
+		end)
+end

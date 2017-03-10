@@ -471,15 +471,35 @@
 		}
 		"Modifiers"
 		{
+			"modifier_C19T"
+			{
+				"Passive"	"1"
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnIntervalThink"
+					}
+				}
+			}
 			"modifier_ninja_cloth"
 			{
-				"IsBuff"	"0"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%miss"
 				}
 				"Passive"	"1"
 				"IsHidden"	"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnOnCreated"
+					}
+				}
 			}
 			"modifier_B06R"
 			{
@@ -528,7 +548,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"miss"	"6 12 18 24"
+				"miss"	"9 14 19 24"
 			}
 		}
 	}
@@ -567,6 +587,19 @@
 		}
 		"Modifiers"
 		{
+			"modifier_C19T"
+			{
+				"Passive"	"1"
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnIntervalThink"
+					}
+				}
+			}
 			"modifier_ninja_cloth"
 			{
 				"IsBuff"	"0"
@@ -576,6 +609,14 @@
 				}
 				"Passive"	"1"
 				"IsHidden"	"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnOnCreated"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"

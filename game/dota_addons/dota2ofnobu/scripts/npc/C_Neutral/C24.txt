@@ -105,7 +105,6 @@
 		"AbilityCooldown"	"9"
 		"AbilityManaCost"	"85 110 135 160"
 		"AbilityCastRange"	"500 600 700 800"
-		"AOERadius"			"300"
 
 		"OnSpellStart"
 		{
@@ -179,7 +178,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"R"
-		"AbilityCooldown"	"8"
+		"AbilityCooldown"	"16"
 		"AbilityManaCost"	"100 110 120 130"
 		"MaxLevel"	"4"
 		"AOERadius"						"300"
@@ -267,7 +266,7 @@
 
 		"AbilityCastPoint"				"0.1"
 
-		"AbilityCooldown"				"150 140 130"
+		"AbilityCooldown"				"130 120 110"
 		"AbilityManaCost"				"125"
 
 		"AbilitySpecial"
@@ -384,7 +383,6 @@
 		"AbilityCooldown"	"13 11 7 4"
 		"AbilityManaCost"	"100 120 140 160"
 		
-		"AOERadius"			"850"
 		"AbilityDamage"				"250 350 450 550"
 
 		"OnSpellStart"
@@ -413,7 +411,7 @@
 				"StartRadius"	"150"
 				"StartPosition"	"attach_attack"
 				"EndRadius"	"150"
-				"FixedDistance"	"850"
+				"FixedDistance"	"500"
 				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -436,9 +434,28 @@
 				"Target"	"TARGET"
 				"EffectName"	"Hero_Sniper.AssassinateDamage"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
+				"Function"	"C24E_old_OnProjectileHitUnit"
+			}
 		}
 		"Modifiers"
 		{
+			"modifier_C24E_old"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"Duration"			"8"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"20"
+				}
+				"EffectName"		"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_buff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
 		}
 		"AbilitySpecial"
 		{
@@ -543,7 +560,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"250"
 		"AbilityCastPoint"				"0.1"
 
 		"AbilityCooldown"				"90"

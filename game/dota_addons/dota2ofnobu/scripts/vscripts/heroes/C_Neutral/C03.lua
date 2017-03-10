@@ -106,7 +106,95 @@ function C03T_OnSpellStart( keys )
 	end
 	robon:SetForwardVector(dir)
 	local fake_center = center - dir
-	local distance = 1000
+	local distance = 2000
+	local duration = distance/speed
+	-- 把自己踢過去
+	local knockbackProperties = {
+	    center_x = fake_center.x,
+	    center_y = fake_center.y,
+	    center_z = fake_center.z,
+	    duration = duration,
+	    knockback_duration = duration,
+	    knockback_distance = distance,
+	    knockback_height = 0,
+	    should_stun = 0,
+	}
+	ability:ApplyDataDrivenModifier(robon,robon,"modifier_knockback",knockbackProperties)
+	caster:RemoveGesture(ACT_DOTA_FLAIL)
+	Timers:CreateTimer(0,function()
+		if IsValidEntity(robon) then
+			robon:EmitSound("A07T.attack")
+			local pos = robon:GetAbsOrigin()
+			pos = pos + dir * 300
+			-- 搜尋
+			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+				pos,							-- 搜尋的中心點
+				nil, 							-- 好像是優化用的參數不懂怎麼用
+				500,			-- 搜尋半徑
+				ability:GetAbilityTargetTeam(),	-- 目標隊伍
+				ability:GetAbilityTargetType(),	-- 目標類型
+				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+				FIND_ANY_ORDER,					-- 結果的排列方式
+				false) 							-- 好像是優化用的參數不懂怎麼用
+
+			local damage_table = {
+				--victim = unit,
+				attacker = caster,
+				ability = ability,
+				damage = ability:GetAbilityDamage(),
+				damage_type = ability:GetAbilityDamageType(),
+				damage_flags = DOTA_DAMAGE_FLAG_NONE,
+			}
+
+			-- 處理搜尋結果
+			for _,unit in ipairs(units) do
+				damage_table.victim = unit
+				ApplyDamage(damage_table)
+				if unit:IsMagicImmune() then
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=0.1})
+				else
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=stun_time})
+				end
+			end
+			return check_time
+		end
+	end)
+	Timers:CreateTimer(total_time,function()
+		robon:ForceKill(false)
+		robon:Destroy()
+	end)
+end
+
+
+
+
+function C03T_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local point = ability:GetCursorPosition()
+	local center = caster:GetAbsOrigin()
+	local dir = (point-center):Normalized()
+	local robon = CreateUnitByName("C03T_UNIT",caster:GetAbsOrigin(),false,nil,nil,caster:GetTeamNumber())
+
+	local stun_time = ability:GetSpecialValueFor("stun_time")
+	local check_time = ability:GetSpecialValueFor("check_time")
+	local total_time = ability:GetSpecialValueFor("total_time")
+	
+	robon:SetOwner(caster)
+	robon:FindAbilityByName("majia"):SetLevel(1)
+	
+	local rp = robon:GetAbsOrigin()
+	rp.z = rp.z + 300
+	robon:SetAbsOrigin(rp)
+	local speed = 100
+	-- 防呆
+	if dir == Vector(0,0,0) then 
+		dir = caster:GetForwardVector() 
+		point = center + dir
+	end
+	robon:SetForwardVector(dir)
+	local fake_center = center - dir
+	local distance = 2000
 	local duration = distance/speed
 	-- 把自己踢過去
 	local knockbackProperties = {
