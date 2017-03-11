@@ -9,6 +9,11 @@ function Shock( keys )
 	local idx = 1
 	local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
 	dummy:SetOwner(caster)
+	local spell_hint_table = {
+		duration   = 12,		-- 持續時間
+		radius     = 650,		-- 半徑
+	}
+	dummy:AddNewModifier(dummy,nil,"nobu_modifier_spell_hint",spell_hint_table)
 	for i=0,3 do
 		Timers:CreateTimer( i*2.5, function()
 				dummy:EmitSound( "war.sound1" )
@@ -109,7 +114,7 @@ function Shock( keys )
 				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
-		if count > 13 then
+		if count > 15 then
 			return nil
 		else
 			return 0.8

@@ -15,7 +15,55 @@
 
 		}
 	}
+	"A32F"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"1"
+		"AbilityManaCost"           				"120 140 160 180"
+		"AbilityTextureName"                        "legion_commander_moment_of_courage"
+		"MaxLevel"	"1"
 
+        "OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"	"A32F_OnToggleOn"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A32.lua"
+				"Function"	"A32F_OnToggleOff"
+			}
+		}
+
+        "Modifiers"
+        {
+           //放逐
+        	"modifier_A32F"
+        	{
+                "Passive"           				"0"
+                "IsHidden"         					"0"
+                "OnAttackLanded"
+                {
+                	"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"	"A32F_OnAttackLanded"
+						"dmg"		"%attack_damage"
+					}
+                }
+            }
+        }
+    }
 	//瀧川一益
 	"A32W"
 	{
@@ -52,14 +100,6 @@
 					{
 						"ScriptFile"           		"scripts/vscripts/heroes/A_Oda/A32.lua"
 						"Function"            		"A32W_stunAndDamage"
-						"Target"
-						{
-							"Types"              	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-							"Teams"                	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Flags"                	"DOTA_UNIT_TARGET_FLAG_NONE"
-							"Center"     		   	"POINT"
-							"Radius"     		   	"%A32W_Radius"
-						}
 					}
 					"FireSound"
 					{
@@ -224,7 +264,7 @@
 		"BaseClass"                 				"ability_datadriven"
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityCastPoint"          				"0.1"
 		"AbilityCooldown"           				"12"
@@ -238,16 +278,11 @@
         		"Target"            				"TARGET"
         		"ModifierName"      				"modifier_A32R_Banish"
         	}
-        	//"FireEffect"
-        	//{
-        	//	"EffectName"                "particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_green_ambient.vpcf"
-        	//	"EffectAttachType"  	"follow_origin"
-        	//	"Target"                           "TARGET"
-        	//}
         	"RunScript"
 			{
 				"ScriptFile"         				"scripts/vscripts/heroes/A_Oda/A32.lua"
-				"Function"                			"A32R"
+				"Function"                			"A32R_OnSpellStart"
+				"Target"            				"TARGET"
 			}
         }
 
@@ -267,7 +302,7 @@
                 {
 
                 	//不能攻擊且無法被攻擊
-                	"MODIFIER_STATE_ATTACK_IMMUNE"  "MODIFIER_STATE_VALUE_ENABLED"
+                	//"MODIFIER_STATE_ATTACK_IMMUNE"  "MODIFIER_STATE_VALUE_ENABLED"
                 	"MODIFIER_STATE_DISARMED"    	"MODIFIER_STATE_VALUE_ENABLED"
                 }
 

@@ -16,6 +16,8 @@ function Nobu:DamageFilterEvent( filterTable )
 	-- [   VScript                ]:    entindex_attacker_const         	= 232 (number)
 	-- [   VScript                ]:    damagetype_const                	= 2 (number)
 	-- [   VScript                ]: }
+	local caster = EntIndexToHScript(filterTable.entindex_attacker_const)
+	local target = EntIndexToHScript(filterTable.entindex_victim_const)
 	-- if EntIndexToHScript(filterTable.entindex_victim_const):IsHero() then
 	-- 	--local attacker = EntIndexToHScript(filterTable.entindex_attacker_const)
 	-- 	local victim = EntIndexToHScript(filterTable.entindex_victim_const)
@@ -25,5 +27,18 @@ function Nobu:DamageFilterEvent( filterTable )
 	-- 	victim.damagetype = damagetype_const 
 	-- 	--print(victim:GetUnitName())
 	-- end 
+	if target.isvoid == 1 and caster.attackvoid == nil then
+		return false
+	end
+	if caster.attackvoid == 1 and filterTable.damagetype_const == DAMAGE_TYPE_PHYSICAL and not target:IsBuilding() then
+		caster.next_attack = {
+			victim = target,
+			attacker = caster,
+			damage = filterTable.damage,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			damage_flags = DOTA_DAMAGE_FLAG_NONE,
+		}
+		return false
+	end
 	return true 
 end
