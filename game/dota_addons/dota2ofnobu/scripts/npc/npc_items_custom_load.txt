@@ -1078,7 +1078,7 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
 				}
 				"Passive"	"0"
-				"Duration"	"1"
+				"Duration"	"5"
 				"EffectName"	"particles/item/d01/d01.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"IsHidden"	"1"
@@ -8948,6 +8948,17 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-15"
 				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
+						"Function"	"Shock"
+						"Chance"	"23"
+						"Percent"	"14"
+						"MinDmg"	"250"
+					}
+				}	
 			}
 			"Passive_scream_of_spiders"
 			{
@@ -8975,17 +8986,7 @@
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 			
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
-						"Function"	"Shock"
-						"Chance"	"23"
-						"Percent"	"14"
-						"MinDmg"	"250"
-					}
-				}
+				
 			}
 		}
 	}
