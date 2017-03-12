@@ -85,10 +85,6 @@ function Shock3( keys )
 	local target = keys.target
 	if (caster.nobuorb1 == "item_kokumo" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.gokokumo == nil then
 		caster.nobuorb1 = "item_kokumo"
-		caster.gokokumo = 1
-		Timers:CreateTimer(0.1, function() 
-				caster.gokokumo = nil
-			end)
 		local ran =  RandomInt(0, 100)
 		if (caster.kokumo == nil) then
 			caster.kokumo = 0
@@ -129,10 +125,6 @@ function Shock4( keys )
 	local target = keys.target
 	if (caster.nobuorb1 == "item_kokumo" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.gokokumo == nil then
 		caster.nobuorb1 = "item_kokumo"
-		caster.gokokumo = 1
-		Timers:CreateTimer(0.1, function() 
-				caster.gokokumo = nil
-			end)
 		local ran =  RandomInt(0, 100)
 		if (caster.kokumo == nil) then
 			caster.kokumo = 0
@@ -173,10 +165,6 @@ function Shock5( keys )
 	local target = keys.target
 	if (caster.nobuorb1 == "item_kokumo" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.gokokumo == nil then
 		caster.nobuorb1 = "item_kokumo"
-		caster.gokokumo = 1
-		Timers:CreateTimer(0.1, function() 
-				caster.gokokumo = nil
-			end)
 		local ran =  RandomInt(0, 100)
 		if (caster.kokumo == nil) then
 			caster.kokumo = 0

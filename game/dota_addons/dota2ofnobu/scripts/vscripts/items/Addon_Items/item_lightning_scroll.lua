@@ -230,10 +230,6 @@ function Shock2( keys )
 	local vec = (point2-point):Normalized() --caster:GetForwardVector():Normalized()
 	if (caster.nobuorb1 == "item_raikiri" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.goraikiri == nil then
 		caster.nobuorb1 = "item_raikiri"
-		caster.goraikiri = 1
-		Timers:CreateTimer(0.1, function() 
-				caster.goraikiri = nil
-			end)
 		local ran =  RandomInt(0, 100)
 		if (caster.raikiri == nil) then
 			caster.raikiri = 0

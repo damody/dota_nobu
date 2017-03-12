@@ -27,7 +27,7 @@ function Nobu:DamageFilterEvent( filterTable )
 	-- 	victim.damagetype = damagetype_const 
 	-- 	--print(victim:GetUnitName())
 	-- end 
-	if target.isvoid == 1 and caster.attackvoid == nil then
+	if target.isvoid == 1 and caster.attackvoid == nil and filterTable.damagetype_const == DAMAGE_TYPE_PHYSICAL then
 		return false
 	end
 	if caster.attackvoid == 1 and filterTable.damagetype_const == DAMAGE_TYPE_PHYSICAL and not target:IsBuilding() then

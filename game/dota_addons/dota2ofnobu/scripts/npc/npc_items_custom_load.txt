@@ -7258,8 +7258,22 @@
 		}
 		"Modifiers"
 		{
-			
-
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
+						"Function"	"Shock"
+						"Chance"	"19"
+						"Percent"	"14"
+						"MinDmg"	"115"
+					}
+				}
+			}
 			"Passive_lightning_katana"
 			{
 				"IsHidden"	"1"
@@ -7280,17 +7294,7 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}		
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
-						"Function"	"Shock"
-						"Chance"	"19"
-						"Percent"	"14"
-						"MinDmg"	"115"
-					}
-				}
+				
 			}
 		}
 	}
@@ -8952,9 +8956,9 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "15"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "15"		//敏
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "15"	//智
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "20"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "65"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
@@ -8979,7 +8983,7 @@
 						"Function"	"Shock"
 						"Chance"	"23"
 						"Percent"	"14"
-						"MinDmg"	"115"
+						"MinDmg"	"250"
 					}
 				}
 			}
@@ -10637,6 +10641,81 @@
 			}
 		}
 	}
+
+	// 當世具足．二階
+	"item_contemporary_armor_1"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/contemporary_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"22"
+		
+		"AbilityManaCost"	"0"
+		"ID"	"3849"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"7150"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"600"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_rations.lua"
+				"Function"		"Shock"
+				"Mana"			"600"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"Passive_contemporary_armor2"
+			{
+				"IsHidden"	"0"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-20"
+				}
+			}
+			"Passive_contemporary_armor"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "800" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "800"			//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+				}
+			}
+		}
+	}
+
 
 	// 鬼之籠手
 	"item_ghost_gloves"
@@ -15459,6 +15538,21 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
 				}
 			}
+		}
+	}
+
+	//當世具足二階製作單
+	"item_recipe_contemporary_armor_1" 
+	{
+	    "ID" "3850"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "2800"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_contemporary_armor_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_contemporary_armor"  //合成所需物品
 		}
 	}
 }
