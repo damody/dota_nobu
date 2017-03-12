@@ -220,7 +220,6 @@ function A32R_OnSpellStart( event )
 	local ability = event.ability
 	local target = event.target
 	local caster = event.caster
-	local castDistance =event.ability:GetSpecialValueFor("A32R_distance")
 	print("A32R_OnSpellStart")
 	target.isvoid = 1
 	Timers:CreateTimer(duration,function()
@@ -326,4 +325,121 @@ function A32F_OnAttackLanded( event )
 	local target = event.target
 	local caster = event.caster
 	
+end
+
+
+
+
+
+
+
+function A32W_old_knockBack( event )
+	local caster = event.caster 
+	local point =event.target_points[1]
+	local vec = caster:GetOrigin()
+	--local distance =math.sqrt(math.pow(vec.x-point.x,2)+math.pow(vec.y-point.y,2))
+
+	local distance =(point - vec):Length()--目標點跟施法者的距離
+	local knockbackProperties =
+	{
+		center_x = point.x,
+		center_y = point.y,
+		center_z = point.z,
+		duration = event.ability:GetLevelSpecialValueFor("A32W_flyTime", 0),
+		knockback_duration = event.ability:GetLevelSpecialValueFor("A32W_flyTime", 0),
+		knockback_distance = -distance,--負數往目標點移動
+		knockback_height = 300,
+		should_stun = 0
+	}
+	caster:AddNewModifier( caster, nil, "modifier_knockback", knockbackProperties )
+	caster:RemoveGesture(ACT_DOTA_FLAIL)
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
+
+end
+
+
+function A32W_old_stunAndDamage( keys )
+
+	local caster = keys.caster             
+	local ability = keys.ability
+	local radius = ability:GetSpecialValueFor("A32W_Radius")
+	--第二次跳躍有效時間
+	local A32W2_duration=5
+	--地板特效
+	local particle = ParticleManager:CreateParticle("particles/econ/items/sand_king/sandking_barren_crown/sandking_rubyspire_cracks.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+
+	local targets = FindUnitsInRadius(caster:GetTeamNumber(),	
+				caster:GetAbsOrigin(),nil,radius,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+		   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+		   		FIND_ANY_ORDER, 
+				false) 
+	local count=0
+	--對所有範圍內的敵人執行動作
+	for i,unit in pairs(targets) do
+		--對目標傷害
+		if not unit:IsBuilding() then
+			count=count+1
+			local damageTable = {victim=unit,   
+				attacker=caster,          
+				damage=ability:GetSpecialValueFor("A32W_damage"),
+				damage_type=keys.ability:GetAbilityDamageType()}
+			if not unit:IsMagicImmune() then
+				ApplyDamage(damageTable)
+				--對目標暈眩
+				ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration = ability:GetSpecialValueFor("A32W_stunDuration")})
+			end
+		end
+	end
+
+
+end
+
+
+
+function A32E_old_OnSpellStart( event )
+	local duration = event.ability:GetSpecialValueFor("A32_old_duration")
+	local ability = event.ability
+	local target = event.target
+	local caster = event.caster
+	print("A32E_old_OnSpellStart")
+	target.isvoid = 1
+	Timers:CreateTimer(duration,function()
+		target.isvoid = nil
+		end)
+end
+
+
+
+
+function A32T_old_OnToggleOn( event )
+	local ability = event.ability
+	local caster = event.caster
+	caster.attackvoid = 1
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A32F",nil)
+	Timers:CreateTimer(0.1,function()
+		if caster.next_attack ~= nil then
+			caster.next_attack.ability = ability
+
+			local targetArmor = caster.next_attack.victim:GetPhysicalArmorValue()
+			local damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
+			print("damageReduction", caster.next_attack.damage, damageReduction)
+			caster.next_attack.damage = caster.next_attack.damage/(1-damageReduction)
+
+			ApplyDamage(caster.next_attack)
+			caster.next_attack = nil
+
+		end
+		return 0.1
+		end)
+
+end
+
+function A32T_old_OnToggleOff( event )
+	local ability = event.ability
+	local caster = event.caster
+	caster.attackvoid = nil
+	caster:RemoveModifierByName("modifier_A32F")
 end
