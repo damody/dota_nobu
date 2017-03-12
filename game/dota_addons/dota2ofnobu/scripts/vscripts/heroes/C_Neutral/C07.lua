@@ -289,7 +289,7 @@ function C07_Effect( keys )
 	end
 	for i,v in ipairs(group) do
 		if ii == 0 then
-			if dummyx:CanEntityBeSeenByMyTeam(v) then
+			if dummyx:CanEntityBeSeenByMyTeam(v) and not v:HasModifier("modifier_majia") and not string.match(v:GetUnitName(),"dummy") then
 				ii = 1
 				StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
 				StartSoundEvent( "Hero_Leshrac.Lightning_Storm", v )

@@ -46,8 +46,8 @@ end
 function A32W_stunAndDamage( keys )
 
 	local caster = keys.caster             
-	local targets = keys.target_entities   
-	local al = keys.ability:GetLevel() - 1  
+	local ability = keys.ability
+	local radius = ability:GetSpecialValueFor("A32W_Radius")
 	--第二次跳躍有效時間
 	local A32W2_duration=5
 	--地板特效
@@ -55,27 +55,33 @@ function A32W_stunAndDamage( keys )
 	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
 
-
+	local targets = FindUnitsInRadius(caster:GetTeamNumber(),	
+				caster:GetAbsOrigin(),nil,radius,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+		   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+		   		FIND_ANY_ORDER, 
+				false) 
 	local count=0
 	--對所有範圍內的敵人執行動作
 	for i,unit in pairs(targets) do
-		count=count+1
 		--對目標傷害
 		if not unit:IsBuilding() then
+			count=count+1
 			local damageTable = {victim=unit,   
 				attacker=caster,          
-				damage=keys.ability:GetLevelSpecialValueFor("A32W_damage", al),    
-				damage_type=keys.ability:GetAbilityDamageType()}    
-			--print(keys.ability:GetLevelSpecialValueFor("A32W_damage", al))
-			ApplyDamage(damageTable)  
-			--print("applystun")
-			--對目標暈眩
-			unit:AddNewModifier( unit, nil, "modifier_stunned", {duration = keys.ability:GetLevelSpecialValueFor("A32W_stunDuration", al)} )
+				damage=ability:GetSpecialValueFor("A32W_damage"),
+				damage_type=keys.ability:GetAbilityDamageType()}
+			if not unit:IsMagicImmune() then
+				ApplyDamage(damageTable)
+				--對目標暈眩
+				ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration = ability:GetSpecialValueFor("A32W_stunDuration")})
+			end
 		end
 	end
 
+
 	--有敵人在範圍內造成傷害則開啟第二次跳躍
-	if count ~= 0 then
+	if count > 0 then
 		--caster:AddAbility("skill2")
 
 		--設定第二次跳躍等級為目前W等級 並把技能設為啟動狀態
@@ -209,15 +215,17 @@ end
 ================================================================================================================= ]]
 
 
-function A32R( event )
-
+function A32R_OnSpellStart( event )
 	local duration = event.ability:GetSpecialValueFor("A32R_duration")
 	local ability = event.ability
 	local target = event.target
 	local caster = event.caster
 	local castDistance =event.ability:GetSpecialValueFor("A32R_distance")
-	local al = event.ability:GetLevel() - 1
-
+	print("A32R_OnSpellStart")
+	target.isvoid = 1
+	Timers:CreateTimer(duration,function()
+		target.isvoid = nil
+		end)
 end
 
 
@@ -279,4 +287,43 @@ function A32T_OnProjectileHit( event )
 		damage=Damage,      
 		damage_type=event.ability:GetAbilityDamageType()}
 	ApplyDamage(damageTable)
+end
+
+
+function A32F_OnToggleOn( event )
+	local ability = event.ability
+	local caster = event.caster
+	caster.attackvoid = 1
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A32F",nil)
+	Timers:CreateTimer(0.1,function()
+		if caster.next_attack ~= nil then
+			caster.next_attack.ability = ability
+
+			local targetArmor = caster.next_attack.victim:GetPhysicalArmorValue()
+			local damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
+			print("damageReduction", caster.next_attack.damage, damageReduction)
+			caster.next_attack.damage = caster.next_attack.damage/(1-damageReduction)
+
+			ApplyDamage(caster.next_attack)
+			caster.next_attack = nil
+
+		end
+		return 0.1
+		end)
+
+end
+
+function A32F_OnToggleOff( event )
+	local ability = event.ability
+	local caster = event.caster
+	caster.attackvoid = nil
+	caster:RemoveModifierByName("modifier_A32F")
+end
+
+
+function A32F_OnAttackLanded( event )
+	local ability = event.ability
+	local target = event.target
+	local caster = event.caster
+	
 end

@@ -8,6 +8,11 @@ function Shock( keys )
 	local dummy = AMHC:CreateUnit( "hide_unit",point,caster:GetForwardVector(),caster,caster:GetTeamNumber())
 	dummy:AddAbility("majia"):SetLevel(1)
 	dummy:SetOwner(caster)
+	local spell_hint_table = {
+		duration   = 11.4,		-- 持續時間
+		radius     = 500,		-- 半徑
+	}
+	dummy:AddNewModifier(dummy,nil,"nobu_modifier_spell_hint",spell_hint_table)
 
 	local sumtime = 0
 	Timers:CreateTimer(0.2, function ()

@@ -21,6 +21,7 @@ end
 function modifier_protection_amulet:OnIntervalThink()
 	if (self.caster ~= nil) and IsValidEntity(self.caster) then
 		self.hp = self.caster:GetHealth()
+		self.mp = self.caster:GetMana()
 	end
 end
 
@@ -54,6 +55,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
 			            	self.caster:SetHealth(self.hp)
+			            	self.caster:SetMana(self.mp)
 			            	-- Strong Dispel 刪除負面效果
 			            	self.caster:Purge( false, true, true, true, true)
 							local count = 0
@@ -96,6 +98,7 @@ function OnEquip( keys )
 			if caster:FindModifierByName("modifier_protection_amulet") then
 				caster:FindModifierByName("modifier_protection_amulet").caster = caster
 				caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
+				caster:FindModifierByName("modifier_protection_amulet").mp = caster:GetMana()
 				caster.has_item_protection_amulet = true
 				return nil
 			else

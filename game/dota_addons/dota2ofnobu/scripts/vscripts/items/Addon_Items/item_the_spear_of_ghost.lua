@@ -29,11 +29,6 @@ function Shock( keys )
 
 	if (caster.nobuorb1 == "item_the_spear_of_ghost" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.gospear_of_ghost == nil then
 		caster.nobuorb1 = "item_the_spear_of_ghost"
-		caster.gospear_of_ghost = 1
-		print("item_the_spear_of_ghost")
-		Timers:CreateTimer(0.1, function() 
-				caster.gospear_of_ghost = nil
-			end)
 		local ran =  RandomInt(0, 100)
 		if (caster.spear_of_ghost == nil) then
 			caster.spear_of_ghost = 0
