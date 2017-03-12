@@ -113,6 +113,16 @@ local function chat_of_test(keys)
           caster:FindAbilityByName(nobu_id..askill:sub(si,si)):SetLevel(1)
         end
 	end
+	if (s == "-long" and nobu_id == "A31") then
+		LinkLuaModifier("modifier_long_a31", "heroes/modifier_long_a31.lua", LUA_MODIFIER_MOTION_NONE)
+		caster:AddNewModifier(caster, nil, "modifier_long_a31", nil)
+		caster:RemoveModifierByName("modifier_short_a31")
+	end
+	if (s == "-short" and nobu_id == "A31") then
+		LinkLuaModifier("modifier_short_a31", "heroes/modifier_short_a31.lua", LUA_MODIFIER_MOTION_NONE)
+		caster:AddNewModifier(caster, nil, "modifier_short_a31", nil)
+		caster:RemoveModifierByName("modifier_long_a31")
+	end
 	if (s == "-old" or s == "-11") and caster:GetLevel() == 1 and caster.isold == nil 
 		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
 		

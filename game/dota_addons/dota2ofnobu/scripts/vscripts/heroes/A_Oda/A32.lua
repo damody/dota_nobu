@@ -220,10 +220,11 @@ function A32R_OnSpellStart( event )
 	local ability = event.ability
 	local target = event.target
 	local caster = event.caster
-	print("A32R_OnSpellStart")
+	target:SetRenderColor(150,255,150)
 	target.isvoid = 1
 	Timers:CreateTimer(duration,function()
 		target.isvoid = nil
+		target:SetRenderColor(255,255,255)
 		end)
 end
 
@@ -248,7 +249,6 @@ end
 ================================================================================================================= ]]
 
 function A32T_OnProjectileHit( event )
-
 	local caster = event.caster 
 	local target = event.target
 	local ability = event.ability
@@ -309,7 +309,6 @@ function A32F_OnToggleOn( event )
 		end
 		return 0.1
 		end)
-
 end
 
 function A32F_OnToggleOff( event )
