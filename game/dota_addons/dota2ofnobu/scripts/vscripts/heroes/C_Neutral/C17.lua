@@ -328,16 +328,23 @@ function C17R_old_on_trigger( keys )
                               FIND_ANY_ORDER,		-- 結果的排列方式
                               false) 				-- 好像是優化用的參數不懂怎麼用
 		-- 處理搜尋結果
+		local damage_table = {}
+		
+		damage_table.attacker = caster
+		damage_table.damage_type = damage_type
+		damage_table.damage = ability_damage
 		for _,unit in ipairs(units) do
 			-- 製造傷害
-			local damage_table = {}
-			damage_table.victim = unit
-  			damage_table.attacker = caster
- 			damage_table.damage_type = damage_type
- 			damage_table.damage = ability_damage
-			ApplyDamage(damage_table)
-			-- 暈眩
-			unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
+			if unit.c17r_old == nil then
+				damage_table.victim = unit
+				ApplyDamage(damage_table)
+				unit.c17r_old = 1
+				Timers:CreateTimer(1,function()
+					unit.c17r_old = nil
+					end)
+				-- 暈眩
+				unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
+			end
 		end
 		-- 特效
 		local ifx = ParticleManager:CreateParticle("particles/c17/c17r_old_boom.vpcf",PATTACH_ABSORIGIN,caster)

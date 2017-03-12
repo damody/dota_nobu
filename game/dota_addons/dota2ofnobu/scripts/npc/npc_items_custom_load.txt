@@ -8948,17 +8948,6 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-15"
 				}
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
-						"Function"	"Shock"
-						"Chance"	"23"
-						"Percent"	"14"
-						"MinDmg"	"250"
-					}
-				}	
 			}
 			"Passive_scream_of_spiders"
 			{
@@ -8985,8 +8974,23 @@
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			
-				
+			}
+
+			"Passive_scream_of_spiders2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_spear_of_ghost.lua"
+						"Function"	"Shock"
+						"Chance"	"23"
+						"Percent"	"14"
+						"MinDmg"	"250"
+					}
+				}	
 			}
 		}
 	}

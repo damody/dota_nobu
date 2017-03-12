@@ -12,7 +12,7 @@
 			"particle" 	"particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
 			"particle" 	"particles/units/heroes/hero_death_prophet/death_prophet_spiritsiphon.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
-
+			"particle" 	"particles/a32/a32t_old.vpcf"
 		}
 	}
 	"A32F"
@@ -680,7 +680,6 @@
 		}
     }
 
-
     "A32T_old"
 	{
 		"BaseClass"                 				"ability_datadriven"
@@ -689,12 +688,15 @@
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"                        "legion_commander_moment_of_courage"
 
-		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"1"
-		"AbilityManaCost"           				"50"
-		"AbilityTextureName"                        "npc_dota_hero_juggernaut"
-		"MaxLevel"	"3"
+		"AbilityCastPoint"          	"0.1"
+		"AbilityCooldown"           	"1"
+		"AbilityManaCost"           	"300"
+		"MaxLevel"						"3"
+		"AbilityDamage"					"150 230 310"
+		"AbilityCastRange"				"500"
+		"AOERadius"						"500"
 
         "OnToggleOn"
 		{
@@ -727,21 +729,36 @@
         {
            "modifier_A32T_old"
 			{
+				"IsBuff"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%move_speed_bonus"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"
 				}
-				"IsBuff"	"1"
-				"OnAttackLanded"
+				"EffectName" "particles/a32/a32t_old.vpcf"
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
 				{
-					"RunScript"
+					"ActOnTargets"
 					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
-						"Function"	"A17T_Succes_Attack"
-						"dmg"	"%attack_damage"
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"500"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"    
+						{
+							"Damage"
+							{
+								"Target"		"TARGET"
+								"Type"			"DAMAGE_TYPE_MAGICAL"
+								"Damage"		"%AbilityDamage"
+							}
+						}
 					}
 				}
 			}

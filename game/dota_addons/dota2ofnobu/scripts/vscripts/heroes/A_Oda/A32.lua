@@ -300,7 +300,6 @@ function A32F_OnToggleOn( event )
 
 			local targetArmor = caster.next_attack.victim:GetPhysicalArmorValue()
 			local damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
-			print("damageReduction", caster.next_attack.damage, damageReduction)
 			caster.next_attack.damage = caster.next_attack.damage/(1-damageReduction)
 
 			ApplyDamage(caster.next_attack)
@@ -399,14 +398,15 @@ end
 
 
 function A32E_old_OnSpellStart( event )
-	local duration = event.ability:GetSpecialValueFor("A32_old_duration")
+	local duration = event.ability:GetSpecialValueFor("A32E_old_duration")
 	local ability = event.ability
 	local target = event.target
 	local caster = event.caster
-	print("A32E_old_OnSpellStart")
 	target.isvoid = 1
+	target:SetRenderColor(150,255,150)
 	Timers:CreateTimer(duration,function()
 		target.isvoid = nil
+		target:SetRenderColor(255,255,255)
 		end)
 end
 
@@ -424,7 +424,6 @@ function A32T_old_OnToggleOn( event )
 
 			local targetArmor = caster.next_attack.victim:GetPhysicalArmorValue()
 			local damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
-			print("damageReduction", caster.next_attack.damage, damageReduction)
 			caster.next_attack.damage = caster.next_attack.damage/(1-damageReduction)
 
 			ApplyDamage(caster.next_attack)
