@@ -594,7 +594,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 
 		"AbilityCastPoint"	"0.5"
-		"AbilityCooldown"	"26 23 20 17"
+		"AbilityCooldown"	"10 9 8 7"
 		"AbilityManaCost"	"80 70 60 50"
 		"AoERadius"			"%radius_stun"
 		"AbilityCastRange"	"500"
@@ -636,6 +636,10 @@
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
 						"Function"		"C17R_old_OnEnable"
 					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			// 用來感測有沒有敵人靠進
@@ -696,7 +700,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius_stun"		"425"
+				"radius_stun"		"500"
 			}
 			"05"
 			{

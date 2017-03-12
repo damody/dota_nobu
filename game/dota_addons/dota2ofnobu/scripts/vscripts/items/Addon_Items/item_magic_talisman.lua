@@ -24,6 +24,7 @@ end
 function modifier_magic_talisman:OnIntervalThink()
 	if (self.caster ~= nil) and IsValidEntity(self.caster) then
 		self.hp = self.caster:GetHealth()
+		self.mp = self.caster:GetMana()
 	end
 end
 
@@ -62,6 +63,7 @@ function modifier_magic_talisman:OnTakeDamage(event)
 		            			self.caster:RemoveModifierByName("modifier_magic_talisman2")
 		            		end 
 			            	self.caster:SetHealth(self.hp)
+			            	self.caster:SetMana(self.mp)
 			            	-- Strong Dispel 刪除負面效果
 			            	self.caster:Purge( false, true, true, true, true)
 							local count = 0
@@ -101,6 +103,7 @@ function OnEquip( keys )
 			if caster:FindModifierByName("modifier_magic_talisman") then
 				caster:FindModifierByName("modifier_magic_talisman").caster = caster
 				caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
+				caster:FindModifierByName("modifier_magic_talisman").mp = caster:GetMana()
 				caster.has_item_magic_talisman = true
 				return nil
 			else
