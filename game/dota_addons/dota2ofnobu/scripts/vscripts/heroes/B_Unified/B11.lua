@@ -267,3 +267,43 @@ function B11F_OnSpellStart( keys )
 
 end
 
+
+
+
+
+
+function B11W_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local particle = ParticleManager:CreateParticle("particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_sparks.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+	-- 搜尋
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		caster:GetAbsOrigin(),			-- 搜尋的中心點
+		nil, 							-- 好像是優化用的參數不懂怎麼用
+		ability:GetCastRange(),			-- 搜尋半徑
+		ability:GetAbilityTargetTeam(),	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false) 							-- 好像是優化用的參數不懂怎麼用
+
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+
+		--基礎傷害
+		ApplyDamage({
+			victim = unit,
+			attacker = caster,
+			ability = ability,
+			damage = ability:GetAbilityDamage(),
+			damage_type = ability:GetAbilityDamageType(),
+			damage_flags = DOTA_DAMAGE_FLAG_NONE,
+		})
+		local dir = (caster:GetAbsOrigin()-unit:GetAbsOrigin()):Normalized()
+		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf",PATTACH_POINT,unit)
+		ParticleManager:SetParticleControlEnt(ifx,3,unit,PATTACH_POINT,"attach_hitloc",unit:GetAbsOrigin()+Vector(0,0,200),true)
+		ParticleManager:SetParticleControlForward(ifx,3,dir)
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end
+end
