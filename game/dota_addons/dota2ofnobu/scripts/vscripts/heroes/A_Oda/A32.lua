@@ -100,6 +100,29 @@ function A32W_stunAndDamage( keys )
 
 end
 
+function A32T_old_OnIntervalThink( keys )
+
+	local caster = keys.caster             
+	local ability = keys.ability
+	if caster:GetMana() < ability:GetManaCost(ability:GetLevel()-1) then
+		caster:CastAbilityToggle(ability,-1)
+	else
+		local targets = FindUnitsInRadius(caster:GetTeamNumber(),	
+					caster:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+			   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			   		0, 
+			   		FIND_ANY_ORDER, 
+					false) 
+		--對所有範圍內的敵人執行動作
+		for i,unit in pairs(targets) do
+			--對目標傷害
+			AMHC:Damage(caster,unit, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			if not unit:IsRealHero() then
+				AMHC:Damage(caster,unit, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+		end
+	end
+end
 
 
 --[[ ============================================================================================================
