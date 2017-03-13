@@ -1,14 +1,10 @@
 -- 菊姬
 
 function B11D_OnKill( keys )
-
-
 	if keys.caster:IsAlive() and keys.unit:IsHero() and not keys.caster:IsSilenced() then
-
 		keys.caster:ModifyAgility( keys.bonus_agi )
 		keys.caster:CalculateStatBonus()
 	end
-
 end
 
 
@@ -16,9 +12,10 @@ function B11W_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 
-
-	local particle = ParticleManager:CreateParticle("particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_sparks.vpcf", PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+	for i=1,5 do
+		local particle = ParticleManager:CreateParticle("particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_sparks.vpcf", PATTACH_ABSORIGIN, caster)
+		ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+	end
 
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
@@ -191,18 +188,10 @@ function modifier_B11R_mark_OnTakeDamage( keys )
 	ParticleManager:SetParticleControlEnt(ifx,3,target,PATTACH_POINT,"attach_hitloc",target:GetAbsOrigin()+Vector(0,0,200),true)
 	ParticleManager:SetParticleControlForward(ifx,3,dir)
 	ParticleManager:ReleaseParticleIndex(ifx)
-
-
-
 end
-
-
-
 
 --目前使用次數
 B11F_counter=0
-
-
 
 function B11T_OnSpellStart( keys )
 	local caster = keys.caster
@@ -212,7 +201,6 @@ function B11T_OnSpellStart( keys )
 	B11F_ability:SetLevel(keys.ability:GetLevel())
 	B11F_ability:SetActivated(true)
 	--print(B11F_ability)
-
 
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("B11T_duration"), 
 		function( )
@@ -226,8 +214,27 @@ function B11T_OnSpellStart( keys )
 end
 
 
-
-
+function B11T_OnAttackStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local rnd = RandomInt(1,100)
+	caster:RemoveModifierByName("modifier_B11T_crit")
+	if caster.B11T_count == nil then
+		caster.B11T_count = 0
+	end
+	caster.B11T_count = caster.B11T_count + 1
+	if 15 >= rnd or caster.B11T_count > 6 then
+		caster.B11T_count = 0
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B11T_crit",{})
+		local rate = caster:GetAttackSpeed()
+		if rate < 1 then
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+		else
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+		end
+	end
+end
 
 
 function B11F_OnSpellStart( keys )
@@ -249,9 +256,11 @@ function B11F_OnSpellStart( keys )
 	local dmg = caster:GetAgility()*ability:GetSpecialValueFor("B11F_Damage")
 
 	AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	local order = {UnitIndex = caster:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = target:entindex()}
 
-
-		
+	ExecuteOrderFromTable(order)
 	--計算刺數
 	B11F_counter=B11F_counter+1
 
