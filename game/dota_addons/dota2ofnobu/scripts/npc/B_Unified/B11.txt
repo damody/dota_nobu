@@ -374,18 +374,13 @@
 
             "modifier_B11T_Crit2"
        		{
+       			"Passive" "0"
+            	"IsHidden"	"0"
+
           		"Properties"
            		{
-                	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "%B11F_buff_CritScale"
+                	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "250"
            		}
-           		"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"				"modifier_B11F_Crit2"
-						"Target"					"CASTER"
-					}
-				}
        		}
        	}
 		// Special

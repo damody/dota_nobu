@@ -219,14 +219,14 @@ function B11T_OnAttackStart( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local rnd = RandomInt(1,100)
-	caster:RemoveModifierByName("modifier_B11T_crit")
+	caster:RemoveModifierByName("modifier_B11T_Crit2")
 	if caster.B11T_count == nil then
 		caster.B11T_count = 0
 	end
 	caster.B11T_count = caster.B11T_count + 1
 	if 15 >= rnd or caster.B11T_count > 6 then
 		caster.B11T_count = 0
-		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B11T_crit",{})
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B11T_Crit2",{})
 		local rate = caster:GetAttackSpeed()
 		if rate < 1 then
 		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
