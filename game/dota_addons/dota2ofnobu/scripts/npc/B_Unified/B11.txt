@@ -380,18 +380,13 @@
 
             "modifier_B11T_Crit2"
        		{
+       			"Passive" "0"
+            	"IsHidden"	"0"
+
           		"Properties"
            		{
-                	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "%B11F_buff_CritScale"
+                	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "250"
            		}
-           		"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"				"modifier_B11F_Crit2"
-						"Target"					"CASTER"
-					}
-				}
        		}
        	}
 		// Special
@@ -463,20 +458,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_stun"
-			{
-				"IsHidden"	"0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration"		"%B11F_Stun_Time"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsDebuff"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-			}
 			"modifier_B11F"
 			{
 				"IsHidden"	"1"
@@ -603,11 +584,11 @@
 
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"5"
 		"AbilityManaCost"				"100 120 140 160"
 		"AbilityDamage"					"200 300 400 500"
 
-		"AbilityCastRange"				"1000"
+		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.1"
 
 
@@ -684,15 +665,14 @@
 		}
 	}
 
-
-	//菊姬 11.2b 忍法‧分身術
+	//菊姬 11.2b 忍法．調息
 	"B11R_old"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityTextureName"	"custom/B11/B11R_old"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"FightRecapLevel"		"0"
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
@@ -701,6 +681,61 @@
 		"AbilityCastPoint"		"0.1"
 		"AbilityCooldown"		"18"
 		"AbilityManaCost"		"100 120 140 160"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
+				"Function"		"B11R_old_OnUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B11R_old"
+			{
+				"IsHidden"	"0"
+				"Passive"	"1"
+				"AllowIllusionDuplicate"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%regen"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%spd"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"regen"	"0.5 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spd"	"4 6 8 10"
+			}
+		}
+	}
+
+	//菊姬 11.2b 忍法‧分身術
+	"B11F_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B11/B11R_old"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"		"0"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"		"W"
+		"MaxLevel"				"5"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCooldown"		"18"
+		"AbilityManaCost"		"100 120 140 160 180"
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -711,12 +746,12 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
-				"Function"		"B11R_old_OnSpellStart"
+				"Function"		"B11F_old_OnSpellStart"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_B11R_old"
+			"modifier_B11F_old"
 			{
 				"IsHidden"	"0"
 				"IsPurgable"	"0"
@@ -750,17 +785,17 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"B11R_old_duration"	"35 35 35 35"
+				"B11R_old_duration"	"35"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"illusion_incoming_damage"	"150 150 150 150"
+				"illusion_incoming_damage"	"150"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"B11R_old_attack"	"-70 -60 -50 -40"
+				"B11R_old_attack"	"-60 -50 -40 -30 -20"
 			}
 		}
 	}

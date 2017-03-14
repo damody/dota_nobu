@@ -219,14 +219,14 @@ function B11T_OnAttackStart( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local rnd = RandomInt(1,100)
-	caster:RemoveModifierByName("modifier_B11T_crit")
+	caster:RemoveModifierByName("modifier_B11T_Crit2")
 	if caster.B11T_count == nil then
 		caster.B11T_count = 0
 	end
 	caster.B11T_count = caster.B11T_count + 1
 	if 15 >= rnd or caster.B11T_count > 6 then
 		caster.B11T_count = 0
-		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B11T_crit",{})
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B11T_Crit2",{})
 		local rate = caster:GetAttackSpeed()
 		if rate < 1 then
 		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
@@ -248,9 +248,7 @@ function B11F_OnSpellStart( keys )
 	caster:SetAbsOrigin(target:GetAbsOrigin())
 
 	--暈眩
-	if not target:IsMagicImmune() then
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_stun",{duration = ability:GetSpecialValueFor("B11F_Stun_Time")})
-	end
+	target:AddNewModifier(caster,ability,"modifier_stunned",{duration=ability:GetSpecialValueFor("B11F_Stun_Time")})
 
 	--傷害
 	local dmg = caster:GetAgility()*ability:GetSpecialValueFor("B11F_Damage")
@@ -343,7 +341,7 @@ end
 
 
 
-function B11R_old_OnSpellStart( event )
+function B11F_old_OnSpellStart( event )
 	local caster = event.caster
 	local player = caster:GetPlayerID()
 	local ability = event.ability
@@ -424,8 +422,8 @@ function B11R_old_OnSpellStart( event )
 	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	for i=1,people do
 		illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
-		if (caster:HasModifier("modifier_B11R_old")) then
-			ability:ApplyDataDrivenModifier(illusion[i],illusion[i],"modifier_B11R_old",{duration = 200})
+		if (caster:HasModifier("modifier_B11F_old")) then
+			ability:ApplyDataDrivenModifier(illusion[i],illusion[i],"modifier_B11F_old",{duration = 200})
 			break
 		end
 	end
@@ -460,5 +458,16 @@ function modifier_B11T_old_OnAttackStart( keys )
 		else
 		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
 		end
+	end
+end
+
+
+function B11R_old_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("B11F_old")
+	local level = keys.ability:GetLevel()
+	
+	if ability ~= nil then
+		ability:SetLevel(level+1)
 	end
 end
