@@ -14,6 +14,12 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 			"particle"	"particles/b08w2/b08w2.vpcf"
+			"particle"	"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
+			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_attack_blur.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
 		}
 	}
 
@@ -452,20 +458,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_stun"
-			{
-				"IsHidden"	"0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration"		"%B11F_Stun_Time"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsDebuff"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-			}
 			"modifier_B11F"
 			{
 				"IsHidden"	"1"
@@ -517,6 +509,360 @@
 			}
 		}
 	}
+
+
+
+
+
+	//菊姬 11.2b 體術‧真空斬
+	"B11D_old"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B11/B11D_old"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"80"
+		"AbilityCastRange"	"200"
+		"AbilityDamage"		"150"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"C22W_old.vo1"
+			}
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%AbilityDamage"
+			}
+			"Stun"
+			{
+				"Duration"   "%stun_time"
+				"Target" 	 "TARGET"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_time"			"1.5"
+			}
+		}
+		
+	}
+
+
+
+	//菊姬 11.2b 忍法．櫻雨
+	"B11W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/b11_w"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"5"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"200 300 400 500"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
+				"Function"		"B11W_old_OnSpellStart"
+			}
+		}
+
+	}
+
+
+	//菊姬 11.2b 忍法‧ 土蜘蛛鎖
+	"B11E_old"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityTextureName"		"dota2/b11_e"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"			"0.1"
+		"AbilityCooldown"			"18"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"			"580"
+		"AbilityManaCost"			"100 120 140 160"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"B02R.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
+				"Function"		"B11E_old_OnSpellStart"
+				"Target"	"POINT"
+				"radius"     "%radius"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B11E_old"
+			{
+				"EffectName"                "particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
+				"EffectAttachType"   	    "attach_hitloc"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"		"%time"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"time"		"2 3 4 5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"225"
+			}
+		}
+	}
+
+	//菊姬 11.2b 忍法．調息
+	"B11R_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B11/B11R_old"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"		"0"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"		"W"
+		"MaxLevel"				"4"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCooldown"		"18"
+		"AbilityManaCost"		"100 120 140 160"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
+				"Function"		"B11R_old_OnUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B11R_old"
+			{
+				"IsHidden"	"0"
+				"Passive"	"1"
+				"AllowIllusionDuplicate"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%regen"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%spd"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"regen"	"0.5 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spd"	"4 6 8 10"
+			}
+		}
+	}
+
+	//菊姬 11.2b 忍法‧分身術
+	"B11F_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B11/B11R_old"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"		"0"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"		"W"
+		"MaxLevel"				"5"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCooldown"		"18"
+		"AbilityManaCost"		"100 120 140 160 180"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"A27W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
+				"Function"		"B11F_old_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B11F_old"
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{"CASTER"	"attach_origin"
+						"CASTER"	"attach_origin"
+						"CASTER"	"attach_origin"
+						}
+						"EffectName"	"particles/a27t/a27t.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"600"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.25"
+					//"MODIFIER_PROPERTY_HEALTH_BONUS" "%healthb"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"B11R_old_duration"	"35"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"illusion_incoming_damage"	"150"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"B11R_old_attack"	"-60 -50 -40 -30 -20"
+			}
+		}
+	}
+
+	
+
+	//菊姬 11.2b 極限體術‧鴉襲
+	"B11T_old"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B11/B11T_old"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"				"3"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+		"Modifiers"
+		{
+			"modifier_B11T_old"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"Target"		"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
+						"Function"		"modifier_B11T_old_OnAttackStart"
+					}
+				}
+			}
+			"modifier_B11T_old_critical_strike"
+			{
+				"IsHidden"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%crit_bonus"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"crit_bonus"	"400 400 400"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"crit_chance" 	"17 23 29" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"pure_damage" 	"110 160 210" 
+			}
+		}
+	}
+
 
 
 } // end DOTAAbilities
