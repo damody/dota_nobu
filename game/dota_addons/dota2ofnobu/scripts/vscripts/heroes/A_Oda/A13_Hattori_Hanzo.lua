@@ -190,7 +190,7 @@ function A13W( event )
 
 				illusion[i]:SetHealth(caster:GetHealth())
 				--分身不能用法球
-				illusion[i].nobuorb1 = "illusion"
+				--illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)
 				if caster:HasModifier("modifier_perceive_wine") then
 					ability:ApplyDataDrivenModifier(illusion[i],illusion[i],"modifier_perceive_wine",nil)
@@ -299,7 +299,7 @@ function A13W_old( event )
 
 				illusion[i]:SetHealth(caster:GetHealth())
 				--分身不能用法球
-				illusion[i].nobuorb1 = "illusion"
+				--illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)
 			end
 		end

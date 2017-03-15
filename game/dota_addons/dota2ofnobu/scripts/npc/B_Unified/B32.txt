@@ -410,7 +410,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate"	"2"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -561,7 +561,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate"	"2"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -780,7 +780,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AnimationPlaybackRate"	"2"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
@@ -877,7 +877,6 @@
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"95 85 75"
@@ -934,6 +933,7 @@
 				"IsHidden"	"0"
 				"IsPurgable"	"0"
 				"AllowIllusionDuplicate"	"1"
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"2"
@@ -1021,7 +1021,6 @@
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"125"
@@ -1072,6 +1071,7 @@
 				"IsHidden"	"0"
 				"IsPurgable"	"0"
 				"AllowIllusionDuplicate"	"1"
+				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"2"

@@ -268,12 +268,12 @@ end
 function B32T_Start( keys )
 	local caster = keys.caster
 	local ability = caster:FindAbilityByName("B32D")
-			ability:SetLevel(1)
-			ability:SetActivated(true)
+	ability:SetLevel(1)
+	ability:SetActivated(true)
 end
 
 function B32T_End( keys )
 	local caster = keys.caster
 	local ability = caster:FindAbilityByName("B32D")
-			ability:SetActivated(false)
+	ability:SetActivated(false)
 end

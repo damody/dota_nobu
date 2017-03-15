@@ -691,7 +691,7 @@
 		"AbilityTextureName"                        "dota2/a32_w"
 
 		"AbilityCastPoint"          	"0.1"
-		"AbilityCooldown"           	"1"
+		"AbilityCooldown"           	"25"
 		"AbilityManaCost"           	"25 35 45"
 		"MaxLevel"						"3"
 		"AbilityDamage"					"100 140 200"
@@ -710,6 +710,11 @@
 				"ModifierName"	"modifier_A32T_old"
 				"Target" 		"CASTER"
 			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A32T_locker"
+			}
 		}
 		"OnToggleOff"
 		{
@@ -727,12 +732,33 @@
 
         "Modifiers"
         {
+        	// 暫時鎖住此技能
+			"modifier_A32T_locker"
+			{
+				"Duration" "15"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"		"A32T_lock"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"		"A32T_unlock"
+					}
+				}
+			}
            "modifier_A32T_old"
 			{
 				"IsBuff"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
+					//"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%move_speed_bonus"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"

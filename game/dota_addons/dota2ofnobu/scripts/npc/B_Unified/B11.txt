@@ -61,7 +61,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_agi"	"3"
+				"bonus_agi"	"2"
 			}
 		}
 	}
@@ -617,8 +617,9 @@
 		"AbilityCastPoint"			"0.1"
 		"AbilityCooldown"			"18"
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastRange"			"580"
+		"AbilityCastRange"			"700"
 		"AbilityManaCost"			"100 120 140 160"
+		"AOERadius"					"500"
 
 		"OnSpellStart"
 		{
@@ -660,7 +661,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"225"
+				"radius"	"500"
 			}
 		}
 	}
@@ -701,7 +702,6 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%regen"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%spd"
 				}
-				"Duration"	"%duration"
 				"IsBuff"	"1"
 			}
 		}
@@ -776,7 +776,6 @@
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.25"
 					//"MODIFIER_PROPERTY_HEALTH_BONUS" "%healthb"
 				}
-				"Duration"	"%duration"
 				"IsBuff"	"1"
 			}
 		}

@@ -434,7 +434,13 @@ function A32E_old_OnSpellStart( event )
 end
 
 
+function A32T_lock( keys )
+	keys.ability:SetActivated(false)
+end
 
+function A32T_unlock( keys )
+	keys.ability:SetActivated(true)
+end
 
 function A32T_old_OnToggleOn( event )
 	local ability = event.ability
