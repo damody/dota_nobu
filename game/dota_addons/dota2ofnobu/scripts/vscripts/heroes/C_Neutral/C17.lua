@@ -335,15 +335,23 @@ function C17R_old_on_trigger( keys )
 		damage_table.damage = ability_damage
 		for _,unit in ipairs(units) do
 			-- 製造傷害
-			if unit.c17r_old == nil then
-				damage_table.victim = unit
-				ApplyDamage(damage_table)
-				unit.c17r_old = 1
-				Timers:CreateTimer(1,function()
-					unit.c17r_old = nil
+			if unit.c17r_old ~= target then
+				if unit.c17r_old ~= target and unit.c17r_old ~= nil then
+					Timers:CreateTimer(0.1,function()
+						damage_table.victim = unit
+						ApplyDamage(damage_table)
+						unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
 					end)
+				else
+					damage_table.victim = unit
+					ApplyDamage(damage_table)
+					unit.c17r_old = target
+					unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
+					Timers:CreateTimer(1,function()
+						unit.c17r_old = nil
+						end)
+				end
 				-- 暈眩
-				unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
 			end
 		end
 		-- 特效

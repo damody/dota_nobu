@@ -25,7 +25,7 @@
 		"AbilityCastPoint"          				"0.1"
 		"AbilityCooldown"           				"1"
 		"AbilityManaCost"           				"120 140 160 180"
-		"AbilityTextureName"                        "legion_commander_moment_of_courage"
+		"AbilityTextureName"                        "dota2/a32_w"
 		"MaxLevel"	"1"
 
         "OnToggleOn"
@@ -69,7 +69,7 @@
 	{
 		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_AOE"
 		"BaseClass"                                 "ability_datadriven"
-		"AbilityTextureName"                        "invoker_tornado"
+		"AbilityTextureName"                        "dota2/invoker_tornado"
 
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		//-------------------------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@
 	{
 		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_AOE|DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"BaseClass"                                 "ability_datadriven"
-		"AbilityTextureName"                        "invoker_tornado"
+		"AbilityTextureName"                        "dota2/invoker_tornado"
 		"AbilityCastAnimation"                      "ACT_DOTA_ATTACK_EVENT"
 		"AnimationPlaybackRate" 					"0.3"
 		"AOERadius"                                 "%A32W2_Radius"
@@ -225,7 +225,7 @@
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityTextureName"    					"death_prophet_spirit_siphon"
+		"AbilityTextureName"    					"dota2/a32_e"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL" 
 		"AbilityCooldown"                   		"20 18 16 14"
 		"AbilityManaCost"                      		"80"
@@ -270,7 +270,7 @@
 		"AbilityCooldown"           				"12"
 		"AbilityManaCost"           				"120 140 160 180"
 		"AbilityCastRange"							"700"
-		"AbilityTextureName"                        "legion_commander_moment_of_courage"
+		"AbilityTextureName"                        "dota2/a32_w"
 
         "OnSpellStart" 
         {
@@ -389,7 +389,7 @@
 	{
 		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"BaseClass"                          		"ability_datadriven"
-		"AbilityTextureName"                        "queenofpain_sonic_wave"
+		"AbilityTextureName"                        "dota2/a32_t"
 		"AbilityCastAnimation"                     	"ACT_DOTA_ATTACK_EVENT"
 		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -453,7 +453,7 @@
 	{
 		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_AOE"
 		"BaseClass"                                 "ability_datadriven"
-		"AbilityTextureName"                        "invoker_tornado"
+		"AbilityTextureName"                        "dota2/invoker_tornado"
 
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		//-------------------------------------------------------------------------------------------------------------
@@ -527,10 +527,10 @@
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"12"
+		"AbilityCooldown"           				"30 25 20 15"
 		"AbilityManaCost"           				"120 140 160 180"
 		"AbilityCastRange"							"700"
-		"AbilityTextureName"                        "rubick_fade_bolt"
+		"AbilityTextureName"                        "dota2/a32_eold"
 
         "OnSpellStart" 
         {
@@ -592,7 +592,7 @@
 			"03"
 			{
 				"var_type"                			"FIELD_INTEGER"
-				"A32E_old_damageIncrease"               "66"
+				"A32E_old_damageIncrease"               "44"
 			}
 		}
     }
@@ -688,13 +688,13 @@
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"                        "legion_commander_moment_of_courage"
+		"AbilityTextureName"                        "dota2/a32_w"
 
 		"AbilityCastPoint"          	"0.1"
 		"AbilityCooldown"           	"1"
-		"AbilityManaCost"           	"300"
+		"AbilityManaCost"           	"25 35 45"
 		"MaxLevel"						"3"
-		"AbilityDamage"					"150 230 310"
+		"AbilityDamage"					"100 140 200"
 		"AbilityCastRange"				"500"
 		"AOERadius"						"500"
 
@@ -741,24 +741,14 @@
 				"ThinkInterval"  "0.5"
 				"OnIntervalThink"
 				{
-					"ActOnTargets"
+					"SpendMana"
 					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"500"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"Action"    
-						{
-							"Damage"
-							{
-								"Target"		"TARGET"
-								"Type"			"DAMAGE_TYPE_MAGICAL"
-								"Damage"		"%AbilityDamage"
-							}
-						}
+						"Mana"		"%AbilityManaCost"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"	"A32T_old_OnIntervalThink"
 					}
 				}
 			}

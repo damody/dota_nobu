@@ -112,7 +112,7 @@ function A26R_OnAttackStart( keys )
 		caster.A26R_count = 0
 	end
 	caster.A26R_count = caster.A26R_count + 1
-	if crit_chance >= rnd or caster.A26R_count > 1 then
+	if crit_chance >= rnd or caster.A26R_count > (100/crit_chance) then
 		caster.A26R_count = 0
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A26R_crit",{})
 		local rate = caster:GetAttackSpeed()
