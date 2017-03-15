@@ -39,6 +39,7 @@ _G.heromap = {
   npc_dota_hero_dragon_knight       = "B32",
   npc_dota_hero_drow_ranger         = "B33",
   npc_dota_hero_beastmaster         = "B34",
+  npc_dota_hero_visage              = "B36",
 
   npc_dota_hero_viper               = "C01",
   npc_dota_hero_legion_commander    = "C02",
@@ -97,6 +98,7 @@ _G.heromap_version = {
   B32 = {["11"] = true , ["16"] = true},
   B33 = {["11"] = true , ["16"] = true},
   B34 = {["11"] = true , ["16"] = true},
+  B36 = {["11"] = false , ["16"] = true},
 
   C01 = {["11"] = true , ["16"] = true},
   C02 = {["11"] = true , ["16"] = true},
@@ -150,6 +152,7 @@ _G.heromap_skill = {
   B32 = {["11"] = "WERDT" , ["16"] = "WERDT"},
   B33 = {["11"] = "WERT" , ["16"] = "WERT"},
   B34 = {["11"] = "WERT" , ["16"] = "WERT"},
+  B36 = {["11"] = "WERT" , ["16"] = "WERDT"},
 
   C01 = {["11"] = "WERDT" , ["16"] = "WERT"},
   C02 = {["11"] = "WERT" , ["16"] = "WERT"},
@@ -204,6 +207,7 @@ _G.heromap_autoskill = {
   B32 = {["11"] = "D" , ["16"] = ""},
   B33 = {["11"] = "" , ["16"] = ""},
   B34 = {["11"] = "" , ["16"] = ""},
+  B36 = {["11"] = "" , ["16"] = ""},
 
   C01 = {["11"] = "D" , ["16"] = ""},
   C02 = {["11"] = "" , ["16"] = ""},

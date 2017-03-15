@@ -365,6 +365,10 @@ function B11F_old_OnSpellStart( event )
 		end
 	end
 
+	if IsValidEntity(caster.B11F) and caster.B11F:IsAlive() then
+		caster.B11F:ForceKill(true)
+	end
+
 	for i=1,people do
 			-- handle_UnitOwner needs to be nil, else it will crash the game.
 			illusion[i] = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
@@ -427,6 +431,7 @@ function B11F_old_OnSpellStart( event )
 			break
 		end
 	end
+	caster.B11F = illusion[1]
 end
 
 

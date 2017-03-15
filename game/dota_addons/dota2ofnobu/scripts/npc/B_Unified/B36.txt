@@ -1,0 +1,406 @@
+// 直江兼續
+"DOTAAbilities"
+{
+	"B36_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b32.vsndevts"
+			"particle"	"particles/b36w/b36w.vpcf"
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+			"particle"	"particles/econ/events/winter_major_2016/blink_dagger_start_sparkles_wm.vpcf"
+			"particle"  "particles/customgames/capturepoints/cp_mover.vpcf"
+			"particle" 	"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_e.vpcf"
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_blast.vpcf"
+		}
+	}
+	"Version"		"1"
+
+	//直江兼續 直江印
+	"B36W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B36/b36w"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"		"12"
+		"AbilityManaCost"		"120 140 160 180"
+		"AbilityCastRange"		"550 700 850 1000"
+		"AOERadius"				"800"
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"						"B36W_OnSpellStart"
+				"Target"						"POINT"
+			}
+			"DelayedAction" 
+			{
+				"Delay" 							"%delaytime"
+				"Action"
+				{ 
+					"RunScript"
+					{
+						"ScriptFile"           		"scripts/vscripts/heroes/B_Unified/B36.lua"
+						"Function"            		"B36W_DelayedAction"
+						"Target"					"POINT"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B36W"
+			{
+				"IsDebuff"						"1"
+				"EffectName"					"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"  			"attach_hitloc"
+				"Duration"						"4"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"-30"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"delaytime"		"1"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mark_duration"	"5"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"300 400 500 600"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"700"
+			}
+		}
+	}
+
+	// 直江兼續  履及
+	"B36D"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/B36/b36d"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"25"
+		"MaxLevel" 						"1"
+		//"AbilityCastRange"				"650"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"		"B36D_OnSpellStart"
+			}
+		}
+	}
+
+
+	// 直江兼續  劃心為籬
+	"B36E"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B36/b36e"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.1"	
+		"AbilityCooldown"	"12"
+		//"AbilityCastRange"	"900"
+		"AbilityManaCost"	"120 140 160 180"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"		"B36E_OnSpellStart"
+				"Target"		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B36E"
+			{
+				"IsBuff"			"1"
+				"EffectName"		"particles/customgames/capturepoints/cp_mover.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+						"Function"		"modifier_B36E_OnCreated"
+						"Target"		"TARGET"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+						"Function"		"modifier_B36E_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"Duration"	"4"
+
+
+				//"ThinkInterval"  "1"
+				//"OnIntervalThink"
+				//{
+				//	"FireSound"
+				//	{
+				//		"Target"		"TARGET"
+				//		"EffectName"	"C11W_old.vo1"
+				//	}
+				//}
+
+			}
+
+			"modifier_B36E_aromr"
+			{
+				"IsDebuff"			"0"
+				"Duration"			"4"
+				"Properties"
+	            {
+		               "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "%aromrbonus"        
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			//吸收盾 額外護盾=魔力百分比 自身範圍找隊友半徑 額外護甲值
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"damage_absorb"						"250 380 510 640"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"addition_absord_mul_mana_percent"	"20"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"radius"							"1200"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aromrbonus"	"4 6 8 10"
+			}
+		}
+	}
+	//直江兼續  技擊．七柱槍
+	"B36R"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "custom/B36/b36r"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"400"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "16 12 8 4"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "190 165 140 115"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"                        	"B36R_OnSpellStart"
+				"Target"							"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"A07T.attack"
+			}
+	
+			"DelayedAction" 
+			{
+				"Delay" 							"%B36R_flyTime"
+				"Action"
+				{ 
+					"RunScript"
+					{
+						"ScriptFile"           		"scripts/vscripts/heroes/B_Unified/B36.lua"
+						"Function"            		"B36R_DelayedAction"
+						"Target"					"TARGET"
+					}
+					"FireSound"
+					{
+						"Target"					"TARGET"
+						"EffectName"				"A07T.attack"
+					}
+				}
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B36R"
+			{
+				"Passive" 			"1"
+				"IsDebuff"			"0"
+				"Properties"
+	            {
+		               "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"        "%B36R_attack_speed"        
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			//多少倍智慧傷害 落地多少%損失血量傷害 在空中時間 增加攻速
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B36R_damage"                		"3"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B36R_damage_on_ground"             "16"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"B36R_flyTime"            			"1.2"
+			}
+			"04"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"B36R_attack_speed"            		"40 50 60 70"
+			}
+		}
+	}
+
+
+	//直江兼續 愛染明王
+	"B36T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B36/b36t"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL" 
+		"SpellImmunityType"		"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"		"2"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"				"3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"		"105 90 75"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"		"150"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_B36T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B36T"
+			{
+				"AttackAnimationPoint"	"0.2"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"Target"		"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+						"Function"		"modifier_B36T_OnAttackLanded"
+					}
+				}
+				"IsHidden"		"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+						}
+						"EffectName"	"particles/a07t2/a07t2.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.35"
+				}
+				"Duration"	"25"
+				"IsBuff"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			//增加生命 普公額外生命總傷害
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_Health"	"500 750 1000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"5"
+			}
+		}
+	}
+}

@@ -31,7 +31,7 @@ function modifier_transparency:GetAttributes()
 end
 
 function modifier_transparency:GetEffectName()
-	return "particles/items_fx/ghost.vpcf"
+	return "particles/items_fx/ghost_2.vpcf"
 end
 
 
