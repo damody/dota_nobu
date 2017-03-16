@@ -1,0 +1,465 @@
+--加藤段藏
+
+LinkLuaModifier( "C08R_modifier", "scripts/vscripts/heroes/C_Neutral/C08.lua",LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "C08R_followthrough", "scripts/vscripts/heroes/C_Neutral/C08.lua",LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "C08R_hook_back", "scripts/vscripts/heroes/C_Neutral/C08.lua",LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/C_Neutral/C08.lua",LUA_MODIFIER_MOTION_NONE )
+
+modifier_transparency = class({})
+
+function modifier_transparency:DeclareFunctions()
+	return { 
+	--MODIFIER_EVENT_ON_ATTACK_LANDED,
+	--MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+	--MODIFIER_EVENT_ON_ABILITY_EXECUTED 
+	}
+end
+
+function modifier_transparency:GetModifierInvisibilityLevel()
+	return 1
+end
+
+function modifier_transparency:IsHidden()
+	return false
+end
+
+function modifier_transparency:CheckState()
+	local state = {
+	[MODIFIER_STATE_INVISIBLE] = true
+	}
+	return state
+end
+
+
+function modifier_transparency:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
+end
+
+function modifier_transparency:GetEffectName()
+	return "particles/items_fx/ghost.vpcf"
+end
+
+
+function C08D_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=20})
+	--ability:ApplyDataDrivenModifier( caster, caster, "modifier_transparency", {duration = 20} )
+end
+
+function C08D_OnAttack( keys )
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then		-- This is to fail check if it is item. If it is item, error is expected
+		-- Variables
+		local caster = keys.caster
+		local target = keys.target
+		local ability = keys.ability
+		local abilityDamage = ability:GetLevelSpecialValueFor( "C08D_Damage", ability:GetLevel() - 1 )
+		local abilityDamageType = ability:GetAbilityDamageType()
+		if (not target:IsBuilding()) then
+			-- Deal damage and show VFX
+			local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+			ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
+			ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
+			
+			StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
+			PopupCriticalDamage(target, abilityDamage)
+			AMHC:Damage( caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+		end	
+		keys.caster:RemoveModifierByName( "modifier_C08D" )
+		keys.caster:RemoveModifierByName( "modifier_transparency" )
+	end
+end
+
+
+
+function C08E_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	for i=1,5 do
+		local particle = ParticleManager:CreateParticle("particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_sparks.vpcf", PATTACH_ABSORIGIN, caster)
+		ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+	end
+
+	-- 搜尋
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		caster:GetAbsOrigin(),			-- 搜尋的中心點
+		nil, 							-- 好像是優化用的參數不懂怎麼用
+		ability:GetCastRange(),			-- 搜尋半徑
+		ability:GetAbilityTargetTeam(),	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false) 							-- 好像是優化用的參數不懂怎麼用
+
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+		ApplyDamage({
+			victim = unit,
+			attacker = caster,
+			ability = ability,
+			damage = ability:GetAbilityDamage(),
+			damage_type = ability:GetAbilityDamageType(),
+			damage_flags = DOTA_DAMAGE_FLAG_NONE,
+		})
+
+		local dir = (caster:GetAbsOrigin()-unit:GetAbsOrigin()):Normalized()
+		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf",PATTACH_POINT,unit)
+		ParticleManager:SetParticleControlEnt(ifx,3,unit,PATTACH_POINT,"attach_hitloc",unit:GetAbsOrigin()+Vector(0,0,200),true)
+		ParticleManager:SetParticleControlForward(ifx,3,dir)
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end
+
+	local dir = -caster:GetForwardVector()
+	local distance = ability:GetSpecialValueFor("C08E_move_distance")
+	local spell_point = caster:GetAbsOrigin()
+	local target_point = spell_point+dir*distance
+	FindClearSpaceForUnit(caster,target_point,false)
+end
+
+function C08E_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = caster:FindAbilityByName("C08D")
+	local level = keys.ability:GetLevel()
+	if (ability~= nil and ability:GetLevel() < level+1) then
+		ability:SetLevel(level+1)
+	end
+end
+
+
+
+
+function C08W_OnSpellStart( keys )
+
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C08W_bleeding",{})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C08W_slience",{})
+	local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+	ParticleManager:SetParticleControl( fxIndex, 0, target:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )		
+	AddFOWViewer(caster:GetTeamNumber(),target:GetAbsOrigin(),600,3.0,false)
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
+end
+
+
+function modifier_C08W_bleeding_OnIntervalThink( keys )
+
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local abilityDamage = ability:GetSpecialValueFor("damage")
+	local abilityDamageType = ability:GetAbilityDamageType()
+	local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+	ParticleManager:SetParticleControl( fxIndex, 0, target:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )	
+	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )	
+	if(not target:IsMagicImmune()) then
+		AMHC:Damage( caster,target,abilityDamage,ability:GetAbilityDamageType() )
+	end
+	AddFOWViewer(caster:GetTeamNumber(),target:GetAbsOrigin(),600,3.0,false)
+end
+
+
+
+
+
+
+C08R = class ({})
+
+function C08R:OnSpellStart()
+	local caster = self:GetCaster()
+	local debuff_duraiton = self:GetSpecialValueFor("flux_duration")
+	local dir = self:GetCursorPosition() - caster:GetOrigin()
+	caster:SetForwardVector(dir:Normalized())
+	caster:AddNewModifier(caster, self, "C08R_modifier", { duration = 2}) 
+	caster:AddNewModifier(caster, self, "C08R_followthrough", { duration = 0.3 } )
+end
+
+function C08R:OnAbilityPhaseStart()
+	self:GetCaster():StartGesture( ACT_DOTA_CAST_ABILITY_1 )
+	return true
+end
+
+--------------------------------------------------------------------------------
+
+function C08R:OnAbilityPhaseInterrupted()
+	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
+end
+
+function C08R:OnOwnerDied()
+	self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_1 )
+end
+
+
+--------------------------------------------------------------------------------
+C08R_followthrough = class({})
+
+function C08R_followthrough:IsHidden()
+	return true
+end
+
+
+--------------------------------------------------------------------------------
+
+function C08R_followthrough:CheckState()
+	local state = {
+	[MODIFIER_STATE_STUNNED] = true,
+	}
+	return state
+end
+
+
+C08R_hook_back = class({})
+
+--------------------------------------------------------------------------------
+
+function C08R_hook_back:IsHidden()
+	return true
+end
+
+
+--------------------------------------------------------------------------------
+
+function C08R_hook_back:CheckState()
+	local state = {
+	[MODIFIER_STATE_STUNNED] = true,
+	}
+	return state
+end
+function C08R_hook_back:OnIntervalThink()
+	if (self.path ~= nil) then
+		local target = self:GetParent()
+		if IsValidEntity(self:GetParent()) then
+			if (self.max_interval_Count >= self.interval_Count) then
+				target:SetOrigin(self.path[self.interval_Count])
+				self.interval_Count = self.interval_Count + 1
+			else
+				target:AddNewModifier(target,self:GetAbility(),"modifier_phased",{duration=0.1})
+				target:RemoveModifierByName("C08R_hook_back")
+			end
+		end
+	end
+end
+function C08R_hook_back:IsHidden()
+	return true
+end
+
+function C08R_hook_back:IsDebuff()
+	return false
+end
+
+function C08R_hook_back:OnCreated( event )
+	self:StartIntervalThink(0.04) 
+end
+
+
+C08R_modifier = class ({})
+
+function C08R_modifier:OnCreated( event )
+	if IsServer() then
+		local ability = self:GetAbility()
+		self.hook_width = ability:GetSpecialValueFor("hook_width")
+		self.hook_distance = ability:GetSpecialValueFor("hook_distance")
+		self.hook_damage = ability:GetSpecialValueFor("hook_damage")
+		if IsServer() then
+			self.damage_type = ability:GetAbilityDamageType()
+		end
+		self.distance_sum = 0
+		self.interval_Count = 0
+		self.path = {}
+		self.particle = {}
+		if IsValidEntity(self:GetParent()) then
+			self.oriangle = self:GetParent():GetAnglesAsVector().y
+			self.hook_pos = self:GetParent():GetOrigin()
+			self.oripos = self:GetParent():GetOrigin()
+			self:StartIntervalThink(0.05) 
+		end
+	end
+end
+
+function C08R_modifier:OnIntervalThink()
+	if IsServer() then
+		local caster = self:GetParent()
+		self.interval_Count = self.interval_Count + 1
+		
+		local angle = math.abs(caster:GetAnglesAsVector().y - self.oriangle)
+		--print("angle: "..(angle))
+		if (angle > 45) then
+			if (angle > 80) then
+				angle = angle * 4
+			else
+				angle = angle * 2
+			end
+		end
+		local vDirection =  caster:GetForwardVector()
+		self.path[self.interval_Count] = self.hook_pos
+		local length = (20+angle*0.2) * self.interval_Count
+		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length + (self:GetParent():GetOrigin() - self.oripos)
+		self.oripos = self:GetParent():GetOrigin()
+		length = (next_hook_pos - self.hook_pos):Length()
+		hook_pts = { self.hook_pos }
+		if (length > 100) then
+			local pts = length / 100 + 1
+			for i=1,pts do
+				hook_pts[i] = self.hook_pos + vDirection:Normalized() * 100 * i
+				--print("pts: ".. hook_pts[i].x.." "..hook_pts[i].y.." "..hook_pts[i].z)
+			end
+		end
+
+		local next_hook_pos = self.hook_pos + vDirection:Normalized() * length
+		self.distance_sum = self.distance_sum + 20 * self.interval_Count
+		
+		local particle = ParticleManager:CreateParticle("particles/a11/_2pudge_meathook_whale2.vpcf",PATTACH_WORLDORIGIN,caster)
+		ParticleManager:SetParticleControl(particle,0, next_hook_pos)
+		ParticleManager:SetParticleControl(particle,1,Vector(1.11 - self.interval_Count*0.1,0,0))
+		ParticleManager:SetParticleControl(particle,4,Vector(1,0,0))
+		ParticleManager:SetParticleControl(particle,5,Vector(1,0,0))
+		ParticleManager:SetParticleControl(particle,3,self.hook_pos)
+		ParticleManager:ReleaseParticleIndex(particle)
+		self.particle[self.interval_Count] = particle
+		if self.interval_Count > 3 then
+			
+			for _,hookpoint in pairs(hook_pts) do
+				-- 拉到敵人
+				local SEARCH_RADIUS = self.hook_width
+				local z = GetGroundHeight(hookpoint, nil)
+				hookpoint.z = z
+				local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+		                              hookpoint,
+		                              nil,
+		                              SEARCH_RADIUS,
+		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+		                              DOTA_UNIT_TARGET_ALL,
+		                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		                              FIND_ANY_ORDER,
+		                              false)
+				local hashook = false
+				for _,it in pairs(direUnits) do
+
+					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") and not string.match(it:GetUnitName(), "warrior_souls") and not it:HasAbility("majia") then
+						ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
+							damage_type = self.damage_type, ability = self:GetAbility()})
+ 						it:AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_stunned",{duration = self:GetAbility():GetSpecialValueFor("stun_time")})
+						hashook = true
+						if (it:HasModifier("modifier_invisible")) then
+							it:RemoveModifierByName("modifier_invisible")
+						end
+						caster:AddNewModifier(caster, self:GetCaster(), "C08R_hook_back", { duration = 2}) 
+						local hModifier = caster:FindModifierByNameAndCaster("C08R_hook_back", caster)
+						if (hModifier ~= nil) then
+							hModifier.path = self.path
+							hModifier.max_interval_Count = self.interval_Count
+							hModifier.interval_Count = 1
+							hModifier.particle = self.particle
+							break
+						end
+					end
+				end
+				if (hashook == true) then
+					self:StartIntervalThink( -1 )
+					return
+				end
+
+				-- 拉到友軍
+				direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+			                          hookpoint,
+			                          nil,
+			                          SEARCH_RADIUS,
+			                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+			                          DOTA_UNIT_TARGET_ALL,
+			                          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+			                          FIND_ANY_ORDER,
+			                          false)
+
+				for _,it in pairs(direUnits) do
+					if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) and not it:HasAbility("majia") then
+						hashook = true
+						caster:AddNewModifier(caster, self:GetCaster(), "C08R_hook_back", { duration = 2}) 
+						local hModifier = caster:FindModifierByNameAndCaster("C08R_hook_back", caster)
+						if (hModifier ~= nil) then
+							hModifier.path = self.path
+							hModifier.max_interval_Count = self.interval_Count
+							hModifier.interval_Count = 1
+							hModifier.particle = self.particle
+							break
+						end
+						break
+					end
+				end
+				-- 拉到或距離到上限了
+				if (self.distance_sum > self.hook_distance or hashook == true) then
+					self:StartIntervalThink( -1 )
+					return
+				end
+			end
+		end
+		self.hook_pos = next_hook_pos
+	end
+end
+
+function C08R_modifier:GetStatusEffectName()
+	return "particles/status_fx/status_effect_disruptor_kinetic_fieldslow.vpcf"
+end
+
+function C08R_modifier:IsHidden()
+	return true
+end
+
+function C08R_modifier:IsDebuff()
+	return false
+end
+
+function C08R_modifier:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+
+
+
+
+
+function C08T_OnSpellStart( keys )
+
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C08T_bleeding",{})
+	local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+	ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )		
+	target:AddNoDraw()
+	local dir = caster:GetForwardVector()
+	local spell_point =Vector(7646.94,7499.28,256)
+	local target_point = spell_point
+	FindClearSpaceForUnit(target,target_point,false)
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
+	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08T_timer"), 
+		function( )
+			local dir = caster:GetForwardVector()
+			local spell_point = caster:GetAbsOrigin()
+			local target_point = spell_point+dir*100
+			FindClearSpaceForUnit(target,target_point,false)
+			target:RemoveNoDraw()
+			return nil
+		end, ability:GetSpecialValueFor("duration"))
+end
+
+
+function modifier_C08T_bleeding_OnIntervalThink( keys )
+
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local abilityDamage = ability:GetSpecialValueFor("damage")
+	local abilityDamageType = ability:GetAbilityDamageType()
+	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", caster )	
+	if(not target:IsMagicImmune()) then
+		AMHC:Damage( caster,target,abilityDamage,ability:GetAbilityDamageType() )
+	end
+end

@@ -1,0 +1,393 @@
+// 加藤段藏
+"DOTAAbilities"
+{
+	"C08_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"particle"	"particles/status_fx/status_effect_base.vpcf"
+			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+			"particle"	"particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_sparks.vpcf"
+
+		}
+	}
+
+	// 加藤段藏 忍法．迷蹤步
+	"C08D"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A13D"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"6"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"D"
+		"MaxLevel"	"5"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"16"
+		"AbilityManaCost"	"100 115 130 145 160"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"A13D.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_C08D"
+				"Duration"		"20.0"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+				"Function"		"C08D_OnSpellStart"
+			}
+			//"ApplyModifier"
+			//{
+			//	"Target"	"CASTER"
+			//	"ModifierName"	"modifier_invisible"
+			//	"Duration"	"20"
+			//}
+		}
+		"Modifiers"
+		{
+			"modifier_C08D"
+			{
+				"Duration"	"%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+						"Function"	"C08D_OnAttack"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_C08D"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_transparency"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%C08D_movement_speed"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C08D_Damage"	"0 90 175 260 345"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C08D_movement_speed"	"0 5 10 15 20"
+			}
+		}
+	}
+
+
+  	//加藤段藏 忍法．血獵
+	"C08W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/C08/c08w"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		// Unit Targeting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		//"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"16"
+		"AbilityManaCost"	"120 135 150 165"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"300"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+				"Function"		"C08W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C08W_bleeding"
+			{
+				"Duration"	"%duration"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+						"Function"		"modifier_C08W_bleeding_OnIntervalThink"
+					}
+				}
+				"ThinkInterval"	"1.5"
+			}
+			"modifier_C08W_slience"
+			{
+				"Duration"	"%silence_time"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"10.5"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"40 65 90 115"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"silence_time"	"0.5 1.5 2.5 3.5"
+			}
+		}
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Modifier has no support value
+		"AbilityModifierSupportValue"	"0.0"
+	}
+
+
+	//加藤段藏 忍法．亂擊脫離
+	"C08E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C08/c08e"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"12 10 8 6"
+		"AbilityManaCost"				"85 115 145 175"
+		"AbilityDamage"					"100 200 300 400"
+
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+				"Function"	"C08E_OnUpgrade"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+				"Function"		"C08E_OnSpellStart"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C08E_move_distance"	"700"
+			}
+		}
+	}
+
+
+	// 加藤段藏 忍法．飛鳶鎖
+	"C08R"
+	{
+		// General
+		"BaseClass"				"ability_lua"
+		"AbilityTextureName"	"custom/A13E"
+		"ScriptFile"			"scripts/vscripts/heroes/C_Neutral/C08.lua"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"		"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"		"1"
+		"AbilityCastPoint"		"0.1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"7"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120 140 160 180"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"480 720 960 1200"
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"	"soundevents/a13e.vsndevts"
+			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook_chain.vpcf"
+			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
+			"particle"	"particles/units/heroes/hero_pudge/pudge_meathook.vpcf"
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"hook_speed"	"1000.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hook_width"	"150"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hook_distance"	"480 720 960 1200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"hook_followthrough_constant"	"0.65"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"hook_damage"	"100 200 300 400"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_time"	"1.8"
+			}
+		}
+	}
+
+
+  	//加藤段藏 忍法密傳．鬼吞之術
+	"C08T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/C08/c08t"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		// Unit Targeting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"110 100 90"
+		"AbilityManaCost"	"165 195 225"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"300"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+				"Function"		"C08T_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C08T_bleeding"
+			{
+				"Duration"	"%duration"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+						"Function"		"modifier_C08T_bleeding_OnIntervalThink"
+					}
+				}
+				"ThinkInterval"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_BLIND" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2 3 4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"330 350 370"
+			}
+		}
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Modifier has no support value
+		"AbilityModifierSupportValue"	"0.0"
+	}
+} // end DOTAAbilities
