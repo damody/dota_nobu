@@ -98,7 +98,7 @@ _G.heromap_version = {
   B32 = {["11"] = true , ["16"] = true},
   B33 = {["11"] = true , ["16"] = true},
   B34 = {["11"] = true , ["16"] = true},
-  B36 = {["11"] = false , ["16"] = true},
+  B36 = {["11"] = true , ["16"] = true},
 
   C01 = {["11"] = true , ["16"] = true},
   C02 = {["11"] = true , ["16"] = true},
@@ -152,7 +152,7 @@ _G.heromap_skill = {
   B32 = {["11"] = "WERDT" , ["16"] = "WERDT"},
   B33 = {["11"] = "WERT" , ["16"] = "WERT"},
   B34 = {["11"] = "WERT" , ["16"] = "WERT"},
-  B36 = {["11"] = "WERT" , ["16"] = "WERDT"},
+  B36 = {["11"] = "WERDT" , ["16"] = "WERDT"},
 
   C01 = {["11"] = "WERDT" , ["16"] = "WERT"},
   C02 = {["11"] = "WERT" , ["16"] = "WERT"},
@@ -207,7 +207,7 @@ _G.heromap_autoskill = {
   B32 = {["11"] = "D" , ["16"] = ""},
   B33 = {["11"] = "" , ["16"] = ""},
   B34 = {["11"] = "" , ["16"] = ""},
-  B36 = {["11"] = "" , ["16"] = ""},
+  B36 = {["11"] = "D" , ["16"] = ""},
 
   C01 = {["11"] = "D" , ["16"] = ""},
   C02 = {["11"] = "" , ["16"] = ""},
@@ -521,6 +521,7 @@ function Precache( context )
     "soundevents/nobu_sounds_items.vsndevts",
     --"soundevents/game_sounds_creeps.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts",
+    "soundevents/a17.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

@@ -17,17 +17,15 @@ function Shock( keys )
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 
 			if (not(target:IsBuilding())) then
-				if (caster.great_sword_of_tiger == nil) then
-				caster.great_sword_of_tiger = 1
-					Timers:CreateTimer(0.1, function() 
-						caster.great_sword_of_tiger = nil
-					end)
-					AMHC:Damage(caster,target,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-					if target:IsMagicImmune() then
-						ability:ApplyDataDrivenModifier(caster,target,"modifier_great_sword_of_tiger",{duration = 0.1})
-					else
-						ability:ApplyDataDrivenModifier(caster,target,"modifier_great_sword_of_tiger",{duration = 0.2})
+				if (caster.great_sword_of_tiger == nil) then					
+					if IsValidEntity(target) then
+						if target:IsMagicImmune() then
+							ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.1})
+						else
+							ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.2})
+						end
 					end
+					AMHC:Damage(caster,target,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				end
 			end
 			

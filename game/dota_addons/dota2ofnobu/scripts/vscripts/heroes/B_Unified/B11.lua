@@ -226,8 +226,8 @@ function B11T_OnAttackStart( keys )
 	caster.B11T_count = caster.B11T_count + 1
 	if 15 >= rnd or caster.B11T_count > 6 then
 		caster.B11T_count = 0
-		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B11T_Crit2",{})
-		local rate = caster:GetAttackSpeed()
+		local rate = caster:GetAttackSpeed()+0.1
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B11T_Crit2",{duration = rate})
 		if rate < 1 then
 		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
 		else

@@ -123,6 +123,21 @@ local function chat_of_test(keys)
 		caster:AddNewModifier(caster, nil, "modifier_short_a31", nil)
 		caster:RemoveModifierByName("modifier_long_a31")
 	end
+	if (s == "-donkey" and caster.has_dota_donkey == nil) then
+		caster.has_dota_donkey = 1
+		local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin()+Vector(100, 100, 0), true, caster, caster, caster:GetTeam())
+		donkey:SetOwner(caster)
+		donkey:SetControllableByPlayer(caster:GetPlayerID(), true)
+        donkey:FindAbilityByName("courier_return_to_base"):SetLevel(1)
+        donkey:FindAbilityByName("courier_go_to_secretshop"):SetLevel(1)
+        donkey:FindAbilityByName("courier_return_stash_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_take_stash_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_transfer_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_burst"):SetLevel(1)
+        donkey:FindAbilityByName("courier_morph"):SetLevel(1)
+        donkey:FindAbilityByName("courier_take_stash_and_transfer_items"):SetLevel(1)
+        donkey:FindAbilityByName("for_magic_immune"):SetLevel(1)
+	end
 	if (s == "-old" or s == "-11") and caster:GetLevel() == 1 and caster.isold == nil 
 		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
 		

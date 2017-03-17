@@ -14,6 +14,9 @@
 			"particle"  "particles/customgames/capturepoints/cp_mover.vpcf"
 			"particle" 	"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_e.vpcf"
 			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_blast.vpcf"
+
+			"particle"  "particles/b36/b36e_old.vpcf"
+			"particle"  "particles/econ/items/lycan/blood_moon/lycan_blood_moon_shapeshift_ambient_mist.vpcf"
 		}
 	}
 	"Version"		"1"
@@ -29,11 +32,11 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"		"0.1"
-		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"		"12"
 		"AbilityManaCost"		"120 140 160 180"
 		"AbilityCastRange"		"550 700 850 1000"
-		"AOERadius"				"800"
+		"AOERadius"				"400"
 
 
 		"OnSpellStart"
@@ -93,7 +96,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"700"
+				"radius"	"400"
 			}
 		}
 	}
@@ -131,9 +134,10 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"	"0.1"	
-		"AbilityCooldown"	"12"
-		//"AbilityCastRange"	"900"
+		"AbilityCooldown"	"8"
+		"AbilityCastRange"	"400"
 		"AbilityManaCost"	"120 140 160 180"
 		"OnSpellStart"
 		{
@@ -213,7 +217,7 @@
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"radius"							"1200"
+				"radius"							"400"
 			}
 			"04"
 			{
@@ -232,6 +236,7 @@
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_2"
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCastRange"							"400"
@@ -240,6 +245,7 @@
 		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"                           "190 165 140 115"
+		"AnimationPlaybackRate"						"3"
 
 		"OnSpellStart"
 		{
@@ -381,6 +387,7 @@
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"	"3"
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.35"
+					"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "alternate"
 				}
 				"Duration"	"25"
 				"IsBuff"	"1"
@@ -400,6 +407,358 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"5"
+			}
+		}
+	}
+
+
+
+	//直江兼續 直江印
+	"B36W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B36/b36w"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"		"15"
+		"AbilityManaCost"		"100"
+		"AbilityCastRange"		"1000"
+		"AOERadius"				"400"
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"						"B36W_old_OnSpellStart"
+				"Target"						"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B36W_old"
+			{
+				"IsDebuff"						"1"
+				"EffectAttachType"  			"attach_hitloc"
+				"Aura"          	"modifier_B36W_old2"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_B36W_old2"
+			{
+				"IsDebuff"						"1"
+				"EffectName"					"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"  			"attach_hitloc"
+				"Duration"						"4"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%speed"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"speed"		"-20 -30 -40 -50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+		}
+	}
+
+
+	// 直江兼續  劃心為籬
+	"B36E_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B36/b36e"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"	"0.1"	
+		"AbilityCooldown"	"30"
+		"AbilityCastRange"	"800"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityDamage"				"25 35 45 55"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B36E_old"
+				"Target" 		"CASTER"
+				"Duration"		"20"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B36E_old"
+			{
+				"IsBuff"		"1"
+				"Duration"		"20"
+				"EffectName"		"particles/econ/items/lycan/blood_moon/lycan_blood_moon_shapeshift_ambient_mist.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+				
+				"ThinkInterval"  "0.2"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+						"Function"		"B36E_old_OnIntervalThink"
+					}
+				}
+
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_PHYSICAL"
+				"Damage"	"%dmg2"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"250"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius2"						"800"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg2"							"40 60 80 100"
+			}
+		}
+	}
+	//直江兼續  符咒．咒之符
+	"B36R_old"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"custom/icon_128x128_92"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AOERadius"						"%radius"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12 14 16 18"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80 100 120 140"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike.vpcf" // Wonky projectile
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf" // ?
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_warmup.vpcf" //- Seems to be like a "link" meaning it needs the caster #0 and target #1
+			"particle"		"particles/status_fx/status_effect_poison_viper.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2 3 4 5"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B36R"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
+				}
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"1"
+					}
+				}
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"		"B36R_old_OnSpellStart"
+				"Target"	"TARGET"
+			}
+		}
+	}
+
+
+	//直江兼續 禁咒‧殺之陣
+	"B36T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B36/b36t"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL" 
+		"SpellImmunityType"		"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"		"2"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"				"3"
+		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
+		"AbilityCastPoint"		"0.5"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"		"105 90 75"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"		"200 250 300"
+		"AbilityDamage"			"180 220 260"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01" // 小冰錐射程
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe_radius"	"1000"
+			}
+			"02" // 小冰錐傷害
+			{
+				"var_type"		"FIELD_INTEGER"
+				"ice_damage"	"180 220 260"
+			}
+			"03" // 一次發射的小冰錐數量
+			{
+				"var_type"		"FIELD_INTEGER"
+				"ice_count"		"36"
+			}
+			"04" // 投射物速度
+			{
+				"var_type"		"FIELD_INTEGER"
+				"speed"			"300"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/item/item_ice_book/ball.vpcf"
+			"particle"  "particles/item/item_ice_book/ice.vpcf"
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"		"B36T_old_OnSpellStart"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%AbilityDamage"
+			}
+		}
+	}
+
+	"B36D_old"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"custom/icon_128x128_92"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike.vpcf" // Wonky projectile
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf" // ?
+			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_warmup.vpcf" //- Seems to be like a "link" meaning it needs the caster #0 and target #1
+			"particle"		"particles/status_fx/status_effect_poison_viper.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_B36D_old"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"600"
+				}
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/b33r/b33r.vpcf"
+				}
 			}
 		}
 	}

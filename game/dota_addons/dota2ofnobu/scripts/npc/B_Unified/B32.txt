@@ -218,12 +218,11 @@
 		{
 			"modifier_B32W"
 			{
-				"IsPurgable"	"1"
+				"Passive"	"0"
+				"IsDebuff"	"1"
 				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
 				"States"
 				{
-					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
 					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"%times"
@@ -350,15 +349,14 @@
 		{
 			"modifier_B32W"
 			{
-				"IsPurgable"	"1"
+				"Passive"	"0"
+				"IsDebuff"	"1"
 				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
 				"States"
 				{
-					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
 					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Duration"	"1"
+				"Duration"	"%times"
 			}
 			"modifier_B32W_buff"
 			{
@@ -391,8 +389,8 @@
 			}
 			"04"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"time"	"0.7 1 1.3 1.6"
+				"var_type"	"FIELD_FLOAT"
+				"times"	"0.7 1 1.3 1.6"
 			}
 		}
 	}
@@ -490,7 +488,7 @@
 		{
 			"modifier_B32E"
 			{
-				"IsPurgable"	"1"
+				"Passive"	"0"
 				"IsDebuff"	"1"
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 				"EffectName"	"particles/a04e/a04e.vpcf"
@@ -508,7 +506,7 @@
 						"Damage"	"%damage"
 					}
 				}
-				"Duration"	"%duration"
+				"Duration"	"%duration2"
 			}
 		}
 		// Special
@@ -538,7 +536,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"0.5 1 1.5 2"
+				"duration2"	"0.5 1 1.5 2"
 			}
 			"06"
 			{
@@ -641,7 +639,7 @@
 		{
 			"modifier_B32E"
 			{
-				"IsPurgable"	"1"
+				"Passive"	"0"
 				"IsDebuff"	"1"
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 				"EffectName"	"particles/a04e/a04e.vpcf"
@@ -659,7 +657,7 @@
 						"Damage"	"%damage"
 					}
 				}
-				"Duration"	"%duration"
+				"Duration"	"%duration2"
 			}
 		}
 		// Special
@@ -689,7 +687,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"1.4 1.6 1.8 2"
+				"duration2"	"1.4 1.6 1.8 2"
 			}
 			"06"
 			{

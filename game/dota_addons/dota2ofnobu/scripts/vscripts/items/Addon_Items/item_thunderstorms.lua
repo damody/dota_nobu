@@ -49,13 +49,14 @@ function Shock( keys )
  			damage_table.damage_type = damage_type
  			damage_table.damage = aoe_damage
 			ApplyDamage(damage_table)
-			
-			-- 特效
-			local ifx = ParticleManager:CreateParticle("particles/item/item_thunderstorms.vpcf",PATTACH_CUSTOMORIGIN,unit)
-			ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
-			ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
+			if IsValidEntity(unit) then
+				-- 特效
+				local ifx = ParticleManager:CreateParticle("particles/item/item_thunderstorms.vpcf",PATTACH_CUSTOMORIGIN,unit)
+				ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
+				ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
 
-			unit:EmitSound("lightningbolt")
+				unit:EmitSound("lightningbolt")
+			end
 		end
 
 

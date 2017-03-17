@@ -928,8 +928,15 @@
 				"Function"	"Shock"
 				"Time"	"3.5"
 			}
-			"SpendCharge"
-			{}
+			"DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"SpendCharge"
+					{}
+            	}
+            }
 		}
 		"Modifiers"
 		{
@@ -995,8 +1002,15 @@
 				"Function"	"Shock"
 				"Time"	"10"
 			}
-			"SpendCharge"
-			{}
+			"DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"SpendCharge"
+					{}
+            	}
+            }
 		}
 		"Modifiers"
 		{
@@ -4151,8 +4165,15 @@
 				"Function"		"Shock"
 				"Mana"			"210"
 			}
-			"SpendCharge"
-			{}
+			"DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"SpendCharge"
+					{}
+            	}
+            }
 		}
 	}
 
@@ -5238,6 +5259,7 @@
 		"AbilityCooldown"	"60"
 		
 		"AbilityManaCost"	"125"
+		"AbilityCastPoint"	"2"
 		
 		"ID"	"2713"
 		"ItemQuality"	"component"
@@ -5247,6 +5269,14 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_teleport.lua"
+				"Function"	"Shock0"
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -5870,10 +5900,6 @@
 		"ItemInitialCharges"			"2"
 		"SideShop"						"1"
 		
-
-		
-
-		
 		"ItemRequirements"	{}
 		"OnSpellStart"
 		{
@@ -5882,8 +5908,15 @@
 				"Target"	"CASTER"
 				"ModifierName"	"Passive_sake"
 			}
-			"SpendCharge"
-			{}
+			"DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"SpendCharge"
+					{}
+            	}
+            }
 		}
 		"Modifiers"
 		{
@@ -5942,8 +5975,15 @@
 				"Target"	"CASTER"
 				"ModifierName"	"Passive_liquor"
 			}
-			"SpendCharge"
-			{}
+			"DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"SpendCharge"
+					{}
+            	}
+            }
 		}
 		"Modifiers"
 		{
@@ -14001,8 +14041,15 @@
 				"Function"	"Shock"
 				"Target"	"POINT"
 			}
-			"SpendCharge"
-			{}
+			"DelayedAction"
+            {
+            	"Delay"     "0.1"
+            	"Action"    
+            	{
+            		"SpendCharge"
+					{}
+            	}
+            }
 		}
 
 	}

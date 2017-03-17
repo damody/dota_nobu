@@ -55,7 +55,6 @@ function Nobu:OnUnitKill( keys )
       if killedUnit:IsHero() and not killedUnit:IsIllusion() then
         AttackerUnit.kill_hero_count = AttackerUnit.kill_hero_count + 1
       end
-      print("AttackerUnit.kill_count "..AttackerUnit.kill_count)
     end
     ------------------------------------------------------------------
   	local name = killedUnit:GetUnitName()
