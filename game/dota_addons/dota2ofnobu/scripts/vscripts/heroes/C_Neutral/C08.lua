@@ -8,6 +8,8 @@ LinkLuaModifier( "C08R_hook_back", "scripts/vscripts/heroes/C_Neutral/C08.lua",L
 
 LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/C_Neutral/C08.lua",LUA_MODIFIER_MOTION_NONE )
 
+LinkLuaModifier("modifier_C08D_old", "heroes/modifier_C08D_old.lua", LUA_MODIFIER_MOTION_NONE)
+
 modifier_transparency = class({})
 
 function modifier_transparency:DeclareFunctions()
@@ -477,3 +479,202 @@ function modifier_C08T_bleeding_OnIntervalThink( keys )
 		AMHC:Damage( caster,target,abilityDamage,ability:GetAbilityDamageType() )
 	end
 end
+
+
+c08d_lock=false
+function modifier_C08D_old_duge_OnTakeDamage( event )
+	-- Variables
+
+	if IsServer() then
+		local damage = event.DamageTaken
+		local ability = event.ability
+		local caster =ability:GetCaster()
+		if damage > caster:GetHealth() and caster:GetMana()>=800 and not c08d_lock then
+			c08d_lock=true
+			local newHealth = caster:GetMaxHealth() + damage
+			local newMana =caster:GetMana()-800
+			caster:SetHealth(newHealth)
+			caster:SetMana(newMana)
+			caster:AddNewModifier(caster, ability, "modifier_C08D_old", {duration = 16})
+			caster:AddNewModifier(caster, ability, "modifier_C08D_old_armor", {})
+			GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08D_old_timer"), 
+			function( )
+				c08d_lock=false
+				return nil
+			end, 16)
+		end
+	end
+end
+
+
+
+
+function C08W_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local particle = ParticleManager:CreateParticle("particles/item/item_thunderstorms_cloud_dust.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		caster:GetAbsOrigin(),			-- 搜尋的中心點
+		nil, 							-- 好像是優化用的參數不懂怎麼用
+		ability:GetCastRange(),			-- 搜尋半徑
+		ability:GetAbilityTargetTeam(),	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false) 							-- 好像是優化用的參數不懂怎麼用
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+		if not unit:IsMagicImmune() and not unit:IsBuilding() then
+			ApplyDamage({
+				victim = unit,
+				attacker = caster,
+				ability = ability,
+				damage = ability:GetSpecialValueFor("C08W_old_Damage"),
+				damage_type = ability:GetAbilityDamageType(),
+				damage_flags = DOTA_DAMAGE_FLAG_NONE,
+			})
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_C08W_old_aoe",nil)
+		end
+	end
+	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=20})
+	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08W_old_timer"), 
+		function( )
+			ParticleManager:DestroyParticle(particle,true)
+			return nil
+		end, 3)
+end
+
+
+
+function modifier_C08W_old_OnAttack( keys )
+	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then		-- This is to fail check if it is item. If it is item, error is expected
+		-- Variables
+		local caster = keys.caster
+		local target = keys.target
+		local ability = keys.ability
+		local abilityDamage = ability:GetLevelSpecialValueFor( "C08W_old_trans_Damage", ability:GetLevel() - 1 )
+		local abilityDamageType = ability:GetAbilityDamageType()
+		if (not target:IsBuilding()) then
+			-- Deal damage and show VFX
+			local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+			ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
+			ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
+			StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
+			PopupCriticalDamage(target, abilityDamage)
+			AMHC:Damage( caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+		end	
+		keys.caster:RemoveModifierByName( "modifier_C08W_old" )
+		keys.caster:RemoveModifierByName( "modifier_transparency" )
+	end
+end
+
+
+function C08E_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
+	ParticleManager:SetParticleControl( fxIndex, 0, target:GetAbsOrigin() )
+	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )		
+	--暈眩
+	target:AddNewModifier(caster,ability,"modifier_stunned",{duration=1})
+	--傷害
+	local dmg = ability:GetAbilityDamage()
+	AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
+	counter=0
+	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08E_old_timer"), 
+	function( )
+		AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
+		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+			target:GetAbsOrigin(),			-- 搜尋的中心點
+			nil, 							-- 好像是優化用的參數不懂怎麼用
+			300,			-- 搜尋半徑
+			ability:GetAbilityTargetTeam(),	-- 目標隊伍
+			ability:GetAbilityTargetType(),	-- 目標類型
+			ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+			FIND_ANY_ORDER,					-- 結果的排列方式
+			false) 							-- 好像是優化用的參數不懂怎麼用
+		-- 處理搜尋結果
+		for _,unit in ipairs(units) do
+			if not unit:IsMagicImmune() and not unit:IsBuilding() then
+				unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=ability:GetSpecialValueFor("stun_duration")})
+				ApplyDamage({
+					victim = unit,
+					attacker = caster,
+					ability = ability,
+					damage = ability:GetSpecialValueFor("damage"),
+					damage_type = ability:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+				})
+			end
+		end
+		StartSoundEvent( "A07T.attack", target )
+		counter=counter+1
+		if(counter==3)then
+			return nil
+		end
+		return 0.7
+	end, 1.2)
+end
+
+
+
+function C08R_old_OnSpellStart( keys ) 
+	local caster = keys.caster
+	local ability = keys.ability
+	local point = caster:GetAbsOrigin()
+	local point2 = ability:GetCursorPosition() --keys.target_points[1] ability
+	local vec = caster:GetForwardVector()
+	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point2 ,false,nil,nil,caster:GetTeam())
+	dummy:AddAbility("for_no_damage"):SetLevel(1)
+	--modifier
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_2",nil)
+	local particle = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_POINT,dummy)
+	ParticleManager:SetParticleControl(particle,0,point2)
+	--紀錄
+	dummy.C08R_old_P = particle
+	local x1 = point2.x
+	local y1 = point2.y
+	local x2
+	local y2
+	local x3
+	local y3
+	local a1 = nobu_atan2( point,point2 )
+	for i=1,4 do
+		x2 = x1 + 138*i*math.cos(a1+90*3.14159/180)
+		y2 = y1 + 138*i*math.sin(a1+90*3.14159/180)
+		x3 = x1 + 138*i*math.cos(a1-90*3.14159/180)
+		y3 = y1 + 138*i*math.sin(a1-90*3.14159/180)
+
+			dummy = CreateUnitByName("npc_dummy_unit_Ver2",Vector(x2,y2) ,false,nil,nil,caster:GetTeam())
+			dummy:FindAbilityByName("majia"):SetLevel(1)
+			dummy:AddAbility("for_no_damage"):SetLevel(1)
+			--modifier
+			ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_2",nil)
+			--sound
+			particle = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_POINT,dummy)
+			ParticleManager:SetParticleControl(particle,0,Vector(x2,y2))
+			--紀錄
+			dummy.C08R_old_P = particle
+
+		dummy = CreateUnitByName("npc_dummy_unit_Ver2",Vector(x3,y3) ,false,nil,nil,caster:GetTeam())
+		dummy:FindAbilityByName("majia"):SetLevel(1)
+		dummy:AddAbility("for_no_damage"):SetLevel(1)
+		--modifier
+		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_2",nil)
+		particle = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_POINT,dummy)
+		ParticleManager:SetParticleControl(particle,0,Vector(x3,y3))
+		--紀錄
+		dummy.C08R_old_P = particle
+	end
+end
+
+function modifier_C08R_old_2_OnDestroy( keys )
+	ParticleManager:DestroyParticle(keys.target.C08R_old_P,false)
+	keys.target:ForceKill(true)
+	keys.target:Destroy()
+end
+
