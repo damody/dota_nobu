@@ -188,8 +188,11 @@ function modifier_B36T_OnAttackLanded( event )
 		local caster =ability:GetCaster()
 		local damageTable = {victim=target,   
 			attacker=caster,         
-			damage=target:GetMaxHealth()*ability:GetSpecialValueFor("damage")/100,   
-			damage_type=ability:GetAbilityDamageType()} 
+			damage=ability:GetSpecialValueFor("damage"),
+			damage_type=ability:GetAbilityDamageType()}
+		if target:IsMagicImmune() then
+			damageTable.damage = damageTable.damage*0.5
+		end
 		ApplyDamage(damageTable)   
 	end
 end

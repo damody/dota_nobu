@@ -330,7 +330,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL" 
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE" 
 		"SpellImmunityType"		"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"		"2"
 		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
@@ -397,7 +397,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			//增加生命 普公額外生命總傷害
+			//增加生命 普公額外真實傷害
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
@@ -406,7 +406,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"5"
+				"damage"	"120 180 240"
 			}
 		}
 	}
