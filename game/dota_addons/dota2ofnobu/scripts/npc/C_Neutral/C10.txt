@@ -622,13 +622,35 @@
 		}
 		"Modifiers"
 		{
+			"modifier_C19T"
+			{
+				"Passive"	"1"
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnIntervalThink"
+					}
+				}
+			}
 			"modifier_ninja_cloth"
 			{
-				"IsHidden"	"1"
-				"Passive"	"1"
+				"IsBuff"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"	//閃避
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%miss"
+				}
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C19.lua"
+						"Function"		"C19T_OnOnCreated"
+					}
 				}
 			}
 		}
@@ -638,7 +660,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"evasion"		"8 16 24 32"
+				"miss"		"8 16 24 32"
 			}
 		}
 	}

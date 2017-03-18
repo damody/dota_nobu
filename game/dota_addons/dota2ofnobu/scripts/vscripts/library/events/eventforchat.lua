@@ -112,10 +112,15 @@ local function chat_of_test(keys)
         for si=1,#askill do
           caster:FindAbilityByName(nobu_id..askill:sub(si,si)):SetLevel(1)
         end
-        -- 直江新版要砍普攻距離
+        -- 直江兼續新版要砍普攻距離
         if nobu_id == "B36" and caster:HasModifier("modifier_B36D_old") then
         	caster:RemoveModifierByName("modifier_B36D_old")
         end
+        -- 加藤段藏天生技要拿掉
+        if nobu_id == "C08" and caster:HasModifier("modifier_C08D_old_duge") then
+        	caster:RemoveModifierByName("modifier_C08D_old_duge")
+        end
+        
 	end
 	if (s == "-long" and nobu_id == "A31") then
 		LinkLuaModifier("modifier_long_a31", "heroes/modifier_long_a31.lua", LUA_MODIFIER_MOTION_NONE)

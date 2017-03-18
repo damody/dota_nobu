@@ -1,0 +1,474 @@
+// 伊勢姬
+"DOTAAbilities"
+{
+	"B23_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_undying/undying_fg_aura_ground03.vpcf"
+			"particle"	"particles/items_fx/aura_assault.vpcf"
+			"particle"	"particles/items2_fx/satanic_buff.vpcf"
+			"particle"	"particles/b23w/abyssal_underlord_darkrift_target.vpcf"
+			"particle" 	"particles/units/heroes/hero_bane/bane_projectile.vpcf"
+			"particle"	"particles/econ/items/enigma/enigma_geodesic/enigma_base_attack_eidolon_geodesic.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+	}
+
+	//伊勢姬 聚靈咒
+	"B23W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"                        "abyssal_underlord_dark_rift"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"AOERadius"                                 "%B23W_radius"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+
+		"AbilityCooldown"                           "14"
+		"AbilityManaCost"                           "120 140 160 180"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                	"FIELD_INTEGER"
+				"B23W_shockDamage"         	"55 80 105 130"
+			}
+			"02"
+			{
+				"var_type"               	"FIELD_FLOAT"
+				"B23W_duration"            	"30"
+			}
+			"03"
+			{
+				"var_type"                	"FIELD_INTEGER"
+				"B23W_radius"            	"450"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"			
+				"B23W_fireDamage"			"80 110 140 170"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                "scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"                  "B23W"
+			}
+			"FireSound"
+			{
+				"Target"					"POINT"
+				"EffectName"				"Hero_Magnataur.ShockWave.Cast"
+			}
+		}
+	}
+
+
+	//伊勢姬 亡靈之契
+	"B23D"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"                        "invoker_ghost_walk"
+		"AOERadius"                                 "600"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCooldown"                        	"3"
+		"AbilityManaCost"                           "110"
+		"MaxLevel"									"4"
+		
+		"OnCreated"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"							"B23D_onCreated"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        		"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"                	"B23D_OnSpellStart"
+				"Target"
+				{
+					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"            	    "DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Flags"					"DOTA_UNIT_TARGET_FLAG_DEAD"
+					"Center"     			"CASTER"
+					"Radius"     		   	"600"
+				}
+			}
+			"FireSound"
+			{
+				"Target"					"CASTER"
+				"EffectName"				"n_creep_ghost.Death"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        		"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"                	"B23D_check"
+				"Target"
+				{
+					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"            	    "DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Flags"					"DOTA_UNIT_TARGET_FLAG_DEAD"
+					"Center"     			"CASTER"
+					"Radius"     		   	"600"
+				}
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B23D_distanceDetector_hero"
+			{
+				"IsHidden"						"1"
+				"Passive"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+						"ScriptFile"        	"scripts/vscripts/heroes/B_Unified/B23.lua"
+						"Function"              "B23D_distanceDetector_hero"
+					}
+				}
+			}
+
+			"modifier_B23D_distanceDetector_ghost"
+			{
+				"Attributes"					"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"IsHidden"						"1"
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+						"ScriptFile"        	"scripts/vscripts/heroes/B_Unified/B23.lua"
+						"Function"              "B23D_distanceDetector_ghost"
+					}
+				}
+			}
+
+			"modifier_B23D_damageReduction"
+			{
+				"Attributes"					"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-14"
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"        	"scripts/vscripts/heroes/B_Unified/B23.lua"
+						"Function"              "B23D_heroDie"
+					}
+				}
+			}
+
+			"modifier_B23D_diedTrigger"
+			{
+				"Attributes"					"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"IsHidden"						"1"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"        	"scripts/vscripts/heroes/B_Unified/B23.lua"
+						"Function"              "B23D_die"
+						"Target"				"CASTER"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B23D_count"                		"4 5 6 7"
+			}
+		}
+	}
+
+	//伊勢姬 生靈衝擊
+	"B23E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"bane_enfeeble"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"                   		"15"
+		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityCastRange"              			"1000"
+		"AbilityCastPoint"							"0.1"
+		
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"particles/units/heroes/hero_bane/bane_projectile.vpcf"
+				"Dodgeable"							"1"
+				"ProvidesVision"					"1"
+				"MoveSpeed"							"1300"
+				"VisionRadius"						"225"
+			}
+			"RunScript"
+			{
+				"ScriptFile"         				"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"                			"B23E_onSpellStart"
+			}
+			"FireSound"
+			{
+				"Target"					"CASTER"
+				"EffectName"				"Hero_VengefulSpirit.WaveOfTerror"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"							"B23E_onProjectileHitUnit"
+				"Target"							"TARGET"
+			}
+			"ApplyModifier"
+        	{
+        		"Target"            				"TARGET"
+        		"ModifierName"      				"modifier_B23E_shock"
+        	}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B23E_damage"                		"35 50 65 80"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B23E_duration"						"3 5 7 9"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B23E_shock"
+			{
+				"IsDebuff"							"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"							"%B23E_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-35"
+				}
+			}
+		}
+	}
+
+	//伊勢姬 魂饗
+	"B23R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "nevermore_requiem"
+
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"22 20 18 16"
+		"AbilityManaCost"           				"130 155 180 205"
+		"AOERadius"                                 "800"
+		"AbilityChannelTime"						"4"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"					"B23R"
+				"Target"
+				{
+					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"            	    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Center"     			"CASTER"
+					"Radius"     		   	"800"
+				}
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"			"B23R_interrupted"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B23R_magicImmune"
+			{
+				"Duration"				"4"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_B23R_castAnimation"
+			{
+				"EffectName"			"particles/units/heroes/hero_undying/undying_fg_aura_ground03.vpcf"
+				"EffectAttachType"      "attach_hitloc"
+				"Duration"				"4"
+				"IsHidden"				"1"
+				"OverrideAnimation"		"ACT_DOTA_VICTORY"
+			}
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"B23R_heal"		"15 21 27 33"
+			}
+		}
+    }
+
+    //伊勢姬 英靈庇佑
+	"B23T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"                        "vengefulspirit_command_aura"
+
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"145 125 105"
+		"AbilityManaCost"           				"300"
+		"AOERadius"                                 "%B23T_radius"
+		"AbilityChannelTime"						"16"
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"			"B23T_upgrade"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"			"B23T"
+				"Target"
+				{
+					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"            	    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Center"     			"CASTER"
+					"Radius"     		   	"%B23T_radius"
+				}
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"			"B23T_interrupted"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B23T_invulnerableAura"
+			{
+				"EffectName"			"particles/items_fx/aura_assault.vpcf"
+				"EffectAttachType"      "attach_hitloc"
+				"IsHidden"				"1"
+				"Aura" 					"modifier_B23T_invulnerable"
+		        "Aura_Radius" 			"%B23T_radius"
+		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		        "Aura_ApplyToCaster" 	"0"
+		        "Duration"				"16"
+			}
+
+			"modifier_B23T_invulnerable"
+			{
+				"EffectName"            "particles/items2_fx/satanic_buff.vpcf"
+				"EffectAttachType"      "attach_hitloc"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_B23T_castAnimation"
+			{
+				"Duration"				"16"
+				"IsHidden"				"1"
+				"OverrideAnimation"		"ACT_DOTA_VICTORY"
+			}
+
+			"modifier_B23T_attackspeedBonus"
+			{
+				"Duration"			"16"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "150"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B23T_radius"		"550 700 850"
+			}
+		}
+	}
+} // END DOTAAbilities

@@ -5,6 +5,74 @@
 {
 	"Version"		"1"
 
+	// 伊勢姬 亡魂
+	"B23D_ghost"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.vmdl"
+		"ModelScale"		"0.8"
+		"Level"				"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"	"140"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"55"
+		"AttackDamageMax"			"61"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.9"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"				"520"
+
+		"ArmorPhysical"		"0"
+		"MagicalResistance"	"0"
+
+		"ProjectileModel"	"particles/econ/items/enigma/enigma_geodesic/enigma_base_attack_eidolon_geodesic.vpcf"
+		"ProjectileSpeed"	"1400"
+
+		"BountyGoldMin"		"0"
+		"BountyGoldMax"		"0"
+		"BountyXP"			"5"
+
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"300"
+		"MovementTurnRate"		"1.50"
+
+		"StatusHealth"			"700"
+		"StatusHealthRegen"		"10"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+
+		"HPGain"                "36"
+		"DamageGain"            "3"
+
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"1800"
+
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_WEAK"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Ability1"			""
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		"Ability5"			""
+		"Ability6"			""
+		"Ability7"			""
+		"Ability8"			""
+		"Ability9"			""
+		"Ability10"			""
+		"Ability11"			""
+		"Ability12"			""
+		"Ability13"			""
+		"Ability14"			""
+		"Ability15"			""
+		"Ability16"			""
+
+	}
+
+
 	//上忍
 	"ninja_unit3"
 	{

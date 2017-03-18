@@ -320,7 +320,7 @@
 		"AbilityTextureName"	"custom/A13E"
 		"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"	"1"
 		"AbilityCastPoint"	"0.1"
@@ -369,7 +369,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"hook_damage"	"200 300 400 500"
+				"hook_damage"	"300 400 500 600"
 			}
 		}
 	}
@@ -790,7 +790,7 @@
 		"AbilityCastPoint"	"0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"110 100 90"
+		"AbilityCooldown"	"130 120 110"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"200 300 400"
