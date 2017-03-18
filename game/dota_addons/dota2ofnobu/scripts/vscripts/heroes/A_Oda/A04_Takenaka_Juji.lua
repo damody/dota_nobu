@@ -407,7 +407,7 @@ function A04D_ATTACK_UNIT( event )
 	--如果攻擊單位是建築物 就結凍
 	local unit = event.target
 	local ability = event.ability
-	if not unit:IsBuilding() then
+	if not unit:IsBuilding() and IsValidEntity(unit) then
 		ability:ApplyDataDrivenModifier(unit,unit,"modifier_A04D_ATTACK_UNIT",nil)
 	end
 end

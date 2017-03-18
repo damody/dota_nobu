@@ -183,14 +183,15 @@ end
 
 function modifier_B36T_OnAttackLanded( event )
 	local target = event.target
-	local ability = event.ability
-	local caster =ability:GetCaster()
-	local damageTable = {victim=target,   
-		attacker=caster,         
-		damage=target:GetMaxHealth()*ability:GetSpecialValueFor("damage")/100,   
-		damage_type=ability:GetAbilityDamageType()} 
-	ApplyDamage(damageTable)   
-
+	if not target:IsBuilding() then
+		local ability = event.ability
+		local caster =ability:GetCaster()
+		local damageTable = {victim=target,   
+			attacker=caster,         
+			damage=target:GetMaxHealth()*ability:GetSpecialValueFor("damage")/100,   
+			damage_type=ability:GetAbilityDamageType()} 
+		ApplyDamage(damageTable)   
+	end
 end
 
 -- 直江 11.2b

@@ -691,12 +691,12 @@
 		"AbilityTextureName"                        "custom/icon_128x128_102"
 
 		"AbilityCastPoint"          	"0.1"
-		"AbilityCooldown"           	"25"
-		"AbilityManaCost"           	"25 35 45"
+		"AbilityCooldown"           	"2"
+		"AbilityManaCost"           	"300 400 500"
 		"MaxLevel"						"3"
 		"AbilityDamage"					"100 140 200"
-		"AbilityCastRange"				"500"
-		"AOERadius"						"500"
+		"AbilityCastRange"				"400"
+		"AOERadius"						"400"
 
         "OnToggleOn"
 		{
@@ -735,7 +735,7 @@
         	// 暫時鎖住此技能
 			"modifier_A32T_locker"
 			{
-				"Duration" "15"
+				"Duration" "1"
 				"OnCreated"
 				{
 					"RunScript"
@@ -769,7 +769,7 @@
 				{
 					"SpendMana"
 					{
-						"Mana"		"%AbilityManaCost"
+						"Mana"		"%mana"
 					}
 					"RunScript"
 					{
@@ -803,7 +803,11 @@
 				"var_type"		"FIELD_INTEGER"
 				"move_speed_bonus"	"35 55 75"
 			}
-
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"mana"	"25 35 45"
+			}
 		}
     }
 

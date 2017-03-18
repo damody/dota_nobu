@@ -7,6 +7,7 @@
 ================================================================================================================= ]]
 function item_blink_datadriven_on_spell_start(keys)
 	local caster = keys.caster
+	local ability = keys.ability
 	ProjectileManager:ProjectileDodge(caster)  --Disjoints disjointable incoming projectiles.
 	
 	local dummy = CreateUnitByName("npc_dummy_unit",caster:GetAbsOrigin(),false,nil,nil,caster:GetTeamNumber())
@@ -16,7 +17,6 @@ function item_blink_datadriven_on_spell_start(keys)
 	--keys.caster:EmitSound("Greevil.Strike.Start")	
 	keys.caster:EmitSound("DOTA_Item.BlinkDagger.Activate")
 	--keys.caster:EmitSound("Hero_QueenOfPain.Pick")	
-	local caster = keys.caster
 	local origin_point = keys.caster:GetAbsOrigin()
 	local target_point = keys.target_points[1]
 	local difference_vector = target_point - origin_point

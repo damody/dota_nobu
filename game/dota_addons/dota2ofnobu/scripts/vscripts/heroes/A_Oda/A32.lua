@@ -108,7 +108,7 @@ function A32T_old_OnIntervalThink( keys )
 		caster:CastAbilityToggle(ability,-1)
 	else
 		local targets = FindUnitsInRadius(caster:GetTeamNumber(),	
-					caster:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+					caster:GetAbsOrigin(),nil,400,DOTA_UNIT_TARGET_TEAM_ENEMY, 
 			   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			   		0, 
 			   		FIND_ANY_ORDER, 

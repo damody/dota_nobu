@@ -649,6 +649,15 @@
 				"Duration"		"%time"
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"1"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"

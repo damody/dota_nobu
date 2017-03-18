@@ -431,7 +431,12 @@ function C08R_modifier:GetAttributes()
 end
 
 
-
+C08T_EXCLUDE_TARGET_NAME = {
+	npc_dota_cursed_warrior_souls	= true,
+	npc_dota_the_king_of_robbers	= true,
+	com_general = true,
+	com_general2 = true,
+}
 
 
 
@@ -440,31 +445,41 @@ function C08T_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_C08T_bleeding",{})
-	local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
-	ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
-	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )		
-	target:AddNoDraw()
-	local dir = caster:GetForwardVector()
-	local spell_point =Vector(7646.94,7499.28,256)
-	local target_point = spell_point
-	FindClearSpaceForUnit(target,target_point,false)
-	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
-	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08T_timer"), 
-		function( )
-			local dir = caster:GetForwardVector()
-			local spell_point = caster:GetAbsOrigin()
-			local target_point = spell_point+dir*100
-			FindClearSpaceForUnit(target,target_point,false)
-			target:RemoveNoDraw()
-			return nil
-		end, ability:GetSpecialValueFor("duration"))
+	local duration = ability:GetSpecialValueFor("duration")
+	if C08T_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+		StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
+		
+		local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
+		ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
+		ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )		
+		target:AddNoDraw()
+		local dir = caster:GetForwardVector()
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
+		caster.last_pos = caster:GetAbsOrigin()
+		GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08T_timer"), 
+			function( )
+				if IsValidEntity(target) and target:HasModifier("modifier_C08T_bleeding") then
+					if (caster:GetAbsOrigin()-caster.last_pos):Length2D() < 2000 then
+						local dir = caster:GetForwardVector()
+						FindClearSpaceForUnit(target,caster:GetAbsOrigin(),false)
+						target:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
+					end
+				end
+				return nil
+			end, duration-0.05)
+		caster.C08T_IsMagicImmune = false
+		if target:IsMagicImmune() then
+			caster.C08T_IsMagicImmune = true
+		end
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_C08T_bleeding",{})
+	else
+		caster:FindAbilityByName("C08T"):EndCooldown()
+	end
+	
 end
 
 
 function modifier_C08T_bleeding_OnIntervalThink( keys )
-
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
@@ -472,8 +487,22 @@ function modifier_C08T_bleeding_OnIntervalThink( keys )
 	local abilityDamageType = ability:GetAbilityDamageType()
 	caster:Heal(abilityDamage,caster)
 	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", caster )	
-	target:SetAbsOrigin(caster:GetAbsOrigin())
-	if(not target:IsMagicImmune()) then
-		AMHC:Damage( caster,target,abilityDamage,ability:GetAbilityDamageType() )
+	if (caster:GetAbsOrigin()-caster.last_pos):Length2D() > 2000 or not caster:IsAlive() then
+		target:RemoveModifierByName("modifier_C08T_bleeding")
+		FindClearSpaceForUnit(target,caster.last_pos,false)
+		target:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
+	else
+		target:SetAbsOrigin(caster:GetAbsOrigin())
+		if caster.C08T_IsMagicImmune == false then
+			AMHC:Damage(caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
 	end
+	caster.last_pos = caster:GetAbsOrigin()
+end
+
+
+function modifier_C08T_OnDestroy( keys )
+	local caster = keys.caster
+	local target = keys.target
+	target:RemoveNoDraw()
 end

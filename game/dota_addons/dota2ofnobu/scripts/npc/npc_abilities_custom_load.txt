@@ -3364,7 +3364,24 @@
 			}
 		}
 	}
-
+	// 半魔免
+	"for_half_magic_immune"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_for_half_magic_immune"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"	//魔抗
+				}
+			}
+		}
+	}
 	// 無敵
 	"for_no_damage"
 	{

@@ -82,7 +82,8 @@ function spell_ability ( filterTable )
 	local ordertype = filterTable.order_type
 	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability)
-	if caster:GetUnitName() == "npc_dota_courier2" and not string.match(ability:GetName(), "courier") then
+	if (caster:GetUnitName() == "npc_dota_courier2") 
+		and not string.match(ability:GetName(), "courier") then
 		return false
 	end
 	if ability then

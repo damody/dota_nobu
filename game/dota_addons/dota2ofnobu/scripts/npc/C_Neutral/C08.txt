@@ -127,7 +127,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/C08/c08w"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		// Unit Targeting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -139,7 +139,7 @@
 		"AbilityManaCost"	"120 135 150 165"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"300"
+		"AbilityCastRange"	"200"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"OnSpellStart"
@@ -186,7 +186,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"40 65 90 115"
+				"damage"	"60 90 120 150"
 			}
 			"03"
 			{
@@ -336,7 +336,7 @@
 		"AbilityManaCost"	"165 195 225"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"300"
+		"AbilityCastRange"	"200"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"OnSpellStart"
@@ -372,6 +372,15 @@
 					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_ATTACK_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
+						"Function"		"modifier_C08T_OnDestroy"
+					}
 				}
 			}
 		}
@@ -382,12 +391,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"2 3 4"
+				"duration"	"4"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"330 350 370"
+				"damage"	"300 400 500"
 			}
 		}
 		// Stats

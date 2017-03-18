@@ -351,7 +351,11 @@ function A19R_old_OnAttackLanded( keys )
 				local sc = handle:GetStackCount()
 				sc = sc + 1
 				handle:SetStackCount(sc)
-				AMHC:Damage(caster,target, dmg*sc,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				if target:IsMagicImmune() then
+					AMHC:Damage(caster,target, dmg*sc*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				else
+					AMHC:Damage(caster,target, dmg*sc,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 		end
 	end

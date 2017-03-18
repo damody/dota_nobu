@@ -17,6 +17,8 @@ function Shock( keys )
 	local damage_type = ability:GetAbilityDamageType()
 
 	AddFOWViewer(caster:GetTeamNumber(),target_point,aoe_radius+100,duration+1,false)
+	AddFOWViewer(DOTA_TEAM_GOODGUYS,caster:GetAbsOrigin(), 300, 1, false)
+	AddFOWViewer(DOTA_TEAM_BADGUYS,caster:GetAbsOrigin(), 300, 1, false)
 
 	-- 需要手動刪除
 	local ifx_cloud = ParticleManager:CreateParticle("particles/item/item_thunderstorms_cloud.vpcf",PATTACH_CUSTOMORIGIN,caster)
@@ -26,8 +28,10 @@ function Shock( keys )
 			ParticleManager:DestroyParticle(ifx_cloud,false)
 		end
 		end)
-	local time = 0.01 -- 初始化計時器 防止多打一次
+	
 	Timers:CreateTimer(0, function()
+		AddFOWViewer(DOTA_TEAM_GOODGUYS,caster:GetAbsOrigin(), 300, 1, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS,caster:GetAbsOrigin(), 300, 1, false)
 		-- 搜尋
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係
                               target_point,		-- 搜尋的中心點

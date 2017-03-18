@@ -67,7 +67,7 @@
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"18 16 14 12"
+		"AbilityCooldown"	"16 14 12 10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"140 160 180 200"
@@ -127,6 +127,7 @@
 				{
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%basic_attack_speed"
 					"MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE"	"%basic_speed"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"	//魔抗
 				}
 				"OnAttackLanded"
 				{
@@ -1001,6 +1002,7 @@
 				{
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%basic_attack_speed"
 					"MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE"	"%basic_speed"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"	//魔抗
 				}
 				"OnAttackLanded"
 				{
@@ -1058,7 +1060,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"basic_attack_speed"	"1.40 1.2 1.0 0.8"
+				"basic_attack_speed"	"1.4 1.2 1 0.8"
 			}
 			"04"
 			{
@@ -1073,12 +1075,12 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"base_hp"	"600 700 800 900"
+				"base_hp"	"800 1000 1200 1400"
 			}
 			"07"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"life_time"	"35 40 45 50"
+				"life_time"	"50 55 60 65"
 			}
 		}
 	}

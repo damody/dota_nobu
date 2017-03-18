@@ -466,14 +466,14 @@ function to_soldier_Oda(keys)
 	   					hero.stop = 1
 	   				else
 	   					hero.stop = hero.stop + 1
-	   					if hero.stop > 3 and not hero:HasModifier("modifier_majia") then
+	   					if hero.stop > 3 then
 			   				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
 			   				hero:SetAbsOrigin(Vector(99999,99999,0))
 			   			end
 			   			hero:Stop()
-			   			hero:AddNewModifier(nil, nil, 'modifier_stunned', {duration=1.5})
 	   				end
 	   			end
+	   			hero:AddNewModifier(nil, nil, 'modifier_stunned', {duration=1.5})
 	   		elseif state == 2 then
 	   			if hero.stop ~= nil then
 	   				hero.stop = nil

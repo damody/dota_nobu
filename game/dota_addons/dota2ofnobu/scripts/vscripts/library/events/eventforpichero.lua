@@ -50,6 +50,9 @@ function Nobu:PickHero( keys )
         if nobu_id == "C17" then
           caster:RemoveModifierByName("modifier_C17D")
         end
+        if nobu_id == "A04" then
+          caster:RemoveModifierByName("modifier_A04D")
+        end
       end
 
       if _G.CountUsedAbility_Table == nil then

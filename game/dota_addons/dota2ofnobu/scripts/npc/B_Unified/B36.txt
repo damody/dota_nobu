@@ -11,7 +11,7 @@
 			"particle"	"particles/b36w/b36w.vpcf"
 			"particle"	"particles/generic_gameplay/move_slow.vpcf"
 			"particle"	"particles/econ/events/winter_major_2016/blink_dagger_start_sparkles_wm.vpcf"
-			"particle"  "particles/customgames/capturepoints/cp_mover.vpcf"
+			"particle"  "particles/a36/a36emover.vpcf"
 			"particle" 	"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_e.vpcf"
 			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_blast.vpcf"
 
@@ -153,7 +153,7 @@
 			"modifier_B36E"
 			{
 				"IsBuff"			"1"
-				"EffectName"		"particles/customgames/capturepoints/cp_mover.vpcf"
+				"EffectName"		"particles/a36/a36emover.vpcf"
 				"EffectAttachType"	"attach_hitloc"
 				"OnCreated"
 				{
@@ -495,7 +495,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityCastPoint"	"0.1"	
 		"AbilityCooldown"	"30"
 		"AbilityCastRange"	"800"

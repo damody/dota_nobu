@@ -229,14 +229,14 @@ function B25T_start( keys )
 	-- -- Get random point
 	local directionConstraint = 0
 	local dummyCount = 0
-	allparticle = {}
+	caster.allparticle = {}
 	local handcount = 0
 	tradius = 10
 	local disstep = 80
 	local loopnum = 5
 	local particle=ParticleManager:CreateParticle("particles/b15t/b15t_fiendsgrip_ground.vpcf",PATTACH_WORLDORIGIN,caster)
 	ParticleManager:SetParticleControl(particle,0,target)
-	table.insert(allparticle, particle)
+	table.insert(caster.allparticle, particle)
 	Timers:CreateTimer(0, function()
 		handcount = handcount + 1
 		if (handcount < 12 and caster:IsChanneling() ~= false) then
@@ -248,7 +248,7 @@ function B25T_start( keys )
 				local particle=ParticleManager:CreateParticle("particles/b25t/b25t_fiends_grip.vpcf",PATTACH_WORLDORIGIN,caster)
 				ParticleManager:SetParticleControl(particle,0,point)
 				--ParticleManager:ReleaseParticleIndex(particle)
-				table.insert(allparticle, particle)
+				table.insert(caster.allparticle, particle)
 			end
 
 			return 0.05
@@ -284,6 +284,7 @@ function B25T_start( keys )
 
 	Timers:CreateTimer(0, function()
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, target, 1000, interval+0.1, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, target, 1000, interval+0.1, false)
 		local units = FindUnitsInRadius(
 				caster:GetTeamNumber(), target, caster, radius, targetTeam,
 				targetType, targetFlag, FIND_ANY_ORDER, false
@@ -303,7 +304,7 @@ function B25T_start( keys )
 		
 		-- Check if maximum instances reached
 		if caster:IsChanneling() == false then
-			for k,v in pairs(allparticle) do
+			for k,v in pairs(caster.allparticle) do
 				ParticleManager:DestroyParticle(v, false)
 			end
 			return nil

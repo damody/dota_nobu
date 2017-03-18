@@ -198,6 +198,7 @@
 				{
 					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A13D_movement_speed"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-50"
 				}
 				"States"
 				{
@@ -211,12 +212,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A13D_Damage"	"100 200 300 400"
+				"A13D_Damage"	"200 300 400 500"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A13D_movement_speed"	"10 15 20 25"
+				"A13D_movement_speed"	"10 20 30 40"
 			}
 		}
 	}
@@ -234,9 +235,9 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
-		"AbilityCastPoint"	"0.5"
-		"AbilityCooldown"	"25 20 15 10"
-		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCooldown"	"3"
+		"AbilityManaCost"	"250 300 350 400"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
@@ -325,7 +326,7 @@
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"14 11 8 5"
+		"AbilityCooldown"	"9 7 5 3"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100 120 140 160"

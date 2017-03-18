@@ -388,8 +388,8 @@
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
 		"LevelsBetweenUpgrades"	"2"
-		"AbilityCooldown"	"8 7 6 5"
-		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCooldown"	"6 5 4 3"
+		"AbilityManaCost"	"50 60 70 80"
 		"AbilityCastRange"	"250"
 		"precache"
 		{
@@ -511,7 +511,7 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"attack_delay"	"0.6"
+				"attack_delay"	"1.2"
 			}
 			"03"
 			{
@@ -626,7 +626,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"crit_chance" "40 50 60 70" // %
+				"crit_chance" "20 30 40 50" // %
 			}
 		}
 	}

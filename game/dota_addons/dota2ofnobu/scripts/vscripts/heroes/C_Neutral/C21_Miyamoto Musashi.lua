@@ -386,7 +386,7 @@ function C21E_old_start( keys )
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21E_old",{duration=attack_count*attack_delay})
 
 	local counter = 0
-	Timers:CreateTimer(attack_delay, function()
+	Timers:CreateTimer(0, function()
 		counter = counter + 1
 
 		-- 目標或施法者死亡則停止
