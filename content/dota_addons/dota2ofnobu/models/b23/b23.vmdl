@@ -365,10 +365,10 @@
 					m_flFps = 24.0
 					m_Loop = 
 					{
-						m_bLoop = false
-						m_bSmoothLoop = false
+						m_bLoop = true
+						m_bSmoothLoop = true
 						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
+						m_nSmoothLoopEnd = 36
 						m_StartLoop = 
 						{
 							_class = "CVAnimCmdStartLoop"
@@ -381,7 +381,7 @@
 					m_Activities = 
 					[
 						{
-							m_Name = "ACT_DOTA_CAST_ABILITY_1_END"
+							m_Name = "ACT_DOTA_CHANNEL_ABILITY_1"
 							m_nWeight = 1
 						},
 					]

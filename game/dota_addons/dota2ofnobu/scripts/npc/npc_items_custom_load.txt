@@ -2734,6 +2734,16 @@
 				"EffectAttachType"	"follow_hitloc"
 
 				"ThinkInterval"	"1.0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_flame_armor.lua"
+						"Function"	"Shock"
+						"Damage"		"40"
+						"Target"	"TARGET"
+					}
+				}
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -10577,7 +10587,16 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 
 				"EffectAttachType"	"follow_hitloc"
-
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_flame_armor.lua"
+						"Function"	"Shock"
+						"Damage"		"40"
+						"Target"	"TARGET"
+					}
+				}
 				"ThinkInterval"	"1.0"
 				"OnIntervalThink"
 				{
@@ -13220,7 +13239,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"28"
+		"AbilityCooldown"	"18"
 		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"280"
 		"AbilityCastRange"	"700"
@@ -13461,7 +13480,7 @@
 					{
 						"Target"		"TARGET"
 						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"40"
+						"Damage"		"100"
 					}
 				}
 			}

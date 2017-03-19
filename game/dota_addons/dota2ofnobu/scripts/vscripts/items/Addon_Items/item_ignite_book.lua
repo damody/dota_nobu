@@ -22,12 +22,14 @@ function Shock( keys )
 		if not target:IsBuilding() then
 			ability:ApplyDataDrivenModifier(caster, target, "modifier_ignite_book", {duration = 5})
 			AMHC:Damage(caster,target,600,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			local flame = ParticleManager:CreateParticle("particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf", PATTACH_ABSORIGIN, it)
-			Timers:CreateTimer(4.5, function ()
-				ParticleManager:DestroyParticle(flame, false)
-			end)
+			if IsValidEntity(it) then
+				local flame = ParticleManager:CreateParticle("particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf", PATTACH_ABSORIGIN, it)
+				Timers:CreateTimer(4.5, function ()
+					ParticleManager:DestroyParticle(flame, false)
+				end)
+			end
 		else
-			AMHC:Damage(caster,target,180,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			AMHC:Damage(caster,target,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end
 	end
 end

@@ -33,6 +33,7 @@ _G.heromap = {
   npc_dota_hero_bristleback         = "B15",
   npc_dota_hero_naga_siren          = "B16",
   npc_dota_hero_chaos_knight        = "B21",
+  npc_dota_hero_vengefulspirit      = "B23",
   npc_dota_hero_earthshaker         = "B24",
   npc_dota_hero_pugna               = "B25",
   npc_dota_hero_brewmaster          = "B26",
