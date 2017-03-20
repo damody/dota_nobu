@@ -22,7 +22,7 @@
 		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityTextureName"                        "rubick_telekinesis_land"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"                        	"0.5"
+		"AbilityCastPoint"                        	"0.1"
 		"AbilityCooldown"                        	"4"
 		"AbilityManaCost"                           "0"
 		"MaxLevel"									"1"
@@ -76,10 +76,10 @@
 		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityTextureName"                        "kunkka_x_marks_the_spot"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"                        	"0.3"
+		"AbilityCastPoint"                        	"0.1"
 		"AbilityCooldown"                        	"20"
 		"AbilityManaCost"                           "65"
-		"AbilityCastRange"							"600"
+		"AbilityCastRange"							"800"
 		"MaxLevel"									"1"
 
 		"OnCreated"
@@ -173,9 +173,8 @@
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"    					"winter_wyvern_winters_curse"
-
-		"AbilityCastPoint"							"0.2"
-		"AbilityCooldown"                   		"%B13E_cooldown"
+		"AbilityCooldown"							"20 16 12 8"
+		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"225 185 145 105"
 		"AbilityCastRange"              			"800"
 		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
@@ -277,7 +276,7 @@
 			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"B13R_damageBonus"					"0.02 0.03 0.04 0.05"
+				"B13R_damageBonus"					"0.02 0.04 0.06 0.08"
 			}
 			"03"
 			{
@@ -291,19 +290,19 @@
 	"B13T"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "brewmaster_storm_cyclone"
 
-		"AbilityCastPoint"          				"0.2"
+		"AbilityCastPoint"          				"0.1"
 		"AbilityCooldown"           				"135 125 115"
 		"AbilityManaCost"           				"185"
 		"AOERadius"                                 "500"
-		"AbilityCastRange"              			"800"
+		"AbilityCastRange"              			"500"
 		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
 		
 		"OnSpellStart"
@@ -341,6 +340,14 @@
 		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		        "Aura_ApplyToCaster" 	"0"
 		        "Duration"				"5.5"
+		        "OnIntervalThink"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"		"B13T_OnIntervalThink"
+					}
+				}
 			}
 			"modifier_B13T_veryslow"
 			{
@@ -348,8 +355,8 @@
 				"IsPurgable"						"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-70"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-70"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%B13T_atkspd"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%B13T_movespd"
 				}
 			}
 		}
@@ -360,6 +367,16 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"B13T_damage"		"200 300 400"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B13T_movespd"		"-100"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B13T_atkspd"		"-150 -300 -450"
 			}
 		}
 	}

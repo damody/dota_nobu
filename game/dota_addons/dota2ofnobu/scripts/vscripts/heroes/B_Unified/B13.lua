@@ -44,15 +44,20 @@ function B13R( keys )
 	if target:HasModifier("modifier_B13W_debuff") then 
 		multiple = 2
 	end
-
-	ApplyDamage({
-				victim = target,
-				attacker = attacker,
-				ability = ability,
-				damage = ability:GetSpecialValueFor("B13R_damageBonus") * attacker:GetMaxHealth() * multiple,
-				damage_type = ability:GetAbilityDamageType(),
-				damage_flags = DOTA_DAMAGE_FLAG_NONE,
-	})
+	if not target:IsBuilding() then
+		local dmgt = {
+					victim = target,
+					attacker = attacker,
+					ability = ability,
+					damage = ability:GetSpecialValueFor("B13R_damageBonus") * attacker:GetMaxHealth() * multiple,
+					damage_type = ability:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+		}
+		if target:IsMagicImmune() then
+			dmgt.damage = dmgt.damage * 0.5
+		end
+		ApplyDamage(dmgt)
+	end
 end
 
 function B13R_heal( keys )
@@ -69,7 +74,7 @@ function B13T( keys )
 	local dummy = CreateUnitByName( "npc_dummy_unit", point, false, nil, nil, caster:GetTeamNumber())
 	dummy:AddNewModifier( dummy, nil, "modifier_kill", {duration=5.5} )
 	dummy:SetOwner(caster)
-	dummy:AddAbility( "majia"):SetLevel(1)
+	dummy:AddAbility( "majia_vison"):SetLevel(1)
 
 	ability:ApplyDataDrivenModifier( caster, dummy, "modifier_B13T_veryslowAura", nil)
 
@@ -84,15 +89,40 @@ function B13T( keys )
 		end
 		local units = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
 		for _,unit in ipairs(units) do
-			ApplyDamage({
-				victim = unit,
-				attacker = caster,
-				ability = ability,
-				damage = ability:GetSpecialValueFor("B13T_damage") / tickPerSec,
-				damage_type = ability:GetAbilityDamageType(),
-				damage_flags = DOTA_DAMAGE_FLAG_NONE,
-			})
+			if unit:IsBuilding() then
+				ApplyDamage({
+					victim = unit,
+					attacker = caster,
+					ability = ability,
+					damage = ability:GetSpecialValueFor("B13T_damage") / tickPerSec * 0.3,
+					damage_type = ability:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+				})
+			else
+				ApplyDamage({
+					victim = unit,
+					attacker = caster,
+					ability = ability,
+					damage = ability:GetSpecialValueFor("B13T_damage") / tickPerSec,
+					damage_type = ability:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+				})
+			end
 		end		
 		return 1 / tickPerSec
 	end)
+end
+
+
+function B13T_OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  500 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+	for _,enemy in pairs(group) do
+		if enemy:IsMagicImmune() then
+			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_B13T_veryslow",{duration = 1})
+		end
+	end
 end

@@ -6,7 +6,8 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_lion"
-		"ModelScale"	"1.2"
+		"ModelScale"	"1.3"
+		"Model"			"models/a14/a14.vmdl"
 		// Abilities
 		// ----------------------------------------------------------------
 		"Ability1"	"A14W"
@@ -96,6 +97,6 @@
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
-
+		"DisableWearables"		"1"
 	}
 } // END DOTAHeroes

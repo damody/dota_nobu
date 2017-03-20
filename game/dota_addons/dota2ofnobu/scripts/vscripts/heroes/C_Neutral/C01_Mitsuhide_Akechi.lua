@@ -325,7 +325,7 @@ function C01E_old_spell_start( keys )
 
 	Timers:CreateTimer(0, function()
 		-- 停止施法則中斷
-		if not ability:IsChanneling() then
+		if not caster:IsChanneling() then
 			return nil
 		end
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 1, false)

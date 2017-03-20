@@ -88,7 +88,7 @@ function A14E_OnSpellStart(keys)
 	damage=ability:GetAbilityDamage(),   
 	damage_type=ability:GetAbilityDamageType()} 
 	if not target:IsMagicImmune() then
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_A14E",nil)
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = ability:GetSpecialValueFor("Duration")})
 		ApplyDamage(damageTable)  
 	end
 	for i=1,8 do

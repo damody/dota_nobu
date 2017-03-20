@@ -444,7 +444,7 @@ function C02E_old_OnAbilityPhaseStart( keys )
 
 	local repeat_delay = 2.1
 	Timers:CreateTimer(0, function()
-		if ability:IsChanneling() then 
+		if caster:IsChanneling() then 
 			-- 吸收動畫
 			StartAnimation(caster, {
 				activity=ACT_DOTA_CAST_ABILITY_4, 
@@ -530,7 +530,7 @@ function modifier_C02E_old_OnDestroy( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	if ability:IsChanneling() then ability:EndChannel(true)	end
+	if caster:IsChanneling() then ability:EndChannel(true)	end
 	-- 刪除吸收特效
 	ParticleManager:DestroyParticle(target.C02E_old_ifx,false)
 end

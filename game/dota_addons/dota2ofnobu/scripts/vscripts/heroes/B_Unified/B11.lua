@@ -103,7 +103,7 @@ function modifier_B11E_heal_OnDestroy( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	if ability:IsChanneling() then ability:EndChannel(true)	end
+	if caster:IsChanneling() then ability:EndChannel(true)	end
 	-- 刪除調息特效
 	ParticleManager:DestroyParticle(target.B11E_particle,false)
 end

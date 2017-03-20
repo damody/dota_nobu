@@ -97,7 +97,7 @@ function C05T_OnSpellStart( keys )
 	
 
 	Timers:CreateTimer(ability:GetChannelTime()-0.3, function()
-		if ability:IsChanneling() then
+		if caster:IsChanneling() then
 			local dummy = CreateUnitByName("npc_dummy_unit_new",caster:GetAbsOrigin(),false,nil,nil,caster:GetTeamNumber())
 			dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
 			local ifx = ParticleManager:CreateParticle("particles/econ/items/zeus/arcana_chariot/zeus_arcana_blink_start.vpcf",PATTACH_ABSORIGIN,dummy)

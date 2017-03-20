@@ -247,7 +247,7 @@ function B21W_old_OnSpellStart( keys )
 
 	for i=1,fire_num do
 		Timers:CreateTimer(fire_delay*i,function()
-			if ability:IsChanneling() then
+			if caster:IsChanneling() then
 				ProjectileManager:CreateLinearProjectile(projectile_table)
 				EmitSoundOn("Hero_DragonKnight.BreathFire",caster)
 			end
