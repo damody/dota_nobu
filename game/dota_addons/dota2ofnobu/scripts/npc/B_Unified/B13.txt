@@ -1,0 +1,361 @@
+// 百地三太夫
+"DOTAAbilities"
+{
+	"B13_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"	"particles/b13t/invoker_tornado_ti6.vpcf"
+			"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff_b.vpcf"
+			"particle"	"particles/generic_gameplay/generic_sleep.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+		}
+	}
+
+	//忍法．遁地術 回到地面
+	"B13D"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"                        "rubick_telekinesis_land"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"                        	"0.3"
+		"AbilityCooldown"                        	"4"
+		"AbilityManaCost"                           "0"
+		"MaxLevel"									"1"
+
+		"OnCreated"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13D_onCreated"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13D"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13D_underground"
+			{
+				"IsHidden"						"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"5"
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"		"150"
+					"MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE"		"192"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"10"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"			"1800"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+	}
+	//縮地
+	"B13B"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"                        "kunkka_x_marks_the_spot"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"                        	"0.3"
+		"AbilityCooldown"                        	"20"
+		"AbilityManaCost"                           "65"
+		"AbilityCastRange"							"600"
+		"MaxLevel"									"1"
+
+		"OnCreated"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13B_onCreated"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"                		"B13B"
+			}
+		}
+	}
+
+	//忍法．感官破壞
+	"B13W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"                        "ogre_magi_ignite"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+
+		"AbilityCooldown"                           "8"
+		"AbilityManaCost"                           "125"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"					"TARGET"
+				"ModifierName"				"modifier_B13W_debuff"
+			}
+			"Damage"
+			{
+				"Target"					"TARGET"
+				"Type"						"DAMAGE_TYPE_PHYSICAL"
+				"Damage"					"%B13W_damage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13W_debuff"
+			{
+				"EffectName" 						"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff_b.vpcf"
+                "EffectAttachType" 					"follow_overhead"	
+				"IsDebuff"							"1"
+				"Duration"							"%B13W_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"	"60"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B13W_duration"		"6 7 8 9"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B13W_damage"		"200 320 440 560"
+			}
+		}
+	}
+
+	//忍法．催眠
+	"B13E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"winter_wyvern_winters_curse"
+
+		"AbilityCastPoint"							"0.2"
+		"AbilityCooldown"                   		"%B13E_cooldown"
+		"AbilityManaCost"                      		"225 185 145 105"
+		"AbilityCastRange"              			"800"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"							"TARGET"
+				"ModifierName"						"modifier_B13E_sleep"
+			}
+			"FireSound"
+			{
+				"Target"					"TARGET"
+				"EffectName"				"Visage_Familar.BellToll"
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B13E_cooldown"                		"20 16 12 8"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13E_sleep"
+			{
+				"IsDebuff"							"1"
+				"Duration"							"4.5"
+				"EffectName" 						"particles/generic_gameplay/generic_sleep.vpcf"
+                "EffectAttachType" 					"follow_overhead"	
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnTakeDamage"
+				{
+					"RemoveModifier"
+					{
+						"Target"					"UNIT"
+						"ModifierName"				"modifier_B13E_sleep"
+					}
+				}
+			}
+		}
+	}
+
+	//忍法．血化裝
+	"B13R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "giant_wolf_critical_strike"
+
+		"Modifiers"
+		{
+			"modifier_B13R_passive"
+			{
+				"IsHidden"								"1"
+				"Passive" 								"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%B13R_attackSpeedBonusPercentage"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"                		"B13R"
+					}
+				}
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"                		"B13R_heal"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_attackSpeedBonusPercentage"	"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"B13R_damageBonus"					"0.02 0.03 0.04 0.05"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"B13R_heal"							"0.06 0.07 0.08 0.09"
+			}
+		}
+    }
+
+    //忍法密傳．暴風
+	"B13T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "brewmaster_storm_cyclone"
+
+		"AbilityCastPoint"          				"0.2"
+		"AbilityCooldown"           				"135 125 115"
+		"AbilityManaCost"           				"185"
+		"AOERadius"                                 "500"
+		"AbilityCastRange"              			"800"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"			"B13T"
+				"Target"
+				{
+					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"            	    "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"     			"POINT"
+					"Radius"     		   	"500"
+				}
+			}
+			"FireSound"
+			{
+				"Target"					"POINT"
+				"EffectName"				"Hero_Invoker.Tornado"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13T_veryslowAura"
+			{
+				"EffectName" 			"particles/neutral_fx/tornado_ambient.vpcf"
+                "EffectAttachType" 		"follow_overhead"
+				"IsHidden"				"1"
+				"Aura" 					"modifier_B13T_veryslow"
+		        "Aura_Radius" 			"500"
+		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		        "Aura_ApplyToCaster" 	"0"
+		        "Duration"				"5.5"
+			}
+			"modifier_B13T_veryslow"
+			{
+				"IsDebuff"							"1"
+				"IsPurgable"						"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-70"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-70"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B13T_damage"		"200 300 400"
+			}
+		}
+	}
+} // END DOTAAbilities
