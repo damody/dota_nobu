@@ -49,7 +49,9 @@ function C21T_Effect(u,u2,i)
 	u:SetForwardVector((point-point2):Normalized())
 
 	--傷害
-	AMHC:Damage( u,u2,125,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	if not u2:IsMagicImmune() then
+		AMHC:Damage( u,u2,125,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	end
 	if IsValidEntity(u2) then
 		u:PerformAttack(u2, true, true, true, true, true, false, true)
 	end

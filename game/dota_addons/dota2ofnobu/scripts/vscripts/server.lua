@@ -56,7 +56,7 @@ function GameCanPlay(callback)
 end
 
 _G.blacklist = {
-	"317992815",
+	"338693950", --玩遊戲玩死你
 }
 
 local cannotplay = {}
@@ -71,7 +71,7 @@ function Nobu:OnPlayerConnectFull(keys)
     print("keys.index"..keys.index.." steamID "..steamID)
     for _,v in ipairs(_G.blacklist) do
     	if v == tostring(steamID) then
-    		--player:Destroy()
+    		player:Destroy()
     	end
     end
     -- 中離檢查

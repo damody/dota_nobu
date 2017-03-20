@@ -14351,6 +14351,11 @@
 			}
 			"modifier_the_great_sword_of_soul_hyper"
 			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"-2800"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"-2000"
+				}
 				"States"
 				{
 					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -14360,7 +14365,7 @@
 					"MODIFIER_STATE_BLIND"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Duration"	"2.5"
+				"Duration"	"4"
 				"IsDebuff"	"1"
 				"EffectName"	"particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka_glow.vpcf"
 				"EffectAttachType"	"follow_overhead"

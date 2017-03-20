@@ -208,7 +208,6 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"0"
 		"AbilityCastRangeBuffer"	"250"
-		"AbilityChannelTime"	"0.0 0.0 0.0 0.0"
 		"precache"
 		{
 			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
@@ -240,7 +239,8 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A06W_speed"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%A06W_speed2"
+					//"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%A06W_speed2"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%A06W_speed2"
 				}
 				"States"	{}
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -260,10 +260,15 @@
 				"var_type"	"FIELD_INTEGER"
 				"A06W_speed"	"4 8 12 16"
 			}
-			"02"
+			"03"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"A06W_speed2"	"200 300 400 500"
+				"var_type"	"FIELD_FLOAT"
+				"A06W_speed2"	"1 0.81 0.69 0.6"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"A06W_dmg"	"0.7"
 			}
 		}
 	}
@@ -705,7 +710,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A06T_ADD_D"	"160 230 320"
+				"dmg"	"200 300 400"
 			}
 		}
 		"OnCastbar"	"1"

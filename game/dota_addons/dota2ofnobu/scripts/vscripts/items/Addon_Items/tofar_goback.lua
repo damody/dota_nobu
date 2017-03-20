@@ -1,5 +1,15 @@
 LinkLuaModifier("modifier_ninja2", "heroes/modifier_ninja2.lua", LUA_MODIFIER_MOTION_NONE)
 
+function play_on_die( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_DIE,1)
+	
+	Timers:CreateTimer(2, function ()
+		caster:Destroy()
+	end)
+end
+
 function gold_to_prestige( keys )
 	local caster = keys.caster
 	local ability = keys.ability

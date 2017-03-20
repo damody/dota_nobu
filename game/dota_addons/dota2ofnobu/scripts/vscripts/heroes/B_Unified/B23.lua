@@ -19,9 +19,9 @@ function B23D_OnSpellStart( keys )
     	local ghost = CreateUnitByName("B23D_ghost", spawnPosition, true, nil, nil , caster:GetTeamNumber())
 	    ghost:SetOwner(caster)
 	    ghost:SetControllableByPlayer(caster:GetPlayerID(), true)
-	    ghost:SetBaseDamageMin( 52 + 3 * caster:GetLevel() )
-	    ghost:SetBaseDamageMax( 58 + 3 * caster:GetLevel() )
-	    ghost:SetBaseMaxHealth( 700 + 36 * caster:GetLevel() )
+	    ghost:SetBaseDamageMin( 52 + 6 * caster:GetLevel() )
+	    ghost:SetBaseDamageMax( 58 + 6 * caster:GetLevel() )
+	    ghost:SetBaseMaxHealth( 700 + 50 * caster:GetLevel() )
 	    ghost:SetHealth( ghost:GetMaxHealth() )
 	    ghost:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
 
@@ -88,7 +88,7 @@ function B23D_distanceDetector_hero( keys )
 	local heroPosition = keys.unit:GetOrigin()
 
 	for i=1,#B23D_ghostTable do
-		if (B23D_ghostTable[i]:GetOrigin() - heroPosition):Length() >= 1200 then
+		if (B23D_ghostTable[i]:GetOrigin() - heroPosition):Length() >= 1600 then
 			FindClearSpaceForUnit( B23D_ghostTable[i], heroPosition + RandomVector(RandomInt(100,200)) , true)
 			local particle = ParticleManager:CreateParticle("particles/item/c05/c05.vpcf",PATTACH_POINT,B23D_ghostTable[i])
 			ParticleManager:SetParticleControl(particle,0, B23D_ghostTable[i]:GetAbsOrigin())
@@ -102,7 +102,7 @@ end
 function B23D_distanceDetector_ghost( keys )
 	local unit = keys.unit
 	local heroPosition = unit:GetOwner():GetOrigin()
-	if (unit:GetOrigin() - heroPosition):Length() >= 1200 then
+	if (unit:GetOrigin() - heroPosition):Length() >= 1600 then
 		FindClearSpaceForUnit( unit, heroPosition + RandomVector(RandomInt(100,200)) , true)
 		local particle = ParticleManager:CreateParticle("particles/item/c05/c05.vpcf",PATTACH_POINT,unit)
 		ParticleManager:SetParticleControl(particle,0, unit:GetAbsOrigin())

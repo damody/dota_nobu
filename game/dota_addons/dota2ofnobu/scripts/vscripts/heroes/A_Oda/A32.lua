@@ -104,7 +104,7 @@ function A32T_old_OnIntervalThink( keys )
 
 	local caster = keys.caster             
 	local ability = keys.ability
-	if caster:GetMana() < ability:GetManaCost(ability:GetLevel()-1) then
+	if caster:GetMana() < ability:GetSpecialValueFor("mana") then
 		caster:CastAbilityToggle(ability,-1)
 	else
 		local targets = FindUnitsInRadius(caster:GetTeamNumber(),	

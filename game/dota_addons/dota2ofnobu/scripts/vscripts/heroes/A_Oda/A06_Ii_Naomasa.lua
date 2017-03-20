@@ -35,7 +35,11 @@ function modifier_A06W_old:OnTakeDamage(event)
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) and self.caster.compute == nil then
 	    	self.caster.compute = 1
 	    	if attacker:GetEntityIndex() == self.caster:GetEntityIndex() then
-	    		AMHC:Damage( victim,self.caster,return_damage * self.percent,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	    		if self.caster:HasModifier("modifier_kotennmyohiragumo") then
+	    			AMHC:Damage( victim,self.caster,return_damage * self.percent,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+	    		else
+	    			AMHC:Damage( victim,self.caster,return_damage * self.percent,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	    		end
 	    	end
 		end
 		self.caster.compute = nil
@@ -49,7 +53,7 @@ function A06W_old( keys )
 	local level = ability:GetLevel()
 	caster:AddNewModifier(caster,ability,"modifier_A06W_old",{duration=14})
 	caster:FindModifierByName("modifier_A06W_old").caster = caster
-	caster:FindModifierByName("modifier_A06W_old").percent = 0.7
+	caster:FindModifierByName("modifier_A06W_old").percent = ability:GetSpecialValueFor("A06W_dmg")
 end
 
 function A06E_old( keys )
@@ -125,8 +129,12 @@ function A06T_old(keys)
 			nil,  550 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 			for _, it in pairs(group) do
-				AMHC:Damage( caster,it, ability:GetLevelSpecialValueFor( "A06T_ADD_D", ( ability:GetLevel() - 1 ) ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				AMHC:CreateParticle("particles/b06e4/b06e4_b.vpcf",PATTACH_ABSORIGIN,false,it,0.5,nil)
+				if it:IsMagicImmune() then
+					AMHC:Damage( caster,it, ability:GetSpecialValueFor("dmg")*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				else
+					AMHC:Damage( caster,it, ability:GetSpecialValueFor("dmg"),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 			caster.nextA06T_old = nil
 		else

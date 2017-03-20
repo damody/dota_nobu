@@ -21,7 +21,7 @@ function Shock( keys )
 		if sumt < Time then
 			if (not caster:HasModifier("modifier_perceive_wine")) and caster.nomagic == nil then
 				local tt = Time-sumt
-				if IsValidEntity(caster) then
+				if IsValidEntity(caster) and IsValidEntity(ability) then
 					ability:ApplyDataDrivenModifier(caster, caster,"modifier_perceive_wine",{duration=tt})
 				end
 			end

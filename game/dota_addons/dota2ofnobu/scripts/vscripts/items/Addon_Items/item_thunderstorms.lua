@@ -42,10 +42,10 @@ function Shock( keys )
                               target_flags,		-- 額外選擇或排除特定目標
                               FIND_ANY_ORDER,	-- 結果的排列方式
                               false) 			-- 好像是優化用的參數不懂怎麼用
-
+		local count = 0
 		-- 處理搜尋結果
 		for _,unit in ipairs(units) do
-
+			count = count + 1
 			-- 製造傷害
 			local damage_table = {}
 			damage_table.victim = unit
@@ -58,8 +58,9 @@ function Shock( keys )
 				local ifx = ParticleManager:CreateParticle("particles/item/item_thunderstorms.vpcf",PATTACH_CUSTOMORIGIN,unit)
 				ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
 				ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
-
-				unit:EmitSound("lightningbolt")
+				if count < 3 then
+					unit:EmitSound("lightningbolt")
+				end
 			end
 		end
 

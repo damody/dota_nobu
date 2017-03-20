@@ -518,7 +518,7 @@
 		"AnimationPlayBackRate"		"2"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"13"
+		"AbilityCooldown"	"10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100 120 140 160"
@@ -570,8 +570,8 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"HotKeyOverride"	"E"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"22"
-		"AbilityManaCost"	"140 160 180 200"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"100 120 140 160"
 		"AbilityCastRange"	"500 625 750 875"
 		"precache"
 		{
@@ -666,7 +666,7 @@
 			"02" // 命中後拉回的延遲
 			{
 				"var_type"	"FIELD_FLOAT"
-				"pull_back_delay"	"1.0"
+				"pull_back_delay"	"0.1"
 			}
 		}
 		"AbilityDamage"	"100 200 300 400"

@@ -235,6 +235,16 @@ function C05T_old_OnAttackLanded( keys )
 		ability:ApplyDataDrivenModifier(target,target,"modifier_C05T_old_debuff",{})
 		target:FindModifierByName("modifier_C05T_old_debuff").caster = caster
 
+		if target:IsMagicImmune() then
+			ApplyDamage({
+				victim = target,
+				attacker = caster,
+				ability = ability,
+				damage = ability:GetSpecialValueFor("damage_per_think")*0.5,
+				damage_type = ability:GetAbilityDamageType(),
+				--damage_flags = DOTA_DAMAGE_FLAG_NONE
+			})
+		else
 			ApplyDamage({
 				victim = target,
 				attacker = caster,
@@ -243,6 +253,7 @@ function C05T_old_OnAttackLanded( keys )
 				damage_type = ability:GetAbilityDamageType(),
 				--damage_flags = DOTA_DAMAGE_FLAG_NONE
 			})
+		end
 
 		local ifx = ParticleManager:CreateParticle("particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_bodyarc_immortal_lightningyzuus_lightning_bolt_bodyarc_immortal_lightning.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
 		ParticleManager:SetParticleControlEnt(ifx,1,target,PATTACH_ABSORIGIN_FOLLOW,nil,target:GetAbsOrigin(),true)

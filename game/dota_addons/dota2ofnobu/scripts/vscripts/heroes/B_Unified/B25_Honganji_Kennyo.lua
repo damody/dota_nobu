@@ -112,7 +112,7 @@ function B25E_old_break( keys )
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              target:GetAbsOrigin(),
 	                              nil,
-	                              ability:GetLevelSpecialValueFor( "splash_radius", ability:GetLevel() - 1 ),
+	                              ability:GetSpecialValueFor( "splash_radius" ),
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
 	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
@@ -120,7 +120,11 @@ function B25E_old_break( keys )
 	                              false)
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
-			AMHC:Damage(caster,it, ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 ),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if it:IsMagicImmune() then
+				AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage")*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 	end
 end
