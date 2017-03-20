@@ -1,0 +1,363 @@
+// 前田利家
+"DOTAAbilities"
+{
+	"A14_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"	"particles/a07e/a07e.vpcf"
+			"particle"  "particles/items_fx/blink_dagger_start_sparkles.vpcf"
+
+		}
+	}
+
+	//前田利家 衝擊槍
+	"A14W"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "custom/A14/A14W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_2"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"300"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "16 14 12 10"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "120 140 160 180"
+		"AnimationPlaybackRate"						"3"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/A_Oda/A14.lua"
+				"Function"                        	"A14W_OnSpellStart"
+				"Target"							"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"A07T.attack"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A14W"
+			{
+				"Duration"			"%Duration"
+				"IsDebuff"			"1"
+				"EffectName"					"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"  			"attach_hitloc"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"-40"
+				}
+
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"damage"                			"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"Duration"            				 "3 4 5 6"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"flyTime"            				"0.8"
+			}
+		}
+	}
+	//前田利家 神現一擊
+	"A14E"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "custom/A14/A14E"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_2"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"700"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "16"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "120"
+		"AbilityDamage"								"180 280 380 480"
+		"AnimationPlaybackRate"						"3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/A_Oda/A14.lua"
+				"Function"                        	"A14E_OnSpellStart"
+				"Target"							"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"A07T.attack"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A14E"
+			{
+				"Duration"			"%Duration"
+				"IsDebuff"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_blink_range"	"850"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"Duration"            				 "0.8 1.2 1.6 2.0"
+			}
+		}
+	}
+	
+	//前田利家 疊擊槍術
+	"A14R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"  "custom/A14/A14R"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"HotKeyOverride"	"R"
+		"Modifiers"
+		{
+			"modifier_A14R"
+			{
+				"Passive"	"1"
+				"IsPurgable"	"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A14.lua"
+						"Function"	"modifier_A14R_OnAttackLanded"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%str_bonus"
+				}
+			}
+			"modifier_A14R_atk_bonus"
+			{
+				"Passive"	"1"
+				"IsPurgable"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%atk_bonus"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"str_bonus"	"4 7 10 13"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"buff_max_time"	"5 10 15 20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_bonus"	"12"
+			}
+		}
+	}
+
+	// 本多忠勝 戰國最強．啟動
+	"A14T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A14/A14T"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"52"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"145"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf"
+			"model"	"models/heroes/dragon_knight/dragon_knight_dragon.vmdl"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			"soundfile"	"soundevents/a07t.vsndevts"
+			"particle"	"particles/a07t2/a07t2.vpcf"
+			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07T.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A14T"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_StormSpirit.ElectricVortex"
+			}
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A14.lua"
+				"Function"	"A14T_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A14T"
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+						}
+						"EffectName"	"particles/a07t2/a07t2.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_AVOID_CONSTANT"				"80"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%bonus_movement_speed"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"OnIntervalThink"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+						"EffectAttachType"	"follow_head"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+						}
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Brewmaster_Storm.Attack"
+					}
+				}
+				"ThinkInterval"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"12 15 18"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_movement_speed"	"400"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"a14r_bouns_count"	"5"
+			}
+		}
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Attacks are primarily about the damage
+		"AbilityModifierSupportValue"	"0.35"
+	}
+
+
+} // end DOTAAbilities
