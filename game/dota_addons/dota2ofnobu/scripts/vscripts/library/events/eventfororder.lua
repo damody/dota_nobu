@@ -86,6 +86,9 @@ function spell_ability ( filterTable )
 		and not string.match(ability:GetName(), "courier") then
 		return false
 	end
+	if ability:GetName() == "item_napalm_bomb" and _G.can_bomb == nil then
+		return false
+	end
 	if ability then
 		caster.abilityName = ability:GetAbilityName() --用來標記技能名稱
 	end

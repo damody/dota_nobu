@@ -65,6 +65,14 @@
 					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"							"B13D_OnDeath"
+					}
+				}
 			}
 		}
 

@@ -51,8 +51,10 @@ function modifier_magic_talisman:OnTakeDamage(event)
 				            	ShockTarget(event, self.caster)
 				            	local am = self.caster:FindAllModifiers()
 								for _,v in pairs(am) do
-									if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-										self.caster:RemoveModifierByName(v:GetName())
+									if IsValidEntity(v) and IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
+										if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
+											self.caster:RemoveModifierByName(v:GetName())
+										end
 									end
 								end
 							end

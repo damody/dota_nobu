@@ -44,10 +44,10 @@ function modifier_protection_amulet:OnTakeDamage(event)
 			            		self.caster:Purge( false, true, true, true, true)
 			            		local am = self.caster:FindAllModifiers()
 								for _,v in pairs(am) do
-									if not IsValidEntity(v:GetParent()) or not IsValidEntity(v:GetCaster()) then
-										self.caster:RemoveModifierByName(v:GetName())
-									elseif v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-										self.caster:RemoveModifierByName(v:GetName())
+									if IsValidEntity(v) and IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
+										if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
+											self.caster:RemoveModifierByName(v:GetName())
+										end
 									end
 								end
 							end

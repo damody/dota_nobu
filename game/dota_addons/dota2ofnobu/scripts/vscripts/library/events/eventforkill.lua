@@ -171,6 +171,8 @@ function Nobu:OnUnitKill( keys )
     print(killedUnit:GetUnitName() )
     if killedUnit:GetUnitName() == "npc_dota_courier2" then
       killedUnit:RespawnUnit()
+      killedUnit:FindAbilityByName("for_magic_immune"):
+        ApplyDataDrivenModifier(caster,target,"modifier_for_magic_immune",nil)
       killedUnit:SetOrigin(killedUnit.oripos)
     end
     --print("dead")

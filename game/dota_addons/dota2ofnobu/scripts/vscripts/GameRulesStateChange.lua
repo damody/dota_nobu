@@ -118,7 +118,10 @@ function Nobu:OnGameRulesStateChange( keys )
 	    	GameRules:SendCustomMessage("以上英雄的玩家可以在聊天視窗輸入 -new 或 -16 使用新版角色",0,0)
 	    end
     end)
-    
+    Timers:CreateTimer(120, function()
+    	_G.can_bomb = true
+	    GameRules:SendCustomMessage("可以開始使用爆裂彈了！",0,0)
+    end)
 
 	elseif(newState == DOTA_GAMERULES_STATE_POST_GAME) then
     if _G.nobu_server_b then

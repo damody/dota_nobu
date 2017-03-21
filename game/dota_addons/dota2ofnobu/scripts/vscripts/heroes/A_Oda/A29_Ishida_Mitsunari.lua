@@ -317,7 +317,7 @@ function ExorcismPhysics( event )
 				if unit.current_target ~= nil then
 					
 					-- Damage, units will still try to collide with attack immune targets but the damage wont be applied
-					if not unit.current_target:IsAttackImmune() then
+					if IsValidEntity(unit) and IsValidEntity(unit.current_target) and not unit.current_target:IsAttackImmune() then
 						local damage_table = {}
 
 						local spirit_damage = RandomInt(min_damage,max_damage)

@@ -3536,7 +3536,7 @@
 						"Target"
 						{
 							"Center"  	"CASTER"
-							"Radius" 	"1200"
+							"Radius" 	"1300"
 							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 							"Types" 	"DOTA_UNIT_TARGET_HERO"
 						}
@@ -3568,9 +3568,10 @@
 						"Target"
 						{
 							"Center"  	"CASTER"
-							"Radius" 	"1200"
+							"Radius" 	"1400"
 							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 							"Types" 	"DOTA_UNIT_TARGET_BASIC"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 						}
 					
 						"Action"    

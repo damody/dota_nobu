@@ -19,6 +19,15 @@ function B13D( keys )
 	end
 end
 
+--D 忍法．遁地術
+function B13D_OnDeath( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	keys.caster:FindAbilityByName("B13B"):SetActivated(false)
+	caster:RemoveModifierByName("modifier_B13D_underground")
+	caster:RemoveModifierByName("modifier_B13D")
+end
+
 function B13D_onCreated( keys )
 	keys.ability:SetLevel(1)
 end
