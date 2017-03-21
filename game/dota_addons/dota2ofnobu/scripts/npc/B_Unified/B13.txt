@@ -132,6 +132,11 @@
 				"Type"						"DAMAGE_TYPE_PHYSICAL"
 				"Damage"					"%B13W_damage"
 			}
+			"RunScript"
+			{
+				"ScriptFile"         		"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"                	"B13W"
+			}
 		}
 
 		"Modifiers"
