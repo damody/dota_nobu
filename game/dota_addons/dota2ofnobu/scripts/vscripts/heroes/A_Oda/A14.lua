@@ -1,9 +1,13 @@
+
 function A14W_OnSpellStart( event )
 	local ability = event.ability
 	local caster = event.caster 
 	local target =event.target
 	local vec = caster:GetAbsOrigin()
 	local point = target:GetAbsOrigin()
+	local tmpvec=(point-vec):Normalized()*300
+	local targetvec=Vector(tmpvec.x,tmpvec.y,0)
+	--print(targetvec)
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
 	Timers:CreateTimer(0.2,function()
 		local order = {UnitIndex = caster:entindex(),
@@ -11,34 +15,28 @@ function A14W_OnSpellStart( event )
 		TargetIndex = target:entindex()}
 		ExecuteOrderFromTable(order)
 		end)
-	local knockbackProperties =
-	{
-		center_x = vec.x,
-		center_y = vec.y,
-		center_z = vec.z,
-		duration = 0.8,
-		knockback_duration = 0.8,
-		knockback_distance = 700,
-		knockback_height = 0,
-		should_stun = 1
-	}
-	local targetvec=(point-vec):Normalized()*300
+	if not target:IsBuilding() and target:GetUnitName() ~= "B24W_DUMMY" and target:GetUnitName() ~= "B24T_HIDE" and
+		not string.match(target:GetUnitName(), "com_general") and not target:HasAbility("majia") then
+		Physics:Unit(target)
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.8})
+		target:SetPhysicsVelocity((point - vec):Normalized()*1700)
+		local x=math.ceil(target:GetPhysicsVelocity():Normalized().x*100)
+		local y=math.ceil(target:GetPhysicsVelocity():Normalized().y*100)
+		cur_target_vec=Vector(x,y,0)
+	end
 	timecounter=0
-	target:AddNewModifier( caster, nil, "modifier_knockback", knockbackProperties )
-	Timers:CreateTimer(0.05,function()
-		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
-		target:GetAbsOrigin()+targetvec,							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
-		300,					-- 搜尋半徑
-		DOTA_UNIT_TARGET_TEAM_BOTH,	-- 目標隊伍
-		ability:GetAbilityTargetType(),	-- 目標類型
-		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,-- 額外選擇或排除特定目標
-		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
-		for _,unit in ipairs(units) do
-			if (unit~=target and CalcDistanceBetweenEntityOBB(unit,target)<=100)or timecounter==16 then
-				StartSoundEvent( "A07T.attack", target )
-				target:RemoveModifierByName("modifier_knockback")
+	Timers:CreateTimer(0.01,function()
+		local x=math.ceil(target:GetPhysicsVelocity():Normalized().x*100)
+		local y=math.ceil(target:GetPhysicsVelocity():Normalized().y*100)
+		cur_target_vec2=Vector(x,y,0)
+		--print(cur_target_vec)
+		--print(cur_target_vec2)
+		--print(cur_target_vec2==cur_target_vec)
+		if not (cur_target_vec==cur_target_vec2) then
+			StartSoundEvent( "A07T.attack", target )
+				target:RemoveModifierByName("modifier_stunned")
+				Physics:Unit(target)
+				target:SetPhysicsVelocity(Vector(0,0,0))
 				local unitss = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				target:GetAbsOrigin(),							-- 搜尋的中心點
 				nil, 							-- 好像是優化用的參數不懂怎麼用
@@ -54,17 +52,60 @@ function A14W_OnSpellStart( event )
 						attacker=caster,         
 						damage=ability:GetSpecialValueFor("damage"),   
 						damage_type=ability:GetAbilityDamageType()} 
-					if not unit:IsMagicImmune() then
+					if not unit2:IsMagicImmune() then
 						ability:ApplyDataDrivenModifier(caster,unit2,"modifier_A14W",nil)
 						ApplyDamage(damageTable)  
 					end
 				end
+				target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
+				FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
+			return nil
+		end
+		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		target:GetAbsOrigin()+targetvec,							-- 搜尋的中心點
+		nil, 							-- 好像是優化用的參數不懂怎麼用
+		300,					-- 搜尋半徑
+		DOTA_UNIT_TARGET_TEAM_BOTH,	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false) 							-- 好像是優化用的參數不懂怎麼用
+		for _,unit in ipairs(units) do
+			if (unit~=target and CalcDistanceBetweenEntityOBB(unit,target)<=100)or timecounter==80 or target:GetPhysicsVelocity():Length()<100 then
+				StartSoundEvent( "A07T.attack", target )
+				target:RemoveModifierByName("modifier_stunned")
+				Physics:Unit(target)
+				target:SetPhysicsVelocity(Vector(0,0,0))
+				local unitss = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+				target:GetAbsOrigin(),							-- 搜尋的中心點
+				nil, 							-- 好像是優化用的參數不懂怎麼用
+				350,					-- 搜尋半徑
+				ability:GetAbilityTargetTeam(),	-- 目標隊伍
+				ability:GetAbilityTargetType(),	-- 目標類型
+				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+				FIND_ANY_ORDER,					-- 結果的排列方式
+				false) 							-- 好像是優化用的參數不懂怎麼用
+				AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
+				for _a,unit2 in ipairs(unitss) do
+					local damageTable = {victim=unit2,   
+						attacker=caster,         
+						damage=ability:GetSpecialValueFor("damage"),   
+						damage_type=ability:GetAbilityDamageType()} 
+					if not unit2:IsMagicImmune() then
+						ability:ApplyDataDrivenModifier(caster,unit2,"modifier_A14W",nil)
+						ApplyDamage(damageTable)  
+					end
+				end
+				target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
+				FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
 				return nil
 			else
 				timecounter=timecounter+1
-				return 0.05
+				return 0.01
 			end
 		end
+		timecounter=timecounter+1
+		return 0.01
 		end)
 end
 
