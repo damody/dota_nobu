@@ -34,22 +34,34 @@ function B13B_onCreated( keys )
 	keys.ability:SetActivated(false)
 end
 
+--W 忍法．感官破壞
+function B13W( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local b13R = caster:FindAbilityByName("B13R")
+	local dmgt = {
+					victim = target,
+					attacker = caster,
+					ability = b13R,
+					damage = b13R:GetSpecialValueFor("B13R_damageBonus") * caster:GetMaxHealth() ,
+					damage_type = b13R:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+				}
+	ApplyDamage(dmgt)
+end
+
 --R 忍法．血化裝
 function B13R( keys )
 	local attacker = keys.attacker
 	local target = keys.target
 	local ability = keys.ability
-	local multiple = 1
 
-	if target:HasModifier("modifier_B13W_debuff") then 
-		multiple = 2
-	end
 	if not target:IsBuilding() then
 		local dmgt = {
 					victim = target,
 					attacker = attacker,
 					ability = ability,
-					damage = ability:GetSpecialValueFor("B13R_damageBonus") * attacker:GetMaxHealth() * multiple,
+					damage = ability:GetSpecialValueFor("B13R_damageBonus") * attacker:GetMaxHealth() ,
 					damage_type = ability:GetAbilityDamageType(),
 					damage_flags = DOTA_DAMAGE_FLAG_NONE,
 		}
@@ -61,7 +73,9 @@ function B13R( keys )
 end
 
 function B13R_heal( keys )
-	keys.attacker:Heal( keys.unit:GetMaxHealth() * keys.ability:GetSpecialValueFor("B13R_heal") , keys.attacker)
+	if not keys.unit:IsBuilding() then
+		keys.attacker:Heal( keys.unit:GetMaxHealth() * keys.ability:GetSpecialValueFor("B13R_heal") , keys.attacker)
+	end
 end
 
 --T 忍法密傳．暴風
@@ -108,7 +122,7 @@ function B13T( keys )
 					damage_flags = DOTA_DAMAGE_FLAG_NONE,
 				})
 			end
-		end		
+		end	
 		return 1 / tickPerSec
 	end)
 end
