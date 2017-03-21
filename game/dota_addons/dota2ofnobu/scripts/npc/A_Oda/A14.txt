@@ -9,6 +9,24 @@
 		{
 			"particle"	"particles/a07e/a07e.vpcf"
 			"particle"  "particles/items_fx/blink_dagger_start_sparkles.vpcf"
+			"particle"  "particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_e.vpcf"
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_blast.vpcf"
+			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"particle"	"particles/b34t/b34t.vpcf"
+			"particle"	"particles/b34t/b34t2.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			"soundfile"	"soundevents/a07t.vsndevts"
+			"particle"	"particles/a07t2/a07t2.vpcf"
+			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_char_glow.vpcf"
+			"particle"  "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_birds.vpcf"
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch_model.vpcf"
 
 		}
 	}
@@ -207,7 +225,7 @@
 		}
 	}
 
-	// 本多忠勝 戰國最強．啟動
+	// 前田利家 狂怒．槍之又左
 	"A14T"
 	{
 		// General
@@ -359,5 +377,456 @@
 		"AbilityModifierSupportValue"	"0.35"
 	}
 
+	//前田利家 本能之打擊
+	"A14W_old"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "custom/A14/A14W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_2"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"300"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "15"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "100 120 140 160"
+		"AnimationPlaybackRate"						"3"
 
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/A_Oda/A14.lua"
+				"Function"                        	"A14W_old_OnSpellStart"
+				"Target"							"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"A07T.attack"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"damage"                			"175 275 375 475"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"flyTime"            				"0.8"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"stun"            					"0.5 1 1.5 2"
+			}
+		}
+	}
+	//前田利家 野生之斬擊
+	"A14E_old"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "custom/A14/A14E"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_2"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"300"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "15"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "100 120 140 160"
+		"AnimationPlaybackRate"						"3"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/A_Oda/A14.lua"
+				"Function"                        	"A14E_old_OnSpellStart"
+				"Target"							"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"A07T.attack"
+			}
+	
+			"DelayedAction" 
+			{
+				"Delay" 							"%flyTime"
+				"Action"
+				{ 
+					"RunScript"
+					{
+						"ScriptFile"           		"scripts/vscripts/heroes/A_Oda/A14.lua"
+						"Function"            		"A14E_old_DelayedAction"
+						"Target"					"TARGET"
+					}
+					"FireSound"
+					{
+						"Target"					"TARGET"
+						"EffectName"				"A07T.attack"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"damage"                			"250 350 450 550"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"damage_on_ground"             		"100 200 300 400"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_FLOAT"
+				"flyTime"            				"1.5"
+			}
+		}
+	}
+
+
+	//前田利家 戰魂
+	"A14R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"  "custom/A14/A14D"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"HotKeyOverride"	"R"
+		"Modifiers"
+		{
+			"modifier_A14R_old"
+			{
+				"Passive"	"1"
+				"IsPurgable"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%atkspeed_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_bonus"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atkspeed_bonus"	"15 30 45 60"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonus"	"4 6 8 10"
+			}
+		}
+	}
+
+	// 前田利家 狂怒．槍之又左
+	"A14T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A14/A14T"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"108"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"200 250 300"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A07T.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A14T_old"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_StormSpirit.ElectricVortex"
+			}
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A14.lua"
+				"Function"	"A14T_old_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A14T_old"
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+						}
+						"EffectName"	"particles/a07t2/a07t2.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A14.lua"
+						"Function"	"modifier_A14T_old_OnCreated"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A14.lua"
+						"Function"	"modifier_A14T_old_OnDestroy"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%bonus_movement_speed"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" 		"%heal_bonus"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"		"%atk_bonus"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"OnIntervalThink"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+						"EffectAttachType"	"follow_head"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+							"CASTER"	"attach_head"
+						}
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Brewmaster_Storm.Attack"
+					}
+				}
+				"ThinkInterval"	"1"
+			}
+			"modifier_A14T_old_debuff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_decrease_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%debuff_decrease_speed"
+				}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"%debuff_duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"40"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_movement_speed"	"60"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_bonus"	"200 260 320"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal_bonus"	"20 25 30"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"debuff_duration"	"4 4.5 5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_decrease_speed"	"-50 -60 -70"
+			}
+		}
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Attacks are primarily about the damage
+		"AbilityModifierSupportValue"	"0.35"
+	}
+
+
+
+	// 前田利家 火鳳凰
+	"A14D_old"
+	{
+		"BaseClass"			"ability_datadriven"
+		"AbilityTextureName"	"custom/A14/A14D_old"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"3"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"2"
+		"AbilityCooldown"	"8"
+		"AbilityManaCost"	"120"
+		"AbilityDamage"	"350 450 550"
+		"AbilityCastRange"	"2000"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B08W.vo1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Cast"
+				"Target"	"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Particle"
+				"Target"	"CASTER"
+			}
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch_model.vpcf"
+				"MoveSpeed"	"%shock_speed"
+				"StartRadius"	"%shock_width"
+				"StartPosition"	"attach_orgin"
+				"EndRadius"	"%shock_width"
+				"FixedDistance"	"%shock_distance"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"0"
+				"ProvidesVision"	"1"
+				"VisionRadius"	"%shock_vision"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Target"
+				"Target"	"TARGET"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_speed"	"2000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_width"	"200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_distance"	"2000"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_vision"	"200"
+			}
+		}
+
+	}
 } // end DOTAAbilities
