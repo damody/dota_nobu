@@ -19,7 +19,7 @@ function Shock( keys )
 		-- 不能推秋山的石頭跟建築物
 		if not target:IsBuilding() and target:GetUnitName() ~= "B24W_DUMMY" and target:GetUnitName() ~= "B24T_HIDE" and
 			not string.match(target:GetUnitName(), "com_general") and not target:HasAbility("majia") then
-				Physics:Unit(target)
+				
 				local knockbackProperties =
 				{
 					center_x = point.x,
@@ -27,13 +27,13 @@ function Shock( keys )
 					center_z = point.z,
 					duration = 0.3,
 					knockback_duration = 0.3,
-					knockback_distance = 300,
+					knockback_distance = 500,
 					knockback_height = 0,
 					should_stun = 1
 				}
 				target:AddNewModifier( caster, nil, "modifier_knockback", knockbackProperties )
 			if (target:IsMagicImmune()) then
-				ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 0.5})
+				ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 0.6})
 			else
 				ability:ApplyDataDrivenModifier(caster, target, "modifier_flood_book", {duration = 1.2})
 			end

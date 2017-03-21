@@ -85,7 +85,7 @@ function Nobu:OnHeroIngame( keys )
       --GameRules: SendCustomMessage("<font color=\"#5cb85c\">殺爆全場就是現在</font>",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 1000)
     end
 	Timers:CreateTimer ( 1, function ()
-	  if hero ~= nil and IsValidEntity(hero) and not hero:IsIllusion() then
+	  if hero ~= nil and IsValidEntity(hero) and not hero:IsIllusion() and hero:GetUnitName() ~= "npc_dota_hero_slardar" then
       if hero.init1 == nil then
         hero.init1 = true
         hero.kill_count = 0

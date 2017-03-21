@@ -13,10 +13,10 @@ function Nobu:PickHero( keys )
       caster.version = "16"
       local name = caster:GetUnitName()
       if name == "npc_dota_hero_slardar" then
-        --caster:AddAbility("OBW"):SetLevel(1)
-        --caster:AddAbility("majia"):SetLevel(1)
-        --caster:AddAbility("for_no_damage"):SetLevel(1)
-        --caster:AddNoDraw()
+        caster:AddAbility("OBW"):SetLevel(1)
+        caster:AddAbility("majia"):SetLevel(1)
+        caster:AddAbility("for_no_damage"):SetLevel(1)
+        caster:AddNoDraw()
         Timers:CreateTimer(0,function()
           caster:SetAbilityPoints(0)
           return 1

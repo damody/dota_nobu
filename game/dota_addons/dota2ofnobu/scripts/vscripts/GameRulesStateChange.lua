@@ -122,6 +122,13 @@ function Nobu:OnGameRulesStateChange( keys )
     	_G.can_bomb = true
 	    GameRules:SendCustomMessage("可以開始使用爆裂彈了！",0,0)
     end)
+    Timers:CreateTimer(2, function ()
+		for i=-3,3 do
+		  for j=-3,3 do
+		    AddFOWViewer(6, Vector(i*5000,j*5000,0), 10000, 99999, false)
+		  end
+		end
+		end)
 
 	elseif(newState == DOTA_GAMERULES_STATE_POST_GAME) then
     if _G.nobu_server_b then

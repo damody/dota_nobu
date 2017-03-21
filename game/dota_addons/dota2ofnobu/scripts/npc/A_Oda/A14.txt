@@ -202,12 +202,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk_bonus"	"12"
+				"atk_bonus"	"15"
 			}
 		}
 	}
 
-	// 本多忠勝 戰國最強．啟動
+	// 狂怒．槍之又左
 	"A14T"
 	{
 		// General
@@ -306,7 +306,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"				"80"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%bonus_movement_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"		"700"
 				}
 				"Duration"	"%duration"
 				"IsBuff"	"1"

@@ -205,7 +205,8 @@ local function chat_of_test(keys)
 		  sump = sump + 1
 		end
 	end
-	if string.match(s,"damody:") then
+	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
+	if tostring(steamid) == "128732954" then
 		sump = 1
 	end
 	if sump <= 2 then

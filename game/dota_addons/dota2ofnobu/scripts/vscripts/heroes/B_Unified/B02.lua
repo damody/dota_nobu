@@ -263,7 +263,7 @@ function B02T(keys)
 	distance = 245
 	local dmg = ability:GetLevelSpecialValueFor("dmg",level)
 	Timers:CreateTimer(1,function() 
-		if num == 0 or not target:IsAlive() then
+		if num == 0 or not IsValidEntity(target) or not target:IsAlive() then
 			return nil
 		else
 			--【DMG】
