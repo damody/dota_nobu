@@ -160,6 +160,7 @@ function B24W( keys )
 				AMHC:Damage( caster,target,ability:GetLevelSpecialValueFor("Damage",ability:GetLevel()-1),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				local wcount = 0
 				Timers:CreateTimer(0.1, function()
+					if IsValidEntity(target) then
 						local its = FindUnitsInRadius(caster:GetTeamNumber(),
 							target:GetAbsOrigin(),
 							nil,
@@ -181,6 +182,7 @@ function B24W( keys )
 						else
 							return 0.1
 						end
+					end
 					end)
 				
 				hasenemy = true
@@ -289,8 +291,10 @@ function B24E_START( keys )
 					-- Set the force attack target to be the caster
 					v:SetForceAttackTarget(caster)
 				else
-					v:SetForceAttackTarget(nil)
-					v:Stop()
+					if IsValidEntity(v) then
+						v:SetForceAttackTarget(nil)
+						v:Stop()
+					end
 				end
 			end
 			if hasv then
@@ -419,26 +423,27 @@ function B24R( keys )
 
 				--【Group_radius】
 				local radius = 225
-			   	local group = FindUnitsInRadius(
-			   		caster:GetTeamNumber(), 
-			   		point2, 
-			   		nil, 
-			   		radius ,
-			   		DOTA_UNIT_TARGET_TEAM_ENEMY, 
-			   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
-			   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
-			   		FIND_ANY_ORDER, 
-			   		false)
-				for _,v in ipairs(group) do
-					if IsValidEntity(v) then
-						AMHC:Damage( caster,v,damage2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-					end
-					if IsValidEntity(v) and not v:IsMagicImmune() then
-						AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-						ability:ApplyDataDrivenModifier(caster,v,"modifier_B24R_2",nil)
+				if IsValidEntity(caster) then
+				   	local group = FindUnitsInRadius(
+				   		caster:GetTeamNumber(), 
+				   		point2, 
+				   		nil, 
+				   		radius ,
+				   		DOTA_UNIT_TARGET_TEAM_ENEMY, 
+				   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+				   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+				   		FIND_ANY_ORDER, 
+				   		false)
+					for _,v in ipairs(group) do
+						if IsValidEntity(v) then
+							AMHC:Damage( caster,v,damage2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+						end
+						if IsValidEntity(v) and not v:IsMagicImmune() then
+							AMHC:Damage( caster,v,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+							ability:ApplyDataDrivenModifier(caster,v,"modifier_B24R_2",nil)
+						end
 					end
 				end
-
 				--【DEBUG】
 				if nobu_debug then
 					local start_point = point

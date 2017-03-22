@@ -61,8 +61,8 @@
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
 								m_sBoneName = "Hero"
-								m_vMinBounds = [ -78.75808, -41.763817, -2.0 ]
-								m_vMaxBounds = [ 94.397919, 43.047359, 133.652451 ]
+								m_vMinBounds = [ -68.516617, -40.084053, -0.015 ]
+								m_vMaxBounds = [ 89.812119, 41.700062, 131.354355 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},
@@ -82,13 +82,39 @@
 				m_attachments = 
 				[
 					{
+						m_name = "attach_head"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Head"
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
 						m_name = "attach_attack1"
 						m_influences = 
 						[
 							{
 								m_influenceName = "Weapon"
-								m_vTranslationOffset = [ 86.035706, 0.0, 0.0 ]
+								m_vTranslationOffset = [ 69.936249, 0.0, 0.0 ]
 								m_vRotationOffset = [ 0.0, -0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Weapon"
+								m_vTranslationOffset = [ 69.536293, -0.000004, 0.0 ]
+								m_vRotationOffset = [ -0.0, 0.0, -0.000001 ]
 								m_flWeight = 1.0
 								m_bRoot = false
 							},
@@ -109,6 +135,19 @@
 					},
 					{
 						m_name = "attach_hitloc"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Chest"
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_root"
 						m_influences = 
 						[
 							{
@@ -675,7 +714,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -800,7 +845,7 @@
 			},
 			{
 				m_sSearchMaterial = "herovest.vmat"
-				m_sReplaceMaterial = "materials/heromitsuhideakechi/herocloth.vmat"
+				m_sReplaceMaterial = "materials/c05/c05_2.vmat"
 			},
 		]
 	}

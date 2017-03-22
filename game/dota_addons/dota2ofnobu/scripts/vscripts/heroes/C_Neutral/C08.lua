@@ -106,12 +106,13 @@ function C08E_OnSpellStart( keys )
 			damage_type = ability:GetAbilityDamageType(),
 			damage_flags = DOTA_DAMAGE_FLAG_NONE,
 		})
-
-		local dir = (caster:GetAbsOrigin()-unit:GetAbsOrigin()):Normalized()
-		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf",PATTACH_POINT,unit)
-		ParticleManager:SetParticleControlEnt(ifx,3,unit,PATTACH_POINT,"attach_hitloc",unit:GetAbsOrigin()+Vector(0,0,200),true)
-		ParticleManager:SetParticleControlForward(ifx,3,dir)
-		ParticleManager:ReleaseParticleIndex(ifx)
+		if IsValidEntity(unit) then
+			local dir = (caster:GetAbsOrigin()-unit:GetAbsOrigin()):Normalized()
+			local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf",PATTACH_POINT,unit)
+			ParticleManager:SetParticleControlEnt(ifx,3,unit,PATTACH_POINT,"attach_hitloc",unit:GetAbsOrigin()+Vector(0,0,200),true)
+			ParticleManager:SetParticleControlForward(ifx,3,dir)
+			ParticleManager:ReleaseParticleIndex(ifx)
+		end
 	end
 
 	local dir = -caster:GetForwardVector()

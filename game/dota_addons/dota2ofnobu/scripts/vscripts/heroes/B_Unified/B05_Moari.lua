@@ -14,8 +14,7 @@ function LightningJump(keys)
 	local jump_delay = ability:GetLevelSpecialValueFor("jump_delay", (ability:GetLevel() -1))
 	local radius = ability:GetLevelSpecialValueFor("radius", (ability:GetLevel() -1))
 	
-	-- Applies damage to the current target
-	ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
+	
 	-- Removes the hidden modifier
 	target:RemoveModifierByName("modifier_arc_lightning_datadriven")
 	
@@ -83,7 +82,10 @@ function LightningJump(keys)
 			-- If there are no more jumps, we set the current target to nil to indicate this instance is over
 			ability.target[current] = nil
 		end
+		-- Applies damage to the current target
+	
 	end)
+	ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
 end
 
 --[[Author: YOLOSPAGHETTI
@@ -130,10 +132,7 @@ function ThundergodsWrath(keys)
 	local sight_radius = ability:GetLevelSpecialValueFor("sight_radius", (ability:GetLevel() -1))
 	local sight_duration = ability:GetLevelSpecialValueFor("sight_duration", (ability:GetLevel() -1))
 	
-	-- If the target is not invisible, we deal damage to it
-	if target:IsInvisible() ~= true then
-		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
-	end
+	
 	-- Gives the caster's team vision around the target
 	--AddFOWViewer(caster:GetTeam(), target:GetAbsOrigin(), sight_radius, sight_duration, false)
 	-- Renders the particle on the target
@@ -145,6 +144,10 @@ function ThundergodsWrath(keys)
 	-- Plays the sound on the target
 	EmitSoundOn(keys.sound, target)
 	AddFOWViewer(caster:GetTeamNumber(), target:GetAbsOrigin(), 100.0, 2.0, false)
+	-- If the target is not invisible, we deal damage to it
+	if target:IsInvisible() ~= true then
+		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
+	end
 end
 
 --[[Author: YOLOSPAGHETTI

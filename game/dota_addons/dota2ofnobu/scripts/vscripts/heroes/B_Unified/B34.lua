@@ -102,7 +102,7 @@ function B34T_old( keys )
 	Timers:CreateTimer(0.1, function()
 		for _, it in pairs(group) do
 			if it:IsHero() then
-				if not it:HasModifier("modifier_B34T_old") then
+				if IsValidEntity(it) and not it:HasModifier("modifier_B34T_old") then
 					ability:ApplyDataDrivenModifier(it,it,"modifier_B34T_old",{duration = duration-tsum})
 				end
 			end

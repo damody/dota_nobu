@@ -118,7 +118,7 @@ function OnEquip( keys )
 			return nil
 		end
 		if caster:IsAlive() then
-			if not caster:HasModifier("modifier_magic_talisman") then
+			if not caster:HasModifier("modifier_magic_talisman") and IsValidEntity(ability) then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
 				caster:FindModifierByName("modifier_magic_talisman").caster = caster
 				caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
@@ -199,7 +199,7 @@ function ShockTarget( keys, target )
 	local caster = keys.caster
 	local ability = keys.ability
 	local havetime = 5
-	local shield
+	local shield = -1
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_magic_talisman2", {duration = havetime} )
 	if target:FindModifierByName("modifier_nannbann_armor2") then
 		target:FindModifierByName("modifier_magic_talisman2").caster = target
@@ -213,7 +213,10 @@ function ShockTarget( keys, target )
 	Timers:CreateTimer(havetime, function() 
 			isend = true
 		end)
-	Timers:CreateTimer(0, function() 
+	Timers:CreateTimer(0, function()
+			if shield == -1 then
+				return nil
+			end
 			if IsValidEntity(target) then
 				ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
 			else

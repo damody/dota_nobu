@@ -10,8 +10,10 @@
 			"particle"	"particles/b13t/invoker_tornado_ti6.vpcf"
 			"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff_b.vpcf"
 			"particle"	"particles/generic_gameplay/generic_sleep.vpcf"
+			"particle"  "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		}
 	}
 
@@ -73,9 +75,16 @@
 						"Function"							"B13D_OnDeath"
 					}
 				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"							"B13D_remove"
+					}
+				}
 			}
 		}
-
 	}
 	//縮地
 	"B13B"
@@ -139,6 +148,11 @@
 				"Target"					"TARGET"
 				"Type"						"DAMAGE_TYPE_PHYSICAL"
 				"Damage"					"%B13W_damage"
+			}
+			"RunScript"
+			{
+				"ScriptFile"         		"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"                	"B13W"
 			}
 		}
 
@@ -338,11 +352,11 @@
 		{
 			"modifier_B13T_veryslowAura"
 			{
-				"EffectName" 			"particles/neutral_fx/tornado_ambient.vpcf"
+				"EffectName" 			"particles/b13/b13t.vpcf"
                 "EffectAttachType" 		"follow_overhead"
 				"IsHidden"				"1"
 				"Aura" 					"modifier_B13T_veryslow"
-		        "Aura_Radius" 			"500"
+		        "Aura_Radius" 			"%B13T_radius"
 		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -386,6 +400,371 @@
 				"var_type"			"FIELD_INTEGER"
 				"B13T_atkspd"		"-150 -300 -450"
 			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B13T_radius"		"500"
+			}
 		}
 	}
+//D old 背刺
+	"B13D_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"                        "skeleton_king_mortal_strike"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"MaxLevel"									"1"
+
+		"Modifiers"
+		{
+			"modifier_B13D_old_passive"
+			{
+				"Passive"							"1"
+				"IsHidden"							"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"         		"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"                	"B13D_old"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B13D_old_damage"		"300"
+			}
+		}
+	}
+
+	//old忍法．遁地
+	"B13W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"                        "rubick_telekinesis_land"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCooldown"                        	"4 3.5 3 2.5"
+		"AbilityManaCost"                           "0"
+		"MaxLevel"									"4"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_3"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13W_old"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13W_old_underground"
+			{
+				"OverrideAnimation"				"ACT_DOTA_CAST_ABILITY_2"
+				"IsHidden"						"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%B13W_old_hpRegen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"			"%B13W_old_mpRegen"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B13W_old_hpRegen"		"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B13W_old_mpRegen"		"10 15 20 25"
+			}
+		}
+	}
+
+	//old忍法．催眠
+	"B13E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"winter_wyvern_winters_curse"
+		"AbilityCooldown"							"20"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"50"
+		"AbilityCastRange"              			"800"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"							"TARGET"
+				"ModifierName"						"modifier_B13E_old_sleep"
+			}
+			"ApplyModifier"
+			{
+				"Target"							"TARGET"
+				"ModifierName"						"modifier_B13E_old_invulnerable"
+			}
+			"FireSound"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"Visage_Familar.BellToll"
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B13E_old_duration"                	"4 6 8 10"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13E_old_sleep"
+			{
+				"IsDebuff"							"1"
+				"Duration"							"%B13E_old_duration"
+				"EffectName" 						"particles/generic_gameplay/generic_sleep.vpcf"
+                "EffectAttachType" 					"follow_overhead"	
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnTakeDamage"
+				{
+					"RemoveModifier"
+					{
+						"Target"					"UNIT"
+						"ModifierName"				"modifier_B13E_old_sleep"
+					}
+				}
+			}
+			//無敵
+			"modifier_B13E_old_invulnerable"
+			{
+				"IsDebuff"							"1"
+				"Duration"							"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//R old 忍具．隱雷
+	"B13R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "techies_land_mines"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"							"1"
+		"AbilityCastPoint"							"0"
+		"AbilityManaCost"                      		"20 40 60 80"
+		"AbilityCastRange"              			"200"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13R_old"
+				"Target"							"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13R_old_detectorAura"
+			{
+				"IsHidden"									"0"
+				"Aura" 										"modifier_B13R_old_explosion"
+		        "Aura_Radius" 								"%B13R_old_radius_detector"
+		        "Aura_Teams" 								"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		        "Aura_Types" 								"DOTA_UNIT_TARGET_HERO"
+		        "Aura_Flags" 								"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		        "Aura_ApplyToCaster" 						"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" 	"%B13R_old_radius_detector" // 把地雷的攻擊距離拿來顯示爆炸範圍
+				}
+				"States"
+				{	
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_B13R_old_explosion"
+			{
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"		"B13R_old_explosion"
+					}
+				}
+			}
+			"modifier_B13R_old_rooted"
+			{
+				"IsHidden"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_damage"					"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_hp"						"300 400 500 600"
+			}
+			"03" //爆炸範圍
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_radius_explosion"			"300"
+			}
+			"04" //觸發範圍
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_radius_detector"			"250"
+			}
+		}
+    }
+    //T old 忍法密傳．暴風
+    "B13T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "brewmaster_storm_cyclone"
+
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"110"
+		"AbilityManaCost"           				"200 250 300"
+		"AOERadius"                                 "500"
+		"AbilityCastRange"              			"500"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"			"B13T_old"
+				"Target"
+				{
+					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"            	    "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Center"     			"POINT"
+					"Radius"     		   	"%B13T_old_radius"
+				}
+			}
+			"FireSound"
+			{
+				"Target"					"POINT"
+				"EffectName"				"Hero_Invoker.Tornado"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13T_old_veryslowAura"
+			{
+				"EffectName" 			"particles/b13/b13t.vpcf"
+                "EffectAttachType" 		"follow_overhead"
+				"IsHidden"				"1"
+				"Aura" 					"modifier_B13T_old_veryslow"
+		        "Aura_Radius" 			"%B13T_old_radius"
+		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		        "Aura_ApplyToCaster" 	"0"
+		        "Duration"				"7"
+			}
+			"modifier_B13T_old_veryslow"
+			{
+				"IsDebuff"							"1"
+				"IsPurgable"						"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%B13T_old_atkspd"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%B13T_old_movespd"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B13T_old_damage"		"400 600 800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B13T_old_movespd"		"-60 -70 -80"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B13T_old_atkspd"		"-120 -240 -360"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B13T_old_radius"		"500"
+			}
+		}
+	}
+
 } // END DOTAAbilities

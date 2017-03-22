@@ -453,6 +453,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A34_Matsu.lua"
 				"Function"	"rearm_refresh_cooldown"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_invulnerable"
+				"Target" 		"TARGET"
+				"Duration"		"0.5"
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
