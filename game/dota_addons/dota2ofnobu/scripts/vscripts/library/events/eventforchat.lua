@@ -14,6 +14,11 @@ function SendHTTPRequest(path, method, values, callback)
 	end)
 end
 
+skin = {
+	["128732954"] = true,
+	["164167573"] = true,
+}
+
 local function chat_of_test(keys)
 	print("[Nobu-lua] Test")
 	--DeepPrintTable(keys)
@@ -80,6 +85,11 @@ local function chat_of_test(keys)
 			end)
 		]]
 	end
+	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
+	local skin = false
+	if tostring(steamid) == "128732954" then
+		skin = true
+	end
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
@@ -120,7 +130,15 @@ local function chat_of_test(keys)
         if nobu_id == "C08" and caster:HasModifier("modifier_C08D_old_duge") then
         	caster:RemoveModifierByName("modifier_C08D_old_duge")
         end
-        
+	end
+	if (s == "-skin" and nobu_id == "C17" and skin) then
+		LinkLuaModifier("modifier_c17_school", "heroes/modifier_c17_school.lua", LUA_MODIFIER_MOTION_NONE)
+		Timers:CreateTimer(0, function ()
+		    if not caster:HasModifier("modifier_c17_school") then
+		    	caster:AddNewModifier(caster, nil, "modifier_c17_school", nil)
+		    end
+		    return 1
+		  end)
 	end
 	if (s == "-long" and nobu_id == "A31") then
 		LinkLuaModifier("modifier_long_a31", "heroes/modifier_long_a31.lua", LUA_MODIFIER_MOTION_NONE)

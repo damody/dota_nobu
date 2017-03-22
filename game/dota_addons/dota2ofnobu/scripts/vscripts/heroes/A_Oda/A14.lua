@@ -192,6 +192,10 @@ function A14W_old_OnSpellStart( event )
 	local targetvec=Vector(tmpvec.x,tmpvec.y,0)
 	--print(targetvec)
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
+	local damageTable = {victim=target,   
+			attacker=caster,         
+			damage=ability:GetSpecialValueFor("damage"),   
+			damage_type=ability:GetAbilityDamageType()} 
 	Timers:CreateTimer(0.2,function()
 		local order = {UnitIndex = caster:entindex(),
 		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
@@ -205,13 +209,11 @@ function A14W_old_OnSpellStart( event )
 		local x=math.ceil(target:GetPhysicsVelocity():Normalized().x*100)
 		local y=math.ceil(target:GetPhysicsVelocity():Normalized().y*100)
 		cur_target_vec=Vector(x,y,0)
-		local damageTable = {victim=target,   
-			attacker=caster,         
-			damage=ability:GetSpecialValueFor("damage"),   
-			damage_type=ability:GetAbilityDamageType()} 
+		
 		if not target:IsMagicImmune() then
-			ApplyDamage(damageTable)
+			
 			ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = ability:GetSpecialValueFor("stun")})
+			ApplyDamage(damageTable)
 		end
 	end
 	timecounter=0
@@ -220,25 +222,37 @@ function A14W_old_OnSpellStart( event )
 		local y=math.ceil(target:GetPhysicsVelocity():Normalized().y*100)
 		cur_target_vec2=Vector(x,y,0)
 		if not (cur_target_vec==cur_target_vec2) then
-				target:RemoveModifierByName("modifier_stunned")
+				--target:RemoveModifierByName("modifier_stunned")
 				Physics:Unit(target)
 				target:SetPhysicsVelocity(Vector(0,0,0))
 				target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
 				FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
-			return nil
+			--return nil
 		end
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin()+targetvec,							-- 搜尋的中心點
 		nil, 							-- 好像是優化用的參數不懂怎麼用
-		300,					-- 搜尋半徑
+		250,					-- 搜尋半徑
 		DOTA_UNIT_TARGET_TEAM_BOTH,	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
 		false) 							-- 好像是優化用的參數不懂怎麼用
+		print("target:GetPhysicsVelocity():Length()", target:GetPhysicsVelocity():Length())
+		if (timecounter<80 and target:GetPhysicsVelocity():Length()<100) then
+			ApplyDamage(damageTable)
+			ApplyDamage(damageTable)
+			Physics:Unit(target)
+			target:SetPhysicsVelocity(Vector(0,0,0))
+			target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
+			FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
+			return nil
+		end
 		for _,unit in ipairs(units) do
-			if (unit~=target and CalcDistanceBetweenEntityOBB(unit,target)<=100)or timecounter==80 or target:GetPhysicsVelocity():Length()<100 then
-				target:RemoveModifierByName("modifier_stunned")
+			if (unit~=target and CalcDistanceBetweenEntityOBB(unit,target)<=100) then
+				--target:RemoveModifierByName("modifier_stunned")
+				ApplyDamage(damageTable)
+				ApplyDamage(damageTable)
 				Physics:Unit(target)
 				target:SetPhysicsVelocity(Vector(0,0,0))
 				target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
@@ -292,6 +306,7 @@ function A14E_old_OnSpellStart( event )
 		TargetIndex = target:entindex()}
 		ExecuteOrderFromTable(order)
 		end)
+	target:AddNewModifier(caster,ability,"modifier_stunned",{duration=ability:GetSpecialValueFor("stun_Time")})
 end
 
 

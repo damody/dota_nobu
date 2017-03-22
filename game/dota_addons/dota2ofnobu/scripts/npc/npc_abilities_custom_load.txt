@@ -3563,37 +3563,12 @@
 
 				"OnIntervalThink"
 				{
-					"ActOnTargets"
+					"RunScript"
 					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"1400"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_BASIC"
-							"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-					
-						"Action"    
-						{
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_for_no_damage"
-								"Target" 		"TARGET"
-								"Duration"		"5"
-							}
-						}
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"nodmg_courier"
 					}
-				}
-			}
-			"modifier_for_no_damage"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"Duration"		"5"
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"modifier_for_move300"

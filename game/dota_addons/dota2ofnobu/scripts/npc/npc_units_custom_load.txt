@@ -3696,11 +3696,9 @@
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
-		"ModelScale"				"1.0"
+		"ModelScale"				"0.5"
 		"SelectionGroup"			"A26_MINE"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
- 		"wearable"					"8644"
- 		"RingRadius"				"100"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -3756,7 +3754,6 @@
 		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 	}
 
 	"npc_dummy"

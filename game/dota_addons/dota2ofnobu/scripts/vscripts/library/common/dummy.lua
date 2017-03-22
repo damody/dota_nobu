@@ -56,6 +56,22 @@ function down_broken( keys )
   end
 end
 
+function nodmg_courier( keys )
+  local caster = keys.caster
+  --print(dummy:GetUnitName())
+
+  local units = FindUnitsInRadius(caster:GetTeamNumber(),  
+        caster:GetAbsOrigin(),nil,1400,DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+          FIND_ANY_ORDER, 
+        false)
+  for _,it in pairs(units) do
+    if it:GetUnitName() == "npc_dota_courier2" then
+      it:AddNewModifier(it, nil, "modifier_invulnerable", {duration = 5})
+    end
+  end
+end
 
 function killdummy( keys )
 	local dummy = keys.target

@@ -150,7 +150,6 @@ function CreateMine( ability, position, duration )
 	local active_delay = ability:GetSpecialValueFor("active_delay")
 	local mine = CreateUnitByName("A26_MINE",position,true,caster,caster,caster:GetTeamNumber())
 	mine:SetOwner(caster)
-	mine:SetHullRadius(ability:GetSpecialValueFor("radius_trigger"))
 	ability:ApplyDataDrivenModifier(caster,mine,"modifier_A26D_mine_passive",{})
 	Timers:CreateTimer(active_delay, function()
 		if IsValidEntity(mine) and mine:IsAlive() then

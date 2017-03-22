@@ -28,7 +28,7 @@ function A28W_old(keys)
 	local duration = ability:GetLevelSpecialValueFor("duration", ( ability:GetLevel() - 1 ))
 
 	keys.target:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
-	keys.target:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_A28W",{duration = duration})
 end
 
 --[[Author: YOLOSPAGHETTI

@@ -297,6 +297,7 @@ function C17R_old_on_trigger( keys )
 
 	-- 移除光環，光環在角色死亡時不會刪除，似乎要等到實體被移除後才會刪除
 	target:RemoveModifierByName("modifier_C17R_old_aura")
+	target:RemoveModifierByName("modifier_invisible")
 
 	-- 殺死暈障
 	target:ForceKill(true)
