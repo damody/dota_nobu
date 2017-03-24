@@ -1,0 +1,284 @@
+// 山本勘助
+"DOTAAbilities"
+{
+	"B12_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/a02/a02e_bow.vpcf"
+			"particle"  "particles/units/heroes/hero_razor/razor_static_link_beam_2b.vpcf"
+			"particle"  "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_trigger_ground_symbol_add.vpcf"
+			"particle"  "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf"
+			"particle"  "particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf"
+			"particle"  "particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp_ring_elec.vpcf"
+			"particle"  "particles/customgames/capturepoints/cp_fire_captured.vpcf"
+			"particle"  "particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge_tgt_fire.vpcf"
+		}
+	}
+	"Version"		"1"
+	//山本勘助 實界滑移
+	"B12W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B12/B12W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"17"
+		"AbilityManaCost"	"105 130 155 180"
+		"AbilityCastRange"	"800 1100 1400 1700"
+		"AbilityDamage" 	"200 300 400 500"
+		"AOERadius"         "400"
+		"precache"
+		{
+			"particle"	"particles/c10t/c10t.vpcf"
+			"particle"	"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B12.lua"
+				"Function"		"B12W_OnSpellStart"
+				"Target"						"POINT"
+			}
+			"DelayedAction"
+			{
+				"Action"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B12.lua"
+						"Function"	"B12W_DelayedAction"
+						"Target"						"POINT"
+					}
+				}
+				"Delay"	"%delay"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"delay"	"2"
+			}
+		}
+	}
+	// 山本勘助 浮世一生
+	"B12E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/B12/B12E"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AOERadius" 					"700"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"130 155 180 205"
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"700"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+
+				"Action"    
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B12.lua"
+						"Function"		"B12E_OnSpellStart"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_recover_and_damage"	"100 200 300 400"
+			}
+		}
+	}
+
+ 	//訐謀攻勢
+	"B12R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/B12/B12R"
+		"AOERadius"                                 "700"
+		"AbilityCastRange"              			"700"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"Modifiers"
+		{
+			"modifier_B12R_veryslowAura"
+			{
+				"Passive" 				"1"
+				"Aura" 					"modifier_B12R_veryslow"
+		        "Aura_Radius" 			"700"
+		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_NONE"
+		        "Aura_ApplyToCaster" 	"0"
+			}
+			"modifier_B12R_veryslow"
+			{
+				"IsDebuff"							"1"
+				"IsPurgable"						"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespd"
+				}
+			}
+			"modifier_B12R_onattack"
+			{
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"Target"		"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B12.lua"
+						"Function"		"modifier_B12R_onattack_OnAttackLanded"
+					}
+				}
+				"Passive" 				"1"
+			}
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"		"35 60 85 110"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movespd"		"-11 14 17 20"
+			}
+		}
+	}
+
+
+	// 狂心
+	"B12T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B12/B12T"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"AbilityCooldown"	"115 100 85"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"0"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B12T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B12T"
+			{
+				"EffectName" "particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge_tgt_fire.vpcf"
+				
+				"OnCreated"
+                {
+                	"AttachEffect"
+                    {
+                   	 	"EffectName"                "particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf"
+                    	"EffectAttachType"  		"start_at_customorigin"
+                    	"Target"                    "CASTER"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                "attach_attack1"        //CP0 
+                            "CASTER"                "attach_attack1"        //CP1
+                            "CASTER"               	"attach_attack1"        //CP2
+                            "CASTER"                "attach_attack1"        //CP3
+                        }
+                    }
+                }
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"400"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%Bonus_int"
+				}
+				"Duration"	"%During"
+				//"EffectName"	"particles/b06t/b06t.vpcf"
+				"OnIntervalThink"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName" "particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp_ring_elec.vpcf"
+						"EffectAttachType"  			"attach_hitloc"
+					}
+					"FireSound"
+					{
+						"Target"		"CASTER"
+						"EffectName"	"Brewmaster_Storm.Attack"
+					}
+				}
+				"ThinkInterval"	"0.5"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_int"	"40 60 80"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"10 16 22"
+			}
+		}
+	}
+}
