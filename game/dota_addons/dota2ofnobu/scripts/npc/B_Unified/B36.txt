@@ -175,18 +175,10 @@
 					}
 				}
 				"Duration"	"4"
-
-
-				//"ThinkInterval"  "1"
-				//"OnIntervalThink"
-				//{
-				//	"FireSound"
-				//	{
-				//		"Target"		"TARGET"
-				//		"EffectName"	"C11W_old.vo1"
-				//	}
-				//}
-
+				"Properties"
+	            {
+		               "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"        "-50"
+				}
 			}
 
 			"modifier_B36E_aromr"
@@ -350,6 +342,11 @@
 			{
 				"Target"		"CASTER"
 				"ModifierName"	"modifier_B36T"
+			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%Bonus_Health"
 			}
 		}
 		"Modifiers"

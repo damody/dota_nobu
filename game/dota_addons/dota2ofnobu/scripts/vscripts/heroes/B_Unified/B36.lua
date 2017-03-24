@@ -238,7 +238,7 @@ function B36E_old_OnIntervalThink( keys )
 		ability:GetSpecialValueFor("radius2"),					-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
-		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
 		false) 							-- 好像是優化用的參數不懂怎麼用
 	if #units > 0 then
@@ -263,11 +263,11 @@ end
 function B36R_old_OnSpellStart(keys)
 	local ability = keys.ability
 	local caster = keys.caster
-	local casterLocation = keys.target
+	local target = keys.target
 	local duration = ability:GetLevelSpecialValueFor("duration", ( ability:GetLevel() - 1 ))
 
 	keys.target:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
-	keys.target:AddNewModifier(caster, ability, "modifier_B36R", {duration = duration})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_B36R",{duration = duration})
 end
 
 function B36T_old_OnSpellStart( keys )

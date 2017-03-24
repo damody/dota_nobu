@@ -49,8 +49,8 @@ function A25E( keys )
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 	for _,it in pairs(enemies) do
 		if (not(it:IsBuilding())) then
+			ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = dura})
 			AMHC:Damage(caster,it, damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
 		end
 	end
 	local dummy = CreateUnitByName( "npc_dummy", casterLocation, false, caster, caster, caster:GetTeamNumber() )
@@ -83,8 +83,8 @@ function A25E_old( keys )
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 	for _,it in pairs(enemies) do
 		if (not(it:IsBuilding())) then
+			ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = dura})
 			AMHC:Damage(caster,it, damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
 		end
 	end
 	local dummy = CreateUnitByName( "npc_dummy", casterLocation, false, caster, caster, caster:GetTeamNumber() )
@@ -98,8 +98,8 @@ function A25E_old( keys )
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 		for _,it in pairs(enemies) do
 			if (not(it:IsBuilding())) then
+				ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = dura})
 				AMHC:Damage(caster,it, damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				ability:ApplyDataDrivenModifier( caster, it, "modifier_A25E", {duration = dura} )
 			end
 		end
 		return nil

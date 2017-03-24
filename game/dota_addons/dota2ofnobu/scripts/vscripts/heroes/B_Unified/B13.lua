@@ -193,15 +193,15 @@ end
 --old地雷 ref A26D
 function B13R_old( keys )
 	local caster = keys.caster
-	local center = keys.target_points[1]
+	local center = caster:GetAbsOrigin()
 	local ability = keys.ability
 
 
 	local active_delay = 0
 	local mine = CreateUnitByName("A26_MINE", center, false, caster, caster, caster:GetTeamNumber())
 	mine:AddAbility("for_no_collision"):SetLevel(1)
+	mine:AddAbility("for_magic_immune"):SetLevel(1)
 	mine:SetOwner(caster)
-	mine:SetHullRadius(ability:GetSpecialValueFor("B13R_old_radius_detector"))
 	mine:SetBaseMaxHealth( ability:GetSpecialValueFor("B13R_old_hp") )
 	mine:SetHealth( mine:GetMaxHealth() )
 	ability:ApplyDataDrivenModifier(caster,mine,"modifier_B13R_old_rooted",{})
@@ -210,8 +210,6 @@ function B13R_old( keys )
 			ability:ApplyDataDrivenModifier( mine, mine,"modifier_B13R_old_detectorAura", nil )
 		end
 	end)
-
-	EmitSoundOn("Hero_Techies.StasisTrap.Plant",caster)
 end
 
 --old地雷爆炸 ref A26D
@@ -255,7 +253,6 @@ function B13R_old_explosion( keys )
 	ParticleManager:SetParticleControl(ifx,2,Vector(1,0,0))
 	ParticleManager:ReleaseParticleIndex(ifx)
 
-	EmitSoundOn("Hero_Techies.LandMine.Detonate",caster)
 	caster:RemoveModifierByName("modifier_B13R_old_detectorAura")
 	caster:ForceKill(true)
 end

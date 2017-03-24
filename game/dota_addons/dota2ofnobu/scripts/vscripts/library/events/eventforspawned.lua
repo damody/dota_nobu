@@ -99,6 +99,7 @@ function Nobu:OnHeroIngame( keys )
     		
     		local donkey = CreateUnitByName("npc_dota_courier2", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
     		donkey:SetOwner(hero)
+        donkey:SetHullRadius(1)
     		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
         donkey:FindAbilityByName("courier_return_to_base"):SetLevel(1)
         donkey:FindAbilityByName("courier_go_to_secretshop"):SetLevel(1)

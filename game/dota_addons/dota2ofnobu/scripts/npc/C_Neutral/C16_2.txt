@@ -1,0 +1,101 @@
+﻿"DOTAHeroes"
+{
+	// 果心居士
+	"C16"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_rubick"
+		"ModelScale"	"1.3"
+		// Abilities
+		// ----------------------------------------------------------------
+		"Ability1"	"C16W"
+		"Ability2"	"C16E"
+		"Ability3"	"C16R"
+		"Ability4"	"C16D"
+		"Ability5"	"attribute_bonusx"
+		"Ability6"	"C16T"
+		"Ability7"	"C16_precache"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"4"
+		"MagicalResistance"	"30"
+
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"78"
+		"AttackDamageMax"			"86"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.80"
+		"AttackAnimationPoint"		"0.2"
+		"AttackAcquisitionRange"	"550"
+		"AttackRange"				"550"
+
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"39"
+		"AttributeStrengthGain"		"1.8"
+		"AttributeBaseAgility"		"19"
+		"AttributeAgilityGain"		"1.8"
+		"AttributeBaseIntelligence"	"30"
+		"AttributeIntelligenceGain"	"3.7"
+
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
+
+		// Bounds
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"315"
+		"MovementTurnRate"		"1.50"
+
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"400"
+		"StatusHealthRegen"		"0.25"
+		"StatusMana"			"0"
+		"StatusManaRegen"		"0.01"
+		"StatusStartingMana"	"-1"
+
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+
+		// Combat
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+
+
+		// RelationShip
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		"DisableWearables"		"1"
+	}
+} // END DOTAHeroes

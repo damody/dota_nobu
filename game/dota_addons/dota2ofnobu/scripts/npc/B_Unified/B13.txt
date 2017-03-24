@@ -556,6 +556,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnTakeDamage"
 				{
@@ -583,17 +584,16 @@
 	"B13R_old"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "techies_land_mines"
 		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCooldown"							"1"
+		"AbilityCooldown"							"5"
 		"AbilityCastPoint"							"0"
-		"AbilityManaCost"                      		"20 40 60 80"
-		"AbilityCastRange"              			"200"
+		"AbilityManaCost"                      		"100 200 300 400"
 
 		"OnSpellStart"
 		{
@@ -601,7 +601,6 @@
 			{
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
 				"Function"							"B13R_old"
-				"Target"							"POINT"
 			}
 		}
 
@@ -625,6 +624,7 @@
 					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVISIBLE"				"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"			"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"modifier_B13R_old_explosion"
@@ -656,7 +656,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"B13R_old_damage"					"200 300 400 500"
+				"B13R_old_damage"					"300 600 900 1200"
 			}
 			"02"
 			{
