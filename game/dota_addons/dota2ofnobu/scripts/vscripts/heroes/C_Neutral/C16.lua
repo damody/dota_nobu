@@ -18,9 +18,9 @@ function CreateMirror( keys )
 	local ability = keys.ability
 	local unit_name = target:GetUnitName()
 	local origin = caster:GetAbsOrigin()
-	local duration = ability:GetSpecialValueFor( "C16D_duration")
-	local outgoingDamage = ability:GetSpecialValueFor( "C16D_outgoing_damage")
-	local incomingDamage = ability:GetSpecialValueFor( "C16D_incoming_damage")
+	local duration = ability:GetSpecialValueFor( "duration")
+	local outgoingDamage = ability:GetSpecialValueFor( "outgoing_damage")
+	local incomingDamage = ability:GetSpecialValueFor( "incoming_damage")
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
@@ -83,7 +83,6 @@ end
 
 function C16E( keys )
 	local caster = keys.caster
-    local count = keys.ability:GetLevelSpecialValueFor("B23D_count", keys.ability:GetLevel()-1 )
     local spawnPosition = keys.unit:GetOrigin()
 	local ghost = CreateUnitByName("C16E_ghost", spawnPosition, true, nil, nil , caster:GetTeamNumber())
     ghost:SetOwner(caster)
@@ -508,7 +507,6 @@ function C16T( keys )
 	local ability = keys.ability
 	local point = ability:GetCursorPosition()
 	local stunDuration = ability:GetSpecialValueFor("C16T_stun")
-	local minDamage = ability:GetSpecialValueFor("C16T_damage")
 	local target = keys.target_entities
 	for _,v in pairs(target) do
 		ability:ApplyDataDrivenModifier( caster, v , "modifier_stunned", { duration = stunDuration } )
@@ -519,8 +517,6 @@ function C16T( keys )
 		local stone = CreateUnitByName("C16T_stone", point + RandomVector(RandomInt(0,800)), true, nil, nil , caster:GetTeamNumber())
 		stone:SetOwner(caster)
 	    stone:SetControllableByPlayer(caster:GetPlayerID(), true)
-	    stone:SetBaseDamageMin( minDamage )
-	    stone:SetBaseDamageMax( minDamage + 1 )
 	    stone:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
 	    stone:AddNewModifier(caster,nil,"modifier_magic_immune", nil )
 	    ability:ApplyDataDrivenModifier( caster, stone, "modifier_C16T_attackDamage", nil )
@@ -531,7 +527,6 @@ function C16T( keys )
 			end
 		end)
 	end
-
 end
 
 function C16T_onAttackLanded( keys )
@@ -548,4 +543,63 @@ function C16T_onAttackLanded( keys )
 				damage_flags = DOTA_DAMAGE_FLAG_NONE,
 	}
 	ApplyDamage(dmgt)
+end
+
+function C16D_old( keys )
+	local unit = keys.unit
+	local ghost = CreateUnitByName("C16D_old_ghost", unit:GetOrigin(), true, nil, nil , unit:GetTeamNumber())
+	ghost:SetOwner(unit)
+    ghost:SetControllableByPlayer(keys.unit:GetPlayerID(), true)
+    ghost:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
+end
+
+function C16W_old( keys )
+	local target = keys.target
+
+	if target:IsHero() and target:IsRealHero() and not target:IsIllusion() then
+		local player = PlayerResource:GetPlayer(target:GetPlayerID())
+		local illusion = CreateMirror( keys )
+	end
+end
+
+function C16E_old( keys )
+	local caster = keys.caster
+    local spawnPosition = keys.unit:GetOrigin()
+	local ghost = CreateUnitByName("C16E_ghost", spawnPosition, true, nil, nil , caster:GetTeamNumber())
+    ghost:SetOwner(caster)
+    ghost:SetControllableByPlayer(caster:GetPlayerID(), true)
+
+    ghost:AddNewModifier(caster, nil, "modifier_phased",{duration=0.1})
+    ghost:AddNewModifier(caster, nil, "modifier_invisible", nil )
+    ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
+    keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_C16E_old_passiveAura", nil )
+end
+
+function C16T_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local point = ability:GetCursorPosition()
+	local stunDuration = ability:GetSpecialValueFor("C16T_stun")
+	local duration = ability:GetSpecialValueFor("C16T_duration")
+
+	local count = ability:GetSpecialValueFor("C16T_count")
+	for i=1,count do
+		local stone = CreateUnitByName("C16T_stone", point + RandomVector(RandomInt(0,800)), true, nil, nil , caster:GetTeamNumber())
+		local units = FindUnitsInRadius(caster:GetTeamNumber(), stone:GetOrigin(), nil, 275, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
+		for _,unit in ipairs(units) do
+			ability:ApplyDataDrivenModifier( caster, unit , "modifier_stunned", { duration = stunDuration } )
+		end
+		stone:SetOwner(caster)
+	    stone:SetControllableByPlayer(caster:GetPlayerID(), true)
+	    stone:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
+	    stone:AddNewModifier(caster,nil,"modifier_magic_immune", nil )
+	    stone:AddNewModifier(caster,nil,"modifier_rooted", nil )
+	    ability:ApplyDataDrivenModifier( caster, stone, "modifier_C16T_attackDamage", nil )
+
+	    Timers:CreateTimer( duration, function ()
+			if not stone:IsNull() then
+				stone:ForceKill( true )
+			end
+		end)
+	end
 end
