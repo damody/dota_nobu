@@ -1,0 +1,328 @@
+// 宇喜多秀家
+"DOTAAbilities"
+{
+	"A23_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/a23w/a23w.vpcf" //w
+			"particle"  "particles/a23w_1/a23w_1.vpcf" //w
+			"particle"  "particles/a23w_2/a23w_2.vpcf" //w explosion
+			"particle"  "particles/a23e/a23e.vpcf" //e
+			"particle"  "particles/a23r/a23rfly.vpcf" //r
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf" //t
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+		}
+	}
+
+	//鬼術．惡血咒
+	"A23W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"                        "custom/A23/A23W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		//"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "19 16 13 10"
+		"AbilityManaCost"                           "110 130 150 170"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A23.lua"
+				"Function"						"A23W"
+			}
+			"AttachEffect"
+            {
+                "EffectName"                	"particles/a23w/a23w.vpcf"
+                "EffectAttachType"  			"start_at_customorigin"
+                "Target"                        "CASTER"
+                "ControlPointEntities"
+                {
+                        "CASTER"                "attach_hitloc"
+                        "TARGET"                "attach_hitloc"
+                }
+            }
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A23W_stun"					"1.0 1.5 2.0 2.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A23W_radius"				"300"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A23W_damage"				"200 300 400 500"
+			}
+		}
+	}
+
+	//鬼術．靈魂鎖縛
+	"A23E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/A23/A23E"
+
+		"AbilityCooldown"							"17 16 15 14"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"120 140 160 180"
+		"AbilityCastRange"              			"1000"
+		//"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
+				"Function"							"A23E"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_A23E"
+				"Target" 							"TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"						"Hero_Ursa.Attack"
+				"Target" 							"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A23E"
+			{
+				"IsDebuff"							"1"
+				"Duration"							"%A23E_duration"
+				"IsPurgable"						"0"
+			}
+			"modifier_A23E_stick"
+			{
+				"IsHidden"			"0"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"A23E_duration"                		"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"A23E_increaseDistance"				"250 200 150 100"
+			}
+		}
+	}
+
+	//鬼術．墜火
+	"A23R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A23/A23R"
+
+		"AbilityCooldown"							"9"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"135 150 165 180"
+		"AbilityCastRange"              			"1100"
+		"AbilityChannelTime"						"4"
+		"AOERadius"									"%A23R_aoeRadius"
+
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_4"
+
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
+				"Function"							"A23R"
+				"TARGET"							"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A23R_dot"
+			{
+				"IsDebuff"			"1"
+				"Duration"			"%A23R_dotDuration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"  	"1"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A23R_dot"
+					}
+				}
+			}
+			"modifier_A23R_dot_building"
+			{
+				"IsDebuff"			"1"
+				"Duration"			"%A23R_dotDuration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"  	"1"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A23R_dot_building"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A23R_damage"			"40 80 120 160"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A23R_dot"				"20 30 40 50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A23R_dotDuration"		"4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A23R_aoeRadius"		"350"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A23R_maxWave"			"10"
+			}
+			"06" // 對建築的傷害 = A23R_damage * adjust_damage_at_building
+			{
+				"var_type" 					"FIELD_FLOAT"
+				"adjust_damage_at_building" "0.5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A23R_dot_building"		"10 15 20 25"
+			}
+		}
+
+    }
+
+    //禁術．黃泉之焰
+	"A23T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A23/A23T"
+
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"135 105 80"
+		"AbilityManaCost"           				"250 275 300"
+		"AbilityCastRange"              			"1000"
+		//"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A23T"
+				"Target" 		"TARGET"
+				"Duration"		"6"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A23T"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A23T_damage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A23T_damage"		"115 180 280"
+			}
+		}
+	}
+
+} // END DOTAAbilities
