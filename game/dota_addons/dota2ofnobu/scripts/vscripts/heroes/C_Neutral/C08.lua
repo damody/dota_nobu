@@ -656,11 +656,12 @@ function C08E_old_OnSpellStart( keys )
 		end
 		StartSoundEvent( "A07T.attack", target )
 		counter=counter+1
+		target:Stop()
 		if(counter==3)then
 			return nil
 		end
-		return 0.7
-	end, 1.2)
+		return 0.6
+	end, 1.1)
 end
 
 

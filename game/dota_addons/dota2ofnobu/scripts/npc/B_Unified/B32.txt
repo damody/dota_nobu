@@ -710,6 +710,8 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 
+		"AbilityDamage"		"120 240 360 480"
+
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
@@ -1021,10 +1023,10 @@
 		"LevelsBetweenUpgrades"	"6"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"125"
+		"AbilityCooldown"	"110"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"300 400 500"
+		"AbilityManaCost"	"200 300 400"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"

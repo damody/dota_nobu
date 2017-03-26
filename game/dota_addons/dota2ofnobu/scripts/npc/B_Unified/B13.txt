@@ -203,15 +203,16 @@
 		
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"							"TARGET"
-				"ModifierName"						"modifier_B13E_sleep"
-			}
 			"FireSound"
 			{
 				"Target"					"TARGET"
 				"EffectName"				"Visage_Familar.BellToll"
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13E_OnSpellStart"
+				"Target"		"TARGET"
 			}
 		}
 		
@@ -235,13 +236,15 @@
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnTakeDamage"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"Target"					"UNIT"
-						"ModifierName"				"modifier_B13E_sleep"
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"							"B13E_OnTakeDamage"
+						"Target"		"TARGET"
 					}
 				}
 			}
@@ -519,20 +522,16 @@
 		
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"Target"							"TARGET"
-				"ModifierName"						"modifier_B13E_old_sleep"
-			}
-			"ApplyModifier"
-			{
-				"Target"							"TARGET"
-				"ModifierName"						"modifier_B13E_old_invulnerable"
-			}
 			"FireSound"
 			{
 				"Target"							"TARGET"
 				"EffectName"						"Visage_Familar.BellToll"
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13E_old_OnSpellStart"
+				"Target"		"TARGET"
 			}
 		}
 		
@@ -549,10 +548,12 @@
 		{
 			"modifier_B13E_old_sleep"
 			{
+				"Passive"		"0"
 				"IsDebuff"							"1"
 				"Duration"							"%B13E_old_duration"
 				"EffectName" 						"particles/generic_gameplay/generic_sleep.vpcf"
-                "EffectAttachType" 					"follow_overhead"	
+                "EffectAttachType" 					"follow_overhead"
+                "Attributes"  "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
@@ -560,10 +561,11 @@
 				}
 				"OnTakeDamage"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"Target"					"UNIT"
-						"ModifierName"				"modifier_B13E_old_sleep"
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+						"Function"							"B13E_old_OnTakeDamage"
+						"Target"		"TARGET"
 					}
 				}
 			}

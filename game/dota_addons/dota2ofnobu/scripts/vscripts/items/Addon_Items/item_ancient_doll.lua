@@ -7,7 +7,12 @@ end
 
 function OnUnequip( keys )
 	local caster = keys.caster
-	caster:RemoveAbility("modifier_ancient_doll")
+	if caster:HasModifier("modifier_ancient_doll") then
+		caster:RemoveModifierByName("modifier_ancient_doll")
+	end
+	if caster:HasModifier("modifier_dark_yellow_teeth_and_zimbabwe") then
+		caster:RemoveModifierByName("modifier_dark_yellow_teeth_and_zimbabwe")
+	end
 end
 
 function Shock( keys )
@@ -49,7 +54,7 @@ function Shock2( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local hModifier = caster:FindModifierByNameAndCaster("modifier_ancient_doll", hCaster)
+	local hModifier = caster:FindModifierByNameAndCaster("modifier_dark_yellow_teeth_and_zimbabwe", hCaster)
 	local scount = hModifier:GetStackCount()
 	hModifier:SetStackCount(0)
 	AMHC:Damage(caster,target,scount*90,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
@@ -59,4 +64,24 @@ function Shock2( keys )
 	Timers:CreateTimer(0.5, function ()
 		ParticleManager:DestroyParticle(flame, false)
 	end)
+end
+
+
+function AbilityExecuted2(keys)
+	local caster = keys.caster
+	local id  = caster:GetPlayerID()
+	local skill = keys.ability
+	local level = keys.ability:GetLevel()
+	if caster:HasModifier("modifier_dark_yellow_teeth_and_zimbabwe") == false then
+		skill:ApplyDataDrivenModifier(caster,caster,"modifier_dark_yellow_teeth_and_zimbabwe",nil)
+		local hModifier = caster:FindModifierByNameAndCaster("modifier_dark_yellow_teeth_and_zimbabwe", hCaster)
+		hModifier:SetStackCount(1)
+	else
+		local hModifier = caster:FindModifierByNameAndCaster("modifier_dark_yellow_teeth_and_zimbabwe", hCaster)
+		local scount = hModifier:GetStackCount()
+		scount = scount + 1
+		if (scount <= 6) then
+			hModifier:SetStackCount(scount)
+		end
+	end
 end

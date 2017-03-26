@@ -16,7 +16,7 @@ function Shock( keys )
 	local target_flags = ability:GetAbilityTargetFlags()
 	local damage_type = ability:GetAbilityDamageType()
 
-	AddFOWViewer(caster:GetTeamNumber(),target_point,aoe_radius+100,duration+1,false)
+	AddFOWViewer(caster:GetTeamNumber(),target_point,aoe_radius+100,3,false)
 	AddFOWViewer(DOTA_TEAM_GOODGUYS,caster:GetAbsOrigin(), 300, 1, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS,caster:GetAbsOrigin(), 300, 1, false)
 
@@ -45,21 +45,23 @@ function Shock( keys )
 		local count = 0
 		-- 處理搜尋結果
 		for _,unit in ipairs(units) do
-			count = count + 1
-			-- 製造傷害
-			local damage_table = {}
-			damage_table.victim = unit
-  			damage_table.attacker = caster					
- 			damage_table.damage_type = damage_type
- 			damage_table.damage = aoe_damage
-			ApplyDamage(damage_table)
-			if IsValidEntity(unit) then
-				-- 特效
-				local ifx = ParticleManager:CreateParticle("particles/item/item_thunderstorms.vpcf",PATTACH_CUSTOMORIGIN,unit)
-				ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
-				ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
-				if count < 3 then
-					unit:EmitSound("lightningbolt")
+			if caster:CanEntityBeSeenByMyTeam(unit) then
+				count = count + 1
+				-- 製造傷害
+				local damage_table = {}
+				damage_table.victim = unit
+	  			damage_table.attacker = caster					
+	 			damage_table.damage_type = damage_type
+	 			damage_table.damage = aoe_damage
+				ApplyDamage(damage_table)
+				if IsValidEntity(unit) then
+					-- 特效
+					local ifx = ParticleManager:CreateParticle("particles/item/item_thunderstorms.vpcf",PATTACH_CUSTOMORIGIN,unit)
+					ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
+					ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
+					if count < 3 then
+						unit:EmitSound("lightningbolt")
+					end
 				end
 			end
 		end

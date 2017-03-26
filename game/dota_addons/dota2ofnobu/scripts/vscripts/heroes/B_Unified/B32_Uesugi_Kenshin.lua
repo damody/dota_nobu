@@ -232,7 +232,7 @@ function B32R( keys )
 			{
 				victim = v,
 				attacker = caster,
-				damage = level*120,
+				damage = ability:GetAbilityDamage(),
 				damage_type = DAMAGE_TYPE_MAGICAL
 			}
 			ApplyDamage( damageTable )

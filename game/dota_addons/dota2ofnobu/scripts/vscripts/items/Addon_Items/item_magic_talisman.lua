@@ -38,7 +38,6 @@ function modifier_magic_talisman:OnTakeDamage(event)
 	    local ability = self:GetAbility()
 	    local shield = nil
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
-
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then 
 		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.magic_talisman == true then
@@ -51,7 +50,7 @@ function modifier_magic_talisman:OnTakeDamage(event)
 				            	ShockTarget(event, self.caster)
 				            	local am = self.caster:FindAllModifiers()
 								for _,v in pairs(am) do
-									if IsValidEntity(v) and IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
+									if IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
 										if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
 											self.caster:RemoveModifierByName(v:GetName())
 										end

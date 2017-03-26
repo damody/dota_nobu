@@ -305,3 +305,56 @@ function B13T_old( keys )
 		return 1 / tickPerSec
 	end)
 end
+
+function B13E_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	caster.can_dmg = 1
+	caster.B13E_old_target = target
+
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_B13E_old_sleep",{duration = ability:GetSpecialValueFor("B13E_old_duration")})
+	AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	Timers:CreateTimer(0.1, function()
+		caster.can_dmg = nil
+		if target:HasModifier("modifier_B13E_old_sleep") then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_B13E_old_invulnerable",{duration = 1})
+		else
+			--caster.B13E_old_target:RemoveModifierByName("modifier_B13E_old_sleep")
+		end
+    end)
+end
+
+function B13E_old_OnTakeDamage( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	if caster.can_dmg == nil then
+		caster.B13E_old_target:RemoveModifierByName("modifier_B13E_old_sleep")
+	end
+end
+
+
+function B13E_OnSpellStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	caster.can_dmg = 1
+	caster.B13E_old_target = target
+
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_B13E_sleep", nil)
+	AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	Timers:CreateTimer(0.1, function()
+		caster.can_dmg = nil
+    end)
+end
+
+function B13E_OnTakeDamage( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	if caster.can_dmg == nil then
+		caster.B13E_old_target:RemoveModifierByName("modifier_B13E_sleep")
+	end
+end
+

@@ -89,6 +89,7 @@ function C03T_OnSpellStart( keys )
 	local robon = CreateUnitByName("C03T_UNIT",caster:GetAbsOrigin(),false,nil,nil,caster:GetTeamNumber())
 
 	local stun_time = ability:GetSpecialValueFor("stun_time")
+	local stun_time2 = ability:GetSpecialValueFor("stun_time2")
 	local check_time = ability:GetSpecialValueFor("check_time")
 	local total_time = ability:GetSpecialValueFor("total_time")
 	
@@ -151,7 +152,7 @@ function C03T_OnSpellStart( keys )
 				damage_table.victim = unit
 				ApplyDamage(damage_table)
 				if unit:IsMagicImmune() then
-					ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=0.1})
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=stun_time2})
 				else
 					ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=stun_time})
 				end
