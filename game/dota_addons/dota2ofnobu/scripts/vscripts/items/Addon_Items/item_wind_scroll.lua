@@ -39,9 +39,8 @@ function Shock( keys )
 					FIND_ANY_ORDER,
 					false)
 
-			--effect:傷害+暈眩
 			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding())) then
+				if (not(it:IsBuilding()) and IsValidEntity(it) ) then
 					keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_item_wind_scroll",nil)
 				end
 			end

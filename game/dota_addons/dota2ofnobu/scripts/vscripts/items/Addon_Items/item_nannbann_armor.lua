@@ -46,8 +46,10 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 			            		self.caster.nannbann_armor = false
 			            		self.caster:Purge( false, true, true, true, true)
 			            		event.caster = self.caster
-				            	event.ability = self:GetAbility()
-				            	ShockTarget(event, self.caster)
+			            		if IsValidEntity(ability) then
+					            	event.ability = self:GetAbility()
+					            	ShockTarget(event, self.caster)
+					            end
 				            	local am = self.caster:FindAllModifiers()
 								for _,v in pairs(am) do
 									if IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then

@@ -563,7 +563,7 @@ function B02T_old_Jump(keys)
 	target:RemoveModifierByName("modifier_arc_lightning_datadriven")
 	local count = 0
 	-- Waits on the jump delay
-
+	local pos = target:GetAbsOrigin()
 	Timers:CreateTimer(jump_delay,
 	function()
 	-- Finds the current instance of the ability by ensuring both current targets are the same
@@ -575,21 +575,22 @@ function B02T_old_Jump(keys)
 			end
 		end
 	end
-
-	-- Adds a global array to the target, so we can check later if it has already been hit in this instance
-	if target.hit == nil then
-		target.hit = {}
+	if IsValidEntity(target) then
+		pos = target:GetAbsOrigin()
+		-- Adds a global array to the target, so we can check later if it has already been hit in this instance
+		if target.hit == nil then
+			target.hit = {}
+		end
+		-- Sets it to true for this instance
+		target.hit[current] = true
 	end
-	-- Sets it to true for this instance
-	target.hit[current] = true
-
 	-- Decrements our jump count for this instance
 	ability.jump_count[current] = ability.jump_count[current] - 1
 
 	-- Checks if there are jumps left
 	if ability.jump_count[current] > 0 then
 		-- Finds units in the jump_radius to jump to
-		local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, jump_radius, team, ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
+		local units = FindUnitsInRadius(caster:GetTeamNumber(), pos, nil, jump_radius, team, ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
 		local closest = jump_radius
 		local new_target
 		for i,unit in ipairs(units) do

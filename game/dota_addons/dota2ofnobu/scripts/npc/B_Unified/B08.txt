@@ -102,19 +102,6 @@
 				}
 				"IsBuff"	"0"
 			}
-			"modifier_stun"
-			{
-				"IsHidden"	"0"
-				"Duration"	"2.2"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsDebuff"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-			}
 		}
 		"AbilitySpecial"
 		{
@@ -462,20 +449,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_stun"
-			{
-				"IsHidden"	"0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration"	"%B08E_Stun_Time"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsDebuff"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-			}
 			"modifier_B08E"
 			{
 				"IsHidden"	"1"
@@ -575,20 +548,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_stun"
-			{
-				"IsHidden"	"0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration"	"%B08E_Stun_Time"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"IsDebuff"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-			}
 			"modifier_B08E"
 			{
 				"IsHidden"	"1"

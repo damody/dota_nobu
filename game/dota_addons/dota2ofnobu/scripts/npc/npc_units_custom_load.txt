@@ -5,6 +5,177 @@
 {
 	"Version"		"1"
 
+	//果心居士 魑魅魍魎
+	"C16D_old_ghost"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/items/courier/mlg_courier_wraith/mlg_courier_wraith.vmdl"
+		"ModelScale"		"1.5"
+		"Level"				"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"90"
+		"AttackDamageMax"			"100"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0.5"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"				"128"
+
+		"ArmorPhysical"		"20"
+		"MagicalResistance"	"90"
+
+		"BountyGoldMin"		"0"
+		"BountyGoldMax"		"0"
+		"BountyXP"			"5"
+
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"300"
+		"MovementTurnRate"		"1.50"
+
+		"StatusHealth"			"1500"
+		"StatusHealthRegen"		"10"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+
+		"HPGain"                "36"
+		"DamageGain"            "3"
+
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_WEAK"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Ability1"			""
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		"Ability5"			""
+		"Ability6"			""
+		"Ability7"			""
+		"Ability8"			""
+		"Ability9"			""
+		"Ability10"			""
+		"Ability11"			""
+		"Ability12"			""
+		"Ability13"			""
+		"Ability14"			""
+		"Ability15"			""
+		"Ability16"			""
+	}
+
+	//果心居士 殺生石
+	"C16T_stone"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/particle/earth_spirit_rockspike05.vmdl"
+		"ModelScale"		"2.5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"140"
+		
+		"ArmorPhysical"	"3"
+		"MagicalResistance"	"0"
+
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"1"
+		"AttackDamageMax"	"1"
+		"AttackDamageType"	"DAMAGE_TYPE_PURE"
+		"AttackRate"		"1.8"
+		"AttackAnimationPoint"	"0.1"
+		"AttackAcquisitionRange"	"1100"
+		"AttackRange"	"600"
+		"ProjectileSpeed"	"2000"
+		"ProjectileModel"	"particles/econ/items/pugna/pugna_ward_ti5/pugna_ward_attack_heavy_ti_5.vpcf"
+
+		"BountyGoldMin"	"10"
+		"BountyGoldMax"	"10"
+		"BountyXP"	"10"
+
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"150"
+
+		"StatusHealth"	"900"
+		"StatusHealthRegen"	"10"
+
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	//果心居士 鬼魂
+	"C16E_ghost"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/items/death_prophet/exorcism/outland_witchs_spirits/outland_witchs_spirits.vmdl"
+		"ModelScale"		"0.7"
+		"Level"				"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"	"140"
+
+		"ArmorPhysical"	"5"
+		"MagicalResistance"	"0"
+
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"		"DAMAGE_TYPE_NONE"
+
+		"BountyGoldMin"	"10"
+		"BountyGoldMax"	"10"
+
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"200"
+		"MovementTurnRate"		"2"
+		"StatusHealth"			"5"
+		"StatusHealthRegen"		"5"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
 	// 伊勢姬 亡魂
 	"B23D_ghost"
 	{
