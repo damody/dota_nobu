@@ -7,11 +7,11 @@
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_techies"
 		"Model"         "models/a26/a26.vmdl"
-		"ModelScale"	"1.4"
+		"ModelScale"	"1.5"
 		// "MinimapIcon"		"minimap_candybucket"
 		// "MinimapIconSize"	"1000"
 		// "UnitLabel"          "hero" // -- :GetUnitLabel()
-
+        "HealthBarOffset"	"160"
 		// Sounds
 		// ----------------------------------------------------------------
 		"SoundSet"	"Hero_Techies"
@@ -89,7 +89,7 @@
 		// Bounds
 		// ----------------------------------------------------------------
 		// "BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		// "HealthBarOffset"	"140"
+		// "HealthBarOffset"	"160"
 		// "RingRadius" "100"
 
 		// Gold and Lumber

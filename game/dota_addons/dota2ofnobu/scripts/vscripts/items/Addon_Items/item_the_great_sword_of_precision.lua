@@ -28,7 +28,7 @@ function Shock( keys )
 	local caster = keys.caster
 	local skill = keys.ability
 	local ran =  RandomInt(0, 100)
-	caster:RemoveModifierByName("great_sword_of_precision")
+	--caster:RemoveModifierByName("great_sword_of_precision")
 	if (caster.great_sword_of_precision_count == nil) then
 		caster.great_sword_of_precision_count = 0
 	end
@@ -39,7 +39,7 @@ function Shock( keys )
 		caster.great_sword_of_precision_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 		local rate = caster:GetAttackSpeed()
-		caster:AddNewModifier(caster, skill, "great_sword_of_precision", { duration = rate+0.1 } )
+		caster:AddNewModifier(caster, skill, "great_sword_of_precision", { duration = 0.1 } )
 		--SE
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 		-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)

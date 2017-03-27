@@ -1,13 +1,20 @@
 -- 果心居士 by Nian Chen
 -- 2017.3.24
 
+
+C16D_EXCLUDE_TARGET_NAME = {
+	npc_dota_cursed_warrior_souls	= true,
+	npc_dota_the_king_of_robbers	= true,
+	com_general = true,
+	com_general2 = true,
+}
 --D
 function C16D( keys )
 	local target = keys.target
-
-	if target:IsHero() and target:IsRealHero() and not target:IsIllusion() then
-		local player = PlayerResource:GetPlayer(target:GetPlayerID())
+	if C16D_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		local illusion = CreateMirror( keys )
+	else
+		keys.ability:EndCooldown()
 	end
 end
 
@@ -25,7 +32,7 @@ function CreateMirror( keys )
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
 	--分身不能用法球
-	
+	illusion:SetOwner(caster)
 	if illusion:IsHero() then
 		illusion:SetPlayerID(caster:GetPlayerID())
 
@@ -90,7 +97,7 @@ function C16E( keys )
 
     ghost:AddNewModifier(caster, nil, "modifier_phased",{duration=0.1})
     ghost:AddNewModifier(caster, nil, "modifier_invisible", nil )
-    ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
+    --ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
 end
 
 function ExorcismStart( event )
@@ -252,7 +259,7 @@ function ExorcismPhysics( event )
 
 		-- COLLISION CHECK
 		local distance = (point - current_position):Length()
-		local collision = distance < 50
+		local collision = distance < 200
 
 		-- MAX DISTANCE CHECK
 		local distance_to_caster = (source - current_position):Length()
@@ -281,7 +288,7 @@ function ExorcismPhysics( event )
 			if time_between_last_attack >= min_time_between_attacks then
 				-- If the unit doesn't have a target locked, find enemies near the caster
 				enemies = FindUnitsInRadius(caster:GetTeamNumber(), source, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, 
-											  abilityTargetType, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+											  abilityTargetType, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 
 				-- Check the possible enemies
 				-- Focus the last attacked target if there's any
@@ -363,10 +370,6 @@ function ExorcismPhysics( event )
 						damage_table.attacker = caster					
 						damage_table.damage_type = abilityDamageType
 						damage_table.damage = spirit_damage
-
-						if damage_table.victim:IsBuilding() then
-							damage_table.damage = damage_table.damage * 0.5
-						end
 
 						ApplyDamage(damage_table)
 
@@ -514,7 +517,7 @@ function C16T( keys )
 
 	local count = ability:GetSpecialValueFor("C16T_count")
 	for i=1,count do
-		local stone = CreateUnitByName("C16T_stone", point + RandomVector(RandomInt(0,800)), true, nil, nil , caster:GetTeamNumber())
+		local stone = CreateUnitByName("C16T_stone", point + RandomVector(RandomInt(200,600)), true, nil, nil , caster:GetTeamNumber())
 		stone:SetOwner(caster)
 	    stone:SetControllableByPlayer(caster:GetPlayerID(), true)
 	    stone:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
@@ -547,10 +550,12 @@ end
 
 function C16D_old( keys )
 	local unit = keys.unit
-	local ghost = CreateUnitByName("C16D_old_ghost", unit:GetOrigin(), true, nil, nil , unit:GetTeamNumber())
-	ghost:SetOwner(unit)
-    ghost:SetControllableByPlayer(keys.unit:GetPlayerID(), true)
-    ghost:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
+	if not unit:IsIllusion() then
+		local ghost = CreateUnitByName("C16D_old_ghost", unit:GetOrigin(), true, nil, nil , unit:GetTeamNumber())
+		ghost:SetOwner(unit)
+	    ghost:SetControllableByPlayer(keys.unit:GetPlayerID(), true)
+	    ghost:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
+	end
 end
 
 function C16W_old( keys )
@@ -571,7 +576,7 @@ function C16E_old( keys )
 
     ghost:AddNewModifier(caster, nil, "modifier_phased",{duration=0.1})
     ghost:AddNewModifier(caster, nil, "modifier_invisible", nil )
-    ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
+    --ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
     keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_C16E_old_passiveAura", nil )
 end
 
@@ -584,7 +589,7 @@ function C16T_old( keys )
 
 	local count = ability:GetSpecialValueFor("C16T_count")
 	for i=1,count do
-		local stone = CreateUnitByName("C16T_stone", point + RandomVector(RandomInt(0,800)), true, nil, nil , caster:GetTeamNumber())
+		local stone = CreateUnitByName("C16T_stone", point + RandomVector(RandomInt(200,600)), true, nil, nil , caster:GetTeamNumber())
 		local units = FindUnitsInRadius(caster:GetTeamNumber(), stone:GetOrigin(), nil, 275, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
 		for _,unit in ipairs(units) do
 			ability:ApplyDataDrivenModifier( caster, unit , "modifier_stunned", { duration = stunDuration } )

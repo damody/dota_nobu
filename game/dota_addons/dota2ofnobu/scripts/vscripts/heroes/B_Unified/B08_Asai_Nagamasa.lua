@@ -51,7 +51,7 @@ function B08D_old( keys )
 	local dir={}
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, opoint, 1000, 3.0, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, opoint, 1000, 3.0, false)
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_stun",{duration = 2.2})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 2.2})
 	for i=1,maxrock do
 		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
 		pointx2 	=  	pointx 	+ 	700 	* 	math.cos(a)
@@ -105,7 +105,7 @@ function B08E_Action( keys )
 	caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
 	caster:SetAbsOrigin(target:GetAbsOrigin())
 	if not target:IsMagicImmune() then
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_stun",{duration = 1.1})
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 1.1})
 	end
 	if target:IsMagicImmune() then return end
 	local dmg = keys.ability:GetLevelSpecialValueFor("B08E_Damage", keys.ability:GetLevel() - 1 )

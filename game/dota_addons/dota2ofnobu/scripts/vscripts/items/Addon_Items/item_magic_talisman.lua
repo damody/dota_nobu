@@ -36,27 +36,27 @@ function modifier_magic_talisman:OnTakeDamage(event)
 	    local damage_type = event.damage_type
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
-	    local shield = nil
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
-
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then 
-		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.magic_talisman == true then
+		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) then
 		            	Timers:CreateTimer(0.01, function() 
 		            		if IsValidEntity(self.caster) then
-			            		self.caster.magic_talisman = false
 			            		self.caster:Purge( false, true, true, true, true)
 			            		event.caster = self.caster
-				            	event.ability = self:GetAbility()
-				            	ShockTarget(event, self.caster)
+				            	if IsValidEntity(ability) then
+					            	event.ability = self:GetAbility()
+					            	ShockTarget(event, self.caster)
+					            end
 				            	local am = self.caster:FindAllModifiers()
 								for _,v in pairs(am) do
-									if IsValidEntity(v) and IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
+									if IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
 										if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
 											self.caster:RemoveModifierByName(v:GetName())
 										end
 									end
 								end
+								self.caster:RemoveModifierByName("modifier_magic_talisman")
 							end
 		            		end)
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
@@ -80,11 +80,6 @@ function modifier_magic_talisman:OnTakeDamage(event)
 									item:StartCooldown(20)
 								end
 							end
-							Timers:CreateTimer(20, function() 
-								if IsValidEntity(self.caster) then
-									self.caster.magic_talisman = true
-								end
-							end)
 						end
 		            end 
 		        end
@@ -97,33 +92,17 @@ end
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster.magic_talisman == nil) then
-		caster.magic_talisman = true
-	end
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
-	Timers:CreateTimer(0, function() 
-			if caster:FindModifierByName("modifier_magic_talisman") then
-				caster:FindModifierByName("modifier_magic_talisman").caster = caster
-				caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
-				caster:FindModifierByName("modifier_magic_talisman").mp = caster:GetMana()
-				caster.has_item_magic_talisman = true
-				return nil
-			else
-				ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
-				return 1
-			end
-		end)
+	caster.has_item_magic_talisman = true
 	Timers:CreateTimer(1, function()
-		if not IsValidEntity(caster) then
-			return nil
-		end
 		if caster:IsAlive() then
-			if not caster:HasModifier("modifier_magic_talisman") and IsValidEntity(ability) then
+			if not caster:HasModifier("modifier_magic_talisman") and IsValidEntity(ability) and ability:IsCooldownReady() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
-				caster:FindModifierByName("modifier_magic_talisman").caster = caster
-				caster:FindModifierByName("modifier_magic_talisman").hp = caster:GetHealth()
+				local handle = caster:FindModifierByName("modifier_magic_talisman")
+				handle.caster = caster
+				handle.hp = caster:GetHealth()
+				handle.mp = caster:GetMana()
 			elseif caster.has_item_magic_talisman == true then
-				return 1
+				return 0.5
 			else
 				caster:RemoveModifierByName("modifier_magic_talisman")
 				return nil
@@ -173,7 +152,6 @@ function modifier_magic_talisman2:OnTakeDamage(event)
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type == DAMAGE_TYPE_MAGICAL) then
 		            	if self.magic_shield > 0 then
-		            		print("999 "..self.magic_shield)
 		            		if self.magic_shield > return_damage then
 		            			self.magic_shield = self.magic_shield - return_damage
 		            			self.caster:SetHealth(self.hp)
@@ -201,7 +179,7 @@ function ShockTarget( keys, target )
 	local havetime = 5
 	local shield = -1
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_magic_talisman2", {duration = havetime} )
-	if target:FindModifierByName("modifier_nannbann_armor2") then
+	if target:FindModifierByName("modifier_magic_talisman2") then
 		target:FindModifierByName("modifier_magic_talisman2").caster = target
 		target:FindModifierByName("modifier_magic_talisman2").hp = target:GetHealth()
 		target:FindModifierByName("modifier_magic_talisman2").magic_shield = 500

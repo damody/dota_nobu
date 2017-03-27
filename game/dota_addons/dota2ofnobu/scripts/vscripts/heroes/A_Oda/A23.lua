@@ -73,6 +73,9 @@ function A23E( keys )
 			return nil
 		end
 		local damageCount = (50 + caster:GetIntellect())*( 1 + 0.05*math.floor(((target:GetOrigin() - stick:GetOrigin()):Length() / increaseDistance)) )
+		if target:IsMagicImmune() then
+			damageCount = damageCount *0.5
+		end
 		ApplyDamage({
 			victim = target,
 			attacker = caster,
@@ -136,7 +139,7 @@ function A23R( keys )
 				if not unit:IsBuilding() then
 					ability:ApplyDataDrivenModifier(caster,unit,"modifier_A23R_dot",nil)
 				else
-					ability:ApplyDataDrivenModifier(caster,unit,"modifier_A23R_dot_building",nil)
+					--ability:ApplyDataDrivenModifier(caster,unit,"modifier_A23R_dot_building",nil)
 				end
 				ApplyDamage(damage_table)
 			end)

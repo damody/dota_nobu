@@ -15,18 +15,19 @@ function _G.Nobu:InitGameMode()
   --GameRules:SetHeroRespawnEnabled( false )
   if false then
     --設定每隊人數
-    GameRules:SetCustomGameTeamMaxPlayers(6, 1)
+    GameRules:SetCustomGameTeamMaxPlayers(6, 5)
     
     --自定血條顏色
     SetTeamCustomHealthbarColor(2,255,150,150)
     SetTeamCustomHealthbarColor(3,150,150,255)
+    GameRules:SetSameHeroSelectionEnabled( true )
   end
 
   --GameRules:SetCustomGameTeamMaxPlayers(2, 7)
   --GameRules:SetCustomGameTeamMaxPlayers(3, 7)
 
   GameRules:SetUseUniversalShopMode( false ) --开启/关闭全地图商店模式
-  GameRules:SetSameHeroSelectionEnabled( false )
+  
   GameRules:SetHeroSelectionTime( 30 )--設定選擇英雄時間
   if _G.nobu_debug then
     GameRules:SetPreGameTime( 0 )--設置遊戲準備時間

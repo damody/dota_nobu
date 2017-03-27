@@ -176,7 +176,7 @@ function Trig_C21EActions(keys)
     	end)
 	AMHC:Timer( "C21T_E1"..tostring(id),function( )
 
-			if time == 0 or not(u2:IsAlive()) or not(u:IsAlive()) then
+			if time == 0 or not IsValidEntity(u2) or not(u2:IsAlive()) or not(u:IsAlive()) then
 				--刪除無敵
                 u:RemoveModifierByName("modifier_C21E")
                 u:AddNewModifier(nil,nil,"modifier_phased",{duration=0.5})

@@ -36,7 +36,7 @@ function Shock2( keys )
 	local ability = keys.ability
 	local int = 0
 
-	if not caster:IsIllusion() and not target:IsBuilding() then
+	if not target:IsBuilding() then
 		if (not keys.target:IsMagicImmune() and keys.target.the_great_sword_of_toxic == nil) then
 			keys.target.the_great_sword_of_toxic = 1
 			Timers:CreateTimer(0.1, function() 

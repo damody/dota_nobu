@@ -24,7 +24,10 @@ function B12W_DelayedAction( keys )
    		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
    	keys.caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	for i,v in ipairs(group) do
-		if (keys.caster:GetAbsOrigin() - v:GetAbsOrigin()):Length2D() < 5500 then
+		if (keys.caster:GetAbsOrigin() - point):Length2D() < 5500 then
+			if v:GetTeamNumber() ~= caster:GetTeamNumber() then
+				AMHC:Damage( caster,v,ability:GetAbilityDamage(),AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+			end
 			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 			if not string.match(v:GetUnitName(), "com_general") and v~= caster and v:GetTeamNumber()~=4 and not (v:GetTeamNumber()==caster:GetTeamNumber() and v:IsCreature()) then
 				v:SetAbsOrigin(caster:GetAbsOrigin())

@@ -83,7 +83,7 @@
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"    					"custom/A23/A23E"
 
 		"AbilityCooldown"							"17 16 15 14"
@@ -250,7 +250,7 @@
 			"06" // 對建築的傷害 = A23R_damage * adjust_damage_at_building
 			{
 				"var_type" 					"FIELD_FLOAT"
-				"adjust_damage_at_building" "0.5"
+				"adjust_damage_at_building" "0.2"
 			}
 			"07"
 			{

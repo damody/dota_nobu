@@ -88,7 +88,7 @@ function A31W_2( keys )
 	local ability = keys.ability
 	local caster = keys.caster
 	local casterLocation = keys.target_points[1]
-	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local radius =  ability:GetSpecialValueFor("radius")
 	local directionConstraint = keys.section
 	local modifierName = "modifier_freezing_field_debuff_datadriven"
 	local refModifierName = "modifier_freezing_field_ref_point_datadriven"

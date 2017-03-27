@@ -17,7 +17,7 @@ function LightningJump(keys)
 	
 	-- Removes the hidden modifier
 	target:RemoveModifierByName("modifier_arc_lightning_datadriven")
-	
+	local pos = target:GetAbsOrigin()
 	-- Waits on the jump delay
 	Timers:CreateTimer(jump_delay,
     function()
@@ -32,11 +32,14 @@ function LightningJump(keys)
 		end
 	
 		-- Adds a global array to the target, so we can check later if it has already been hit in this instance
-		if target.hit == nil then
-			target.hit = {}
+		if IsValidEntity(target) then
+			pos = target:GetAbsOrigin()
+			if target.hit == nil then
+				target.hit = {}
+			end
+			-- Sets it to true for this instance
+			target.hit[current] = true
 		end
-		-- Sets it to true for this instance
-		target.hit[current] = true
 	
 		-- Decrements our jump count for this instance
 		ability.jump_count[current] = ability.jump_count[current] - 1
@@ -44,7 +47,8 @@ function LightningJump(keys)
 		-- Checks if there are jumps left
 		if ability.jump_count[current] > 0 then
 			-- Finds units in the radius to jump to
-			local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
+			local units = FindUnitsInRadius(caster:GetTeamNumber(), pos, nil, radius, ability:GetAbilityTargetTeam(), 
+				ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
 			local closest = radius
 			local new_target
 			for i,unit in ipairs(units) do
@@ -169,7 +173,7 @@ function SearchArea(keys)
 	-- Checks if the target has been set yet
 	if target ~= nil then
 		-- Applies the ministun and the damage to the target
-		target:AddNewModifier(caster, ability, "modifier_stun", {Duration = 0.1})
+		target:AddNewModifier(caster, ability, "modifier_stunned", {Duration = 0.1})
 		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage()+caster:GetIntellect()*2, damage_type = ability:GetAbilityDamageType()})
 		-- Renders the particle on the target
 		local particle = ParticleManager:CreateParticle(keys.particle, PATTACH_WORLDORIGIN, target)

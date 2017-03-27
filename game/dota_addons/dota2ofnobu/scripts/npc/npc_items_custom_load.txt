@@ -6532,18 +6532,17 @@
 		
 		"Modifiers"
 		{
-			"modifier_ancient_doll"
+			"modifier_dark_yellow_teeth_and_zimbabwe"
 			{
-				"IsBuff"	"1"
-				"AllowIllusionDuplicate"	"1"
+				"Passive"			"0"
+				"IsHidden"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "3"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "2"	//智
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"   "3"	//敏
 				}
 			}
-			"modifier_ancient_doll_ability"
+			"modifier_dark_yellow_teeth_and_zimbabwe_ability"
 			{
 				"IsHidden"	"1"
 				"Passive"	"1"
@@ -6552,7 +6551,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"items/Addon_Items/item_ancient_doll.lua"
-						"Function"	"AbilityExecuted"
+						"Function"	"AbilityExecuted2"
 					}
 				}
 			}

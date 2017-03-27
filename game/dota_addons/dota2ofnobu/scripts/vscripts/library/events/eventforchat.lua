@@ -14,7 +14,7 @@ function SendHTTPRequest(path, method, values, callback)
 	end)
 end
 
-skin = {
+skin_table = {
 	["128732954"] = true,
 	["164167573"] = true,
 }
@@ -87,7 +87,7 @@ local function chat_of_test(keys)
 	end
 	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
 	local skin = false
-	if tostring(steamid) == "128732954" then
+	if skin_table[tostring(steamid)] == true then
 		skin = true
 	end
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
@@ -133,6 +133,7 @@ local function chat_of_test(keys)
 	end
 	if (s == "-skin" and nobu_id == "C17" and skin) then
 		LinkLuaModifier("modifier_c17_school", "heroes/modifier_c17_school.lua", LUA_MODIFIER_MOTION_NONE)
+		LinkLuaModifier("modifier_c17_school_bag", "heroes/modifier_c17_school_bag.lua", LUA_MODIFIER_MOTION_NONE)
 		Timers:CreateTimer(0, function ()
 		    if not caster:HasModifier("modifier_c17_school") then
 		    	caster:AddNewModifier(caster, nil, "modifier_c17_school", nil)

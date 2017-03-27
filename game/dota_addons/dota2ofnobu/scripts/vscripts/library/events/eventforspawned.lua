@@ -35,55 +35,6 @@ function Nobu:OnHeroIngame( keys )
         end
       end
     end
-    if string.match(name, "ancient_apparition")  then --竹中重治
-      if caster:FindAbilityByName("A04D") ~= nil then
-        caster:FindAbilityByName("A04D"):SetLevel(1)
-      end
-    elseif string.match(name, "jakiro") then --佐佐木小次郎
-      if caster:FindAbilityByName("C22D") ~= nil then
-        caster:FindAbilityByName("C22D"):SetLevel(1)
-      end
-    elseif string.match(name, "templar_assassin") then --松姬
-      if caster:FindAbilityByName("C19D") ~= nil then
-        caster:FindAbilityByName("C19D"):SetLevel(1)
-      end
-    elseif string.match(name, "centaur") then --本多忠勝
-      if caster:FindAbilityByName("A07D") ~= nil and caster:FindAbilityByName("A07D"):GetLevel() == 0 then
-        caster:FindAbilityByName("A07D"):SetLevel(1)
-      end
-    elseif string.match(name, "undying") then --服部半藏
-      if caster:FindAbilityByName("A13D") ~= nil and caster:FindAbilityByName("A13D"):GetLevel() == 0 then
-        caster:FindAbilityByName("A13D"):SetLevel(1)
-      end
-    elseif string.match(name, "storm_spirit") then --大谷吉繼
-      caster:FindAbilityByName("A12D"):SetLevel(1)
-      caster:FindAbilityByName("A12D"):SetActivated(false)
-      caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
-    elseif string.match(name, "silencer") then -- 立花道雪
-      if caster:FindAbilityByName("C07D") ~= nil then
-        caster:FindAbilityByName("C07D"):SetLevel(1)
-      end
-      -- 這隻角色天生會帶一個modifier我們需要砍掉他
-      caster:RemoveModifierByName("modifier_silencer_int_steal")
-    elseif string.match(name, "npc_dota_hero_puck") then -- 阿市
-      if caster:FindAbilityByName("C17D") ~= nil then
-        caster:FindAbilityByName("C17D"):SetLevel(1)
-      end
-    elseif string.match(name, "faceless_void") then --風魔小太郎
-      if caster:FindAbilityByName("B02D") ~= nil and caster:FindAbilityByName("B02D"):GetLevel() == 0 then
-        caster:FindAbilityByName("B02D"):SetLevel(1)
-      end
-    elseif string.match(name, "naga_siren") then -- 望月千代女
-      local B16D = caster:FindAbilityByName("B16D")
-      if B16D ~= nil and B16D:GetLevel() == 0 then
-        B16D:SetLevel(1)
-      end
-      local B16W = caster:FindAbilityByName("B16W")
-      if B16W ~= nil then
-        B16W:SetActivated(false)
-      end
-      --GameRules: SendCustomMessage("<font color=\"#5cb85c\">殺爆全場就是現在</font>",DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 1000)
-    end
 	Timers:CreateTimer ( 1, function ()
 	  if hero ~= nil and IsValidEntity(hero) and not hero:IsIllusion() and hero:GetUnitName() ~= "npc_dota_hero_slardar" then
       if hero.init1 == nil then

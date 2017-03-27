@@ -40,22 +40,24 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.nannbann_armor == true then
+		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) then
 		            	Timers:CreateTimer(0.01, function() 
 		            		if IsValidEntity(self.caster) then
-			            		self.caster.nannbann_armor = false
 			            		self.caster:Purge( false, true, true, true, true)
 			            		event.caster = self.caster
-				            	event.ability = self:GetAbility()
-				            	ShockTarget(event, self.caster)
+			            		if IsValidEntity(ability) then
+					            	event.ability = self:GetAbility()
+					            	ShockTarget(event, self.caster)
+					            end
 				            	local am = self.caster:FindAllModifiers()
 								for _,v in pairs(am) do
-									if IsValidEntity(v) and IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
+									if IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
 										if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
 											self.caster:RemoveModifierByName(v:GetName())
 										end
 									end
 								end
+								self.caster:RemoveModifierByName("modifier_nannbann_armor")
 							end
 		            		end)
 
@@ -82,10 +84,6 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 								end
 							end)
 						end
-		            else
-		                if not victim:IsMagicImmune() then
-
-		                end 
 		            end 
 		        end 
 		    end
@@ -97,34 +95,21 @@ end
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster.nannbann_armor == nil) then
-		caster.nannbann_armor = true
-	end
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
-	Timers:CreateTimer(0, function() 
-			if caster:FindModifierByName("modifier_nannbann_armor") then
-				caster:FindModifierByName("modifier_nannbann_armor").caster = caster
-				caster:FindModifierByName("modifier_nannbann_armor").hp = caster:GetHealth()
-				caster:FindModifierByName("modifier_nannbann_armor").mp = caster:GetMana()
-				caster.has_item_nannbann_armor = true
-				return nil
-			else
-				ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
-				return 1
-			end
-		end)
-	
+	caster.has_item_nannbann_armor = true
 	Timers:CreateTimer(1, function() 
 		if not IsValidEntity(caster) then
 			return nil
 		end
 		if caster:IsAlive() then
-			if not caster:HasModifier("modifier_nannbann_armor") and IsValidEntity(ability) then
+			if not caster:HasModifier("modifier_nannbann_armor") and IsValidEntity(ability) and ability:IsCooldownReady() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
-				caster:FindModifierByName("modifier_nannbann_armor").caster = caster
+				local handle = caster:FindModifierByName("modifier_nannbann_armor")
+				handle.caster = caster
+				handle.hp = caster:GetHealth()
+				handle.mp = caster:GetMana()
 			end
 			if caster.has_item_nannbann_armor == true then
-				return 1
+				return 0.5
 			else
 				caster:RemoveModifierByName("modifier_nannbann_armor")
 				return nil
@@ -175,7 +160,6 @@ function modifier_nannbann_armor2:OnTakeDamage(event)
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type == DAMAGE_TYPE_MAGICAL) then
 		            	if self.magic_shield > 0 then
-		            		print("999 "..self.magic_shield)
 		            		if self.magic_shield > return_damage then
 		            			self.magic_shield = self.magic_shield - return_damage
 		            			self.caster:SetHealth(self.hp)

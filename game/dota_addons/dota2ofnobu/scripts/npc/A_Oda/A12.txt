@@ -123,7 +123,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"invoker_quas"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"1"
@@ -140,18 +140,9 @@
 				"Function"	"A12D"
 			}
 		}
-	}
-
-	"A12D_HIDE"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"MaxLevel"	"1"
 		"Modifiers"
 		{
-			"modifier_A12D_HIDE"
+			"modifier_A12D"
 			{
 				"Passive"	"1"
 				"OnAbilityExecuted"
@@ -159,18 +150,10 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
-						"Function"	"A12D_HIDE"
+						"Function"	"A12D_OnAbilityExecuted"
 					}
 				}
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"Function"	"A12D_HIDE_Learn"
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
-					}
-				}
-				"IsHidden"	"1"
+				"IsHidden"	"0"
 			}
 		}
 	}
@@ -214,7 +197,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
-						"Function"	"A12E_Attack"
+						"Function"	"A12E_OnAttackLanded1"
 					}
 				}
 			}
@@ -232,7 +215,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
-						"Function"	"A12E_Attack"
+						"Function"	"A12E_OnAttackLanded2"
 					}
 				}
 			}

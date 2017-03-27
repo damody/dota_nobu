@@ -23,7 +23,7 @@
 		"BaseClass"                                 "ability_datadriven"
 		"AbilityBehavior"                   		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"                        "custom/C16/C16D"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"                        	"0.1"
@@ -228,7 +228,7 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "custom/C16/C16R"
 
-		"AbilityCooldown"							"30"
+		"AbilityCooldown"							"28"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"130 150 170 190"
 		"AOERadius"									"800"
@@ -448,6 +448,25 @@
 				"EffectName"		"Hero_Leshrac.Split_Earth"
 				"Target" 			"POINT"
 			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"POINT"
+					"Radius"	"%C16T_radius"
+				}
+				"Action"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%C16T_stun"
+					}
+				}
+			}
 		}
 
 		"Modifiers"
@@ -476,7 +495,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"C16T_count"		"16 19 22"
+				"C16T_count"		"25 30 35"
 			}
 			"03"
 			{
@@ -486,7 +505,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"C16T_stun"			"1.0 1.5 2.0"
+				"C16T_stun"			"1 1.5 2"
 			}
 		}
 	}
@@ -700,7 +719,7 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "custom/C16/C16R"
 
-		"AbilityCooldown"							"38"
+		"AbilityCooldown"							"32"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"160 200 240 280"
 		"AOERadius"									"800"
@@ -735,12 +754,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"min_damage"			"98"
+				"min_damage"			"168"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_damage"			"98"
+				"max_damage"			"168"
 			}
 			"08"
 			{
@@ -920,6 +939,25 @@
 				"EffectName"		"Hero_Leshrac.Split_Earth"
 				"Target" 			"POINT"
 			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Center"	"POINT"
+					"Radius"	"%C16T_radius"
+				}
+				"Action"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%C16T_stun"
+					}
+				}
+			}
 		}
 
 		"Modifiers"
@@ -948,7 +986,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"C16T_count"		"18 20 22"
+				"C16T_count"		"20 25 30"
 			}
 			"03"
 			{

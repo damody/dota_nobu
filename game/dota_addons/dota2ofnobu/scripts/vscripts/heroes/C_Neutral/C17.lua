@@ -277,6 +277,9 @@ function C17R_old( keys )
 	local unit = CreateUnitByName("C17R_old_SUMMEND_UNIT",point,true,caster,caster,caster:GetTeam())
 	-- 把caster換成暈帳這樣之後的modifier就能用caster拿到暈帳，用ability拿到阿市
 	ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)
+	if caster:HasModifier("modifier_c17_school") then
+	   	unit:AddNewModifier(caster, nil, "modifier_c17_school_bag", nil)
+	end
 	unit:AddAbility("for_magic_immune"):SetLevel(1)
 end
 
