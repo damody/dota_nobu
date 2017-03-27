@@ -30,6 +30,7 @@
 			"particle"  "particles/econ/items/dazzle/dazzle_dark_light_weapon/dazzle_dark_shallow_grave_ground_sphere.vpcf"
 			"particle"  "particles/a12r/a12r.vpcf"
 			"particle"  "particles/radiant_fx2/fs_altardestruction_growinitsphere.vpcf"
+			"particle"  "particles/a23r/a23rfly.vpcf"
 
 
 		}
@@ -477,4 +478,375 @@
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
 	}
+
+
+	// 武田信玄 疾如風
+	"B31W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B31/B31W"
+		"AbilityBehavior"	" DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AOERadius"	"600"
+
+		"Modifiers"
+		{
+			"modifier_B31W_old_passive"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movespeed_passive"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%bonus_healthspeed"
+				}
+			}
+			"modifier_B31W_old_aura"
+			{
+				"IsHidden"	"0"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Aura"          	"modifier_B31W_old_passive"
+				"Aura_Radius"   	"600"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movespeed_passive"	"5 10 15 20"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bonus_healthspeed"	"0.5 1 1.5 2"
+			}
+		}
+
+	}
+
+	// 武田信玄 徐如林
+	"B31E_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B31/B31E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"FightRecapLevel"				"2"
+		"AbilityChannelTime"			"2.5"
+		
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"AbilityCastPoint"	"0"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"27"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"125 150 175 200"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"500"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"GameStart.RadiantAncient"
+				//sounds\ambient\horn_radiant.vsnd
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B31.lua"
+				"Function"	"B31E_old_OnSpellStart"
+				"Target"	"POINT"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B31E"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B31.lua"
+				"Function"	"B31E_old_OnProjectileHitUnit"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B31E"
+			{
+				"OnAbilityEndChannel"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_B31E"
+					}
+				}
+				"Duration"	"7"
+				"OverrideAnimation" "ACT_DOTA_CAST_ABILITY_1"
+				"Properties"	{}
+				"States"	{}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"collision_radius"	"100 100 100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"splash_radius"	"200 200 200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"600 600 600 600"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"distance"	"1400"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"40 60 80 100"
+			}
+			"07"
+			{
+				"var_type" "FIELD_INTEGER"
+				"pertime_mount" "6 6 7 7"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"90 160 230 300"
+	}
+
+
+
+	// 武田信玄 侵略如火
+	"B31R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B31/B31R"
+		"AbilityBehavior"	" DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AOERadius"	"600"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_AbyssalUnderlord.Firestorm.Start"
+				//sounds\ambient\horn_radiant.vsnd
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B31.lua"
+				"Function"		"B31R_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B31R"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B31R_old_passive"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%bonus_atk_percent"
+				}
+			}
+			"modifier_B31R_old_aura"
+			{
+				"IsHidden"	"0"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Aura"          	"modifier_B31R_old_passive"
+				"Aura_Radius"   	"600"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_atk_percent"			"5 10 15 20"
+			}
+		}
+
+	}
+
+
+	"B31T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B31/B31T"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		//"AOERadius"	"400"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"180"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"250 310 370"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B31T_old"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B31.lua"
+				"Function"	"B31T_old_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"ITEM_D03.sound"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B31T_old"
+			{
+				//"EffectName" "particles/radiant_fx2/fs_altardestruction_growinitsphere.vpcf"
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"AllowIllusionDuplicate"	"1"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_movement_speed"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_def"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_attack"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"States"	
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnDestroy"	{}
+				"ThinkInterval"	"0.9"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B31.lua"
+						"Function"	"modifier_B31T_old_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_B31T_old_dot"
+			{
+				"IsDebuff"			"1"
+				"Duration"			"5"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"  	"1"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"20"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"38"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_health"	"800 1300 1800"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"30 55 80"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_def"	"10 20 30"
+			}
+
+		}
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+	}
+
+
 } // END DOTAAbilities
