@@ -1,11 +1,21 @@
 -- 果心居士 by Nian Chen
 -- 2017.3.24
 
+
+C16D_EXCLUDE_TARGET_NAME = {
+	npc_dota_cursed_warrior_souls	= true,
+	npc_dota_the_king_of_robbers	= true,
+	com_general = true,
+	com_general2 = true,
+}
 --D
 function C16D( keys )
 	local target = keys.target
-	local illusion = CreateMirror( keys )
-	
+	if C16D_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+		local illusion = CreateMirror( keys )
+	else
+		keys.ability:EndCooldown()
+	end
 end
 
 function CreateMirror( keys )
@@ -22,7 +32,7 @@ function CreateMirror( keys )
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
 	--分身不能用法球
-	
+	illusion:SetOwner(caster)
 	if illusion:IsHero() then
 		illusion:SetPlayerID(caster:GetPlayerID())
 
@@ -249,7 +259,7 @@ function ExorcismPhysics( event )
 
 		-- COLLISION CHECK
 		local distance = (point - current_position):Length()
-		local collision = distance < 50
+		local collision = distance < 200
 
 		-- MAX DISTANCE CHECK
 		local distance_to_caster = (source - current_position):Length()
@@ -278,7 +288,7 @@ function ExorcismPhysics( event )
 			if time_between_last_attack >= min_time_between_attacks then
 				-- If the unit doesn't have a target locked, find enemies near the caster
 				enemies = FindUnitsInRadius(caster:GetTeamNumber(), source, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, 
-											  abilityTargetType, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+											  abilityTargetType, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 
 				-- Check the possible enemies
 				-- Focus the last attacked target if there's any
@@ -360,10 +370,6 @@ function ExorcismPhysics( event )
 						damage_table.attacker = caster					
 						damage_table.damage_type = abilityDamageType
 						damage_table.damage = spirit_damage
-
-						if damage_table.victim:IsBuilding() then
-							damage_table.damage = damage_table.damage * 0.5
-						end
 
 						ApplyDamage(damage_table)
 

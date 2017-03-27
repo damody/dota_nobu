@@ -37,10 +37,9 @@ function modifier_protection_amulet:OnTakeDamage(event)
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) and self.caster.protection_amulet == true then
+		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) then
 		            	Timers:CreateTimer(0.01, function() 
 		            		if IsValidEntity(self.caster) then
-			            		self.caster.protection_amulet = false
 			            		self.caster:Purge( false, true, true, true, true)
 			            		local am = self.caster:FindAllModifiers()
 								for _,v in pairs(am) do
@@ -50,6 +49,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 										end
 									end
 								end
+								self.caster:RemoveModifierByName("modifier_protection_amulet")
 							end
 		            		end)
 
@@ -70,16 +70,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 									item:StartCooldown(30)
 								end
 							end
-							Timers:CreateTimer(30, function() 
-								if IsValidEntity(self.caster) then
-									self.caster.protection_amulet = true
-								end
-							end)
 						end
-		            else
-		                if not victim:IsMagicImmune() then
-
-		                end 
 		            end 
 		        end 
 		    end
@@ -90,33 +81,21 @@ end
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster.protection_amulet == nil) then
-		caster.protection_amulet = true
-	end
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
-	Timers:CreateTimer(0, function() 
-			if caster:FindModifierByName("modifier_protection_amulet") then
-				caster:FindModifierByName("modifier_protection_amulet").caster = caster
-				caster:FindModifierByName("modifier_protection_amulet").hp = caster:GetHealth()
-				caster:FindModifierByName("modifier_protection_amulet").mp = caster:GetMana()
-				caster.has_item_protection_amulet = true
-				return nil
-			else
-				ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
-				return 1
-			end
-		end)
+	caster.has_item_protection_amulet = true
 	Timers:CreateTimer(1, function() 
 		if not IsValidEntity(caster) then
 			return nil
 		end
 		if caster:IsAlive() then
-			if not caster:HasModifier("modifier_protection_amulet") and IsValidEntity(ability) then
+			if not caster:HasModifier("modifier_protection_amulet") and IsValidEntity(ability) and ability:IsCooldownReady() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
-				caster:FindModifierByName("modifier_protection_amulet").caster = caster
+				local handle = caster:FindModifierByName("modifier_protection_amulet")
+				handle.caster = caster
+				handle.hp = caster:GetHealth()
+				handle.mp = caster:GetMana()
 			end
 			if caster.has_item_protection_amulet == true then
-				return 1
+				return 0.5
 			else
 				caster:RemoveModifierByName("modifier_protection_amulet")
 				return nil

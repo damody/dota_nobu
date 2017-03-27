@@ -271,7 +271,7 @@ function C11T_on_attack_landed( keys )
 end
 
 function CreateScreenEffect( target )
-	if target:IsHero() then 
+	if IsValidEntity(target) and target:IsHero() then 
 		local effect_name = "particles/units/heroes/hero_zeus/zues_screen_empty.vpcf"
 		local player = PlayerResource:GetPlayer(target:GetPlayerID())
 		local ifx = ParticleManager:CreateParticleForPlayer(effect_name,PATTACH_ABSORIGIN_FOLLOW,target,player)

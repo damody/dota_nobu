@@ -86,6 +86,8 @@ function A14W_OnSpellStart( event )
 				FIND_ANY_ORDER,					-- 結果的排列方式
 				false) 							-- 好像是優化用的參數不懂怎麼用
 				AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
+				target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
+				FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
 				for _a,unit2 in ipairs(unitss) do
 					local damageTable = {victim=unit2,   
 						attacker=caster,         
@@ -96,8 +98,6 @@ function A14W_OnSpellStart( event )
 						ApplyDamage(damageTable)  
 					end
 				end
-				target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
-				FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
 				return nil
 			else
 				timecounter=timecounter+1

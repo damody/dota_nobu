@@ -93,6 +93,7 @@ function CP_Posistion( keys )
       local donkey = CreateUnitByName("cp_soldiercamp", caster.origin_pos, true, caster, caster, caster:GetTeamNumber())
       donkey:SetAbsOrigin(caster.origin_pos)
       donkey:AddAbility("majia_cp"):SetLevel(1)
+      donkey:AddAbility("for_no_damage"):SetLevel(1)
       Timers:CreateTimer(1, function ()
       	if caster~= nil and IsValidEntity(caster) and caster:IsAlive() then
       		return 1

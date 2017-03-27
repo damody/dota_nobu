@@ -45,6 +45,7 @@ function A12E( keys )
 	local ability = keys.ability
 	caster.abilityName = "A12E"
 	if caster.A12D_B == true then
+		print("A12E A12D_B")
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A12E_2",nil)
 		ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	else
@@ -56,32 +57,41 @@ function A12E( keys )
 	caster.A12D_B = false --最後一定要加	
 end
 
-
-
-function A12E_Attack( keys )
+function A12E_OnAttackLanded1( keys )
 	local caster = keys.attacker
 	local ability = keys.ability
 	local cure_count = ability:GetLevelSpecialValueFor("CureMana",ability:GetLevel() - 1) 
 	local chance = ability:GetLevelSpecialValueFor("Chance",ability:GetLevel() - 1) 
 	--print("CHANCE"..tostring(caster.A12E_CHANCE))
+	caster.A12E_CHANCE = RandomInt(0,10)
 	if caster:IsAlive()  then
 		if caster.A12E_CHANCE >= 7 then 
-			caster.A12E_CHANCE = RandomInt(0,10)
-			if caster:HasModifier("modifier_A12E_2") then
-				local cure = caster:GetMaxMana() * cure_count / 100
-				caster:SetMana(caster:GetMana() + cure)
-				caster:Heal(cure,caster)
-				AMHC:CreateNumberEffect(caster,cure,2,AMHC.MSG_ORIT ,{0,0,225},0)
-				AMHC:CreateNumberEffect(caster,cure,2,AMHC.MSG_ORIT ,{0,225,0},0)
-				ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)				
-			elseif caster:HasModifier("modifier_A12E") then
-				local cure = caster:GetMaxMana() * cure_count / 100
-				caster:SetMana(caster:GetMana() + cure)
-				AMHC:CreateNumberEffect(caster,cure,2,AMHC.MSG_ORIT ,{0,0,225},0)
-				ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-			end
-		else
-			caster.A12E_CHANCE = caster.A12E_CHANCE + 1
+			local cure = caster:GetMaxMana() * cure_count / 100
+			caster:SetMana(caster:GetMana() + cure)
+			AMHC:CreateNumberEffect(caster,cure,2,AMHC.MSG_ORIT ,{0,0,225},0)
+			ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		end
+	end
+end
+
+function A12E_OnAttackLanded2( keys )
+	local caster = keys.attacker
+	local ability = keys.ability
+	local cure_count = ability:GetLevelSpecialValueFor("CureMana",ability:GetLevel() - 1) 
+	local chance = ability:GetLevelSpecialValueFor("Chance",ability:GetLevel() - 1) 
+	--print("CHANCE"..tostring(caster.A12E_CHANCE))
+	if caster.A12E_CHANCE == nil then
+		caster.A12E_CHANCE = 0
+	end
+	if caster:IsAlive()  then
+		if caster.A12E_CHANCE >= 7 then 
+			local cure = caster:GetMaxMana() * cure_count / 100
+			caster:SetMana(caster:GetMana() + cure)
+			caster:Heal(cure,caster)
+			AMHC:CreateNumberEffect(caster,cure,2,AMHC.MSG_ORIT ,{0,0,225},0)
+			AMHC:CreateNumberEffect(caster,cure,2,AMHC.MSG_ORIT ,{0,225,0},0)
+			ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+			ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 		end
 	end
 end
@@ -179,33 +189,28 @@ function A12T_Start( keys )
 end
 
 
-function A12D_HIDE( keys )
+function A12D_OnAbilityExecuted( keys )
+	if keys.event_ability:IsToggle() then return end
 	local caster = keys.caster
+	local handle = caster:FindModifierByName("modifier_A12D")
 	
-	Timers:CreateTimer(0.1, function()
-		local name = caster.abilityName
-		--print("A12D_HIDE ",name)
-		if  name == "A12D" then
+	if handle then
+		if handle:GetStackCount() < 4 then
+			handle:SetStackCount(handle:GetStackCount() + 1)
+		end
+		if handle:GetStackCount() >= 4 then
+			caster:FindAbilityByName("A12D"):SetActivated(true)
+		end
+		caster.A12D_Time = handle:GetStackCount()
+
+		local name = keys.event_ability:GetName()
+		if name == "A12D" then
 			caster:FindAbilityByName("A12D"):SetActivated(false)
 			caster.A12D_B = true
 			caster.A12D_Time = 0
-			ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		else
-			if name == "A12W" or name == "A12E" or name == "A12R" then
-				caster.A12D_Time  = caster.A12D_Time  + 1
-				if caster.A12D_Time  >= 4 then
-					caster:FindAbilityByName("A12D"):SetActivated(true)
-				end
-			end	
+			handle:SetStackCount(0)
 		end
-		end)
-end
-
-function A12D_HIDE_Learn( keys )
-	local caster = keys.caster
-	caster.A12D_Time = 0
-	caster.A12D_B = false
-	caster.A12E_CHANCE = RandomInt(0,10)
+	end
 end
 
 function A12D( keys )

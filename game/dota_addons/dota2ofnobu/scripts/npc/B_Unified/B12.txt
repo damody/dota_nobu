@@ -136,8 +136,7 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"                        "custom/B12/B12R"
-		"AOERadius"                                 "700"
-		"AbilityCastRange"              			"700"
+		"AOERadius"                                 "900"
 		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"Modifiers"
@@ -146,7 +145,7 @@
 			{
 				"Passive" 				"1"
 				"Aura" 					"modifier_B12R_veryslow"
-		        "Aura_Radius" 			"700"
+		        "Aura_Radius" 			"900"
 		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -187,7 +186,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movespd"		"-11 14 17 20"
+				"movespd"		"-11 -14 -17 -20"
 			}
 		}
 	}

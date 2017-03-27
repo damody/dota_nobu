@@ -40,7 +40,7 @@ function Shock( keys )
 					false)
 
 			for _,it in pairs(direUnits) do
-				if (not(it:IsBuilding()) and IsValidEntity(it) ) then
+				if (not(it:IsBuilding()) and IsValidEntity(it) and IsValidEntity(keys.ability)) then
 					keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_item_wind_scroll",nil)
 				end
 			end

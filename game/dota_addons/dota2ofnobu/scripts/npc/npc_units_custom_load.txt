@@ -5,6 +5,57 @@
 {
 	"Version"		"1"
 
+	//宇喜多秀家 E杖
+	"A32E_stick"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/props_structures/bad_standard001.vmdl"
+		"ModelScale"		"0.6"
+		"Level"				"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"	"140"
+
+		"ArmorPhysical"	"5"
+		"MagicalResistance"	"0"
+
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"		"DAMAGE_TYPE_NONE"
+
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"0"
+		"StatusHealth"			"5"
+		"StatusHealthRegen"		"5"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+
+		"VisionDaytimeRange"	"0"
+		"VisionNighttimeRange"	"0"
+
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
 	//果心居士 魑魅魍魎
 	"C16D_old_ghost"
 	{

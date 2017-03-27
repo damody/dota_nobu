@@ -16,7 +16,7 @@ function Shock( keys )
 	local target_flags = ability:GetAbilityTargetFlags()
 	local damage_type = ability:GetAbilityDamageType()
 
-	AddFOWViewer(caster:GetTeamNumber(),target_point,aoe_radius+100,3,false)
+	AddFOWViewer(caster:GetTeamNumber(),target_point,aoe_radius+100,2,false)
 	AddFOWViewer(DOTA_TEAM_GOODGUYS,caster:GetAbsOrigin(), 300, 1, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS,caster:GetAbsOrigin(), 300, 1, false)
 

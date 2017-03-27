@@ -98,7 +98,6 @@ function Nobu:PickHero( keys )
       elseif nobu_id == "A12" then --大谷吉繼
         caster:FindAbilityByName("A12D"):SetLevel(1)
         caster:FindAbilityByName("A12D"):SetActivated(false)
-        caster:FindAbilityByName("A12D_HIDE"):SetLevel(1)
       elseif nobu_id == "B15" then -- 今川義元
         Timers:CreateTimer(1, function ()
           if (caster:GetLevel() >= 8) then
