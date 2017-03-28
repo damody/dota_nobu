@@ -274,12 +274,16 @@ function C17R_old( keys )
 	local ability = keys.ability
 	local point = ability:GetCursorPosition()
 
-	local unit = CreateUnitByName("C17R_old_SUMMEND_UNIT",point,true,caster,caster,caster:GetTeam())
+	local unit
 	-- 把caster換成暈帳這樣之後的modifier就能用caster拿到暈帳，用ability拿到阿市
-	ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)
+	-- skin
 	if caster:HasModifier("modifier_c17_school") then
-	   	unit:AddNewModifier(caster, nil, "modifier_c17_school_bag", nil)
+	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT_bag",point,true,caster,caster,caster:GetTeam())
+	   	unit:SetForwardVector(Vector(0, -1, 0))
+	else
+	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT",point,true,caster,caster,caster:GetTeam())
 	end
+	ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)
 	unit:AddAbility("for_magic_immune"):SetLevel(1)
 end
 

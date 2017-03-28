@@ -306,7 +306,7 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"                        "nevermore_requiem"
 
-		"AbilityCastPoint"          				"0.1"
+		"AbilityCastPoint"          				"0"
 		"AbilityCooldown"           				"22 20 18 16"
 		"AbilityManaCost"           				"130 155 180 205"
 		"AOERadius"                                 "800"
@@ -328,14 +328,14 @@
 			}
 		}
 
-		"OnChannelInterrupted"
-		{
-			"RunScript"
-			{
-				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
-				"Function"			"B23R_interrupted"
-			}
-		}
+		//"OnChannelInterrupted"
+		//{
+		//	"RunScript"
+		//	{
+		//		"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+		//		"Function"			"B23R_interrupted"
+		//	}
+		//}
 
 		"Modifiers"
 		{
@@ -380,7 +380,7 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"                        "vengefulspirit_command_aura"
 
-		"AbilityCastPoint"          				"0.1"
+		"AbilityCastPoint"          				"0"
 		"AbilityCooldown"           				"145 125 105"
 		"AbilityManaCost"           				"300"
 		"AOERadius"                                 "%B23T_radius"
@@ -411,14 +411,14 @@
 			}
 		}
 
-		"OnChannelInterrupted"
-		{
-			"RunScript"
-			{
-				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
-				"Function"			"B23T_interrupted"
-			}
-		}
+		//"OnChannelInterrupted"
+		//{
+		//	"RunScript"
+		//	{
+		//		"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+		//		"Function"			"B23T_interrupted"
+		//	}
+		//}
 
 		"Modifiers"
 		{

@@ -40,5 +40,5 @@ function modifier_c17_school:IsBuff()
 end
 
 function modifier_c17_school:IsPurgable()
-	return true
+	return false
 end

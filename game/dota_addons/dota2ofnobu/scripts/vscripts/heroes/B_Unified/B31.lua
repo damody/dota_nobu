@@ -65,7 +65,12 @@ function B31E_OnProjectileHitUnit( keys )
 	                              false)
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
-			AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if it:IsMagicImmune() then
+				AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage")*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
+			
 		end
 	end
 end
@@ -75,9 +80,8 @@ function B31E_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local casterLoc = caster:GetAbsOrigin()
-	local targetLoc = keys.target_points[1]
-	local dir = caster:GetCursorPosition() - caster:GetOrigin()
-	caster:SetForwardVector(dir:Normalized())
+	local targetLoc = casterLoc + caster:GetForwardVector()*100
+	local dir = caster:GetForwardVector()
 	local distance = ability:GetLevelSpecialValueFor( "distance", ability:GetLevel() - 1 )
 	local radius =  ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
 	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
@@ -87,27 +91,27 @@ function B31E_OnSpellStart( keys )
 	if (caster:FindModifierByName("modifier_B31E_aura")) then
 		caster:RemoveModifierByName("modifier_B31E_aura")
 	end
-	-- Find forward vector
-	local forwardVec = targetLoc - casterLoc
-	forwardVec = forwardVec:Normalized()
 	
-	-- Find backward vector
-	local backwardVec = casterLoc - targetLoc
-	backwardVec = backwardVec:Normalized()
 	
-	-- Find middle point of the spawning line
-	local middlePoint = casterLoc + ( distance * 0.5 * backwardVec )
 	
-	-- Find perpendicular vector
-	local v = middlePoint - casterLoc
-	local dx = -v.y
-	local dy = v.x
-	local perpendicularVec = Vector( dx, dy, v.z )
-	perpendicularVec = perpendicularVec:Normalized()
 	
 	local sumtime = 0
 	-- Create timer to spawn projectile
 	Timers:CreateTimer( function()
+		-- Find forward vector
+	local forwardVec = caster:GetForwardVector()
+	
+	-- Find backward vector
+	local backwardVec = -caster:GetForwardVector()
+		-- Find middle point of the spawning line
+		local middlePoint = caster:GetAbsOrigin() + ( distance * 0.5 * backwardVec )
+		
+		-- Find perpendicular vector
+		local v = middlePoint - caster:GetAbsOrigin()
+		local dx = -v.y
+		local dy = v.x
+		local perpendicularVec = Vector( dx, dy, v.z )
+		perpendicularVec = perpendicularVec:Normalized()
 			-- Get random location for projectile
 			for c = 1,1 do
 				local random_distance = RandomInt( -radius, radius )
@@ -134,9 +138,7 @@ function B31E_OnSpellStart( keys )
 				ProjectileManager:CreateLinearProjectile( projectileTable )
 			end
 			-- Check if the number of machines have been reached
-			if caster:IsChanneling() == false then
-				return nil
-			else
+			if sumtime < 7 then
 				sumtime = sumtime + 1/6
 				return 1/6
 			end

@@ -242,7 +242,8 @@ function B23R( keys )
 			v:Heal( healPoint , caster )
 		end
 		
-		if caster:IsChanneling() == false then
+		if not caster:IsChanneling() then
+			B23R_interrupted( keys )
 			return nil
 		else
 			return 0.2
@@ -268,6 +269,13 @@ function B23T( keys )
 	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_B23T_castAnimation", nil )
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_B23T_invulnerableAura", nil )
+	Timers:CreateTimer(0.5, function ()
+		if not caster:IsChanneling() then
+			B23T_interrupted(keys)
+			return nil
+		end
+		return 0.5
+	  end)
 end
 
 function B23T_interrupted( keys )

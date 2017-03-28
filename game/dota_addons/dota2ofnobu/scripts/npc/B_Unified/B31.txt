@@ -128,7 +128,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/B31/B31E"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -162,7 +162,6 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B31.lua"
 				"Function"	"B31E_OnSpellStart"
-				"Target"	"POINT"
 			}
 			"ApplyModifier"
 			{
@@ -396,7 +395,7 @@
 		//"AOERadius"	"400"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"140"
+		"AbilityCooldown"	"110"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"

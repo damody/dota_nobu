@@ -28,6 +28,20 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
 			"soundfile"	"soundevents/c17.vsndevts"
 		}
+		"Modifiers"
+		{
+			"modifier_C17_pre"
+			{
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C17.lua"
+						"Function"	"C17W"
+					}
+				}
+			}
+		}
 	}
 	//阿市 光鍊罰則
 	"C17W"

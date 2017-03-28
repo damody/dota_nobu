@@ -195,7 +195,7 @@ function B25E_old( keys )
 				ProjectileManager:CreateLinearProjectile( projectileTable )
 			end
 			-- Check if the number of machines have been reached
-			if caster:IsChanneling() == false then
+			if not caster:IsChanneling() then
 				return nil
 			else
 				sumtime = sumtime + 0.14

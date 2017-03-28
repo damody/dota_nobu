@@ -17,6 +17,9 @@ end
 skin_table = {
 	["128732954"] = true,
 	["164167573"] = true,
+	["245903351"] = true,
+	["89504404"] = true,
+	["5491971"] = true,
 }
 
 local function chat_of_test(keys)
@@ -132,24 +135,16 @@ local function chat_of_test(keys)
         end
 	end
 	if (s == "-skin" and nobu_id == "C17" and skin) then
-		LinkLuaModifier("modifier_c17_school", "heroes/modifier_c17_school.lua", LUA_MODIFIER_MOTION_NONE)
-		LinkLuaModifier("modifier_c17_school_bag", "heroes/modifier_c17_school_bag.lua", LUA_MODIFIER_MOTION_NONE)
-		Timers:CreateTimer(0, function ()
-		    if not caster:HasModifier("modifier_c17_school") then
-		    	caster:AddNewModifier(caster, nil, "modifier_c17_school", nil)
-		    end
-		    return 1
-		  end)
+		caster:SetModel("models/c17/c17_school.vmdl")
+		caster:SetOriginalModel("models/c17/c17_school.vmdl")
 	end
 	if (s == "-long" and nobu_id == "A31") then
-		LinkLuaModifier("modifier_long_a31", "heroes/modifier_long_a31.lua", LUA_MODIFIER_MOTION_NONE)
-		caster:AddNewModifier(caster, nil, "modifier_long_a31", nil)
-		caster:RemoveModifierByName("modifier_short_a31")
+		caster:SetModel("models/a31/a31_long.vmdl")
+		caster:SetOriginalModel("models/a31/a31_long.vmdl")
 	end
 	if (s == "-short" and nobu_id == "A31") then
-		LinkLuaModifier("modifier_short_a31", "heroes/modifier_short_a31.lua", LUA_MODIFIER_MOTION_NONE)
-		caster:AddNewModifier(caster, nil, "modifier_short_a31", nil)
-		caster:RemoveModifierByName("modifier_long_a31")
+		caster:SetModel("models/a31/a31.vmdl")
+		caster:SetOriginalModel("models/a31/a31.vmdl")
 	end
 	if (s == "-donkey" and caster.has_dota_donkey == nil) then
 		caster.has_dota_donkey = 1
