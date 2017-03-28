@@ -96,44 +96,7 @@ local function chat_of_test(keys)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
-	if (s == "-new" or s == "-16") and caster:GetLevel() == 1 and caster.isnew == nil 
-		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
-		-- 通知所有玩家該英雄已經變成新版
-		GameRules:SendCustomMessage("-new ".._G.hero_name_zh[nobu_id],0,0)
-		caster.isnew = true
-		caster:SetAbilityPoints(1)
-		caster.version = "16"
-
-		for i = 0, caster:GetAbilityCount() - 1 do
-          local ability = caster:GetAbilityByIndex( i )
-          if ability  then
-            caster:RemoveAbility(ability:GetName())
-          end
-        end
-        local skill = _G.heromap_skill[nobu_id]["16"]
-        for si=1,#skill do
-          if si == #skill and #skill < 6 then
-            caster:AddAbility("attribute_bonusx")
-          end
-          caster:AddAbility(nobu_id..skill:sub(si,si))
-        end
-        if #skill >= 6 then
-          caster:AddAbility("attribute_bonusx")
-        end
-        -- 要自動學習的技能
-        local askill = _G.heromap_autoskill[nobu_id]["16"]
-        for si=1,#askill do
-          caster:FindAbilityByName(nobu_id..askill:sub(si,si)):SetLevel(1)
-        end
-        -- 直江兼續新版要砍普攻距離
-        if nobu_id == "B36" and caster:HasModifier("modifier_B36D_old") then
-        	caster:RemoveModifierByName("modifier_B36D_old")
-        end
-        -- 加藤段藏天生技要拿掉
-        if nobu_id == "C08" and caster:HasModifier("modifier_C08D_old_duge") then
-        	caster:RemoveModifierByName("modifier_C08D_old_duge")
-        end
-	end
+	
 	if (s == "-skin" and nobu_id == "C17" and skin) then
 		caster:SetModel("models/c17/c17_school.vmdl")
 		caster:SetOriginalModel("models/c17/c17_school.vmdl")
@@ -161,56 +124,7 @@ local function chat_of_test(keys)
         donkey:FindAbilityByName("courier_take_stash_and_transfer_items"):SetLevel(1)
         donkey:FindAbilityByName("for_magic_immune"):SetLevel(1)
 	end
-	if (s == "-old" or s == "-11") and caster:GetLevel() == 1 and caster.isold == nil 
-		and _G.heromap_version[nobu_id]["11"] == true then -- 檢查有沒有11版
-		
-		-- 通知所有玩家該英雄已經變成舊版
-		GameRules:SendCustomMessage("-old ".._G.hero_name_zh[nobu_id],0,0)
-
-		caster.isold = true
-		caster:SetAbilityPoints(1)
-		caster.version = "11"
-
-		-- 拔掉英雄的修改器
-		--[[
-		local am = caster:FindAllModifiers()
-		for _,v in pairs(am) do
-			if v:GetName() ~= "equilibrium_constant" and v:GetName() ~= "modifier_for_record" then
-				caster:RemoveModifierByName(v:GetName())
-			end
-		end
-		]]
-
-		-- 拔掉英雄的技能
-		for i = 0, caster:GetAbilityCount() - 1 do
-			local ability = caster:GetAbilityByIndex( i )
-			if ability  then
-				caster:RemoveAbility(ability:GetName())
-			end
-		end
-		for i = 0, caster:GetAbilityCount() - 1 do
-          local ability = caster:GetAbilityByIndex( i )
-          if ability  then
-            caster:RemoveAbility(ability:GetName())
-          end
-        end
-        local skill = _G.heromap_skill[nobu_id]["11"]
-        for si=1,#skill do
-          if si == #skill and #skill < 6 then
-            caster:AddAbility("attribute_bonusx")
-          end
-          caster:AddAbility(nobu_id..skill:sub(si,si).."_old")
-        end
-        if #skill >= 6 then
-          caster:AddAbility("attribute_bonusx")
-        end
-        -- 要自動學習的技能
-        local askill = _G.heromap_autoskill[nobu_id]["11"]
-        for si=1,#askill do
-          caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
-        end
-	end
-		
+			
 	sump = 0
 	for playerID = 0, 14 do
 		local id       = playerID

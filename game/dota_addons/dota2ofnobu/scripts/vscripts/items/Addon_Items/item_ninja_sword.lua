@@ -60,6 +60,6 @@ function Shock2( keys )
 			AMHC:Damage( caster,target,350,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end	
 		keys.caster:RemoveModifierByName( "modifier_ninja_sword" )
-		keys.caster:RemoveModifierByName( "modifier_transparency" )
+		keys.caster:RemoveModifierByName( "modifier_invisible" )
 	end
 end

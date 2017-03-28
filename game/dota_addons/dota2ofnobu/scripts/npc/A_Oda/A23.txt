@@ -32,7 +32,7 @@
 
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCastRange"							"1000"
-		"AbilityCooldown"                           "19 16 13 10"
+		"AbilityCooldown"                           "10"
 		"AbilityManaCost"                           "110 130 150 170"
 
 		"OnSpellStart"
@@ -274,7 +274,7 @@
 		"AbilityTextureName"                        "custom/A23/A23T"
 
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"135 105 80"
+		"AbilityCooldown"           				"100 90 80"
 		"AbilityManaCost"           				"250 275 300"
 		"AbilityCastRange"              			"1000"
 		//"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
@@ -299,6 +299,7 @@
 				"EffectAttachType"	"follow_origin"
 				"States"
 				{
+					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_MUTED"			"MODIFIER_STATE_VALUE_ENABLED"
 				}

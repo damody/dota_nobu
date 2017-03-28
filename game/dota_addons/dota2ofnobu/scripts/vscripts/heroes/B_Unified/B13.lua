@@ -44,21 +44,6 @@ function B13B_onCreated( keys )
 	keys.ability:SetActivated(false)
 end
 
---W 忍法．感官破壞
-function B13W( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local b13R = caster:FindAbilityByName("B13R")
-	local dmgt = {
-					victim = target,
-					attacker = caster,
-					ability = b13R,
-					damage = b13R:GetSpecialValueFor("B13R_damageBonus") * caster:GetMaxHealth() ,
-					damage_type = b13R:GetAbilityDamageType(),
-					damage_flags = DOTA_DAMAGE_FLAG_NONE,
-				}
-	ApplyDamage(dmgt)
-end
 
 --R 忍法．血化裝
 function B13R( keys )
@@ -71,7 +56,7 @@ function B13R( keys )
 					victim = target,
 					attacker = attacker,
 					ability = ability,
-					damage = ability:GetSpecialValueFor("B13R_damageBonus") * attacker:GetMaxHealth() ,
+					damage = ability:GetSpecialValueFor("B13R_damageBonus") * attacker:GetHealth() ,
 					damage_type = ability:GetAbilityDamageType(),
 					damage_flags = DOTA_DAMAGE_FLAG_NONE,
 		}

@@ -219,26 +219,11 @@ end
 function B31T_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability= keys.ability
-	--print("test")"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
-	--local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_shadow_demon/shadow_demon_disruption.vpcf",PATTACH_CUSTOMORIGIN,caster)
-	--local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_monkey_king/monkey_king_spring_cast.vpcf",PATTACH_ABSORIGIN,caster)
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4,1)
-
 	local ifx2 = ParticleManager:CreateParticle("particles/b31t/b31t2.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx2,0,caster:GetAbsOrigin())
 	local ifx = ParticleManager:CreateParticle("particles/b31t/b31t.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
-	--local ifx = ParticleManager:CreateParticle("particles/dire_fx/bad_ancient002_pit_lava_glow.vpcf",PATTACH_ABSORIGIN,caster)
-	--ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
-	--ParticleManager:SetParticleControl(ifx,2,caster:GetAbsOrigin())
-
-	--產生特效 並且設定目標跟施法者座標給特效綁定點
-	--local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_monkey_king/monkey_king_spring_cast.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	--ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-	--ParticleManager:SetParticleControlEnt(particle, 2, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-	--ParticleManager:SetParticleControl(particle, 5, Vector(duration, 0, 0))
-
-	--ParticleManager:ReleaseParticleIndex(ifx)
 	Timers:CreateTimer(27, function ()
 		ParticleManager:DestroyParticle(ifx2,false)
 		return nil
@@ -251,24 +236,167 @@ end
 function modifier_B31T_OnIntervalThink( keys )
 	local caster = keys.caster
 	local ability= keys.ability
-	--print("test")"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
-	--local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_shadow_demon/shadow_demon_disruption.vpcf",PATTACH_CUSTOMORIGIN,caster)
 	local ifx = ParticleManager:CreateParticle("particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_trigger_sphere.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
-
-
 	local ifx = ParticleManager:CreateParticle("particles/b31t/b31t.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
-	--local ifx = ParticleManager:CreateParticle("particles/dire_fx/bad_ancient002_pit_lava_glow.vpcf",PATTACH_ABSORIGIN,caster)
-	--ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
-	--ParticleManager:SetParticleControl(ifx,2,caster:GetAbsOrigin())
+end
 
-	--產生特效 並且設定目標跟施法者座標給特效綁定點
-	--local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_monkey_king/monkey_king_spring_cast.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	--ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-	--ParticleManager:SetParticleControlEnt(particle, 2, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-	--ParticleManager:SetParticleControl(particle, 5, Vector(duration, 0, 0))
 
-	--ParticleManager:ReleaseParticleIndex(ifx)
 
+
+
+function B31E_old_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              target:GetAbsOrigin(),
+	                              nil,
+	                              ability:GetSpecialValueFor( "splash_radius" ),
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
+	for _,it in pairs(direUnits) do
+		if (not(it:IsBuilding())) then
+			AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		end
+	end
+end
+
+
+function B31E_old_OnSpellStart( keys )
+	-- Variables
+	local caster = keys.caster
+	local ability = keys.ability
+	local casterLoc = caster:GetAbsOrigin()
+	local targetLoc = keys.target_points[1]
+	local dir = caster:GetCursorPosition() - caster:GetOrigin()
+	caster:SetForwardVector(dir:Normalized())
+	local distance = ability:GetLevelSpecialValueFor( "distance", ability:GetLevel() - 1 )
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
+	local collision_radius = ability:GetLevelSpecialValueFor( "collision_radius", ability:GetLevel() - 1 )
+	local projectile_speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
+	local right = caster:GetRightVector()
+	--casterLoc = keys.target_points[1] - right:Normalized() * 300
+	local pertime=ability:GetSpecialValueFor("pertime_mount")
+	-- Find forward vector
+	local forwardVec = targetLoc - casterLoc
+	forwardVec = forwardVec:Normalized()
+	
+	-- Find backward vector
+	local backwardVec = casterLoc - targetLoc
+	backwardVec = backwardVec:Normalized()
+	
+	-- Find middle point of the spawning line
+	local middlePoint = casterLoc + ( radius * 2 * backwardVec )
+	
+	-- Find perpendicular vector
+	local v = middlePoint - casterLoc
+	local dx = -v.y
+	local dy = v.x
+	local perpendicularVec = Vector( dx, dy, v.z )
+	perpendicularVec = perpendicularVec:Normalized()
+	
+	local sumtime = 0
+	-- Create timer to spawn projectile
+	Timers:CreateTimer( function()
+			-- Get random location for projectile
+			for c = 1,1 do
+				local random_distance = RandomInt( -radius, radius )
+				local spawn_location = middlePoint + perpendicularVec * random_distance
+				--local spawn_location = Vector( spawn_location2.x, spawn_location2.y, 0)
+				local velocityVec = Vector( forwardVec.x, forwardVec.y, 0)
+				-- Spawn projectiles
+				local projectileTable = {
+					Ability = ability,
+					EffectName = "particles/b31e/b31e.vpcf",
+					vSpawnOrigin = spawn_location,
+					fDistance = distance,
+					fStartRadius = collision_radius,
+					fEndRadius = collision_radius,
+					Source = caster,
+					bHasFrontalCone = false,
+					bReplaceExisting = false,
+					bProvidesVision = false,
+					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+					iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NONE,
+					vVelocity = velocityVec * projectile_speed
+				}
+				ProjectileManager:CreateLinearProjectile( projectileTable )
+			end
+			-- Check if the number of machines have been reached
+			if caster:IsChanneling() == false then
+				return nil
+			else
+				sumtime = sumtime + 1/pertime
+				return 1/pertime
+			end
+		end
+	)
+	Timers:CreateTimer(1, function()
+		if caster:IsChanneling() == false then
+			return nil
+		else
+			caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1,0.8)
+			return 1
+		end
+	end)
+end
+
+		
+
+
+function B31T_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability= keys.ability
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4,1)
+	local ifx2 = ParticleManager:CreateParticle("particles/b31t/b31t2.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	ParticleManager:SetParticleControl(ifx2,0,caster:GetAbsOrigin())
+	local ifx = ParticleManager:CreateParticle("particles/b31t/b31t.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
+	Timers:CreateTimer(38, function ()
+		ParticleManager:DestroyParticle(ifx2,false)
+		return nil
+	end)
+end
+
+
+
+
+function modifier_B31T_old_OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability= keys.ability
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              caster:GetAbsOrigin(),
+	                              nil,
+	                              650,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
+	for _,it in pairs(direUnits) do
+		if (not(it:IsBuilding())) and it:IsAlive() then
+			Timers:CreateTimer(0.3, function()
+				ability:ApplyDataDrivenModifier(caster,it,"modifier_B31T_old_dot",nil)
+				AMHC:Damage(caster,it,200,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end)
+		
+			local ifx = ParticleManager:CreateParticle("particles/a23r/a23rfly.vpcf", PATTACH_CUSTOMORIGIN, caster)
+			ParticleManager:SetParticleControl(ifx, 0, caster:GetAbsOrigin() + Vector (0, 0, 1000)) -- 隕石產生的位置
+			ParticleManager:SetParticleControl(ifx, 1, it:GetAbsOrigin()) -- 命中位置
+			ParticleManager:SetParticleControl(ifx, 2, Vector(0.5, 0, 0)) -- 效果存活時間
+			
+		end
+		break
+	end
+
+	local ifx = ParticleManager:CreateParticle("particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_trigger_sphere.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
+	local ifx = ParticleManager:CreateParticle("particles/b31t/b31t.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
 end

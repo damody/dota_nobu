@@ -4405,7 +4405,6 @@
 				"States"
 				{
 					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_MUTED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
@@ -6772,7 +6771,7 @@
 					"RemoveModifier"
 					{
 						"Target"	"CASTER"
-						"ModifierName"	"modifier_transparency"
+						"ModifierName"	"modifier_invisible"
 					}
 				}
 				"Properties"

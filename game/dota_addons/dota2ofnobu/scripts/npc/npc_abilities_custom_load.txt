@@ -2,14 +2,45 @@
 // Get latest version: https://github.com/zombieJ/nw-dota2editor
 "DOTAAbilities"
 {
+	// 選11版
+	"choose_11"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_155"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"		"choose_11"
+			}
+		}
+	}
+	// 選16版
+	"choose_16"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_156"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"		"choose_16"
+			}
+		}
+	}
 	// 死亡倒地
 	"play_on_die"
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/icon_128x128_26"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCooldown"	"120"
-		"AbilityGoldCost"	"3000"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
 		"Modifiers"
 		{
 			"modifier_play_on_die"
@@ -46,17 +77,16 @@
 		"AbilityCooldown"	"120"
 		"AbilityGoldCost"	"3000"
 
+		
 		"OnSpellStart"
 		{
-			"OnSpellStart"
+			"RunScript"
 			{
-				"RunScript"
-				{
-					"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
-					"Function"		"gold_to_prestige"
-				}
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"		"gold_to_prestige"
 			}
 		}
+	
 
 		"AbilitySpecial"
 		{

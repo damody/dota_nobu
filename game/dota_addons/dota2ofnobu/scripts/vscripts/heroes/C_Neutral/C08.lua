@@ -48,7 +48,7 @@ end
 function C08D_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=20})
+	caster:AddNewModifier(caster,ability,"modifier_invisible",{duration=20})
 	--ability:ApplyDataDrivenModifier( caster, caster, "modifier_transparency", {duration = 20} )
 end
 

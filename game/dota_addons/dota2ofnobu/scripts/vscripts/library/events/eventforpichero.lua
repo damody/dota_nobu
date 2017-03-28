@@ -10,7 +10,7 @@ function Nobu:PickHero( keys )
 --CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
   Timers:CreateTimer(1, function ()
     if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
-      caster.version = "16"
+      caster.version = "nan"
       local name = caster:GetUnitName()
       if name == "npc_dota_hero_slardar" then
         caster:AddAbility("OBW"):SetLevel(1)
@@ -24,35 +24,17 @@ function Nobu:PickHero( keys )
       end
       -- 預設切換為舊版
       local nobu_id = _G.heromap[caster:GetName()]
+      for i = 0, caster:GetAbilityCount() - 1 do
+        local ability = caster:GetAbilityByIndex( i )
+        if ability  then
+          caster:RemoveAbility(ability:GetName())
+        end
+      end
       if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["11"] == true then
-        caster.version = "11"
-        for i = 0, caster:GetAbilityCount() - 1 do
-          local ability = caster:GetAbilityByIndex( i )
-          if ability  then
-            caster:RemoveAbility(ability:GetName())
-          end
-        end
-        local skill = _G.heromap_skill[nobu_id]["11"]
-        for si=1,#skill do
-          if si == #skill and #skill < 6 then
-            caster:AddAbility("attribute_bonusx")
-          end
-          caster:AddAbility(nobu_id..skill:sub(si,si).."_old")
-        end
-        if #skill >= 6 then
-          caster:AddAbility("attribute_bonusx")
-        end
-        -- 要自動學習的技能
-        local askill = _G.heromap_autoskill[nobu_id]["11"]
-        for si=1,#askill do
-          caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
-        end
-        if nobu_id == "C17" then
-          caster:RemoveModifierByName("modifier_C17D")
-        end
-        if nobu_id == "A04" then
-          caster:RemoveModifierByName("modifier_A04D")
-        end
+        caster:AddAbility("choose_11"):SetLevel(1)
+      end
+      if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["16"] == true then
+        caster:AddAbility("choose_16"):SetLevel(1)
       end
 
       if _G.CountUsedAbility_Table == nil then
