@@ -8,7 +8,7 @@ function choose_16( keys )
 	-- 通知所有玩家該英雄已經變成新版
 	GameRules:SendCustomMessage("16版 ".._G.hero_name_zh[nobu_id].." 參戰",0,0)
 	caster.isnew = true
-	caster:SetAbilityPoints(1)
+	caster:SetAbilityPoints(caster:GetLevel())
 	caster.version = "16"
 
 	for i = 0, caster:GetAbilityCount() - 1 do
@@ -50,7 +50,7 @@ function choose_11( keys )
 	GameRules:SendCustomMessage("11版 ".._G.hero_name_zh[nobu_id].." 參戰",0,0)
 
 	caster.isold = true
-	caster:SetAbilityPoints(1)
+	caster:SetAbilityPoints(caster:GetLevel())
 	caster.version = "11"
 
 	-- 拔掉英雄的技能

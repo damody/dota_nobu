@@ -290,3 +290,28 @@ end
 function B23T_upgrade( keys )
 	keys.caster:FindAbilityByName("B23D"):SetLevel(keys.ability:GetLevel()+1)
 end
+
+
+function B23T_old( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local duration = keys.ability:GetSpecialValueFor("duration")
+	local oriid = target:GetPlayerOwnerID()
+	local oriteam = target:GetTeam()
+	if target:IsMagicImmune() then
+		duration = duration * 0.5
+	end
+	target:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
+	target:SetTeam(caster:GetTeam())
+	local tsum = 0
+	Timers:CreateTimer(0.5, function ()
+		tsum = tsum + 0.5
+		if not caster:IsAlive() or tsum >= duration then
+			target:SetControllableByPlayer(oriid, true)
+			target:SetTeam(oriteam)
+			return nil
+		end
+		return 0.5
+	  end)
+	--target:SetControllableByPlayer(keys.playerid,true)
+end

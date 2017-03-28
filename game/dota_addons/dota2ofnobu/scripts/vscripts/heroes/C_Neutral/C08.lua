@@ -616,7 +616,7 @@ function C08E_old_OnSpellStart( keys )
 	ParticleManager:SetParticleControl( fxIndex, 0, target:GetAbsOrigin() )
 	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )		
 	--暈眩
-	target:AddNewModifier(caster,ability,"modifier_stunned",{duration=1})
+	target:AddNewModifier(caster,ability,"modifier_stunned",{duration=1.1})
 	--傷害
 	local dmg = ability:GetAbilityDamage()
 	AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
@@ -660,8 +660,8 @@ function C08E_old_OnSpellStart( keys )
 		if(counter==3)then
 			return nil
 		end
-		return 0.6
-	end, 1.1)
+		return 0.4
+	end, 1)
 end
 
 
