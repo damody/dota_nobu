@@ -94,7 +94,6 @@ function C07R_old( keys )
 	local point = caster:GetAbsOrigin()
 	local point2 = target:GetAbsOrigin()
 	local vec   = (point2 - point):Normalized()
-	
 	local level = ability:GetLevel() - 1
 	local radius = ability:GetLevelSpecialValueFor("radius",level)
 	local target_count = ability:GetLevelSpecialValueFor("target_count",level)

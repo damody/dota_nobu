@@ -8,7 +8,7 @@
 -- 
 local HP_PER_STR = 25
 local HP_REGEN_PER_STR = 0.2
-local MANA_PER_INT = 19
+local MANA_PER_INT = 20
 local MANA_REGEN_PER_INT = 0.15
 local ARMOR_PER_AGI = 0.333
 local ATKSPD_PER_AGI = 2
@@ -17,7 +17,7 @@ local MAX_MS = 3000
 -- default value from dota
 local DEFAULT_HP_PER_STR = 20
 local DEFAULT_HP_REGEN_PER_STR = 0.03
-local DEFAULT_MANA_PER_INT = 13
+local DEFAULT_MANA_PER_INT = 12
 local DEFAULT_MANA_REGEN_PER_INT = 0.04
 local DEFAULT_ARMOR_PER_AGI = 0.14
 local DEFAULT_ATKSPD_PER_AGI = 1

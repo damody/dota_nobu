@@ -277,7 +277,7 @@ function C17R_old( keys )
 	local unit
 	-- 把caster換成暈帳這樣之後的modifier就能用caster拿到暈帳，用ability拿到阿市
 	-- skin
-	if caster:HasModifier("modifier_c17_school") then
+	if caster.skin == "school" then
 	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT_bag",point,true,caster,caster,caster:GetTeam())
 	   	unit:SetForwardVector(Vector(0, -1, 0))
 	else

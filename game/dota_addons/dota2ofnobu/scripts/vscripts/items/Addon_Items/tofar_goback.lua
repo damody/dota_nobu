@@ -6,7 +6,7 @@ function choose_16( keys )
 	local ability = keys.ability
 	local nobu_id = _G.heromap[caster:GetName()]
 	-- 通知所有玩家該英雄已經變成新版
-	GameRules:SendCustomMessage("16版 ".._G.hero_name_zh[nobu_id].." 參戰",0,0)
+	GameRules:SendCustomMessage("<font color='#33ff88'>16版 ".._G.hero_name_zh[nobu_id].." 參戰</font>",0,0)
 	caster.isnew = true
 	caster:SetAbilityPoints(caster:GetLevel())
 	caster.version = "16"
@@ -47,7 +47,7 @@ function choose_11( keys )
 	local ability = keys.ability
 	local nobu_id = _G.heromap[caster:GetName()]
 	-- 通知所有玩家該英雄已經變成舊版
-	GameRules:SendCustomMessage("11版 ".._G.hero_name_zh[nobu_id].." 參戰",0,0)
+	GameRules:SendCustomMessage("<font color='#ff3388'>11版 ".._G.hero_name_zh[nobu_id].." 參戰</font>",0,0)
 
 	caster.isold = true
 	caster:SetAbilityPoints(caster:GetLevel())

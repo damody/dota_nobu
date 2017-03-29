@@ -92,7 +92,7 @@ function A31W_2( keys )
 	local directionConstraint = keys.section
 	local modifierName = "modifier_freezing_field_debuff_datadriven"
 	local refModifierName = "modifier_freezing_field_ref_point_datadriven"
-	local particleName = "particles/a23w/a23w.vpcf"
+	local particleName = "particles/a31/a31w.vpcf"
 	
 	-- Get random point
 	local castDistance = RandomInt( 0, radius )

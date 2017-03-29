@@ -1,9 +1,9 @@
 
-LinkLuaModifier( "A13E_modifier", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "a13e_modifier", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
-LinkLuaModifier( "A13E_followthrough", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "a13e_followthrough", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
-LinkLuaModifier( "A13E_hook_back", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "a13e_hook_back", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
 LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
@@ -338,8 +338,8 @@ function A13E:OnSpellStart()
 	local debuff_duraiton = self:GetSpecialValueFor("flux_duration")
 	local dir = self:GetCursorPosition() - caster:GetOrigin()
 	caster:SetForwardVector(dir:Normalized())
-	caster:AddNewModifier(caster, self, "A13E_modifier", { duration = 2}) 
-	caster:AddNewModifier(caster, self, "A13E_followthrough", { duration = 0.3 } )
+	caster:AddNewModifier(caster, self, "a13e_modifier", { duration = 2}) 
+	caster:AddNewModifier(caster, self, "a13e_followthrough", { duration = 0.3 } )
 end
 
 function A13E:OnAbilityPhaseStart()
@@ -371,16 +371,16 @@ A13E_old = A13E
 
 
 --------------------------------------------------------------------------------
-A13E_followthrough = class({})
+a13e_followthrough = class({})
 
-function A13E_followthrough:IsHidden()
+function a13e_followthrough:IsHidden()
 	return true
 end
 
 
 --------------------------------------------------------------------------------
 
-function A13E_followthrough:CheckState()
+function a13e_followthrough:CheckState()
 	local state = {
 	[MODIFIER_STATE_STUNNED] = true,
 	}
@@ -388,24 +388,24 @@ function A13E_followthrough:CheckState()
 end
 
 
-A13E_hook_back = class({})
+a13e_hook_back = class({})
 
 --------------------------------------------------------------------------------
 
-function A13E_hook_back:IsHidden()
+function a13e_hook_back:IsHidden()
 	return true
 end
 
 
 --------------------------------------------------------------------------------
 
-function A13E_hook_back:CheckState()
+function a13e_hook_back:CheckState()
 	local state = {
 	[MODIFIER_STATE_STUNNED] = true,
 	}
 	return state
 end
-function A13E_hook_back:OnIntervalThink()
+function a13e_hook_back:OnIntervalThink()
 	if (self.path ~= nil) then
 		local target = self:GetParent()
 		if IsValidEntity(self:GetParent()) then
@@ -414,27 +414,27 @@ function A13E_hook_back:OnIntervalThink()
 				self.interval_Count = self.interval_Count - 1
 			else
 				target:AddNewModifier(target,self:GetAbility(),"modifier_phased",{duration=0.1})
-				target:RemoveModifierByName("A13E_hook_back")
+				target:RemoveModifierByName("a13e_hook_back")
 			end
 		end
 	end
 end
-function A13E_hook_back:IsHidden()
+function a13e_hook_back:IsHidden()
 	return true
 end
 
-function A13E_hook_back:IsDebuff()
+function a13e_hook_back:IsDebuff()
 	return true
 end
 
-function A13E_hook_back:OnCreated( event )
+function a13e_hook_back:OnCreated( event )
 	self:StartIntervalThink(0.07) 
 end
 
 
-A13E_modifier = class ({})
+a13e_modifier = class ({})
 
-function A13E_modifier:OnCreated( event )
+function a13e_modifier:OnCreated( event )
 	if IsServer() then
 		local ability = self:GetAbility()
 		self.hook_width = ability:GetSpecialValueFor("hook_width")
@@ -456,7 +456,7 @@ function A13E_modifier:OnCreated( event )
 	end
 end
 
-function A13E_modifier:OnIntervalThink()
+function a13e_modifier:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetParent()
 		self.interval_Count = self.interval_Count + 1
@@ -522,8 +522,8 @@ function A13E_modifier:OnIntervalThink()
 						if (it:HasModifier("modifier_invisible")) then
 							it:RemoveModifierByName("modifier_invisible")
 						end
-						it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
-						local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
+						it:AddNewModifier(it, self:GetCaster(), "a13e_hook_back", { duration = 2}) 
+						local hModifier = it:FindModifierByNameAndCaster("a13e_hook_back", it)
 						if (hModifier ~= nil) then
 							hModifier.path = self.path
 							hModifier.interval_Count = self.interval_Count
@@ -551,8 +551,8 @@ function A13E_modifier:OnIntervalThink()
 				for _,it in pairs(direUnits) do
 					if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) and not it:HasAbility("majia") then
 						hashook = true
-						it:AddNewModifier(it, self:GetCaster(), "A13E_hook_back", { duration = 2}) 
-						local hModifier = it:FindModifierByNameAndCaster("A13E_hook_back", it)
+						it:AddNewModifier(it, self:GetCaster(), "a13e_hook_back", { duration = 2}) 
+						local hModifier = it:FindModifierByNameAndCaster("a13e_hook_back", it)
 						if (hModifier ~= nil) then
 							hModifier.path = self.path
 							hModifier.interval_Count = self.interval_Count
@@ -573,19 +573,19 @@ function A13E_modifier:OnIntervalThink()
 	end
 end
 
-function A13E_modifier:GetStatusEffectName()
+function a13e_modifier:GetStatusEffectName()
 	return "particles/status_fx/status_effect_disruptor_kinetic_fieldslow.vpcf"
 end
 
-function A13E_modifier:IsHidden()
+function a13e_modifier:IsHidden()
 	return true
 end
 
-function A13E_modifier:IsDebuff()
+function a13e_modifier:IsDebuff()
 	return false
 end
 
-function A13E_modifier:GetAttributes()
+function a13e_modifier:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 

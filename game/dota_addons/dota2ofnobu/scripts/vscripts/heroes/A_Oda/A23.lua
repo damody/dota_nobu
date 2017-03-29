@@ -164,3 +164,10 @@ function A23R_create_meteor_particle_effect( caster, target_pos, radius )
 		ParticleManager:SetParticleControl(ifx, 2, Vector(0.5, 0, 0)) -- 效果存活時間
 	end
 end
+
+function A23T( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier( caster, target, "modifier_A23T", nil)
+end

@@ -5,7 +5,7 @@ BUG
 local inspect = require("inspect")
 
 function SendHTTPRequest(path, method, values, callback)
-	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
+	local req = CreateHTTPRequestScriptVM( method, "http://140.114.235.19/"..path )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end
@@ -78,7 +78,7 @@ local function chat_of_test(keys)
 			end
 		end
 		DeepPrintTable(_G.CountUsedAbility_Table)
-		--[[
+		
 		SendHTTPRequest("save_ability_data", "POST",
 			{
 			  data = tostring(inspect(_G.CountUsedAbility_Table)),
@@ -86,7 +86,7 @@ local function chat_of_test(keys)
 			function(result)
 			  print(result)
 			end)
-		]]
+		
 	end
 	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
 	local skin = false
@@ -98,6 +98,7 @@ local function chat_of_test(keys)
 	local nobu_id = _G.heromap[caster:GetName()]
 	
 	if (s == "-skin" and nobu_id == "C17" and skin) then
+		caster.skin = "school"
 		caster:SetModel("models/c17/c17_school.vmdl")
 		caster:SetOriginalModel("models/c17/c17_school.vmdl")
 	end

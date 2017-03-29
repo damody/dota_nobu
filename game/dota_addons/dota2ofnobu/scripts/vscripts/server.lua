@@ -15,7 +15,7 @@ _G.afkcount = {}
 winmsg = ""
 
 function SendHTTPRequest(path, method, values, callback)
-	local req = CreateHTTPRequest( method, "http://140.114.235.19/"..path )
+	local req = CreateHTTPRequestScriptVM( method, "http://140.114.235.19/"..path )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end

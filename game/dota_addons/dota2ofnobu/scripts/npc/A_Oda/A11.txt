@@ -1,0 +1,671 @@
+// 齋藤道三
+"DOTAAbilities"
+{
+	"A11_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/a11w/a11wonkey_king_spring_water_base.vpcf" //w
+			"particle"  "particles/a11e/a11e.vpcf" //e
+			"particle"  "particles/a11e/a11e2.vpcf" //e
+			"particle"  "particles/a11t2/a11t2.vpcf" //t
+			"particle"  "particles/a11t2/a11t3.vpcf" //t
+			"particle"  "particles/a11t2/a11t4a.vpcf" //t
+			"particle"  "particles/a11t2/a11t5b.vpcf" //t
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slark.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+		}
+	}
+
+	//妖術．漩渦
+	"A11W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/A11/A11W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "9"
+		"AbilityManaCost"                           "130 150 170 190"
+		"AOERadius"									"%A11W_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A11.lua"
+				"Function"						"A11W"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A11W_radius"				"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A11W_damage"				"100 150 200 250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A11W_adjustOnBuilding"		"0.2"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A11W_duration"				"5"
+			}
+		}
+	}
+
+	//妖術．冥鎖
+	"A11E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/A11/A11E"
+
+		"AbilityCooldown"							"22 18 14 10"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"120 140 160 180"
+		"AbilityCastRange"              			"800"
+		"AnimationPlaybackRate"						"0.5"
+		"AbilityChannelTime"						"%A11E_duration"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A11.lua"
+				"Function"							"A11E"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_A11E"
+				"Target" 							"TARGET"
+			}
+			"Damage"
+			{
+				"Target"							"TARGET"
+				"Type"								"DAMAGE_TYPE_MAGICAL"
+				"Damage"							"%A11E_damage"
+			}
+			"FireSound"
+			{
+				"EffectName"						"Hero_Warlock.FatalBonds"
+				"Target" 							"TARGET"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_A11E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_A11E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A11E"
+			{
+				"Duration"			"%A11E_duration"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/a11e/a11e2.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"		"1.05"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A11E_damage"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"A11E_duration"                	"2.0 2.5 3.0 3.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A11E_damage"					"135"
+			}
+		}
+	}
+
+	//老奸巨猾
+	"A11R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/A11/A11R"
+
+		"AbilityCastRange"              			"%A11R_radius"
+
+		"OnUpgrade"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"		"modifier_A11R_passive"
+				"Target" 			"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_A11R_passive"
+				"Target" 			"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A11R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Aura"          	"modifier_A11R_debuff"
+				"Aura_Radius"   	"%A11R_radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%A11R_intellectBonus"
+				}
+			}
+			"modifier_A11R_debuff"
+			{
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11.lua"
+						"Function"		"A11R"
+					}
+				}
+			}
+			"modifier_A11R_locker"
+			{
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%A11R_lockTime"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A11R_intellectBonus"	"10 16 22 28"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"A11R_lockTime"			"0.2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A11R_radius"			"600 700 800 900"
+			}
+		}
+
+    }
+
+    //禁術．邪妖萬化
+	"A11T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/A11/A11T"
+		
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"95"
+		"AbilityManaCost"           				"300"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A11T"
+				"Target" 		"CASTER"
+				"Duration"		"%A11T_duration"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A11T_rune"
+				"Target" 		"CASTER"
+				"Duration"		"%A11T_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A11T"
+			{
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+
+				"EffectName"		"particles/a11t2/a11t3.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"Aura"          	"modifier_A11T_debuff"
+				"Aura_Radius"   	"%A11T_radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_HEALTH_BONUS" 	"%A11T_hpBonus"
+				}
+
+				"ThinkInterval"  	"1.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A11.lua"
+						"Function"		"A11T"
+					}
+				}
+			}
+			"modifier_A11T_debuff"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"EffectName"		"particles/a11t2/a11t2.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%A11T_moveSpeed" 
+				}
+			}
+			"modifier_A11T_effect1"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"EffectName"		"particles/a11t2/a11t4a.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_duration"		"12 15 18"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_hpBonus"		"350 450 550"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_moveSpeed"	"-15"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_radius"		"800"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_maxTarget"	"3"
+			}
+		}
+	}
+
+	//妖術．漩渦
+	"A11W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/A11/A11W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "10"
+		"AbilityManaCost"                           "180 200 220 240"
+		"AOERadius"									"%A11W_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A11.lua"
+				"Function"						"A11W"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A11W_radius"				"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A11W_damage"				"80 120 160 200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A11W_adjustOnBuilding"		"0.2"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A11W_duration"				"10"
+			}
+		}
+	}
+
+	//妖術．腹蛇之鎖
+	"A11E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/A11/A11E"
+
+		"AbilityCooldown"							"25"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityCastRange"              			"800"
+		"AnimationPlaybackRate"						"0.5"
+		"AbilityChannelTime"						"%A11E_duration"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A11.lua"
+				"Function"							"A11E"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_A11E"
+				"Target" 							"TARGET"
+			}
+			"Damage"
+			{
+				"Target"							"TARGET"
+				"Type"								"DAMAGE_TYPE_MAGICAL"
+				"Damage"							"%A11E_damage"
+			}
+			"FireSound"
+			{
+				"EffectName"						"Hero_Warlock.FatalBonds"
+				"Target" 							"TARGET"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_A11E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_A11E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A11E"
+			{
+				"Duration"			"%A11E_duration"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/a11e/a11e2.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"		"1.05"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A11E_damage"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"A11E_duration"                	"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A11E_damage"					"20 25 30 35"
+			}
+		}
+	}
+
+	//老奸巨猾
+	"A11R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		//"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/A11/A11R"
+
+		"Modifiers"
+		{
+			"modifier_A11R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" 	"%A11R_intellectBonus"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A11R_intellectBonus"	"10 20 30 40"
+			}
+		}
+
+    }
+
+    //禁術．妖風
+	"A11T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/A11/A11T_old"
+		
+		"AbilityCastPoint"          				"0"
+		"AbilityCooldown"           				"130 120 110"
+		"AbilityManaCost"           				"500 750 1000"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A11.lua"
+				"Function"							"A11T_old"
+			}
+			"FireSound"
+			{
+				"EffectName"						"Hero_Winter_Wyvern.WintersCurse.Cast"
+				"Target" 							"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A11T_aura"
+			{
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%A11T_duration"
+				"Aura"          	"modifier_A11T_old"
+				"Aura_Radius"   	"99999"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_A11T_old"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+
+				"EffectName"		"particles/a11t2/a11t2.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A11T_moveSpeed"
+				}
+			}
+			"modifier_A11T_aura2"
+			{
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%A11T_duration"
+				"Aura"          	"modifier_A11T_old2"
+				"Aura_Radius"   	"99999"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_A11T_old2"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+
+				"EffectName"		"particles/a11t2/a11t2.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%A11T_atkSpeed"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_duration"		"15"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_atkSpeed"		"-30 -60 -90"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A11T_moveSpeed"	"-30 -35 -40"
+			}
+		}
+	}
+
+} // END DOTAAbilities

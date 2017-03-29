@@ -281,11 +281,10 @@
 		
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_A23T"
-				"Target" 		"TARGET"
-				"Duration"		"6"
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
+				"Function"							"A23T"
 			}
 		}
 
@@ -295,6 +294,7 @@
 			{
 				"IsDebuff"			"1"
 				"IsPurgable"		"0"
+				"Duration"			"6"
 				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"States"

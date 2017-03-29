@@ -7,6 +7,12 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/a31.vsndevts"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+			"particle"	"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+			"particle"	"particles/a31/a31w.vpcf"
 		}
 	}
 	// 森蘭丸 響雨
@@ -30,15 +36,7 @@
 		"AbilityCastRange"	"1800"
 		"AOERadius"	"%radius"
 		// Data driven
-		// -------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-			"particle"	"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
-			"particle"	"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
-			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
-		}
+
 		"OnSpellStart"
 		{
 			"FireSound"

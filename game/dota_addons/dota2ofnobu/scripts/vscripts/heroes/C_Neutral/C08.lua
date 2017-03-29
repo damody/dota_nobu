@@ -481,6 +481,9 @@ function C08T_OnSpellStart( keys )
 		if target:IsMagicImmune() then
 			caster.C08T_IsMagicImmune = true
 		end
+		Timers:CreateTimer(4, function ()
+			target:RemoveNoDraw()
+		end)
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_C08T_bleeding",{})
 	else
 		caster:FindAbilityByName("C08T"):EndCooldown()

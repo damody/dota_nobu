@@ -105,8 +105,10 @@ function SurrenderSystem:OnGameStateChange( keys )
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		-- 開啟投票系統，並在聊天室窗提示指令
 		self.startTime = GameRules:GetGameTime()
-		self.canSurrender = true
-		self:SendMsgToAll("聊天視窗輸入 -ff 可以投降")
+		Timers:CreateTimer(300, function ()
+			self.canSurrender = true
+			self:SendMsgToAll("聊天視窗輸入 -ff 可以投降")
+	  	end)
 	end
 end
 

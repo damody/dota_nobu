@@ -383,7 +383,7 @@ function modifier_B31T_old_OnIntervalThink( keys )
 		if (not(it:IsBuilding())) and it:IsAlive() then
 			Timers:CreateTimer(0.3, function()
 				ability:ApplyDataDrivenModifier(caster,it,"modifier_B31T_old_dot",nil)
-				AMHC:Damage(caster,it,200,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage(caster,it,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end)
 		
 			local ifx = ParticleManager:CreateParticle("particles/a23r/a23rfly.vpcf", PATTACH_CUSTOMORIGIN, caster)
