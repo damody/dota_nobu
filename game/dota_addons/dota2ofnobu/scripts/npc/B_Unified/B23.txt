@@ -830,7 +830,7 @@
 	{
 		"BaseClass"                 				"ability_datadriven"
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
@@ -841,6 +841,15 @@
 		"AbilityManaCost"           				"300"
 		"AbilityChannelTime"						"16"
 		"AbilityCastRange"							"700"
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+				"Function"			"B23T_old_upgrade"
+			}
+		}
 
 		"OnSpellStart"
 		{

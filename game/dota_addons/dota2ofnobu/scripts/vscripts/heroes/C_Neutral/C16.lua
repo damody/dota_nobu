@@ -431,8 +431,8 @@ function ExorcismPhysics( event )
 			if collision then 
 				unit.state = "acquiring"
 				local heal_done =  unit.numberOfHits * average_damage* heal_percent
-				--caster:Heal(heal_done, ability)
-				--caster:EmitSound("Hero_DeathProphet.Exorcism.Heal")
+				caster:Heal(heal_done, ability)
+				caster:EmitSound("Hero_DeathProphet.Exorcism.Heal")
 				unit.numberOfHits = 0
 			end	
 

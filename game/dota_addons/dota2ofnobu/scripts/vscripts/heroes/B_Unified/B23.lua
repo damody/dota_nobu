@@ -178,7 +178,22 @@ function B23W( keys )
 			})
 		end
 	end
-
+	--亡魂攻擊英雄
+	local units1 = FindUnitsInRadius(caster:GetTeamNumber(),	
+				point,nil,700,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+		   		DOTA_UNIT_TARGET_HERO,
+		   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+		   		FIND_CLOSEST, 
+				false)
+	if #units1 > 0 then
+		target = units1[1]
+		for i=1,#B23D_ghostTable do
+			local order = {UnitIndex = B23D_ghostTable[i]:entindex(),
+						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+						TargetIndex = target:entindex(),
+						Queue = false}
+		end
+	end
 end
 
 --E 生靈衝擊
@@ -291,6 +306,9 @@ function B23T_upgrade( keys )
 	keys.caster:FindAbilityByName("B23D"):SetLevel(keys.ability:GetLevel()+1)
 end
 
+function B23T_old_upgrade( keys )
+	keys.caster:FindAbilityByName("B23D_old"):SetLevel(keys.ability:GetLevel()+1)
+end
 
 function B23T_old( keys )
 	local caster = keys.caster
@@ -301,6 +319,7 @@ function B23T_old( keys )
 	if target:IsMagicImmune() then
 		duration = duration * 0.5
 	end
+	target.B23T_old = true
 	target:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	target:SetTeam(caster:GetTeam())
 	local tsum = 0
@@ -309,6 +328,7 @@ function B23T_old( keys )
 		if not caster:IsAlive() or tsum >= duration then
 			target:SetControllableByPlayer(oriid, true)
 			target:SetTeam(oriteam)
+			target.B23T_old = nil
 			return nil
 		end
 		return 0.5
