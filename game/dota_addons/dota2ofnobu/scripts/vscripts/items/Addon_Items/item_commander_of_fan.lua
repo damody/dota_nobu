@@ -6,7 +6,7 @@ function Shock( keys )
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
           point,
           nil,
-          300,
+          400,
           DOTA_UNIT_TARGET_TEAM_ENEMY,
           DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
           DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
