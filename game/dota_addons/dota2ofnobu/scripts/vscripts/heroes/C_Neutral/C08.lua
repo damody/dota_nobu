@@ -6,50 +6,13 @@ LinkLuaModifier( "C08R_followthrough", "scripts/vscripts/heroes/C_Neutral/C08.lu
 
 LinkLuaModifier( "C08R_hook_back", "scripts/vscripts/heroes/C_Neutral/C08.lua",LUA_MODIFIER_MOTION_NONE )
 
-LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/C_Neutral/C08.lua",LUA_MODIFIER_MOTION_NONE )
-
 LinkLuaModifier("modifier_C08D_old", "heroes/modifier_C08D_old.lua", LUA_MODIFIER_MOTION_NONE)
-
-modifier_transparency = class({})
-
-function modifier_transparency:DeclareFunctions()
-	return { 
-	--MODIFIER_EVENT_ON_ATTACK_LANDED,
-	--MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
-	--MODIFIER_EVENT_ON_ABILITY_EXECUTED 
-	}
-end
-
-function modifier_transparency:GetModifierInvisibilityLevel()
-	return 1
-end
-
-function modifier_transparency:IsHidden()
-	return false
-end
-
-function modifier_transparency:CheckState()
-	local state = {
-	[MODIFIER_STATE_INVISIBLE] = true
-	}
-	return state
-end
-
-
-function modifier_transparency:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
-end
-
-function modifier_transparency:GetEffectName()
-	return "particles/items_fx/ghost.vpcf"
-end
 
 
 function C08D_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	caster:AddNewModifier(caster,ability,"modifier_invisible",{duration=20})
-	--ability:ApplyDataDrivenModifier( caster, caster, "modifier_transparency", {duration = 20} )
 end
 
 function C08D_OnAttack( keys )
@@ -71,7 +34,7 @@ function C08D_OnAttack( keys )
 			AMHC:Damage( caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end	
 		keys.caster:RemoveModifierByName( "modifier_C08D" )
-		keys.caster:RemoveModifierByName( "modifier_transparency" )
+		keys.caster:RemoveModifierByName( "modifier_invisible" )
 	end
 end
 
@@ -577,7 +540,7 @@ function C08W_old_OnSpellStart( keys )
 			ability:ApplyDataDrivenModifier(caster,unit,"modifier_C08W_old_aoe",nil)
 		end
 	end
-	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=20})
+	caster:AddNewModifier(caster,ability,"modifier_invisible",{duration=20})
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08W_old_timer"), 
 		function( )
 			ParticleManager:DestroyParticle(particle,false)
@@ -605,7 +568,7 @@ function modifier_C08W_old_OnAttack( keys )
 			AMHC:Damage( caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end	
 		keys.caster:RemoveModifierByName( "modifier_C08W_old" )
-		keys.caster:RemoveModifierByName( "modifier_transparency" )
+		keys.caster:RemoveModifierByName( "modifier_invisible" )
 	end
 end
 

@@ -1,6 +1,21 @@
 -- 島津義弘
 
 
+function C03W_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local center = caster:GetAbsOrigin()
+	AMHC:AddModelScale(caster, 1.3, 6)
+end
+
+function C03W_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local center = caster:GetAbsOrigin()
+	AMHC:AddModelScale(caster, 1.3, 13)
+end
+
+
 function C03E_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability

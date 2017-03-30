@@ -599,7 +599,7 @@ function AMHC:AddModelScale( ... )
 	local _add = unit_scale
 
 	local deah = function()
-		if AMHC:IsAlive(unit) ~= true then
+		if IsValidEntity(unit) and AMHC:IsAlive(unit) ~= true then
 			return false
 		end
 		return true
@@ -632,7 +632,7 @@ function AMHC:AddModelScale( ... )
 							return nil
 						end
 
-						if _add > unit._amhc_AddModelScale_min_scale then
+						if _add > unit._amhc_AddModelScale_min_scale and IsValidEntity(unit) then
 							_add = _add - speed
 							unit:SetModelScale(_add)
 						else

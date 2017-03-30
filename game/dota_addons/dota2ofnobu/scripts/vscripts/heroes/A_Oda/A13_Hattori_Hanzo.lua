@@ -5,42 +5,6 @@ LinkLuaModifier( "a13e_followthrough", "scripts/vscripts/heroes/A_Oda/A13_Hattor
 
 LinkLuaModifier( "a13e_hook_back", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
 
-LinkLuaModifier( "modifier_transparency", "scripts/vscripts/heroes/A_Oda/A13_Hattori_Hanzo.lua",LUA_MODIFIER_MOTION_NONE )
-
-modifier_transparency = class({})
-
-function modifier_transparency:DeclareFunctions()
-	return { 
-	--MODIFIER_EVENT_ON_ATTACK_LANDED,
-	--MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
-	--MODIFIER_EVENT_ON_ABILITY_EXECUTED 
-	}
-end
-
-function modifier_transparency:GetModifierInvisibilityLevel()
-	return 1
-end
-
-function modifier_transparency:IsHidden()
-	return false
-end
-
-function modifier_transparency:CheckState()
-	local state = {
-	[MODIFIER_STATE_INVISIBLE] = true
-	}
-	return state
-end
-
-
-function modifier_transparency:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
-end
-
-function modifier_transparency:GetEffectName()
-	return "particles/items_fx/ghost.vpcf"
-end
-
 
 function A13D_OnAttackLanded(keys)
 	--【Basic】
@@ -89,8 +53,7 @@ end
 function A13D( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=20})
-	--ability:ApplyDataDrivenModifier( caster, caster, "modifier_transparency", {duration = 20} )
+	caster:AddNewModifier(caster,ability,"modifier_invisible",{duration=20})
 end
 
 function A13D_End( keys )
@@ -112,7 +75,7 @@ function A13D_End( keys )
 			AMHC:Damage( caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end	
 		keys.caster:RemoveModifierByName( "modifier_A13D" )
-		keys.caster:RemoveModifierByName( "modifier_transparency" )
+		keys.caster:RemoveModifierByName( "modifier_invisible" )
 	end
 end
 

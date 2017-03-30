@@ -1,8 +1,4 @@
 --林之卷
-
-
-LinkLuaModifier( "modifier_transparency", "scripts/vscripts/items/Addon_Items/item_ninja_sword.lua",LUA_MODIFIER_MOTION_NONE )
-
 LinkLuaModifier( "forest_crit", "items/Addon_Items/item_forest_scroll.lua",LUA_MODIFIER_MOTION_NONE )
 --野太刀
 
@@ -69,13 +65,15 @@ end
 function dispear( keys )
 	local caster = keys.caster
 	if caster.nodispear == nil then
-		caster:AddNewModifier(caster,ability,"modifier_transparency",{duration=2})
+		caster:AddNewModifier(caster,ability,"modifier_invisible",{duration=2})
+		caster:AddNewModifier(caster,ability,"modifier_soldier_E_collision",{duration=2})
 	end
 end
 
 function dispear2( keys )
 	local caster = keys.caster
-	caster:AddNewModifier(caster,ability,"modifier_transparency",{})
+	caster:AddNewModifier(caster,ability,"modifier_invisible",{})
+	caster:AddNewModifier(caster,ability,"modifier_soldier_E_collision",{})
 end
 
 function nodispear( keys )

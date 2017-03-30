@@ -277,6 +277,7 @@
 		"AbilityCastPoint"          				"0.1"
 		"AbilityCooldown"           				"95"
 		"AbilityManaCost"           				"300"
+		"AbilityCastRange"							"1000"
 		
 		"OnSpellStart"
 		{
@@ -361,17 +362,17 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"A11T_moveSpeed"	"-15"
+				"A11T_moveSpeed"	"-30"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"A11T_radius"		"800"
+				"A11T_radius"		"1000"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"A11T_maxTarget"	"3"
+				"A11T_maxTarget"	"3 4 5"
 			}
 		}
 	}
@@ -579,7 +580,7 @@
 		"AbilityTextureName"                        "custom/A11/A11T_old"
 		
 		"AbilityCastPoint"          				"0"
-		"AbilityCooldown"           				"130 120 110"
+		"AbilityCooldown"           				"145 135 115"
 		"AbilityManaCost"           				"500 750 1000"
 		
 		"OnSpellStart"

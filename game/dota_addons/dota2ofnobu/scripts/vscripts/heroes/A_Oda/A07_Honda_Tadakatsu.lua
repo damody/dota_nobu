@@ -260,6 +260,7 @@ function A07T_Transform( keys )
 
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = duration})
 	caster:AddNewModifier(caster,ability,"A07T",{duration = duration})--變身
+	AMHC:AddModelScale(caster, 1.3, duration)
 end
 
 function A07T_SE( keys )

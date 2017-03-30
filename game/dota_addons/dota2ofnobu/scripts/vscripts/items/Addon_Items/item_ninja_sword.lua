@@ -1,40 +1,5 @@
 --忍者刀
 
-LinkLuaModifier( "modifier_transparency", "scripts/vscripts/items/Addon_Items/item_ninja_sword.lua",LUA_MODIFIER_MOTION_NONE )
-
-modifier_transparency = class({})
-
-function modifier_transparency:DeclareFunctions()
-	return {  }
-end
-
-
-function modifier_transparency:GetModifierInvisibilityLevel()
-	return 70
-end
-
-function modifier_transparency:IsHidden()
-	return false
-end
-
-function modifier_transparency:CheckState()
-	local state = {
-	[MODIFIER_STATE_INVISIBLE] = true,
-	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true
-	}
-	return state
-end
-
-function modifier_transparency:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE 
-end
-
-function modifier_transparency:GetEffectName()
-	return "particles/items_fx/ghost_2.vpcf"
-end
-
-
 function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability

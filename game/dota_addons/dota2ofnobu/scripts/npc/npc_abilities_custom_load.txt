@@ -2160,48 +2160,92 @@
 		}
 		"Modifiers"
 		{
+			"modifier_soldier_E_Timer"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+
+				"Duration" "2"
+
+				"OnAttack"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_soldier_E_Timer"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnAbilityExecuted"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_soldier_E_Timer"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_soldier_E"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+
 			"modifier_soldier_E"
 			{
-				"IsPurgable"	"1"
-				"IsDebuff"		"0"
-				"Passive"	"1"
-				"ThinkInterval"	"1.0"
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
 
-				"OnIntervalThink"
+				"OnCreated"
 				{
-					"RunScript"
+					"ApplyModifier"
 					{
-						"ScriptFile"	"items/Addon_Items/item_forest_scroll.lua"
-						"Function"	"dispear"
+						"ModifierName"	"modifier_invisible"
+						"Target" 		"CASTER"
 					}
 				}
-				"OnAttackLanded"
+
+				"States"
 				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/item_forest_scroll.lua"
-						"Function"	"nodispear"
-					}
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_transparency"
-					}
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
 				}
+
 				"OnAttack"
 				{
 					"RemoveModifier"
 					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_transparency"
+						"ModifierName"	"modifier_soldier_E"
+						"Target" 		"CASTER"
 					}
 				}
+
 				"OnAbilityExecuted"
 				{
 					"RemoveModifier"
 					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_transparency"
+						"ModifierName"	"modifier_soldier_E"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_soldier_E_Timer"
+						"Target" 		"CASTER"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_invisible"
+						"Target" 		"CASTER"
 					}
 				}
 			}

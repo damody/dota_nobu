@@ -1,3 +1,11 @@
+
+function B26E_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local center = caster:GetAbsOrigin()
+	AMHC:AddModelScale(caster, 1.3, 8)
+end
+
 function B26W( keys )
 	local caster = keys.caster
 	--local target = keys.target

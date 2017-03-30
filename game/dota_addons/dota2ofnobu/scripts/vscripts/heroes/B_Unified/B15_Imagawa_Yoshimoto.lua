@@ -1,4 +1,7 @@
 function B15W_on_spell_start(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	AMHC:AddModelScale(caster, 1.3, ability:GetSpecialValueFor("duration"))
 end
 
 function OnToggleOn( keys )
@@ -225,6 +228,7 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 
 	if (caster:HasModifier("modifier_b15w")) then
 		caster:FindAbilityByName("B15W"):ApplyDataDrivenModifier(illusion,illusion,"modifier_b15w",{duration=999})
+		AMHC:AddModelScale(illusion, 1.3, 20)
 	end
 	if (caster:HasModifier("modifier_searing_arrow")) then
 		caster:FindAbilityByName("B15E"):ApplyDataDrivenModifier(illusion,illusion,"modifier_searing_arrow2",{duration=999})

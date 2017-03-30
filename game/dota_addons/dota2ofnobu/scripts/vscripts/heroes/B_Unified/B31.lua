@@ -219,12 +219,13 @@ end
 function B31T_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability= keys.ability
+	AMHC:AddModelScale(caster, 2, 25)
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4,1)
 	local ifx2 = ParticleManager:CreateParticle("particles/b31t/b31t2.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx2,0,caster:GetAbsOrigin())
 	local ifx = ParticleManager:CreateParticle("particles/b31t/b31t.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
-	Timers:CreateTimer(27, function ()
+	Timers:CreateTimer(26, function ()
 		ParticleManager:DestroyParticle(ifx2,false)
 		return nil
 	end)
@@ -353,6 +354,7 @@ end
 function B31T_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability= keys.ability
+	AMHC:AddModelScale(caster, 2, 38)
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4,1)
 	local ifx2 = ParticleManager:CreateParticle("particles/b31t/b31t2.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx2,0,caster:GetAbsOrigin())

@@ -57,13 +57,16 @@ function A23E( keys )
 	local duration = ability:GetSpecialValueFor("A23E_duration")
 	local increaseDistance = ability:GetSpecialValueFor("A23E_increaseDistance")
 
-	local stick = CreateUnitByName( "A32E_stick", caster:GetOrigin(), true, nil, nil, caster:GetTeamNumber())
+	local stick = CreateUnitByName( "A32E_stick", caster:GetAbsOrigin(), true, nil, nil, caster:GetTeamNumber())
 	stick:SetOwner(caster)
 	ability:ApplyDataDrivenModifier( caster, stick, "modifier_A23E_stick", nil)
+	AddFOWViewer(DOTA_TEAM_GOODGUYS, stick:GetAbsOrigin(), 300, duration, false)
+	AddFOWViewer(DOTA_TEAM_BADGUYS, stick:GetAbsOrigin(), 300, duration, false)
 
 	local particle = ParticleManager:CreateParticle("particles/a23e/a23e.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	ParticleManager:SetParticleControlEnt(particle, 0, stick, PATTACH_POINT_FOLLOW, "attach_hitloc", stick:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(particle, 3, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+
 
 	local time = 0.1 + duration
 	local count = 0
@@ -85,6 +88,16 @@ function A23E( keys )
 			damage_flags = DOTA_DAMAGE_FLAG_NONE,
 		})
 		return 1
+	end)
+	local count2 = 0
+	Timers:CreateTimer(0,function()
+		count2 = count2 + 0.2
+		if count2 > time then
+			return nil
+		end
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, target:GetAbsOrigin(), 100, 0.5, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, target:GetAbsOrigin(), 100, 0.5, false)
+		return 0.2
 	end)
 
 	Timers:CreateTimer(duration,function()
