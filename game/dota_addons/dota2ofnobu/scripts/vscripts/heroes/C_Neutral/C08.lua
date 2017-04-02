@@ -590,13 +590,16 @@ function C08E_old_OnSpellStart( keys )
 	counter=0
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08E_old_timer"), 
 	function( )
-		AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
 		local pos 
 		if IsValidEntity(target) then
 			pos = target:GetAbsOrigin()
+			if not target:HasModifier("C08E_old_OnSpellStart") then
+				return nil
+			end
 		else
 			pos = ability:GetCursorPosition()
 		end
+		AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			pos,			-- 搜尋的中心點
 			nil, 							-- 好像是優化用的參數不懂怎麼用

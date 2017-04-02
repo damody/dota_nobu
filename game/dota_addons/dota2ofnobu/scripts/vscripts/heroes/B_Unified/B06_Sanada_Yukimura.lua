@@ -92,10 +92,10 @@ function b06e_Shot( keys )
     local radius = 400
     local teams = DOTA_UNIT_TARGET_TEAM_ENEMY
     local types = DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO     --+DOTA_UNIT_TARGET_BUILDING
-    local flags = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE
+
 
     --獲取周圍的單位
-    group = FindUnitsInRadius(caster:GetTeamNumber(),point,nil,radius,teams,types,flags,FIND_ANY_ORDER,true)
+    group = FindUnitsInRadius(caster:GetTeamNumber(),point,nil,radius,teams,types,0,FIND_ANY_ORDER,true)
 
     --如果元素大於0個單位才隨機抓取
     if #group > 1  and caster.b06ecountofattacked > 0 then

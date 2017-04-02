@@ -97,10 +97,16 @@ function A27W( event )
 	end
 	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	for i=1,people do
-		illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
-		if (caster:HasModifier("modifier_A27T")) then
-			ability:ApplyDataDrivenModifier(illusion[i],illusion[i],"modifier_A27T",{duration = 200})
-			break
+		if IsValidEntity(illusion[i]) then
+			illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
+			local am = caster:FindAllModifiers()
+			for _,v in pairs(am) do
+				if IsValidEntity(v:GetCaster()) and IsValidEntity(v:GetAbility()) then
+					if (not v:GetAbility():IsItem()) then
+						v:GetAbility():ApplyDataDrivenModifier(illusion[i],illusion[i],v:GetName(),{duration=v:GetDuration()})
+					end
+				end
+			end
 		end
 	end
 end
@@ -409,7 +415,14 @@ function CreateMirror( caster, ability, spawn_point )
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 	illusion:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and IsValidEntity(v:GetAbility()) then
+			if (not v:GetAbility():IsItem()) then
+				v:GetAbility():ApplyDataDrivenModifier(illusion,illusion,v:GetName(),{duration=v:GetDuration()})
+			end
+		end
+	end
 	-- Set the illusion hp to be the same as the caster
 	illusion:SetHealth(caster:GetHealth())
 	illusion:SetMana(caster:GetMana())

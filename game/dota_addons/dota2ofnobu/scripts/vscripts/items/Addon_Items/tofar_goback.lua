@@ -97,8 +97,9 @@ end
 function gold_to_prestige( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local add_prestige = ability:GetLevelSpecialValueFor("add_prestige",0)
-	
+	local add_prestige = 100
+	_G.goldprestige[caster:GetTeamNumber()] = _G.goldprestige[caster:GetTeamNumber()] + add_prestige
+	print("gold_to_prestige", _G.goldprestige[caster:GetTeamNumber()])
 end
 
 function reward6300(keys)
@@ -139,12 +140,25 @@ function attack_building(keys)
 	Timers:CreateTimer(3, function()
 		if IsValidEntity(caster) then
 			local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-				nil,  1000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING,
+				nil,  700 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
 				DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
-			if #group > 0 then
-				caster:SetForceAttackTarget(group[1])
-			else
-				caster:SetForceAttackTarget(nil)
+			local com_general = nil
+			for _,it in pairs(group) do
+		    	if it:GetUnitName() == "com_general" then
+		    		com_general = it
+		    	end
+		    end
+		    if com_general then
+		    	caster:SetForceAttackTarget(group[1])
+		    else
+				local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+					nil,  700 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING,
+					DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+				if #group > 0 then
+					caster:SetForceAttackTarget(group[1])
+				else
+					caster:SetForceAttackTarget(nil)
+				end
 			end
 			return 3
 		end

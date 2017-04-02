@@ -99,7 +99,6 @@ function A13W( event )
 	local origin_pos = caster:GetOrigin()
 
 	local am = caster:FindAllModifiers()
-	caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.5})
 
 	for _,v in pairs(am) do
 		if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
@@ -166,12 +165,14 @@ function A13W( event )
 					for i=1,people do
 						target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
 						if (i ~= origin_go_index) then
-							ProjectileManager:ProjectileDodge(illusion[i])
-							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
-							illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
-							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
-							illusion[i]:SetForwardVector(target_pos[i]:Normalized())
-							illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
+							if IsValidEntity(illusion[i]) then
+								ProjectileManager:ProjectileDodge(illusion[i])
+								ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
+								illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
+								ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
+								illusion[i]:SetForwardVector(target_pos[i]:Normalized())
+								illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
+							end
 						else
 							ProjectileManager:ProjectileDodge(caster)
 							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
@@ -270,21 +271,23 @@ function A13W_old( event )
 		Timers:CreateTimer( 0.1, function()
 				if caster:IsAlive() then
 					for i=1,people do
-						target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
-						if (i ~= origin_go_index) then
-							ProjectileManager:ProjectileDodge(illusion[i])
-							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
-							illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
-							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
-							illusion[i]:SetForwardVector(target_pos[i]:Normalized())
-							illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
-						else
-							ProjectileManager:ProjectileDodge(caster)
-							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
-							caster:SetAbsOrigin(origin_pos+target_pos[i])
-							ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
-							caster:SetForwardVector(target_pos[i]:Normalized())
-							caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
+						if IsValidEntity(illusion[i]) then
+							target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
+							if (i ~= origin_go_index) then
+								ProjectileManager:ProjectileDodge(illusion[i])
+								ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, illusion[i])
+								illusion[i]:SetAbsOrigin(origin_pos+target_pos[i])
+								ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, illusion[i])
+								illusion[i]:SetForwardVector(target_pos[i]:Normalized())
+								illusion[i]:AddNewModifier(illusion[i],ability,"modifier_phased",{duration=0.1})
+							else
+								ProjectileManager:ProjectileDodge(caster)
+								ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster)
+								caster:SetAbsOrigin(origin_pos+target_pos[i])
+								ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster)
+								caster:SetForwardVector(target_pos[i]:Normalized())
+								caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
+							end
 						end
 					end
 				end

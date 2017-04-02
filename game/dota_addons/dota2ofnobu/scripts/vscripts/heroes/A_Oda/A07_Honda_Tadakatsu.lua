@@ -260,7 +260,12 @@ function A07T_Transform( keys )
 
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = duration})
 	caster:AddNewModifier(caster,ability,"A07T",{duration = duration})--變身
-	AMHC:AddModelScale(caster, 1.3, duration)
+	Timers:CreateTimer(0.1,function()
+		if IsValidEntity(caster) and caster:IsMagicImmune() then
+			AMHC:AddModelScale(caster, 1.3, duration-0.1)
+		end
+	end)
+	
 end
 
 function A07T_SE( keys )

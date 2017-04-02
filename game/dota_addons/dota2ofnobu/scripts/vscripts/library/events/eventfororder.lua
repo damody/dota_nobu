@@ -251,9 +251,11 @@ function Nobu:eventfororder( filterTable )
 		-- [   VScript              ]:    issuer_player_id_const          	= 0 (number)
 		-- [   VScript              ]: }
 	elseif ordertype == DOTA_UNIT_ORDER_DROP_ITEM then --12
-		local unit = EntIndexToHScript(filterTable.units["0"])
-		if unit.B23T_old then
-			return false
+		if filterTable.units and filterTable.units["0"] then
+			local unit = EntIndexToHScript(filterTable.units["0"])
+			if IsValidEntity(unit) and unit.B23T_old then
+				return false
+			end
 		end
 		-- DeepPrintTable(filterTable)
 		-- [   VScript              ]: {
@@ -272,9 +274,11 @@ function Nobu:eventfororder( filterTable )
 		-- [   VScript              ]:    issuer_player_id_const          	= 0 (number)
 		-- [   VScript              ]: }
 	elseif ordertype == DOTA_UNIT_ORDER_GIVE_ITEM then --13
-		local unit = EntIndexToHScript(filterTable.units["0"])
-		if unit.B23T_old then
-			return false
+		if filterTable.units and filterTable.units["0"] then
+			local unit = EntIndexToHScript(filterTable.units["0"])
+			if IsValidEntity(unit) and unit.B23T_old then
+				return false
+			end
 		end
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_ITEM then --14
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_RUNE then --15
@@ -298,9 +302,11 @@ function Nobu:eventfororder( filterTable )
 		end
 		--print(DeepPrintTable(_G.CountUsedAbility_Table))
 	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17
-		local unit = EntIndexToHScript(filterTable.units["0"])
-		if unit.B23T_old then
-			return false
+		if filterTable.units and filterTable.units["0"] then
+			local unit = EntIndexToHScript(filterTable.units["0"])
+			if IsValidEntity(unit) and unit.B23T_old then
+				return false
+			end
 		end
 		--[[
 		local inspect = require('inspect')

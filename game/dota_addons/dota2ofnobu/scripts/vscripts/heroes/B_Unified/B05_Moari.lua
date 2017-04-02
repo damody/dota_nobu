@@ -54,7 +54,7 @@ function LightningJump(keys)
 			for i,unit in ipairs(units) do
 				-- Positioning and distance variables
 				local unit_location = unit:GetAbsOrigin()
-				local vector_distance = target:GetAbsOrigin() - unit_location
+				local vector_distance = pos - unit_location
 				local distance = (vector_distance):Length2D()
 				-- Checks if the unit is closer than the closest checked so far
 				if distance < closest then

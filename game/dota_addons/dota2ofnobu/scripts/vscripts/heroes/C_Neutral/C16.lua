@@ -78,13 +78,23 @@ function CreateMirror( keys )
 	end
 
 	illusion:MakeIllusion()
+	if target:IsHero() then
+		incomingDamage = ability:GetSpecialValueFor( "incoming_damage2")
+	end
 	illusion:AddNewModifier(target, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	illusion:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
 	illusion:SetForwardVector(target:GetForwardVector())
 	illusion:SetControllableByPlayer(caster:GetPlayerID(), true)
 	illusion:SetHealth(target:GetHealth())
 	illusion:SetMana(target:GetMana())
-
+	local am = target:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and IsValidEntity(v:GetAbility()) then
+			if (not v:GetAbility():IsItem()) and v:GetName() ~= "modifier_exorcism" then
+				v:GetAbility():ApplyDataDrivenModifier(illusion,illusion,v:GetName(),{duration=v:GetDuration()})
+			end
+		end
+	end
 	return illusion
 end
 
@@ -97,6 +107,7 @@ function C16E( keys )
 
     ghost:AddNewModifier(caster, nil, "modifier_phased",{duration=0.1})
     ghost:AddNewModifier(caster, nil, "modifier_invisible", nil )
+    keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_vison", nil )
     --ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
 end
 
@@ -560,10 +571,10 @@ end
 
 function C16W_old( keys )
 	local target = keys.target
-
-	if target:IsHero() and target:IsRealHero() and not target:IsIllusion() then
-		local player = PlayerResource:GetPlayer(target:GetPlayerID())
+	if C16D_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		local illusion = CreateMirror( keys )
+	else
+		keys.ability:EndCooldown()
 	end
 end
 
@@ -578,6 +589,7 @@ function C16E_old( keys )
     ghost:AddNewModifier(caster, nil, "modifier_invisible", nil )
     --ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
     keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_C16E_old_passiveAura", nil )
+    keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_vison", nil )
 end
 
 function C16T_old( keys )
@@ -607,4 +619,8 @@ function C16T_old( keys )
 			end
 		end)
 	end
+end
+
+function C16T_upgrade( keys )
+	keys.caster:FindAbilityByName("C16D"):SetLevel(keys.ability:GetLevel()+1)
 end

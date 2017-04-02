@@ -12,18 +12,12 @@ function reito_lantern_Jump(keys)
 	if (caster:GetTeamNumber() == target:GetTeamNumber()) then
 		team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	end
-
-	-- Applies damage to the current target
-	if (team == DOTA_UNIT_TARGET_TEAM_ENEMY) then
-		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
-	else
-		target:Heal(ability:GetAbilityDamage(), caster)
-	end
+	
 	-- Removes the hidden modifier
 	target:RemoveModifierByName("modifier_arc_reito_lantern")
 	local count = 0
 	-- Waits on the jump delay
-
+	local pos = target:GetAbsOrigin()
 	Timers:CreateTimer(jump_delay,
 	function()
 	-- Finds the current instance of the ability by ensuring both current targets are the same
@@ -35,13 +29,14 @@ function reito_lantern_Jump(keys)
 			end
 		end
 	end
-
-	-- Adds a global array to the target, so we can check later if it has already been hit in this instance
-	if target.hit == nil then
-		target.hit = {}
+	if IsValidEntity(target) then
+		pos = target:GetAbsOrigin()
+		if target.hit == nil then
+			target.hit = {}
+		end
+		-- Sets it to true for this instance
+		target.hit[current] = true
 	end
-	-- Sets it to true for this instance
-	target.hit[current] = true
 
 	-- Decrements our jump count for this instance
 	ability.jump_count[current] = ability.jump_count[current] - 1
@@ -57,7 +52,7 @@ function reito_lantern_Jump(keys)
 		for i,unit in ipairs(units) do
 			-- Positioning and distance variables
 			local unit_location = unit:GetAbsOrigin()
-			local vector_distance = target:GetAbsOrigin() - unit_location
+			local vector_distance = pos - unit_location
 			local distance = (vector_distance):Length2D()
 			-- Checks if the unit is closer than the closest checked so far
 			if distance < closest then
@@ -90,6 +85,12 @@ function reito_lantern_Jump(keys)
 		ability.target[current] = nil
 	end
 	end)
+	-- Applies damage to the current target
+	if (team == DOTA_UNIT_TARGET_TEAM_ENEMY) then
+		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
+	else
+		target:Heal(ability:GetAbilityDamage(), caster)
+	end
 end
 
 --[[Author: YOLOSPAGHETTI

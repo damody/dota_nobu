@@ -44,7 +44,7 @@ function A28E_Jump(keys)
 	if (caster:GetTeamNumber() == target:GetTeamNumber()) then
 		team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	end
-
+	local pos = target:GetAbsOrigin()
 	-- Applies damage to the current target
 	if (team == DOTA_UNIT_TARGET_TEAM_ENEMY) then
 		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
@@ -68,12 +68,14 @@ function A28E_Jump(keys)
 		end
 	end
 
-	-- Adds a global array to the target, so we can check later if it has already been hit in this instance
-	if target.hit == nil then
-		target.hit = {}
+	if IsValidEntity(target) then
+		pos = target:GetAbsOrigin()
+		if target.hit == nil then
+			target.hit = {}
+		end
+		-- Sets it to true for this instance
+		target.hit[current] = true
 	end
-	-- Sets it to true for this instance
-	target.hit[current] = true
 
 	-- Decrements our jump count for this instance
 	ability.jump_count[current] = ability.jump_count[current] - 1
@@ -87,7 +89,7 @@ function A28E_Jump(keys)
 		for i,unit in ipairs(units) do
 			-- Positioning and distance variables
 			local unit_location = unit:GetAbsOrigin()
-			local vector_distance = target:GetAbsOrigin() - unit_location
+			local vector_distance = pos - unit_location
 			local distance = (vector_distance):Length2D()
 			-- Checks if the unit is closer than the closest checked so far
 			if distance < closest then

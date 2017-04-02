@@ -243,9 +243,9 @@ function B21W_old_OnSpellStart( keys )
 
 	local channel_time = ability:GetChannelTime() - 0.05 -- 避免最後一次出不來
 	local fire_num = 3
-	local fire_delay = channel_time / (fire_num+1)
+	local fire_delay = 0.4
 
-	for i=1,fire_num do
+	for i=0,fire_num do
 		Timers:CreateTimer(fire_delay*i,function()
 			if caster:IsChanneling() then
 				ProjectileManager:CreateLinearProjectile(projectile_table)

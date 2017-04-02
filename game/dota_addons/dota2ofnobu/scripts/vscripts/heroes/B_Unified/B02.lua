@@ -71,7 +71,14 @@ function B02W( keys )
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	--illusion:SetRenderColor(0,0,200)
 	
-
+	local am = target:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and IsValidEntity(v:GetAbility()) then
+			if (not v:GetAbility():IsItem()) then
+				v:GetAbility():ApplyDataDrivenModifier(illusion,illusion,v:GetName(),{duration=v:GetDuration()})
+			end
+		end
+	end
 	--【KV】
 	illusion:SetForwardVector(target:GetForwardVector())
 	illusion:SetControllableByPlayer(caster:GetPlayerID(), true)
@@ -596,7 +603,7 @@ function B02T_old_Jump(keys)
 		for i,unit in ipairs(units) do
 			-- Positioning and distance variables
 			local unit_location = unit:GetAbsOrigin()
-			local vector_distance = target:GetAbsOrigin() - unit_location
+			local vector_distance = pos - unit_location
 			local distance = (vector_distance):Length2D()
 			-- Checks if the unit is closer than the closest checked so far
 			if distance < closest then

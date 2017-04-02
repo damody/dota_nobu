@@ -39,7 +39,7 @@
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/icon_128x128_26"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		
 		"Modifiers"
 		{
@@ -58,15 +58,6 @@
 				}
 			}
 		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"add_prestige"		"50"
-			}
-		}
 	}
 	// 買兵力
 	"gold_to_prestige"
@@ -74,9 +65,6 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/icon_128x128_26"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCooldown"	"120"
-		"AbilityGoldCost"	"3000"
-
 		
 		"OnSpellStart"
 		{
@@ -87,15 +75,6 @@
 			}
 		}
 	
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"add_prestige"		"50"
-			}
-		}
 	}
 	// 犒賞
 	"reward6300"
@@ -417,7 +396,7 @@
 	            "IsHidden"      "1"
 
 	            "Aura"        "modifier_show_invi"
-        		"Aura_Radius" "500"
+        		"Aura_Radius" "1000"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -500,7 +479,7 @@
 			}
 		}
 	}
-	//走遠了要回來
+	//優先打建築物跟侍大將
 	"attack_building"
 	{
 		"BaseClass"	"ability_datadriven"

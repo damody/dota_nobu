@@ -611,6 +611,19 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
 				"Function"		"C08E_old_OnSpellStart"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C08E_old"
+				"Target" 		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C08E_old"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"2.2"
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------

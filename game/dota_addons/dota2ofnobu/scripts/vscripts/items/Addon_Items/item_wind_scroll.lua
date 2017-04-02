@@ -11,6 +11,7 @@ function Shock( keys )
 	local level = ability:GetLevel() - 1
 	local dummy = CreateUnitByName( "npc_dummy_unit_Ver2", caster_point, false, caster, caster, caster:GetTeamNumber() )
 	dummy:FindAbilityByName("majia"):SetLevel(1)
+	dummy:AddAbility("for_no_damage"):SetLevel(1)
 	local particle2 = ParticleManager:CreateParticle("particles/item_d01_3/d01_3.vpcf",PATTACH_POINT,dummy)
 	ParticleManager:SetParticleControl(particle2,0, point+Vector(0,0,0))
 	local particle3 = ParticleManager:CreateParticle("particles/item/d01_2/d01_2.vpcf",PATTACH_POINT,dummy)

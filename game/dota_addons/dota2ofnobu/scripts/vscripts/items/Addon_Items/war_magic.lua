@@ -262,6 +262,10 @@ function lessattack( keys )
 	end)
 end
 
+goldprestige = {}
+goldprestige[2] = 0
+goldprestige[3] = 0
+
 prestige = {}
 prestige[2] = 0
 prestige[3] = 0
@@ -270,6 +274,7 @@ payprestige[2] = 0
 payprestige[3] = 0
 CP_Monster = 0
 _G.prestige = prestige
+_G.goldprestige = goldprestige
 _G.payprestige = payprestige
 _G.CP_Monster = CP_Monster
 
@@ -342,14 +347,6 @@ function to_war_magic_unit2(keys)
 		    donkey:AddAbility("war_magic_treecut"):SetLevel(1)
 		    --donkey:AddAbility("gold_to_prestige"):SetLevel(1)
 		    caster:ForceKill(true)
-		end)
-	Timers:CreateTimer(1, function()
-		local pres = prestige[donkey:GetTeamNumber()]
-		local maxmana = math.floor(pres / 60) * 5 + 20
-		if donkey:GetMana() > maxmana then
-			donkey:SetMana(maxmana)
-		end
-		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
     	for playerID = 0, 14 do
@@ -430,8 +427,8 @@ function to_soldier_Oda(keys)
 	-- 統計威望
 	local team = donkey:GetTeamNumber()
 	Timers:CreateTimer(1, function()
-		prestige[2] = 0
-		prestige[3] = 0
+		prestige[2] = _G.goldprestige[2]
+		prestige[3] = _G.goldprestige[3]
 		local sumkill = 0
 		for playerID = 0, 14 do
     		local id       = playerID

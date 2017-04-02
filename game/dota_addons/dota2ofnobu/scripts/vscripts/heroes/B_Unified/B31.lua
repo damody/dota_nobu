@@ -273,8 +273,12 @@ function B31E_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local casterLoc = caster:GetAbsOrigin()
-	local targetLoc = keys.target_points[1]
-	local dir = caster:GetCursorPosition() - caster:GetOrigin()
+	local targetLoc = ability:GetCursorPosition()
+	local dir = ability:GetCursorPosition() - caster:GetAbsOrigin()
+	if dir:Length2D() < 1 then
+		dir = caster:GetForwardVector()
+		targetLoc = caster:GetAbsOrigin() + dir*100
+	end
 	caster:SetForwardVector(dir:Normalized())
 	local distance = ability:GetLevelSpecialValueFor( "distance", ability:GetLevel() - 1 )
 	local radius =  ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )

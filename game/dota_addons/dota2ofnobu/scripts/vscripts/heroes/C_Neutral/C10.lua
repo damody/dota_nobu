@@ -178,7 +178,7 @@ function C10W_old_Jump(keys)
 	target:RemoveModifierByName("modifier_arc_lightning_datadriven")
 	local count = 0
 	-- Waits on the jump delay
-
+	local pos = target:GetAbsOrigin()
 	Timers:CreateTimer(jump_delay,
 	function()
 	-- Finds the current instance of the ability by ensuring both current targets are the same
@@ -191,12 +191,14 @@ function C10W_old_Jump(keys)
 		end
 	end
 
-	-- Adds a global array to the target, so we can check later if it has already been hit in this instance
-	if target.hit == nil then
-		target.hit = {}
+	if IsValidEntity(target) then
+		pos = target:GetAbsOrigin()
+		if target.hit == nil then
+			target.hit = {}
+		end
+		-- Sets it to true for this instance
+		target.hit[current] = true
 	end
-	-- Sets it to true for this instance
-	target.hit[current] = true
 
 	-- Decrements our jump count for this instance
 	ability.jump_count[current] = ability.jump_count[current] - 1
@@ -210,7 +212,7 @@ function C10W_old_Jump(keys)
 		for i,unit in ipairs(units) do
 			-- Positioning and distance variables
 			local unit_location = unit:GetAbsOrigin()
-			local vector_distance = target:GetAbsOrigin() - unit_location
+			local vector_distance = pos - unit_location
 			local distance = (vector_distance):Length2D()
 			-- Checks if the unit is closer than the closest checked so far
 			if distance < closest then

@@ -68,6 +68,15 @@ function CreateMirror( keys )
 	illusion:SetHealth(target:GetHealth())
 	illusion:SetMana(target:GetMana())
 
+	local am = target:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and IsValidEntity(v:GetAbility()) then
+			if (not v:GetAbility():IsItem()) and v:GetName() ~= "modifier_exorcism" then
+				v:GetAbility():ApplyDataDrivenModifier(illusion,illusion,v:GetName(),{duration=v:GetDuration()})
+			end
+		end
+	end
+
 	return illusion
 end
 
