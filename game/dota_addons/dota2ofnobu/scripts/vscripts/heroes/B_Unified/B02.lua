@@ -522,9 +522,6 @@ function B02T_old_fire_thunder( keys )
 	
 end
 
---[[Author: YOLOSPAGHETTI
-	Date: March 24, 2016
-	Keeps track of all instances of the spell (since more than one can be active at once)]]
 function B02T_old_jump_init(keys, start_pos)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -552,9 +549,6 @@ function B02T_old_jump_init(keys, start_pos)
 	ParticleManager:SetParticleControlEnt(lightningBolt,1,target,PATTACH_POINT_FOLLOW,"attach_hitloc",target:GetOrigin(),true)
 end
 
---[[Author: YOLOSPAGHETTI
-	Date: March 24, 2016
-	Finds the next unit to jump to and deals the damage]]
 function B02T_old_Jump(keys)
 	local caster = keys.caster
 	local target = keys.target

@@ -1,0 +1,462 @@
+// 松永久秀
+"DOTAAbilities"
+{
+	"B28_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/b28w/b28w.vpcf" //w
+			"particle"  "particles/b28e.vpcf"	   //e
+			"particle"  "particles/b28e/b28e.vpcf" //e
+			"particle"  "particles/b28r/b28r.vpcf" //r
+			"particle"  "particles/b28r/b28r_2.vpcf" //r
+			"particle"  "particles/b28t/b28t.vpcf" //t
+			"particle"  "particles/b28t/b28t_2ti_5.vpcf" //t
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		}
+	}
+
+	//飛凰焰
+	"B28W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/B28/B28W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "12"
+		"AbilityManaCost"                           "130 150 170 190"
+
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"						"POINT"
+				"EffectName"					"particles/b28w/b28w.vpcf"
+				"MoveSpeed"						"%shock_speed"
+				"StartRadius"					"%shock_width"
+				"StartPosition"					"attach_attack1"
+				"EndRadius"						"%shock_width"
+				"FixedDistance"					"%shock_distance"
+				"TargetTeams"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"					"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"				"0"
+				"ProvidesVision"				"1"
+				"VisionRadius"					"%shock_vision"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Phoenix.Death"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%B28W_damage"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B28W_dot"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B28W_dot"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"			"%B28W_dotDuration"
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B28W_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B28W_dotDuration"			"4.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B28W_damage"				"175"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B28W_dotDamage"			"50 85 120 155"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_speed"				"1100"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_width"				"300"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_distance"			"1500"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_vision"				"200"
+			}
+		}
+	}
+
+	//焰光桎梏
+	"B28E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B28/B28E"
+
+		"AbilityCooldown"							"25"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"120 145 170 195"
+		"AbilityCastRange"              			"800"
+		"AnimationPlaybackRate"						"0.5"
+		"AbilityChannelTime"						"%B28E_duration"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"B28E"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_B28E"
+				"Target" 							"TARGET"
+			}
+			"Damage"
+			{
+				"Target"							"TARGET"
+				"Type"								"DAMAGE_TYPE_MAGICAL"
+				"Damage"							"%B28E_damage"
+			}
+			"FireSound"
+			{
+				"EffectName"						"Hero_Warlock.FatalBonds"
+				"Target" 							"TARGET"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_B28E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_B28E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B28E"
+			{
+				"Duration"			"%B28E_duration"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/b28e.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"		"1.01"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B28E_damage"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"B28E_duration"                	"2.0 3.0 4.0 5.0"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B28E_damage"					"100"
+			}
+		}
+	}
+
+	//火流焰
+	"B28R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B28/B28R"
+		"AbilityManaCost"							"100 120 140 160"
+		"AbilityCooldown"							"15"
+
+		//"AbilityCastRange"              			"%B28R_radius"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B28R"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%B28R_damage"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B28R_dot"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B28R"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"EffectName"		"particles/b28r/b28r_2.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+				"Duration"			"%B28R_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%B28R_msBonus"
+				}
+				"ThinkInterval"  	"0.3"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B28.lua"
+						"Function"					"B28R"
+					}
+				}
+			}
+			"modifier_B28R_dot"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"			"%B28R_dotDuration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B28R_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_msBonus"			"0 8 16 24"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_duration"			"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_radius"			"800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_damage"			"20 40 60 80"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_dotDamage"		"80"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B28R_dotDuration"		"1.0"
+			}
+		}
+
+    }
+
+    //鬼謀．蛇火
+	"B28T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B28/B28T"
+		"AbilityCastRange"							"1000"
+		"AbilityCastPoint"							"0.1"
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"130 125 120"
+		"AbilityManaCost"           				"350"
+		"AOERadius"                                 "%B28T_radius"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"B28T"
+				"Target"							"POINT"
+			}
+			"FireSound"
+			{
+				"EffectName"						"Hero_Nevermore.ROS_Flames"
+				"Target" 							"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B28T_arc_lightning_datadriven"
+			{
+				"IsHidden"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B28.lua"
+						"Function"	"B28T_old_Jump"
+					}
+				}
+			}
+		} // Modifiers end
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B28T_finishTime"		"1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28T_radius"			"800"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"base_damage"	"350 450 550"
+			}
+			"04" // 每次彈跳增加的傷害比例
+			{
+				"var_type" "FIELD_FLOAT"
+				"bonus_damage" "0.2"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_max"	"100"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"jump_delay"	"0.15"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun_duration"	"1.0"
+			}
+			"08" // 閃電數量
+			{
+				"var_type" "FIELD_INTEGER"
+				"wave_num"	"4 8 12"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_radius"	"1000"
+			}
+		}
+	}
+
+} // END DOTAAbilities

@@ -285,7 +285,13 @@ local function chat_of_test(keys)
 		      caster:HeroLevelUp(true)
 		    end
 		end
-		
+		if s == "ShuaGuai" then
+			print("ShuaGuai")
+			ShuaGuai_Of_AA( 10 )
+			ShuaGuai_Of_AB( 10 )
+			ShuaGuai_Of_B( 10 )
+			ShuaGuai_Of_C( 10 )
+		end
 
 		if s == "a1" then
 			local  u = CreateUnitByName("com_ashigaru_spearmen",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王

@@ -13,7 +13,7 @@ function _G.Nobu:InitGameMode()
   --【Setup rules】
   -- --LimitPathingSearchDepth(0.5)
   --GameRules:SetHeroRespawnEnabled( false )
-  if true then
+  if false then
     --設定每隊人數
     GameRules:SetCustomGameTeamMaxPlayers(6, 5)
     
