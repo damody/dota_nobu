@@ -730,7 +730,11 @@
 			}
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A07T"
 			}
 			"FireSound"
@@ -754,6 +758,7 @@
 		{
 			"modifier_A07T"
 			{
+				"Attributes"					"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 				"AttackAnimationPoint"	"0.2"
 				"OnAttackLanded"
 				{
@@ -896,7 +901,11 @@
 			}
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A07T"
 			}
 			"FireSound"
@@ -920,6 +929,7 @@
 		{
 			"modifier_A07T"
 			{
+				"Attributes"					"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 				"AttackAnimationPoint"	"0.2"
 				"OnAttackLanded"
 				{

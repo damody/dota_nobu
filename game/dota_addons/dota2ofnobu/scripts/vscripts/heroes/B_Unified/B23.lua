@@ -35,7 +35,6 @@ function B23D_OnSpellStart( keys )
 	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_diedTrigger", nil)
 	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_distanceDetector_ghost", nil)
     end
-    
 end
 
 function B23D_check( keys )
@@ -53,6 +52,7 @@ function B23D_check( keys )
 end
 
 function B23D_die( keys )
+	local caster = keys.caster
 	local unit = keys.unit
 	local owner = unit:GetOwner()
 	local particle = ParticleManager:CreateParticle("particles/item/c05/c05.vpcf",PATTACH_POINT,unit)

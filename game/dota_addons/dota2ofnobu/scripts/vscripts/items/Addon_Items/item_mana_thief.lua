@@ -249,7 +249,7 @@ function Shock2( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local current_mana = target:GetMana()
-	local burn_amount = 60
+	local burn_amount = 70
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()
@@ -303,7 +303,7 @@ function Shock3( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local current_mana = target:GetMana()
-	local burn_amount = 80
+	local burn_amount = 100
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()

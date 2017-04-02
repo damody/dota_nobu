@@ -1385,27 +1385,12 @@
 		}
 		"Modifiers"
 		{
-			"modifier_art_of_war_tornado_chapter"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-			
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"7"
-				}
-			}
 			"Passive_art_of_war_tornado_chapter"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Passive"	"1"
-				"Aura"          	"modifier_art_of_war_tornado_chapter"
-				"Aura_Radius"   	"700"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				
 				"Aura_ApplyToCaster" "1"
 				"Properties"
 				{
@@ -1423,7 +1408,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"22"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"15"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -1442,7 +1427,7 @@
 		"AbilityTextureName"	"item_custom/the_art_of_war_forest_chapter"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"30"
+		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"125"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2531"
@@ -2944,7 +2929,7 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "35"	//魔法減傷
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20"	//魔法減傷
 				}
 			}
 			"Passive_the_great_sword_of_precision"
@@ -2961,7 +2946,7 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "20" 	//攻擊百分比
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "75" //攻速
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "90" //攻速
 				}
 			}
 		}
@@ -3309,7 +3294,7 @@
 		"AbilityTextureName"	"item_custom/soul_adder"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
@@ -3457,7 +3442,7 @@
 	                        "Radius"    "900"
 	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
-	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 	                    }
 	                    "ModifierName"      "modifier_truesight"
 	                    "Duration"      "0.50"
@@ -5907,7 +5892,7 @@
 		"ItemStackable"					"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"2"
+		"ItemInitialCharges"			"3"
 		"SideShop"						"1"
 		
 		"ItemRequirements"	{}
@@ -5970,7 +5955,7 @@
 		"ItemStackable"					"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"2"
+		"ItemInitialCharges"			"3"
 		"SideShop"						"1"
 		
 
@@ -9079,18 +9064,27 @@
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
 				}
-			}
-			"modifier_the_soul_of_power2"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"OnDeath"
+				"OnTakeDamage"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"items/Addon_Items/item_the_soul_of_power.lua"
-						"Function"	"Shock"
+						"Function"		"item_soul_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
 					}
+				}
+			}
+			"modifier_the_soul_of_power2"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Attributes"					"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					// 隐藏血条
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -12606,7 +12600,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilitySharedCooldown" "the_art_of_war"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"29"
+		"AbilityCooldown"	"50"
 		"AbilityManaCost"	"200"
 
 		"ID"	"2534"
@@ -12778,7 +12772,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"22"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"15"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -12820,7 +12814,6 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "6"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "10"	//跑速
 				}
 			}
 			"Passive_lost_art_of_war_2"
@@ -12941,7 +12934,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"22"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"25"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -13022,7 +13015,6 @@
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "25" 	//攻擊
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "25" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "7"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "10"	//跑速
 				}
 			}
 			"Passive_art_of_war"
