@@ -1,0 +1,289 @@
+//真田昌幸
+"DOTAAbilities"
+{
+	"B09_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/b09e/b09e.vpcf"
+			"particle"  "particles/b09e2/b09e2.vpcf" 
+			"particle"  "particles/b09e/b09e3.vpcf"  
+			"particle"  "particles/a04r3/a04r3.vpcf"
+			"particle"  "particles/generic_gameplay/generic_silenced_old.vpcf"
+			"particle"  "particles/item/item_commander_of_fantop.vpcf"
+		}
+	}
+	//真田昌幸 反噬裂隙
+	"B09W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	 "custom/B09/B09W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"14"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120 145 170 195"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		"AbilityDamage" "10 15 20 25"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B09W"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B09W_counter"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+
+			"modifier_B09W"
+			{
+				"EffectName"		"particles/b09e2/b09e2.vpcf"
+				"IsHidden"	"0"
+				"duration" "8"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
+						"Function"	"modifier_B09W_OnCreated"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
+						"Function"	"modifier_B09W_OnAbilityExecuted"
+					}
+				}
+			}
+			"modifier_B09W_counter"
+			{
+				"IsHidden"	"0"
+				"duration" "13"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_count"	"13"
+			}
+		}
+	}
+
+	//意念爆發
+	"B09E"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"                        "custom/B09/B09E"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+		"AbilityCooldown"                           "7"
+		"AbilityManaCost"                           "160"
+		"AbilityChannelTime"						"10"
+		"AOERadius"									"400"
+
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B09.lua"
+				"Function"							"B09E_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_B09E"
+				"Target" 							"TARGET"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_B09E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_B09E"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B09E"
+			{
+				"Duration"			"10"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/b09e2/b09e2.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"		"0.5"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B09.lua"
+						"Function"							"modifier_B09E_OnIntervalThink"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B09.lua"
+						"Function"							"modifier_B09E_OnIntervalThink"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"5 7 10 13"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_range"					"1000"
+			}
+		}
+	}
+	//實念之盾
+	"B09R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"0"
+		"AbilityManaCost"           				"0"
+		"AbilityTextureName"                         "custom/B09/B09R"
+
+        "OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
+				"Function"	"B09R_OnToggleOn"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
+				"Function"	"B09R_OnToggleOff"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"manadamage"					"2 3 4 5"
+			}
+		}
+
+    }
+    //心靈壓制
+	"B09T"
+	{
+		// General
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"	 "custom/B09/B09T"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"  			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"140 130 120"
+		
+		"AbilityManaCost"	"250 300 350"
+		"AbilityDamage" 	"400 550 700"
+		"AbilityCastPoint"	"0"
+		//"AbilityCastRange"	"700"
+		"AOERadius"		"400"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
+				"Function"	"B09T_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_B09T"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Duration"			"%duration"
+				"EffectName"	"particles/generic_gameplay/generic_silenced_old.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4.5 5.5 6.5"
+			}
+		}
+	}
+}
