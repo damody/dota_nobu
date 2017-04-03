@@ -12,7 +12,7 @@
 			"particle"  "particles/b09e/b09e3.vpcf"  
 			"particle"  "particles/a04r3/a04r3.vpcf"
 			"particle"  "particles/generic_gameplay/generic_silenced_old.vpcf"
-			"particle"  "particles/item/item_commander_of_fantop.vpcf"
+			"particle"  "particles/b09/b09_t.vpcf"
 		}
 	}
 	//真田昌幸 反噬裂隙
@@ -54,12 +54,10 @@
 		}
 		"Modifiers"
 		{
-
 			"modifier_B09W"
 			{
-				"EffectName"		"particles/b09e2/b09e2.vpcf"
-				"IsHidden"	"0"
-				"duration" "8"
+				"IsHidden"	"1"
+				"duration" "20"
 				"OnCreated"
 				{
 					"RunScript"
@@ -79,8 +77,8 @@
 			}
 			"modifier_B09W_counter"
 			{
+				"EffectName"		"particles/b09e2/b09e2.vpcf"
 				"IsHidden"	"0"
-				"duration" "13"
 			}
 		}
 		// Special
@@ -90,7 +88,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"max_count"	"13"
+				"max_count"	"20"
 			}
 		}
 	}
@@ -249,7 +247,7 @@
 		"AbilityDamage" 	"400 550 700"
 		"AbilityCastPoint"	"0"
 		//"AbilityCastRange"	"700"
-		"AOERadius"		"400"
+		"AOERadius"		"700"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -268,7 +266,6 @@
 				"IsHidden"			"0"
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
-				"Duration"			"%duration"
 				"EffectName"	"particles/generic_gameplay/generic_silenced_old.vpcf"
 				"EffectAttachType"	"follow_hitloc"
 				"States"
@@ -282,7 +279,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.5 5.5 6.5"
+				"duration"					"5 6 7"
 			}
 		}
 	}

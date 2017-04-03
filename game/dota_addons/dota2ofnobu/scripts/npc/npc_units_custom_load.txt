@@ -5,6 +5,57 @@
 {
 	"Version"		"1"
 
+	//地藏王菩薩木雕‧古物
+	"ksitigarbha_stick"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"maps/journey_assets/props/teams/logo_dire_journey_large.vmdl"
+		"ModelScale"		"0.6"
+		"Level"				"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"	"160"
+
+		"ArmorPhysical"	"5"
+		"MagicalResistance"	"0"
+
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"		"DAMAGE_TYPE_NONE"
+
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"0"
+		"StatusHealth"			"5"
+		"StatusHealthRegen"		"5"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+
+		"VisionDaytimeRange"	"1000"
+		"VisionNighttimeRange"	"1000"
+
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
 	//宇喜多秀家 E杖
 	"A32E_stick"
 	{

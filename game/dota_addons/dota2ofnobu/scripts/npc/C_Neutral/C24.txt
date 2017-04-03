@@ -382,8 +382,8 @@
 		"HotKeyOverride"	"E"
 		"AbilityCooldown"	"13 11 7 4"
 		"AbilityManaCost"	"100 120 140 160"
-		"AbilityCastRange"	"500"
 		
+		"AOERadius"	"700"
 		"AbilityDamage"				"250 350 450 550"
 
 		"OnSpellStart"
@@ -449,7 +449,6 @@
 				"IsHidden"			"0"
 				"IsBuff"			"1"
 				"Duration"			"8"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"20"

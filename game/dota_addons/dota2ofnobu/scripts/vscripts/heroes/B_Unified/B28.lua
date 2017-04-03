@@ -12,12 +12,13 @@ function B28E( keys )
 	
 	caster.B28E_P = particle
 	Timers:CreateTimer(0.2, function ()
-      	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_B28E") then
+      	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_B28E") and caster:HasModifier("modifier_B28E2") then
       		local particle2 = ParticleManager:CreateParticle("particles/b28e/b28e.vpcf", PATTACH_CUSTOMORIGIN, caster)
 			ParticleManager:SetParticleControlEnt(particle2, 2, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(particle2, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
       		return 0.2
       	else
+      		target:RemoveModifierByName("modifier_B28E")
       		caster.B28E_target = nil
       		ParticleManager:DestroyParticle(particle2,false)
       		return nil
@@ -25,7 +26,19 @@ function B28E( keys )
     end)
 end
 
-function B28R( keys )
+function B28R_OnProjectileHitUnit( keys )
+	local ability = keys.ability
+	local caster = keys.caster
+	local target = keys.target
+	if target:IsBuilding() then
+		AMHC:Damage( caster,target,ability:GetSpecialValueFor("B28R_damage")*0.2,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+	else
+		AMHC:Damage( caster,target,ability:GetSpecialValueFor("B28R_damage"),AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B28R_dot",nil)
+	end
+end
+
+function B28R_OnIntervalThink( keys )
 	local ability = keys.ability
 	local caster = keys.caster
 	local radius = ability:GetSpecialValueFor("B28R_radius")
@@ -52,7 +65,6 @@ function B28R( keys )
 			break
 		end
 	end
-	
 end
 
 function B28T( keys )
@@ -109,7 +121,7 @@ function B28T_old_Jump(keys)
 	local team = ability:GetAbilityTargetTeam()
 
 	-- Removes the hidden modifier
-	--target:RemoveModifierByName("modifier_B28T_arc_lightning_datadriven")
+	target:RemoveModifierByName("modifier_B28T_arc_lightning_datadriven")
 	local count = 0
 	-- Waits on the jump delay
 	local pos = target:GetAbsOrigin()

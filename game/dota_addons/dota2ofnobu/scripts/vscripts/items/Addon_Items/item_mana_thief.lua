@@ -67,15 +67,6 @@ function mana_burn_function( keys )
 			end
 		)
 	end
-	for itemSlot=0,5 do
-		local item = caster:GetItemInSlot(itemSlot)
-		if item ~= nil then
-			local itemName = item:GetName()
-			if (itemName == "item_mana_thief_1") then
-				item:StartCooldown(25)
-			end
-		end
-	end
 end
 
 function mana_burn_function2( keys )
@@ -122,15 +113,6 @@ function mana_burn_function2( keys )
 				return nil
 			end
 		)
-	end
-	for itemSlot=0,5 do
-		local item = caster:GetItemInSlot(itemSlot)
-		if item ~= nil then
-			local itemName = item:GetName()
-			if (itemName == "item_mana_thief") then
-				item:StartCooldown(25)
-			end
-		end
 	end
 end
 
@@ -179,15 +161,6 @@ function mana_burn_function3( keys )
 				return nil
 			end
 		)
-	end
-	for itemSlot=0,5 do
-		local item = caster:GetItemInSlot(itemSlot)
-		if item ~= nil then
-			local itemName = item:GetName()
-			if (itemName == "item_mana_thief") then
-				item:StartCooldown(25)
-			end
-		end
 	end
 end
 

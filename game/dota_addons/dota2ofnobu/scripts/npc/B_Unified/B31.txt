@@ -406,7 +406,11 @@
 		{
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_B31T"
 			}
 			"RunScript"
@@ -816,7 +820,11 @@
 		{
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_B31T_old"
 			}
 			"RunScript"

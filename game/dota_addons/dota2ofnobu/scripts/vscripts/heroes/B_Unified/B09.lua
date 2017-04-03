@@ -1,26 +1,40 @@
 --真田昌幸
-B09W_counter=0
-max_count=8
+
 function modifier_B09W_OnCreated( keys )
-    B09W_counter=0
-	local ability=keys.ability
+	local ability= keys.ability
 	local caster = keys.caster
-	local target =keys.target
-	B09W_counter=0
-	max_count=8
+	local target = keys.target
+	local B09W_counter=0
+	target.max_count=8
 	--local buff=target:FindModifierByName("modifier_B09W_counter")
 	--buff:SetStackCount(8)
 	--local particle = ParticleManager:CreateParticle("particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_trigger_ground_symbol_add.vpcf", PATTACH_ABSORIGIN, caster)
 	--ParticleManager:SetParticleControl(particle, 0, point)
 	--AMHC:Damage( caster,target,ability:GetAbilityDamage(),AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+	local count = 0
 	Timers:CreateTimer(0, function()
-		B09W_counter=B09W_counter+1
-		AMHC:Damage( caster,target,ability:GetAbilityDamage()*B09W_counter,AMHC:DamageType("DAMAGE_TYPE_PURE") )
-		print(max_count)
-		if B09W_counter>=max_count then
+		print(count - math.floor(count/10)*10)
+		if target:HasModifier("modifier_B09W_counter") then
+			if math.mod(count, 10) == 0 then
+				if target:IsMagicImmune() then
+					AMHC:Damage( caster,target,ability:GetAbilityDamage()*B09W_counter*0.5,AMHC:DamageType("DAMAGE_TYPE_PURE") )
+				else
+					AMHC:Damage( caster,target,ability:GetAbilityDamage()*B09W_counter,AMHC:DamageType("DAMAGE_TYPE_PURE") )
+				end
+			end
+		elseif target:IsMagicImmune() then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_B09W_counter", {duration=20-B09W_counter})
+		else
+			return nil
+		end
+		B09W_counter=B09W_counter+0.1
+		count = count + 1
+		if B09W_counter>=target.max_count then
+			target:RemoveModifierByName("modifier_B09W")
+			target:RemoveModifierByName("modifier_B09W_counter")
 			return nil
 		else
-			return 1
+			return 0.1
 		end
     end)
 end
@@ -31,9 +45,9 @@ function modifier_B09W_OnAbilityExecuted( keys )
 	local b09W_max_count=keys.ability:GetSpecialValueFor("max_count")
 	local buff=target:FindModifierByName("modifier_B09W")
 	local buff_count=target:FindModifierByName("modifier_B09W_counter")
-	if max_count<b09W_max_count then
-		max_count=max_count+1
-		buff_count:SetStackCount(max_count)
+	if target.max_count<b09W_max_count then
+		target.max_count=target.max_count+1
+		buff_count:SetStackCount(target.max_count)
 		print(buff:GetRemainingTime())
 		buff:SetDuration(buff:GetRemainingTime()+1,true)
 	end
@@ -180,36 +194,37 @@ end
 
 
 function B09T_OnSpellStart( keys )
-	    for i,v in pairs(keys) do
-        print(tostring(i).."="..tostring(v))
-    end
 	local caster = keys.caster
 	local point = keys.target_points[1] 
 	local ability = keys.ability
+	local duration = ability:GetSpecialValueFor("duration")
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
           point,
           nil,
-          400,
+          700,
           DOTA_UNIT_TARGET_TEAM_ENEMY,
           DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
           DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
           0,
           false)
-	
-	local flame = ParticleManager:CreateParticle("particles/item/item_commander_of_fantop.vpcf", PATTACH_ABSORIGIN, caster)
+	local dummy = CreateUnitByName( "npc_dummy_unit", point, false, nil, nil, caster:GetTeamNumber())
+	dummy:AddNewModifier( dummy, nil, "modifier_kill", {duration=1} )
+	dummy:SetOwner( caster)
+	dummy:AddAbility( "majia"):SetLevel(1)
+	local flame = ParticleManager:CreateParticle("particles/b09/b09_t.vpcf", PATTACH_ABSORIGIN, dummy)
 	ParticleManager:SetParticleControl(flame,4,point+Vector(0, 0, 20))
-	Timers:CreateTimer(0.5, function ()
+	Timers:CreateTimer(1, function ()
 		ParticleManager:DestroyParticle(flame, false)
-	end)
+	end)	
 	
 	for _,target in pairs(direUnits) do
 		if not target:IsBuilding() then
 			if (target:IsMagicImmune()) then
-				ability:ApplyDataDrivenModifier(caster,target,"modifier_B09T",nil)
+				ability:ApplyDataDrivenModifier(caster,target,"modifier_B09T",{duration = duration*0.5})
 				target:SetMana(target:GetMana()*0.4)
 			else
 				target:SetMana(target:GetMana()*0.4)
-				ability:ApplyDataDrivenModifier(caster,target,"modifier_B09T",nil)
+				ability:ApplyDataDrivenModifier(caster,target,"modifier_B09T",{duration = duration})
 				AMHC:Damage(caster,target, ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
 		end

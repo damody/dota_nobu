@@ -35,11 +35,23 @@ function B23D_OnSpellStart( keys )
 	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_diedTrigger", nil)
 	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_distanceDetector_ghost", nil)
     end
+    
+end
+
+function B23D_OnCreated( keys )
+	local caster = keys.caster
+	local spell_hint_table = {
+		duration   = 9999,		-- 持續時間
+		radius     = 1600,		-- 半徑
+		caster     = caster,	-- 角色
+	}
+	caster:AddNewModifier(caster,nil,"nobu_modifier_spell_hint_self",spell_hint_table)
 end
 
 function B23D_check( keys )
 	local caster = keys.caster
 	local deadBody = false
+	
 	for i,v in pairs(keys.target_entities) do
         if v:GetHealth() == 0 then
         	deadBody = true

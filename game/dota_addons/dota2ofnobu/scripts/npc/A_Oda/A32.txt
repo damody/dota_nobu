@@ -703,12 +703,20 @@
 			}
 			"ApplyModifier"
 			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A32T_old"
-				"Target" 		"CASTER"
 			}
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A32T_locker"
 			}
 		}

@@ -43,6 +43,9 @@ function A11W( keys )
 				damage_type = ability:GetAbilityDamageType(),
 				damage_flags = DOTA_DAMAGE_FLAG_NONE,
 			}
+			if not caster:IsAlive() then
+				damageTable.attacker = dummy
+			end
 			if unit:IsBuilding() then
 				damageTable.damage = damageTable.damage * A11W_adjustOnBuilding
 			end
@@ -66,12 +69,13 @@ function A11E( keys )
 	
 	caster.A11E_P = particle
 	Timers:CreateTimer(0.2, function ()
-      	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_A11E") then
+      	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_A11E") and caster:HasModifier("modifier_A11E2") then
       		local particle2 = ParticleManager:CreateParticle("particles/a11e/a11e_rope_flames.vpcf", PATTACH_CUSTOMORIGIN, caster)
 			ParticleManager:SetParticleControlEnt(particle2, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(particle2, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
       		return 0.2
       	else
+      		target:RemoveModifierByName("modifier_A11E")
       		caster.A11E_target = nil
       		ParticleManager:DestroyParticle(particle,false)
       		return nil

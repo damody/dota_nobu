@@ -27,9 +27,10 @@ function C07E( keys )
 	--
 	caster.C07E_P = particle
 	Timers:CreateTimer(0.2, function ()
-          if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_C07E") then
+          if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_C07E") and caster:HasModifier("modifier_C07E2") then
           	return 0.2
           else
+          	target:RemoveModifierByName("modifier_C07E")
           	caster.C07E_target = nil
           	ParticleManager:DestroyParticle(particle,false)
           	return nil

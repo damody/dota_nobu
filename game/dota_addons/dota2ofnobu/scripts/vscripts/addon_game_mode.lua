@@ -543,6 +543,12 @@ function Precache( context )
     -- 施法提示
     "particles/spell_hint/spell_hint_circle.vpcf",
     "particles/spell_hint/spell_hint_circle_fog.vpcf",
+    --真 池田鬼神丸國重．銘刀
+    "particles/item/diseaseonkey_king_spring_water_base.vpcf",
+    -- 水計
+    "particles/a11w/a11wonkey_king_spring_water_base.vpcf",
+    --地藏王菩薩木雕‧古物
+    "particles/c19_projectile/c19_projectile.vpcf",
 
     --注意要加,
     }
@@ -566,6 +572,7 @@ function Precache( context )
     --"soundevents/game_sounds_creeps.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts",
     "soundevents/a17.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_slark.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

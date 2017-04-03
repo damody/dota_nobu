@@ -103,7 +103,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"B28W_dotDuration"			"4.0"
+				"B28W_dotDuration"			"5"
 			}
 			"02"
 			{
@@ -179,6 +179,11 @@
 				"EffectName"						"Hero_Warlock.FatalBonds"
 				"Target" 							"TARGET"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_B28E2"
+				"Target" 							"CASTER"
+			}
 		}
 
 		"OnChannelInterrupted"
@@ -201,6 +206,19 @@
 
 		"Modifiers"
 		{
+			"modifier_B28E2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B28E2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
 			"modifier_B28E"
 			{
 				"Duration"			"%B28E_duration"
@@ -245,13 +263,13 @@
 	{
 		"BaseClass"                 				"ability_datadriven"
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B28/B28R"
-		"AbilityManaCost"							"100 120 140 160"
+		"AbilityManaCost"							"300 350 400 450"
 		"AbilityCooldown"							"15"
 
 		//"AbilityCastRange"              			"%B28R_radius"
@@ -268,16 +286,11 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
-			"Damage"
+			"RunScript"
 			{
+				"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"					"B28R_OnProjectileHitUnit"
 				"Target"		"TARGET"
-				"Type"			"DAMAGE_TYPE_MAGICAL"
-				"Damage"		"%B28R_damage"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_B28R_dot"
-				"Target" 		"TARGET"
 			}
 		}
 
@@ -300,7 +313,7 @@
 					"RunScript"
 					{
 						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B28.lua"
-						"Function"					"B28R"
+						"Function"					"B28R_OnIntervalThink"
 					}
 				}
 			}
@@ -308,9 +321,8 @@
 			{
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
-				"Duration"			"%B28R_dotDuration"
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"ThinkInterval"  	"1.0"
+				"Duration"			"1"
+				"ThinkInterval"  	"1"
 				"OnIntervalThink"
 				{
 					"Damage"
@@ -374,7 +386,7 @@
 		"AbilityCastPoint"							"0.1"
 		"AbilityCastPoint"          				"0.1"
 		"AbilityCooldown"           				"130 125 120"
-		"AbilityManaCost"           				"350"
+		"AbilityManaCost"           				"400 600 800"
 		"AOERadius"                                 "%B28T_radius"
 		
 		"OnSpellStart"
@@ -439,7 +451,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"jump_delay"	"0.15"
+				"jump_delay"	"0.3"
 			}
 			"07"
 			{

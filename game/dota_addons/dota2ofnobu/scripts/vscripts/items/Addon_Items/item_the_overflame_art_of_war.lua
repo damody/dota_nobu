@@ -111,7 +111,7 @@ function Shock( keys )
 					ParticleManager:SetParticleControl(rock_effect, 0, it:GetAbsOrigin())
 				end
 			else
-				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
 		if count > 15 then

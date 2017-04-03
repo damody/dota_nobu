@@ -136,3 +136,113 @@ function line_end(keys)
     ParticleManager:DestroyParticle(caster.chaos_effect1, false)
     ParticleManager:DestroyParticle(caster.chaos_effect2, false)
 end
+
+
+function Real_OnSpellStart( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  local point = ability:GetCursorPosition()
+  local duration = ability:GetSpecialValueFor("duration")
+  local radius = ability:GetSpecialValueFor("radius")
+  local A11W_damage = ability:GetSpecialValueFor("damage")
+  local A11W_adjustOnBuilding = ability:GetSpecialValueFor("adjustOnBuilding")
+
+  local dummy = CreateUnitByName( "npc_dummy_unit", point, false, nil, nil, caster:GetTeamNumber())
+  dummy:AddNewModifier( dummy, nil, "modifier_kill", {duration=duration} )
+  dummy:SetOwner( caster)
+  dummy:AddAbility( "majia"):SetLevel(1)
+
+  local time = 0.1 + duration
+  local count = 0
+
+  Timers:CreateTimer(0,function()
+    count = count + 1
+    if count > time then
+      return nil
+    end
+
+    local ifx = ParticleManager:CreateParticle( "particles/item/diseaseonkey_king_spring_water_base.vpcf", PATTACH_CUSTOMORIGIN, nil)
+    ParticleManager:SetParticleControl( ifx, 0, point + Vector(0,0,50))
+    ParticleManager:SetParticleControl( ifx, 3, point + Vector(0,0,50))
+    Timers:CreateTimer(duration, function ()
+      ParticleManager:DestroyParticle(ifx,true)
+    end)
+
+    StartSoundEvent("Hero_Slark.Pounce.Impact",dummy)
+
+    local units = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
+    for _,unit in ipairs(units) do
+      damageTable = {
+        victim = unit,
+        attacker = caster,
+        ability = ability,
+        damage = A11W_damage,
+        damage_type = ability:GetAbilityDamageType(),
+        damage_flags = DOTA_DAMAGE_FLAG_NONE,
+      }
+      if not caster:IsAlive() then
+        damageTable.attacker = dummy
+      end
+      if unit:IsBuilding() then
+        damageTable.damage = damageTable.damage * A11W_adjustOnBuilding
+      end
+      ApplyDamage(damageTable)
+    end
+    return 1
+  end)
+end
+
+
+function Water_OnSpellStart( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  local point = ability:GetCursorPosition()
+  local duration = ability:GetSpecialValueFor("duration")
+  local radius = ability:GetSpecialValueFor("radius")
+  local A11W_damage = ability:GetSpecialValueFor("damage")
+  local A11W_adjustOnBuilding = ability:GetSpecialValueFor("adjustOnBuilding")
+
+  local dummy = CreateUnitByName( "npc_dummy_unit", point, false, nil, nil, caster:GetTeamNumber())
+  dummy:AddNewModifier( dummy, nil, "modifier_kill", {duration=duration} )
+  dummy:SetOwner( caster)
+  dummy:AddAbility( "majia"):SetLevel(1)
+
+  local time = 0.1 + duration
+  local count = 0
+
+  Timers:CreateTimer(0,function()
+    count = count + 1
+    if count > time then
+      return nil
+    end
+
+    local ifx = ParticleManager:CreateParticle( "particles/a11w/a11wonkey_king_spring_water_base.vpcf", PATTACH_CUSTOMORIGIN, nil)
+    ParticleManager:SetParticleControl( ifx, 0, point + Vector(0,0,50))
+    ParticleManager:SetParticleControl( ifx, 3, point + Vector(0,0,50))
+    Timers:CreateTimer(duration, function ()
+      ParticleManager:DestroyParticle(ifx,true)
+    end)
+
+    StartSoundEvent("Hero_Slark.Pounce.Impact",dummy)
+
+    local units = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
+    for _,unit in ipairs(units) do
+      damageTable = {
+        victim = unit,
+        attacker = caster,
+        ability = ability,
+        damage = A11W_damage,
+        damage_type = ability:GetAbilityDamageType(),
+        damage_flags = DOTA_DAMAGE_FLAG_NONE,
+      }
+      if not caster:IsAlive() then
+        damageTable.attacker = dummy
+      end
+      if unit:IsBuilding() then
+        damageTable.damage = damageTable.damage * A11W_adjustOnBuilding
+      end
+      ApplyDamage(damageTable)
+    end
+    return 1
+  end)
+end

@@ -120,6 +120,11 @@
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_C07E"
 			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C07E2"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -155,6 +160,19 @@
 		}
 		"Modifiers"
 		{
+			"modifier_C07E2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C07E2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
 			"modifier_C07E"
 			{
 				"Passive"	"0"
@@ -511,7 +529,7 @@
 				}
 				"Properties"	
 				{
-					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"%incoming_physical_damge_reduce"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"%reduce_incoming_physical_damge"
 					// "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%reduce_atk_spd"
 				}
 				"OnCreated"
@@ -597,6 +615,11 @@
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_C07E"
 			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C07E2"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -631,6 +654,19 @@
 		}
 		"Modifiers"
 		{
+			"modifier_C07E2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C07E2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
 			"modifier_C07E"
 			{
 				"Passive"	"0"

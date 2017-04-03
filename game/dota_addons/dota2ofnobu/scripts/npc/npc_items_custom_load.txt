@@ -717,7 +717,7 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/magic_ring"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"40"
@@ -751,8 +751,6 @@
 				"Function"	"item_blink_datadriven_on_spell_start"
 				"Target"	"POINT"
 				"MaxBlinkRange"	"%max_blink_range"
-				"BlinkRangeClamp"	"%blink_range_clamp"
-				"BlinkRangeOnBroken"	"%blink_range_broken"
 			}
 			"FireSound"
 			{
@@ -781,22 +779,6 @@
 				"var_type"	"FIELD_INTEGER"
 				"max_blink_range"	"425"
 			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				// When attempting to blink a distance greater than max_blink_range, the caster blinks this distance in the targeted direction.
-				"blink_range_clamp"	"960"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"blink_damage_cooldown"	"3"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"blink_range_broken"	"300"
-			}
 		}
 	}
 
@@ -807,14 +789,14 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/flash_ring"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"250"
 		"AOERadius"	"850"
 		// Stats
-		
+		"AbilitySharedCooldown" "share_flash_ring"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2508"
 		"ItemQuality"	"component"
@@ -841,8 +823,6 @@
 				"Function"	"item_blink_datadriven_on_spell_start"
 				"Target"	"POINT"
 				"MaxBlinkRange"	"%max_blink_range"
-				"BlinkRangeClamp"	"%blink_range_clamp"
-				"BlinkRangeOnBroken"	"%blink_range_broken"
 			}
 			"FireSound"
 			{
@@ -870,22 +850,6 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"max_blink_range"	"850"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				// When attempting to blink a distance greater than max_blink_range, the caster blinks this distance in the targeted direction.
-				"blink_range_clamp"	"960"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"blink_damage_cooldown"	"3"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"blink_range_broken"	"300"
 			}
 		}
 	}
@@ -2923,15 +2887,6 @@
 		}
 		"Modifiers"
 		{
-			"Passive_the_great_sword_of_precision2"
-			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20"	//魔法減傷
-				}
-			}
 			"Passive_the_great_sword_of_precision"
 			{
 				"IsHidden"	"1"
@@ -2939,6 +2894,7 @@
 				"Passive"	"1"
 				"Properties"
 				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20"	//魔法減傷
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"	//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
@@ -3441,7 +3397,7 @@
 	                        "Center"    "CASTER"
 	                        "Radius"    "900"
 	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 	                    }
 	                    "ModifierName"      "modifier_truesight"
@@ -3533,7 +3489,7 @@
                     "Center"    "CASTER"
                     "Radius"    "1200"
                     "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
                     "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
                 }
                 "ModifierName"      "modifier_truesight"
@@ -3550,7 +3506,7 @@
 	            "Aura"        "modifier_show_invi"
         		"Aura_Radius" "600"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
         		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
 			}
@@ -4243,7 +4199,7 @@
 		"ItemCost"	"7200"
 		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SideShop" "1"
+		"SecretShop" "1"
 		"OnEquip"
 		{
 			"RunScript"
@@ -6677,13 +6633,12 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/ninja_sword"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		"AbilityChannelTime"	"6"
 		"AbilityCooldown"	"25"
 		
 		"AbilityManaCost"	"155"
@@ -8894,7 +8849,7 @@
 				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "50"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "30"	//回血
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "20"
 				}
 			}
@@ -10998,7 +10953,7 @@
                     "Center"    "CASTER"
                     "Radius"    "1200"
                     "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
                     "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
                 }
                 "ModifierName"      "modifier_truesight"
@@ -11222,7 +11177,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "25" //魔抗
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "30" //魔抗
 				}
 			}
 		}
@@ -11284,7 +11239,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "30" //魔抗
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "40" //魔抗
 				}
 			}
 		}
@@ -15216,7 +15171,7 @@
                     "Center"    "CASTER"
                     "Radius"    "1200"
                     "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
                 }
                 "ModifierName"      "modifier_truesight"
                 "Duration"      "10"
@@ -15658,6 +15613,767 @@
 			}
 			"SpendCharge"
 			{}
+		}
+	}
+
+	// 百里
+	"item_flash_shoes"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/flash_shoes"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"40"
+		"AbilityManaCost"	"250"
+		"AOERadius"	"850"
+		// Stats
+		"AbilitySharedCooldown" "share_flash_ring"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"3852"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/red_box.vmdl"
+		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
+		// Item Info
+		
+		"ItemCost"	"3100"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"	"1"
+		"ItemShopTags"	"teleport"
+		"ItemAliases"	"blink dagger"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_flash_ring.lua"
+				"Function"	"item_blink_datadriven_on_spell_start"
+				"Target"	"POINT"
+				"MaxBlinkRange"	"%max_blink_range"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_QueenOfPain.Pick"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_flash_shoes"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_BONUS" "500"				//魔
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "3"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "90"	//跑速
+				}
+			}
+		}
+		// Special
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"max_blink_range"	"850"
+			}
+		}
+	}
+
+	//百里製作單
+	"item_recipe_flash_shoes" 
+	{
+	    "ID" "3853"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1700"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_flash_shoes"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_flash_ring"  //合成所需物品
+		}
+	}
+
+	// 神隱
+	"item_the_great_spirited_away"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_great_spirited_away"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"1000"
+		"AbilityCastRange"	"1000"
+		"ID"	"3854"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"8000"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"						"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_spirited_away.lua"
+				"Function"	"Shock"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_the_great_spirited_away"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "40"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "60"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "600" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+		}
+	}
+
+	//真蜻蛉切．銘槍 製作單
+	"item_recipe_the_great_spear_of_dragonfly_x"
+	{
+	    "ID" "3855"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SecretShop" "1"
+		"ItemResult" "item_the_great_spear_of_dragonfly_x"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_great_spear_of_dragonfly"  //合成所需物品
+		}
+	}
+
+	//真鐵碎牙 製作單
+	"item_recipe_the_great_sword_of_iron_fragmentor"
+	{
+	    "ID" "3856"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SecretShop" "1"
+		"ItemResult" "item_the_great_sword_of_iron_fragmentor"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_great_sword_of_hurricane"  //合成所需物品
+		}
+	}
+
+	//真菊一文字則宗．太刀 製作單
+	"item_recipe_the_great_sword_of_soul_hyper"
+	{
+	    "ID" "3857"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SecretShop" "1"
+		"ItemResult" "item_the_great_sword_of_soul_hyper"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_great_sword_of_soul"  //合成所需物品
+		}
+	}
+
+	//真葵紋越前康繼．禦神刀 製作單
+	"item_recipe_the_great_sword_of_sunflower_pattern_echizen_kang_following"
+	{
+	    "ID" "3858"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "300"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SecretShop" "1"
+		"ItemResult" "item_the_great_sword_of_sunflower_pattern_echizen_kang_following"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_great_sword_of_invincible"  //合成所需物品
+		}
+	}
+
+	//脇差 製作單
+	"item_recipe_wakizashi"
+	{
+	    "ID" "3859"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "0"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"ItemResult" "item_wakizashi"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_katana;item_tachi;item_health_ingot;item_mana_ingot"  //合成所需物品
+		}
+	}
+
+	// 脇差
+	"item_wakizashi"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_spear_of_saddle"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"ID"	"3860"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4150"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"Modifiers"
+		{
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "45"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "500" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "500"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "8"	//防禦
+				}
+			}
+		}
+	}
+
+	// 真 池田鬼神丸國重．銘刀
+	"item_the_great_sword_of_disease_x"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_great_sword_of_disease"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"ItemCost"	"6400"
+		"ID" "3861"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "25"
+		"AbilityManaCost"                           "250"
+		"AOERadius"									"500"
+		"SecretShop" "1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_disease.lua"
+				"Function"	"Real_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"				"200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"adjustOnBuilding"		"0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"				"5"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_great_sword_of_disease_aura"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Aura"          	"modifier_great_sword_of_disease_x"
+				"Aura_Radius"   	"1000"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_great_sword_of_disease_x"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/generic_gameplay/dropped_tango_aura.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "-30"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-100"	//魔抗
+				}
+			}
+			"modifier_great_sword_of_disease_aura2"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Aura"          	"modifier_great_sword_of_disease_x2"
+				"Aura_Radius"   	"1000"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_great_sword_of_disease_x2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/generic_gameplay/dropped_tango_aura.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-20"	//魔抗
+				}
+			}
+			"Passive_great_sword_of_disease"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "15"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "55"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+				}
+			}
+		}
+	}
+
+	//真 池田鬼神丸國重．銘刀 製作單
+	"item_recipe_the_great_sword_of_disease_x"
+	{
+	    "ID" "3862"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SecretShop" "1"
+		"ItemResult" "item_the_great_sword_of_disease_x"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_great_sword_of_disease"  //合成所需物品
+		}
+	}
+
+	// 忍者護符
+	"item_ninja_protection"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/ninja_protection"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityChannelTime"	"6"
+		"AbilityCooldown"	"25"
+		
+		"AbilityManaCost"	"155"
+
+		"ID"	"3863"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2500"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_invisible"
+				"Target" 		"CASTER"
+				"Duration"		"6"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_invisible"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_ninja_protection"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "10"
+				}
+			}
+		}
+	}
+
+	// 伏魔輪杖
+	"item_volcano_wand"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/volcano_wand"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+
+		"ID"	"3864"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"5000"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"						"1"
+		"Modifiers"
+		{
+			"Passive_volcano_wand2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"
+				}
+			}
+			
+			"Passive_volcano_wand"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "40"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "40"	//攻
+				}
+			}
+		}
+	}
+
+	// 水瀑之書
+	"item_waterfall_book"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/waterfall_book"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"ItemCost"	"3100"
+		"ID" "3865"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"700"
+		"AbilityCooldown"                           "25"
+		"AbilityManaCost"                           "250"
+		"AOERadius"									"500"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_disease.lua"
+				"Function"	"Water_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"				"200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"adjustOnBuilding"		"0.2"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"				"10"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_great_sword_of_disease"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+				}
+			}
+		}
+	}
+
+	// 地藏王菩薩木雕‧古物
+	"item_ksitigarbha"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/ksitigarbha"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"ItemCost"	"10000"
+		"ID" "3866"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "80"
+		"AbilityManaCost"                           "550"
+		"AOERadius"									"1000"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ksitigarbha.lua"
+				"Function"	"Shock"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01" // 風之傷鎖敵範圍
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_range"	"1000"
+			}
+			"02" // 風之傷飛行速度
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_speed"	"1200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tornado_damage"	"400"
+			}
+			"04" // 主動技能持續時間
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_duration"	"30"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_ksitigarbha_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"Duration"	"30"
+				"Aura"	"modifier_ksitigarbha"
+				"Aura_Radius"	"1000"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_BASIC"
+			}
+			"modifier_ksitigarbha"
+			{
+				"Passive"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "4" //回血
+				}
+			}
+			"modifier_ksitigarbha_hero_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"Duration"	"30"
+				"Aura"	"modifier_ksitigarbha_hero"
+				"Aura_Radius"	"1000"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO"
+			}
+			"modifier_ksitigarbha_hero"
+			{
+				"Passive"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "2" //回血%
+				}
+			}
+			"Passive_ksitigarbha2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "40"
+				}
+			}
+			"Passive_ksitigarbha"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "15"	//防禦
+				}
+			}
+			// 在特定範圍持續打出地藏王菩薩木雕‧古物
+			"modifier_great_sword_of_hurricane_auto_attack"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+
+				"ThinkInterval"	"0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_ksitigarbha.lua"
+						"Function"	"SplitShotLaunch"
+					}
+					"ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "2500"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+				}
+			}
+		}
+		// 當風之傷命中目標
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"FireSound"
+			{
+				"EffectName"	"Hero_Medusa.AttackSplit"
+				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ksitigarbha.lua"
+				"Function"	"SplitShotDamage"
+			}
 		}
 	}
 }

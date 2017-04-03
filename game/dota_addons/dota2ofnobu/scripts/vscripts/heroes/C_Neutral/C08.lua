@@ -593,7 +593,7 @@ function C08E_old_OnSpellStart( keys )
 		local pos 
 		if IsValidEntity(target) then
 			pos = target:GetAbsOrigin()
-			if not target:HasModifier("C08E_old_OnSpellStart") then
+			if not target:HasModifier("modifier_C08E_old") then
 				return nil
 			end
 		else

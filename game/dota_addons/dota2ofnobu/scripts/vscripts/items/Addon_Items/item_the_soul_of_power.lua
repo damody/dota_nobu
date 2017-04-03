@@ -6,7 +6,7 @@ function item_soul_OnTakeDamage( event )
 		local ability = event.ability
 		if ability then
 			local caster =ability:GetCaster()
-			if damage > caster:GetHealth() and caster:GetMana()>=800 and not c08d_lock then
+			if damage > caster:GetHealth() and caster:GetMana()>=800 and not caster:IsIllusion() then
 				caster:StartGestureWithPlaybackRate(ACT_DOTA_DIE,1)
 				caster:SetHealth(caster:GetMaxHealth())
 				caster:SetHealth(caster:GetMaxMana())

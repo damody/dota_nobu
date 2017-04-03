@@ -102,6 +102,11 @@
 				"ModifierName"						"modifier_A11E"
 				"Target" 							"TARGET"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_A11E2"
+				"Target" 							"CASTER"
+			}
 			"Damage"
 			{
 				"Target"							"TARGET"
@@ -135,6 +140,19 @@
 
 		"Modifiers"
 		{
+			"modifier_A11E2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A11E2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
 			"modifier_A11E"
 			{
 				"Duration"			"%A11E_duration"
@@ -459,6 +477,11 @@
 				"ModifierName"						"modifier_A11E"
 				"Target" 							"TARGET"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_A11E2"
+				"Target" 							"CASTER"
+			}
 			"Damage"
 			{
 				"Target"							"TARGET"
@@ -492,6 +515,19 @@
 
 		"Modifiers"
 		{
+			"modifier_A11E2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A11E2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
 			"modifier_A11E"
 			{
 				"Duration"			"%A11E_duration"

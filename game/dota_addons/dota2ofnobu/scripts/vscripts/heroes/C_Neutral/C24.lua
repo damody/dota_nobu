@@ -135,11 +135,11 @@ function C24E_old_OnSpellStart( keys )
 	local center = caster:GetAbsOrigin()	
 	local dir = (point-center):Normalized()
 	local speed = 2500
-	point = center + dir*500
+	point = center + dir*700
 	-- 防呆
 	if dir == Vector(0,0,0) then 
 		dir = caster:GetForwardVector() 
-		point = center + dir*850
+		point = center + dir*700
 	end
 	local fake_center = center - dir
 	local distance = (point-center):Length()
@@ -165,7 +165,21 @@ end
 function C24E_old_OnProjectileHitUnit( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C24E_old",nil)
+	if not caster:HasModifier("modifier_C24E_old") then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C24E_old",nil)
+		local handle = caster:FindModifierByName("modifier_C24E_old")
+		if handle then
+			handle:SetStackCount(1)
+		end
+	else
+		local handle = caster:FindModifierByName("modifier_C24E_old")
+		if handle then
+			local c = handle:GetStackCount()
+			c = c + 1
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_C24E_old",nil)
+			handle:SetStackCount(c)
+		end
+	end
 end
 
 function C24R_old_OnAttackStart( keys )
