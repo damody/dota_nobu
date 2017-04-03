@@ -14,9 +14,15 @@
 			"particle"  "particles/b28r/b28r_2.vpcf" //r
 			"particle"  "particles/b28t/b28t.vpcf" //t
 			"particle"  "particles/b28t/b28t_2ti_5.vpcf" //t
+			"particle"  "particles/a19/a19_wfire/monkey_king_spring_arcana_fire.vpcf" //w_old
+			"particle"  "particles/a19/a19w_oldchar.vpcf" //w_old
+			"particle"  "particles/a23r/a23rfly.vpcf" //r_old
+			"particle"  "particles/b28t_old/b28t_old.vpcf" //t_old
+			"particle"  "particles/b28t_old/b28t_old2.vpcf" //t_old
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
 		}
 	}
 
@@ -455,6 +461,388 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"jump_radius"	"1000"
+			}
+		}
+	}
+
+	//鬼謀‧火攻
+	"B28W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/B28/B28W_old"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "18"
+		"AbilityManaCost"                           "170 190 210 230"
+		"AOERadius"									"%B28W_old_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"B28W_old"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B28W_old_duration1"		"5.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B28W_old_duration2"		"5.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B28W_old_tick1"			"0.2"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B28W_old_tick2"			"0.3"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B28W_old_damage1"			"10 20 30 40"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B28W_old_damage2"			"5 10 15 20"
+			}
+			"07" //對建築傷害調整
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B28W_old_adjustOnBuilding"	"0.2"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B28W_old_radius"			"450"
+			}
+		}
+	}
+
+	//鬼謀‧綑綁
+	"B28E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B28/B28E"
+
+		"AbilityCooldown"							"25"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityCastRange"              			"800"
+		"AnimationPlaybackRate"						"0.5"
+		"AbilityChannelTime"						"%B28E_duration"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"B28E"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_B28E"
+				"Target" 							"TARGET"
+			}
+			"Damage"
+			{
+				"Target"							"TARGET"
+				"Type"								"DAMAGE_TYPE_MAGICAL"
+				"Damage"							"%B28E_damage"
+			}
+			"FireSound"
+			{
+				"EffectName"						"Hero_Warlock.FatalBonds"
+				"Target" 							"TARGET"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_B28E"
+				"Target" 		"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"channel_interrupt"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_B28E"
+				"Target" 		"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"channel_interrupt"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B28E"
+			{
+				"Duration"			"%B28E_duration"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/b28e.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"		"1.01"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B28E_damage"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"B28E_duration"                	"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B28E_damage"					"20 25 30 35"
+			}
+		}
+	}
+
+	//鬼謀‧焰暴
+	"B28R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B28/B28R_old"
+		"AbilityManaCost"							"140 160 180 200"
+		"AbilityCooldown"							"20"
+		"AbilityCastPoint"							"0"
+		"AbilityCastRange"              			"1000"
+		"AbilityChannelTime"						"4.0 3.6 3.2 2.8"
+		"AOERadius"									"%B28R_old_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"B28R_old"
+				"TARGET"							"POINT"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"channel_interrupt"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"channel_interrupt"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_B28R_old_dot"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"			"%B28R_old_dotDuration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B28R_old_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B28R_old_waveDelay"	"0.5 0.45 0.4 0.35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_old_maxWave"		"8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_old_radius"		"400"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_old_damage"		"40 60 80 100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28R_old_dotDamage"	"2 4 8 10"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B28R_old_dotDuration"	"5"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B28R_old_adjustOnBuilding"	"0.2"
+			}
+		}
+    }
+
+    //撕裂大地
+	"B28T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B28/B28T_old"
+		"AbilityCastRange"							"1000"
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"160"
+		"AbilityManaCost"           				"200 250 300"
+		"AbilityChannelTime"						"15"
+		"AOERadius"                                 "%B28T_old_radius"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"B28T_old"
+				"Target"							"POINT"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"channel_interrupt"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B28.lua"
+				"Function"							"channel_interrupt"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B28T_old_debuffAura"
+			{
+				"IsHidden"	"0"
+				"Aura"          	"modifier_B28T_old_debuff"
+				"Aura_Radius"   	"%B28T_old_radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_B28T_old_debuff"
+			{
+				"IsHidden"		"0"
+				"IsDebuff"		"1"
+				"IsPurgable"	"0"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%B28T_old_moveSpeed" 
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28T_old_damage"		"80 120 150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28T_old_radius"		"700"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B28T_old_moveSpeed"	"-85"
 			}
 		}
 	}
