@@ -51,6 +51,8 @@ function C21T_Effect(u,u2,i)
 	--傷害
 	if not u2:IsMagicImmune() then
 		AMHC:Damage( u,u2,125,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	else
+		AMHC:Damage( u,u2,62,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 	if IsValidEntity(u2) then
 		u:PerformAttack(u2, true, true, true, true, true, false, true)
@@ -161,13 +163,13 @@ function Trig_C21TActions( keys )
 end
 
 
-function Trig_C21EActions(keys)
+function C21E_OnSpellStart(keys)
 	local  u 	 = keys.caster --施法單位
 	local  u2 	 = keys.target --目標單位
     local  id	 = u:GetPlayerID() --獲取玩家ID
     local  point = u:GetAbsOrigin() --獲取單位的座標
     local  point2 = u2:GetAbsOrigin() --獲取目標的座標
-    local  time = keys.ability:GetLevel()--獲取技能等級
+    local  time = keys.ability:GetLevel()+1--獲取技能等級
     keys.ability:ApplyDataDrivenModifier(u,u2,"modifier_C21EStun",{duration = 0.5})
     --timer2
     u:FindAbilityByName("C21W"):SetActivated(false)

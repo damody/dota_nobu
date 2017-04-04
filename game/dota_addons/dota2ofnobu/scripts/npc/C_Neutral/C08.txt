@@ -138,7 +138,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"7"
+		"AbilityCooldown"	"13 12 11 10"
 		"AbilityManaCost"	"120 135 150 165"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
@@ -272,7 +272,7 @@
 		"AbilityCastPoint"		"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"8 7 6 5"
+		"AbilityCooldown"	"13 11 9 5"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120 140 160 180"
@@ -448,7 +448,7 @@
 			}
 			"modifier_C08D_old_armor"
 			{
-				"Duration" 		"16"
+				"Duration" 		"10"
 				"Passive"		"0"
 				"IsDebuff"		"0"
 				"Properties"
@@ -596,7 +596,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"25 22 19 16"
+		"AbilityCooldown"	"25 23 21 19"
 		"AbilityManaCost"	"140 160 180 200"
 		"AbilityDamage" 	"50 80 110 140"
 		// Stats
@@ -652,7 +652,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/C08/c08r_old"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"22 20 18 16"
@@ -668,6 +668,14 @@
 		}
 		"Modifiers"
 		{
+			"modifier_C08R_old_1"
+			{
+				"Aura"	"modifier_C08R_old_4"
+				"Aura_Radius"	"%range"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_BUILDING"
+				"Duration"	"%duration"
+			}
 			"modifier_C08R_old_2"
 			{
 				"Aura"	"modifier_C08R_old_3"
@@ -694,12 +702,6 @@
 						"Type"	"DAMAGE_TYPE_MAGICAL"
 						"Damage"	"%AbilityDamage"
 					}
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%AbilityDamage"
-					}
 				}
 				"OnIntervalThink"
 				{
@@ -708,6 +710,21 @@
 						"Target"	"TARGET"
 						"Type"	"DAMAGE_TYPE_MAGICAL"
 						"Damage"	"%AbilityDamage"
+					}
+				}
+				"ThinkInterval"	"0.5"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
+			"modifier_C08R_old_4"
+			{
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%dmg"
 					}
 				}
 				"ThinkInterval"	"0.5"
@@ -731,6 +748,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"move_speed"	"-20 -30 -40 -50"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"15"
 			}
 		}
 		"AbilityDamage"	"90"

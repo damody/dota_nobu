@@ -429,6 +429,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_attack_range"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%atk"	//攻
 				}
 				"Orb"
 				{
@@ -467,6 +468,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"8"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk"	"40 50 60 70"
 			}
 		}
 	}

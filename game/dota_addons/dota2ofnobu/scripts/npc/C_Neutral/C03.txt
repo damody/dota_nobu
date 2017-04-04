@@ -118,7 +118,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityCooldown"				"16 15 14 13"
+		"AbilityCooldown"				"9 8 7 6"
 		"AbilityManaCost"				"115 135 155 175"
 		"AbilityDamage"					"200 300 400 500"
 
@@ -256,6 +256,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityDamage"				"90 140 190"
+		"AbilityManaCost"	"150 200 250"
 		"AOERadius"	"500"
 		"precache"
 		{
@@ -321,7 +322,7 @@
 		"AbilityCooldown"	"55 50 45 40"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"110 130 150 170"
+		"AbilityManaCost"	"170"
 
 		"OnSpellStart"
 		{
@@ -542,6 +543,7 @@
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityDamage"				"70 110 150"
+		"AbilityManaCost"	"250 350 450"
 		"AOERadius"	"500"
 		"precache"
 		{

@@ -822,7 +822,7 @@
 		"AbilityTextureName"		"custom/guanyu_xzizhan"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"10 9 8 7"
+		"AbilityCooldown"	"16 13 10 7"
 		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{
@@ -922,7 +922,7 @@
 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%per_atk_spd"
+					//"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%per_atk_spd"
 				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%per_mov_spd" 
 				}
 			}
@@ -950,8 +950,8 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"	"custom/zhangliao_cizhenkuijia_01"
 		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"		"130 100 70"
-		"AbilityManaCost"		"300 600 900"
+		"AbilityCooldown"		"130 120 110"
+		"AbilityManaCost"		"400 200 0"
 		"MaxLevel"					"3"
 		"RequiredLevel"				"6"
 		"LevelsBetweenUpgrades"		"6"

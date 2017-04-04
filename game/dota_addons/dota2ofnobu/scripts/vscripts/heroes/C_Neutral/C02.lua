@@ -513,6 +513,21 @@ function C02E_old_steal( keys )
 		damage_type=DAMAGE_TYPE_PURE,
 		damage=steal_hp
 	})
+	if not caster:HasModifier("modifier_C02E_old_hp") then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02E_old_hp",nil)
+		local handle = caster:FindModifierByName("modifier_C02E_old_hp")
+		if handle then
+			handle:SetStackCount(1)
+		end
+	else
+		local handle = caster:FindModifierByName("modifier_C02E_old_hp")
+		if handle then
+			local c = handle:GetStackCount()
+			handle:SetStackCount(c+1)
+		end
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02E_old_hp",nil)
+	end
+
 	target:ReduceMana(steal_mp)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,target,steal_hp,nil)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_MANA_LOSS,target,steal_mp,nil)

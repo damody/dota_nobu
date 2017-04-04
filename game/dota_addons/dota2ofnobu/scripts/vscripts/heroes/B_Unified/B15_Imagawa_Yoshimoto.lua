@@ -75,7 +75,7 @@ function B15E( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel() - 1
-	local spe_value = 8
+	local spe_value = ability:GetSpecialValueFor("mana_cost")
 
 	--【扣魔】
 	if caster:GetMana() < spe_value then

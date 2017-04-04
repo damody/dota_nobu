@@ -602,6 +602,16 @@
 
 		"Modifiers"
 		{
+			"modifier_C02E_old_hp"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Duration"	"15"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "%steal_hp"
+				}
+			}
 			"modifier_C02E_old"
 			{
 				"IsDebuff"			"1"

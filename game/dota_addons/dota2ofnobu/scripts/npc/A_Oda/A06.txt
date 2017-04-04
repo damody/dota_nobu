@@ -262,12 +262,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"A06W_speed2"	"1 0.81 0.69 0.6"
+				"A06W_speed2"	"1.2 1 0.85 0.75"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"A06W_dmg"	"0.7"
+				"A06W_dmg"	"0.4 0.5 0.6 0.7"
 			}
 		}
 	}
@@ -647,8 +647,8 @@
 			}
 			"02"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"CleavePercent"	"100"
+				"var_type"	"FIELD_FLOAT"
+				"CleavePercent"	"0.7"
 			}
 			"03"
 			{
@@ -712,7 +712,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dmg"	"200 300 400"
+				"dmg"	"180 270 360"
 			}
 		}
 		"OnCastbar"	"1"

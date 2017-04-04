@@ -37,7 +37,11 @@ function C01W2( keys )
 		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	for _,enemy in pairs(group) do
-		AMHC:Damage(caster,enemy, damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		if enemy:IsMagicImmune() then
+			AMHC:Damage(caster,enemy, damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		else
+			AMHC:Damage(caster,enemy, damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
 	end
 end
 
@@ -297,10 +301,14 @@ function C01W_old_action_on_target( keys )
 		nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	for _,enemy in pairs(group) do
-		AMHC:Damage(caster,enemy, damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		local ifx = ParticleManager:CreateParticle("particles/generic_gameplay/generic_hit_blood.vpcf",PATTACH_POINT,enemy)
 		ParticleManager:SetParticleControl(ifx,1,Vector((level+1)*1.5,0,0)) -- 出血量
 		ParticleManager:SetParticleControl(ifx,2,Vector(0,0,1500)) -- 血液濺射方向與速度
+		if enemy:IsMagicImmune() then
+			AMHC:Damage(caster,enemy, damage*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		else
+			AMHC:Damage(caster,enemy, damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
 	end
 end
 

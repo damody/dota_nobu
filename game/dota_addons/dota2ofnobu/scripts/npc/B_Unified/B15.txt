@@ -124,7 +124,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"55"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"175"
@@ -343,6 +343,11 @@
 				"var_type"	"FIELD_INTEGER"
 				"damage_bonus2"	"20 30 40 50"
 			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"8 10 12 14"
+			}
 		}
 	}
 
@@ -436,6 +441,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage_bonus"	"40 80 120 160"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"10 12 14 16"
 			}
 		}
 	}
@@ -596,7 +606,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCooldown"	"110 100 90"
+		"AbilityCooldown"	"110"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
 		"AOERadius"	"500"

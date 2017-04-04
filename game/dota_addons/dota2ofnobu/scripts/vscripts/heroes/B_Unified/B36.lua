@@ -125,8 +125,25 @@ end
 
 function B36R_OnSpellStart( event )
 	local ability = event.ability
-	local caster = event.caster 
-	local target =event.target
+	local caster = event.caster
+	
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		caster:GetAbsOrigin(),			-- 搜尋的中心點
+		nil, 							-- 好像是優化用的參數不懂怎麼用
+		ability:GetCastRange(),			-- 搜尋半徑
+		ability:GetAbilityTargetTeam(),	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false) 							-- 好像是優化用的參數不懂怎麼用
+	for _,unit in pairs(units) do
+		B36R_Dmage(event, unit)
+	end
+end
+
+function B36R_Dmage( event, target )
+	local ability = event.ability
+	local caster = event.caster
 	local vec = caster:GetOrigin()
 	local point = target:GetAbsOrigin()
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_e.vpcf", PATTACH_CUSTOMORIGIN, caster)
@@ -137,7 +154,7 @@ function B36R_OnSpellStart( event )
 	ParticleManager:SetParticleControl(particle3, 0, target:GetAbsOrigin()+Vector(30,-30,0))
 	local damageTable = {victim=target,   
 			attacker=caster,         
-			damage=ability:GetSpecialValueFor("B36R_damage")*caster:GetIntellect(),   
+			damage=ability:GetSpecialValueFor("B36R_damage"),
 			damage_type=ability:GetAbilityDamageType()} 
 	ApplyDamage(damageTable)   
 	local knockbackProperties =
@@ -153,22 +170,15 @@ function B36R_OnSpellStart( event )
 	}
 	target:AddNewModifier( caster, nil, "modifier_knockback", knockbackProperties )
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
-	Timers:CreateTimer(0.2,function()
-		local order = {UnitIndex = caster:entindex(),
-		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-		TargetIndex = target:entindex()}
-		ExecuteOrderFromTable(order)
-		end)
+	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_blast.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
 end
-
-
 
 function B36R_DelayedAction( keys )
 	local caster = keys.caster            
 	local target = keys.target
 	local ability =keys.ability
-	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_blast.vpcf", PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
+	
 	local damageTable = {victim=target,   
 		attacker=caster,         
 		damage=target:GetHealthDeficit()*ability:GetSpecialValueFor("B36R_damage_on_ground")/100,   

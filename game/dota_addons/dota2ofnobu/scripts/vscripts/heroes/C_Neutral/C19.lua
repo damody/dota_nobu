@@ -185,7 +185,7 @@ function C19T_old_OnSpellStart( keys )
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_ninja_cloth",nil)
 	nc = caster:FindModifierByName("modifier_ninja_cloth")
 	nc:SetStackCount(2)
-	Timers:CreateTimer(10,function()
+	Timers:CreateTimer(20,function()
 		nc:SetStackCount(1)
 		end)
 end

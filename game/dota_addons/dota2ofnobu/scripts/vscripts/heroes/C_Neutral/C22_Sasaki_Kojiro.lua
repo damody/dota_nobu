@@ -328,3 +328,8 @@ function C22T_old( keys )
 		ParticleManager:ReleaseParticleIndex(ifx)
 	end)
 end
+
+
+function C22T_upgrade( keys )
+	keys.caster:FindAbilityByName("C22D"):SetLevel(keys.ability:GetLevel()+1)
+end

@@ -42,7 +42,7 @@
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
 				"ModifierName"	"modifier_C01W"
-				"Duration"	"12"
+				"Duration"	"9"
 			}
 			"RunScript"
 			{
@@ -480,7 +480,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"aoe_damage"	"240"
+				"aoe_damage"	"240 280 320 360"
 			}
 			"02"
 			{

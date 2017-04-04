@@ -88,7 +88,6 @@ function C24E_OnAttackLanded( keys )
 			if unit:IsMagicImmune() then
 				ability:ApplyDataDrivenModifier( caster, unit, "modifier_stunned", {duration=stun_time*0.5} )
 			else
-				AMHC:Damage(caster,unit, keys.dmg ,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				ability:ApplyDataDrivenModifier( caster, unit, "modifier_stunned", {duration=stun_time} )
 			end
 			local ifx = ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_ABSORIGIN,unit)

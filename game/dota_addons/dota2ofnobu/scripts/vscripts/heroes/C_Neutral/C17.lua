@@ -33,11 +33,10 @@ function new_C17R_dmg( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local dmg = caster:GetIntellect() * 4  
 	local dmg2 = ability:GetLevelSpecialValueFor("dmg",ability:GetLevel() - 1)
 	--【DMG】
 	if (not target:IsBuilding()) then
-		AMHC:Damage( caster,target,dmg+dmg2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		AMHC:Damage( caster,target,dmg2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 	--【DEBUG】
 	----print(dmg)
@@ -348,11 +347,19 @@ function C17R_old_on_trigger( keys )
 					Timers:CreateTimer(0.1,function()
 						damage_table.victim = unit
 						ApplyDamage(damage_table)
+						if not unit:IsRealHero() then
+							ApplyDamage(damage_table)
+							ApplyDamage(damage_table)
+						end
 						unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
 					end)
 				else
 					damage_table.victim = unit
 					ApplyDamage(damage_table)
+					if not unit:IsRealHero() then
+						ApplyDamage(damage_table)
+						ApplyDamage(damage_table)
+					end
 					unit.c17r_old = target
 					unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
 					Timers:CreateTimer(1,function()

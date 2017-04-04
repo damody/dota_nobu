@@ -455,7 +455,7 @@
 				}
 				"Properties"	
 				{
-					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-25"
+					//"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-25"
 					//"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-100"
 				}
 				"OnCreated"
@@ -806,7 +806,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown"	"140"
+		"AbilityCooldown"	"130 120 110"
 		"AbilityManaCost"	"300 400 500"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"

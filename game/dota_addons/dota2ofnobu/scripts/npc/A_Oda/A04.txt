@@ -127,7 +127,6 @@
 				{
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%basic_attack_speed"
 					"MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE"	"%basic_speed"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"	//魔抗
 				}
 				"OnAttackLanded"
 				{
@@ -1023,8 +1022,8 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"10"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"2"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"7"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"1"
 				}
 				"OnCreated"
 				{
@@ -1235,7 +1234,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"debuff_duration"		"0.5 1.0 1.5 2.0"
+				"debuff_duration"		"1 2 3 4"
 			}
 		}
 	}

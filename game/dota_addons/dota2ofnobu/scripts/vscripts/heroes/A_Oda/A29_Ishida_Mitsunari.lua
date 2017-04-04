@@ -18,7 +18,11 @@ function A29R_mana_lost( keys )
 	local i = keys.ability:GetLevel() - 1
 	local current_mana = caster:GetMana()
 	local manalost =  math.min( current_mana, keys.ability:GetLevelSpecialValueFor("mana_lost", i) )
-	keys.unit:ReduceMana(manalost)
+	if keys.unit:IsMagicImmune() then
+		keys.unit:ReduceMana(manalost*0.5)
+	else
+		keys.unit:ReduceMana(manalost)
+	end
 	ability:ApplyDataDrivenModifier(caster,keys.unit,"modifier_A29R_3",{duration = 5})
 end
 

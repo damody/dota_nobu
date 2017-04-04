@@ -30,14 +30,18 @@ function A19W_OnSpellStart( keys )
 			FIND_ANY_ORDER,					-- 結果的排列方式
 			false)
 		for _,unit in ipairs(units) do
-			ApplyDamage({
+			local tbl = {
 				victim = unit,
 				attacker = caster,
 				ability = ability,
 				damage = ability:GetSpecialValueFor("dmg"),
 				damage_type = ability:GetAbilityDamageType(),
 				damage_flags = DOTA_DAMAGE_FLAG_NONE,
-			})
+			}
+			if unit:IsBuilding() then
+				tbl.damage = tbl.damage * 0.2
+			end
+			ApplyDamage(tbl)
 			ability:ApplyDataDrivenModifier( caster, unit, "modifier_A19W", {} )
 		end		
 		return 1
@@ -264,14 +268,18 @@ function A19W_old_OnSpellStart( keys )
 			FIND_ANY_ORDER,					-- 結果的排列方式
 			false)
 		for _,unit in ipairs(units) do
-			ApplyDamage({
+			tbl={
 				victim = unit,
 				attacker = caster,
 				ability = ability,
 				damage = dmg1,
 				damage_type = ability:GetAbilityDamageType(),
 				damage_flags = DOTA_DAMAGE_FLAG_NONE,
-			})
+			}
+			if unit:IsBuilding() then
+				tbl.damage = tbl.damage * 0.2
+			end
+			ApplyDamage(tbl)
 		end		
 		return 1
 	end)
@@ -292,14 +300,18 @@ function A19W_old_OnSpellStart( keys )
 			FIND_ANY_ORDER,					-- 結果的排列方式
 			false)
 		for _,unit in ipairs(units) do
-			ApplyDamage({
+			tbl={
 				victim = unit,
 				attacker = caster,
 				ability = ability,
 				damage = dmg2,
 				damage_type = ability:GetAbilityDamageType(),
 				damage_flags = DOTA_DAMAGE_FLAG_NONE,
-			})
+			}
+			if unit:IsBuilding() then
+				tbl.damage = tbl.damage * 0.2
+			end
+			ApplyDamage(tbl)
 		end		
 		return 1
 	end)

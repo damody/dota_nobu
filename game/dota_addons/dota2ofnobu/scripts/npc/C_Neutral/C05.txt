@@ -128,7 +128,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityCooldown"				"11 9 7 5"
+		"AbilityCooldown"				"5"
 		"AbilityManaCost"				"90"
 		"AbilityDamage"					"200 300 400 500"
 
@@ -304,7 +304,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"delay"		"2.5 2 1.5"
+				"delay"		"1.5"
 			}
 			"03"
 			{
@@ -370,8 +370,8 @@
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 
-		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"160 200 240 280"
+		"AbilityCooldown"				"29 26 23 20"
+		"AbilityManaCost"				"160 180 200 220"
 
 		"AbilitySpecial"
 		{
@@ -622,7 +622,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_think"	"60 100 150"
+				"damage_per_think"	"70 110 180"
 			}
 			"02"
 			{

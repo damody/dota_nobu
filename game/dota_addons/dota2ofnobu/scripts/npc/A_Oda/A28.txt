@@ -35,7 +35,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"20"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -114,7 +114,7 @@
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"9"
+		"AbilityCooldown"	"13 12 11 9"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"140 160 180 220"
@@ -260,118 +260,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"100 135 170 205"
 	}
-	// 羽柴秀吉 創念
-	"old_A28E"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"zuus_arc_lightning"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastPoint"	"0.1"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"11 9 7 5"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"120 140 160 180"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"800"
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
-			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
-			"soundfile"	"sounds/weapons/hero/zuus/arc_lightning.vsnd"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"old_A28E.vo1"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_arc_lightning_datadriven"
-				"Target"	"TARGET"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Zuus.ArcLightning.Cast"
-				"Target"	"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-				"Function"	"A28E"
-				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
-			}
-			"AttachEffect"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
-				"EffectAttachType"	"start_at_customorigin"
-				"ControlPointEntities"
-				{
-					"CASTER"	"start_at_origin"
-					"CASTER"	"attach_attack1"
-				}
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_arc_lightning_datadriven"
-			{
-				"IsHidden"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-						"Function"	"A28E_Jump"
-						"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
-					}
-					"Heal"
-		            {
-		                "Target"        "TARGET"
-		                "HealAmount"    "%AbilityDamage"
-		            }
-				}
-			}
-		}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"650 650 650 650"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"jump_count"	"15"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"jump_delay"	"0.3 0.2 0.1 0.05"
-			}
-		}
-		// Damage.
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"150 300 450 600"
-	}
+	
 	//羽柴秀吉 縛足之沼
 	"A28R"
 	{
@@ -735,7 +624,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 14 16 18"
+		"AbilityCooldown"				"30"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

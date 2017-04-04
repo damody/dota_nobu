@@ -194,7 +194,7 @@
 			{
 				"Target"	"TARGET"
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C21_Miyamoto Musashi.lua"
-				"Function"	"Trig_C21EActions"
+				"Function"	"C21E_OnSpellStart"
 			}
 			"AttachEffect"
 			{
@@ -239,7 +239,7 @@
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 					//"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"Duration"	"10"
+				"Duration"	"5"
 			}
 		}
 	}
@@ -511,7 +511,7 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"attack_delay"	"1.2"
+				"attack_delay"	"1"
 			}
 			"03"
 			{

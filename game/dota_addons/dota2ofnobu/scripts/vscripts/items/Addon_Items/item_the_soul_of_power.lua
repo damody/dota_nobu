@@ -10,6 +10,14 @@ function item_soul_OnTakeDamage( event )
 				caster:StartGestureWithPlaybackRate(ACT_DOTA_DIE,1)
 				caster:SetHealth(caster:GetMaxHealth())
 				caster:SetHealth(caster:GetMaxMana())
+				local am = caster:FindAllModifiers()
+				for _,v in pairs(am) do
+					if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+						if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+							caster:RemoveModifierByName(v:GetName())
+						end
+					end
+				end
 				ability:ApplyDataDrivenModifier(caster,caster,"modifier_the_soul_of_power2",{duration = 3})
 				ability:ApplyDataDrivenModifier(caster,caster,"modifier_invulnerable",{duration = 8})
 				Timers:CreateTimer(1, function()

@@ -481,8 +481,12 @@ function a13e_modifier:OnIntervalThink()
 				for _,it in pairs(direUnits) do
 
 					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") and not string.match(it:GetUnitName(), "warrior_souls") and not it:HasAbility("majia") then
-						ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
-							damage_type = self.damage_type, ability = self:GetAbility()})
+						local tbl = { victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
+							damage_type = self.damage_type, ability = self:GetAbility()}
+						if it:IsMagicImmune() then
+							tbl.damage = tbl.damage*0.5
+						end
+						ApplyDamage(tbl)
 						hashook = true
 						if (it:HasModifier("modifier_invisible")) then
 							it:RemoveModifierByName("modifier_invisible")

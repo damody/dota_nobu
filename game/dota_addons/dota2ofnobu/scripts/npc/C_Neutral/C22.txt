@@ -19,7 +19,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"D"
-		"MaxLevel"	"1"
+		"MaxLevel"	"4"
 		"AbilityCooldown"	"6"
 		"AbilityManaCost"	"50"
 		"OnSpellStart"
@@ -46,7 +46,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"175"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspd"
 				}
 				"Duration"	"4"
 				"IsHidden"	"0"
@@ -68,6 +68,14 @@
 						"Function"	"C22R"
 					}
 				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"atkspd"	"175 200 225 250"
 			}
 		}
 	}
@@ -452,6 +460,14 @@
 			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
 			"particle"  "particles/econ/items/monkey_king/arcana/death/monkey_king_spring_arcana_death.vpcf"
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/C_Neutral/C22_Sasaki_Kojiro.lua"
+				"Function"			"C22T_upgrade"
+			}
+		}
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -542,19 +558,39 @@
 				"Duration"   "%stun_time"
 				"Target" 	 "TARGET"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C22W_old"
+				"Target" 		"CASTER"
+			}
 			"FireSound"
 			{
 				"Target"	"TARGET"
 				"EffectName"	"Hero_Sven.StormBoltImpact"
 			}
 		}
-
+		"Modifiers"
+		{
+			"modifier_C22W_old"
+			{
+				"Duration"		"3"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspd"
+				}
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"stun_time"			"0.5 1 1.5 2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atkspd"	"50 100 150 200"
 			}
 		}
 		"AbilityDamage"				"150 250 350 450"
@@ -625,6 +661,11 @@
 				"Target" 		"TARGET"
 				"Duration"		"%stun_time"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C22E_old"
+				"Target" 		"CASTER"
+			}
 			"DelayedAction"
 			{
 				"Delay"     "%pull_back_delay"
@@ -655,6 +696,14 @@
 				
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
 			}
+			"modifier_C22E_old"
+			{
+				"Duration"		"3"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspd"
+				}
+			}
 		}
 		"AbilitySpecial"
 		{
@@ -667,6 +716,11 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"pull_back_delay"	"0.1"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atkspd"	"50 100 150 200"
 			}
 		}
 		"AbilityDamage"	"100 200 300 400"

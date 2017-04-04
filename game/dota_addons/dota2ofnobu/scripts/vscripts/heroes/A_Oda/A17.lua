@@ -123,7 +123,7 @@ function A17T_Succes_Attack( keys )
 		if v:IsHero() then
 			ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v)
 		end
-		if v~=target then
+		if v~=target and not v:IsBuilding() then
 			AMHC:Damage( caster,v,dmg*0.6,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 		end
 	end	

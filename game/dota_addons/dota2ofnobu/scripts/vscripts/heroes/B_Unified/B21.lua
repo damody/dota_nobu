@@ -319,13 +319,20 @@ function B21T_old_OnHealthChange( keys )
 	local ability = keys.ability
 	local hp_threshold = ability:GetSpecialValueFor("hp_threshold")
 	local hp = caster:GetHealth()
-
+	if hp <= hp_threshold then
+		if not caster:HasModifier("modifier_B21T_old_cd") then
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old_cd",nil)
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old_no_damage",nil)
+			caster:SetHealth(hp_threshold)
+			print("lock hp")
+		end
+	end
 	if ability.modifier == nil then
-		if hp < hp_threshold then
+		if hp <= hp_threshold then
 			ability.modifier = ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old",nil)
 		end
 	else
-		if hp >= hp_threshold then
+		if hp > hp_threshold then
 			caster:RemoveModifierByNameAndCaster("modifier_B21T_old",caster)
 			ability.modifier = nil
 		end

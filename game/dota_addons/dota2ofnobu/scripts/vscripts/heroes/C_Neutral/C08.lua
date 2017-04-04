@@ -497,13 +497,13 @@ function modifier_C08D_old_duge_OnTakeDamage( event )
 				local newMana =caster:GetMana()-800
 				caster:SetHealth(newHealth)
 				caster:SetMana(newMana)
-				caster:AddNewModifier(caster, ability, "modifier_C08D_old", {duration = 16})
+				caster:AddNewModifier(caster, ability, "modifier_C08D_old", {duration = 10})
 				caster:AddNewModifier(caster, ability, "modifier_C08D_old_armor", {})
 				GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C08D_old_timer"), 
 				function( )
 					c08d_lock=false
 					return nil
-				end, 16)
+				end, 10)
 			end
 		end
 	end
@@ -645,6 +645,8 @@ function C08R_old_OnSpellStart( keys )
 	dummy:AddAbility("majia_vison"):SetLevel(1)
 	--modifier
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_2",nil)
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_1",nil)
+	
 	local particle = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_POINT,dummy)
 	ParticleManager:SetParticleControl(particle,0,point2)
 	--紀錄
@@ -667,6 +669,7 @@ function C08R_old_OnSpellStart( keys )
 			dummy:AddAbility("for_no_damage"):SetLevel(1)
 			--modifier
 			ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_2",nil)
+			ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_1",nil)
 			--sound
 			particle = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_POINT,dummy)
 			ParticleManager:SetParticleControl(particle,0,Vector(x2,y2))
@@ -678,6 +681,7 @@ function C08R_old_OnSpellStart( keys )
 		dummy:AddAbility("for_no_damage"):SetLevel(1)
 		--modifier
 		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_2",nil)
+		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C08R_old_1",nil)
 		particle = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_POINT,dummy)
 		ParticleManager:SetParticleControl(particle,0,Vector(x3,y3))
 		--紀錄

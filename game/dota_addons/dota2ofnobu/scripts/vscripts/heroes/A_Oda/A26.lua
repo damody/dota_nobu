@@ -275,7 +275,7 @@ function A26T_OnProjectileHitUnit( keys )
 				victim = unit,
 				attacker = caster,
 				ability = ability,
-				damage = (ability:GetAbilityDamage() + caster:GetLevel()*10)*0.5,
+				damage = ability:GetAbilityDamage()*0.5,
 				damage_type = ability:GetAbilityDamageType(),
 				damage_flags = DOTA_DAMAGE_FLAG_NONE
 			})
@@ -284,7 +284,7 @@ function A26T_OnProjectileHitUnit( keys )
 				victim = unit,
 				attacker = caster,
 				ability = ability,
-				damage = ability:GetAbilityDamage() + caster:GetLevel()*10,
+				damage = ability:GetAbilityDamage(),
 				damage_type = ability:GetAbilityDamageType(),
 				damage_flags = DOTA_DAMAGE_FLAG_NONE
 			})

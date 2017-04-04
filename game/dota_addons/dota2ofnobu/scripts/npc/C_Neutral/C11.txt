@@ -41,7 +41,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.1"
 
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"15 13 11 9"
 		"AbilityManaCost"				"110 130 150 170"
 		"AbilityDamage"					"100 150 200 250"
 
@@ -674,7 +674,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"remove_mana" "80 100 120"
+				"remove_mana" "150 250 350"
 			}
 			"02" // 實際傷害 = 移除的法力 * damage_adjust_for_[type]
 			{

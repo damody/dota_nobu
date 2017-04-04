@@ -278,12 +278,12 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"38 42 46"
+				"duration"		"33 37 41"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"add_base_attack"	"90 120 150"
+				"add_base_attack"	"50 70 90"
 			}
 			"04"
 			{
@@ -317,8 +317,12 @@
 		{
 			"ApplyModifier"
 			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_B04T"
-				"Target" 		"CASTER"
 				"Duration"		"%duration"
 			}
 			"FireSound"
@@ -337,6 +341,10 @@
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%add_base_attack"
 				    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%add_attack_range"
 				    "MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "alternate"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnCreated"
 				{
@@ -763,8 +771,12 @@
 		{
 			"ApplyModifier"
 			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_B04T_old"
-				"Target" 		"CASTER"
 				"Duration"		"%duration"
 			}
 		}
@@ -780,6 +792,10 @@
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%add_base_attack"
 				    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%add_attack_range" 
 				    "MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS" "alternate"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnCreated"
 				{

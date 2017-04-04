@@ -737,17 +737,6 @@
 					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%bonus_atk_percent"
 				}
 			}
-			"modifier_B31R_old_passive2"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%bonus_atk_percent2"
-				}
-			}
 			"modifier_B31R_old_aura"
 			{
 				"IsHidden"	"1"
@@ -756,21 +745,9 @@
 				"Aura"          	"modifier_B31R_old_passive"
 				"Aura_Radius"   	"600"
 				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 				"Aura_ApplyToCaster" "1"
-			}
-			"modifier_B31R_old_aura2"
-			{
-				"IsHidden"	"1"
-				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Passive"	"1"
-				"Aura"          	"modifier_B31R_old_passive2"
-				"Aura_Radius"   	"600"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				"Aura_ApplyToCaster" "0"
 			}
 		}
 		"AbilitySpecial"
@@ -779,11 +756,6 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_atk_percent"			"5 10 15 20"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_atk_percent2"			"10 20 30 40"
 			}
 		}
 
@@ -810,7 +782,7 @@
 		//"AOERadius"	"400"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"180 170 160"
+		"AbilityCooldown"	"500 600 700"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"250 310 370"
@@ -911,7 +883,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_def"	"10 20 30"
+				"bonus_def"	"10 15 20"
 			}
 
 		}

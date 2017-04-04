@@ -678,6 +678,16 @@
 				"var_type"			"FIELD_INTEGER"
 				"hp_threshold"		"1600 1600 1600"
 			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"regen"		"22 33 44"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"no_damage"		"4 7 10"
+			}
 		}
 		"OnUpgrade"
 		{
@@ -712,7 +722,6 @@
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
-
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%add_str"
@@ -736,6 +745,23 @@
 					}
 				}
 			}
+			"modifier_B21T_old_cd"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"Duration"		"30"
+			}
+			"modifier_B21T_old_no_damage"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"Duration"		"%no_damage"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
+				}
+			}
 			"modifier_B21T_old"
 			{
 				"Properties"
@@ -743,6 +769,7 @@
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" 	"%add_attack"
 				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" 	"%add_armor" 
 				    "MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-50"
+				    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"	//回血
 				}
 
 				"OnCreated"

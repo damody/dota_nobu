@@ -111,9 +111,11 @@ function AON_Cleave_A07_old(keys)
 				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
 			end
 			if it ~= target then
-				AMHC:Damage( caster,it,keys.dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			else
-				AMHC:Damage( caster,it,keys.dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
 		end
 	end
@@ -125,6 +127,7 @@ function AON_Cleave_A06(keys)
 	local target = keys.target
 	if not target:IsBuilding() then
 		local ability = keys.ability
+		local dmgp = ability:GetSpecialValueFor("CleavePercent")
 		local level = ability:GetLevel() - 1
 		local dmg = keys.dmg
 		local per_atk = 0
@@ -140,9 +143,9 @@ function AON_Cleave_A06(keys)
 
 		for _, it in pairs(group) do
 			if it:IsMagicImmune() then
-				AMHC:Damage( caster,it,keys.dmg*0.3,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg*dmgp*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			else
-				AMHC:Damage( caster,it,keys.dmg*0.6,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg*dmgp,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
 		end
 	end
