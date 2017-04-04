@@ -8849,9 +8849,16 @@
 				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "30"	//回血
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "20"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "10"
 				}
+			}
+			"modifier_bizennosafunekanemitsu_no"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"30"
 			}
 			"Passive_bizennosafunekanemitsu"
 			{

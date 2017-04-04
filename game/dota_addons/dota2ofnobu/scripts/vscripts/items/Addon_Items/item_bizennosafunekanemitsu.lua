@@ -11,13 +11,16 @@ function Shock( keys )
 		if handle then
 			handle:SetStackCount(1)
 		end
-	else
+	elseif not caster:HasModifier("modifier_bizennosafunekanemitsu_no") then
 		local handle = caster:FindModifierByName("modifier_bizennosafunekanemitsu")
 		if handle then
 			local c = handle:GetStackCount()
 			c = c + 1
 			if c > 5 then
 				c = 5
+			end
+			if c == 5 then
+				ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu_no",nil)
 			end
 			ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu",nil)
 			handle:SetStackCount(c)
