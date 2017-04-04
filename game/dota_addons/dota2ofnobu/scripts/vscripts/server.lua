@@ -136,10 +136,12 @@ function Nobu:CloseRoom()
 		local player = PlayerInstanceFromIndex(i)
 		if (player ~= nil) then
 			local hero = player:GetAssignedHero()
-			indata["id_"..i.."_k"] = tostring(hero:GetKills())
-			indata["id_"..i.."_d"] = tostring(hero:GetDeaths())
-			indata["id_"..i.."_a"] = tostring(hero:GetAssists())
-			indata["id_"..i.."_sk"] = tostring(hero.kill_count)
+			if hero then
+				indata["id_"..i.."_k"] = tostring(hero:GetKills())
+				indata["id_"..i.."_d"] = tostring(hero:GetDeaths())
+				indata["id_"..i.."_a"] = tostring(hero:GetAssists())
+				indata["id_"..i.."_sk"] = tostring(hero.kill_count)
+			end
 		end
 	end
 

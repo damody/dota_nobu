@@ -78,10 +78,10 @@ function Nobu:OnHeroIngame( keys )
         end
         ]]
       end
-      Timers:CreateTimer(1, function ()
+      Timers:CreateTimer(3, function ()
         for _,m in ipairs(hero.donkey:FindAllModifiers()) do
           if m:GetName() ~= "modifier_for_magic_immune" and m:GetName() ~= "modifier_courier_transfer_items" then
-            if not string.match(m:GetName(), "Passive_") and not string.match(m:GetName(), "courier_burst") then
+            if not string.match(m:GetName(), "Passive_") and not string.match(m:GetName(), "courier_burst")and not m:GetName() == "modifier_invulnerable" then
               hero.donkey:RemoveModifierByName(m:GetName())
             end
           end

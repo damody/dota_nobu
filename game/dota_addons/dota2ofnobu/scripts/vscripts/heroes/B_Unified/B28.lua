@@ -6,11 +6,10 @@ function B28E( keys )
 	local target = keys.target
 	caster.B28E_target = target
 
-	local particle3 = ParticleManager:CreateParticle("particles/b28e/b28e.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	ParticleManager:SetParticleControlEnt(particle3, 2, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(particle3, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	local particle = ParticleManager:CreateParticle("particles/b28e/b28e.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	ParticleManager:SetParticleControlEnt(particle, 2, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(particle, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	
-	caster.B28E_P = particle
 	Timers:CreateTimer(0.2, function ()
       	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_B28E") and caster:HasModifier("modifier_B28E2") then
       		local particle2 = ParticleManager:CreateParticle("particles/b28e/b28e.vpcf", PATTACH_CUSTOMORIGIN, caster)
@@ -18,9 +17,15 @@ function B28E( keys )
 			ParticleManager:SetParticleControlEnt(particle2, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
       		return 0.2
       	else
-      		target:RemoveModifierByName("modifier_B28E")
-      		caster.B28E_target = nil
-      		ParticleManager:DestroyParticle(particle2,false)
+      		if IsValidEntity(target) then
+      			target:RemoveModifierByName("modifier_B28E")
+      		end
+      		if IsValidEntity(caster) then
+      			caster.B28E_target = nil
+      		end
+      		if particle then
+      			ParticleManager:DestroyParticle(particle,false)
+      		end
       		return nil
       	end
     end)

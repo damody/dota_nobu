@@ -97,7 +97,11 @@ function ShockTarget( keys, target )
 			isend = true
 		end)
 	Timers:CreateTimer(0, function() 
-			ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
+			if IsValidEntity(target) then
+				ParticleManager:SetParticleControl(shield,1,target:GetAbsOrigin()+Vector(0, 0, 0))
+			else
+				isend = true
+			end
 			if not isend then
 				return 0.2
 			else

@@ -178,7 +178,7 @@ function B09R_OnToggleOn( keys )
 	caster:FindModifierByName("modifier_B09R").b09r_manadamage=ability:GetSpecialValueFor("manadamage")
 	caster.b09r_particle = ParticleManager:CreateParticle("particles/a04r3/a04r3.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	local shield_size = 50
-	ParticleManager:SetParticleControl(caster.b09r_particle, 1, Vector(shield_size,0,shield_size))
+	ParticleManager:SetParticleControl(caster.b09r_particle, 1, Vector(99999,0,1))
 	ParticleManager:SetParticleControl(caster.b09r_particle, 2, Vector(shield_size,0,shield_size))
 	ParticleManager:SetParticleControl(caster.b09r_particle, 4, Vector(shield_size,0,shield_size))
 	ParticleManager:SetParticleControl(caster.b09r_particle, 5, Vector(shield_size,0,0))

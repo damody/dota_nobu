@@ -349,6 +349,14 @@ function to_war_magic_unit2(keys)
 		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
+		local pres = prestige[donkey:GetTeamNumber()]
+		local maxmana = math.floor(pres / 60) * 5 + 20
+		if donkey:GetMana() > maxmana then
+			donkey:SetMana(maxmana)
+		end
+		return 0.2
+		end)
+	Timers:CreateTimer(1, function()
     	for playerID = 0, 14 do
     		local id       = playerID
 	  		local p        = PlayerResource:GetPlayer(id-1)
@@ -427,18 +435,18 @@ function to_soldier_Oda(keys)
 	-- 統計威望
 	local team = donkey:GetTeamNumber()
 	Timers:CreateTimer(1, function()
-		prestige[2] = _G.goldprestige[2]
-		prestige[3] = _G.goldprestige[3]
+		prestige[2] = goldprestige[2] or 0
+		prestige[3] = goldprestige[3] or 0
 		local sumkill = 0
 		for playerID = 0, 14 do
     		local id       = playerID
 	  		local p        = PlayerResource:GetPlayer(id)
 	    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
 			  local hero     = p: GetAssignedHero()
-			  if (hero.kill_count ~= nil) then
+			  if (hero.kill_count ~= nil)  then
 			  	prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_count
 			  end
-			  if (hero.kill_hero_count ~= nil) then
+			  if (hero.kill_hero_count ~= nil)  then
 			  	prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_hero_count*5
 			  end
 			end

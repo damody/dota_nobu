@@ -3,20 +3,14 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 2
-	m_flConstantRadius = 8.000000
-	m_ConstantColor =
-	[
-		50,
-		74,
-		111,
-		55,
-	]
-	m_Renderers =
+	m_flConstantRadius = 8.0
+	m_ConstantColor = [ 50, 74, 111, 55 ]
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderModels"
 			m_nSkin = 3
-			m_ModelList =
+			m_ModelList = 
 			[
 				{
 					m_model = resource:"models/particle/sphere.vmdl"
@@ -27,7 +21,7 @@
 			m_nLOD = 1
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_PositionLock"
@@ -37,14 +31,14 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_RateMax = 8.000000
-			m_RateMin = 4.000000
+			m_RateMax = 8.0
+			m_RateMin = 4.0
 			m_nField = 4
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_RateMax = 24.000000
-			m_RateMin = -24.000000
+			m_RateMax = 24.0
+			m_RateMin = -24.0
 			m_nField = 12
 		},
 		{
@@ -53,15 +47,15 @@
 		},
 		{
 			_class = "C_OP_EndCapTimedDecay"
-			m_flDecayTime = 0.125000
+			m_flDecayTime = 0.125
 		},
 		{
 			_class = "C_OP_LerpEndCapVector"
 			m_nFieldOutput = 6
-			m_flLerpTime = 0.125000
+			m_flLerpTime = 0.125
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -69,34 +63,46 @@
 		{
 			_class = "C_INIT_RandomVector"
 			m_nFieldOutput = 21
-			m_vecMax =
-			[
-				1.000000,
-				1.000000,
-				1.000000,
-			]
-			m_vecMin =
-			[
-				-1.000000,
-				-1.000000,
-				-1.000000,
-			]
+			m_vecMax = [ 1.0, 1.0, 1.0 ]
+			m_vecMin = [ -1.0, -1.0, -1.0 ]
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 2
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/a04r3/a04r3_a.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/a04r3/a04r3_b.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

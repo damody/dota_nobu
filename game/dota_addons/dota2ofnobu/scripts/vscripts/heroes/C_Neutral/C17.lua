@@ -282,7 +282,9 @@ function C17R_old( keys )
 	else
 	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT",point,true,caster,caster,caster:GetTeam())
 	end
-	ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)
+	if ability then
+		ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)
+	end
 	unit:AddAbility("for_magic_immune"):SetLevel(1)
 end
 

@@ -63,7 +63,7 @@ function nodmg_courier( keys )
   local units = FindUnitsInRadius(caster:GetTeamNumber(),  
         caster:GetAbsOrigin(),nil,1400,DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
           DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 
           FIND_ANY_ORDER, 
         false)
   for _,it in pairs(units) do

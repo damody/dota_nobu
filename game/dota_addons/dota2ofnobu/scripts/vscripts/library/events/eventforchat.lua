@@ -281,9 +281,11 @@ local function chat_of_test(keys)
 		
 		if string.match(s,"lv") then
 			local lvmax = tonumber(string.match(s, '%d+'))
-			for i=1,lvmax do
-		      caster:HeroLevelUp(true)
-		    end
+			if lvmax then
+				for i=1,lvmax do
+			      caster:HeroLevelUp(true)
+			    end
+			end
 		end
 		if s == "ShuaGuai" then
 			print("ShuaGuai")

@@ -599,6 +599,14 @@
 						"Function"              "B23D_distanceDetector_hero"
 					}
 				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"        	"scripts/vscripts/heroes/B_Unified/B23.lua"
+						"Function"              "B23D_OnCreated"
+					}
+				}
 			}
 
 			"modifier_B23D_distanceDetector_ghost"

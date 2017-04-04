@@ -11512,8 +11512,8 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
@@ -11521,7 +11521,7 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "8.5" 	//回魔
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "200" 	//回魔%
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
@@ -14564,8 +14564,8 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "5"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "5"		//敏
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "5"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
@@ -14573,7 +14573,7 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "8.5" 	//回魔
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "200" 	//回魔%
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
@@ -16125,7 +16125,7 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "50"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "35"
 				}
 			}
 			
@@ -16136,8 +16136,8 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "40"	//智
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "40"	//攻
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "10"	//攻
 				}
 			}
 		}
@@ -16336,7 +16336,7 @@
 				"IsHidden"	"0"
 				"IsDebuff"	"0"
 
-				"ThinkInterval"	"0.1"
+				"ThinkInterval"	"0.2"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -16344,6 +16344,18 @@
 						"ScriptFile"	"items/Addon_Items/item_ksitigarbha.lua"
 						"Function"	"SplitShotLaunch"
 					}
+				}
+			}
+			// 偵隱
+			"modifier_great_sword_of_hurricane_auto_attack2"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+
+				"ThinkInterval"	"2"
+				"OnIntervalThink"
+				{
 					"ApplyModifier"
 	                {
 	                    "Target"
@@ -16355,7 +16367,7 @@
 	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 	                    }
 	                    "ModifierName"      "modifier_truesight"
-	                    "Duration"      "0.50"
+	                    "Duration"      "3"
 	                }
 				}
 			}

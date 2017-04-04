@@ -7,7 +7,9 @@ function Shock( keys )
 	local dummy = CreateUnitByName("ksitigarbha_stick", ability:GetCursorPosition(),false,caster,caster,caster:GetTeamNumber())
 	dummy:AddNewModifier(caster,nil,"modifier_kill",{duration=aura_duration})
 	dummy:SetOwner(caster)
+	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=0.1})
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_great_sword_of_hurricane_auto_attack", {duration=aura_duration})
+	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_great_sword_of_hurricane_auto_attack2", {duration=aura_duration})
 
 	local spell_hint_table = {
 		duration   = aura_duration,		-- 持續時間

@@ -366,7 +366,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.6"
+		"AbilityCastPoint"	"0.1"
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
@@ -811,8 +811,8 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.3 0.3 0.3 0.3"
-		"AbilityCooldown"	"15"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"15 12 9 7"
 		"AbilityDamage"		"150 250 350 450"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
@@ -894,7 +894,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"	"0.6"
+		"AbilityCastPoint"	"0.1"
 		"MaxLevel"	"3"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"
@@ -932,7 +932,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "15"	//防禦
 				}
 			}
 		}
@@ -943,7 +943,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"base_hp"	"3000 4000 5000"
+				"base_hp"	"5000 7000 9000"
 			}
 			"02"
 			{

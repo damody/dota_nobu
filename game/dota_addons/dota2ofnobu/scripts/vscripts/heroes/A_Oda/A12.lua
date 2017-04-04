@@ -83,6 +83,7 @@ function A12E_OnAttackLanded2( keys )
 	if caster.A12E_CHANCE == nil then
 		caster.A12E_CHANCE = 0
 	end
+	caster.A12E_CHANCE = RandomInt(0,10)
 	if caster:IsAlive()  then
 		if caster.A12E_CHANCE >= 7 then 
 			local cure = caster:GetMaxMana() * cure_count / 100

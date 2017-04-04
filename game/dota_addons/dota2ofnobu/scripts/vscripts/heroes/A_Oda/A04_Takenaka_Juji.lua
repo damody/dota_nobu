@@ -442,7 +442,7 @@ function A04T( keys )
 			--effect:傷害+暈眩
 			for _,it in pairs(direUnits) do
 				if (not(it:IsBuilding())) then
-					if (not it:HasModifier("modifier_freezing_field_debuff_datadriven")) then
+					if (not it:HasModifier("modifier_freezing_field_debuff_datadriven")) and IsValidEntity(ability) then
 						ability:ApplyDataDrivenModifier(caster,it,"modifier_freezing_field_debuff_datadriven", {duration=5})
 					end
 					AMHC:Damage(caster,it,damage_scepter,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
