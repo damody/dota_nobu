@@ -47,19 +47,10 @@ function Nobu:PickHero( keys )
       
       
       caster.name = heromap[name]
-      if _G.heromap_version[nobu_id] ~= nil then
-        local askill = _G.heromap_autoskill[nobu_id]["16"]
-        for si=1,#askill do
-          local skname = nobu_id..askill:sub(si,si)
-          if caster:FindAbilityByName(skname) then
-            caster:FindAbilityByName(skname):SetLevel(1)
-          end
-        end
-      end
+
       if nobu_id == "A04" then -- 竹中重治
         Timers:CreateTimer(1, function()
           if caster:GetLevel() >= 18 then
-            print("A04D_old")
             if caster:FindAbilityByName("A04D_old") then
               caster:FindAbilityByName("A04D_old"):SetLevel(1)
             end
@@ -77,9 +68,6 @@ function Nobu:PickHero( keys )
           end
           return 1
         end)
-      elseif nobu_id == "A12" then --大谷吉繼
-        caster:FindAbilityByName("A12D"):SetLevel(1)
-        caster:FindAbilityByName("A12D"):SetActivated(false)
       elseif nobu_id == "B15" then -- 今川義元
         Timers:CreateTimer(1, function ()
           if (caster:GetLevel() >= 8) then
@@ -98,14 +86,6 @@ function Nobu:PickHero( keys )
           end
           return 1
         end)
-      elseif nobu_id == "B04" then -- 伊達政宗
-        local B04_precache = caster:FindAbilityByName("B04_precache")
-        if B04_precache==nil then
-          B04_precache = caster:AddAbility("B04_precache")
-        end
-        if B04_precache then
-          B04_precache:SetLevel(1)
-        end
       end
 
     end -- if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
