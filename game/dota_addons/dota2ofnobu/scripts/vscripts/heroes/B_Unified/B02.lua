@@ -368,7 +368,7 @@ function B02E_Cast(keys)
 	--【Particle】	
 	--ParticleManager:SetParticleControl(caster.B02E_particle,0, point)
 	--print(nobu_distance( point,caster.B02E_Location ))
-	if (nobu_distance( point,caster.B02E_Location )) > 100 then
+	if caster.B02E_Location and (nobu_distance( point,caster.B02E_Location )) > 100 then
 		caster.B02E_Location = point
 		local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point,false,caster,caster,caster:GetTeam())	--"npc_dummy_unit_Ver2"
 		dummy:FindAbilityByName("majia"):SetLevel(1)

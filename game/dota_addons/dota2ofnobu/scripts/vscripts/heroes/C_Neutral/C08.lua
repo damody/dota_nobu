@@ -125,7 +125,7 @@ function modifier_C08W_bleeding_OnIntervalThink( keys )
 	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )	
 	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )	
 	if(not target:IsMagicImmune()) then
-		if caster:IsAlive() then
+		if IsValidEntity(caster) and caster:IsAlive() then
 			AMHC:Damage( caster,target,abilityDamage,ability:GetAbilityDamageType() )
 		else
 			AMHC:Damage( caster.donkey,target,abilityDamage,ability:GetAbilityDamageType() )

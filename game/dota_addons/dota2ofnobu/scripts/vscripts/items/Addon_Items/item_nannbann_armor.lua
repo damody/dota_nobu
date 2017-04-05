@@ -57,7 +57,9 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 										end
 									end
 								end
-								self.caster:RemoveModifierByName("modifier_nannbann_armor")
+								if IsValidEntity(self.caster) then
+									self.caster:RemoveModifierByName("modifier_nannbann_armor")
+								end
 							end
 		            		end)
 
@@ -100,7 +102,7 @@ function OnEquip( keys )
 		if not IsValidEntity(caster) then
 			return nil
 		end
-		if caster:IsAlive() then
+		if IsValidEntity(caster) and caster:IsAlive() then
 			if not caster:HasModifier("modifier_nannbann_armor") and IsValidEntity(ability) and ability:IsCooldownReady() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
 				local handle = caster:FindModifierByName("modifier_nannbann_armor")

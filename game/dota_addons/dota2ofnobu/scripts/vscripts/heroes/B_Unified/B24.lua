@@ -273,7 +273,7 @@ function B24E_START( keys )
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_B24E",nil)
 	end
 	Timers:CreateTimer(0.1, function ()
-		if caster:IsAlive() then
+		if IsValidEntity(caster) and caster:IsAlive() then
 			local hasv = false
 			for _,v in ipairs(group) do
 				if IsValidEntity(v) and v:IsAlive() and v:HasModifier("modifier_B24E") then
@@ -329,7 +329,7 @@ function B24E( keys )
 	-- Give the attack order if the caster is alive
 	-- otherwise forces the target to sit and do nothing
 	--【ExecuteOrder】
-	if caster:IsAlive() then
+	if IsValidEntity(caster) and caster:IsAlive() then
 		-- Clear the force attack target
 		target:SetForceAttackTarget(nil)
 		local order = 

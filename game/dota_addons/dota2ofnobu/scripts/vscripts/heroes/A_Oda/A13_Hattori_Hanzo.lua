@@ -106,7 +106,7 @@ function A13W( event )
 		end
 	end
 	
-	if caster:IsAlive() then
+	if IsValidEntity(caster) and caster:IsAlive() then
 		for i=1,people do
 			if (i ~= origin_go_index) then
 				-- handle_UnitOwner needs to be nil, else it will crash the game.
@@ -161,7 +161,7 @@ function A13W( event )
 		end
 		
 		Timers:CreateTimer( 0.1, function()
-				if caster:IsAlive() then
+				if IsValidEntity(caster) and caster:IsAlive() then
 					for i=1,people do
 						target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
 						if (i ~= origin_go_index) then
@@ -216,7 +216,7 @@ function A13W_old( event )
 		end
 	end
 
-	if caster:IsAlive() then
+	if IsValidEntity(caster) and caster:IsAlive() then
 		for i=1,people do
 			if (i ~= origin_go_index) then
 				-- handle_UnitOwner needs to be nil, else it will crash the game.
@@ -268,7 +268,7 @@ function A13W_old( event )
 		end
 		
 		Timers:CreateTimer( 0.1, function()
-				if caster:IsAlive() then
+				if IsValidEntity(caster) and caster:IsAlive() then
 					for i=1,people do
 						target_pos[i] = Vector(math.sin(eachAngle*i+random_angle), math.cos(eachAngle*i+random_angle), 0) * radius
 						if (i ~= origin_go_index) then
@@ -755,7 +755,7 @@ function A13T_break( keys )
 	                              false)
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
-			if caster:IsAlive() then
+			if IsValidEntity(caster) and caster:IsAlive() then
 				if it:IsMagicImmune() then
 					AMHC:Damage(caster, it, dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				else

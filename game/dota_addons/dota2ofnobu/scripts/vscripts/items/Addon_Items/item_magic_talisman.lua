@@ -56,7 +56,9 @@ function modifier_magic_talisman:OnTakeDamage(event)
 										end
 									end
 								end
-								self.caster:RemoveModifierByName("modifier_magic_talisman")
+								if IsValidEntity(self.caster) then
+									self.caster:RemoveModifierByName("modifier_magic_talisman")
+								end
 							end
 		            		end)
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
@@ -94,7 +96,7 @@ function OnEquip( keys )
 	local ability = keys.ability
 	caster.has_item_magic_talisman = true
 	Timers:CreateTimer(1, function()
-		if caster:IsAlive() then
+		if IsValidEntity(caster) and caster:IsAlive() then
 			if not caster:HasModifier("modifier_magic_talisman") and IsValidEntity(ability) and ability:IsCooldownReady() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
 				local handle = caster:FindModifierByName("modifier_magic_talisman")

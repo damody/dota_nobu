@@ -260,7 +260,7 @@ function C07_Effect( keys )
 			if v2:IsHero() then
 				ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v2)
 			end
-			if caster:IsAlive() then
+			if IsValidEntity(caster) and caster:IsAlive() then
 				if v2:IsBuilding() then
 					AMHC:Damage( caster,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				else
@@ -314,7 +314,7 @@ function C07_Effect( keys )
 					if v2:IsHero() then
 						ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v2)
 					end
-					if caster:IsAlive() then
+					if IsValidEntity(caster) and caster:IsAlive() then
 						if v2:IsBuilding() then
 							AMHC:Damage( caster,v2,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 						else
