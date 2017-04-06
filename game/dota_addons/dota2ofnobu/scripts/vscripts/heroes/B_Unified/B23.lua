@@ -94,6 +94,9 @@ end
 
 function B23D_heroDie( keys )
 	local caster = keys.caster
+	if caster.B23D_ghostTable == nil then
+    	keys.caster.B23D_ghostTable = {} 
+    end
 	for i=1,#caster.B23D_ghostTable do
 		caster.B23D_ghostTable[1]:ForceKill(true)
 	end

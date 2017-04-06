@@ -190,7 +190,11 @@ function B28T_old_Jump(keys)
 			ability:ApplyDataDrivenModifier(caster, new_target, "modifier_B28T_arc_lightning_datadriven", {})
 			-- Applies damage to the target
 			local new_damage = base_damage*(1+(jump_max-ability.jump_count[current])*bonus_damage)
-			ApplyDamage({victim = new_target, attacker = caster, damage = new_damage, damage_type = ability:GetAbilityDamageType()})
+			Timers:CreateTimer(0.3, function ()
+				if IsValidEntity(new_target) and IsValidEntity(caster) then
+					ApplyDamage({victim = new_target, attacker = caster, damage = new_damage, damage_type = ability:GetAbilityDamageType()})
+				end
+				end)
 		else
 			-- If there are no new targets, we set the current target to nil to indicate this instance is over
 			ability.target[current] = nil

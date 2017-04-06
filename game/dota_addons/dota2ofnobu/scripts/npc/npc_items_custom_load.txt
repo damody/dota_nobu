@@ -8845,20 +8845,22 @@
 				"Passive"			"0"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
-				"Duration"			"5"
+				"Duration"			"2"
 				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "20"	//回血
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "10"
 				}
-			}
-			"modifier_bizennosafunekanemitsu_no"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-				"Duration"			"30"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"items/Addon_Items/item_bizennosafunekanemitsu.lua"
+						"Function"	"OnDestroy"
+					}
+				}
 			}
 			"Passive_bizennosafunekanemitsu"
 			{
