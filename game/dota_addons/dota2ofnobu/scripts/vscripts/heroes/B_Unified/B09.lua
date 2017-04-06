@@ -57,9 +57,9 @@ end
 
 
 function modifier_B09E_OnIntervalThink( keys )
-	for i,v in pairs(keys) do
-        print(tostring(i).."="..tostring(v))
-    end
+	--for i,v in pairs(keys) do
+   --     print(tostring(i).."="..tostring(v))
+    --end
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
@@ -232,3 +232,171 @@ function B09T_OnSpellStart( keys )
 end
 
 
+
+function B09W_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local dummy = keys.target
+	local ability = keys.ability
+	local point = keys.target_points[1] 
+	local point2
+	StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
+	StartSoundEvent( "Hero_Leshrac.Lightning_Storm", v )
+	point2 = point
+	local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN , caster)
+	local particle2 = ParticleManager:CreateParticle("particles/b09w_old/b09w_old.vpcf", PATTACH_ABSORIGIN , caster)
+	ParticleManager:SetParticleControl(particle2, 0, Vector(point2.x,point2.y,point2.z+30 ))
+
+	-- Raise 1000 if you increase the camera height above 1000
+	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin() + Vector(0,0,800))
+	ParticleManager:SetParticleControl(particle, 1, Vector(point2.x,point2.y,point2.z ))
+	ParticleManager:SetParticleControl(particle, 2, Vector(point2.x,point2.y,point2.z ))
+end
+
+
+
+function B09E_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local point = keys.target_points[1] 
+	local ability = keys.ability
+	local dir = ability:GetCursorPosition() - caster:GetOrigin()
+
+	for i=1,3 do
+		local pos = caster:GetOrigin() + dir:Normalized() * (i * 300)
+		local ifx = ParticleManager:CreateParticle( "particles/b09e/b09e3.vpcf", PATTACH_CUSTOMORIGIN, nil)
+		ParticleManager:SetParticleControl( ifx, 0, pos + Vector(0,0,50))
+		ParticleManager:SetParticleControl( ifx, 3, pos + Vector(0,0,50))
+
+		local SEARCH_RADIUS = 300
+		GridNav:DestroyTreesAroundPoint(pos, SEARCH_RADIUS, false)
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              pos,
+	                              nil,
+	                              SEARCH_RADIUS,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              FIND_ANY_ORDER,
+	                              false)
+		--effect:傷害+暈眩
+		for _,it in pairs(direUnits) do
+			if (not(it:IsBuilding())) then
+				if it.b09e == nil then
+					duration=ability:GetSpecialValueFor("duration")
+					AMHC:Damage(caster,it, ability:GetSpecialValueFor("damage"),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+					ability:ApplyDataDrivenModifier(caster, it,"modifier_B09E_old",nil)
+					it.b09e = 1
+				end
+			end
+		end
+	end
+
+	for i=1,3 do
+		local pos = caster:GetOrigin() + dir:Normalized() * (i * 300)
+		local SEARCH_RADIUS = 300
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              pos,
+	                              nil,
+	                              SEARCH_RADIUS,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              FIND_ANY_ORDER,
+	                              false)
+		for _,it in pairs(direUnits) do
+			if (not(it:IsBuilding())) then
+				it.b09e = nil
+			end
+		end
+	end
+
+end
+
+
+
+function B09T_old_OnSpellStart( keys )
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local point = caster:GetAbsOrigin()
+	local dir = caster:GetForwardVector()
+	local point2 = point + dir * 300
+ 	local player = caster:GetPlayerID()
+ 	local level = ability:GetLevel() - 1
+ 	local life_time = ability:GetLevelSpecialValueFor("life_time",level)
+ 	local base_hp = ability:GetLevelSpecialValueFor("base_hp",level)
+
+ 	local Kagutsuchi = CreateUnitByName("b09t_old_wind",point2 ,true,caster,caster,caster:GetTeam())
+ 	-- 設定火神數值
+ 	Kagutsuchi:AddAbility("B09TW_old"):SetLevel(ability:GetLevel())
+ 	Kagutsuchi:SetForwardVector(dir)
+	Kagutsuchi:SetControllableByPlayer(player, true)
+	Kagutsuchi:AddNewModifier(Kagutsuchi,nil,"modifier_kill",{duration=life_time})
+	--ability:ApplyDataDrivenModifier(caster,Kagutsuchi,"modifier_A28T_old",nil)
+	--local hModifier = Kagutsuchi:FindModifierByNameAndCaster("modifier_A28T_old", caster)
+	--hModifier:SetStackCount(level+1)
+	
+	-- 配合特效稍微條快動畫速度
+	--Kagutsuchi:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_3, 1.3)
+	-- 特效
+	local ifx = ParticleManager:CreateParticle("particles/b13/b13t.vpcf",PATTACH_ABSORIGIN_FOLLOW,Kagutsuchi)
+	ParticleManager:SetParticleControl(ifx,0,Kagutsuchi:GetAbsOrigin())
+	Timers:CreateTimer(life_time, function ()
+		ParticleManager:DestroyParticle(ifx,true)
+	end)
+
+end
+
+
+
+function modifier_A28TE_old_OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
+	local aoe_damage = ability:GetLevelSpecialValueFor("aoe_damage",level)
+
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+		nil,  aoe_radius , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+
+	for _,enemy in pairs(enemies) do
+		if not enemy:IsBuilding() then
+			AMHC:Damage(caster,enemy,aoe_damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
+	end
+end
+
+function modifier_A28TE_old_building_OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()-1
+	local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
+	local aoe_damage = ability:GetLevelSpecialValueFor("aoe_damage_building",level)
+
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
+		caster:GetAbsOrigin(),
+		nil,
+		aoe_radius,
+		ability:GetAbilityTargetTeam(),
+		DOTA_UNIT_TARGET_BUILDING,
+		ability:GetAbilityTargetFlags(),
+		FIND_ANY_ORDER,
+		false)
+
+	for _,enemy in pairs(enemies) do
+		if enemy:IsBuilding() then
+			AMHC:Damage(caster,enemy,aoe_damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
+	end
+end
+
+
+function modifier_B09TW_old_aura_debuff_OnIntervalThink( keys )
+	--【Basic】
+	local unit = keys.target
+	local ifx = ParticleManager:CreateParticle("particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf",PATTACH_ABSORIGIN,unit)
+	ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
+	ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
+
+end
