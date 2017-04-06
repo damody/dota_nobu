@@ -10,21 +10,36 @@ function Shock( keys )
 		local handle = caster:FindModifierByName("modifier_bizennosafunekanemitsu")
 		if handle then
 			handle:SetStackCount(1)
+			caster.bizennosafunekanemitsu = 1
 		end
-	elseif not caster:HasModifier("modifier_bizennosafunekanemitsu_no") then
+	else
 		local handle = caster:FindModifierByName("modifier_bizennosafunekanemitsu")
 		if handle then
 			local c = handle:GetStackCount()
 			c = c + 1
-			if c > 5 then
-				c = 5
+			if c > 10 then
+				c = 10
 			end
-			if c == 5 then
-				ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu_no",nil)
-			end
-			ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu",nil)
+			--ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu",nil)
 			handle:SetStackCount(c)
+			caster.bizennosafunekanemitsu = c
 		end
 	end
 
 end
+
+
+function OnDestroy( keys )
+	-- 開關型技能不能用
+	local caster = keys.caster
+	local ability = keys.ability
+	caster.bizennosafunekanemitsu = caster.bizennosafunekanemitsu - 1
+	if caster.bizennosafunekanemitsu > 0 then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu",nil)
+		local handle = caster:FindModifierByName("modifier_bizennosafunekanemitsu")
+		if handle then
+			handle:SetStackCount(caster.bizennosafunekanemitsu)
+		end
+	end
+end
+	

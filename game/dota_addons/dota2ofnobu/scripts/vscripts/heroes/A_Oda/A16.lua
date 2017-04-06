@@ -71,8 +71,11 @@ function A16R_OnUpgrade( keys )
 		Timers:CreateTimer(1,function()
 			if IsValidEntity(caster) and not caster:HasModifier("modifier_A16R2") then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_A16R2", {} )
-				caster:FindModifierByName("modifier_A16R2").caster = caster
-				caster:FindModifierByName("modifier_A16R2").level = ability:GetLevel()
+				local handle = caster:FindModifierByName("modifier_A16R2")
+				if handle then
+					handle.caster = caster
+					handle.level = ability:GetLevel()
+				end
 			end
 			return 1
 		end)

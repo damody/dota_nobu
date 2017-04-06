@@ -72,5 +72,9 @@ function SplitShotDamage( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	AMHC:Damage(caster, target, 150, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	if caster:IsAlive() then
+		AMHC:Damage(caster, target, 150, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	else
+		AMHC:Damage(caster.donkey, target, 150, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
 end
