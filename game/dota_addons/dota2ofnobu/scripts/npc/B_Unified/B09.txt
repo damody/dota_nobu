@@ -140,6 +140,11 @@
 				"ModifierName"	"modifier_B09E"
 				"Target" 		"TARGET"
 			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B09.lua"
+				"Function"							"modifier_B09E_OnChannelInterrupted"
+			}
 		}
 
 		"OnChannelFinish"
@@ -148,6 +153,11 @@
 			{
 				"ModifierName"	"modifier_B09E"
 				"Target" 		"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B09.lua"
+				"Function"							"modifier_B09E_OnChannelInterrupted"
 			}
 		}
 
@@ -178,6 +188,7 @@
 					}
 				}
 			}
+
 		}
 
 		"AbilitySpecial"
