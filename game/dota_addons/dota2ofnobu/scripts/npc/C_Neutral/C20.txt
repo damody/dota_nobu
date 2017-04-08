@@ -1,0 +1,640 @@
+//長宗我部元親
+"DOTAAbilities"
+{
+	"C20_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/c20w_real/c20w.vpcf"
+			"particle"  "particles/c20w_real/c20w2.vpcf"
+			"particle"  "particles/c20r_real/c20r.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
+			"particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+		}
+	}
+	//長宗我部元親 炎之加護
+	"C20W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20W"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"150 160 170 180"
+		"AOERadius" "300"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_move_speed"	"10 15 20 25"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_attack_speed"		"25 35 45 55" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_duration"	"20"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"	"50 70 90 110"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
+			"particle"  "particles/a02/a02e.vpcf"
+			"particle"  "particles/a02/a02e_bow.vpcf"
+		}
+
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C20W"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20W"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%buff_move_speed"
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+						"Function"		"modifier_C20W_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/c20w_real/c20w.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack2"
+							"CASTER"	"attach_attack2"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 鬼血之流
+	"C20E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20E"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"80 100 120 140"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"hp_recover"	"150 285 420 555"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"hp_recover_percent"		"1.5" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_duration"	"10"
+			}
+		}
+
+
+		"OnSpellStart"
+		{
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%hp_recover"
+ 			}
+ 			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C20E"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20E"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%hp_recover_percent" //回血%
+				}
+			}
+		}
+	}
+	// 炎之舞
+	"C20R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20R"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"80 100 120 140"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AOERadius" 					"550"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"	"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun"			"0.5 1 1.5 2"
+			}
+		}
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+				"Function"		"C20R_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20R"
+			{
+				"Duration"	"%stun"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
+		}
+	}
+	// 鬼若子
+	"C20T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"150 145 140"
+		"AbilityManaCost"				"185"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+				"Function"		"C20T_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C20T"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20T"
+			{
+				"EffectName"        "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "CASTER"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.5"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"572"
+				}
+				"Duration"	"%During"
+				//"EffectName"	"particles/b06t/b06t.vpcf"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_C20"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%radius"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C20T"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnCreated"
+				{
+
+				}
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Basic_Attack_Speed"	"0.9"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_Health"	"600 900 1200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"40"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack"	"30 50 70"
+			}
+		}
+	}
+	//長宗我部元親 炎之加護
+	"C20W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20W"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"120 140 160 180"
+		"AOERadius" "300"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_move_speed"	"5 10 15 20"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_attack_speed"		"25 35 45 55" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_duration"	"20"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"	"50 80 110 140"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
+			"particle"  "particles/a02/a02e.vpcf"
+			"particle"  "particles/a02/a02e_bow.vpcf"
+		}
+
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C20W_old"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20W_old"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%buff_move_speed"
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+						"Function"		"modifier_C20W_old_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/c20w_real/c20w.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack2"
+							"CASTER"	"attach_attack2"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 鬼血之流
+	"C20E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20E"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"hp_recover"	"100 200 300 400"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"hp_recover_percent"		"1 1 2 2" // %
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"buff_duration"	"16"
+			}
+		}
+
+
+		"OnSpellStart"
+		{
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%hp_recover"
+ 			}
+ 			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C20E"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20E"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%buff_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%hp_recover_percent" //回血%
+				}
+			}
+		}
+	}
+
+	// 炎之舞
+	"C20R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20R"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"160 180 200 220"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AOERadius" 					"550"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"	"150 250 350 450"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun"			"0.5 1 1.5 2"
+			}
+		}
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+				"Function"		"C20R_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20R"
+			{
+				"Duration"	"%stun"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
+		}
+	}
+
+	// 鬼若子
+	"C20T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"200"
+		"AbilityManaCost"				"250 300 350"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+				"Function"		"C20T_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C20T"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20T"
+			{
+				"EffectName"        "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "CASTER"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.5"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"422"
+				}
+				"Duration"	"%During"
+				//"EffectName"	"particles/b06t/b06t.vpcf"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_C20"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%radius"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C20T"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnCreated"
+				{
+
+				}
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Basic_Attack_Speed"	"0.9"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_Health"	"400 700 1000"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"70"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack"	"30 50 70"
+			}
+		}
+	}
+}
