@@ -58,6 +58,7 @@ function B17W_activate( keys )
 	if caster:HasModifier("modifier_B17W_detectorAura") then
 		caster:RemoveModifierByName("modifier_B17W_detectorAura")
 	end
+	ExecuteOrderFromTable( { UnitIndex = caster:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = caster:GetAbsOrigin() })
 end
 
 function B17W_activateEnd( keys )
