@@ -1,0 +1,799 @@
+// 霧隱才藏
+"DOTAAbilities"
+{
+	"B17_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_venomancer/venomancer_base_attack.vpcf" //w baseAttack e
+			"particle"  "particles/generic_gameplay/generic_sleep.vpcf" //w not activate
+			"particle"  "particles/b17w/b17w.vpcf" //w stun
+			"particle"  "particles/b17e/b17e.vpcf" //e slow
+			"particle"  "particles/b17r/b17rde.vpcf" //r
+			"particle"  "particles/b17r_old/b17r_old3.vpcf" //r_old
+			"particle"  "particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf" //r_old
+			"particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf" //t
+			"particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf"	//t
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"	//t
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts" //r r_old
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts" //r_old
+		}
+	}
+
+	//忍法．死亡守衛
+	//觸發方法 1.打死(不暈) 2.時間到(不暈) 3.敵人觸發(會暈)
+	"B17W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_DAMAGE_FLAG_NONE"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/B17/B17W"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+
+		"AbilityCooldown"                           "9"
+		"AbilityManaCost"                           "80 105 130 155"
+
+		"AOERadius"									"%B17W_stunRadius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B17.lua"
+				"Function"                		"B17W"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B17W"
+			{
+				"IsHidden"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B17.lua"
+						"Function"                		"B17W_onAttackLanded"
+					}
+				}
+			}
+			"modifier_B17W_notActivate"
+			{
+				"Duration"							"%B17W_duration" //2
+				"EffectName" 						"particles/generic_gameplay/generic_sleep.vpcf"
+                "EffectAttachType" 					"follow_overhead"
+                "States"
+                {
+                	"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_DISARMED"				"MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnTakeDamage" //1
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+                		"Function"		"B17W_onTakeDamage"
+                		"DamageTaken"	"%attack_damage"
+                	}
+                }
+                "OnDestroy"
+                {
+                	"ApplyModifier"
+                	{
+                		"ModifierName"	"modifier_B17W_activate"
+                		"Target" 		"CASTER"
+                		"Duration"		"%B17W_activateDuration"
+                	}
+                	"RunScript"
+                	{
+                		"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+                		"Function"		"B17W_activate"
+                	}
+                }
+			}
+			"modifier_B17W_activate"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnDestroy"
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+                		"Function"		"B17W_activateEnd"
+                	}
+                }
+			}
+			//3
+			"modifier_B17W_detectorAura"
+			{
+				"IsHidden"			"0"
+				"Aura"          	"modifier_B17W_trigger"
+				"Aura_Radius"   	"%B17W_detectorRadius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_B17W_trigger"
+			{
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B17.lua"
+						"Function"                		"B17W_triggered"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B17W_duration"		"60 100 140 180"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"B17W_agiBonus"		"1.3"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B17W_activateDuration"		"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B17W_detectorRadius"	"250"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B17W_stunRadius"		"300"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B17W_stunDuration"		"2.0"
+			}
+		}
+	}
+
+	//忍法．牙毒
+	"B17E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B17/B17E"
+		"AbilityCooldown"							"14"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"120 140 160 180"
+		"AbilityCastRange"              			"800"
+		
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"particles/units/heroes/hero_venomancer/venomancer_base_attack.vpcf"
+				"Dodgeable"							"1"
+				"ProvidesVision"					"1"
+				"MoveSpeed"							"1500"
+				"VisionRadius"						"225"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"						"1"
+			"ApplyModifier"
+        	{
+        		"Target"            			"TARGET"
+        		"ModifierName"      			"modifier_B17E_debuff"
+        	}
+        	"Damage"
+			{
+				"Target"						"TARGET"
+				"Type"							"DAMAGE_TYPE_MAGICAL"
+				"Damage"						"%B17E_damage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B17E_passive"
+			{
+				"Passive"			"1"
+				"OnAttackLanded"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_B17E_passiveDebuff"
+						"Target" 		"TARGET"
+						"Duration"		"%B17E_passiveDebuffDuration"
+					}
+				}
+			}
+			"modifier_B17E_passiveDebuff"
+			{
+				"IsDebuff"			"1"
+				"EffectName" 						"particles/b17e/b17e.vpcf"
+                "EffectAttachType" 					"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%B17E_passiveMoveSpeed"
+				}
+			}
+			"modifier_B17E_debuff"
+			{
+				"IsDebuff"							"1"
+				"Duration"							"%B17E_dotDuration"
+				"EffectName" 						"particles/b17e/b17e.vpcf"
+                "EffectAttachType" 					"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%B17E_dotMoveSpeed"
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B17E_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_dotDuration"                	"7"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_dotMoveSpeed"                	"-20 -27 -34 -41"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_damage"                		"120 240 360 480"
+			}
+			"04"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_dotDamage"                	"30"
+			}
+			"05"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_passiveMoveSpeed"             "-10 -15 -20 -25"
+			}
+			"06"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_passiveDebuffDuration"        "3"
+			}
+		}
+	}
+
+	//忍法．影躍
+	"B17R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/B17/B17R"
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCooldown"                        	"13 10 7 4"
+		"AbilityManaCost"                           "110 135 160 185"
+		"AbilityCastRange"							"500"
+		"AOERadius"									"%B17R_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B17.lua"
+				"Function"                		"B17R"
+			}
+			"FireSound"
+			{
+				"EffectName"					"Hero_Antimage.Blink_out"
+				"Target" 						"POINT"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B17R_damage"					"100 200 300 400"
+			}
+			"02"
+			{	//魔免加乘 B17R_damage * ( 1 + B17R_magicimmuneBonus )
+				"var_type"						"FIELD_FLOAT"
+				"B17R_magicimmuneBonus"			"0.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B17R_radius"					"300"
+			}
+		}
+    }
+
+    //忍法密傳．覓心斬
+	"B17T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/B17/B17T"
+
+		"AbilityCastPoint"          				"0.0"
+		"AbilityCooldown"           				"80 70 60"
+		"AbilityManaCost"           				"205"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_B17T"
+				"Target" 			"CASTER"
+				"Duration"			"%B17T_duration"
+			}
+			"ApplyModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_invisible"
+				"Duration"			"%B17T_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B17T"
+			{
+				"IsHidden"			"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+						"Function"		"B17T_End"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_B17T"
+					}
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%B17T_movespd" 
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B17T_damage"		"650 1250 1850"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B17T_movespd"		"50"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"B17T_duration"		"30 45 60"
+			}
+		}
+	}
+
+	//忍法．迷蹤步
+	"B17W_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/A13D"
+
+		"AbilityCastPoint"          				"0.0"
+		"AbilityCooldown"           				"16"
+		"AbilityManaCost"           				"100 110 120 130"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_B17W_old"
+				"Target" 			"CASTER"
+				"Duration"			"%B17W_old_duration"
+			}
+			"ApplyModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_invisible"
+				"Duration"			"%B17W_old_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B17W_old"
+			{
+				"IsHidden"			"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+						"Function"		"B17W_old_End"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_B17W_old"
+					}
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"			"0"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%B17W_old_movespd" 
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B17W_old_damage"		"100 160 220 280"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B17W_old_movespd"		"10 15 20 25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B17W_old_duration"		"10 15 20 25"
+			}
+		}
+	}
+
+	//忍法．劇毒手裏劍
+	"B17E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B17/B17E"
+		"AbilityCooldown"							"18"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"120 140 160 180"
+		"AbilityCastRange"              			"800"
+		
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"							"TARGET"
+				"EffectName"						"particles/units/heroes/hero_venomancer/venomancer_base_attack.vpcf"
+				"Dodgeable"							"1"
+				"ProvidesVision"					"1"
+				"MoveSpeed"							"1500"
+				"VisionRadius"						"225"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"						"1"
+			"ApplyModifier"
+        	{
+        		"Target"            			"TARGET"
+        		"ModifierName"      			"modifier_B17E_old_debuff"
+        	}
+        	"Damage"
+			{
+				"Target"						"TARGET"
+				"Type"							"DAMAGE_TYPE_MAGICAL"
+				"Damage"						"%B17E_old_damage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B17E_old_debuff"
+			{
+				"IsDebuff"							"1"
+				"Duration"							"%B17E_old_dotDuration"
+				"EffectName" 						"particles/b17e/b17e.vpcf"
+                "EffectAttachType" 					"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%B17E_old_dotMoveSpeed"
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B17E_old_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_old_dotDuration"              "12"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_old_dotMoveSpeed"             "0"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_old_damage"                	"120 240 360 480"
+			}
+			"04"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B17E_old_dotDamage"                "20 25 30 35"
+			}
+		}
+	}
+
+	//忍法．迴旋手裏劍
+	"B17R_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/B17/B17R_old"
+
+		"AbilityCastPoint"                          "0.18" //多0.08讓英雄面向轉到位
+		"AbilityCastRange"							"0"
+
+		"AbilityCooldown"                           "40 30 20 11"
+		"AbilityManaCost"                           "100"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B17.lua"
+				"Function"                		"B17R_old"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B17R_old"
+			{
+				"IsHidden"			"0"
+				"EffectName"		"particles/b17r_old/b17r_old3.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B17.lua"
+						"Function"                		"B17R_old_onIntervalThink"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B17R_old_damage"		"400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B17R_old_radius"		"150"
+			}
+		}
+	}
+
+	//忍法密傳．變化
+	"B17T_old"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/B17/B17T_old"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCooldown"		"160"
+		"AbilityManaCost"		"200 250 300"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/riki/riki_blinkstrike.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+			"soundfile"	"soundevents/a13.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"A13R_old.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+				"Function"		"B17T_old"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B17T_old"
+				"Target"		"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B17T_old"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"0.5"
+				"IsDebuff"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B17T_old_Duration"			"30"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B17T_old_incomingDamage"	"250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B17T_old_outgoingDamage"	"-85 -75 -65"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B17T_old_people"			"9"
+			}
+		}
+	}
+
+} // END DOTAAbilities
