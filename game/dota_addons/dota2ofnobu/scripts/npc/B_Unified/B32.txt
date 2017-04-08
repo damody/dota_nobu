@@ -736,19 +736,6 @@
 					}
 				}
 			}
-			"modifier_B32R_target"
-			{
-				"IsPurgable"	"1"
-				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"States"
-				{
-					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
-					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"Duration"	"0.5"
-			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -757,7 +744,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"B32R_CD"	"9 7 5 3"
+				"B32R_CD"	"13 10 7 4"
 			}
 			"02"
 			{

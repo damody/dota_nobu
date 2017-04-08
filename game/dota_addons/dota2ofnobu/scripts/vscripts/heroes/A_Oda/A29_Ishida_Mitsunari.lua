@@ -48,13 +48,14 @@ function A29R_old_debuff( keys )
 	for _,enemy in pairs(group) do
 		if enemy:IsMagicImmune() then
 			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old_debuff",{duration = 1})
-		end
-		local ss = enemy:GetMana()/enemy:GetMaxMana()
-		local stack = 5 - math.floor(ss*10)
-		if stack > 0 then
-			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old",{duration = 1})
-			local handle = enemy:FindModifierByName("modifier_A29R_old")
-			handle:SetStackCount(stack)
+		else
+			local ss = enemy:GetMana()/enemy:GetMaxMana()
+			local stack = 5 - math.floor(ss*10)
+			if stack > 0 then
+				ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old",{duration = 1})
+				local handle = enemy:FindModifierByName("modifier_A29R_old")
+				handle:SetStackCount(stack)
+			end
 		end
 	end
 end

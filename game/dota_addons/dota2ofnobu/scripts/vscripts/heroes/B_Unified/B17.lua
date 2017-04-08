@@ -7,6 +7,8 @@ function B17W( keys )
 	local point = ability:GetCursorPosition()
 
 	local unit = CreateUnitByName("B17W_deathGuard", point, true, caster, caster, caster:GetTeamNumber())
+	unit:SetOwner(caster)
+	unit:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W", nil)
 	ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W_notActivate", nil)
 	unit:AddNewModifier( unit, nil, "modifier_invisible", nil)
@@ -56,6 +58,7 @@ function B17W_activate( keys )
 	if caster:HasModifier("modifier_B17W_detectorAura") then
 		caster:RemoveModifierByName("modifier_B17W_detectorAura")
 	end
+	ExecuteOrderFromTable( { UnitIndex = caster:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = caster:GetAbsOrigin() })
 end
 
 function B17W_activateEnd( keys )
@@ -91,6 +94,13 @@ function B17W_triggered( keys )
 			-- 處理搜尋結果
 			for _,unit in ipairs(units) do
 				unit:AddNewModifier( caster, ability, "modifier_stunned", { duration = stunDuration })
+			end
+			if #units > 0 then
+				target=units[1]
+				local order = {UnitIndex = caster:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = target:entindex(),
+					Queue = false}
 			end
 
 			local ifx = ParticleManager:CreateParticle("particles/b17w/b17w.vpcf",PATTACH_ABSORIGIN,caster)

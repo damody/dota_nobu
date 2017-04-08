@@ -337,6 +337,7 @@ function B09T_old_OnSpellStart( keys )
  	local base_hp = ability:GetLevelSpecialValueFor("base_hp",level)
 
  	local Kagutsuchi = CreateUnitByName("b09t_old_wind",point2 ,true,caster,caster,caster:GetTeam())
+ 	Kagutsuchi:SetOwner(caster)
  	-- 設定火神數值
  	Kagutsuchi:AddAbility("B09TW_old"):SetLevel(ability:GetLevel())
  	Kagutsuchi:SetForwardVector(dir)
@@ -372,7 +373,7 @@ function modifier_A28TE_old_OnIntervalThink( keys )
 
 	for _,enemy in pairs(enemies) do
 		if not enemy:IsBuilding() then
-			AMHC:Damage(caster,enemy,aoe_damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster,enemy,aoe_damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end
 	end
 end

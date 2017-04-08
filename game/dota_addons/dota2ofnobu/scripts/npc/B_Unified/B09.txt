@@ -584,7 +584,12 @@
 			}
 			"modifier_B09TW_old_aura_debuff"
 			{
-				"ThinkInterval"  	"0.1"
+				"ThinkInterval"  	"0.4"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-200"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-80"
+				}
 				"OnIntervalThink"
 				{
 					"RunScript"
