@@ -213,12 +213,14 @@ function AON_Cleave_C20(keys)
 
 		for _, it in pairs(group) do
 			if it ~= target then
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			else
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
 		end
+	else
+		AMHC:Damage( caster,target,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 end

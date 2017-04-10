@@ -64,9 +64,6 @@ end
 function A16R_OnUpgrade( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_A16R2", {} )
-	caster:FindModifierByName("modifier_A16R2").caster = caster
-	caster:FindModifierByName("modifier_A16R2").level = ability:GetLevel()
 	if ability:GetLevel() == 1 then
 		Timers:CreateTimer(1,function()
 			if IsValidEntity(caster) and not caster:HasModifier("modifier_A16R2") then

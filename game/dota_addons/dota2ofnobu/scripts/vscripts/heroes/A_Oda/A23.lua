@@ -75,7 +75,7 @@ function A23E( keys )
 		if count > time then
 			return nil
 		end
-		local damageCount = (50 + caster:GetIntellect())*( 1 + 0.05*math.floor(((target:GetOrigin() - stick:GetOrigin()):Length() / increaseDistance)) )
+		local damageCount = (100 + caster:GetIntellect())*( 1 + 0.05*math.floor(((target:GetOrigin() - stick:GetOrigin()):Length() / increaseDistance)) )
 		if target:IsMagicImmune() then
 			damageCount = damageCount *0.5
 		end

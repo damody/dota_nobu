@@ -209,7 +209,7 @@ function B32R( keys )
 	local level  = keys.ability:GetLevel()
 	local group = {}
 	local radius = 650
-	if (caster.hasB32R == nil) then
+	if (caster.hasB32R == nil) and keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		caster.hasB32R = 1
 		caster:SetMana(caster:GetMana()+40)
 	 	local group = FindUnitsInRadius(
@@ -233,7 +233,8 @@ function B32R( keys )
 				victim = v,
 				attacker = caster,
 				damage = ability:GetAbilityDamage(),
-				damage_type = DAMAGE_TYPE_MAGICAL
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
 			}
 			ApplyDamage( damageTable )
 		end

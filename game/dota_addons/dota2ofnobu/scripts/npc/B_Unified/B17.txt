@@ -79,6 +79,7 @@
                 {
                 	"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
                 	"MODIFIER_STATE_DISARMED"				"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
                 }
                 "OnTakeDamage" //1
                 {
@@ -177,7 +178,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"B17W_stunDuration"		"2.0"
+				"B17W_stunDuration"		"1"
 			}
 		}
 	}
@@ -313,7 +314,7 @@
 	"B17R"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -350,7 +351,7 @@
 			"02"
 			{	//魔免加乘 B17R_damage * ( 1 + B17R_magicimmuneBonus )
 				"var_type"						"FIELD_FLOAT"
-				"B17R_magicimmuneBonus"			"0.5"
+				"B17R_magicimmuneBonus"			"-0.5"
 			}
 			"03"
 			{
@@ -445,7 +446,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"B17T_damage"		"650 1250 1850"
+				"B17T_damage"		"1000 2000 3000"
 			}
 			"02"
 			{
@@ -639,7 +640,7 @@
 			"02"
 			{
 				"var_type"                			"FIELD_INTEGER"
-				"B17E_old_dotMoveSpeed"             "0"
+				"B17E_old_dotMoveSpeed"             "-20"
 			}
 			"03"
 			{
@@ -662,7 +663,7 @@
 		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"                        "custom/B17/B17R_old"
 
@@ -719,7 +720,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B17R_old_radius"		"150"
+				"B17R_old_radius"		"300"
 			}
 		}
 	}
@@ -732,7 +733,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCastPoint"		"0.5"
+		"AbilityCastPoint"		"0.1"
 		"AbilityCooldown"		"160"
 		"AbilityManaCost"		"200 250 300"
 		"precache"
@@ -759,39 +760,50 @@
 				"Target"		"CASTER"
 			}
 		}
-		"Modifiers"
+		"OnSpellStart"
 		{
-			"modifier_B17T_old"
+			"FireSound"
 			{
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"Duration"	"0.5"
-				"IsDebuff"	"0"
+				"Target"	"CASTER"
+				"EffectName"	"A27T_old.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+				"Function"	"MirrorImage"
 			}
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"B17T_old_Duration"			"30"
+				"var_type"	"FIELD_FLOAT"
+				"illusion_duration"	"30"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"B17T_old_incomingDamage"	"250"
+				"var_type"	"FIELD_INTEGER"
+				"illusion_incoming_damage"	"0"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"B17T_old_outgoingDamage"	"-85 -75 -65"
+				"var_type"	"FIELD_INTEGER"
+				"illusion_outgoing_damage"	"-75 -65 -55"
 			}
-			"04"
+			"04" // 鏡像數量
 			{
-				"var_type"					"FIELD_INTEGER"
-				"B17T_old_people"			"9"
+				"var_type" "FIELD_INTEGER"
+				"illusions_count" "9"
+			}
+			"05" // 確保單位不會靠的太近
+			{
+				"var_type" "FIELD_INTEGER"
+				"model_radius" "50"
+			}
+			"06" // 慢慢產生
+			{
+				"var_type"	"FIELD_FLOAT"
+				"create_delay"	"0.01"
 			}
 		}
 	}

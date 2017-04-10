@@ -282,6 +282,8 @@ function C17R_old( keys )
 	else
 	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT",point,true,caster,caster,caster:GetTeam())
 	end
+	unit:SetHealth(200)
+	unit:SetMana(ability:GetAbilityDamage())
 	if ability then
 		ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)
 	end
@@ -306,7 +308,7 @@ function C17R_old_on_trigger( keys )
 	-- 移除光環，光環在角色死亡時不會刪除，似乎要等到實體被移除後才會刪除
 	target:RemoveModifierByName("modifier_C17R_old_aura")
 	target:RemoveModifierByName("modifier_invisible")
-
+	local mana = target:GetMana()
 	-- 殺死暈障
 	target:ForceKill(true)
 
@@ -341,7 +343,7 @@ function C17R_old_on_trigger( keys )
 		
 		damage_table.attacker = caster
 		damage_table.damage_type = damage_type
-		damage_table.damage = ability_damage
+		damage_table.damage = mana
 		for _,unit in ipairs(units) do
 			-- 製造傷害
 			if unit.c17r_old ~= target then

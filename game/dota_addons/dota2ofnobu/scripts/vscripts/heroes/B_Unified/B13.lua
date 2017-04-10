@@ -315,6 +315,7 @@ function B13E_old_OnTakeDamage( keys )
 	local target = keys.target
 	local ability = keys.ability
 	if caster.can_dmg == nil then
+		ability:ApplyDataDrivenModifier(caster,caster.B13E_old_target,"modifier_stunned",{duration=0.1})
 		caster.B13E_old_target:RemoveModifierByName("modifier_B13E_old_sleep")
 	end
 end
@@ -339,6 +340,7 @@ function B13E_OnTakeDamage( keys )
 	local target = keys.target
 	local ability = keys.ability
 	if caster.can_dmg == nil then
+		ability:ApplyDataDrivenModifier(caster,caster.B13E_old_target,"modifier_stunned",{duration=0.1})
 		caster.B13E_old_target:RemoveModifierByName("modifier_B13E_sleep")
 	end
 end

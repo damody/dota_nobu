@@ -1,37 +1,37 @@
 --長宗我部元親
-c20w_lock=false
-function modifier_C20W_OnTakeDamage( event )
+function C20W_OnTakeDamage( event )
 	-- Variables
-
 	if IsServer() then
 		local ability = event.ability
 		local damage = ability:GetSpecialValueFor("damage")
 		if ability then
 			local caster =ability:GetCaster()
-			if not c20w_lock then
-				caster:EmitSound( "Hero_Nevermore.Raze_Flames")
-				c20w_lock=true
-				local ifx = ParticleManager:CreateParticle( "particles/c20w_real/c20w2.vpcf", PATTACH_CUSTOMORIGIN, caster)
-				ParticleManager:SetParticleControl( ifx, 0, caster:GetAbsOrigin())
-				local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 300, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
-				for _,unit in ipairs(units) do
-					damageTable = {
-						victim = unit,
-						attacker = caster,
-						ability = ability,
-						damage = damage,
-						damage_type = ability:GetAbilityDamageType(),
-						damage_flags = DOTA_DAMAGE_FLAG_NONE,
-					}
-					if not unit:IsBuilding() then
-						ApplyDamage(damageTable)
+			if event.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
+				if not caster.c20w_lock then
+					caster:EmitSound( "Hero_Nevermore.Raze_Flames")
+					caster.c20w_lock=true
+					local ifx = ParticleManager:CreateParticle( "particles/c20w_real/c20w2.vpcf", PATTACH_CUSTOMORIGIN, caster)
+					ParticleManager:SetParticleControl( ifx, 0, caster:GetAbsOrigin())
+					local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 300, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
+					for _,unit in ipairs(units) do
+						damageTable = {
+							victim = unit,
+							attacker = caster,
+							ability = ability,
+							damage = damage,
+							damage_type = ability:GetAbilityDamageType(),
+							damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+						}
+						if not unit:IsBuilding() then
+							ApplyDamage(damageTable)
+						end
 					end
+					GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C20W_timer"), 
+					function( )
+						caster.c20w_lock=nil
+						return nil
+					end, 0.3)
 				end
-				GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("C20W_timer"), 
-				function( )
-					c20w_lock=false
-					return nil
-				end, 0.3)
 			end
 		end
 	end
@@ -130,22 +130,30 @@ function modifier_C20W_old_OnTakeDamage( event )
 		local damage = ability:GetSpecialValueFor("damage")
 		if ability then
 			local caster =ability:GetCaster()
-			caster:EmitSound( "Hero_Nevermore.Raze_Flames")
-			local ifx = ParticleManager:CreateParticle( "particles/c20w_real/c20w2.vpcf", PATTACH_CUSTOMORIGIN, caster)
-			ParticleManager:SetParticleControl( ifx, 0, caster:GetAbsOrigin())
-			local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 300, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
-			for _,unit in ipairs(units) do
-					damageTable = {
-					victim = unit,
-					attacker = caster,
-					ability = ability,
-					damage = damage,
-					damage_type = ability:GetAbilityDamageType(),
-					damage_flags = DOTA_DAMAGE_FLAG_NONE,
-				}
-				if not unit:IsBuilding() then
-					ApplyDamage(damageTable)
+			if not caster.c20w_lock then
+				if event.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
+					caster:EmitSound( "Hero_Nevermore.Raze_Flames")
+					local ifx = ParticleManager:CreateParticle( "particles/c20w_real/c20w2.vpcf", PATTACH_CUSTOMORIGIN, caster)
+					ParticleManager:SetParticleControl( ifx, 0, caster:GetAbsOrigin())
+					local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 300, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
+					for _,unit in ipairs(units) do
+							damageTable = {
+							victim = unit,
+							attacker = caster,
+							ability = ability,
+							damage = damage,
+							damage_type = ability:GetAbilityDamageType(),
+							damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+						}
+						if not unit:IsBuilding() then
+							ApplyDamage(damageTable)
+						end
+					end
 				end
+				Timers:CreateTimer(0.1, function ()
+					caster.c20w_lock=nil
+					return nil
+				end)
 			end
 		end
 	end

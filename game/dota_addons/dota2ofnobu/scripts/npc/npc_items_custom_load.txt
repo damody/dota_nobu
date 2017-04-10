@@ -5422,7 +5422,16 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 
 				"EffectAttachType"	"follow_hitloc"
-
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_flame_armor.lua"
+						"Function"	"Shock"
+						"Damage"		"150"
+						"Target"	"TARGET"
+					}
+				}
 				"ThinkInterval"	"1.0"
 				"OnIntervalThink"
 				{

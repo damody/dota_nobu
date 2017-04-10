@@ -171,7 +171,9 @@ function C07T( keys )
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
 	dummy:FindAbilityByName("majia"):SetLevel(1)
 	dummy:SetOwner(caster)
-
+	caster.C07T_dummy = dummy
+	AddFOWViewer(DOTA_TEAM_GOODGUYS, dummy:GetAbsOrigin(), 100, life_time, false)
+    AddFOWViewer(DOTA_TEAM_BADGUYS, dummy:GetAbsOrigin(), 100, life_time, false)
 	--debug
     local group = {}
    	group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 200, 3, 63, 80, 0, false)
@@ -226,15 +228,10 @@ function C07_Effect( keys )
                               DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
                               FIND_CLOSEST,
                               false)
-	local dummyx = CreateUnitByName( "npc_dummy", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
-	AddFOWViewer(DOTA_TEAM_GOODGUYS, dummyx:GetAbsOrigin(), 100, 1, false)
-    AddFOWViewer(DOTA_TEAM_BADGUYS, dummyx:GetAbsOrigin(), 100, 1, false)
-	dummyx:SetOwner(caster)
-	Timers:CreateTimer(1,function()
-		dummyx:ForceKill(true)
-		end)
+	local dummyx = caster.C07T_dummy
+	
 	local ii = 0
-	if caster.C07E_target ~= nil then
+	if caster.C07E_target ~= nil and IsValidEntity(caster.C07E_target) then
 		local v = caster.C07E_target
 		ii = 1
 		StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )
@@ -257,7 +254,7 @@ function C07_Effect( keys )
                           FIND_ANY_ORDER,
                           false)
 		for i2,v2 in ipairs(group2) do
-			if v2:IsHero() then
+			if v2:IsRealHero() then
 				ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v2)
 			end
 			if IsValidEntity(caster) and caster:IsAlive() then
@@ -281,7 +278,7 @@ function C07_Effect( keys )
 					end
 				end
 				caster.takedamage = caster.takedamage + dmg
-				if (v2:IsRealHero()) then
+				if (v2:IsRealHero()) and caster.herodamage then
 					caster.herodamage = caster.herodamage + dmg
 				end
 			end
@@ -311,7 +308,7 @@ function C07_Effect( keys )
 	                              FIND_ANY_ORDER,
 	                              false)
 				for i2,v2 in ipairs(group2) do
-					if v2:IsHero() then
+					if v2:IsRealHero() then
 						ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, v2)
 					end
 					if IsValidEntity(caster) and caster:IsAlive() then
@@ -335,7 +332,7 @@ function C07_Effect( keys )
 							end
 						end
 						caster.takedamage = caster.takedamage + dmg
-						if (v2:IsRealHero()) then
+						if (v2:IsRealHero()) and caster.herodamage then
 							caster.herodamage = caster.herodamage + dmg
 						end
 					end
@@ -400,4 +397,11 @@ function C07W_DMG(keys)
 	for i,v in ipairs(group) do
 		AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
+end
+
+function C07E2_OnAbilityExecuted( keys )
+	-- 開關型技能不能用
+	if keys.event_ability:IsToggle() then return end
+	local caster = keys.caster
+	caster:RemoveModifierByName("modifier_C07E2")
 end

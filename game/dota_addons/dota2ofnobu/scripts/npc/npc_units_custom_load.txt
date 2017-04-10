@@ -126,13 +126,13 @@
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"101.0"
-		"AttackDamageMax"			"102.0"
+		"AttackDamageMin"			"50"
+		"AttackDamageMax"			"50"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.7"
+		"AttackRate"				"0.8"
 		"AttackAnimationPoint"		"0.1"
-		"AttackAcquisitionRange"	"720"
-		"AttackRange"				"720"
+		"AttackAcquisitionRange"	"400"
+		"AttackRange"				"400"
 		"StatusMana"				"0"
 		"StatusStartingMana"		"0"
 		// Bounty
@@ -145,7 +145,7 @@
 		"LumberCost"	"0"
 		// Movement
 		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"	"0"
 		"MovementTurnRate"	"1.5"
 		// Status
@@ -154,8 +154,8 @@
 		"StatusHealthRegen"	"1"
 		// Vision
 		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"800"
-		"VisionNighttimeRange"	"800"
+		"VisionDaytimeRange"	"600"
+		"VisionNighttimeRange"	"600"
 		// Team
 		// ----------------------------------------------------------------
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
@@ -166,7 +166,6 @@
 	}
 
 	//真田昌信 狂風
-	// 火神‧迦具土
 	"b09t_old_wind"
 	{
 		// General
@@ -3307,8 +3306,10 @@
 		"MovementTurnRate"	"0"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"200"
-		"StatusHealthRegen"	"1"
+		"StatusHealth"	"10000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"1000"
+		"StatusManaRegen"	"0"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"800"
@@ -3383,8 +3384,10 @@
 		"MovementTurnRate"	"0"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"200"
-		"StatusHealthRegen"	"1"
+		"StatusHealth"	"10000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"1000"
+		"StatusManaRegen"	"0"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"800"

@@ -274,7 +274,6 @@ function B24E_START( keys )
 	end
 	Timers:CreateTimer(0.1, function ()
 		if IsValidEntity(caster) and caster:IsAlive() then
-			local hasv = false
 			for _,v in ipairs(group) do
 				if IsValidEntity(v) and v:IsAlive() and v:HasModifier("modifier_B24E") then
 					hasv = true
@@ -297,19 +296,6 @@ function B24E_START( keys )
 					end
 				end
 			end
-			if hasv then
-				return 0.1
-			else
-				return nil
-			end
-		else
-			for _,v in ipairs(group) do
-				if IsValidEntity(v) then
-					v:SetForceAttackTarget(nil)
-					v:Stop()
-				end
-			end
-			return nil
 		end
 		end)
 	Timers:CreateTimer(duration+0.1, function ()

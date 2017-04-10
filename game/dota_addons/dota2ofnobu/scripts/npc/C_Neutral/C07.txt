@@ -166,10 +166,10 @@
 				"Passive"	"0"
 				"OnAbilityExecuted"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"	"modifier_C07E2"
-						"Target" 		"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
+						"Function"	"C07E2_OnAbilityExecuted"
 					}
 				}
 			}
@@ -660,10 +660,10 @@
 				"Passive"	"0"
 				"OnAbilityExecuted"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"	"modifier_C07E2"
-						"Target" 		"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
+						"Function"	"C07E2_OnAbilityExecuted"
 					}
 				}
 			}

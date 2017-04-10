@@ -88,7 +88,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
-						"Function"		"modifier_C20W_OnTakeDamage"
+						"Function"		"C20W_OnTakeDamage"
 						"DamageTaken"	"%attack_damage"
 					}
 				}
@@ -118,8 +118,8 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/C20/C20E"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastPoint"				"0.1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
 		"AbilityCooldown"				"14"
 		"AbilityManaCost"				"80 100 120 140"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -428,9 +428,9 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/C20/C20E"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastPoint"				"0.1"
-		"AbilityCooldown"				"60"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+		"AbilityCooldown"				"30"
 		"AbilityManaCost"				"100 120 140 160"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilitySpecial"
