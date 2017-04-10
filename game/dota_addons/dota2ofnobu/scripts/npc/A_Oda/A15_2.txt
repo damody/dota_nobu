@@ -1,0 +1,104 @@
+﻿"DOTAHeroes"
+{
+	// 寧寧
+	"A15"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_winter_wyvern"
+		"ModelScale"	"1.3"
+		"Model"						"models/a15/a15.vmdl"
+		"ProjectileModel"			"particles/econ/items/luna/luna_lucent_rider/luna_attack_lucent_rider.vpcf"	// Particle system model for projectile.
+		"ProjectileSpeed"			"1300"
+		// Abilities
+		// ----------------------------------------------------------------
+		"Ability1"	"A15W"
+		"Ability2"	"A15E"
+		"Ability3"	"A15R"
+		"Ability4"	"attribute_bonusx"
+		"Ability5"	"A15T"
+		"Ability6"	"A15_precache"
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"5"
+		"MagicalResistance"	"30"
+
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"108"
+		"AttackDamageMax"			"122"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.68"
+		"AttackAnimationPoint"		"0.2"
+		"AttackAcquisitionRange"	"490"
+		"AttackRange"				"490"
+
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"22"
+		"AttributeStrengthGain"		"2.35"
+		"AttributeBaseAgility"		"31"
+		"AttributeAgilityGain"		"2.85"
+		"AttributeBaseIntelligence"	"26"
+		"AttributeIntelligenceGain"	"2"
+
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
+
+		// Bounds
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
+
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"313"
+		"MovementTurnRate"		"1.50"
+
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"400"
+		"StatusHealthRegen"		"0.25"
+		"StatusMana"			"0"
+		"StatusManaRegen"		"0.01"
+		"StatusStartingMana"	"-1"
+
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+
+		// Combat
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+
+
+		// RelationShip
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		"DisableWearables"	"1"
+	}
+} // END DOTAHeroes
