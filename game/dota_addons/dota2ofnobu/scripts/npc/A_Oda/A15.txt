@@ -1,0 +1,644 @@
+// 寧寧
+"DOTAAbilities"
+{
+	"A15_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/a15w/a15wskywrath_mage_ancient_seal_debuff.vpcf" //w
+			"particle"  "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf" //e
+			"particle"  "particles/econ/items/luna/luna_lucent_rider/luna_glaive_bounce_lucent_rider.vpcf" //r
+			"particle"  "particles/generic_gameplay/generic_lifesteal.vpcf" //t
+			"particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf" //w_old
+			"particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf"	//w_old
+			"particle"  "particles/a15t_old/a15t_old.vpcf" //t_old
+			"particle"  "particles/a15t/a15t.vpcf" //t t_old
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"	//w_old
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts" //e
+		}
+	}
+
+	//忍法．竭印
+	"A15W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"                        "custom/A15/A15W"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+		"AbilityCooldown"                           "13"
+		"AbilityManaCost"                           "125 135 145 155"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"						"A15W_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A15W_debuff"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/a15w/a15w.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%A15W_outgoingDamage"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A15W_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A15W_duration"				"4"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A15W_dotDamage"			"85 120 155 190"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A15W_outgoingDamage"		"-40 -55 -70 -85"
+			}
+		}
+	}
+
+	//忍法．月擊
+	"A15E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/A15/A15E"
+
+		"AbilityCooldown"							"16 13 10 7"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"125 145 165 185"
+		"AbilityCastRange"              			"800"
+		//"AnimationPlaybackRate"						"0.5"
+		"AbilityChannelTime"						"%A15E_duration"
+		"AOERadius"									"%A15E_radius"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"							"A15E_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"A15E_duration"                	"0.4 0.5 0.6 0.7"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A15E_damage"					"145"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A15E_radius"					"400"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A15E_moonRadius"				"200"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"A15E_stunDuration"				"1.0"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A15E_maxMoon"					"4 5 6 7"
+			}
+		}
+	}
+
+	//忍法．影風車
+	"A15R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/A15/A15R"
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"		"A15R_OnProjectileHitUnit"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A15R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+						"Function"		"A15R_OnAttackLanded"
+						"Damage"		"%attack_damage"
+					}
+				}
+			}
+			"modifier_A15R_bounceAttack"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+						"Function"		"A15R_bounceAttack"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01" // 每次彈跳增加的傷害比例
+			{
+				"var_type" 				"FIELD_FLOAT"
+				"bonus_damage" 			"-0.15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_max"				"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_radius"			"500"
+			}
+		}
+
+    }
+
+    //忍法密傳．影月攻勢
+	"A15T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		//"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		//"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		//"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		//"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/A15/A15T"
+		
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"60"
+		"AbilityManaCost"           				"155"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"		"A15T_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A15T"
+			{
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"EffectName"		"particles/a15t/a15t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%A15T_attackBonus"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+						"Function"		"A15T_OnAttackLanded"
+						"Damage"		"%attack_damage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A15T_attackBonus"	"85 115 145"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A15T_lifeSteal"	"36"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A15T_duration"		"10 15 18"
+			}
+		}
+	}
+
+	//忍法．迷蹤步
+	"A15W_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/A13D"
+
+		"AbilityCastPoint"          				"0.0"
+		"AbilityCooldown"           				"16"
+		"AbilityManaCost"           				"100 110 120 130"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_A15W_old"
+				"Target" 			"CASTER"
+				"Duration"			"%A15W_old_duration"
+			}
+			"ApplyModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_invisible"
+				"Duration"			"%A15W_old_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A15W_old"
+			{
+				"IsHidden"			"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+						"Function"		"A15W_old_End"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_A15W_old"
+					}
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"			"0"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%A15W_old_movespd" 
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A15W_old_damage"		"100 160 220 280"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A15W_old_movespd"		"10 15 20 25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A15W_old_duration"		"10 15 20 25"
+			}
+		}
+	}
+
+	//忍法‧觀月
+	"A15E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/A15/A15E_old"
+
+		"AbilityCooldown"							"18"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityCastRange"              			"0"
+
+		"AOERadius"									"%A15E_radius"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"							"A15E_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A15E_old_show_invi_aura"
+			{
+	            "IsHidden"      	 "1"
+
+	            "Aura"        	 	 "modifier_show_invi"
+        		"Aura_Radius" 	 	 "%A15E_radius"
+        		"Aura_Teams"  		 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        		"Aura_Types"  	 	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_Flags"  		 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+        		"Properties"
+        		{
+        			"MODIFIER_PROPERTY_BONUS_DAY_VISION" 	"%A15E_vision"
+        		    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION" 	"%A15E_vision" 
+        		}
+        		"States"
+        		{
+        			"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
+        		}
+			}
+			"modifier_show_invi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+				"Priority" 			"MODIFIER_PRIORITY_ULTRA"
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"A15E_duration"                	"15 20 25 30"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A15E_radius"					"1000 1300 1600 1900"
+			}
+			"03" //dummy vision 575             1000-575 1300-575 1600-575 1900-575
+			{
+				"var_type"						"FIELD_INTEGER"
+				"A15E_vision"					"425 725 1025 1325"
+			}
+		}
+	}
+
+	//忍法．影風車
+	"A15R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/A15/A15R"
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"		"A15R_OnProjectileHitUnit"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A15R_old_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+						"Function"		"A15R_OnAttackLanded"
+						"Damage"		"%attack_damage"
+					}
+				}
+			}
+			"modifier_A15R_bounceAttack"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+						"Function"		"A15R_bounceAttack"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01" // 每次彈跳增加的傷害比例
+			{
+				"var_type" 				"FIELD_FLOAT"
+				"bonus_damage" 			"-0.35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_max"				"2 4 6 8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_radius"			"500"
+			}
+		}
+    }
+
+    //忍法密傳‧夢魘
+	"A15T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A15/A15T_old"
+		
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"160"
+		"AbilityManaCost"           				"200 250 300"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"		"A15T_old_OnSpellStart"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+				"Function"		"A15T_old_OnProjectileHitUnit"
+				"Target"		"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A15T_old"
+			{
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"EffectName"		"particles/a15t/a15t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"  	"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
+						"Function"		"A15T_old_OnIntervalThink"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A15T_old_heal"		"500 700 900"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A15T_old_duration"	"40"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A15T_old_damage"	"150 210 270"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A15T_old_radius"	"1000"
+			}
+		}
+	}
+
+} // END DOTAAbilities
