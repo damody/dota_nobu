@@ -126,8 +126,8 @@
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"50"
-		"AttackDamageMax"			"50"
+		"AttackDamageMin"			"100"
+		"AttackDamageMax"			"100"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"0.8"
 		"AttackAnimationPoint"		"0.1"
@@ -204,7 +204,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"		"125"
+		"MovementSpeed"		"100"
 		"MovementTurnRate"	"0.05"
 		// Status
 		// ----------------------------------------------------------------
@@ -4522,7 +4522,7 @@
 		// ----------------------------------------------------------------
 		"Ability1"	"for_magic_immune"
 		"Ability2"	"tofar_goback"
-		"Ability3"	""
+		"Ability3"	"magical_800"
 		"Ability4"	""
 		// Armor
 		// ----------------------------------------------------------------

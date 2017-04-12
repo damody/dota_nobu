@@ -96,6 +96,11 @@ function Nobu:OnGameRulesStateChange( keys )
     	_G.can_bomb = true
 	    GameRules:SendCustomMessage("可以開始使用爆裂彈了！",0,0)
     end)
+    Timers:CreateTimer(1200, function()
+    	_G.full_reward6300 = true
+	    GameRules:SendCustomMessage("犒賞有攻擊加成了！",0,0)
+    end)
+    
     Timers:CreateTimer(2, function ()
 		for i=-3,3 do
 		  for j=-3,3 do

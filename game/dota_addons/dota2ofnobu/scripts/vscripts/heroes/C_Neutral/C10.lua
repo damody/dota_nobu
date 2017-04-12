@@ -10,7 +10,7 @@ function C10T_Init( keys )
 	keys.caster.C10T_T = {}
 
     local group = keys.caster.C10T_T
-   	group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, 
+   	group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, ability:GetSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, 
    		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
    	
 	for i,v in ipairs(group) do

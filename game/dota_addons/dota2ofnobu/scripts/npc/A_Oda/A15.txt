@@ -165,7 +165,7 @@
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "custom/A15/A15R"
@@ -218,7 +218,7 @@
 			"01" // 每次彈跳增加的傷害比例
 			{
 				"var_type" 				"FIELD_FLOAT"
-				"bonus_damage" 			"-0.15"
+				"bonus_damage" 			"-0.25"
 			}
 			"02"
 			{
@@ -228,7 +228,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"jump_radius"			"500"
+				"jump_radius"			"400"
 			}
 		}
 
@@ -238,7 +238,7 @@
 	"A15T"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		//"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		//"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		//"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -293,7 +293,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"A15T_lifeSteal"	"36"
+				"A15T_lifeSteal"	"12 24 36"
 			}
 			"03"
 			{
@@ -316,7 +316,7 @@
 		"AbilityTextureName"                        "custom/A13D"
 
 		"AbilityCastPoint"          				"0.0"
-		"AbilityCooldown"           				"16"
+		"AbilityCooldown"           				"8"
 		"AbilityManaCost"           				"100 110 120 130"
 		
 		"OnSpellStart"
@@ -416,7 +416,7 @@
 
 		"AbilityCooldown"							"18"
 		"AbilityCastPoint"							"0.1"
-		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityManaCost"                      		"200 220 240 260"
 		"AbilityCastRange"              			"0"
 
 		"AOERadius"									"%A15E_radius"
@@ -436,12 +436,23 @@
 			{
 	            "IsHidden"      	 "1"
 
-	            "Aura"        	 	 "modifier_show_invi"
-        		"Aura_Radius" 	 	 "%A15E_radius"
-        		"Aura_Teams"  		 "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Types"  	 	 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        		"Aura_Flags"  		 "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+	            "ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "%A15E_radius"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "1"
+	                }
+				}
         		"Properties"
         		{
         			"MODIFIER_PROPERTY_BONUS_DAY_VISION" 	"%A15E_vision"
@@ -452,17 +463,6 @@
         			"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
         		}
 			}
-			"modifier_show_invi"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"1"
-				"Priority" 			"MODIFIER_PRIORITY_ULTRA"
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
-				}
-			}
 		}
 
 		"AbilitySpecial"
@@ -470,7 +470,7 @@
 			"01"
 			{
 				"var_type"                		"FIELD_FLOAT"
-				"A15E_duration"                	"15 20 25 30"
+				"A15E_duration"                	"3 5 7 9"
 			}
 			"02"
 			{
@@ -480,7 +480,7 @@
 			"03" //dummy vision 575             1000-575 1300-575 1600-575 1900-575
 			{
 				"var_type"						"FIELD_INTEGER"
-				"A15E_vision"					"425 725 1025 1325"
+				"A15E_vision"					"1000 1300 1600 1900"
 			}
 		}
 	}
@@ -492,7 +492,7 @@
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "custom/A15/A15R"
@@ -545,7 +545,7 @@
 			"01" // 每次彈跳增加的傷害比例
 			{
 				"var_type" 				"FIELD_FLOAT"
-				"bonus_damage" 			"-0.35"
+				"bonus_damage" 			"-0.25"
 			}
 			"02"
 			{
@@ -555,7 +555,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"jump_radius"			"500"
+				"jump_radius"			"700"
 			}
 		}
     }
@@ -564,7 +564,7 @@
 	"A15T_old"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
@@ -573,7 +573,7 @@
 		"AbilityTextureName"                        "custom/A15/A15T_old"
 		
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"160"
+		"AbilityCooldown"           				"130 120 110"
 		"AbilityManaCost"           				"200 250 300"
 		
 		"OnSpellStart"
@@ -604,7 +604,7 @@
 				"IsPurgable"		"0"
 				"EffectName"		"particles/a15t/a15t.vpcf"
 				"EffectAttachType"	"follow_origin"
-				"ThinkInterval"  	"0.5"
+				"ThinkInterval"  	"0.4"
 				"OnIntervalThink"
 				{
 					"RunScript"

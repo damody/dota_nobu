@@ -111,8 +111,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 146, 146, 146, 255 ]
-			m_ColorMax = [ 89, 89, 89, 255 ]
+			m_ColorMin = [ 0, 0, 0, 255 ]
+			m_ColorMax = [ 0, 0, 0, 255 ]
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -144,6 +144,21 @@
 		{
 			_class = "C_OP_ContinuousEmitter"
 			m_flEmitRate = 20.0
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

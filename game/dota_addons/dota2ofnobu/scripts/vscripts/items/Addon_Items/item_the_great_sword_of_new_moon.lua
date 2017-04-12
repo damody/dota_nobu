@@ -2,7 +2,7 @@ function Shock( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local current_mana = target:GetMana()
-	local burn_amount = 1000
+	local burn_amount = 1500
 	local number_particle_name = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
 	local burn_particle_name = "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_notarget_moonfall.vpcf"
 	local damageType = keys.ability:GetAbilityDamageType()

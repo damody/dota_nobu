@@ -109,8 +109,12 @@ function reward6300(keys)
 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster.donkey.oripos ,false,caster,caster,caster:GetTeamNumber())	
 	dummy:FindAbilityByName("majia"):SetLevel(1)
 	dummy:AddAbility("reward6300"):SetLevel(1)
-	dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)
 	dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
+	if _G.full_reward6300 then
+		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)	
+	else
+		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura2",nil)
+	end
 end
 
 function tofar_goback(keys)

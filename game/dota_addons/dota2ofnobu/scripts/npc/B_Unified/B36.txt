@@ -28,7 +28,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityTextureName"	"custom/B36/b36w"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"		"0.1"
@@ -130,7 +130,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityTextureName"	"custom/B36/b36e"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
@@ -221,7 +221,7 @@
 	//直江兼續  技擊．七柱槍
 	"B36R"
 	{
-		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"BaseClass"                                 "ability_datadriven"
 		"AbilityTextureName"                        "custom/B36/b36r"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"

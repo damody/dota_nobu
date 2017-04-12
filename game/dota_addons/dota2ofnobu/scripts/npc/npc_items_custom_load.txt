@@ -415,7 +415,7 @@
 			"modifier_the_overflame_art_of_war"
 			{
 				"IsHidden"	"0"
-				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectName"	"particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_flames_b.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"IsDebuff"	"1"
 				"Duration"  "5"
@@ -9884,15 +9884,6 @@
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"  	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 				"Aura_ApplyToCaster"	"1"
-
-				"OnTakeDamage"
-				{
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_dark_armor_aura"
-					}
-				}
 			}
 			"modifier_dark_armor"
 			{
@@ -10179,15 +10170,6 @@
 				{
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "30"	//回血
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "21"	//回血
-				}
-				"OnTakeDamage"
-				// "%attack_damage" is set to the damage value after mitigation
-				{
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_poketto_of_meiso"
-					}
 				}
 			}
 			"Passive_poketto_of_meiso"

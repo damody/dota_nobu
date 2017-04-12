@@ -343,7 +343,7 @@ function C17R_old_on_trigger( keys )
 		
 		damage_table.attacker = caster
 		damage_table.damage_type = damage_type
-		damage_table.damage = mana
+		damage_table.damage = ability_damage
 		for _,unit in ipairs(units) do
 			-- 製造傷害
 			if unit.c17r_old ~= target then

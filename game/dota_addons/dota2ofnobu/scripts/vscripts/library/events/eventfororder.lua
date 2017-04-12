@@ -316,6 +316,12 @@ function Nobu:eventfororder( filterTable )
 	 	))]]
 	elseif ordertype == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM then --18
 	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19
+		if filterTable.units and filterTable.units["0"] then
+			local unit = EntIndexToHScript(filterTable.units["0"])
+			if IsValidEntity(unit) and unit.B23T_old then
+				return false
+			end
+		end
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	 then --20
 	elseif ordertype == DOTA_UNIT_ORDER_STOP	 then --21 --出生時會有三次
 		print("stop")

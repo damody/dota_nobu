@@ -125,6 +125,16 @@ function A15R_bounceAttack(keys)
 		end
 		-- Sets it to true for this instance
 		target.hit[current] = true
+		local tt = 0.25
+		if target:IsBuilding() then
+			tt = 0.1
+		end
+			Timers:CreateTimer(tt, function ()
+				if IsValidEntity(target) then
+					target.hit[current] = nil
+				end
+				end)
+		
 	end
 
 	-- Deal damage

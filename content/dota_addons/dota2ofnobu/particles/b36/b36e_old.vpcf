@@ -10,7 +10,8 @@
 	[
 		{
 			_class = "C_OP_RenderSprites"
-			m_hTexture = resource:"materials/particle/particle_glow_03.vtex"
+			m_hTexture = resource:"materials/particle/oracle/oracle_rope_scroll.vtex"
+			m_nOrientationType = 4
 		},
 	]
 	m_Operators = 
@@ -30,8 +31,8 @@
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flEndTime = 2.0
-			m_flStartScale = 0.2
-			m_flEndScale = 10.0
+			m_flStartScale = 20.0
+			m_flEndScale = 20.0
 		},
 		{
 			_class = "C_OP_SetControlPointsToParticle"
@@ -51,13 +52,13 @@
 			_class = "C_OP_RemapVelocityToVector"
 			m_bNormalize = true
 			m_nFieldOutput = 21
-			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
 			m_RateMax = 8.0
-			m_RateMin = -8.0
+			m_RateMin = 8.0
 			m_nField = 4
+			m_bDisableOperator = true
 		},
 	]
 	m_Initializers = 
@@ -78,7 +79,7 @@
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 10
+			m_nParticlesToEmit = 1
 		},
 	]
 	m_ForceGenerators = 
