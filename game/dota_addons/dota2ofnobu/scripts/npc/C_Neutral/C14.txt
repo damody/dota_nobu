@@ -1,0 +1,677 @@
+//齋藤義龍
+"DOTAAbilities"
+{
+	"C14_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"	"particles/c14t_ground/c14t_ground.vpcf"
+			"particle"  "particles/c14w/c14w.vpcf"
+			"particle"  "particles/c14e/c14e.vpcf"
+			"particle"  "particles/units/heroes/hero_lina/lina_base_attack.vpcf"
+			"particle"	"particles/c14_baseattack/c14_baseattack.vpcf"
+		}
+	}
+	"Version"		"1"
+
+	//火靈詛咒
+	"C14W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"                        "custom/C14/C14W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"600"
+		"AbilityCooldown"                           "20 18 16 14"
+		"AbilityManaCost"                           "100"
+		"AOERadius"									"300"
+
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C14W"
+			{
+				"Duration"			"6"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/c14w/c14w.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus"
+				}
+			}
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed_bonus"					"-10 -17 -24 -31"
+			}
+
+		}
+	}
+
+	// 火龍吐息術
+	"C14E"
+	{
+		"BaseClass"			"ability_datadriven"
+		"AbilityTextureName"                        "custom/C14/C14E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"8"
+		"AbilityManaCost"	"80 100 120 140"
+		"AbilityDamage"	"150 270 390 510"
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/c14e/c14e.vpcf"
+				"MoveSpeed"	"%shock_speed"
+				"StartRadius"	"100"
+				"StartPosition"	"attach_orgin"
+				"EndRadius"		"300"
+				"FixedDistance"	"500"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"1"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Target"
+				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14E_OnProjectileHitUnit"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C14E_effect"
+			{
+				"EffectName" 						"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+				"IsDebuff"							"1"
+				"IsPurgable"						"0"
+				"Duration" 						"7"
+				"ThinkInterval"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"							"modifier_C14E_effect_OnIntervalThink"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"							"modifier_C14E_effect_OnIntervalThink"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_speed"	"2000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"30 50 70 90"
+			}
+		}
+
+	}
+	//龍脈強韌
+	"C14R"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"                        "custom/C14/C14R"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"600"
+		"AbilityCooldown"                           "20 18 16 14"
+		"AbilityManaCost"                           "100"
+		"AOERadius"									"300"
+
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C14W"
+			{
+				"Passive" 			"1"
+				"IsPurgable"		"0"
+				"IsDebuff"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%atk_bonus"
+				}
+			}
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"atk_bonus"					"7 14 21 28"
+			}
+
+		}
+	}
+
+	// 火龍化身
+	"C14T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"                        "custom/C14/C14T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"150 145 140"
+		"AbilityManaCost"				"185"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14T_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C14T"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C14T_effect"
+			{
+				"EffectName" 						"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+				"IsDebuff"							"1"
+				"IsPurgable"						"0"
+				"ThinkInterval"						"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"							"modifier_C14T_effect_OnIntervalThink"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"							"modifier_C14T_effect_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_C14T_Aura"
+			{
+				"IsHidden"				"1"
+				"Aura" 					"modifier_C14T_effect"
+		        "Aura_Radius" 			"450"
+		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_NONE"
+		        "Aura_ApplyToCaster" 	"0"
+		        "Duration"				"3"
+			}
+			"modifier_C14T"
+			{
+				//"EffectName"        "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				//"EffectAttachType"  "follow_origin"
+				//"Target"            "CASTER"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"8"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%speed_bonus"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"472"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%During"
+				//"EffectName"	"particles/b06t/b06t.vpcf"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_C20"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"	"modifier_C14T_OnAttackLanded"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C14T"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnCreated"
+				{
+
+				}
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"speed_bonus"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"30 37 44"
+			}
+		}
+	}
+	
+	//火靈詛咒
+	"C14W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"                        "custom/C14/C14W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"600"
+		"AbilityCooldown"                           "25"
+		"AbilityManaCost"                           "120 140 160 180"
+		"AOERadius"									"300"
+
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C14W"
+			{
+				"Duration"			"6"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/c14w/c14w.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus"
+				}
+			}
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed_bonus"					"-30 -35 -40 -45"
+			}
+
+		}
+	}
+
+	// 火龍吐息術
+	"C14E_old"
+	{
+		"BaseClass"			"ability_datadriven"
+		"AbilityTextureName"                        "custom/C14/C14E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityDamage"	"100 200 300 400"
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"	"POINT"
+				"EffectName"	"particles/c14e/c14e.vpcf"
+				"MoveSpeed"	"%shock_speed"
+				"StartRadius"	"100"
+				"StartPosition"	"attach_orgin"
+				"EndRadius"		"300"
+				"FixedDistance"	"500"
+				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"	"1"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%AbilityDamage"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Magnataur.ShockWave.Target"
+				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14E_OnProjectileHitUnit"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C14E_effect"
+			{
+				"EffectName" 						"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+				"IsDebuff"							"1"
+				"IsPurgable"						"0"
+				"Duration" 						"7"
+				"ThinkInterval"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"							"modifier_C14E_effect_OnIntervalThink"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"							"modifier_C14E_effect_OnIntervalThink"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"shock_speed"	"2000"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"50 60 70 80"
+			}
+		}
+
+	}
+	//龍脈強韌
+	"C14R_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"                        "custom/C14/C14R"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"600"
+		"AbilityCooldown"                           "20 18 16 14"
+		"AbilityManaCost"                           "100"
+		"AOERadius"									"300"
+
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C14W"
+			{
+				"Passive" 			"1"
+				"IsPurgable"		"0"
+				"IsDebuff"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_bonus"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus"
+				}
+			}
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_bonus"					"6 8 10 12"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_bonus"					"4 6 8 10"
+			}
+
+		}
+	}
+
+	// 火龍化身
+	"C14T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"                        "custom/C14/C14T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"165"
+		"AbilityManaCost"				"250 300 350"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+				"Function"		"C14T_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C14T"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C14T"
+			{
+				//"EffectName"        "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				//"EffectAttachType"  "follow_origin"
+				//"Target"            "CASTER"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"10"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%speed_bonus"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"572"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"20"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%During"
+				//"EffectName"	"particles/b06t/b06t.vpcf"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_C20"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_C14T"
+						"Target" 		"CASTER"
+					}
+				}
+				"ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "900"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"speed_bonus"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"40 50 60"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"Bonus_Health"	"500 1000 1500"
+			}
+			
+		}
+	}
+}
