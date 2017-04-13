@@ -36,8 +36,8 @@ function modifier_kotennmyohiragumo:OnTakeDamage(event)
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		            if (damage_type ~= DAMAGE_TYPE_PHYSICAL) then
-		            	self.caster:Heal(return_damage*2, self.caster)
+		            if (damage_type == DAMAGE_TYPE_MAGICAL) then
+		            	self.caster:Heal(return_damage*1.5, self.caster)
 		            end 
 		        end
 		    end

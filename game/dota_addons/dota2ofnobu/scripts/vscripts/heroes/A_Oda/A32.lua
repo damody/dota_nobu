@@ -117,9 +117,6 @@ function A32T_old_OnIntervalThink( keys )
 		for i,unit in pairs(targets) do
 			--對目標傷害
 			AMHC:Damage(caster,unit, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			if not unit:IsRealHero() then
-				AMHC:Damage(caster,unit, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			end
 		end
 	end
 end
@@ -245,10 +242,6 @@ function A32R_OnSpellStart( event )
 	local caster = event.caster
 	target:SetRenderColor(150,255,150)
 	target.isvoid = 1
-	Timers:CreateTimer(duration,function()
-		target.isvoid = nil
-		target:SetRenderColor(255,255,255)
-		end)
 end
 
 
@@ -427,12 +420,15 @@ function A32E_old_OnSpellStart( event )
 	local caster = event.caster
 	target.isvoid = 1
 	target:SetRenderColor(150,255,150)
-	Timers:CreateTimer(duration,function()
-		target.isvoid = nil
-		target:SetRenderColor(255,255,255)
-		end)
 end
 
+function A32E_old_OnDestroy( event )
+	local ability = event.ability
+	local target = event.target
+	local caster = event.caster
+	target.isvoid = nil
+	target:SetRenderColor(255,255,255)
+end
 
 function A32T_lock( keys )
 	keys.ability:SetActivated(false)
@@ -450,14 +446,13 @@ function A32T_old_OnToggleOn( event )
 	Timers:CreateTimer(0.1,function()
 		if caster.next_attack ~= nil then
 			caster.next_attack.ability = ability
-
+			--[[
 			local targetArmor = caster.next_attack.victim:GetPhysicalArmorValue()
 			local damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
 			caster.next_attack.damage = caster.next_attack.damage/(1-damageReduction)
-
+			]]
 			ApplyDamage(caster.next_attack)
 			caster.next_attack = nil
-
 		end
 		return 0.1
 		end)

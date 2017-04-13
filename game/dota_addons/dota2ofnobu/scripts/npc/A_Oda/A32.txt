@@ -47,7 +47,6 @@
 
         "Modifiers"
         {
-           //放逐
         	"modifier_A32F"
         	{
                 "Passive"           				"0"
@@ -313,6 +312,15 @@
                     "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%A32R_damageIncrease"
                     "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%A32R_speedDecrease"
                 }
+                "OnDestroy"
+                {
+                	"RunScript"
+					{
+						"ScriptFile"         				"scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"                			"A32E_old_OnDestroy"
+						"Target"            				"TARGET"
+					}
+                }
             }
 
             //爆擊
@@ -561,7 +569,6 @@
 				"EffectAttachType"        "attach_hitloc"
                 "States"
                 {
-
                 	//不能攻擊且無法被攻擊
                 	//"MODIFIER_STATE_ATTACK_IMMUNE"  "MODIFIER_STATE_VALUE_ENABLED"
                 	"MODIFIER_STATE_DISARMED"    	"MODIFIER_STATE_VALUE_ENABLED"
@@ -572,6 +579,15 @@
                 	//傷害增加 緩速
                     "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%A32E_old_damageIncrease"
                     "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%A32E_old_speedDecrease"
+                }
+                "OnDestroy"
+                {
+                	"RunScript"
+					{
+						"ScriptFile"         				"scripts/vscripts/heroes/A_Oda/A32.lua"
+						"Function"                			"A32E_old_OnDestroy"
+						"Target"            				"TARGET"
+					}
                 }
             }
 
@@ -592,7 +608,7 @@
 			"03"
 			{
 				"var_type"                			"FIELD_INTEGER"
-				"A32E_old_damageIncrease"               "44"
+				"A32E_old_damageIncrease"               "66"
 			}
 		}
     }
@@ -688,9 +704,9 @@
 
 		"AbilityCastPoint"          	"0.1"
 		"AbilityCooldown"           	"2"
-		"AbilityManaCost"           	"300 400 500"
+		"AbilityManaCost"           	"100 150 200"
 		"MaxLevel"						"3"
-		"AbilityDamage"					"100 140 200"
+		"AbilityDamage"					"80 140 200"
 		"AbilityCastRange"				"400"
 		"AOERadius"						"400"
 
@@ -810,7 +826,7 @@
 			"04"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"mana"	"25 35 45"
+				"mana"	"5 10 15"
 			}
 		}
     }
