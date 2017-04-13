@@ -240,7 +240,9 @@ function A25T( keys )
 	local tornado = ParticleManager:CreateParticle("particles/a17t/a17t_funnel.vpcf", PATTACH_ABSORIGIN, keys.caster)
 	local timecount = 0
 	local small_tornado_count = 0
-	local AbilityDamage = ability:GetLevelSpecialValueFor( "Damage", ability:GetLevel() - 1 )
+	local AbilityDamage = ability:GetAbilityDamage()
+	local duration = ability:GetSpecialValueFor("duration")
+	AMHC:AddModelScale(caster, 1.3, duration)
 	Timers:CreateTimer(0, function()
 		local pos = caster:GetAbsOrigin()
 		ParticleManager:SetParticleControl(tornado, 3, pos)

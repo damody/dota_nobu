@@ -360,7 +360,7 @@ end
 
 
 
-function modifier_A28TE_old_OnIntervalThink( keys )
+function modifier_B09TE_old_OnIntervalThink( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel()-1
@@ -378,7 +378,7 @@ function modifier_A28TE_old_OnIntervalThink( keys )
 	end
 end
 
-function modifier_A28TE_old_building_OnIntervalThink( keys )
+function modifier_B09TE_old_building_OnIntervalThink( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel()-1
@@ -397,7 +397,7 @@ function modifier_A28TE_old_building_OnIntervalThink( keys )
 
 	for _,enemy in pairs(enemies) do
 		if enemy:IsBuilding() then
-			AMHC:Damage(caster,enemy,aoe_damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster,enemy,aoe_damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end
 	end
 end

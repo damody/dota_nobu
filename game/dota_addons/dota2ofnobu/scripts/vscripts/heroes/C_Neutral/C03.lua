@@ -110,6 +110,7 @@ function C03T_OnSpellStart( keys )
 	
 	robon:SetOwner(caster)
 	robon:FindAbilityByName("majia"):SetLevel(1)
+	ability:ApplyDataDrivenModifier(robon,robon,"modifier_invulnerable",{duration = 50})
 	
 	local rp = robon:GetAbsOrigin()
 	rp.z = rp.z + 300
@@ -198,7 +199,7 @@ function C03T_old_OnSpellStart( keys )
 	
 	robon:SetOwner(caster)
 	robon:FindAbilityByName("majia"):SetLevel(1)
-	
+	ability:ApplyDataDrivenModifier(robon,robon,"modifier_invulnerable",{duration = 50})
 	local rp = robon:GetAbsOrigin()
 	rp.z = rp.z + 300
 	robon:SetAbsOrigin(rp)

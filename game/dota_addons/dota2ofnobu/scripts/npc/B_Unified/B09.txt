@@ -491,7 +491,7 @@
 
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"150"
+		"AbilityCooldown"	"150 140 130"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"200 250 300"
@@ -556,7 +556,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
-						"Function"		"modifier_A28TE_old_OnIntervalThink"
+						"Function"		"modifier_B09TE_old_OnIntervalThink"
 					}
 				}
 			}
@@ -578,7 +578,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
-						"Function"		"modifier_A28TE_old_building_OnIntervalThink"
+						"Function"		"modifier_B09TE_old_building_OnIntervalThink"
 					}
 				}
 			}
@@ -623,7 +623,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"aoe_radius"		"600"
+				"aoe_radius"		"300"
 			}
 			"03"
 			{

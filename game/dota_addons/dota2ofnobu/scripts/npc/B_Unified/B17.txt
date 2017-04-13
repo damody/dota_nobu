@@ -670,7 +670,7 @@
 		"AbilityCastPoint"                          "0.18" //多0.08讓英雄面向轉到位
 		"AbilityCastRange"							"0"
 
-		"AbilityCooldown"                           "40 30 20 11"
+		"AbilityCooldown"                           "11"
 		"AbilityManaCost"                           "100"
 
 		"OnSpellStart"
@@ -715,7 +715,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B17R_old_damage"		"400"
+				"B17R_old_damage"		"100 200 300 400"
 			}
 			"02"
 			{

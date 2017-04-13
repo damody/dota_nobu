@@ -650,8 +650,24 @@
 				"Target"	"CASTER"
 				"EffectName"	"A26T_old.vo1"
 			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A26T_old"
+				"Target" 		"CASTER"
+			}
 		}
-
+		"Modifiers"
+		{
+			"modifier_A26T_old"
+			{
+				"IsHidden"			"0"
+				"Duration"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"

@@ -186,13 +186,13 @@ end
 function ShockTarget( keys, target )
 	local caster = keys.caster
 	local ability = keys.ability
-	local havetime = 10
+	local havetime = 5
 	local shield
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_nannbann_armor2", {duration = havetime} )
 	if target:FindModifierByName("modifier_nannbann_armor2") then
 		target:FindModifierByName("modifier_nannbann_armor2").caster = target
 		target:FindModifierByName("modifier_nannbann_armor2").hp = target:GetHealth()
-		target:FindModifierByName("modifier_nannbann_armor2").magic_shield = 1000
+		target:FindModifierByName("modifier_nannbann_armor2").magic_shield = 500
 		shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		target:FindModifierByName("modifier_nannbann_armor2").shield_effect = shield
 	end
