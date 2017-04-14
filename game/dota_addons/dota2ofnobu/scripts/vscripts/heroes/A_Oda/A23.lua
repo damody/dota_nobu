@@ -149,12 +149,14 @@ function A23R( keys )
 			}
 			-- 配合特效延遲傷害造成時間
 			Timers:CreateTimer(0.3, function()
-				if not unit:IsBuilding() then
+				if not unit:IsBuilding() and IsValidEntity(unit) then
 					ability:ApplyDataDrivenModifier(caster,unit,"modifier_A23R_dot",nil)
 				else
 					--ability:ApplyDataDrivenModifier(caster,unit,"modifier_A23R_dot_building",nil)
 				end
-				ApplyDamage(damage_table)
+				if IsValidEntity(unit) then
+					ApplyDamage(damage_table)
+				end
 			end)
 		end
 		-- 特效

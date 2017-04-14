@@ -686,7 +686,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"no_damage"		"3 4 5"
+				"hp_threshold2"		"500 400 300"
 			}
 		}
 		"OnUpgrade"
@@ -745,23 +745,6 @@
 					}
 				}
 			}
-			"modifier_B21T_old_cd"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"Duration"		"30"
-			}
-			"modifier_B21T_old_no_damage"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"Duration"		"%no_damage"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-100"
-				}
-			}
 			"modifier_B21T_old"
 			{
 				"Properties"
@@ -771,7 +754,15 @@
 				    "MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-50"
 				    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"	//回血
 				}
-
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B21.lua"
+						"Function"		"B21T_old_OnIntervalThink"
+					}
+				}
 				"OnCreated"
 				{
 					"RunScript"

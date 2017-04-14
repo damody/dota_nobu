@@ -35,11 +35,7 @@ function modifier_A06W_old:OnTakeDamage(event)
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) and self.caster.compute == nil then
 	    	self.caster.compute = 1
 	    	if attacker:GetEntityIndex() == self.caster:GetEntityIndex() then
-	    		if self.caster:HasModifier("modifier_kotennmyohiragumo") then
-	    			AMHC:Damage( victim,self.caster,return_damage * self.percent,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-	    		else
-	    			AMHC:Damage( victim,self.caster,return_damage * self.percent,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-	    		end
+	    		AMHC:Damage( victim,self.caster,return_damage * self.percent,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	    	end
 		end
 		self.caster.compute = nil
@@ -126,7 +122,7 @@ function A06T_old(keys)
 		local ran =  RandomInt(1, 100)
 		if ran > 25 or caster.nextA06T_old == 1 then
 			local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  550 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			nil,  450 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 			for _, it in pairs(group) do
 				AMHC:CreateParticle("particles/b06e4/b06e4_b.vpcf",PATTACH_ABSORIGIN,false,it,0.5,nil)

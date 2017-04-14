@@ -314,17 +314,23 @@ function B21R_old_buff_OnDestroy( keys )
 	ParticleManager:DestroyParticle(target.ifx_B21R_old_buff,false)
 end
 
+function B21T_old_OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local hp_threshold = ability:GetSpecialValueFor("hp_threshold")
+	local hp_threshold2 = ability:GetSpecialValueFor("hp_threshold2")
+	caster.nexthp = caster:GetHealth() - hp_threshold2
+end
+
 function B21T_old_OnHealthChange( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local hp_threshold = ability:GetSpecialValueFor("hp_threshold")
+	local hp_threshold2 = ability:GetSpecialValueFor("hp_threshold2")
 	local hp = caster:GetHealth()
-	if hp <= hp_threshold then
-		if not caster:HasModifier("modifier_B21T_old_cd") then
-			ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old_cd",nil)
-			ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old_no_damage",nil)
-			caster:SetHealth(hp_threshold)
-			print("lock hp")
+	if caster.nexthp ~= nil then
+		if hp < caster.nexthp then
+			caster:SetHealth(caster.nexthp)
 		end
 	end
 	if ability.modifier == nil then
@@ -345,6 +351,9 @@ function B21T_old_OnCreated( keys )
 	local ifx = ParticleManager:CreateParticle("particles/b21/b21t_buff.vpcf",PATTACH_CUSTOMORIGIN,caster)
 	ParticleManager:SetParticleControl(ifx,0,Vector(50))
 	ability.ifx = ifx
+	local hp_threshold = ability:GetSpecialValueFor("hp_threshold")
+	local hp_threshold2 = ability:GetSpecialValueFor("hp_threshold2")
+	caster.nexthp = hp_threshold - hp_threshold2
 end
 
 function B21T_OnUpgrade( keys )

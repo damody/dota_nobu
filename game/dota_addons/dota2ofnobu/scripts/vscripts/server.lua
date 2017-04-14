@@ -57,6 +57,7 @@ end
 
 _G.blacklist = {
 	"338693950", --玩遊戲玩死你
+	
 }
 
 local cannotplay = {}

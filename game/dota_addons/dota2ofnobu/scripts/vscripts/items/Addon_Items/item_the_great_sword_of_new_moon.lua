@@ -33,16 +33,14 @@ function Shock( keys )
 		ParticleManager:SetParticleControl(flame,1,target:GetAbsOrigin()+Vector(0, 0, 100))
 		ParticleManager:SetParticleControl(flame,2,target:GetAbsOrigin()+Vector(0, 0, 100))
 		ParticleManager:SetParticleControl(flame,5,target:GetAbsOrigin()+Vector(0, 0, 100))
-	Timers:CreateTimer(0.5, function ()
-		ParticleManager:DestroyParticle(flame, false)
-	end)
+		Timers:CreateTimer(0.5, function ()
+			ParticleManager:DestroyParticle(flame, false)
+		end)
 		
 		-- Create timer to properly destroy particles
 		Timers:CreateTimer( life_time, function()
 				ParticleManager:DestroyParticle( numberIndex, false )
-				ParticleManager:DestroyParticle( burnIndex, false)
 				return nil
-			end
-		)
+			end)
 	end
 end

@@ -83,7 +83,9 @@ end
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster.has_item_protection_amulet = true
+	if IsValidEntity(caster) then
+		caster.has_item_protection_amulet = true
+	end
 	Timers:CreateTimer(1, function() 
 		if not IsValidEntity(caster) then
 			return nil
@@ -108,7 +110,7 @@ function OnEquip( keys )
 end
 
 function OnUnequip( keys )
-	if keys.caster ~= nil then
+	if IsValidEntity(keys.caster) then
 		keys.caster.has_item_protection_amulet = nil
 	end
 end

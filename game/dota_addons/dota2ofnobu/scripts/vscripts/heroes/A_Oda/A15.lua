@@ -141,12 +141,16 @@ function A15R_bounceAttack(keys)
 	if ability.first_target[current] ~= target then
 		local base_damage = ability.damage[current]
 		local new_damage = base_damage * math.pow( 1 + bonus_damage, jump_max-ability.jump_count[current] )
+
 		local damageTable = {
 			victim = target, 
 			attacker = caster, 
 			damage = new_damage, 
 			damage_type = ability:GetAbilityDamageType()
 		}
+		if target:IsBuilding() then
+			damageTable.damage = damageTable.damage * 0.5
+		end
 		ApplyDamage( damageTable )
 		if caster:HasModifier("modifier_A15T") then
 			if not target:IsBuilding() then

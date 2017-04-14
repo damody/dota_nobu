@@ -94,7 +94,9 @@ end
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster.has_item_magic_talisman = true
+	if IsValidEntity(caster) then
+		caster.has_item_magic_talisman = true
+	end
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and caster:IsAlive() then
 			if not caster:HasModifier("modifier_magic_talisman") and IsValidEntity(ability) and ability:IsCooldownReady() then
@@ -115,7 +117,10 @@ function OnEquip( keys )
 end
 
 function OnUnequip( keys )
-	keys.caster.has_item_magic_talisman = nil
+	local caster = keys.caster
+	if IsValidEntity(caster) then
+		caster.has_item_magic_talisman = nil
+	end
 end
 
 --------------------------------------------------------------------------------
