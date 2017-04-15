@@ -25,6 +25,7 @@ _G.heromap = {
   npc_dota_hero_oracle              = "A29",
   npc_dota_hero_medusa              = "A31",
   npc_dota_hero_juggernaut          = "A32",
+  npc_dota_hero_shadow_shaman       = "A33",
   npc_dota_hero_crystal_maiden      = "A34",
 
   npc_dota_hero_nevermore           = "B01",
@@ -59,7 +60,7 @@ _G.heromap = {
   npc_dota_hero_silencer            = "C07",
   npc_dota_hero_lycan               = "C08",
   npc_dota_hero_antimage            = "C10",
-  npc_dota_hero_shadow_shaman       = "C11",
+  npc_dota_hero_tiny                = "C11",
   npc_dota_hero_earth_spirit        = "C13",
   npc_dota_hero_spirit_breaker      = "C14",
   npc_dota_hero_mirana              = "C15",
@@ -99,6 +100,7 @@ _G.heromap_version = {
   A29 = {["11"] = true , ["16"] = true},
   A31 = {["11"] = true , ["16"] = true},
   A32 = {["11"] = true , ["16"] = true},
+  A33 = {["11"] = true , ["16"] = true},
   A34 = {["11"] = true , ["16"] = true},
 
   B01 = {["11"] = true , ["16"] = true},
@@ -168,6 +170,7 @@ _G.heromap_skill = {
   A29 = {["11"] = "WERT" , ["16"] = "WERT"},
   A31 = {["11"] = "WERT" , ["16"] = "WERT"},
   A32 = {["11"] = "WERT" , ["16"] = "WERDFT"},
+  A33 = {["11"] = "WERT" , ["16"] = "WERT"},
   A34 = {["11"] = "WERT" , ["16"] = "WERT"},
 
   B01 = {["11"] = "WERT" , ["16"] = "WERT"},
@@ -238,6 +241,7 @@ _G.heromap_autoskill = {
   A29 = {["11"] = "" , ["16"] = ""},
   A31 = {["11"] = "" , ["16"] = ""},
   A32 = {["11"] = "" , ["16"] = "F"},
+  A33 = {["11"] = "" , ["16"] = ""},
   A34 = {["11"] = "" , ["16"] = ""},
 
   B01 = {["11"] = "" , ["16"] = ""},

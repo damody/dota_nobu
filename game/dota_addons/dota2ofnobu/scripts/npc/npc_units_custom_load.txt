@@ -4,7 +4,146 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	//本多正信亡靈
+	"B33T_old_SKELETON"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
+		"ModelScale"	"1.3"
+		"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
 
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"6"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRate"				"1.8"
+		"AttackDamageMin"	"66.0"
+		"AttackDamageMax"	"71.0"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"20.0"
+		"BountyGoldMax"	"20.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"2"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"600"
+		"VisionNighttimeRange"	"600"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+	//本多正信亡靈
+	"B33W_SKELETON"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
+		"ModelScale"	"1.3"
+		"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"6"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"500"
+		"AttackRate"				"1.8"
+		"AttackDamageMin"	"66.0"
+		"AttackDamageMax"	"71.0"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"20.0"
+		"BountyGoldMax"	"20.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"2"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"600"
+		"VisionNighttimeRange"	"600"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
 	// 霧隱才藏 迴旋手裏劍
 	"B17R_old_shuriken"
 	{

@@ -1,22 +1,22 @@
-"DOTAHeroes"
+﻿"DOTAHeroes"
 {
-	// 立花宗茂
-	"C11"
+	// 本多正信
+	"A33"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"override_hero"	"npc_dota_hero_tiny"
-		"ModelScale"	"1.4"
-		"HealthBarOffset"	"160"
-		"Model"         "models/c11/c11.vmdl"
+		"override_hero"	"npc_dota_hero_shadow_shaman"
+		"ModelScale"	"1.3"
+		"ProjectileModel"			"particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"	// Particle system model for projectile.
+		"ProjectileSpeed"			"1500"
 		// Abilities
 		// ----------------------------------------------------------------
-		"Ability1"	"C11W"
-		"Ability2"	"C11E"
-		"Ability3"	"C11R"
+		"Ability1"	"A33W"
+		"Ability2"	"A33E"
+		"Ability3"	"A33R"
 		"Ability4"	"attribute_bonusx"
-		"Ability5"	"C11T"
-		"Ability6"	"C11_precache"
+		"Ability5"	"A33T"
+		"Ability6"	"A33_precache"
 		"Ability7"	""
 		"Ability8"	""
 		"Ability9"	""
@@ -27,49 +27,48 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"Ability17" ""
 
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"8"
+		"ArmorPhysical"		"5"
 		"MagicalResistance"	"30"
 
 		// Attack
 		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"124"
-		"AttackDamageMax"	"140"
-		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.80"
-		"AttackAcquisitionRange"	"500"
-		"AttackRange"	"128"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"97"
+		"AttackDamageMax"			"113"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.8"
+		"AttackAnimationPoint"		"0.2"
+		"AttackAcquisitionRange"	"700"
+		"AttackRange"				"700"
 
 		// Attributes
 		// ----------------------------------------------------------------
-		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"	"33"
-		"AttributeStrengthGain"	"2.70"
-		"AttributeBaseAgility"	"35"
-		"AttributeAgilityGain"	"2.70"
-		"AttributeBaseIntelligence"	"28"
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"35"
+		"AttributeStrengthGain"		"2.1"
+		"AttributeBaseAgility"		"31"
+		"AttributeAgilityGain"		"2.7"
+		"AttributeBaseIntelligence"	"23"
 		"AttributeIntelligenceGain"	"2"
 
 		// Bounty
 		// ----------------------------------------------------------------
-		// "BountyXP"		"0"  
 		"BountyGoldMin"	"300.0"
 		"BountyGoldMax"	"300.0"
 
 		// Bounds
 		// ----------------------------------------------------------------
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		// "HealthBarOffset"	"160"
+		"HealthBarOffset"	"160"
 
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"320"
-		"MovementTurnRate"	"1.50"
+		"MovementSpeed"			"300"
+		"MovementTurnRate"		"1.50"
 
 		// Gold and Lumber
 		// ----------------------------------------------------------------
@@ -78,11 +77,11 @@
 
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"400"
-		"StatusHealthRegen"	"0.25"
-		"StatusMana"	"0"
-		"StatusManaRegen"	"0.01"
-		"StatusStartingMana"	"-1" // -1 = full
+		"StatusHealth"			"400"
+		"StatusHealthRegen"		"0.25"
+		"StatusMana"			"0"
+		"StatusManaRegen"		"0.01"
+		"StatusStartingMana"	"-1"
 
 		// Vision
 		// ----------------------------------------------------------------
@@ -94,10 +93,10 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 
+
 		// RelationShip
 		// ----------------------------------------------------------------
-		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
-		"DisableWearables"	"1"
 	}
 } // END DOTAHeroes
