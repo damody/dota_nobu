@@ -61,14 +61,12 @@ end
 
 
 function modifier_C14T_effect_OnIntervalThink( keys )
-	for i,v in pairs(keys) do
-       print(tostring(i).."="..tostring(v))
-    end
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
 	local point = target:GetAbsOrigin()
 	local damage = ability:GetSpecialValueFor("damage")
+	if IsValidEntity(caster) and IsValidEntity(target) then
 		damageTable = {
 			victim = target,
 			attacker = caster,
@@ -80,6 +78,7 @@ function modifier_C14T_effect_OnIntervalThink( keys )
 		if not target:IsBuilding() then
 			ApplyDamage(damageTable)
 		end
+	end
 end
 
 function C14T_OnSpellStart( event )
@@ -102,13 +101,34 @@ function modifier_C14T_OnAttackLanded(keys)
 	local point = target:GetAbsOrigin()
 	local tickPerSec = 1
 
-	local dummy = CreateUnitByName( "npc_dummy_unit", point, false, nil, nil, caster:GetTeamNumber())
-	dummy:AddNewModifier( dummy, nil, "modifier_kill", {duration=3} )
-	dummy:SetOwner(caster)
-	dummy:AddAbility( "majia_vison"):SetLevel(1)
-
-	ability:ApplyDataDrivenModifier( caster, dummy, "modifier_C14T_Aura", nil)
-	local ifx = ParticleManager:CreateParticle("particles/c14t_ground/c14t_ground.vpcf",PATTACH_ABSORIGIN,dummy)
+	local pos = target:GetAbsOrigin()
+	local count = 0
+	local damageTable = {
+		victim = target,
+		attacker = caster,
+		ability = ability,
+		damage = 100,
+		damage_type = ability:GetAbilityDamageType(),
+		damage_flags = DOTA_DAMAGE_FLAG_NONE,
+	}
+	Timers:CreateTimer(0, function()
+		count = count + 1
+		if IsValidEntity(caster) and IsValidEntity(ability) then
+			local group = FindUnitsInRadius(caster:GetTeamNumber(), pos, nil, 400, 
+				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+			for _,v in ipairs(group) do
+				damageTable.victim = v
+				ApplyDamage(damageTable)
+			end
+		end
+		if count <= 3 then
+			return 1
+		else
+			return nil
+		end
+    end)
+	
+	local ifx = ParticleManager:CreateParticle("particles/c14t_ground/c14t_ground.vpcf",PATTACH_ABSORIGIN,caster)
 	ParticleManager:SetParticleControl(ifx,3,point)
 	ParticleManager:ReleaseParticleIndex(ifx)
 end
@@ -121,7 +141,8 @@ function modifier_C14T_effect_OnIntervalThink( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local point = target:GetAbsOrigin()
-	local damage = 130
+	if IsValidEntity(caster) and IsValidEntity(target) then
+		local damage = 130
 		damageTable = {
 			victim = target,
 			attacker = caster,
@@ -133,6 +154,7 @@ function modifier_C14T_effect_OnIntervalThink( keys )
 		if not target:IsBuilding() then
 			ApplyDamage(damageTable)
 		end
+	end
 end
 
 

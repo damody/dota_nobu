@@ -60,6 +60,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"OnAttackLanded"
 				{
@@ -396,6 +397,11 @@
 				"ModifierName"		"modifier_invisible"
 				"Duration"			"%B17T_duration"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+				"Function"		"B17T_OnSpellStart"
+			}
 		}
 
 		"Modifiers"
@@ -422,15 +428,10 @@
 				}
 				"OnAbilityExecuted"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"Target"		"CASTER"
-						"ModifierName"	"modifier_B17T"
-					}
-					"RemoveModifier"
-					{
-						"Target"		"CASTER"
-						"ModifierName"	"modifier_invisible"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B17.lua"
+						"Function"		"B17T_OnAbilityExecuted"
 					}
 				}
 				"Properties"

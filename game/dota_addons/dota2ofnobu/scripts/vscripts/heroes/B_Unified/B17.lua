@@ -162,6 +162,34 @@ function B17T_End( keys )
 	end
 end
 
+function B17T_OnSpellStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	caster.B17T_OnAbility = nil
+end
+
+function B17T_OnAbilityExecuted( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	if caster.B17T_OnAbility ~= nil then
+		caster:RemoveModifierByName( "modifier_B17T" )
+		--caster:RemoveModifierByName( "modifier_invisible" )
+	else
+		Timers:CreateTimer(0.01, function ()
+			if IsValidEntity(caster) then
+				local handle = caster:FindModifierByName("modifier_B17T")
+				if handle then
+					local dura = handle:GetDuration() - handle:GetElapsedTime()
+					ability:ApplyDataDrivenModifier(caster,caster,"modifier_invisible",{duration = dura})
+				end
+			end
+			end)
+		caster.B17T_OnAbility = 1
+	end
+end
+
 function B17W_old_End( keys )
 	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then		-- This is to fail check if it is item. If it is item, error is expected
 		-- Variables

@@ -258,34 +258,6 @@
 				"EffectName" 						"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
 				"IsDebuff"							"1"
 				"IsPurgable"						"0"
-				"ThinkInterval"						"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
-						"Function"							"modifier_C14T_effect_OnIntervalThink"
-					}
-				}
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C14.lua"
-						"Function"							"modifier_C14T_effect_OnIntervalThink"
-					}
-				}
-			}
-			"modifier_C14T_Aura"
-			{
-				"IsHidden"				"1"
-				"Aura" 					"modifier_C14T_effect"
-		        "Aura_Radius" 			"450"
-		        "Aura_Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_NONE"
-		        "Aura_ApplyToCaster" 	"0"
-		        "Duration"				"3"
 			}
 			"modifier_C14T"
 			{
@@ -330,10 +302,6 @@
 						"ModifierName"	"modifier_C14T"
 						"Target" 		"CASTER"
 					}
-				}
-				"OnCreated"
-				{
-
 				}
 			}
 
