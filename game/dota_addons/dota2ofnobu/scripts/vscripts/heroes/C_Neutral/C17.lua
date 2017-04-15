@@ -257,14 +257,14 @@ end
 function C17W_old_health_recover( keys )
 	local target = keys.target
 	local ability = keys.ability
-	local health_recover = ability:GetLevelSpecialValueFor("health_recover",ability:GetLevel()-1)
+	local health_recover = ability:GetSpecialValueFor("health_recover")
 	target:SetHealth(target:GetHealth()+health_recover)
 end
 
 function C17E_old_mana_recover( keys )
 	local target = keys.target
 	local ability = keys.ability
-	local mana_recover = ability:GetLevelSpecialValueFor("mana_recover",ability:GetLevel()-1)
+	local mana_recover = ability:GetSpecialValueFor("mana_recover")
 	target:SetMana(target:GetMana()+mana_recover)
 end
 
