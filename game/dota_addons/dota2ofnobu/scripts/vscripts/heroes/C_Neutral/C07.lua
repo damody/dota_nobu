@@ -30,7 +30,9 @@ function C07E( keys )
           if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_C07E") and caster:HasModifier("modifier_C07E2") then
           	return 0.2
           else
-          	target:RemoveModifierByName("modifier_C07E")
+          	if IsValidEntity(target) then
+      			target:RemoveModifierByName("modifier_C07E")
+      		end
           	caster.C07E_target = nil
           	ParticleManager:DestroyParticle(particle,false)
           	return nil
@@ -66,15 +68,17 @@ function C07D( keys )
 	--模組
 	local caster = keys.caster
 	local ability = keys.ability
-	caster.C07D_B = true
-	caster:RemoveGesture(ACT_DOTA_ATTACK)
-	caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
-	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1,5508)--99 --120 --250G
-	Timers:CreateTimer(0.05,function()
-		if caster:HasModifier("modifier_C07D") then --等等添加
-			ability:ApplyDataDrivenModifier(caster,caster,"modifier_C07D_2",nil)
-		end
-	end)
+	if IsValidEntity(caster) then
+		caster.C07D_B = true
+		caster:RemoveGesture(ACT_DOTA_ATTACK)
+		caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1,5508)--99 --120 --250G
+		Timers:CreateTimer(0.05,function()
+			if caster:HasModifier("modifier_C07D") and IsValidEntity(caster) then --等等添加
+				ability:ApplyDataDrivenModifier(caster,caster,"modifier_C07D_2",nil)
+			end
+		end)
+	end
 end
 
 function C07D_ATTACK( keys )

@@ -529,7 +529,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"15 12 9 6"
 		"AbilityManaCost"				"50"
 
 		"AbilityCastRange"				"600"
@@ -602,16 +602,6 @@
 
 		"Modifiers"
 		{
-			"modifier_C02E_old_hp"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"Duration"	"15"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "%steal_hp"
-				}
-			}
 			"modifier_C02E_old"
 			{
 				"IsDebuff"			"1"
@@ -650,6 +640,51 @@
 						"Function"		"modifier_C02E_old_OnDestroy"
 						"Target"		"TARGET"
 					}
+				}
+			}
+		}
+	}
+
+	"C02D_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_77"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+		"AbilityCooldown"				"15 12 9 6"
+		"AbilityManaCost"				"50"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+
+		"AbilityChannelTime"	"10"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"addv"	"10 20 30 40"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_C02D_old"
+			{
+				"IsDebuff"			"0"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%addv"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%addv"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%addv"	//智
 				}
 			}
 		}
@@ -778,7 +813,14 @@
 				"aoe_radius"	"250"
 			}
 		}
-
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/C_Neutral/C02.lua"
+				"Function"			"C02T_old_upgrade"
+			}
+		}
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_legion_commander/legion_commander_press_owner.vpcf" // buff

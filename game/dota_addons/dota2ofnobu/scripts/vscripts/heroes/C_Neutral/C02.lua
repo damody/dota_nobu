@@ -513,20 +513,6 @@ function C02E_old_steal( keys )
 		damage_type=DAMAGE_TYPE_PURE,
 		damage=steal_hp
 	})
-	if not caster:HasModifier("modifier_C02E_old_hp") then
-		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02E_old_hp",nil)
-		local handle = caster:FindModifierByName("modifier_C02E_old_hp")
-		if handle then
-			handle:SetStackCount(1)
-		end
-	else
-		local handle = caster:FindModifierByName("modifier_C02E_old_hp")
-		if handle then
-			local c = handle:GetStackCount()
-			handle:SetStackCount(c+1)
-		end
-		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C02E_old_hp",nil)
-	end
 
 	target:ReduceMana(steal_mp)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,target,steal_hp,nil)
@@ -726,4 +712,9 @@ function C02T_old_OnAttackLanded( keys )
 		local ifx = ParticleManager:CreateParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",PATTACH_ABSORIGIN_FOLLOW,unit)
 		ParticleManager:ReleaseParticleIndex(ifx)
 	end
+end
+
+
+function C02T_old_upgrade( keys )
+	keys.caster:FindAbilityByName("C02D_old"):SetLevel(keys.ability:GetLevel()+1)
 end

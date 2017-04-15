@@ -67,7 +67,6 @@ function A11E( keys )
 	ParticleManager:SetParticleControlEnt(particle3, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(particle3, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	
-	caster.A11E_P = particle
 	Timers:CreateTimer(0.2, function ()
       	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_A11E") and caster:HasModifier("modifier_A11E2") then
       		local particle2 = ParticleManager:CreateParticle("particles/a11e/a11e_rope_flames.vpcf", PATTACH_CUSTOMORIGIN, caster)
@@ -75,7 +74,9 @@ function A11E( keys )
 			ParticleManager:SetParticleControlEnt(particle2, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
       		return 0.2
       	else
-      		target:RemoveModifierByName("modifier_A11E")
+      		if IsValidEntity(target) then
+      			target:RemoveModifierByName("modifier_A11E")
+      		end
       		caster.A11E_target = nil
       		ParticleManager:DestroyParticle(particle,false)
       		return nil

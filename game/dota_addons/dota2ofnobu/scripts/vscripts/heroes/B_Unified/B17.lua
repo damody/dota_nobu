@@ -5,7 +5,7 @@ function B17W( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local point = ability:GetCursorPosition()
-
+	local atk = ability:GetSpecialValueFor("B17W_atk")
 	local unit = CreateUnitByName("B17W_deathGuard", point, true, caster, caster, caster:GetTeamNumber())
 	unit:SetOwner(caster)
 	unit:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
@@ -13,7 +13,8 @@ function B17W( keys )
 	ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W_notActivate", nil)
 	unit:AddNewModifier( unit, nil, "modifier_invisible", nil)
 	ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W_detectorAura", nil)
-
+	unit:SetBaseDamageMax(atk)
+	unit:SetBaseDamageMin(atk)
 end
 
 function B17W_onAttackLanded( keys )
@@ -25,7 +26,7 @@ function B17W_onAttackLanded( keys )
 	if RandomInt(1,100) < 20 and not target:IsMagicImmune() then
 		ability:ApplyDataDrivenModifier(attacker,target,"modifier_stunned",{duration=0.5})
 	end
-	
+	--[[
 	local dmgt = {
 		victim = target,
 		attacker = attacker,
@@ -35,6 +36,7 @@ function B17W_onAttackLanded( keys )
 		damage_flags = DOTA_DAMAGE_FLAG_NONE,
 	}
 	ApplyDamage(dmgt)
+	]]
 end
 
 function B17W_onTakeDamage( keys )

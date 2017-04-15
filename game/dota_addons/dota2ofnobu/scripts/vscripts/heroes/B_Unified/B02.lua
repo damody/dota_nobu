@@ -215,6 +215,9 @@ function B02R_MOVE(keys)
 	--local point2 = ability:GetCursorPosition()
 	local level = ability:GetLevel() - 1
 	--【MOVE】
+	if dummy.b02r_D == nil then
+		dummy.b02r_D = 0
+	end
 	dummy.b02r_D = dummy.b02r_D + 20
 	local tem_P =Vector( point2.x + 420*math.cos(dummy.b02r_D*3.14159/180.0) ,point2.y + 420*math.sin(dummy.b02r_D*3.14159/180.0),point2.z)
 	dummy:SetAbsOrigin(tem_P)

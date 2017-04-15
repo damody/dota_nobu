@@ -95,9 +95,7 @@ function C22R( keys )
 	local attack_time = 100/crit_percent + 1
 	caster:RemoveModifierByName("C22R_critical")
 	if  caster.C22R_noncrit_count ~= nil then
-			print("@@@UF_SUCCESS")
 		if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
-			print("@@@UF_SUCCESS")
 			if (ran > crit_percent) then
 				caster.C22R_noncrit_count  = caster.C22R_noncrit_count + 1
 			end

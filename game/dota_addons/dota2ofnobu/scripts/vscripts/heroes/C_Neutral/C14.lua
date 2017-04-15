@@ -137,9 +137,6 @@ end
 
 
 function C14E_OnProjectileHitUnit( event )
-	for i,v in pairs(event) do
-        print(tostring(i).."="..tostring(v))
-    end
 	local caster = event.caster 
 	local target = event.target
 	local ability = event.ability
@@ -153,7 +150,6 @@ function modifier_C14E_effect_OnIntervalThink( keys )
 	--for i,v in pairs(keys) do
    --     print(tostring(i).."="..tostring(v))
     --end
-    print("c14e")
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
