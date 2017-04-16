@@ -9,7 +9,6 @@ function C23W_OnSpellStart( keys )
 end
 
 function modifier_C23W_OnIntervalThink( keys )
-
 	local caster = keys.caster             
 	local ability = keys.ability
 	local targets = FindUnitsInRadius(caster:GetTeamNumber(),	

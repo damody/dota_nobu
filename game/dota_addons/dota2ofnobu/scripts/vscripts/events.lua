@@ -161,6 +161,7 @@ function Nobu:Attachment_UpdateUnit(args)
   -- --DebugPrintTable(cosmetics)
   -- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "attachment_cosmetic_list", cosmetics )
 end
+
 function give_money_for_together_hero(caster, gold, radius)
   local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
   local illu = 0
@@ -171,12 +172,15 @@ function give_money_for_together_hero(caster, gold, radius)
   end
   local sum = #group - illu
   if sum == 1 then
-    gold = gold * 0.5
+    gold = gold
   elseif sum > 2 then
     gold = gold * sum
   end
+  local give = {}
   for _,hero in ipairs(group) do
-    AMHC:GivePlayerGold(hero:GetPlayerOwnerID(), gold)
+    if not hero:IsIllusion() then
+      AMHC:GivePlayerGold(hero:GetPlayerOwnerID(), gold)
+    end
   end
 end
 
@@ -195,17 +199,16 @@ function Nobu:FilterGold( filterTable )
       end
     end
     if reason == DOTA_ModifyGold_Building then
-      if gold > 300 and gold ~= 750 then
-        return false
-      end
-      local player = PlayerResource:GetPlayer(playerID)
-      if player then
-        local hero = player:GetAssignedHero()
-        Timers:CreateTimer(0.1, function ()
-          if hero.kill_tower == 1 then
-            give_money_for_together_hero(hero, gold, 1000)
-          end
-          end)
+      if gold == 150 or gold == 750 then
+        local player = PlayerResource:GetPlayer(playerID)
+        if player then
+          local hero = player:GetAssignedHero()
+          Timers:CreateTimer(0.1, function ()
+            if hero.kill_tower == 1 then
+              give_money_for_together_hero(hero, gold, 1000)
+            end
+            end)
+        end
       end
       return false
     end

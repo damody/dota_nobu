@@ -1,4 +1,6 @@
 
+die_time = {1, 2, 4, 7, 11, 16, 22, 29, 37, 46, 47, 49, 52, 56, 61, 67, 74, 80}
+
 function Nobu:OnUnitKill( keys )
 --每当单位死亡，检查其是否符合条件，如果符合就刷新任务
   ------------------------------------------------------------------
@@ -37,11 +39,23 @@ function Nobu:OnUnitKill( keys )
 	
     local AttackerUnit = EntIndexToHScript( keys.entindex_attacker )
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
-    if killedUnit:IsBuilding() and AttackerUnit:IsRealHero() then
-      AttackerUnit.kill_tower = 1
+    if killedUnit:IsBuilding() then
+      local group = FindUnitsInRadius(AttackerUnit:GetTeamNumber(), killedUnit:GetAbsOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
+      for _,hero in ipairs(group) do
+        hero.kill_tower = 1
+        if not hero:IsIllusion() then
+          print("hero "..hero:GetUnitName())
+        end
+      end
+      
       Timers:CreateTimer(1, function ()
-        AttackerUnit.kill_tower = nil
+        for _,hero in ipairs(group) do
+          if IsValidEntity(hero) then
+            hero.kill_tower = nil
+          end
+        end
         end)
+
     end
     if (AttackerUnit:IsRealHero()) then
       if AttackerUnit.kill_hero_count == nil then
@@ -78,12 +92,19 @@ function Nobu:OnUnitKill( keys )
       else
         killedUnit.death_count = killedUnit.death_count + 1
       end
-      if killedUnit:GetLevel() >= 20 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2.5)
-      elseif killedUnit:GetLevel() >= 10 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
+      --[[
+      if die_time[killedUnit:GetLevel()] ~= nil then
+        killedUnit:SetTimeUntilRespawn(die_time[killedUnit:GetLevel()])
+      end
+      ]]
+      if killedUnit:GetLevel() >= 18 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+15)
+      elseif killedUnit:GetLevel() >= 12 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+10)
+      elseif killedUnit:GetLevel() >= 6 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+5)
       else
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*1.5)
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
       end
       group = FindUnitsInRadius(
           killedUnit:GetTeamNumber(), 

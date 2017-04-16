@@ -5210,14 +5210,14 @@
 		"AbilityCooldown"	"60"
 		
 		"AbilityManaCost"	"125"
-		"AbilityCastPoint"	"2"
+		"AbilityCastPoint"	"6"
 		
 		"ID"	"2713"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"7300"
-		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		"OnAbilityPhaseStart"
@@ -5226,6 +5226,11 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_teleport.lua"
 				"Function"	"Shock0"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_great_sword_of_teleport"
+				"Target" 		"CASTER"
 			}
 		}
 		"OnSpellStart"
@@ -5251,10 +5256,11 @@
 				"Passive"			"0"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
+				"Duration"			"6"
 				
 				"States"
 				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"Passive_great_sword_of_teleport"
