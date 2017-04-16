@@ -66,12 +66,14 @@ function SurrenderSystem:CheckVoteResults(playerid)
 	local connected_players = 0
 	local agree_players = 0
 	for _,hero in ipairs(HeroList:GetAllHeroes()) do
-		local id = hero:GetPlayerID()
-		local team = PlayerResource:GetTeam(id)
-		local state = PlayerResource:GetConnectionState(id)
-		if team == iTeam and state == 2 then -- 2 = connected
-			connected_players = connected_players + 1
-			if votes[id] then agree_players  = agree_players + 1 end
+		if not hero:IsIllusion() then
+			local id = hero:GetPlayerID()
+			local team = PlayerResource:GetTeam(id)
+			local state = PlayerResource:GetConnectionState(id)
+			if team == iTeam and state == 2 then -- 2 = connected
+				connected_players = connected_players + 1
+				if votes[id] then agree_players  = agree_players + 1 end
+			end
 		end
 	end
 
