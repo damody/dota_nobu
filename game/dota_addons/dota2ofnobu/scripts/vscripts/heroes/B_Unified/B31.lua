@@ -385,11 +385,12 @@ function modifier_B31T_old_OnIntervalThink( keys )
 	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
+	local dmg = ability:GetSpecialValueFor("dmg")
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) and it:IsAlive() then
 			Timers:CreateTimer(0.3, function()
 				ability:ApplyDataDrivenModifier(caster,it,"modifier_B31T_old_dot",nil)
-				AMHC:Damage(caster,it,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end)
 		
 			local ifx = ParticleManager:CreateParticle("particles/a23r/a23rfly.vpcf", PATTACH_CUSTOMORIGIN, caster)

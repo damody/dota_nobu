@@ -1,0 +1,532 @@
+// 山縣昌景
+"DOTAAbilities"
+{
+	"B20_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/b20w/b20w.vpcf" //w
+			"particle"  "particles/b20e/b20eburrowstrike.vpcf" //e
+			"particle"  "particles/b20t/b20t.vpcf" //t
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts" //w
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts" //e
+		}
+	}
+
+	//岩衝
+	"B20W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/B20/B20W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "15 13 11 9"
+		"AbilityManaCost"                           "120 140 160 180"
+		"AOERadius"									"%B20W_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+				"Function"							"B20W_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B20W_stunDuration"			"1.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B20W_damage"				"200 300 400 500"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B20W_radius"				"400"
+			}
+		}
+	}
+
+	//壞毀波
+	"B20E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B20/B20E"
+
+		"AbilityCooldown"							"22 19 16 13"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"120 140 160 180"
+		"AbilityCastRange"							"%B20E_radius"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+				"Function"							"B20E_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"Hero_Brewmaster.ThunderClap"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"B20E_stunDuration"             "0.5 0.7 0.9 1.1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B20E_damage"					"150 300 450 600"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B20E_radius"					"600"
+			}
+		}
+	}
+
+	//強韌
+	"B20R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		//"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/B20/B20R"
+
+
+		"Modifiers"
+		{
+			"modifier_B20R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" 	"%B20R_msBonus"
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B20.lua"
+						"Function"					"B20R_OnAbilityExecuted"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20R_mrBonus"			"8 16 24 32"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20R_mpRegen"			"3 5 7 9"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20R_hpRegen"			"1 2 3 4"
+			}
+		}
+
+    }
+
+    //赤備猛攻
+	"B20T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B20/B20T"
+		"AbilityCooldown"           				"80 70 60"
+		"AbilityManaCost"           				"200"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+				"Function"							"B20T_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B20T"
+			{
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%B20T_asBonus"
+				}
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+						"Function"							"B20T_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_B28T_debuff"
+			{
+				"IsDebuff"	"1"
+				"EffectName"		"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%B20T_msDebuff" 
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B20T_duration"			"8.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20T_radius"			"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20T_damage"			"90 130 170"
+			}
+			"04"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"B20T_asBonus" 			"185"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20T_msDebuff"			"-30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B20T_debuffDuration"	"1.0"
+			}
+		}
+	}
+
+	//岩衝
+	"B20W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/B20/B20W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1000"
+		"AbilityCooldown"                           "18"
+		"AbilityManaCost"                           "100 120 140 160"
+		"AOERadius"									"400"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+				"Function"							"B20W_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B20W_stunDuration"			"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B20W_damage"				"280 360 440 520"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B20W_radius"				"400"
+			}
+		}
+	}
+
+	//壞毀波
+	"B20E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B20/B20E"
+
+		"AbilityCooldown"							"25 22 19 16"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"130 160 190 220"
+		"AbilityCastRange"							"600"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+				"Function"							"B20E_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"Target"		"CASTER"
+				"EffectName"	"Hero_Brewmaster.ThunderClap"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"B20E_stunDuration"             "0.2 0.3 0.4 0.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B20E_damage"					"150 250 300 450"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B20E_radius"					"600"
+			}
+		}
+	}
+
+	//強韌
+	"B20R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		//"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		//"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B20/B20R_old"
+
+
+		"Modifiers"
+		{
+			"modifier_B20R_old_Crit"
+            {
+            	"Passive" "1"
+            	"OnAttackStart"
+            	{
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_B20R_old_Crit2"
+						"Target"					"CASTER"
+					}
+					"Random"
+					{
+						"Chance"					"36"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+								"Function"							"B20R_old_OnSuccess"
+							}
+						}
+					}
+
+            	}
+            }
+
+            "modifier_B20R_old_Crit2"
+       		{
+       			"IsHidden"		"1"
+          		"Properties"
+           		{
+                	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "%B20R_old_CritScale"
+           		}
+           		"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_B20R_old_Crit2"
+						"Target"					"CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B20.lua"
+						"Function"					"B20R_old_OnAttackLanded"
+					}
+				}
+       		}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B20R_old_CritScale"                "220 240 260 280"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"B20R_old_damageBonus"              "5 10 15 20"
+			}
+		}
+
+    }
+
+    //赤備猛攻
+	"B20T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B20/B20T"
+		"AbilityCooldown"           				"130 120 110"
+		"AbilityManaCost"           				"230 280 330"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+				"Function"							"B20T_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B20T"
+			{
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%B20T_asBonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%B20T_msBonus"
+				}
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B20.lua"
+						"Function"							"B20T_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_B28T_debuff"
+			{
+				"IsDebuff"	"1"
+				"EffectName"		"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%B20T_msasDebuff" 
+				    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%B20T_msasDebuff"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B20T_duration"			"14.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20T_radius"			"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20T_damage"			"90 130 170"
+			}
+			"04"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"B20T_asBonus" 			"35 45 55"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20T_msasDebuff"		"-30 -40 -50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B20T_debuffDuration"	"1.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B20T_msBonus"			"20 30 40"
+			}
+		}
+	}
+
+} // END DOTAAbilities
