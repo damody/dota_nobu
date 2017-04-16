@@ -21,6 +21,9 @@ skin_table = {
 	["89504404"] = true,
 	["5491971"] = true,
 	["45356591"] = true,
+	["190143365"] = true,
+	["161033081"] = true,
+	["245761935"] = true,
 	
 	["404284631"] = true,
 	["404414261"] = true,
@@ -194,6 +197,11 @@ local function chat_of_test(keys)
 		caster.skin = "school"
 		caster:SetModel("models/c17/c17_school.vmdl")
 		caster:SetOriginalModel("models/c17/c17_school.vmdl")
+	end
+	if (s == "-skin" and nobu_id == "A26" and skin) then
+		caster.skin = "school"
+		caster:SetModel("models/a26/a26_school.vmdl")
+		caster:SetOriginalModel("models/a26/a26_school.vmdl")
 	end
 	if (s == "-long" and nobu_id == "A31") then
 		caster:SetModel("models/a31/a31_long.vmdl")

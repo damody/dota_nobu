@@ -121,13 +121,8 @@
 		//"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
 		//"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
-		//"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
-		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B20/B20R"
-		//"AbilityManaCost"							"300 350 400 450"
-		//"AbilityCooldown"							"24 21 18 15"
 
-		//"AbilityCastRange"              			"%B20R_radius"
 
 		"Modifiers"
 		{
@@ -182,11 +177,8 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B20/B20T"
-		//"AbilityCastRange"							"1000"
-		//"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"60"
+		"AbilityCooldown"           				"80 70 60"
 		"AbilityManaCost"           				"200"
-		//"AOERadius"                                 "%B20T_radius"
 		
 		"OnSpellStart"
 		{
@@ -279,7 +271,7 @@
 		"AbilityCastRange"							"1000"
 		"AbilityCooldown"                           "18"
 		"AbilityManaCost"                           "100 120 140 160"
-		"AOERadius"									"%B20W_radius"
+		"AOERadius"									"400"
 
 		"OnSpellStart"
 		{
@@ -295,7 +287,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"B20W_stunDuration"			"1.0"
+				"B20W_stunDuration"			"1"
 			}
 			"02"
 			{
@@ -322,10 +314,10 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"    					"custom/B20/B20E"
 
-		"AbilityCooldown"							"25"
+		"AbilityCooldown"							"25 22 19 16"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"130 160 190 220"
-		"AbilityCastRange"							"%B20E_radius"
+		"AbilityCastRange"							"600"
 		
 		"OnSpellStart"
 		{
@@ -372,10 +364,7 @@
 		//"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B20/B20R_old"
-		//"AbilityManaCost"							"300 350 400 450"
-		//"AbilityCooldown"							"24 21 18 15"
 
-		//"AbilityCastRange"              			"%B20R_radius"
 
 		"Modifiers"
 		{
@@ -455,11 +444,8 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B20/B20T"
-		//"AbilityCastRange"							"1000"
-		//"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"130"
+		"AbilityCooldown"           				"130 120 110"
 		"AbilityManaCost"           				"230 280 330"
-		//"AOERadius"                                 "%B20T_radius"
 		
 		"OnSpellStart"
 		{

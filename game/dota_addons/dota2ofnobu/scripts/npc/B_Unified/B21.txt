@@ -666,12 +666,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"add_attack"		"210 360 520"
+				"add_attack"		"160 280 400"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"add_armor"			"70 90 110"
+				"add_armor"			"30 50 70"
 			}
 			"04"
 			{
@@ -686,7 +686,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hp_threshold2"		"500 400 300"
+				"hp_threshold2"		"800 700 600"
 			}
 		}
 		"OnUpgrade"
@@ -752,7 +752,7 @@
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" 	"%add_attack"
 				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" 	"%add_armor" 
 				    "MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-50"
-				    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"	//回血
+				    //"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"	//回血
 				}
 				"ThinkInterval"  "1"
 				"OnIntervalThink"

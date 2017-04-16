@@ -179,7 +179,7 @@ function AON_Cleave(keys)
 			--[[
 			if it ~= target and it:IsHero() then
 				local targetArmor = it:GetPhysicalArmorValue()
-				local damageReduction = ((03 * targetArmor) / (1 + 03* targetArmor))
+				local damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
 				print(keys.dmg.." damageReduction "..damageReduction)
 				
 			elseif it ~= target then
@@ -220,7 +220,7 @@ function AON_Cleave_C14(keys)
 			end
 		end
 	else
-		AMHC:Damage( caster,target,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		--AMHC:Damage( caster,target,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 end
 function AON_Cleave_C20(keys)
@@ -250,6 +250,6 @@ function AON_Cleave_C20(keys)
 			end
 		end
 	else
-		AMHC:Damage( caster,target,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		--AMHC:Damage( caster,target,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 end

@@ -34,12 +34,13 @@ function modifier_A33W_OnIntervalThink( keys )
 			end
 		end
 
-		local skeleton = CreateUnitByName("B33W_SKELETON", point + RandomVector(RandomInt(0,400)), true, nil, nil , caster:GetTeamNumber())
+		local skeleton = CreateUnitByName("A33W_SKELETON", point + RandomVector(RandomInt(0,400)), true, nil, nil , caster:GetTeamNumber())
 		skeleton:SetOwner(caster)
 		skeleton:SetControllableByPlayer(caster:GetPlayerID(), true)
 		skeleton:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
 		skeleton:AddNewModifier(caster,nil,"modifier_kill",{duration=50})
 		ability:ApplyDataDrivenModifier( caster, skeleton , "modifier_A33W_skeleton", { duration = 50 } )
+		skeleton:SetRenderColor(RandomInt(1,255),RandomInt(1,255),RandomInt(1,255))
 	end
 end
 
@@ -52,15 +53,20 @@ function modifier_A33W_OnChannelInterrupted( keys )
 end
 
 
-function modifier_A33E_OnCreated( keys )
+function A33E_OnSpellStart( keys )
 	local caster = keys.caster
 	caster.a33e_count=keys.ability:GetSpecialValueFor("count")
+	Timers:CreateTimer(0.1, function ()
+		local handle = caster:FindModifierByName("modifier_A33E2")
+		if handle then
+			handle:SetStackCount(caster.a33e_count+1)
+		end
+		end)
 end
 
 
 function modifier_A33E_OnTakeDamage( event )
 	-- Variables
-
 	if IsServer() then
 		local damage = event.DamageTaken
 		local ability = event.ability
@@ -69,17 +75,23 @@ function modifier_A33E_OnTakeDamage( event )
 		if ability then
 			local caster =ability:GetCaster() 
 			if damage >= 35 and caster.a33e_count>0 and (attacker:IsBuilding() or attacker:IsHero()) then
-				local newHealth = caster:GetMaxHealth() + damage
+				local newHealth = caster:GetHealth() + damage
 				caster:SetHealth(newHealth)
 				caster.a33e_count=caster.a33e_count-1
 			elseif damage < 35 and (attacker:IsBuilding() or attacker:IsHero()) then
 				if caster:FindModifierByName("modifier_A33E") then
 					caster:RemoveModifierByName("modifier_A33E")
+					caster:RemoveModifierByName("modifier_A33E2")
 				end
 			elseif caster.a33e_count==0 and (attacker:IsBuilding() or attacker:IsHero()) then
 				if caster:FindModifierByName("modifier_A33E") then
 					caster:RemoveModifierByName("modifier_A33E")
+					caster:RemoveModifierByName("modifier_A33E2")
 				end
+			end
+			local handle = caster:FindModifierByName("modifier_A33E2")
+			if handle then
+				handle:SetStackCount(caster.a33e_count+1)
 			end
 		end
 	end
@@ -137,7 +149,8 @@ function A33E_old_OnSpellStart( keys )
 	caster.a33e_old_point=point
 	local particle = ParticleManager:CreateParticle("particles/a33e_old/a33e_old.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:SetParticleControl(particle, 0, point)
-
+	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 300, 2, false)
+    AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 300, 2, false)
 end
 
 function A33E_old_DelayedAction( keys )
@@ -149,15 +162,16 @@ function A33E_old_DelayedAction( keys )
 	local targets = FindUnitsInRadius(caster:GetTeamNumber(),	
 				point,nil,radius,DOTA_UNIT_TARGET_TEAM_ENEMY, 
 		   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+		   		0, 
 		   		FIND_ANY_ORDER, 
-				false) 
+				false)
+
 	for i,unit in pairs(targets) do
 		--對目標傷害
 		if not unit:IsBuilding() then
 			local damageTable = {victim=unit,   
 				attacker=caster,          
-				damage=ability:GetSpecialValueFor("damage")*caster:GetMaxHealth()/100,
+				damage=ability:GetSpecialValueFor("damage")*unit:GetMaxHealth()/100,
 				damage_type=keys.ability:GetAbilityDamageType()}
 			if not unit:IsMagicImmune() then
 				ApplyDamage(damageTable)
@@ -176,15 +190,19 @@ function A33T_old_OnSpellStart( keys )
 	local count = ability:GetSpecialValueFor("skeleton_number")
 	local particle = ParticleManager:CreateParticle("particles/a33t_old/a33t_old.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:SetParticleControl(particle, 0, point)
+	local dummy = CreateUnitByName("npc_dummy_unit",point,false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=14})
+	dummy:SetOwner(caster)
+	dummy:AddAbility("majia"):SetLevel(1)
+	ability:ApplyDataDrivenModifier( caster, dummy , "modifier_A33T_old_aura", { duration = 14 } )
 		
 	for i=1,count do
-		local skeleton = CreateUnitByName("B33T_old_SKELETON", point + RandomVector(RandomInt(0,200)), true, nil, nil , caster:GetTeamNumber())
+		local skeleton = CreateUnitByName("A33T_old_SKELETON", point + RandomVector(RandomInt(0,200)), true, nil, nil , caster:GetTeamNumber())
 		skeleton:SetOwner(caster)
 		skeleton:SetControllableByPlayer(caster:GetPlayerID(), true)
 		skeleton:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
-		skeleton:AddNewModifier(caster,nil,"modifier_kill",{duration=20})
-		ability:ApplyDataDrivenModifier( caster, skeleton , "modifier_A33T_old_skeleton", { duration = 20 } )
-		ability:ApplyDataDrivenModifier( caster, skeleton , "modifier_A33T_old_aura", { duration = 20 } )
+		ability:ApplyDataDrivenModifier( skeleton, skeleton , "modifier_A33T_old_skeleton", nil )
+		skeleton:SetRenderColor(RandomInt(1,255),RandomInt(1,255),RandomInt(1,255))
 	end
 end
 

@@ -37,6 +37,12 @@ function Nobu:OnUnitKill( keys )
 	
     local AttackerUnit = EntIndexToHScript( keys.entindex_attacker )
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
+    if killedUnit:IsBuilding() and AttackerUnit:IsRealHero() then
+      AttackerUnit.kill_tower = 1
+      Timers:CreateTimer(1, function ()
+        AttackerUnit.kill_tower = nil
+        end)
+    end
     if (AttackerUnit:IsRealHero()) then
       if AttackerUnit.kill_hero_count == nil then
         AttackerUnit.kill_hero_count = 0
@@ -90,7 +96,7 @@ function Nobu:OnUnitKill( keys )
           FIND_ANY_ORDER, 
           false)
       if (#group > 0) then
-        local xp = killedUnit:GetLevel() * 20 / #group
+        local xp = killedUnit:GetLevel() * 40 / #group
         for _,v in ipairs(group) do
           v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
           if v:IsHero() and killedUnit:GetLevel() > 7 then

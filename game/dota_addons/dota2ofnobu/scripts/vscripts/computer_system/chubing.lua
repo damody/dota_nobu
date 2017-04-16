@@ -78,7 +78,7 @@ function ShuaGuai( )
 		    	ent:SetHealth(ent:GetHealth()+10)
 		    	ent:SetBaseDamageMax(ent:GetBaseDamageMax() + 4)
 		    	ent:SetBaseDamageMin(ent:GetBaseDamageMin() + 4)
-		    	ent:SetPhysicalArmorBaseValue(ent:GetPhysicalArmorBaseValue() + 0.5)
+		    	ent:SetPhysicalArmorBaseValue(ent:GetPhysicalArmorBaseValue() + 0.1)
 			end
 		end
 		local AA_num = 3 -- + 0.015*ShuaGuai_count
