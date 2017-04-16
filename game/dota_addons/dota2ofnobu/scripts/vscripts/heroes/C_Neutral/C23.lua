@@ -61,13 +61,14 @@ function C23E_OnSpellStart( keys )
 		for i,unit in pairs(targets) do
 			unit:AddNewModifier(unit,nil,"modifier_phased",{duration=0.1})
 		end
-		local Kagutsuchi = CreateUnitByName("C23W_unit", point3,true,caster,caster,caster:GetTeam())
+		local Kagutsuchi = CreateUnitByName("C23W_unit", point3,false,caster,caster,caster:GetTeam())
 	 	Kagutsuchi:SetOwner(caster)
 	 	-- 設定火神數值
 	 	Kagutsuchi:SetForwardVector(dir)
 		--Kagutsuchi:SetControllableByPlayer(player, true)
 		Kagutsuchi:AddNewModifier(Kagutsuchi,nil,"modifier_kill",{duration=life_time})
 		ability:ApplyDataDrivenModifier(caster,Kagutsuchi,"modifier_C23E_aura",{duration=life_time})
+		ability:ApplyDataDrivenModifier(caster,Kagutsuchi,"modifier_C23E_aura_checkFly",{duration=life_time})
 		ExecuteOrderFromTable( { UnitIndex = Kagutsuchi:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Kagutsuchi:GetAbsOrigin() })
 	end
  
@@ -146,4 +147,22 @@ function modifier_C23E_aura_onAttackLanded( keys )
 	local ifx = ParticleManager:CreateParticle("particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf",PATTACH_ABSORIGIN,unit)
 	ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
 	ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
+end
+
+function modifier_C23E_checkFly_OnCreated( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	if target==caster then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C23E_fly",{})
+	end
+end
+
+function modifier_C23E_checkFly_OnDestroy( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	if target==caster then
+		caster:RemoveModifierByName("modifier_C23E_fly")
+	end
 end
