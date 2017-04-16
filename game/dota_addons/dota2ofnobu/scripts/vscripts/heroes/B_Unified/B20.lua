@@ -67,6 +67,13 @@ function B20W_HitDestination( caster, ability, point )
 	end
 end
 
+B20E_EXCLUDE_TARGET_NAME = {
+	npc_dota_cursed_warrior_souls	= true,
+	npc_dota_the_king_of_robbers	= true,
+	com_general = true,
+	com_general2 = true,
+}
+
 function B20E_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -84,19 +91,21 @@ function B20E_OnSpellStart( keys )
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, 
 		ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 	for _,unit in ipairs(units) do
-		FindClearSpaceForUnit( unit, caster:GetAbsOrigin() , true)
-		unit:AddNewModifier( nil, nil, "modifier_phased", { duration = 0.1 } )
-		if not unit:IsMagicImmune() then
-			local damageTable = {
-				victim = unit,
-				attacker = caster,
-				ability = ability,
-				damage = damage,
-				damage_type = ability:GetAbilityDamageType(),
-				damage_flags = DOTA_DAMAGE_FLAG_NONE,
-			}
-			unit:AddNewModifier( caster, ability, "modifier_stunned", { duration = stunDuration } )
-			ApplyDamage(damageTable)
+		if B20E_EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+			FindClearSpaceForUnit( unit, caster:GetAbsOrigin() , true)
+			unit:AddNewModifier( nil, nil, "modifier_phased", { duration = 0.1 } )
+			if not unit:IsMagicImmune() then
+				local damageTable = {
+					victim = unit,
+					attacker = caster,
+					ability = ability,
+					damage = damage,
+					damage_type = ability:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+				}
+				unit:AddNewModifier( caster, ability, "modifier_stunned", { duration = stunDuration } )
+				ApplyDamage(damageTable)
+			end
 		end
 	end
 end
