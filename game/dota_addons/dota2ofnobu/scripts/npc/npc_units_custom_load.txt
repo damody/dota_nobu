@@ -4,6 +4,76 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	//加籐清正 惡念障壁
+	"C23W_unit"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/life_stealer/life_stealer.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"HealthBarOffset"	"160"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"6"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"	"0.10"
+		"AttackAcquisitionRange"	"1000"
+		"AttackRate"				"0.2"
+		"AttackDamageMin"	"17.0"
+		"AttackDamageMax"	"17.0"
+		"AttackRange"	"200"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"0.0"
+		"BountyGoldMax"	"0.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"0"
+		"MovementTurnRate"	"1"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"300"
+		"VisionNighttimeRange"	"300"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
 	//本多正信亡靈
 	"B33T_old_SKELETON"
 	{
