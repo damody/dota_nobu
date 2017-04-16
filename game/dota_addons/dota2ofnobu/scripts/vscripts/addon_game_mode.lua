@@ -30,6 +30,7 @@ _G.heromap = {
 
   npc_dota_hero_nevermore           = "B01",
   npc_dota_hero_faceless_void       = "B02",
+  npc_dota_hero_elder_titan         = "B03",
   npc_dota_hero_clinkz              = "B04",
   npc_dota_hero_keeper_of_the_light = "B05",
   npc_dota_hero_axe                 = "B06",  
@@ -106,6 +107,7 @@ _G.heromap_version = {
 
   B01 = {["11"] = true , ["16"] = true},
   B02 = {["11"] = true , ["16"] = true},
+  B03 = {["11"] = true , ["16"] = true},
   B04 = {["11"] = true , ["16"] = true},
   B05 = {["11"] = true , ["16"] = true},
   B06 = {["11"] = true , ["16"] = true},
@@ -178,6 +180,7 @@ _G.heromap_skill = {
 
   B01 = {["11"] = "WERT" , ["16"] = "WERT"},
   B02 = {["11"] = "WERT" , ["16"] = "WERDT"},
+  B03 = {["11"] = "WERT" , ["16"] = "WDFERT"},
   B04 = {["11"] = "WERDT" , ["16"] = "WERT"},
   B05 = {["11"] = "WERT" , ["16"] = "WERT"},
   B06 = {["11"] = "WERT" , ["16"] = "WERT"},
@@ -251,6 +254,7 @@ _G.heromap_autoskill = {
 
   B01 = {["11"] = "" , ["16"] = ""},
   B02 = {["11"] = "" , ["16"] = "D"},
+  B03 = {["11"] = "" , ["16"] = ""},
   B04 = {["11"] = "" , ["16"] = ""},
   B05 = {["11"] = "" , ["16"] = ""},
   B06 = {["11"] = "" , ["16"] = ""},
