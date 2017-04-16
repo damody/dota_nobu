@@ -10,7 +10,7 @@ _G.heromap = {
   npc_dota_hero_centaur             = "A07",
   npc_dota_hero_necrolyte           = "A11",
   npc_dota_hero_storm_spirit        = "A12",
-  npc_dota_hero_undying             = "A13",
+  npc_dota_hero_zuus                = "A13",
   npc_dota_hero_lion                = "A14",
   npc_dota_hero_winter_wyvern       = "A15",
   npc_dota_hero_huskar              = "A16",
@@ -70,6 +70,7 @@ _G.heromap = {
   npc_dota_hero_terrorblade         = "C20",
   npc_dota_hero_alchemist           = "C21",
   npc_dota_hero_jakiro              = "C22",
+  npc_dota_hero_undying             = "C23",
   npc_dota_hero_night_stalker       = "C24",
 }
 
@@ -146,6 +147,7 @@ _G.heromap_version = {
   C20 = {["11"] = true , ["16"] = true},
   C21 = {["11"] = true , ["16"] = true},
   C22 = {["11"] = true , ["16"] = true},
+  C23 = {["11"] = false , ["16"] = true},
   C24 = {["11"] = true , ["16"] = true},
 }
 
@@ -217,6 +219,7 @@ _G.heromap_skill = {
   C20 = {["11"] = "WERT" , ["16"] = "WERT"},
   C21 = {["11"] = "WERT" , ["16"] = "WERT"},
   C22 = {["11"] = "WERT" , ["16"] = "WERDT"},
+  C23 = {["11"] = "WERT" , ["16"] = "WERT"},
   C24 = {["11"] = "WERT" , ["16"] = "WERT"},
 }
 
@@ -288,6 +291,7 @@ _G.heromap_autoskill = {
   C20 = {["11"] = "" , ["16"] = ""},
   C21 = {["11"] = "" , ["16"] = ""},
   C22 = {["11"] = "" , ["16"] = "D"},
+  C23 = {["11"] = "" , ["16"] = ""},
   C24 = {["11"] = "" , ["16"] = ""},
 }
 
