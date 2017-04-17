@@ -64,7 +64,7 @@ function _G.Nobu:InitGameMode()
   GameMode:SetRemoveIllusionsOnDeath( true )--死亡會不會有陰影
   --GameMode:SetAnnouncerDisabled( true )
   GameMode:SetLoseGoldOnDeath( false )--死亡會不會掉錢
-  GameMode:SetCameraDistanceOverride( 1150 )--攝像頭距離
+  --GameMode:SetCameraDistanceOverride( 1150 )--攝像頭距離
   GameMode:SetUseCustomHeroLevels ( true )-- 允許自定義英雄等級
   --GameMode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
 
@@ -81,7 +81,11 @@ function _G.Nobu:InitGameMode()
   GameMode:SetGoldSoundDisabled( false )
   GameMode:SetLoseGoldOnDeath( false )  --是否死亡掉錢
   --GameMode:SetCustomGameForceHero("npc_dota_hero_dragon_knight") --強迫選擇英雄 (可以跳過選角畫面)
-  
+  Timers:CreateTimer(5, function()
+    SendToConsole("r_farz 7000")
+
+    return 1/30
+  end)
   --【HUD】
   -- GameMode:SetHUDVisible(0,  false) --Clock
   -- GameMode:SetHUDVisible(1,  false)

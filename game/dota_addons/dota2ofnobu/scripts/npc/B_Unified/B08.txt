@@ -277,8 +277,8 @@
 		"AnimationPlaybackRate"	"2"
 		"AbilityCooldown"	"7 6 5 4"
 		"LevelsBetweenUpgrades"	"2"
-		"AbilityManaCost"	"100 120 140 160"
-		"AbilityCastRange"	"1100"
+		"AbilityManaCost"	"100"
+		"AbilityCastRange"	"1300"
 		"precache"
 		{
 			"particle"	"particles/b08t/b08t.vpcf"
@@ -380,7 +380,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"shock_distance"	"1100"
+				"shock_distance"	"1400"
 			}
 			"04"
 			{
@@ -388,7 +388,7 @@
 				"shock_vision"	"175"
 			}
 		}
-		"AbilityDamage"	"200 300 400 500"
+		"AbilityDamage"	"300 400 500 600"
 	}
 
 	// 淺井長政 一刀．閃瞬
@@ -509,7 +509,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
 		"AbilityCooldown"	"10 9 8 7"
 		"AbilityManaCost"	"120 130 140 150"
-		"AbilityCastRange"	"1150"
+		"AbilityCastRange"	"1150 1300 1450 1600"
 		"precache"
 		{
 			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"

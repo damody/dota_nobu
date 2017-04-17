@@ -245,6 +245,9 @@ function A26T_OnSpellStart( keys )
 	else
 		projectile_table.EffectName = "particles/units/heroes/hero_techies/techies_base_attack.vpcf"
 	end
+	if caster.skin == "school" then
+		projectile_table.EffectName = "particles/a26/a26t_bookecon/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+	end
 	ProjectileManager:CreateTrackingProjectile(projectile_table)
 end
 
@@ -456,6 +459,9 @@ function A26T_old_OnSpellStart( keys )
 		iVisionTeamNumber = caster:GetTeamNumber(),
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
 	}
+	if caster.skin == "school" then
+		projectile_table.EffectName = "particles/a26/a26t_bookecon/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+	end
 	ProjectileManager:CreateTrackingProjectile(projectile_table)
 end
 

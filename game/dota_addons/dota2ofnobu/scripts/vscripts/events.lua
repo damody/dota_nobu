@@ -174,7 +174,7 @@ function give_money_for_together_hero(caster, gold, radius)
   if sum == 1 then
     gold = gold
   elseif sum > 2 then
-    gold = gold * sum
+    gold = gold * sum * 0.5
   end
   local give = {}
   for _,hero in ipairs(group) do
