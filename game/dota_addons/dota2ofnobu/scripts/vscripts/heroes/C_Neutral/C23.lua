@@ -31,8 +31,6 @@ function modifier_C23W_OnIntervalThink( keys )
 end
 
 
-
-
 function C23E_OnSpellStart( keys )
 	--【Basic】
 	local caster = keys.caster
@@ -52,7 +50,7 @@ function C23E_OnSpellStart( keys )
  	for i=1,14 do
  		local point3=point + dir * 161 * i
  		local targets = FindUnitsInRadius(caster:GetTeamNumber(),	
-					point3,nil,200,DOTA_UNIT_TARGET_TEAM_ENEMY, 
+					point3,nil,200,DOTA_UNIT_TARGET_TEAM_BOTH, 
 			   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			   		0, 
 			   		FIND_ANY_ORDER, 

@@ -6,7 +6,8 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_elder_titan"
-		"ModelScale"	"0.9"
+		"ModelScale"	"1.4"
+		"Model"	"models/b03/b03.vmdl"
 		// Abilities
 		// ----------------------------------------------------------------
 		"Ability1"	"B03W"
@@ -96,6 +97,6 @@
 		// ----------------------------------------------------------------
 		"TeamName"				"DOTA_TEAM_NEUTRALS"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
-		
+		"DisableWearables"	"1"
 	}
 } // END DOTAHeroes

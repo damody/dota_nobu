@@ -86,7 +86,10 @@ function Nobu:OnGameRulesStateChange( keys )
 	        building:RemoveModifierByName('modifier_invulnerable')
 	     end
 	  end
-
+	  Timers:CreateTimer(1, function()
+	    SendToConsole("r_farz 7000")
+	    return 1
+	  end)
     --出兵觸發
     if _G.nobu_chubing_b then
       ShuaGuai()

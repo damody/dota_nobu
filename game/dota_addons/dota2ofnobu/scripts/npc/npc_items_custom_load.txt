@@ -5408,19 +5408,19 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
-			"modifier_flame_armor_aura"
+			"modifier_flame_armor_aura2"
 			{
 				"Passive"			"1"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 			
-				"Aura"        "modifier_flame_armor_debuff"
+				"Aura"        "modifier_flame_armor_debuff2"
         		"Aura_Radius" "500"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
 			}
-			"modifier_flame_armor_debuff"
+			"modifier_flame_armor_debuff2"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"

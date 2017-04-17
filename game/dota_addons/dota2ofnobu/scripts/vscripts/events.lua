@@ -178,7 +178,7 @@ function give_money_for_together_hero(caster, gold, radius)
   end
   local give = {}
   for _,hero in ipairs(group) do
-    if not hero:IsIllusion() then
+    if not hero:IsIllusion() and hero ~= caster then
       AMHC:GivePlayerGold(hero:GetPlayerOwnerID(), gold)
     end
   end
@@ -204,7 +204,12 @@ function Nobu:FilterGold( filterTable )
           local hero = player:GetAssignedHero()
           Timers:CreateTimer(0.1, function ()
             if hero.kill_tower == 1 then
-              give_money_for_together_hero(hero, gold, 1000)
+              AMHC:GivePlayerGold(hero:GetPlayerOwnerID(), gold)
+              if gold == 150 then
+                give_money_for_together_hero(hero, gold, 1000)
+              else
+                give_money_for_together_hero(hero, 200, 1000)
+              end
             end
             end)
         end
