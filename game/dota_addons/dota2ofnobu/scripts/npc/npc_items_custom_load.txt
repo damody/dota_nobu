@@ -237,6 +237,19 @@
 		}
 		"Modifiers"
 		{
+			"Passive_the_over_lightning_art_of_war2"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_over_lightning_art_of_war.lua"
+						"Function"		"Shock2"
+					}
+				}
+			}
 			"Passive_the_over_lightning_art_of_war"
 			{
 				"IsHidden"	"1"

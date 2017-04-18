@@ -19,7 +19,7 @@ function Shock( keys )
 	local ability = keys.ability
 	if (caster:GetMana() >= 75) then
 		caster:SpendMana(75, ability)
-		local SEARCH_RADIUS = 500
+		local SEARCH_RADIUS = 1000
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              caster:GetAbsOrigin(),
 	                              nil,

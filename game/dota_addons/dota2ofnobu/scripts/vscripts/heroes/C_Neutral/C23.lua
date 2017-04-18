@@ -25,7 +25,7 @@ function modifier_C23W_OnIntervalThink( keys )
 			ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
 			ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
 		end
-		damage=(ability:GetSpecialValueFor("damage")+ability:GetSpecialValueFor("health_damage")*caster:GetMaxHealth()/100)*0.2
+		damage=ability:GetSpecialValueFor("damage")
 		AMHC:Damage(caster,unit, damage, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 end
