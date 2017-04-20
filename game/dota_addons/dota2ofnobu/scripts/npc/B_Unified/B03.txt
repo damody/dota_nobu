@@ -62,7 +62,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"B03W_stunDuration"			"1.1"
+				"B03W_stunDuration"			"0.5 0.7 0.9 1.1"
 			}
 			"02"
 			{
@@ -114,7 +114,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"B03W_stunDuration"			"1.1"
+				"B03W_stunDuration"			"0.5 0.7 0.9 1.1"
 			}
 			"02"
 			{
@@ -166,7 +166,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"B03W_stunDuration"			"1.1"
+				"B03W_stunDuration"			"0.5 0.7 0.9 1.1"
 			}
 			"02"
 			{
@@ -198,10 +198,6 @@
 		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"    					"custom/B03/B03E"
 
-		//"AbilityCooldown"							"22 19 16 13"
-		//"AbilityCastPoint"							"0.1"
-		//"AbilityManaCost"                      		"120 140 160 180"
-		//"AbilityCastRange"							"%B03E_radius"
 
 		"Modifiers"
 		{
@@ -312,8 +308,8 @@
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "custom/B03/B03T"
 		"AbilityCastRange"							"700"
-		"AbilityCooldown"           				"134"
-		"AbilityManaCost"           				"250"
+		"AbilityCooldown"           				"155 145 135"
+		"AbilityManaCost"           				"400 550 700"
 		
 		"OnSpellStart"
 		{
@@ -397,7 +393,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"B03T_stunDuration"		"0.38"
+				"B03T_stunDuration"		"0.35 0.4 0.45"
 			}
 		}
 	}
@@ -477,11 +473,6 @@
 		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"    					"custom/B03/B03E"
 
-		//"AbilityCooldown"							"25"
-		//"AbilityCastPoint"							"0.1"
-		//"AbilityManaCost"                      		"130 160 190 220"
-		//"AbilityCastRange"							"%B03E_radius"
-		
 		"Modifiers"
 		{
 			"modifier_B03E_old_passive"
@@ -574,10 +565,10 @@
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B03/B03T_old"
 		"AbilityCastRange"							"200"
-		//"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"105"
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"125 115 105"
 		"AbilityManaCost"           				"195 245 295"
-		//"AOERadius"                                 "%B03T_radius"
+		"AOERadius"                                 "600"
 		
 		"OnSpellStart"
 		{

@@ -19,8 +19,8 @@
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"13"
-		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCooldown"	"16 15 14 13"
+		"AbilityManaCost"	"120 160 200 240"
 		"precache"
 		{
 			"soundfile"	"soundevents/c01w.vsndevts"
@@ -42,7 +42,7 @@
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
 				"ModifierName"	"modifier_C01W"
-				"Duration"	"9"
+				"Duration"	"12"
 			}
 			"RunScript"
 			{
