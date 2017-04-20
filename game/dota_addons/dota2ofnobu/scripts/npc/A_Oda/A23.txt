@@ -99,11 +99,6 @@
 				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
 				"Function"							"A23E"
 			}
-			"ApplyModifier"
-			{
-				"ModifierName"						"modifier_A23E"
-				"Target" 							"TARGET"
-			}
 			"FireSound"
 			{
 				"EffectName"						"Hero_Ursa.Attack"
@@ -116,8 +111,15 @@
 			"modifier_A23E"
 			{
 				"IsDebuff"							"1"
-				"Duration"							"%A23E_duration"
 				"IsPurgable"						"0"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
+						"Function"							"A23E_OnDestroy"
+					}
+				}
 			}
 			"modifier_A23E_stick"
 			{
