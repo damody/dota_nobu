@@ -311,6 +311,11 @@
 				"Target" 		"CASTER"
 				"Duration"		"%A11T_duration"
 			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%A11T_hpBonus"
+			}
 		}
 
 		"Modifiers"

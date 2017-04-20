@@ -382,6 +382,53 @@
 		}
 	}
 
+	// 強盜之王技能
+	"robbers_skill"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+
+		
+		"Modifiers"
+		{
+			"Passive_robbers_skill"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+	            "OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"robbers_skill"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_robbers_skill"
+						"dmg"	"%attack_damage"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"500"
+						"CleaveEffect"	"particles/a07r/a07r.vpcf"
+					}
+				}
+			}
+		}
+	}
+
 	// 叫下忍
 	"call_ninja1"
 	{
@@ -442,7 +489,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"	"0.2"
+		"AbilityCooldown"	"0"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
 		"AbilityManaCost"	"0"
@@ -585,6 +632,52 @@
 					{
 						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
 						"Function"	"tofar_goback"
+					}
+				}
+			}
+		}
+	}
+	//聯合大將走法
+	"patrol_Unified"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_tofar_goback"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"ThinkInterval"  "15"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"patrol_Unified"
+					}
+				}
+			}
+		}
+	}
+	//織田大將走法
+	"patrol_Nobu"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_tofar_goback"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"ThinkInterval"  "15"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"patrol_Nobu"
 					}
 				}
 			}

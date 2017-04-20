@@ -17,8 +17,8 @@ function Shock( keys )
 		if handle then
 			local c = handle:GetStackCount()
 			c = c + 1
-			if c > 10 then
-				c = 10
+			if c > 3 then
+				c = 3
 			end
 			--ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu",nil)
 			handle:SetStackCount(c)

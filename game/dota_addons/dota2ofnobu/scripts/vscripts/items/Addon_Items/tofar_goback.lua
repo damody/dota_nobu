@@ -83,6 +83,24 @@ function choose_11( keys )
     end
 end
 
+function robbers_skill( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if (keys.attacker:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+		GameRules: SendCustomMessage("<font color='#ffff00'>織田軍得到了強盜王的黃金</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	else
+		GameRules: SendCustomMessage("<font color='#ffff00'>聯合軍得到了強盜王的黃金</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+	end
+	for playerID=0,9 do
+		local player = PlayerResource:GetPlayer(playerID)
+        if player then
+          local hero = player:GetAssignedHero()
+          if hero:GetTeamNumber() == keys.attacker:GetTeamNumber() then
+          	AMHC:GivePlayerGold_UnReliable(playerID, 600)
+          end
+      	end
+	end
+end
 
 function play_on_die( keys )
 	local caster = keys.caster
@@ -99,7 +117,7 @@ function gold_to_prestige( keys )
 	local ability = keys.ability
 	local add_prestige = 100
 	_G.goldprestige[caster:GetTeamNumber()] = _G.goldprestige[caster:GetTeamNumber()] + add_prestige
-	print("gold_to_prestige", _G.goldprestige[caster:GetTeamNumber()])
+	
 end
 
 function reward6300(keys)
@@ -135,6 +153,39 @@ function tofar_goback(keys)
 			return 1
 		end
 		end)
+end
+
+Timers:CreateTimer( 3, function()
+_G.Unified_pos1 = Entities:FindByName(nil,"chubinluxian_location_of_wl_button"):GetAbsOrigin()
+_G.Unified_pos2 = Entities:FindByName(nil,"chubinluxian_location_of_wl_top"):GetAbsOrigin()
+_G.Nobu_pos1 = Entities:FindByName(nil,"chubinluxian_location_of_nobu_button"):GetAbsOrigin()
+_G.Nobu_pos2 = Entities:FindByName(nil,"chubinluxian_location_of_nobu_top"):GetAbsOrigin()
+end)
+
+function patrol_Unified(keys)
+	local caster = keys.caster
+	local pos = caster:GetAbsOrigin()
+
+	if caster.isgo then
+		caster.isgo = nil
+		ExecuteOrderFromTable( { UnitIndex = caster:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = _G.Unified_pos1 })
+	else
+		caster.isgo = 1
+		ExecuteOrderFromTable( { UnitIndex = caster:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = _G.Unified_pos2 })
+	end
+end
+
+function patrol_Nobu(keys)
+	local caster = keys.caster
+	local pos = caster:GetAbsOrigin()
+
+	if caster.isgo then
+		caster.isgo = nil
+		ExecuteOrderFromTable( { UnitIndex = caster:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = _G.Nobu_pos1 })
+	else
+		caster.isgo = 1
+		ExecuteOrderFromTable( { UnitIndex = caster:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = _G.Nobu_pos2 })
+	end
 end
 
 function attack_building(keys)
