@@ -60,13 +60,15 @@ function A23E( keys )
 	local stick = CreateUnitByName( "A32E_stick", caster:GetAbsOrigin(), true, nil, nil, caster:GetTeamNumber())
 	stick:SetOwner(caster)
 	ability:ApplyDataDrivenModifier( caster, stick, "modifier_A23E_stick", nil)
+	ability:ApplyDataDrivenModifier( stick, target, "modifier_A23E", { duration = duration } )
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, stick:GetAbsOrigin(), 300, duration, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, stick:GetAbsOrigin(), 300, duration, false)
 
-	local particle = ParticleManager:CreateParticle("particles/a23e/a23e.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	ParticleManager:SetParticleControlEnt(particle, 0, stick, PATTACH_POINT_FOLLOW, "attach_hitloc", stick:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(particle, 3, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	ability.particle = ParticleManager:CreateParticle("particles/a23e/a23e.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	ParticleManager:SetParticleControlEnt(ability.particle, 0, stick, PATTACH_POINT_FOLLOW, "attach_hitloc", stick:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(ability.particle, 3, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 
+	ability.state = "NONE"
 
 	local time = 0.1 + duration
 	local count = 0
@@ -75,18 +77,20 @@ function A23E( keys )
 		if count > time then
 			return nil
 		end
-		local damageCount = (100 + caster:GetIntellect())*( 1 + 0.05*math.floor(((target:GetOrigin() - stick:GetOrigin()):Length() / increaseDistance)) )
-		if target:IsMagicImmune() then
-			damageCount = damageCount *0.5
+		if ability.state ~= "PURGE" then
+			local damageCount = (100 + caster:GetIntellect())*( 1 + 0.05*math.floor(((target:GetOrigin() - stick:GetOrigin()):Length() / increaseDistance)) )
+			if target:IsMagicImmune() then
+				damageCount = damageCount *0.5
+			end
+			ApplyDamage({
+				victim = target,
+				attacker = caster,
+				ability = ability,
+				damage = damageCount,
+				damage_type = ability:GetAbilityDamageType(),
+				damage_flags = DOTA_DAMAGE_FLAG_NONE,
+			})
 		end
-		ApplyDamage({
-			victim = target,
-			attacker = caster,
-			ability = ability,
-			damage = damageCount,
-			damage_type = ability:GetAbilityDamageType(),
-			damage_flags = DOTA_DAMAGE_FLAG_NONE,
-		})
 		return 1
 	end)
 	local count2 = 0
@@ -102,8 +106,24 @@ function A23E( keys )
 
 	Timers:CreateTimer(duration,function()
 		stick:ForceKill(true)
-		ParticleManager:DestroyParticle( particle, false )
+		if ability.particle then
+			ParticleManager:DestroyParticle( ability.particle, false )
+		end
 	end)
+end
+
+function A23E_OnDestroy( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	if target:IsMagicImmune() then
+		ability.state = "MAGIC_IMMUNE"
+	else
+		ability.state = "PURGE"
+		if ability.particle then
+			ParticleManager:DestroyParticle( ability.particle, false )
+		end
+	end
 end
 
 function A23R( keys )
