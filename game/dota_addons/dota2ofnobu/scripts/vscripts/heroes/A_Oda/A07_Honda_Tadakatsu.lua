@@ -242,7 +242,7 @@ end
 
 --[[Author: LinWeiHan
 	Date: 03.05.2016.]]
-LinkLuaModifier("A07T", "heroes/A_Oda/A07/A07.lua", LUA_MODIFIER_MOTION_NONE)	
+
 function A07T_Transform( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -255,11 +255,21 @@ function A07T_Transform( keys )
 			caster:RemoveModifierByName(v:GetName())
 		end
 	end
+	local particle1 = ParticleManager:CreateParticle("particles/a07/a07t2.vpcf", PATTACH_POINT_FOLLOW, caster)
+	ParticleManager:SetParticleControl(particle1, 0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControlEnt(particle1, 1, caster, PATTACH_POINT_FOLLOW, "attach_reye", caster:GetAbsOrigin(), true)
+	local particle2 = ParticleManager:CreateParticle("particles/a07/a07t3.vpcf", PATTACH_POINT_FOLLOW, caster)
+	ParticleManager:SetParticleControl(particle2, 0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControlEnt(particle2, 1, caster, PATTACH_POINT_FOLLOW, "attach_leye", caster:GetAbsOrigin(), true)
+	Timers:CreateTimer( duration, function()
+		ParticleManager:DestroyParticle(particle1,true)
+		ParticleManager:DestroyParticle(particle2,true)
+		end)
 	-- Deciding the transformation level
 	local modifier = keys.modifier_one
 
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = duration})
-	caster:AddNewModifier(caster,ability,"A07T",{duration = duration})--變身
+
 	Timers:CreateTimer(0.3,function()
 		if IsValidEntity(caster) and caster:IsMagicImmune() then
 			AMHC:AddModelScale(caster, 1.3, duration-0.3)
