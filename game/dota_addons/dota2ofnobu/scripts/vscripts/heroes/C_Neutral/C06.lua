@@ -338,13 +338,6 @@ function C06T_old_OnSpellStart( keys )
 		local particle = ParticleManager:CreateParticle("particles/c06t/c06t.vpcf",PATTACH_POINT,target)
 		ParticleManager:SetParticleControl(particle,0, target:GetAbsOrigin())
 	end
-	local money=800
-	ability2=caster:AddAbility("C06EW")
-	ability2:SetLevel(1)
-	for i=1,money do
-		ability2:CastAbility()
-	end
-	caster:RemoveAbility("C06EW")
 	AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), 800)
 	AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), -800)
 		local order = {UnitIndex =  keys.caster:entindex(),
