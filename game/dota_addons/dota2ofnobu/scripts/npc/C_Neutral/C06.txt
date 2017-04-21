@@ -1,0 +1,743 @@
+//島津義弘
+"DOTAAbilities"
+{
+	"C06_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/C03.vsndevts"
+			"particle"	"particles/b15w3/b15w3.vpcf"
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+			"soundfile"	"sounds/weapons/hero/brewmaster/thunder_clap.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_fire_ambient_fire_explode.vpcf"
+			"particle"	"particles/b26w3/b26w3.vpcf"
+			"particle"	"particles/a07t2/a07t2.vpcf"
+			"particle"  "particles/c06w/c06w.vpcf"
+			"particle"  "particles/c06e/c06e.vpcf"
+			"particle"  "particles/c06e/c06e2.vpcf"
+			"particle"  "particles/c06t/c06t.vpcf"
+		}
+	}
+	"Version"		"1"
+
+	//殺人越貨
+	"C06D"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06D"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"MaxLevel"				"1"
+
+		"Modifiers"
+		{
+			"modifier_C06D"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"		"modifier_C06D_OnKill"
+					}
+				}
+			}
+		}
+	}
+
+	//大盜快手
+	"C06W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"50 60 70 80"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C06W"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"	"C06W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C06W"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+				"Duration"	"15"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"200"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"	"modifier_C06W_OnAttackLanded"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/c06w/c06w.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack2"
+							"CASTER"	"attach_attack2"
+						}
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_times"	"4 5 6 7"
+			}
+		}
+	}
+
+	//偷天換日
+	"C06E"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06E"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_2"
+
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"500"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "20 17 14 11"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "40 55 70 85"
+		"AbilityDamage"								"100 200 300 400" 
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"                        	"C06E_OnSpellStart"
+				"Target"							"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				
+				"EffectName"	"General.Sell"
+				//"EffectName"	"lockjaw_Courier.gold"
+				//sounds\ambient\horn_radiant.vsnd
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 200 300 400"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"money"	"23 32 41 50"
+			}
+		}
+	}
+
+	//偷天換日 消耗錢
+	"C06EW"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_NO_TARGET |  DOTA_ABILITY_BEHAVIOR_HIDDEM |DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"                        "custom/B36/b36r"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityGoldCost"         					"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"                        	"C06EW_OnSpellStart"
+				"Target"							"TARGET"
+			}
+		}
+	}
+	// 闊氣攻擊
+	"C06R"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06R"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING |DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityCastPoint"	"0"	
+		"AbilityCooldown"	"8"
+		"AbilityCastRange"	"400"
+		"AbilityManaCost"	"120 140 160 180"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"		"C06R_OnSpellStart"
+				"Target"		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C06R"
+			{
+				"IsBuff"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"		"modifier_C06R_OnCreated"
+						"Target"		"TARGET"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"		"modifier_C06R_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"	"modifier_C06R_OnDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"	"modifier_C06R_OnDestroy"
+					}
+				}
+				"Duration"	"6"
+			}
+			"modifier_C06R_onattack"
+			{
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"Target"		"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"		"modifier_C06R_onattack_OnAttackLanded"
+					}
+				}
+				"Passive" 				"1"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			//吸收盾 額外護盾=魔力百分比 自身範圍找隊友半徑 額外護甲值
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"damage_absorb"						"200 300 400 500"
+			}
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"maxdamage"						"60 90 120 150"
+			}
+		}
+	}
+	//豪奪
+	"C06T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06T"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags""DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"MaxLevel" 				"3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"150 120 90"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"185"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"250"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"General.Sell"
+				//"EffectName"	"lockjaw_Courier.gold"
+				//sounds\ambient\horn_radiant.vsnd
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"							"C06T_OnSpellStart"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_C06T_stun"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C06T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C06T"
+			{
+				"Duration"	"30"
+				"EffectName"	"particles/c06t/c06t2.vpcf"
+				"IsBuff"	"1"
+			}
+			"modifier_C06T_stun"
+			{
+				"Duration"	"%stun"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			//使用次數 暈眩時間 額外敏捷傷害倍率
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"2"
+			}
+		}
+	}
+
+	// 盜賊藏匿術
+	"C06D_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06D_old"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"6"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"D"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"particle"	"particles/status_fx/status_effect_base.vpcf"
+			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"							"C06D_old_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C06D_old_check"
+				"Target"	"CASTER"
+			}
+			"DelayedAction" 
+			{
+				"Delay" 							"1"
+				"Action"
+				{ 
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C06.lua"
+						"Function"							"C06D_old_DelayedAction"
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"A13D.vo1"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C06D_old"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+				"OnOrder"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_C06D_old"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_C06D_old_check"
+			{
+				"OnOrder"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_C06D_old_check"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A13D_Damage"	"0 90 175 260 345"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A13D_movement_speed"	"0 5 10 15 20"
+			}
+		}
+	}
+
+
+	//狂氣
+	"C06W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"80 100 120 140"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C06W_old"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C06W_old"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+				"Duration"	"8"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/c06w/c06w.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack2"
+							"CASTER"	"attach_attack2"
+						}
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed"	"120 240 360 480"
+			}
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move_speed"	"-36 -32 -28 -24"
+			}
+		}
+	}
+
+
+	//殺人越貨
+	"C06E_old"
+	{
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityTextureName"						"custom/C06/C06E"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"        			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"						"ACT_DOTA_CAST_ABILITY_2"
+
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"500"
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                           "60 50 40 30"
+		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                           "150"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"                        	"C06E_old_OnSpellStart"
+				"Target"							"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				
+				"EffectName"	"General.Sell"
+				//"EffectName"	"lockjaw_Courier.gold"
+				//sounds\ambient\horn_radiant.vsnd
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"level"	"3 3 3 4"
+			}
+		}
+	}
+
+
+	//野蠻之力
+	"C06R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"  "custom/C06/C06R"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"HotKeyOverride"	"R"
+		"Modifiers"
+		{
+			"modifier_C06R_old"
+			{
+				"Passive"	"1"
+				"IsPurgable"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%atk_bonus"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_bonus"	"8 16 24 32"
+			}
+		}
+	}
+
+	//搶劫
+	"C06T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"custom/C06/C06T"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags""DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"		"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"MaxLevel" 				"3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"270 230 190"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"500 600 700"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"250"
+		"AbilityDamage"		"900 1300 1700"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"General.Sell"
+				//"EffectName"	"lockjaw_Courier.gold"
+				//sounds\ambient\horn_radiant.vsnd
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"							"C06T_old_OnSpellStart"
+				"Target"	"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_C06T_old_stun"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C06T_old_stun"
+			{
+				"Duration"	"%stun"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			//使用次數 暈眩時間 額外敏捷傷害倍率
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"3 3.5 4"
+			}
+		}
+	}
+
+}
