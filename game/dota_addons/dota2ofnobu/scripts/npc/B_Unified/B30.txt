@@ -1,0 +1,615 @@
+// 柿崎景家
+"DOTAAbilities"
+{
+	"B30_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/b30w/b30w.vpcf" //w
+			"particle"  "particles/b30w/b30w2fire/monkey_king_spring_arcana_fire.vpcf" //w2
+			"particle"  "particles/item/dragon.vpcf" //w_old
+			"particle"  "particles/b30t/b30t_ti6.vpcf" //t
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf" //e t
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+	}
+
+	//逆壓之盾
+	"B30W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"                        "custom/B30/B30W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCooldown"                           "23 19 15 11"
+		"AbilityManaCost"                           "130 150 170 190"
+		"AbilityCastRange"							"600"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30W_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B30W"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+						"Function"							"B30W_OnTakeDamage"
+						"Damage"							"%attack_damage"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B30W"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+						"Function"							"B30W_OnDestroy"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B30W_duration"				"3.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B30W_radius"				"600"
+			}
+		}
+	}
+
+	//碎魂劍
+	"B30E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B30/B30E"
+
+		"AbilityCooldown"							"22"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"135 150 165 180"
+		"AbilityCastRange"							"128"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B30E_debuff"
+				"Target" 		"TARGET"
+				"Duration"		"%B30E_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B30E_debuff"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%B30E_asBonus"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%B30E_msBonus" 
+				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" 		"%B30E_armorBonus"
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B30E_damage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"B30E_damage"             		"35 55 75 95"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B30E_armorBonus"				"-3 -5 -7 -9"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B30E_msBonus"					"-30"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B30E_asBonus"					"-30"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"B30E_duration"					"8.0"
+			}
+		}
+	}
+
+	//閃擊
+	"B30R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B30/B30R"
+		"AbilityManaCost"							"85 110 135 160"
+		"AbilityCooldown"							"15 12 9 6"
+		"AbilityCastRange"              			"900"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30R_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30R_damage"			"140 195 250 305"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B30R_agiBonus"			"2.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B30R_hpmpRegen"		"0.18"
+			}
+		}
+
+    }
+
+    //邪王煉獄斬
+	"B30T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B30/B30T"
+		"AbilityCastRange"							"1500"
+		"AbilityCooldown"           				"115"
+		"AbilityManaCost"           				"250"
+		
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+			    "Target"      	 "POINT"
+			    "EffectName"	 "particles/b30t/b30t_ti6.vpcf"
+				"MoveSpeed"		 "3000"
+				"StartRadius"	 "%B30T_radius"
+				"StartPosition"  "attach_attack1"
+				"EndRadius"      "%B30T_radius"
+				"HasFrontalCone" "0"
+				"FixedDistance"  "1500"
+				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
+			    "ProvidesVision" "1"
+			    "VisionRadius" 	 "225"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.DeafeningBlast"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%B30T_damage"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B30T_debuff"
+				"Target" 		"TARGET"
+				"Duration"		"%B30T_dotDuration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B30T_debuff"
+			{
+				"IsDebuff"	"1"
+				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"  	"1"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B30T_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30T_dotDamage"		"175 225 335"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30T_radius"			"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30T_damage"			"200 300 400"
+			}
+			"04"
+			{
+				"var_type" 				"FIELD_FLOAT"
+				"B30T_dotDuration" 		"6.0 8.0 10.0"
+			}
+		}
+	}
+
+	//突擊
+	"B30W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/B30/B30W_old"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCastRange"							"800"
+		"AbilityCastPoint"							"0.1"
+		"AbilityCooldown"                           "12"
+		"AbilityManaCost"                           "100 120 140 160"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30W_old_OnSpellStart"
+			}
+			"LinearProjectile"
+			{
+			    "Target"      	 "POINT"
+			    "EffectName"	 "particles/item/dragon.vpcf"
+				"MoveSpeed"		 "%B30W_speed"
+				"StartRadius"	 "%B30W_radius"
+				"StartPosition"  "attach_attack1"
+				"EndRadius"      "%B30W_radius"
+				"HasFrontalCone" "0"
+				"FixedDistance"  "%B30W_distance"
+				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
+			    "ProvidesVision" "1"
+			    "VisionRadius" 	 "225"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%B30W_damage"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B30W_speed"				"3000"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B30W_radius"				"150"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B30W_damage"				"200 300 400 500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B30W_distance"				"800"
+			}
+		}
+	}
+
+	//熾烈劍
+	"B30E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/B30/B30E"
+
+		"AbilityCooldown"							"16"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"110 130 150 170"
+		"AbilityCastRange"							"128"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B30E_old_debuff"
+				"Target" 		"TARGET"
+				"Duration"		"%B30E_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B30E_old_debuff"
+			{
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" 	"%B30E_asBonus"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%B30E_msBonus" 
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%B30E_damage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"B30E_damage"             		"70 100 130 160"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B30E_msBonus"					"-30 -40 -50 -60"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B30E_asBonus"					"-30 -40 -50 -60"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"B30E_duration"					"5.0"
+			}
+		}
+	}
+
+	//煉獄之刃
+	"B30R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B30/B30R"
+		"AbilityManaCost"							"120 140 160 180"
+		"AbilityCooldown"							"40"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30R_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B30R_old"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%B30R_asBonus"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%B30R_msBonus"
+				    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%B30R_agiBonus"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30R_asBonus"			"2 4 6 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30R_msBonus"			"45 55 65 75"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30R_agiBonus"			"5 10 15 20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B30R_duration"			"32.0"
+			}
+		}
+
+    }
+
+    //邪王煉獄斬
+	"B30T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/B30/B30T"
+
+		"AbilityCooldown"           				"100"
+		"AbilityManaCost"           				"200"
+		"AbilityCastRange"							"1500"
+		"AbilityCastPoint"							"0.1"
+		
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+			    "Target"      	 "POINT"
+			    "EffectName"	 "particles/b30t/b30t_ti6.vpcf"
+				"MoveSpeed"		 "3000"
+				"StartRadius"	 "%B30T_radius"
+				"StartPosition"  "attach_attack1"
+				"EndRadius"      "%B30T_radius"
+				"HasFrontalCone" "0"
+				"FixedDistance"  "1500"
+				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
+			    "ProvidesVision" "1"
+			    "VisionRadius" 	 "225"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.DeafeningBlast"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%B30T_damage"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30T_radius"			"350"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B30T_damage"			"800 1185 1570"
+			}
+		}
+	}
+
+} // END DOTAAbilities
