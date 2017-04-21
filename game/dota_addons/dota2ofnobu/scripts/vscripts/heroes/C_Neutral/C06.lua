@@ -116,9 +116,9 @@ function item_c06e_OnSpellStart(keys)
 	--local radius = ability:GetLevelSpecialValueFor("radius",level)
 	local time = 2
 	if target:IsMagicImmune() then
-		ability:ApplyDataDrivenModifier( caster, target, "modifier_item_c06e", {duration = 1.5} )
+		ability:ApplyDataDrivenModifier( caster, target, "modifier_item_c06e", {duration = 2.5} )
 	else
-		ability:ApplyDataDrivenModifier( caster, target, "modifier_item_c06e", {duration = 1.5} )
+		ability:ApplyDataDrivenModifier( caster, target, "modifier_item_c06e", {duration = 2.5} )
 	end
 	AMHC:Damage(caster,target, ability.c06edamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 
