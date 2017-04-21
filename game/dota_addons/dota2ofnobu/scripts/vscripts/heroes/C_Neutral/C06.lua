@@ -99,7 +99,7 @@ end
 function item_c06e_OnSpellStart(keys)
 	--【Basic】
 	local caster = keys.caster
-	local target = keys.caster
+	local target = keys.target
 	local ability = keys.ability
 	--local player = caster:GetPlayerID()
 	local point = caster:GetAbsOrigin()
@@ -133,9 +133,6 @@ function item_c06e_OnSpellStart(keys)
 	caster:RemoveItem(ability)
 	caster:AddItemByName(ability.swapitem)
 end
-
-
-
 
 function C06R_OnSpellStart( keys )
 	local caster = keys.caster
@@ -221,9 +218,6 @@ function modifier_C06R_onattack_OnAttackLanded( event )
 		local ability = event.ability
 		local caster =ability:GetCaster()
 		local damage=caster:GetGold()*5/100
-		if damage >=ability:GetSpecialValueFor("maxdamage") then
-			damage = ability:GetSpecialValueFor("maxdamage")
-		end
 		local damageTable = {victim=target,   
 			attacker=caster,         
 			damage=damage,
