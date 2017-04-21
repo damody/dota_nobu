@@ -16505,5 +16505,56 @@
 			}
 		}
 	}
+
+	//錢
+	"item_money"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/S01_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		// Valve's version of this item uses the ID "1".
+		"ID"	"8001"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/gold_bag.vmdl"
+		//"Effect"	"particles/item_s01/s01.vpcf"
+		// Item Info
+		
+		"ItemCost"	"100"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/item_s01/s01.vpcf"
+		}
+
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_money.lua"
+				"Function"	"item_money_OnEquip"
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5"
+			}
+		}
+	}
 }
 

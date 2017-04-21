@@ -20,6 +20,10 @@ function C06W_OnSpellStart( keys )
 		caster.c06w_atk_time=ability:GetSpecialValueFor("attack_times")+2
 	end
 	--print(caster.c06w_atk_time)
+	--local item = CreateItem("item_money",nil, nil)
+	--CreateItemOnPositionSync(caster:GetAbsOrigin(), item)
+	--caster.item_money = item
+	--item:SetAbsOrigin(caster:GetAbsOrigin())
 end
 
 

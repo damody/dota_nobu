@@ -281,6 +281,19 @@ function Nobu:eventfororder( filterTable )
 			end
 		end
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_ITEM then --14
+		--[[DeepPrintTable(filterTable)
+		local f = filterTable
+		local caster = EntIndexToHScript(f.units["0"])
+		local target = EntIndexToHScript(f.entindex_target)
+		local itemID = filterTable.entindex_target
+    	local itemName = Containers.itemIDs[itemID]
+		local unitname = caster:GetUnitName()
+		print(unitname)
+		print(itemName:GetAbilityName())
+		--local ability = EntIndexToHScript(filterTable.entindex_ability)
+		--print(ability:GetAbilityName())
+		AMHC:Damage(caster,caster,400,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		]]--
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_RUNE then --15
 	elseif ordertype == DOTA_UNIT_ORDER_PURCHASE_ITEM then --16
 		local itemID = filterTable.entindex_ability
