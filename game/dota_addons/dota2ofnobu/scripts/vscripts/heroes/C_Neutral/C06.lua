@@ -262,6 +262,18 @@ function C06T_OnSpellStart( keys )
 	end
 	caster:RemoveAbility("C06EW")
 	]]
+	for i=1,10 do
+		local item = CreateItem("item_money",nil, nil)
+		local r=RandomVector(RandomInt(100,500))
+		r=r+caster:GetAbsOrigin()
+		CreateItemOnPositionSync(r, item)
+		--caster.item_money = item
+
+		--print(r)
+		item:SetAbsOrigin(r)
+	end
+
+
 	AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), 300)
 	AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), -300)
 		local order = {UnitIndex =  keys.caster:entindex(),
