@@ -40,7 +40,7 @@ end
 
 
 function C06E_OnSpellStart( keys )
-	local caster = keys.target
+	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
 	local itemnumber=caster:GetNumItemsInInventory()
@@ -50,15 +50,12 @@ function C06E_OnSpellStart( keys )
 		ParticleManager:SetParticleControl(particle,0, target:GetAbsOrigin())
 	end
 	local money=ability:GetSpecialValueFor("money")
-	ability2=caster:AddAbility("C06EW")
-	ability2:SetLevel(1)
-	for i=1,money do
-		ability2:CastAbility()
-	end
-	caster:RemoveAbility("C06EW")
-	keys.caster:ModifyGold(money,false,0)
+
+	AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), money)
+	AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), -money)
+	
 	--local item=CreateItem("item_c06e",caster,caster)
-	local item1=caster:GetItemInSlot(rnd)
+	local item1=target:GetItemInSlot(rnd)
 	local number={}
 	for i=0,5 do
 		item1=caster:GetItemInSlot(i)
@@ -70,27 +67,27 @@ function C06E_OnSpellStart( keys )
 	for i,v in pairs(number) do
 		count=true
         local rnd = RandomInt(1,table.getn(number))
-		item1=caster:GetItemInSlot(number[rnd])
+		item1=target:GetItemInSlot(number[rnd])
 		--print("randnum"..number[rnd])
     end
 	if count then
 		--print("total"..itemnumber)
 		--print(item1:GetAbilityName())
-		item2=CreateItem("item_c06e",caster,caster)
+		item2=CreateItem("item_c06e",target,target)
 		item2.c06edamage=ability:GetSpecialValueFor("damage")
 		item2.swapitem=item1:GetAbilityName()
-		caster:RemoveItem(item1)
-		caster:AddItem(item2)
+		target:RemoveItem(item1)
+		target:AddItem(item2)
 	else
 		--print("no legal")
 	end
-		local order = {UnitIndex =  keys.caster:entindex(),
+		local order = {UnitIndex =  keys.target:entindex(),
 					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 					TargetIndex = keys.target:entindex()}
 
 	ExecuteOrderFromTable(order)
-	if keys.caster:FindModifierByName("modifier_C06T") then
-		AMHC:Damage(keys.caster,keys.target,400,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	if keys.target:FindModifierByName("modifier_C06T") then
+		AMHC:Damage(keys.target,keys.target,400,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 end
 
@@ -263,14 +260,17 @@ function C06T_OnSpellStart( keys )
 	caster:RemoveAbility("C06EW")
 	]]
 	for i=1,10 do
-		local item = CreateItem("item_money",nil, nil)
-		local r=RandomVector(RandomInt(100,500))
-		r=r+caster:GetAbsOrigin()
-		CreateItemOnPositionSync(r, item)
-		--caster.item_money = item
+		if PlayerResource:GetGold(target:GetPlayerOwnerID()) > 50 then
+			local item = CreateItem("item_money",nil, nil)
+			local r=RandomVector(RandomInt(100,500))
+			r=r+caster:GetAbsOrigin()
+			CreateItemOnPositionSync(r, item)
+			--caster.item_money = item
 
-		--print(r)
-		item:SetAbsOrigin(r)
+			--print(r)
+			item:SetAbsOrigin(r)
+			AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), -50)
+		end
 	end
 
 
