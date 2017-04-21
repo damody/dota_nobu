@@ -25,7 +25,7 @@ function modifier_C23W_OnIntervalThink( keys )
 			ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
 			ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
 		end
-		damage=(ability:GetSpecialValueFor("damage")+ability:GetSpecialValueFor("health_damage")*caster:GetMaxHealth()/100)*0.2
+		damage=ability:GetSpecialValueFor("damage")
 		AMHC:Damage(caster,unit, damage, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 end
@@ -133,10 +133,24 @@ function C23T_OnSpellStart( keys )
 	end
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
 	Timers:CreateTimer(0.2,function()
-		local order = {UnitIndex = caster:entindex(),
-		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-		TargetIndex = target:entindex()}
-		ExecuteOrderFromTable(order)
+		if IsValidEntity(caster) and IsValidEntity(target) then
+			local order = {UnitIndex = caster:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = target:entindex()}
+			ExecuteOrderFromTable(order)
+		end
+		end)
+	Timers:CreateTimer(1,function()
+		if IsValidEntity(target) then
+			if target:GetHealth() < 5 then
+				target:ForceKill(true)
+			end
+		end
+		if IsValidEntity(caster) then
+			if caster:GetHealth() < 5 then
+				caster:ForceKill(true)
+			end
+		end
 		end)
 end
 

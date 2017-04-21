@@ -136,45 +136,12 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"A27W.vo1"
+				"EffectName"	"A27T_old.vo1"
 			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A27_Shibata_Katsuie.lua"
-				"Function"	"A27W"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_A27T"
-			{
-				"IsHidden"	"0"
-				"IsPurgable"	"0"
-				"AllowIllusionDuplicate"	"1"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"	"CASTER"
-						"ControlPointEntities"
-						{"CASTER"	"attach_origin"
-						"CASTER"	"attach_origin"
-						"CASTER"	"attach_origin"
-						}
-						"EffectName"	"particles/a27t/a27t.vpcf"
-						"EffectAttachType"	"follow_origin"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"600"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.25"
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "%healthb"
-				}
-				"Duration"	"%duration"
-				"IsBuff"	"1"
-				"States"	{}
-				"OnDestroy"	{}
+				"Function"	"MirrorImage"
 			}
 		}
 		"AbilitySpecial"
@@ -182,7 +149,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"A27W_Duration"	"30 30 30 30"
+				"illusion_duration"	"30"
 			}
 			"02"
 			{
@@ -192,12 +159,22 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A27W_attack"	"-75 -65 -55 -45"
+				"illusion_outgoing_damage"	"-75 -65 -55 -45"
 			}
-			"04"
+			"04" // 鏡像數量
+			{
+				"var_type" "FIELD_INTEGER"
+				"illusions_count" "1"
+			}
+			"05" // 確保單位不會靠的太近
+			{
+				"var_type" "FIELD_INTEGER"
+				"model_radius" "100"
+			}
+			"06" // 慢慢產生
 			{
 				"var_type"	"FIELD_FLOAT"
-				"healthb"	"400 600 800"
+				"create_delay"	"0.01"
 			}
 		}
 	}

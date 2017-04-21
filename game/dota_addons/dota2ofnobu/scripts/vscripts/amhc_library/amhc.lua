@@ -489,6 +489,34 @@ function AMHC:GivePlayerGold( playerid,gold )
 	end
 end
 AMHC:Reload( AMHC, "GivePlayerGold", "number,number" )
+
+function AMHC:GivePlayerGold_Reliable( playerid,gold )
+	local player = PlayerResource:GetPlayer(playerid)
+
+	if player then
+		local hero = player:GetAssignedHero()
+
+		if hero then
+			hero:EmitSoundParams("General.Sell",200,200,1)
+			PlayerResource:SetGold(playerid,PlayerResource:GetReliableGold(playerid) + gold,true)
+			self:CreateNumberEffect( hero,gold,1,self.MSG_GOLD,"yellow",0 )
+		end
+	end
+end
+
+function AMHC:GivePlayerGold_UnReliable( playerid,gold )
+	local player = PlayerResource:GetPlayer(playerid)
+
+	if player then
+		local hero = player:GetAssignedHero()
+
+		if hero then
+			hero:EmitSoundParams("General.Sell",200,200,1)
+			PlayerResource:SetGold(playerid,PlayerResource:GetGold(playerid) + gold,false)
+			self:CreateNumberEffect( hero,gold,1,self.MSG_GOLD,"yellow",0 )
+		end
+	end
+end
 --====================================================================================================
 
 

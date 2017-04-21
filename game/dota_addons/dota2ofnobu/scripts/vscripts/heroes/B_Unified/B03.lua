@@ -142,6 +142,9 @@ function B03T_OnProjectileHitUnit( keys )
 	local target = keys.target
 	local stunDuration = ability:GetSpecialValueFor("B03T_stunDuration")
 	AMHC:Damage( caster, target, ability:GetSpecialValueFor("B03T_damage"), AMHC:DamageType("DAMAGE_TYPE_PHYSICAL") )
+	if target:IsMagicImmune() then
+		stunDuration = stunDuration * 0.5
+	end
 	target:AddNewModifier( caster, ability, "modifier_stunned" , { duration = stunDuration } )
 	StartSoundEvent( "Hero_ElderTitan.Attack" , target )
 end

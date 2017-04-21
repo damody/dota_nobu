@@ -72,7 +72,6 @@ function A02E_OnSpellStart( keys )
 
 	caster:Heal(hp_recover,caster)
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_HEAL,caster,hp_recover,nil)
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_A02E_buff",{})
 
 	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControlEnt(ifx,1,caster,PATTACH_POINT_FOLLOW,"attach_hitloc",caster:GetAbsOrigin(),true)

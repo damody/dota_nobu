@@ -211,6 +211,15 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A02.lua"
 				"Function"		"A02E_OnSpellStart"
 			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A02E_buff"
+			}
 		}
 
 		"Modifiers"
@@ -347,8 +356,12 @@
 		{
 			"ApplyModifier"
 			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A02T"
-				"Target" 		"CASTER"
 				"Duration"		"%duration"
 			}
 		}
@@ -585,8 +598,12 @@
 		{
 			"ApplyModifier"
 			{
+				"Target"
+				{
+				    "Center" "TARGET"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A02E_old_buff"
-				"Target" 		"TARGET"
 				"Duration"		"%buff_duration"
 			}
 		}
@@ -738,8 +755,12 @@
 		{
 			"ApplyModifier"
 			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A02T_old"
-				"Target" 		"CASTER"
 				"Duration"		"%duration"
 			}
 		}

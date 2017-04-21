@@ -57,7 +57,11 @@ function Nobu:OnUnitKill( keys )
         end)
 
     end
-    if (AttackerUnit:IsRealHero()) then
+    local neutral = false
+    if string.match(killedUnit:GetUnitName(), "neutral") then
+      neutral = true
+    end
+    if (AttackerUnit:IsRealHero()) and not neutral then
       if AttackerUnit.kill_hero_count == nil then
         AttackerUnit.kill_hero_count = 0
       end
@@ -98,11 +102,11 @@ function Nobu:OnUnitKill( keys )
       end
       ]]
       if killedUnit:GetLevel() >= 18 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+15)
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+9)
       elseif killedUnit:GetLevel() >= 12 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+10)
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+6)
       elseif killedUnit:GetLevel() >= 6 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+5)
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+3)
       else
         killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
       end
@@ -117,7 +121,7 @@ function Nobu:OnUnitKill( keys )
           FIND_ANY_ORDER, 
           false)
       if (#group > 0) then
-        local xp = killedUnit:GetLevel() * 40 / #group
+        local xp = killedUnit:GetLevel() * 35 / #group
         for _,v in ipairs(group) do
           v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
           if v:IsHero() and killedUnit:GetLevel() > 7 then

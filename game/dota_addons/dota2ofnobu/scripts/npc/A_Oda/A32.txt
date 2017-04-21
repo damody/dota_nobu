@@ -706,7 +706,7 @@
 		"AbilityCooldown"           	"2"
 		"AbilityManaCost"           	"100 150 200"
 		"MaxLevel"						"3"
-		"AbilityDamage"					"80 140 200"
+		"AbilityDamage"					"120 180 240"
 		"AbilityCastRange"				"400"
 		"AOERadius"						"400"
 
@@ -779,9 +779,9 @@
 				"Properties"
 				{
 					//"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%attack_range_bonus"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%move_speed_bonus"
+					//"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%move_speed_bonus"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"
+					//"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"
 				}
 				"EffectName" "particles/a32/a32t_old.vpcf"
 				"ThinkInterval"  "0.5"

@@ -237,6 +237,19 @@
 		}
 		"Modifiers"
 		{
+			"Passive_the_over_lightning_art_of_war2"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_over_lightning_art_of_war.lua"
+						"Function"		"Shock2"
+					}
+				}
+			}
 			"Passive_the_over_lightning_art_of_war"
 			{
 				"IsHidden"	"1"
@@ -6394,7 +6407,7 @@
 		"ItemCost"	"3100"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"AbilityCastRange"	"500"
+		"AbilityCastRange"	"700"
 
 		"OnSpellStart"
 		{
@@ -6404,11 +6417,40 @@
 				"Function"	"Shock"
 				"Target"	"POINT"
 			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"POINT"
+					"Radius" 	"700"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			
+				"Action"    
+				{
+					"Heal"
+					{
+						"Target"        "TARGET"
+						"HealAmount"	"300"
+					}
+				}
+			}
 		}
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_item_glass_mitsutomo2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "10" //跑速
+				}
+			}
+			"Passive_item_glass_mitsutomo"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -6422,12 +6464,10 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "400"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "1" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "7" //跑速
 				}
 			}
 		}
