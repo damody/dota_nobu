@@ -10,7 +10,7 @@
 			"particle"  "particles/b30w/b30w.vpcf" //w
 			"particle"  "particles/b30w/b30w2fire/monkey_king_spring_arcana_fire.vpcf" //w2
 			"particle"  "particles/item/dragon.vpcf" //w_old
-			"particle"  "particles/b30t/b30t_ti6.vpcf" //t
+			"particle"  "particles/b30/b30t.vpcf" //t
 			"particle"  "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf" //e t
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
@@ -26,7 +26,7 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilityCooldown"                           "23 19 15 11"
@@ -107,7 +107,8 @@
 		"AbilityCooldown"							"22"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"135 150 165 180"
-		"AbilityCastRange"							"128"
+		"AbilityCastRange"							"250"
+		"AnimationPlaybackRate"	"2"
 
 		"OnSpellStart"
 		{
@@ -233,7 +234,7 @@
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B30/B30T"
 		"AbilityCastRange"							"1500"
-		"AbilityCooldown"           				"115"
+		"AbilityCooldown"           				"115 105 95"
 		"AbilityManaCost"           				"250"
 		
 		"OnSpellStart"
@@ -241,23 +242,27 @@
 			"LinearProjectile"
 			{
 			    "Target"      	 "POINT"
-			    "EffectName"	 "particles/b30t/b30t_ti6.vpcf"
 				"MoveSpeed"		 "3000"
 				"StartRadius"	 "%B30T_radius"
 				"StartPosition"  "attach_attack1"
 				"EndRadius"      "%B30T_radius"
 				"HasFrontalCone" "0"
-				"FixedDistance"  "1500"
+				"FixedDistance"  "1700"
 				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
 			    "ProvidesVision" "1"
-			    "VisionRadius" 	 "225"
+			    "VisionRadius" 	 "500"
 			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Invoker.DeafeningBlast"
 				"Target" 		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30T_old_OnSpellStart"
 			}
 		}
 
@@ -270,11 +275,11 @@
 				"Type"			"DAMAGE_TYPE_MAGICAL"
 				"Damage"		"%B30T_damage"
 			}
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_B30T_debuff"
-				"Target" 		"TARGET"
-				"Duration"		"%B30T_dotDuration"
+				"Target"		"TARGET"
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30T_OnProjectileHitUnit"
 			}
 		}
 
@@ -308,7 +313,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B30T_radius"			"350"
+				"B30T_radius"			"500"
 			}
 			"03"
 			{
@@ -318,7 +323,7 @@
 			"04"
 			{
 				"var_type" 				"FIELD_FLOAT"
-				"B30T_dotDuration" 		"6.0 8.0 10.0"
+				"B30T_dotDuration" 		"6 8 10"
 			}
 		}
 	}
@@ -375,7 +380,23 @@
 				"Damage"		"%B30W_damage"
 			}
 		}
-
+		"Modifiers"
+		{
+			"modifier_B30W_old"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B30.lua"
+						"Function"	"B30W_old_OnAttackLanded"
+					}
+				}
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -386,7 +407,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"B30W_radius"				"150"
+				"B30W_radius"				"250"
 			}
 			"03"
 			{
@@ -416,7 +437,8 @@
 		"AbilityCooldown"							"16"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"110 130 150 170"
-		"AbilityCastRange"							"128"
+		"AbilityCastRange"							"250"
+		"AnimationPlaybackRate"	"2"
 
 		"OnSpellStart"
 		{
@@ -490,7 +512,7 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B30/B30R"
-		"AbilityManaCost"							"120 140 160 180"
+		"AbilityManaCost"							"400 440 480 520"
 		"AbilityCooldown"							"40"
 
 		"OnSpellStart"
@@ -504,6 +526,18 @@
 
 		"Modifiers"
 		{
+			"modifier_B30R_old2"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%B30R_asBonus"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%B30R_msBonus"
+				    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%B30R_agiBonus"
+				}
+			}
 			"modifier_B30R_old"
 			{
 				"Passive"			"0"
@@ -523,12 +557,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B30R_asBonus"			"2 4 6 8"
+				"B30R_msBonus"			"2 4 6 8"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B30R_msBonus"			"45 55 65 75"
+				"B30R_asBonus"			"45 55 65 75"
 			}
 			"03"
 			{
@@ -538,7 +572,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"B30R_duration"			"32.0"
+				"B30R_duration"			"32"
 			}
 		}
 
@@ -556,8 +590,8 @@
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B30/B30T"
 
-		"AbilityCooldown"           				"100"
-		"AbilityManaCost"           				"200"
+		"AbilityCooldown"           				"30 40 50"
+		"AbilityManaCost"           				"150 250 350"
 		"AbilityCastRange"							"1500"
 		"AbilityCastPoint"							"0.1"
 		
@@ -566,26 +600,30 @@
 			"LinearProjectile"
 			{
 			    "Target"      	 "POINT"
-			    "EffectName"	 "particles/b30t/b30t_ti6.vpcf"
 				"MoveSpeed"		 "3000"
 				"StartRadius"	 "%B30T_radius"
 				"StartPosition"  "attach_attack1"
 				"EndRadius"      "%B30T_radius"
 				"HasFrontalCone" "0"
-				"FixedDistance"  "1500"
+				"FixedDistance"  "1700"
 				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
 			    "ProvidesVision" "1"
-			    "VisionRadius" 	 "225"
+			    "VisionRadius" 	 "500"
 			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Invoker.DeafeningBlast"
 				"Target" 		"CASTER"
 			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30T_old_OnSpellStart"
+			}
 		}
-
+		
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"0"
@@ -602,7 +640,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B30T_radius"			"350"
+				"B30T_radius"			"500"
 			}
 			"02"
 			{

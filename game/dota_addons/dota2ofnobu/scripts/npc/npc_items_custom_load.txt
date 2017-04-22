@@ -5378,26 +5378,6 @@
 				"Target"	"TARGET"
 			}
 		}
-		"OnEquip"
-		{
-			"RemoveModifier"
-            {
-                "Target" "CASTER"
-                "ModifierName" "modifier_flame_armor_aura"
-            }
-            "DelayedAction"
-            {
-            	"Delay"     "0.1"
-            	"Action"    
-            	{
-            		"ApplyModifier"
-		            {
-		                "Target" "CASTER"
-		                "ModifierName" "modifier_flame_armor_aura"
-		            }
-            	}
-            }
-		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -16450,7 +16430,8 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"0"
-		"ItemSellable"		"0"
+		"ItemSellable" "0"
+		"ItemDroppable" "0"
 		"AbilityManaCost"	"0"
 		"ID"	"8000"
 		"ItemQuality"	"component"

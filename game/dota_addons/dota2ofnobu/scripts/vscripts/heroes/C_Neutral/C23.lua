@@ -125,8 +125,7 @@ function C23T_OnSpellStart( keys )
 	local target = keys.target
 	local casterhealth=caster:GetHealthPercent()
 	local targethealth=target:GetHealthPercent()
-	local ability2 = caster:FindAbilityByName("C23R")
-	ability2:ApplyDataDrivenModifier(caster,caster,"modifier_C23R_onSpell",{duration=4})
+
 	local ourhp = caster:GetMaxHealth()*targethealth/100 + 1
 	local targethp = target:GetMaxHealth()*casterhealth/100 + 1
 	if ourhp > caster:GetHealth() then
@@ -135,10 +134,10 @@ function C23T_OnSpellStart( keys )
 		AMHC:Damage( caster,caster,caster:GetHealth()-ourhp,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 	if not target:IsMagicImmune() then
-		if ourhp > target:GetHealth() then
-			target:Heal(ourhp-target:GetHealth(),target)
+		if targethp > target:GetHealth() then
+			target:Heal(targethp-target:GetHealth(),target)
 		elseif targethp < target:GetHealth() then
-			AMHC:Damage( target,target,target:GetHealth()-targethp,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage( caster,target,target:GetHealth()-targethp,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
@@ -150,6 +149,7 @@ function C23T_OnSpellStart( keys )
 			ExecuteOrderFromTable(order)
 		end
 		end)
+	
 	Timers:CreateTimer(1,function()
 		if IsValidEntity(target) then
 			if target:GetHealth() < 5 then
@@ -162,6 +162,8 @@ function C23T_OnSpellStart( keys )
 			end
 		end
 		end)
+	local ability2 = caster:FindAbilityByName("C23R")
+	ability2:ApplyDataDrivenModifier(caster,caster,"modifier_C23R_onSpell",{duration=4})
 end
 
 function modifier_C23E_aura_onAttackLanded( keys )

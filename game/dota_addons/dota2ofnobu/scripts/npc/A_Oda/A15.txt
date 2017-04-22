@@ -470,7 +470,7 @@
 			"01"
 			{
 				"var_type"                		"FIELD_FLOAT"
-				"A15E_duration"                	"3 5 7 9"
+				"A15E_duration"                	"15 17 19 21"
 			}
 			"02"
 			{
@@ -494,7 +494,7 @@
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"                        "custom/A15/A15R"
 
 		"OnProjectileHitUnit"
@@ -545,7 +545,7 @@
 			"01" // 每次彈跳增加的傷害比例
 			{
 				"var_type" 				"FIELD_FLOAT"
-				"bonus_damage" 			"-0.3"
+				"bonus_damage" 			"-0.35"
 			}
 			"02"
 			{
@@ -574,7 +574,7 @@
 		
 		"AbilityCastPoint"          				"0.1"
 		"AbilityCooldown"           				"130"
-		"AbilityManaCost"           				"350 400 450"
+		"AbilityManaCost"           				"100"
 		
 		"OnSpellStart"
 		{
@@ -604,7 +604,7 @@
 				"IsPurgable"		"0"
 				"EffectName"		"particles/a15t/a15t.vpcf"
 				"EffectAttachType"	"follow_origin"
-				"ThinkInterval"  	"0.4"
+				"ThinkInterval"  	"0.5"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -626,7 +626,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"A15T_old_duration"	"30 35 40"
+				"A15T_old_duration"	"40"
 			}
 			"03"
 			{

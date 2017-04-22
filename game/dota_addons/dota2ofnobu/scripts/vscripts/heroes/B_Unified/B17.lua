@@ -116,6 +116,10 @@ function B17R( keys )
 	local radius = ability:GetSpecialValueFor("B17R_radius")
 	local damage = ability:GetSpecialValueFor("B17R_damage")
 	local point = ability:GetCursorPosition()
+	if (point-caster:GetAbsOrigin()):Length2D() > 500 then
+		local nor = (point-caster:GetAbsOrigin()):Normalized()
+		point = nor*500+caster:GetAbsOrigin()
+	end
 	FindClearSpaceForUnit( caster, point , true)
 	keys.caster:AddNewModifier( caster, nil, "modifier_phased", {duration=0.1} )
 

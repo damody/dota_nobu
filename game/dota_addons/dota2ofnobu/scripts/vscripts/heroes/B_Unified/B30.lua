@@ -11,6 +11,19 @@ function B30W_OnSpellStart( keys )
 	caster.B30W = 0
 end
 
+function B30W_old_OnAttackLanded( keys )
+		local caster = keys.caster
+		local ability = keys.ability
+		local handle = caster:FindAbilityByName("B30W_old")
+		if handle then
+			if not handle:IsCooldownReady() then
+				local t = handle:GetCooldownTimeRemaining()
+				handle:EndCooldown()
+				handle:StartCooldown(t-ability:GetLevel())
+			end
+		end
+end
+
 function B30W_OnTakeDamage( keys )
 	if IsServer() then
 		local caster = keys.caster
@@ -40,15 +53,19 @@ function B30W_OnDestroy( keys )
 
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, 
 		ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
-	for _,unit in ipairs(units) do
-		local damageTable = {
-			victim = unit,
+	local damageTable = {
 			attacker = caster,
 			ability = ability,
-			damage = damage,
 			damage_type = ability:GetAbilityDamageType(),
 			damage_flags = DOTA_DAMAGE_FLAG_NONE,
 		}
+	for _,unit in ipairs(units) do
+		damageTable.victim = unit
+		if unit:IsMagicImmune() then
+			damageTable.damage = damage * 0.5
+		else
+			damageTable.damage = damage
+		end
 		ApplyDamage(damageTable)
 	end
 end
@@ -117,4 +134,28 @@ function B30R_old_OnSpellStart( keys )
 	local ability = keys.ability
 	local duration = ability:GetSpecialValueFor("B30R_duration")
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_B30R_old", { duration = duration } )
+end
+
+function B30T_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	Timers:CreateTimer( 0.1, function()
+		local ifx = ParticleManager:CreateParticle("particles/b30/b30t.vpcf",PATTACH_POINT,caster)
+		ParticleManager:SetParticleControl( ifx , 0 , caster:GetAbsOrigin()+Vector(0, 0, 100) )
+		ParticleManager:SetParticleControl( ifx , 1 , caster:GetForwardVector() )
+		ParticleManager:SetParticleControl( ifx , 2 , -caster:GetForwardVector()*1000 )
+		ParticleManager:ReleaseParticleIndex( ifx )
+		end)
+end
+
+function B30T_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local duration = ability:GetSpecialValueFor("B30T_dotDuration")
+	tsum = 0.1
+	Timers:CreateTimer(0.1, function()
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B30T_debuff",{duration = duration-tsum})
+		tsum = tsum + 0.1
+		end)
 end

@@ -3,10 +3,10 @@ function modifier_C06D_OnKill( keys )
 	local caster = keys.caster
 	local target = keys.unit
 	local ability = keys.ability
-	if target:IsHero() then
-		caster:ModifyGold(100,false,0)
+	if target:IsHero() and not target:IsIllusion() then
+		AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), 100)
 	else
-		caster:ModifyGold(4,false,0)
+		AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), 4)
 	end
 end
 
@@ -51,26 +51,22 @@ function C06E_OnSpellStart( keys )
 	end
 	local money=ability:GetSpecialValueFor("money")
 
-	AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), money)
+	AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), money)
 	AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), -money)
 	
 	--local item=CreateItem("item_c06e",caster,caster)
 	local item1=target:GetItemInSlot(rnd)
 	local number={}
 	for i=0,5 do
-		item1=caster:GetItemInSlot(i)
+		item1=target:GetItemInSlot(i)
 		if item1 and item1:GetAbilityName()~="item_c06e" then
 			table.insert(number,i)
 		end
 	end
-	local count=false
-	for i,v in pairs(number) do
-		count=true
+	if #number > 0 then
         local rnd = RandomInt(1,table.getn(number))
 		item1=target:GetItemInSlot(number[rnd])
-		--print("randnum"..number[rnd])
-    end
-	if count then
+
 		--print("total"..itemnumber)
 		--print(item1:GetAbilityName())
 		item2=CreateItem("item_c06e",target,target)
@@ -79,14 +75,10 @@ function C06E_OnSpellStart( keys )
 		target:RemoveItem(item1)
 		target:AddItem(item2)
 	else
-		--print("no legal")
+		print("no legal")
 	end
-		local order = {UnitIndex =  keys.target:entindex(),
-					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-					TargetIndex = keys.target:entindex()}
 
-	ExecuteOrderFromTable(order)
-	if keys.target:FindModifierByName("modifier_C06T") then
+	if caster:FindModifierByName("modifier_C06T") then
 		AMHC:Damage(keys.target,keys.target,400,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 end
@@ -99,7 +91,7 @@ end
 function item_c06e_OnSpellStart(keys)
 	--【Basic】
 	local caster = keys.caster
-	local target = keys.target
+	local target = keys.caster
 	local ability = keys.ability
 	--local player = caster:GetPlayerID()
 	local point = caster:GetAbsOrigin()
@@ -113,7 +105,7 @@ function item_c06e_OnSpellStart(keys)
 	--local radius = ability:GetLevelSpecialValueFor("radius",level)
 	local time = 2
 	if target:IsMagicImmune() then
-		ability:ApplyDataDrivenModifier( caster, target, "modifier_item_c06e", {duration = 2.5} )
+
 	else
 		ability:ApplyDataDrivenModifier( caster, target, "modifier_item_c06e", {duration = 2.5} )
 	end
@@ -138,17 +130,17 @@ function C06R_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C06R",nil)
-	local target=keys.caster
+	local target=keys.target
 	local shield_size = 30 
 	Timers:CreateTimer(0.01, function() 
-		target.ShieldParticle = ParticleManager:CreateParticle("particles/a07w5/a07w5.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-		ParticleManager:SetParticleControl(target.ShieldParticle, 1, Vector(shield_size,0,shield_size))
-		ParticleManager:SetParticleControl(target.ShieldParticle, 2, Vector(shield_size,0,shield_size))
-		ParticleManager:SetParticleControl(target.ShieldParticle, 4, Vector(shield_size,0,shield_size))
-		ParticleManager:SetParticleControl(target.ShieldParticle, 5, Vector(shield_size,0,0))
+		caster.ShieldParticle = ParticleManager:CreateParticle("particles/a07w5/a07w5.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		ParticleManager:SetParticleControl(caster.ShieldParticle, 1, Vector(shield_size,0,shield_size))
+		ParticleManager:SetParticleControl(caster.ShieldParticle, 2, Vector(shield_size,0,shield_size))
+		ParticleManager:SetParticleControl(caster.ShieldParticle, 4, Vector(shield_size,0,shield_size))
+		ParticleManager:SetParticleControl(caster.ShieldParticle, 5, Vector(shield_size,0,0))
 
 		-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
-		ParticleManager:SetParticleControlEnt(target.ShieldParticle, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)--attach_attack1
+		ParticleManager:SetParticleControlEnt(caster.ShieldParticle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)--attach_attack1
 	end)
 end
 
@@ -216,21 +208,29 @@ function modifier_C06R_onattack_OnAttackLanded( event )
 	--print(100-target:GetMagicalArmorValue())
 	if not target:IsBuilding() then
 		local ability = event.ability
-		local caster =ability:GetCaster()
-		local damage=caster:GetGold()*5/100
+		local caster = ability:GetCaster()
+		local damage = caster:GetGold()*0.03
+		local maxdamage = ability:GetSpecialValueFor("maxdamage")
+		if damage > maxdamage then
+			damage = maxdamage
+		end
 		local damageTable = {victim=target,   
 			attacker=caster,         
 			damage=damage,
 			damage_type=ability:GetAbilityDamageType()}
-			if event.caster:FindModifierByName("modifier_C06T") then
-				damageTable.damage=damageTable.damage+50
-			end
-			if target:IsMagicImmune() then
-				damageTable.damage=damageTable.damage*1
-				ApplyDamage(damageTable)
-			else
-				ApplyDamage(damageTable)
-			end
+		if event.caster:IsIllusion() then
+			damageTable.attacker = target
+			damageTable.victim = caster
+		end
+		if event.caster:FindModifierByName("modifier_C06T") then
+			damageTable.damage=damageTable.damage+50
+		end
+		if target:IsMagicImmune() then
+			damageTable.damage=damageTable.damage*0.5
+			ApplyDamage(damageTable)
+		else
+			ApplyDamage(damageTable)
+		end
 	end
 end
 
@@ -278,27 +278,28 @@ function C06T_OnSpellStart( keys )
 
 end
 
-
+function C06D_old_OnAbilityPhaseStart( keys )
+	local caster = keys.caster
+	--caster:Stop()
+	print("C06D_old_OnAbilityPhaseStart")
+	if GameRules:IsDaytime() or caster:FindModifierByName("modifier_C06D_old_check") then
+		caster:Interrupt()
+		print("C06D_old_OnAbilityPhaseStart")
+	end
+end
 
 function C06D_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	caster:Stop()
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_C06D_old", {} )
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_invisible", {} )
 end
 
-function C06D_old_DelayedAction( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local ability =keys.ability
-	if not GameRules:IsDaytime() and caster:FindModifierByName("modifier_C06D_old_check") then
-		ability:ApplyDataDrivenModifier( caster, caster, "modifier_C06D_old", {} )
-		ability:ApplyDataDrivenModifier( caster, caster, "modifier_invisible", {} )
-	end
-end
 
 
 function C06E_old_OnSpellStart( keys )
-	local caster = keys.target
+	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
 	for i=1,10 do
@@ -308,16 +309,10 @@ function C06E_old_OnSpellStart( keys )
 	local level=ability:GetSpecialValueFor("level")
 	local money=target:GetGoldBounty()
 	
-	
-
-		local order = {UnitIndex =  keys.caster:entindex(),
-					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-					TargetIndex = keys.target:entindex()}
-
 	ExecuteOrderFromTable(order)
-	if target:GetLevel()<=level and not target:IsHero() then
-		keys.caster:ModifyGold(money,false,0)
-		AMHC:Damage(keys.caster,keys.target,keys.target:GetMaxHealth(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	if not target:IsHero() then
+		AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), money)
+		AMHC:Damage(caster,keys.target,keys.target:GetMaxHealth(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 end
 
@@ -339,6 +334,6 @@ function C06T_old_OnSpellStart( keys )
 					TargetIndex = keys.target:entindex()}
 
 	ExecuteOrderFromTable(order)
-
-	AMHC:Damage(keys.caster,keys.target,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	ability:ApplyDataDrivenModifier( caster, target , "modifier_stunned" , {duration=ability:GetSpecialValueFor("stun")} )
+	AMHC:Damage(keys.caster,keys.target,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 end

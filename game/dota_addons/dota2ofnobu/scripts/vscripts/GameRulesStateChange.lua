@@ -74,7 +74,7 @@ function Nobu:OnGameRulesStateChange( keys )
     if _G.nobu_server_b then
       Nobu:OpenRoom()
     end
-    GameRules:SendCustomMessage("歡迎來到 Dota2 信長之野望 20.3H", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("歡迎來到 Dota2 信長之野望 20.4E", DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("5分鐘後可以打 -ff 投降" , DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("目前作者: Damody, Tenmurakumo, BedRock, 佐佐木小籠包", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
