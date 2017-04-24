@@ -62,7 +62,7 @@ Timers:CreateTimer( 2, function()
 end)
 
 -- 中路模式
-_G.mo = 1
+_G.mo = nil
 mo = _G.mo
 function ShuaGuai( )
 	--ShuaGuai_Of_A( )
