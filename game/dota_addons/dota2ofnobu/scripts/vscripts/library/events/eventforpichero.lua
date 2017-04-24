@@ -22,28 +22,53 @@ function Nobu:PickHero( keys )
           return 1
         end)
       end
-      -- 預設切換為舊版
+      -- 預設切換加入切換版本技能
       local nobu_id = _G.heromap[caster:GetName()]
-      for i = 0, caster:GetAbilityCount() - 1 do
-        local ability = caster:GetAbilityByIndex( i )
-        if ability  then
-          caster:RemoveAbility(ability:GetName())
+        for i = 0, caster:GetAbilityCount() - 1 do
+          local ability = caster:GetAbilityByIndex( i )
+          if ability  then
+            caster:RemoveAbility(ability:GetName())
+          end
+        end
+      if caster:GetTeamNumber() < 4 then
+        if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["11"] == true then
+          caster:AddAbility("choose_11"):SetLevel(1)
+        end
+        if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["16"] == true then
+          caster:AddAbility("choose_16"):SetLevel(1)
+        end
+
+        if _G.CountUsedAbility_Table == nil then
+          _G.CountUsedAbility_Table = {}
+        end
+        if _G.CountUsedAbility_Table[id] == nil then
+          _G.CountUsedAbility_Table[id] = {}
         end
       end
-      if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["11"] == true then
-        caster:AddAbility("choose_11"):SetLevel(1)
-      end
-      if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["16"] == true then
-        caster:AddAbility("choose_16"):SetLevel(1)
-      end
-
-      if _G.CountUsedAbility_Table == nil then
-        _G.CountUsedAbility_Table = {}
-      end
-      if _G.CountUsedAbility_Table[id] == nil then
-        _G.CountUsedAbility_Table[id] = {}
+      if caster:GetTeamNumber() > 3 then
+        caster:AddAbility("OBW"):SetLevel(1)
+        caster:AddAbility("majia"):SetLevel(1)
+        caster:AddAbility("for_no_damage"):SetLevel(1)
+        caster:AddNoDraw()
+        Timers:CreateTimer(0,function()
+          caster:SetAbilityPoints(0)
+          return 1
+        end)
       end
       --【英雄名稱判別】
+      if _G.mo then
+        caster:AddAbility("play_1v1"):SetLevel(1)
+        Timers:CreateTimer(1, function()
+          if caster.score == nil then caster.score = 0 end
+          if caster.score >= 3 then
+            local nobu_id = _G.heromap[caster:GetName()]
+            GameRules:SetCustomVictoryMessage(_G.hero_name_zh[nobu_id].." 贏得勝利")
+            GameRules:SetGameWinner(caster:GetTeamNumber())
+            return nil
+          end
+          return 1
+          end)
+      end
       
       
       caster.name = heromap[name]

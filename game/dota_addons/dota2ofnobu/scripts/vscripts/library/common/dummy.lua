@@ -89,7 +89,7 @@ function CP_Posistion( keys )
 	local caster = keys.caster
 	caster.origin_pos = caster:GetAbsOrigin()
 	Timers:CreateTimer(1, function ()
-    if IsValidEntity(caster) and not caster:IsIllusion() then
+    if IsValidEntity(caster) and not caster:IsIllusion() and not _G.mo then
       local donkey = CreateUnitByName("cp_soldiercamp", caster.origin_pos, true, caster, caster, caster:GetTeamNumber())
       donkey:SetAbsOrigin(caster.origin_pos)
       donkey:AddAbility("majia_cp"):SetLevel(1)

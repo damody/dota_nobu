@@ -55,7 +55,10 @@ function Nobu:OnUnitKill( keys )
           end
         end
         end)
-
+      if _G.mo and killedUnit:GetUnitName() == "com_towera" or (string.match(killedUnit:GetUnitName(), "com_soldiercamp") and killedUnit:GetUnitName()~="com_soldiercamp") then
+        if AttackerUnit.score == nil then AttackerUnit.score = 0 end
+        AttackerUnit.score = AttackerUnit.score + 1
+      end
     end
     local neutral = false
     if string.match(killedUnit:GetUnitName(), "neutral") then
@@ -91,24 +94,28 @@ function Nobu:OnUnitKill( keys )
   	end
 
     if killedUnit:IsRealHero() then
+      if _G.CN then
+        AMHC:GivePlayerGold_UnReliable(killedUnit:GetPlayerOwnerID(), -300)
+      end
       if killedUnit.death_count == nil then
         killedUnit.death_count = 1
       else
         killedUnit.death_count = killedUnit.death_count + 1
       end
-      --[[
-      if die_time[killedUnit:GetLevel()] ~= nil then
-        killedUnit:SetTimeUntilRespawn(die_time[killedUnit:GetLevel()])
-      end
-      ]]
-      if killedUnit:GetLevel() >= 18 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+9)
-      elseif killedUnit:GetLevel() >= 12 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+6)
-      elseif killedUnit:GetLevel() >= 6 then
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+3)
+      if _G.CN then
+        if die_time[killedUnit:GetLevel()] ~= nil then
+          killedUnit:SetTimeUntilRespawn(die_time[killedUnit:GetLevel()])
+        end
       else
-        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
+        if killedUnit:GetLevel() >= 18 then
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+9)
+        elseif killedUnit:GetLevel() >= 12 then
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+6)
+        elseif killedUnit:GetLevel() >= 6 then
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+3)
+        else
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
+        end
       end
       group = FindUnitsInRadius(
           killedUnit:GetTeamNumber(), 
@@ -137,65 +144,67 @@ function Nobu:OnUnitKill( keys )
           end
         end
       end
-
+    end
       -- for i=1,10 do
       --   GameRules: SendCustomMessage("   ",DOTA_TEAM_GOODGUYS,0)
       -- end
       --Tutorial: AddQuest("quest_1",1,"破塔成功","ssssssssss")
-    elseif string.match(name, "neutral_130") then
-      local unitname = name
-      local pos = killedUnit:GetAbsOrigin()
-      local team = killedUnit:GetTeamNumber()
-      Timers:CreateTimer(90, function()
-        if (killedUnit.origin_pos) then
-          pos = killedUnit.origin_pos
-          local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
-          unit.origin_pos = pos
-          local CP_Monster = _G.CP_Monster
-          local hp = unit:GetMaxHealth()
-          unit:SetBaseMaxHealth(hp+CP_Monster * 50)
-          local dmgmax = unit:GetBaseDamageMax()
-          local dmgmin = unit:GetBaseDamageMin()
-          unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
-          unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
-        end
-        end)
-    elseif string.match(name, "npc_dota_cursed_warrior_souls") then
-      local unitname = name
-      local pos = killedUnit:GetAbsOrigin()
-      local team = killedUnit:GetTeamNumber()
-      Timers:CreateTimer(300, function()
-        if (killedUnit.origin_pos) then
-          pos = killedUnit.origin_pos
-          local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
-          unit.origin_pos = pos
-          local CP_Monster = _G.CP_Monster
-          local hp = unit:GetMaxHealth()
-          unit:SetBaseMaxHealth(hp+CP_Monster * 50)
-          local dmgmax = unit:GetBaseDamageMax()
-          local dmgmin = unit:GetBaseDamageMin()
-          unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
-          unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
-        end
-        end)
-    elseif string.match(name, "neutral_160") then
-      local unitname = name
-      local pos = killedUnit:GetAbsOrigin()
-      local team = killedUnit:GetTeamNumber()
-      Timers:CreateTimer(120, function()
-        if (killedUnit.origin_pos) then
-          pos = killedUnit.origin_pos
-          local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
-          unit.origin_pos = pos
-          local CP_Monster = _G.CP_Monster
-          local hp = unit:GetMaxHealth()
-          unit:SetBaseMaxHealth(hp+CP_Monster * 50)
-          local dmgmax = unit:GetBaseDamageMax()
-          local dmgmin = unit:GetBaseDamageMin()
-          unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
-          unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
-        end
-        end)
+    if _G.mo == nil then
+      if string.match(name, "neutral_130") then
+        local unitname = name
+        local pos = killedUnit:GetAbsOrigin()
+        local team = killedUnit:GetTeamNumber()
+        Timers:CreateTimer(90, function()
+          if (killedUnit.origin_pos) then
+            pos = killedUnit.origin_pos
+            local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
+            unit.origin_pos = pos
+            local CP_Monster = _G.CP_Monster
+            local hp = unit:GetMaxHealth()
+            unit:SetBaseMaxHealth(hp+CP_Monster * 50)
+            local dmgmax = unit:GetBaseDamageMax()
+            local dmgmin = unit:GetBaseDamageMin()
+            unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
+            unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
+          end
+          end)
+      elseif string.match(name, "npc_dota_cursed_warrior_souls") then
+        local unitname = name
+        local pos = killedUnit:GetAbsOrigin()
+        local team = killedUnit:GetTeamNumber()
+        Timers:CreateTimer(300, function()
+          if (killedUnit.origin_pos) then
+            pos = killedUnit.origin_pos
+            local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
+            unit.origin_pos = pos
+            local CP_Monster = _G.CP_Monster
+            local hp = unit:GetMaxHealth()
+            unit:SetBaseMaxHealth(hp+CP_Monster * 50)
+            local dmgmax = unit:GetBaseDamageMax()
+            local dmgmin = unit:GetBaseDamageMin()
+            unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
+            unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
+          end
+          end)
+      elseif string.match(name, "neutral_160") then
+        local unitname = name
+        local pos = killedUnit:GetAbsOrigin()
+        local team = killedUnit:GetTeamNumber()
+        Timers:CreateTimer(120, function()
+          if (killedUnit.origin_pos) then
+            pos = killedUnit.origin_pos
+            local unit = CreateUnitByName(unitname,pos,false,nil,nil,team)
+            unit.origin_pos = pos
+            local CP_Monster = _G.CP_Monster
+            local hp = unit:GetMaxHealth()
+            unit:SetBaseMaxHealth(hp+CP_Monster * 50)
+            local dmgmax = unit:GetBaseDamageMax()
+            local dmgmin = unit:GetBaseDamageMin()
+            unit:SetBaseDamageMax(dmgmax+CP_Monster*12)
+            unit:SetBaseDamageMax(dmgmin+CP_Monster*12)
+          end
+          end)
+      end
     end
 
 

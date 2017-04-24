@@ -19,7 +19,7 @@ function B30W_old_OnAttackLanded( keys )
 			if not handle:IsCooldownReady() then
 				local t = handle:GetCooldownTimeRemaining()
 				handle:EndCooldown()
-				handle:StartCooldown(t-ability:GetLevel())
+				handle:StartCooldown(t-ability:GetLevel()*0.5)
 			end
 		end
 end
@@ -155,7 +155,14 @@ function B30T_OnProjectileHitUnit( keys )
 	local duration = ability:GetSpecialValueFor("B30T_dotDuration")
 	tsum = 0.1
 	Timers:CreateTimer(0.1, function()
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_B30T_debuff",{duration = duration-tsum})
-		tsum = tsum + 0.1
+		if not target:HasModifier("modifier_B30T_debuff") then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_B30T_debuff",{duration = duration-tsum})
+		end
+		if tsum < duration then
+			tsum = tsum + 0.1
+			return 0.1
+		else
+			return nil
+		end
 		end)
 end

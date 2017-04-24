@@ -494,7 +494,7 @@
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "custom/A15/A15R"
 
 		"OnProjectileHitUnit"
@@ -545,7 +545,7 @@
 			"01" // 每次彈跳增加的傷害比例
 			{
 				"var_type" 				"FIELD_FLOAT"
-				"bonus_damage" 			"-0.35"
+				"bonus_damage" 			"-0.30"
 			}
 			"02"
 			{

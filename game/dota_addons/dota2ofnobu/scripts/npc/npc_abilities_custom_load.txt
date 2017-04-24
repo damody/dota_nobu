@@ -59,6 +59,31 @@
 			}
 		}
 	}
+	// 單挑計數
+	"play_1v1"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_26"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		
+		"Modifiers"
+		{
+			"modifier_play_1v1"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnHeroKilled"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"		"play_1v1"
+					}
+				}
+			}
+		}
+	}
 	// 買兵力
 	"gold_to_prestige"
 	{

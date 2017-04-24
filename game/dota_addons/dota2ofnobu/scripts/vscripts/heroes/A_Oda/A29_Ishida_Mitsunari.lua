@@ -29,12 +29,14 @@ end
 function A29R_debuff( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  1400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-	for _,enemy in pairs(group) do
-		if enemy:IsMagicImmune() then
-			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_2",{duration = 1})
+	if caster:IsAlive() then
+		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+			nil,  1400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+		for _,enemy in pairs(group) do
+			if enemy:IsMagicImmune() then
+				ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_2",{duration = 1})
+			end
 		end
 	end
 end
@@ -42,19 +44,21 @@ end
 function A29R_old_debuff( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  1200 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-	for _,enemy in pairs(group) do
-		if enemy:IsMagicImmune() then
-			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old_debuff",{duration = 1})
-		else
-			local ss = enemy:GetMana()/enemy:GetMaxMana()
-			local stack = 5 - math.floor(ss*10)
-			if stack > 0 then
-				ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old",{duration = 1})
-				local handle = enemy:FindModifierByName("modifier_A29R_old")
-				handle:SetStackCount(stack)
+	if caster:IsAlive() then
+		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+			nil,  1200 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+		for _,enemy in pairs(group) do
+			if enemy:IsMagicImmune() then
+				ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old_debuff",{duration = 1})
+			else
+				local ss = enemy:GetMana()/enemy:GetMaxMana()
+				local stack = 5 - math.floor(ss*10)
+				if stack > 0 then
+					ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old",{duration = 1})
+					local handle = enemy:FindModifierByName("modifier_A29R_old")
+					handle:SetStackCount(stack)
+				end
 			end
 		end
 	end

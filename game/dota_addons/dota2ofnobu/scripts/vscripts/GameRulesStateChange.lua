@@ -87,8 +87,8 @@ function Nobu:OnGameRulesStateChange( keys )
 	     end
 	  end
 	  Timers:CreateTimer(1, function()
-	  	SendToConsole("sv_cheats 1")
-	    SendToConsole("r_farz 7000")
+	  	--SendToConsole("sv_cheats 1")
+	    --SendToConsole("r_farz 7000")
 	  end)
     --出兵觸發
     if _G.nobu_chubing_b then

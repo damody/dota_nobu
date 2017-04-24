@@ -1,6 +1,5 @@
 LinkLuaModifier("modifier_ninja2", "heroes/modifier_ninja2.lua", LUA_MODIFIER_MOTION_NONE)
-
-
+		
 function choose_16( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -82,6 +81,14 @@ function choose_11( keys )
       caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
     end
 end
+
+function play_1v1( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if caster.score == nil then caster.score = 0 end
+	caster.score = caster.score + 1
+end
+
 
 function robbers_skill( keys )
 	local caster = keys.caster

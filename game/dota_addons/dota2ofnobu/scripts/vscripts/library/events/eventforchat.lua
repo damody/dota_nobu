@@ -235,6 +235,9 @@ local function chat_of_test(keys)
 		  sump = sump + 1
 		end
 	end
+	if _G.mo then
+		sump = 99
+	end
 	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
 	if tostring(steamid) == "128732954" then
 		sump = 1

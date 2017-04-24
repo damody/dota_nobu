@@ -3,7 +3,7 @@ function modifier_C06D_OnKill( keys )
 	local caster = keys.caster
 	local target = keys.unit
 	local ability = keys.ability
-	if target:IsHero() and not target:IsIllusion() then
+	if target:IsHero() and not target:IsIllusion() and not caster:IsIllusion() then
 		AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), 100)
 	else
 		AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), 4)
@@ -157,8 +157,9 @@ function modifier_C06R_OnCreated( event )
 	local unit = event.target
 	local ability=event.ability
 	local caster =ability:GetCaster()
+	local shield = ability:GetSpecialValueFor("shield")
 	--print(caster:GetGold())
-	local max_damage_absorb = ability:GetSpecialValueFor("damage_absorb")+caster:GetGold()*5/100
+	local max_damage_absorb = ability:GetSpecialValueFor("damage_absorb")+caster:GetGold()*shield
 
 	-- Reset the shield
 	if event.caster:FindModifierByName("modifier_C06T") then
@@ -209,7 +210,7 @@ function modifier_C06R_onattack_OnAttackLanded( event )
 	if not target:IsBuilding() then
 		local ability = event.ability
 		local caster = ability:GetCaster()
-		local damage = caster:GetGold()*0.03
+		local damage = caster:GetGold()*0.04
 		local maxdamage = ability:GetSpecialValueFor("maxdamage")
 		if damage > maxdamage then
 			damage = maxdamage
@@ -219,8 +220,7 @@ function modifier_C06R_onattack_OnAttackLanded( event )
 			damage=damage,
 			damage_type=ability:GetAbilityDamageType()}
 		if event.caster:IsIllusion() then
-			damageTable.attacker = target
-			damageTable.victim = caster
+			damageTable.damage = 0
 		end
 		if event.caster:FindModifierByName("modifier_C06T") then
 			damageTable.damage=damageTable.damage+50

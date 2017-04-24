@@ -37,7 +37,7 @@
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCastRange"							"100"
 		"AbilityCooldown"                           "14 12 10 8"
-		"AbilityManaCost"                           "125"
+		"AbilityManaCost"                           "105 125 145 165"
 
 		"OnUpgrade"
 		{
@@ -98,7 +98,7 @@
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCastRange"							"400"
 		"AbilityCooldown"                           "14 12 10 8"
-		"AbilityManaCost"                           "125"
+		"AbilityManaCost"                           "105 125 145 165"
 
 		"OnSpellStart"
 		{
@@ -149,7 +149,7 @@
 
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCooldown"                           "14 12 10 8"
-		"AbilityManaCost"                           "125"
+		"AbilityManaCost"                           "105 125 145 165"
 		"AbilityCastRange"							"700"
 
 		"OnSpellStart"
@@ -247,7 +247,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"B03E_mpSpend"					"0.02"
+				"B03E_mpSpend"					"0.01"
 			}
 		}
 	}
@@ -263,10 +263,6 @@
 		//"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"                        "custom/B03/B03R"
-		//"AbilityManaCost"							"300 350 400 450"
-		//"AbilityCooldown"							"24 21 18 15"
-
-		//"AbilityCastRange"              			"%B03R_radius"
 
 		"Modifiers"
 		{
@@ -456,7 +452,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"B03W_old_duration"			"20.0"
+				"B03W_old_duration"			"8 12 16 20"
 			}
 		}
 	}
