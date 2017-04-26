@@ -1,0 +1,16 @@
+<root>
+        <styles>
+                <!-- 导入官方css -->
+                <include src="s2r://panorama/styles/dotastyles.vcss_c"/>
+                <!-- file://{resources}/就是指你的地图目录下的panorama -->
+                <include src="file://{resources}/styles/camera.vcss_c"/>
+        </styles>
+ 
+        <!-- 使用脚本 -->
+        <scripts>
+				<include src="file://{resources}/scripts/camera.js" />
+        </scripts>
+		<Panel class="AddonLoadingRoot">
+			<Slider class="HorizontalSlider" direction="horizontal" id="Slider1" />
+		</Panel>
+</root>

@@ -192,7 +192,12 @@ local function chat_of_test(keys)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
-	
+	if (s == "uio") then
+		CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
+	end
+	if (s == "uii") then
+		CustomUI:DynamicHud_Destroy(-1,"mainWin")
+	end
 	if (s == "-skin" and nobu_id == "C17" and skin) then
 		caster.skin = "school"
 		caster:SetModel("models/c17/c17_school.vmdl")

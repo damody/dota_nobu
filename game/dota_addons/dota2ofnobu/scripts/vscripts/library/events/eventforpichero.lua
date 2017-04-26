@@ -7,7 +7,7 @@ function Nobu:PickHero( keys )
   local caster     = EntIndexToHScript(keys.heroindex)
   local point    = caster:GetAbsOrigin()
   local owner = caster:GetPlayerOwner()
---CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
+  
   Timers:CreateTimer(1, function ()
     if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
       caster.version = "nan"
@@ -100,6 +100,37 @@ function Nobu:PickHero( keys )
               caster:FindAbilityByName("B15D"):SetLevel(1)
             end
             return nil
+          end
+          return 1
+        end)
+      elseif nobu_id == "C06" then -- 石川五右衛門
+        local lvneed = {
+            [17]=true,
+            [19]=true,
+            [20]=true,
+            [21]=true,
+            [22]=true,
+            [23]=true,
+            [24]=true}
+        Timers:CreateTimer(1, function ()
+          if (lvneed[caster:GetLevel()]) then
+            lvneed[caster:GetLevel()] = false
+            caster:SetAbilityPoints(1)
+          end
+          return 1
+        end)
+      elseif nobu_id == "C24" then -- 柳生宗嚴
+        local lvneed = {
+            [17]=true,
+            [19]=true,
+            [21]=true,
+            [22]=true,
+            [23]=true,
+            [24]=true}
+        Timers:CreateTimer(1, function ()
+          if (lvneed[caster:GetLevel()]) then
+            lvneed[caster:GetLevel()] = false
+            caster:SetAbilityPoints(caster:GetAbilityPoints()+1)
           end
           return 1
         end)

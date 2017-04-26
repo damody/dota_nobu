@@ -132,6 +132,7 @@ function A06T_old(keys)
 					AMHC:Damage( caster,it, ability:GetSpecialValueFor("dmg"),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				end
 			end
+			caster:EmitSound("A06T_old.vo1")
 			caster.nextA06T_old = nil
 		else
 			caster.nextA06T_old = 1
