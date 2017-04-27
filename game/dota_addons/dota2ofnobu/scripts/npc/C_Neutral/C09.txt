@@ -1,0 +1,642 @@
+// 立花誾千代
+"DOTAAbilities"
+{
+	"C09_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/c09e/c09eneutral_prowler_shaman_stomp_debuff.vpcf" //e
+			"particle"  "particles/a34e2/a34e2.vpcf" //r
+			"particle"  "particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf" //r w
+			"particle"  "particles/b05t3/b05t3_j0.vpcf" //t 洞寶特效
+			"particle"  "particles/c09t/c09tneutral_prowler_shaman_stomp_debuff.vpcf" //t
+		}
+	}
+
+	//霜刺
+	"C09W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"                        "custom/C09/C09W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09W_OnToggleOn"
+			}
+		}
+
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09W_OnToggleOff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09W"
+			{
+				"IsHidden" "1"
+				"Orb"
+				{
+					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+						"Function"		"C09W_OnAttackStart"
+						"Target"		"TARGET"
+					}
+				}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+						"Function"		"C09W_OnOrbImpact"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_C09W_debuff"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"Duration"	"%debuff_duration"
+				"StatusEffectPriority"	"15"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%debuff_movement_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf"
+						"EffectAttachType"	"follow_hitloc"
+						"Target"			"TARGET"
+					}
+
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"debuff_duration"			"2.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"debuff_attack_speed"		"-25 -45 -65 -85"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"debuff_movement_speed"		"-20 -30 -40 -50"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mana_cost"					"6 9 12 15"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"40 60 80 100"
+			}
+		}
+	}
+
+	//白熱
+	"C09E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"custom/C09/C09E"
+		"AbilityCooldown"							"5"
+		"AbilityManaCost"                      		"80 100 120 140"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09E_OnSpellStart"
+			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%C09E_heal"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09E"
+			{
+				"IsHidden"	"0"
+				"EffectName"		"particles/c09e/c09eneutral_prowler_shaman_stomp_debuff.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%C09E_asBonus"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"C09E_heal"                			"100 175 250 325"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"C09E_asBonus"						"110"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"C09E_duration"						"3.0 4.0 5.0 6.0"
+			}
+		}
+	}
+
+	//冰靈舞魂
+	"C09R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/C09/C09R"
+
+		"AbilityCooldown"							"16 13 10 7"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09R_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09R_debuff"
+			{
+				"IsHidden"		"0"
+				"IsDebuff"		"1"
+				"IsPurgable"	"0"
+				"EffectName"		"particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%C09R_debuffAsMs"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%C09R_debuffAsMs" 
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C09.lua"
+						"Function"							"C09R_debuff_OnDestroy"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_distance"			"550 600 650 700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_damage"			"100 200 300 400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_radius"			"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"C09R_debuffDuration"	"3.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_debuffAsMs"		"-50"
+			}
+		}
+
+    }
+
+    //破甲術
+	"C09T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"                        "custom/C09/C09T"
+
+		"AbilityCooldown"           				"75 62 49"
+		"AbilityManaCost"           				"150"
+		"AbilityCastRange"							"%C09T_radius"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"			"C09T_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09T_debuff"
+			{
+				"IsDebuff"			"1"
+				"EffectName"		"particles/c09t/c09tneutral_prowler_shaman_stomp_debuff.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%C09T_armor"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"C09T_armor"		"-16 -22 -28"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"C09T_duration"		"7.0 10.0 13.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"C09T_radius"		"800"
+			}
+		}
+	}
+
+	//冰霜斬擊
+	"C09W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"                        "custom/C09/C09W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09W_old_OnToggleOn"
+			}
+		}
+
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09W_old_OnToggleOff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09W_old"
+			{
+				"IsHidden" "1"
+				"Orb"
+				{
+					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+						"Function"		"C09W_old_OnAttackStart"
+						"Target"		"TARGET"
+					}
+				}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+						"Function"		"C09W_old_OnOrbImpact"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_C09W_old_debuff"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"Duration"	"%debuff_duration"
+				"StatusEffectPriority"	"15"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%debuff_movement_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf"
+						"EffectAttachType"	"follow_hitloc"
+						"Target"			"TARGET"
+					}
+
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"debuff_duration"			"1.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"debuff_attack_speed"		"-10 -15 -20 -25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"debuff_movement_speed"		"-15 -25 -35 -45"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mana_cost"					"8 10 12 14"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"5 10 15 20"
+			}
+		}
+	}
+
+	//白熱
+	"C09E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"custom/C09/C09E"
+		"AbilityCooldown"							"15"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"80 100 120 140"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09E_old_OnSpellStart"
+			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%C09E_heal"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09E_old"
+			{
+				"IsHidden"	"0"
+				"EffectName"		"particles/c09e/c09eneutral_prowler_shaman_stomp_debuff.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%C09E_asBonus"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"C09E_heal"                			"0"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"C09E_asBonus"						"50 100 150 200"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"C09E_duration"						"15.0"
+			}
+		}
+	}
+
+	//冰靈舞魂
+	"C09R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/C09/C09R"
+
+		"AbilityCooldown"							"16"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"		"C09R_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09R_old_debuff"
+			{
+				"IsHidden"		"0"
+				"IsDebuff"		"1"
+				"IsPurgable"	"0"
+				"EffectName"		"particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%C09R_debuffAsMs"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%C09R_debuffAsMs" 
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C09.lua"
+						"Function"							"C09R_old_debuff_OnDestroy"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_distance"			"550 600 650 700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_damage"			"100 200 300 400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_radius"			"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"C09R_debuffDuration"	"6.0 6.0 7.0 7.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"C09R_debuffAsMs"		"-30"
+			}
+		}
+
+    }
+
+    //破甲術
+	"C09T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"                        "custom/C09/C09T"
+
+		"AbilityCooldown"           				"150"
+		"AbilityManaCost"           				"200 250 300"
+		"AbilityCastRange"							"%C09T_radius"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/C_Neutral/C09.lua"
+				"Function"			"C09T_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C09T_old_debuff"
+			{
+				"IsDebuff"			"1"
+				"EffectName"		"particles/c09t/c09tneutral_prowler_shaman_stomp_debuff.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%C09T_armor"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"C09T_armor"		"-32 -44 -56"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"C09T_duration"		"25.0 30.0 35.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"C09T_radius"		"800"
+			}
+		}
+	}
+
+} // END DOTAAbilities
