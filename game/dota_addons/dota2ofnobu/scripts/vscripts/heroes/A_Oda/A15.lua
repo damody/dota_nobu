@@ -278,13 +278,22 @@ function A15E_old_OnSpellStart( keys )
 	dummy:AddAbility("majia_vison"):SetLevel(1)
 
 	ability:ApplyDataDrivenModifier( caster, dummy, "modifier_A15E_old_show_invi_aura", nil)
-
-	local particle = ParticleManager:CreateParticle( "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_cast_moonfall.vpcf", PATTACH_POINT, dummy)
-	ParticleManager:SetParticleControl( particle, 0, point )
-	ParticleManager:SetParticleControl( particle, 1, point )
-	ParticleManager:SetParticleControl( particle, 2, point )
-	ParticleManager:SetParticleControl( particle, 3, point )
-	ParticleManager:ReleaseParticleIndex( particle )
+	local count = 0
+	local particle = nil
+	Timers:CreateTimer( 0, function()
+		count = count + 1
+		if particle then
+			ParticleManager:DestroyParticle(particle,true)
+		end
+		particle = ParticleManager:CreateParticle( "particles/a15/a15eoldmoonfall.vpcf", PATTACH_POINT, dummy)
+		ParticleManager:SetParticleControl( particle, 0, point )
+		ParticleManager:SetParticleControl( particle, 1, point )
+		ParticleManager:SetParticleControl( particle, 2, point )
+		ParticleManager:SetParticleControl( particle, 3, point )
+		if count < duration then
+			return 1
+		end
+		end)
 end
 
 function A15T_old_OnSpellStart( keys )

@@ -40,13 +40,14 @@ function B30W_OnDestroy( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local radius = ability:GetSpecialValueFor("B30W_radius")
+	local B30W_a = ability:GetSpecialValueFor("B30W_a")
 	local damage
 	if caster.B30W > caster:GetMaxHealth() then
 		damage = caster:GetMaxHealth()
 	else
 		damage = caster.B30W
 	end
-
+	damage = damage * B30W_a
 	local ifx = ParticleManager:CreateParticle("particles/b30w/b30w2fire/monkey_king_spring_arcana_fire.vpcf",PATTACH_ABSORIGIN,caster)
 	ParticleManager:SetParticleControl( ifx , 0 , caster:GetAbsOrigin() )
 	ParticleManager:ReleaseParticleIndex( ifx )
@@ -62,7 +63,7 @@ function B30W_OnDestroy( keys )
 	for _,unit in ipairs(units) do
 		damageTable.victim = unit
 		if unit:IsMagicImmune() then
-			damageTable.damage = damage * 0.5
+			damageTable.damage = damage
 		else
 			damageTable.damage = damage
 		end
