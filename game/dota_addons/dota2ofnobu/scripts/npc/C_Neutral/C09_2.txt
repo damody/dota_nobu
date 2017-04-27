@@ -1,23 +1,21 @@
-﻿"DOTAHeroes"
+"DOTAHeroes"
 {
-	//伊勢姬
-	"B23"
+	// 立花誾千代
+	"C09"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"override_hero"	"npc_dota_hero_enchantress"
-		"ModelScale"	"1.3"
-		"Model"	"models/b23/b23.vmdl"
-		"HealthBarOffset"	"180"
+		"override_hero"	"npc_dota_hero_vengefulspirit"
+		"ModelScale"	"1.4"
 		// Abilities
 		// ----------------------------------------------------------------
-		"Ability1"	"B23W"
-		"Ability2"	"B23E"
-		"Ability3"	"B23R"
-		"Ability4"	"B23D"
-		"Ability5"	"attribute_bonusx"
-		"Ability6"	"B23T"
-		"Ability7"	"B23_precache"
+		"Ability1"	"C09W"
+		"Ability2"	"C09E"
+		"Ability3"	"C09R"
+		"Ability4"	"C09T"
+		"Ability5"	"C09_precache"
+		"Ability6"	"attribute_bonusx"
+		"Ability7"	""
 		"Ability8"	""
 		"Ability9"	""
 		"Ability10"	""
@@ -30,30 +28,29 @@
 
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"		"4"
+		"ArmorPhysical"		"9"
 		"MagicalResistance"	"30"
 
 		// Attack
 		// ----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"92"
-		"AttackDamageMax"			"100"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"113"
+		"AttackDamageMax"			"129"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.80"
+		"AttackRate"				"1.7"
 		"AttackAnimationPoint"		"0.2"
-		"AttackAcquisitionRange"	"600"
-		"AttackRange"				"600"
-		"ProjectileSpeed"			"1500"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"				"128"
 
 		// Attributes
 		// ----------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
-		"AttributeBaseStrength"		"32"
-		"AttributeStrengthGain"		"1.65"
-		"AttributeBaseAgility"		"28"
-		"AttributeAgilityGain"		"1.9"
-		"AttributeBaseIntelligence"	"30"
-		"AttributeIntelligenceGain"	"3.5"
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"38"
+		"AttributeStrengthGain"		"2.40"
+		"AttributeBaseAgility"		"35"
+		"AttributeAgilityGain"		"2.70"
+		"AttributeBaseIntelligence"	"28"
+		"AttributeIntelligenceGain"	"1.80"
 
 		// Bounty
 		// ----------------------------------------------------------------
@@ -63,7 +60,7 @@
 		// Bounds
 		// ----------------------------------------------------------------
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"HealthBarOffset"	"180"
+		"HealthBarOffset"	"140"
 
 		// Movement
 		// ----------------------------------------------------------------
@@ -73,7 +70,7 @@
 
 		// Gold and Lumber
 		// ----------------------------------------------------------------
-		"GoldCost"	"0"
+		"GoldCost"		"0"
 		"LumberCost"	"0"
 
 		// Status
@@ -87,19 +84,17 @@
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1800"
-		//伊勢姬在夜晚具有1800的視野能力。
-		"VisionNighttimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
 
 		// Combat
 		// ----------------------------------------------------------------
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 
-
 		// RelationShip
 		// ----------------------------------------------------------------
 		"TeamName"				"DOTA_TEAM_NEUTRALS"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
-		"DisableWearables"	"1"
+		"DisableWearables"	"0"
 	}
 } // END DOTAHeroes
