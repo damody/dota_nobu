@@ -226,7 +226,7 @@ function modifier_C06R_onattack_OnAttackLanded( event )
 			damageTable.damage=damageTable.damage+50
 		end
 		if target:IsMagicImmune() then
-			damageTable.damage=damageTable.damage*0.5
+			damageTable.damage=damageTable.damage*0.25
 			ApplyDamage(damageTable)
 		else
 			ApplyDamage(damageTable)

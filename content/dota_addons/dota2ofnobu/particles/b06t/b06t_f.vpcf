@@ -108,16 +108,7 @@
 		{
 			_class = "C_OP_ContinuousEmitter"
 			m_flEmitRate = 30.6
-		},
-	]
-	m_Children = 
-	[
-		{
-			m_ChildRef = resource:"particles/b06t/b06t_f0.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/b06t/b06t_f1.vpcf"
-			m_bDisableChild = true
+			m_flEmissionDuration = 10.0
 		},
 	]
 	m_controlPointConfigurations = 

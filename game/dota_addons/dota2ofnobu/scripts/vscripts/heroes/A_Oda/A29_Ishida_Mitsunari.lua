@@ -1,15 +1,17 @@
 function A29W_init_damage( keys )
-	local i = keys.ability:GetLevel() - 1
-	local damage = keys.ability:GetLevelSpecialValueFor("damage", i)
-	local target = keys.target
-	AMHC:CreateNumberEffect( target,damage,2,AMHC.MSG_POISION,"green",5 )
+	if keys.ability then
+		local damage = keys.ability:GetSpecialValueFor("damage")
+		local target = keys.target
+		AMHC:CreateNumberEffect( target,damage,2,AMHC.MSG_POISION,"green",5 )
+	end
 end
 
 function A29W_debuff( keys )
-	local i = keys.ability:GetLevel() - 1
-	local damage = keys.ability:GetLevelSpecialValueFor("debuff_damage", i)
-	local target = keys.target
-	AMHC:CreateNumberEffect( target,damage,2,AMHC.MSG_POISION,"green",5 )
+	if keys.ability then
+		local damage = keys.ability:GetSpecialValueFor("debuff_damage")
+		local target = keys.target
+		AMHC:CreateNumberEffect( target,damage,2,AMHC.MSG_POISION,"green",5 )
+	end
 end
 
 function A29R_mana_lost( keys )
