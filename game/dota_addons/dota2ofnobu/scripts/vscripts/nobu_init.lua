@@ -1,4 +1,6 @@
 
+_G.CN = nil
+
 function _G.Nobu:InitGameMode()
   print( "[Nobu-lua] Nobu:InitGameMode is loaded." )
 
@@ -22,6 +24,15 @@ function _G.Nobu:InitGameMode()
     SetTeamCustomHealthbarColor(3,150,150,255)
     GameRules:SetSameHeroSelectionEnabled( true )
   end
+  if _G.mo then
+    GameRules:SetCustomGameTeamMaxPlayers(2, 1)
+    GameRules:SetCustomGameTeamMaxPlayers(3, 1)
+    GameRules:SetCustomGameTeamMaxPlayers(6, 8)
+    --自定血條顏色
+    SetTeamCustomHealthbarColor(2,255,150,150)
+    SetTeamCustomHealthbarColor(3,150,150,255)
+    GameRules:SetSameHeroSelectionEnabled( true )
+  end
 
   --GameRules:SetCustomGameTeamMaxPlayers(2, 7)
   --GameRules:SetCustomGameTeamMaxPlayers(3, 7)
@@ -37,8 +48,21 @@ function _G.Nobu:InitGameMode()
   -- GameRules:SetPostGameTime( 9001 )
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
-  GameRules:SetGoldPerTick(20)-- 設置金錢
-  GameRules:SetGoldTickTime(2)--金錢跳錢秒數
+  
+  if _G.CN then
+    GameRules:SetGoldPerTick(4)-- 設置金錢
+    GameRules:SetGoldTickTime(5)--金錢跳錢秒數
+    Timers:CreateTimer( 180, function()
+      GameRules: SendCustomMessage("<font color='#ffff00'>全軍將領得到了金錢支援</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+      for playerID = 0, 9 do
+        AMHC:GivePlayerGold_UnReliable(playerID, 460)
+      end
+      return 180
+      end)
+  else
+    GameRules:SetGoldPerTick(20)-- 設置金錢
+    GameRules:SetGoldTickTime(2)--金錢跳錢秒數
+  end
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
   GameRules:SetCustomGameEndDelay(30) --遊戲結束時間 --正常30

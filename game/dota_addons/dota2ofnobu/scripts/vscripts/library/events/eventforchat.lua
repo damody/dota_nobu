@@ -189,6 +189,7 @@ local function chat_of_test(keys)
 	if skin_table[tostring(steamid)] == true then
 		skin = true
 	end
+	CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
@@ -234,6 +235,9 @@ local function chat_of_test(keys)
     	if p ~= nil then
 		  sump = sump + 1
 		end
+	end
+	if _G.mo then
+		sump = 99
 	end
 	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
 	if tostring(steamid) == "128732954" then

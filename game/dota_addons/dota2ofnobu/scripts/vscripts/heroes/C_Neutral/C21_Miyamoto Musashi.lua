@@ -102,6 +102,7 @@ function Trig_C21TActions( keys )
     local  point = u:GetAbsOrigin() --獲取單位的座標
     local  point2 = u2:GetAbsOrigin() --獲取目標的座標
     local  ti 		= 0
+    local ability = keys.ability
 
     --global set
     udg_C21T_Table[i]={}
@@ -112,13 +113,7 @@ function Trig_C21TActions( keys )
 	C21T_Effect(u,u2,i)
 
 	--斬擊次數判斷
-	if udg_C21T_LV[i] ==1 then
-		ti=11
-	elseif udg_C21T_LV[i] ==2 then
-		ti=16
-	elseif udg_C21T_LV[i] ==3 then
-		ti=23
-	end	
+	ti = ability:GetSpecialValueFor("acount")
 
 	--timer
 	AMHC:Timer( "C21T_T1"..tostring(i),function( )

@@ -261,8 +261,12 @@ function B31E_old_OnProjectileHitUnit( keys )
 	                              FIND_ANY_ORDER,
 	                              false)
 	for _,it in pairs(direUnits) do
-		if (not(it:IsBuilding())) then
-			AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		if not it:IsBuilding() then
+			if it:IsHero() then
+				AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage")*0.7,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			else
+				AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
 		end
 	end
 end

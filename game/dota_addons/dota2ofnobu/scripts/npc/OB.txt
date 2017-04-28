@@ -39,7 +39,6 @@
 		}
 		"OnSpellStart"
 		{
-			
 			"RunScript"
 			{
 				"Target"	"POINT"
@@ -49,11 +48,15 @@
 		}
 		"Modifiers"
 		{
-			"modifier_reward6300_aura"
+			"modifier_OBW"
 			{
 				"Passive"			"1"
-				"IsHidden"			"0"
-				
+				"IsHidden"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"    	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 			}
 		}
 	}

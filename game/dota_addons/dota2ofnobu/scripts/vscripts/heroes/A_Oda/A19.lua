@@ -8,7 +8,7 @@ function A19W_OnSpellStart( keys )
 	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=7})
 	dummy:SetOwner(caster)
 	dummy:AddAbility("majia"):SetLevel(1)
-	local ifx = ParticleManager:CreateParticle("particles/a19/a19_wfire/monkey_king_spring_arcana_fire.vpcf",PATTACH_ABSORIGIN,dummy)
+	local ifx = ParticleManager:CreateParticle("particles/a19/a19_wfire/monkey_king_spring_arcana_fire.vpcf",PATTACH_CUSTOMORIGIN,nil)
 	ParticleManager:SetParticleControl(ifx,0,point)
 	ParticleManager:ReleaseParticleIndex(ifx)
 	-- 處理搜尋結果
@@ -152,12 +152,12 @@ function A19T_OnSpellStart( keys )
 	local point_tem = point + Vector(100*vec.x,100*vec.y) 
 	local point_tem1 = point + Vector(100*vec.x,100*vec.y) 
 	local point_tem2 = point + Vector(100*vec.x,100*vec.y) 
-	local distance = 100
+	local distance = 200
 
 	--【Timer】
 	local num = 0
 	Timers:CreateTimer(0.03,function()
-		if num == 30 then
+		if num == 15 then
 			return nil
 		else
 			point_tem = Vector(point_tem.x+distance*vec.x ,  point_tem.y+distance*vec.y , point_tem.z)
@@ -180,7 +180,7 @@ function A19T_OnSpellStart( keys )
 		end
 	end)
 	Timers:CreateTimer(0.03,function()
-		if num == 30 then
+		if num == 15 then
 			return nil
 		else
 			point_tem1 = Vector(point_tem1.x+distance*vec1.x ,  point_tem1.y+distance*vec1.y , point_tem1.z)
@@ -202,7 +202,7 @@ function A19T_OnSpellStart( keys )
 		end
 	end)
 	Timers:CreateTimer(0.03,function()
-		if num == 30 then
+		if num == 15 then
 			return nil
 		else
 			point_tem2 = Vector(point_tem2.x+distance*vec2.x ,  point_tem2.y+distance*vec2.y , point_tem2.z)
@@ -238,10 +238,10 @@ function A19W_old_OnSpellStart( keys )
 	dummy:SetOwner(caster)
 	dummy:AddAbility("majia"):SetLevel(1)
 	
-	local ifx = ParticleManager:CreateParticle("particles/a19/a19_wfire/monkey_king_spring_arcana_fire.vpcf",PATTACH_ABSORIGIN,caster)
+	local ifx = ParticleManager:CreateParticle("particles/a19/a19_wfire/monkey_king_spring_arcana_fire.vpcf",PATTACH_CUSTOMORIGIN,nil)
 	ParticleManager:SetParticleControl(ifx,0,point)
 	ParticleManager:ReleaseParticleIndex(ifx)
-	local ifx2 = ParticleManager:CreateParticle("particles/a19/a19w_oldchar.vpcf",PATTACH_ABSORIGIN,caster)
+	local ifx2 = ParticleManager:CreateParticle("particles/a19/a19w_oldchar.vpcf",PATTACH_CUSTOMORIGIN,nil)
 	ParticleManager:SetParticleControl(ifx2,3,point)
 	ParticleManager:ReleaseParticleIndex(ifx2)
 

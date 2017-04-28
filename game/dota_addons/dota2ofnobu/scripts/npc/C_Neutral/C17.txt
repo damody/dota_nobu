@@ -150,7 +150,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"8"
+		"AbilityCooldown"	"20 16 12 8"
 		"AbilityManaCost"	"260 300 340 380"
 		"precache"
 		{
@@ -234,7 +234,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"3"
+		"AbilityCooldown"	"6 5 4 3"
 		"AbilityManaCost"	"200"
 		"AbilityCastRange"	"600 700 800 1000"
 		"AOERadius"	"200"
@@ -467,7 +467,7 @@
 		"AOERadius" 					"800"
 		"AbilityCastRange"				"800"
 		"AbilityCooldown"				"2"
-		"AbilityManaCost"				"50 70 90 110"
+		"AbilityManaCost"				"70 90 110 130"
 
 		"precache"
 		{

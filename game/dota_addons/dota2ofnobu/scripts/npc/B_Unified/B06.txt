@@ -675,6 +675,11 @@
 				"Target"        "CASTER"
 				"HealAmount"	"%Bonus_Health"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+				"Function"	"B06T_effect"
+			}
 		}
 		"Modifiers"
 		{
@@ -693,7 +698,6 @@
 				"Aura_ApplyToCaster"	"1"
 				"Passive"	"0"
 				"Duration"	"%During"
-				"EffectName"	"particles/b06t/b06t.vpcf"
 				
 				"OnAttackLanded"
 				{
@@ -797,6 +801,12 @@
 				"Target"        "CASTER"
 				"HealAmount"	"%Bonus_Health"
 			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+				"Function"	"B06T_effect"
+			}
 		}
 		"Modifiers"
 		{
@@ -812,7 +822,6 @@
 				}
 				"Passive"	"0"
 				"Duration"	"%During"
-				"EffectName"	"particles/b06t/b06t.vpcf"
 				"OnAttackLanded"
 				{
 					"FireSound"	{}

@@ -74,7 +74,7 @@ function Nobu:OnGameRulesStateChange( keys )
     if _G.nobu_server_b then
       Nobu:OpenRoom()
     end
-    GameRules:SendCustomMessage("歡迎來到 Dota2 信長之野望 20.3H", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("歡迎來到 AON信長的野望 20.4F", DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("5分鐘後可以打 -ff 投降" , DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("目前作者: Damody, Tenmurakumo, BedRock, 佐佐木小籠包", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
@@ -87,8 +87,8 @@ function Nobu:OnGameRulesStateChange( keys )
 	     end
 	  end
 	  Timers:CreateTimer(1, function()
-	  	SendToConsole("sv_cheats 1")
-	    SendToConsole("r_farz 7000")
+	  	--SendToConsole("sv_cheats 1")
+	    --SendToConsole("r_farz 7000")
 	  end)
     --出兵觸發
     if _G.nobu_chubing_b then

@@ -1,6 +1,5 @@
 LinkLuaModifier("modifier_ninja2", "heroes/modifier_ninja2.lua", LUA_MODIFIER_MOTION_NONE)
-
-
+		
 function choose_16( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -82,6 +81,14 @@ function choose_11( keys )
       caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
     end
 end
+
+function play_1v1( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if caster.score == nil then caster.score = 0 end
+	caster.score = caster.score + 1
+end
+
 
 function robbers_skill( keys )
 	local caster = keys.caster
@@ -189,35 +196,37 @@ function patrol_Nobu(keys)
 end
 
 function attack_building(keys)
-	local caster = keys.caster
-	local pos = caster:GetAbsOrigin()
+	if IsServer() then
+		local caster = keys.caster
+		local pos = caster:GetAbsOrigin()
 
-	Timers:CreateTimer(3, function()
-		if IsValidEntity(caster) then
-			local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-				nil,  700 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
-				DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
-			local com_general = nil
-			for _,it in pairs(group) do
-		    	if it:GetUnitName() == "com_general" then
-		    		com_general = it
-		    	end
-		    end
-		    if com_general then
-		    	caster:SetForceAttackTarget(group[1])
-		    else
+		Timers:CreateTimer(3, function()
+			if IsValidEntity(caster) then
 				local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-					nil,  700 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING,
+					nil,  700 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
 					DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
-				if #group > 0 then
-					caster:SetForceAttackTarget(group[1])
-				else
-					caster:SetForceAttackTarget(nil)
+				local com_general = nil
+				for _,it in pairs(group) do
+			    	if it:GetUnitName() == "com_general" then
+			    		com_general = it
+			    	end
+			    end
+			    if com_general then
+			    	caster:SetForceAttackTarget(group[1])
+			    else
+					local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+						nil,  700 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING,
+						DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+					if #group > 0 then
+						caster:SetForceAttackTarget(group[1])
+					else
+						caster:SetForceAttackTarget(nil)
+					end
 				end
+				return 3
 			end
-			return 3
-		end
-		end)
+			end)
+	end
 end
 
 

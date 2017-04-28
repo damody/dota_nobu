@@ -263,7 +263,7 @@ function C15E_old_orb_apply_damage( keys )
 	local target = keys.target
 	local dmg = ability:GetLevelSpecialValueFor("damage_bonus", ability:GetLevel()-1)
 	if target:IsBuilding() then
-		AMHC:Damage( caster,target,dmg*0.5,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+		AMHC:Damage( caster,target,dmg*0.2,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
 	else
 		AMHC:Damage( caster,target,dmg,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
 	end

@@ -302,6 +302,9 @@ function Nobu:eventfororder( filterTable )
     	local itemName = Containers.itemIDs[itemID]
     	if filterTable.units ~= nil and filterTable.units["0"] ~= nil then
 	    	local unit = EntIndexToHScript(filterTable.units["0"])
+	    	if itemName == "item_c06e" or itemName == "item_the_soul_of_power" then
+	    		return false
+	    	end
 	    	itemName = itemName.."_buy"
 	    	if _G.CountUsedAbility_Table == nil then
 	    		_G.CountUsedAbility_Table = {}

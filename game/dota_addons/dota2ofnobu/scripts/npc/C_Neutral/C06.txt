@@ -1,4 +1,4 @@
-//島津義弘
+//石川五右衛門
 "DOTAAbilities"
 {
 	"C06_precache"
@@ -149,14 +149,14 @@
 
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"                          "0.1"
-		"AbilityCastRange"							"500"
+		"AbilityCastRange"							"700"
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"                           "20 17 14 11"
 		"AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL" 
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"                           "40 55 70 85"
 		"AbilityDamage"								"100 200 300 400" 
-
+		
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -218,7 +218,7 @@
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"AbilityCastPoint"	"0"	
-		"AbilityCooldown"	"25"
+		"AbilityCooldown"	"60"
 		"AbilityCastRange"	"0"
 		"AbilityManaCost"	"0"
 		"OnSpellStart"
@@ -296,12 +296,17 @@
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"damage_absorb"						"200 300 400 500"
+				"damage_absorb"						"0"
 			}
-			"01"
+			"02"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"maxdamage"						"60 90 120 150"
+				"maxdamage"						"600 900 1200 1500"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"shield"						"0.02 0.03 0.04 0.05"
 			}
 		}
 	}
@@ -323,15 +328,12 @@
 		"MaxLevel" 				"3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"150 120 90"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"200 175 150"
 		"AbilityManaCost"	"185"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"250"
-		// Precache
-		// -------------------------------------------------------------------------------------------------------------
+
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -349,7 +351,11 @@
 			}
 			"ApplyModifier"
 			{
-				"Target"	"TARGET"
+				"Target"
+				{
+				    "Center" "TARGET"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_C06T_stun"
 			}
 			"ApplyModifier"
@@ -398,13 +404,13 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityTextureName"	"custom/C06/C06D_old"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"FightRecapLevel"	"6"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"D"
 		"MaxLevel"	"1"
-		"AbilityCastPoint"	"0.0"
+		"AbilityCastPoint"	"0.3"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
 		"precache"
@@ -413,34 +419,20 @@
 			"particle"	"particles/status_fx/status_effect_base.vpcf"
 			"particle"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
 		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                		"scripts/vscripts/heroes/C_Neutral/C06.lua"
+				"Function"                        	"C06D_old_OnAbilityPhaseStart"
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
 				"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C06.lua"
 				"Function"							"C06D_old_OnSpellStart"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_C06D_old_check"
-				"Target"	"CASTER"
-			}
-			"DelayedAction" 
-			{
-				"Delay" 							"1"
-				"Action"
-				{ 
-					"RunScript"
-					{
-						"ScriptFile"						"scripts/vscripts/heroes/C_Neutral/C06.lua"
-						"Function"							"C06D_old_DelayedAction"
-					}
-					"FireSound"
-					{
-						"Target"	"CASTER"
-						"EffectName"	"A13D.vo1"
-					}
-				}
 			}
 		}
 		"Modifiers"
@@ -680,9 +672,12 @@
 		"AbilityCastPoint"		"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
 		"MaxLevel" 				"3"
+
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"270 230 190"
+		"AbilityCooldown"	"200 190 180"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"500 600 700"
@@ -707,27 +702,9 @@
 				"Function"							"C06T_old_OnSpellStart"
 				"Target"	"TARGET"
 			}
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_C06T_old_stun"
-			}
 		}
 		"Modifiers"
 		{
-			"modifier_C06T_old_stun"
-			{
-				"Duration"	"%stun"
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-			}
 		}
 		"AbilitySpecial"
 		{

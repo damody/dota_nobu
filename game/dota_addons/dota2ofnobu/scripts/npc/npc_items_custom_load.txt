@@ -2041,7 +2041,7 @@
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
 		// Item Info
 		
-		"ItemCost"	"350"
+		"ItemCost"	"300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"	"1"
@@ -4713,7 +4713,7 @@
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"11200"
-		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SecretShop" "1"
 		"AbilitySpecial"
@@ -4872,7 +4872,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 
 		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"280"
@@ -5377,26 +5377,6 @@
 				"Function"	"Shock"
 				"Target"	"TARGET"
 			}
-		}
-		"OnEquip"
-		{
-			"RemoveModifier"
-            {
-                "Target" "CASTER"
-                "ModifierName" "modifier_flame_armor_aura"
-            }
-            "DelayedAction"
-            {
-            	"Delay"     "0.1"
-            	"Action"    
-            	{
-            		"ApplyModifier"
-		            {
-		                "Target" "CASTER"
-		                "ModifierName" "modifier_flame_armor_aura"
-		            }
-            	}
-            }
 		}
 		"Modifiers"
 		{
@@ -16450,7 +16430,8 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"0"
-		"ItemSellable"		"0"
+		"ItemSellable" "0"
+		"ItemDroppable" "0"
 		"AbilityManaCost"	"0"
 		"ID"	"8000"
 		"ItemQuality"	"component"
@@ -16553,6 +16534,189 @@
 				}
 		}
 	}
+	// 毒之戒指
+	"item_poisonous_ring"
+	{
+		// General
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/poisonous_ring"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"ID"	"3867"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1100"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_damage"				"20"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_poisonous_ring"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "10"	//攻
+				}
+				"OnAttackLanded"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"20"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_poisonous_ring"
+						"Target" 		"TARGET"
+					}
+				}
+			}
+			
+			"modifier_poisonous_ring"
+			{
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"A29W_debuff"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"20"
+					}
+				}
+				"EffectName"	"particles/b33/b33r_old_poison.vpcf"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Passive"	"0"
+				"Duration"			"10"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
 
+	// 河豚毒
+	"item_puffer_poison"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/puffer_poison"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"ID"	"3868"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"3300"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"						"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_damage"				"45"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_puffer_poison"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
+				}
+				"OnAttackLanded"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"45"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_puffer_poison"
+						"Target" 		"TARGET"
+					}
+				}
+			}
+			
+			"modifier_puffer_poison"
+			{
+				"ThinkInterval"	"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"A29W_debuff"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"45"
+					}
+				}
+				"EffectName"	"particles/b33/b33r_old_poison.vpcf"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Passive"	"0"
+				"Duration"			"10"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
+
+	//河豚毒 製作單
+	"item_recipe_puffer_poison"
+	{
+	    "ID" "3862"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "2200"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SideShop"						"1"
+		"ItemResult" "item_puffer_poison"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_poisonous_ring"  //合成所需物品
+		}
+	}
 }
 

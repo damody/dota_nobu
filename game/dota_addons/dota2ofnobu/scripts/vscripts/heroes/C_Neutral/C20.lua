@@ -30,7 +30,7 @@ function C20W_OnTakeDamage( event )
 					function( )
 						caster.c20w_lock=nil
 						return nil
-					end, 0.3)
+					end, 0.5)
 				end
 			end
 		end
@@ -133,6 +133,7 @@ function modifier_C20W_old_OnTakeDamage( event )
 			if not caster.c20w_lock then
 				if event.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 					caster:EmitSound( "Hero_Nevermore.Raze_Flames")
+					caster.c20w_lock=true
 					local ifx = ParticleManager:CreateParticle( "particles/c20w_real/c20w2.vpcf", PATTACH_CUSTOMORIGIN, caster)
 					ParticleManager:SetParticleControl( ifx, 0, caster:GetAbsOrigin())
 					local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 300, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
@@ -150,7 +151,7 @@ function modifier_C20W_old_OnTakeDamage( event )
 						end
 					end
 				end
-				Timers:CreateTimer(0.1, function ()
+				Timers:CreateTimer(0.5, function ()
 					caster.c20w_lock=nil
 					return nil
 				end)
