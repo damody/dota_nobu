@@ -72,6 +72,20 @@
 					}
 				}
 			}
+			"modifier_C09W_debuff2"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"Duration"	"%debuff_duration"
+				"StatusEffectPriority"	"15"
+				"IsHidden"	"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
+				}
+			}
 			"modifier_C09W_debuff"
 			{
 				"IsPurgable"		"1"
@@ -83,7 +97,6 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%debuff_movement_speed"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
 				}
 
 				"OnCreated"
@@ -382,6 +395,20 @@
 					}
 				}
 			}
+			"modifier_C09W_old_debuff2"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"Duration"	"%debuff_duration"
+				"StatusEffectPriority"	"15"
+				"IsHidden"	"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
+				}
+			}
 			"modifier_C09W_old_debuff"
 			{
 				"IsPurgable"		"1"
@@ -393,7 +420,6 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%debuff_movement_speed"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%debuff_attack_speed"
 				}
 
 				"OnCreated"

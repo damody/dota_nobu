@@ -5158,6 +5158,14 @@
 				"Function"				"Shock"
 			}
 		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_damage"				"85"
+			}
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -5189,18 +5197,42 @@
 					}
 				}
 			}
-			
 			"modifier_the_great_sword_of_toxic"
 			{
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-25" 	//跑速
 				}
+				
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Duration"			"2"
+				"EffectAttachType"	"follow_origin"
+			}
+			"modifier_the_great_sword_of_toxic2"
+			{
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"A29W_debuff"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"85"
+					}
+				}
 				"EffectName"	"particles/b33/b33r_old_poison.vpcf"
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
 				"Passive"	"0"
-				"Duration"			"2"
+				"Duration"			"5"
 				"EffectAttachType"	"follow_origin"
 			}
 		}
@@ -16540,7 +16572,7 @@
 		// General
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/poisonous_ring"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -16576,16 +16608,11 @@
 				}
 				"OnAttackLanded"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"20"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_poisonous_ring"
-						"Target" 		"TARGET"
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_toxic.lua"
+						"Function"	"Shock_poisonous_ring"
+						"Target" "TARGET"
 					}
 				}
 			}
@@ -16624,7 +16651,7 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/puffer_poison"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -16662,16 +16689,11 @@
 				}
 				"OnAttackLanded"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"45"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_puffer_poison"
-						"Target" 		"TARGET"
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_toxic.lua"
+						"Function"	"Shock_puffer_poison"
+						"Target" "TARGET"
 					}
 				}
 			}
@@ -16706,7 +16728,7 @@
 	//河豚毒 製作單
 	"item_recipe_puffer_poison"
 	{
-	    "ID" "3862"
+	    "ID" "3869"
 	    "BaseClass" "item_recipe_arcane_boots"
 		"ItemCost" "2200"
 		"ItemShopTags" ""
