@@ -196,13 +196,23 @@
 		"AbilityManaCost"							"85 110 135 160"
 		"AbilityCooldown"							"15 12 9 6"
 		"AbilityCastRange"              			"900"
-
+		"AbilityCastPoint"			"0.1"
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
+				"Function"							"B30R_OnAbilityPhaseStart"
+				"Target"	"TARGET"
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B30.lua"
 				"Function"							"B30R_OnSpellStart"
+				"Target"	"TARGET"
 			}
 		}
 

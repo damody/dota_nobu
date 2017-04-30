@@ -206,11 +206,11 @@ function B06T_effect( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local During = ability:GetSpecialValueFor("During")
-	local particle1 = ParticleManager:CreateParticle("particles/b06t/b06t.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, caster)
+	--local particle1 = ParticleManager:CreateParticle("particles/b06t/b06t.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, caster)
 
 	Timers:CreateTimer(10.1, function()
 		if caster:HasModifier("modifier_B06T") then
-			ParticleManager:CreateParticle("particles/b06t/b06t.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, caster)
+			--ParticleManager:CreateParticle("particles/b06t/b06t.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, caster)
 			return 10
 		end
 	end)

@@ -243,6 +243,14 @@ function A25T( keys )
 	local AbilityDamage = ability:GetAbilityDamage()
 	local duration = ability:GetSpecialValueFor("duration")
 	AMHC:AddModelScale(caster, 1.3, duration)
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
+			end
+		end
+	end
 	Timers:CreateTimer(0, function()
 		local pos = caster:GetAbsOrigin()
 		ParticleManager:SetParticleControl(tornado, 3, pos)

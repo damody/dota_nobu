@@ -70,7 +70,14 @@ function B30W_OnDestroy( keys )
 		ApplyDamage(damageTable)
 	end
 end
-
+function B30R_OnAbilityPhaseStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	if caster==target then
+		caster:Interrupt()
+	end
+end
 function B30R_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability

@@ -229,22 +229,22 @@ function modifier_A20R_OnAttackLanded( event )
 							bProvidesVision = false,
 							iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 							iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-							iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NONE,
+							iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							vVelocity = velocityVec * projectile_speed
 						}
 						ProjectileManager:CreateLinearProjectile( projectileTable )
 					end
 					-- Check if the number of machines have been reached
-					if sumtime >4 then
+					if sumtime >1 then
 						return nil
 					else
-						sumtime = sumtime + 0.1
-						return 0.1
+						sumtime = sumtime + 0.3
+						return 0.3
 					end
 				end
 			)
 		end
-		Timers:CreateTimer(0.75, function ()
+		Timers:CreateTimer(0.3, function ()
 			caster.a20r_lock=nil
 			return nil
    		end)
@@ -325,31 +325,27 @@ function modifier_A20R_OnAttacked( event )
 							bProvidesVision = false,
 							iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 							iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-							iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NONE,
+							iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							vVelocity = velocityVec * projectile_speed
 						}
 						ProjectileManager:CreateLinearProjectile( projectileTable )
 					end
 					-- Check if the number of machines have been reached
-					if sumtime >4 then
+					if sumtime > 1 then
 						return nil
 					else
-						sumtime = sumtime + 0.1
-						return 0.1
+						sumtime = sumtime + 0.3
+						return 0.3
 					end
 				end
 			)
 		end
-		Timers:CreateTimer(0.75, function ()
+		Timers:CreateTimer(0.3, function ()
 			caster.a20r_lock=nil
 			return nil
    		end)
 	end
 end
-
-
-
-
 
 function A20R_OnProjectileHitUnit( keys )
 	local caster = keys.caster
@@ -361,7 +357,7 @@ function A20R_OnProjectileHitUnit( keys )
 	                              ability:GetSpecialValueFor( "splash_radius" ),
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
 	for _,it in pairs(direUnits) do
@@ -371,7 +367,6 @@ function A20R_OnProjectileHitUnit( keys )
 			else
 				AMHC:Damage(caster,it, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
-			
 		end
 	end
 end
@@ -556,4 +551,18 @@ function modifier_A20E_old_aura_OnIntervalThink( keys )
 		end
 	end
 
+end
+
+function A20T_old_OnIntervalThink( keys )
+	local ability = keys.ability
+	local target = keys.target
+	local caster = keys.caster
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
+			end
+		end
+	end
 end

@@ -63,6 +63,7 @@ function C09W_OnOrbImpact( keys )
 		})
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_C09W_debuff",{})
 		if not target:IsMagicImmune() then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_C09W_debuff2",{})
 			PopupNumbers(target, "damage", Vector(0, 255, 255), 1.0, damage, POPUP_SYMBOL_PRE_MINUS , nil )
 		end
 	end
@@ -219,6 +220,7 @@ function C09W_old_OnOrbImpact( keys )
 		})
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_C09W_old_debuff",{})
 		if not target:IsMagicImmune() then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_C09W_old_debuff2",{})
 			PopupNumbers(target, "damage", Vector(0, 255, 255), 1.0, damage, POPUP_SYMBOL_PRE_MINUS , nil )
 		end
 	end

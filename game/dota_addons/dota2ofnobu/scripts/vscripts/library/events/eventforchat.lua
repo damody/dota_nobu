@@ -23,7 +23,9 @@ skin_table = {
 	["45356591"] = true,
 	["190143365"] = true,
 	["161033081"] = true,
-	["245761935"] = true,
+	["245761935"] = true, --買濃姬 但付1000元
+	["180580201"] = true, --買濃姬跟阿市
+	["377214232"] = true, --大陸 李維
 	
 	["404284631"] = true,
 	["404414261"] = true,
@@ -189,7 +191,7 @@ local function chat_of_test(keys)
 	if skin_table[tostring(steamid)] == true then
 		skin = true
 	end
-	CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
+	--CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]

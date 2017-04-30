@@ -150,6 +150,7 @@
 		        "Aura_Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		        "Aura_Flags" 			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		        "Aura_ApplyToCaster" 	"0"
+		        "EffectName"		"particles/b12/b12r.vpcf"
 			}
 			"modifier_B12R_veryslow"
 			{
@@ -159,6 +160,7 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespd"
 				}
+				"EffectName"		"particles/b12/b12r.vpcf"
 			}
 			"modifier_B12R_onattack"
 			{
@@ -186,7 +188,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movespd"		"-11 -14 -17 -20"
+				"movespd"		"-10 -15 -20 -25"
 			}
 		}
 	}

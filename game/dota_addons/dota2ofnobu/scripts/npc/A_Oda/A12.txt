@@ -19,9 +19,10 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityCooldown"	"19 16 13 10"
 		"AbilityManaCost"	"120 140 160 180"
-		"AbilityCastRange"				"485"
+		"AbilityCastRange"				"500"
 		
 		"precache"
 		{
@@ -41,36 +42,14 @@
 			{
 				"Target"
 				{
-					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 					"Center"	"CASTER"
-					"Radius"	"485"
+					"Radius"	"500"
 				}
 				"Action"
 				{
-					"Knockback"
-					{
-						"Target"	"TARGET"
-						"Center"	"CASTER"
-						"Duration"	"0.3"
-						"Distance"	"500"
-						"Height"	"0"
-						"IsFixedDistance"	"1"
-						"ShouldStun"	"0"
-					}
-					"Stun"
-					{
-						"Target"	"TARGET"
-						"Duration"	"0.3"
-					}
-					"AttachEffect"
-					{
-						"Target"	"TARGET"
-						"ControlPoints"	{}
-						"ControlPointEntities"	{}
-						"EffectName"	"particles/a12w/a12w.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-					}
 					"Damage"
 					{
 						"Target"	"TARGET"

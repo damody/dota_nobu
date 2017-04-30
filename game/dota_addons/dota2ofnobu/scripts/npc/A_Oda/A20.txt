@@ -342,8 +342,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"RequiredLevel"	"6"
-		"LevelsBetweenUpgrades"	"6"
+
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
@@ -395,7 +394,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"chance"	"13"
+				"chance"	"25"
 			}
 			"02"
 			{
@@ -405,7 +404,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"damage"	"11 20 29 38"
+				"damage"	"22 40 58 76"
 			}
 		}
 		
@@ -421,7 +420,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint"				"0.1"
-		"AbilityCooldown"				"66 58 50"
+		"AbilityCooldown"				"90 80 70"
 		"AbilityManaCost"				"50"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		"OnSpellStart"
@@ -445,12 +444,11 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.2"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"65"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%regen"
 
 				}
 				"AttackAnimationPoint"	"0.2"
 				"Duration"	"%During"
-				//"EffectName"	"particles/b06t/b06t.vpcf"
 				"OnDeath"
 				{
 					"RemoveModifier"
@@ -473,6 +471,11 @@
 				"var_type"	"FIELD_FLOAT"
 				"During"	"20 25 30"
 			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"regen"	"100 150 200"
+			}
 		}
 	}
 
@@ -490,7 +493,7 @@
 
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCastRange"							"800"
-		"AbilityCooldown"                           "20"
+		"AbilityCooldown"                           "16 14 12 10"
 		"AbilityManaCost"                           "140 160 180 200"
 		"AOERadius"									"%A11W_radius"
 
@@ -701,6 +704,36 @@
 			{
 				"Passive"	"1"
 			    "IsBuff" "1"
+			    "OnAttacked"
+			    {
+			        "Random"
+			        {
+			            "Chance" "50"
+			            "OnSuccess"
+			            {
+			                "ApplyModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifiera20"
+			                }
+			            }
+			            "OnFailure"
+			            {
+			                "RemoveModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifiera20"
+			                }
+			            }
+			        }
+			    }
+			}
+			"block_modifiera20"
+			{
+			    "IsBuff" "1"
+			    "IsHidden" "1"
+			    "Duration"	"1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%Damage_Income"
@@ -712,7 +745,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Damage_Income"	"10 20 30 40"
+				"Damage_Income"	"80 160 240 320"
 			}
 		}
 	}
@@ -751,11 +784,6 @@
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspeed_bonus"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_bonus"
-
-				}
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"AttackAnimationPoint"	"0.2"
 				"Duration"	"%During"
@@ -768,9 +796,14 @@
 						"Target" 		"CASTER"
 					}
 				}
-				"OnCreated"
+				"ThinkInterval"  "%think"
+				"OnIntervalThink"
 				{
-
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"A20T_old_OnIntervalThink"
+					}
 				}
 			}
 
@@ -790,7 +823,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"movespeed_bonus"	"50 60 70"
+				"movespeed_bonus"	"20 30 40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"think"	"2 1 0.1"
 			}
 		}
 	}

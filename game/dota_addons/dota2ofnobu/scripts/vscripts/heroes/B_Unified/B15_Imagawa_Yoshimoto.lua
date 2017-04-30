@@ -2,6 +2,14 @@ function B15W_on_spell_start(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	AMHC:AddModelScale(caster, 1.3, ability:GetSpecialValueFor("duration"))
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
+			end
+		end
+	end
 end
 
 function OnToggleOn( keys )

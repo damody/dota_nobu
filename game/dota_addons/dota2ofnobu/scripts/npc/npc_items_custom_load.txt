@@ -284,10 +284,11 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"65"
+		"AbilityCooldown"	"60"
 		
 		"AbilityManaCost"	"600"
 		"AbilityCastPoint"	"0.1"
+		"AbilitySharedCooldown" "share_the_overflame_art_of_war"
 		
 		"AOERadius"	"650"
 		"AbilityCastRange"	"700"
@@ -376,10 +377,11 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"65"
+		"AbilityCooldown"	"60"
 		"AbilityCastPoint"	"0.1"
 		
 		"AbilityManaCost"	"400"
+		"AbilitySharedCooldown" "share_the_overflame_art_of_war"
 		
 		"AOERadius"	"650"
 		"AbilityCastRange"	"700"
@@ -1067,6 +1069,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-20"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -1501,7 +1504,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"10"
-		
+		"AbilitySharedCooldown" "share_lightning_scroll"
 		"AbilityManaCost"	"120"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"700"
@@ -3177,10 +3180,10 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"15"
+		"AbilityCooldown"	"10"
 		
 		"AbilityManaCost"	"120"
-		
+		"AbilitySharedCooldown" "share_lightning_scroll"
 		"AbilityCastRange"	"700"
 		"ID"	"2570"
 		"ItemQuality"	"component"
@@ -5158,6 +5161,14 @@
 				"Function"				"Shock"
 			}
 		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_damage"				"85"
+			}
+		}
 		"Modifiers"
 		{
 			"Passive_lightning_katana"
@@ -5189,18 +5200,42 @@
 					}
 				}
 			}
-			
 			"modifier_the_great_sword_of_toxic"
 			{
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-25" 	//跑速
 				}
+				
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Duration"			"2"
+				"EffectAttachType"	"follow_origin"
+			}
+			"modifier_the_great_sword_of_toxic2"
+			{
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A29_Ishida_Mitsunari.lua"
+						"Function"		"A29W_debuff"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"85"
+					}
+				}
 				"EffectName"	"particles/b33/b33r_old_poison.vpcf"
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
 				"Passive"	"0"
-				"Duration"			"2"
+				"Duration"			"5"
 				"EffectAttachType"	"follow_origin"
 			}
 		}
@@ -9045,7 +9080,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"20000"
+		"ItemCost"	"1000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemSellable" "0"
@@ -11910,7 +11945,7 @@
 		
 		"AbilityCooldown"	"48"
 		"AbilityCastPoint"	"0.1"
-		"AbilityManaCost"	"800"
+		"AbilityManaCost"	"500"
 		"AbilityCastRange"	"1000"
 		"ID"	"2814"
 		"ItemQuality"	"component"
@@ -11973,7 +12008,7 @@
 		
 		"AbilityCooldown"	"48"
 		"AbilityCastPoint"	"0.1"
-		"AbilityManaCost"	"1600"
+		"AbilityManaCost"	"1000"
 		"AbilityCastRange"	"1000"
 		"ID"	"3842"
 		"ItemQuality"	"component"
@@ -12507,6 +12542,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-30"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -12766,6 +12802,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-30"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -12928,6 +12965,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-50"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -16540,7 +16578,7 @@
 		// General
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/poisonous_ring"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -16576,16 +16614,11 @@
 				}
 				"OnAttackLanded"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"20"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_poisonous_ring"
-						"Target" 		"TARGET"
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_toxic.lua"
+						"Function"	"Shock_poisonous_ring"
+						"Target" "TARGET"
 					}
 				}
 			}
@@ -16624,7 +16657,7 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/puffer_poison"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -16662,16 +16695,11 @@
 				}
 				"OnAttackLanded"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"45"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_puffer_poison"
-						"Target" 		"TARGET"
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_toxic.lua"
+						"Function"	"Shock_puffer_poison"
+						"Target" "TARGET"
 					}
 				}
 			}
@@ -16706,7 +16734,7 @@
 	//河豚毒 製作單
 	"item_recipe_puffer_poison"
 	{
-	    "ID" "3862"
+	    "ID" "3869"
 	    "BaseClass" "item_recipe_arcane_boots"
 		"ItemCost" "2200"
 		"ItemShopTags" ""
