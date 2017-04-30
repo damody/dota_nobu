@@ -1999,6 +1999,38 @@
 			}
 		}
 	}
+	// 背水一戰
+	"war_magic_back_wall"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_47"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityManaCost"	"100"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/war_magic.lua"
+				"Function"	"back_wall"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_wantgohome"
+			{
+				"EffectName"	"particles/events/ti6_teams/teleport_start_ti6_lvl3_ehome.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
 	// 召集戰法
 	"war_magic_gohome"
 	{

@@ -179,9 +179,6 @@ function B20R_old_OnSuccess( keys )
 end
 
 function B20R_old_OnAttackLanded( keys )
-	for k,v in pairs(keys) do
-		print(k,v)
-	end
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target

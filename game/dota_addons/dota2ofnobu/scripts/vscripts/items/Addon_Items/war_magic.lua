@@ -37,6 +37,32 @@ function modifier_gohomelua:OnTakeDamage(event)
 	end
 end
 
+function back_wall( keys )
+	local caster = keys.caster
+	local point = 1
+	local ability = keys.ability
+	caster:RemoveAbility("war_magic_back_wall")
+	Timers:CreateTimer(0, function()
+			if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+				GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動背水一戰</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+				point = Entities:FindByName(nil,"dota_goodguys_fort"):GetAbsOrigin()+Vector(-300,300,0)
+				for i=1,5 do
+					local com_general2 = CreateUnitByName("com_general2", point, true, nil, nil, caster:GetTeamNumber())
+					com_general2.pos = point
+					com_general2:AddNewModifier(com_general2,nil,"modifier_kill",{duration=100})
+				end
+			else
+				GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動背水一戰</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+				point = Entities:FindByName(nil,"dota_badguys_fort"):GetAbsOrigin()+Vector(300,-300,0)
+				for i=1,5 do
+					local com_general2 = CreateUnitByName("com_general2", point, true, nil, nil, caster:GetTeamNumber())
+					com_general2.pos = point
+					com_general2:AddNewModifier(com_general2,nil,"modifier_kill",{duration=100})
+				end
+			end
+		end)
+end
+
 function findanything( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
@@ -345,7 +371,7 @@ function to_war_magic_unit2(keys)
 		    donkey:AddAbility("war_magic_gohome"):SetLevel(1)
 		    donkey:AddAbility("war_magic_findanything"):SetLevel(1)
 		    donkey:AddAbility("war_magic_treecut"):SetLevel(1)
-		    --donkey:AddAbility("gold_to_prestige"):SetLevel(1)
+		    donkey:AddAbility("war_magic_back_wall"):SetLevel(1)
 		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()

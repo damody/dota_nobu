@@ -1,0 +1,690 @@
+// 片倉景綱
+"DOTAAbilities"
+{
+	"B14_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf" //w
+			"particle"  "particles/item/item_perceive_wine.vpcf" //e
+			"particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf" //w_old
+			"particle"  "particles/a15w/a15w.vpcf"	//e
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"	//w_old
+			"particle"  "particles/b14t/b14t.vpcf" //t
+		}
+	}
+
+	//暫夜
+	"B14D"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"                        "custom/B14/B14D"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"0"
+		"AbilityCooldown"                           "120"
+		"AbilityManaCost"                           "50"
+
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14D_OnAbilityPhaseStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14D_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B14D_duration"				"30.0 45.0 60.0 75.0"
+			}
+		}
+	}
+
+	//拔刀斬
+	"B14W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"                        "custom/B14/B14W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"128"
+		"AbilityCooldown"                           "15"
+		"AbilityManaCost"                           "100 125 150 175"
+		"AOERadius"									"%B14W_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14W_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B14W_damage"				"100 180 260 340"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B14W_strBonus"				"1.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B14W_radius"				"300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B14W_stunDuration"			"1.0 1.5 2.0 2.5"
+			}
+		}
+	}
+
+	//影武者戰法
+	"B14E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"custom/B14/B14E"
+
+		"AbilityCooldown"							"8"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"70 85 100 115"
+		"AbilityCastRange"              			"800"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14E_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B14E"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsStunDebuff"		"0"
+				"EffectName"		"particles/a15w/a15w.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" 	"%B14E_atkmsBonus"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 		"%B14E_atkmsBonus" 
+				}
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_perceive_wine"
+			{
+				"Passive"			"0"
+				"EffectName"		"particles/item/item_perceive_wine.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsStunDebuff"		"0"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"B14E_debuffDuration"           "2.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"B14E_magicImmuneDuration"		"2.0 2.5 3.0 3.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"B14E_atkmsBonus"				"-15 -25 -35 -45"
+			}
+		}
+	}
+
+	//近侍心得
+	"B14R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/B14/B14R"
+
+		"Modifiers"
+		{
+			"modifier_B14R"
+			{
+				"Passive"			"1"
+				"IsPurgable"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" 	"%B14R_incomingDamage"
+				}
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_B14R_Crit"
+						"Target"					"CASTER"
+					}
+					"Random"
+					{
+						"Chance"					"18"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+								"Function"							"B14R_OnSuccess"
+							}
+						}
+					}
+				}
+			}
+			"modifier_B14R_Crit"
+       		{
+       			"IsHidden"			"1"
+       			"IsPurgable"		"0"
+          		"Properties"
+           		{
+                	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "%B14R_critScale"
+           		}
+           		"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_B14R_Crit"
+						"Target"					"CASTER"
+					}
+				}
+       		}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14R_incomingDamage"	"-7 -12 -17 -22"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14R_critScale"		"200 250 300 350"
+			}
+		}
+
+    }
+
+    //影切
+	"B14T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"                        "custom/B14/B14T"
+
+		"AbilityCastRange"							"0"
+		"AbilityCooldown"           				"100 90 80"
+		"AbilityManaCost"           				"150 170 190"
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14T_OnUpgrade"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14T_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B14T"
+			{
+				"IsPurgable"		"0"
+				"EffectName"		"particles/b14t/b14t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" 	"%B14T_msBonus"
+				    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 		"%B14T_atkBonus"
+				}
+			}
+			"modifier_B14T_passive"
+			{
+				"IsHidden"			"1"
+				"Passive"			"1"
+				"IsPurgable"		"0"
+				"ThinkInterval"  	"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B14.lua"
+						"Function"					"B14T_OnIntervalThink"
+					}
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B14.lua"
+						"Function"					"B14T_OnAction"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B14.lua"
+						"Function"					"B14T_OnAction"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B14T_duration"			"20.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14T_atkBonus"			"80 100 120"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14T_msBonus"			"15 25 35"
+			}
+		}
+	}
+
+	//影之斬
+	"B14D_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/A13D"
+
+		"AbilityCastPoint"          				"0.0"
+		"AbilityCooldown"           				"10"
+		"AbilityManaCost"           				"225 325 425"
+		"MaxLevel"									"3"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_B14D_old"
+				"Target" 			"CASTER"
+				"Duration"			"%B14D_old_duration"
+			}
+			"ApplyModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_invisible"
+				"Duration"			"%B14D_old_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B14D_old"
+			{
+				"IsHidden"			"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B14.lua"
+						"Function"		"B14D_old_End"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_B14D_old"
+					}
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"			"0"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%B14D_old_movespd" 
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14D_old_damage"		"400 600 800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14D_old_movespd"		"40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14D_old_duration"		"30"
+			}
+		}
+	}
+
+	//拔刀斬
+	"B14W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"                        "custom/B14/B14W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"128"
+		"AbilityCooldown"                           "16 13 10 7"
+		"AbilityManaCost"                           "100 120 140 160"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14W_old_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"B14W_damage"				"150 250 350 450"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"B14W_stunDuration"			"1.0 1.5 2.0 2.5"
+			}
+		}
+	}
+
+	//近侍心得
+	"B14E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"custom/B14/B14E"
+
+		"AbilityCooldown"							"40 36 32 28"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"70 80 90 100"
+		"AbilityCastRange"              			"800"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14E_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_perceive_wine"
+			{
+				"Passive"			"0"
+				"EffectName"		"particles/item/item_perceive_wine.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsStunDebuff"		"0"
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"B14E_old_magicImmuneDuration"		"8.0 9.0 10.0 11.0"
+			}
+		}
+	}
+
+	//刀術
+	"B14R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/B14/B14R"
+
+		"Modifiers"
+		{
+			"modifier_B14R_old"
+			{
+				"Passive"			"1"
+				"IsPurgable"		"0"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_B14R_old_Crit"
+						"Target"					"CASTER"
+					}
+					"Random"
+					{
+						"Chance"					"20"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+								"Function"							"B14R_old_OnSuccess"
+							}
+						}
+					}
+				}
+			}
+			"modifier_B14R_old_Crit"
+       		{
+       			"IsHidden"			"1"
+       			"IsPurgable"		"0"
+          		"Properties"
+           		{
+                	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "%B14R_critScale"
+           		}
+           		"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"				"modifier_B14R_old_Crit"
+						"Target"					"CASTER"
+					}
+				}
+       		}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14R_critScale"		"200 250 300 350"
+			}
+		}
+
+    }
+
+    //影武者
+	"B14T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"                        "custom/B14/B14T"
+
+		"AbilityCastRange"							"0"
+		"AbilityCooldown"           				"200 180 160"
+		"AbilityManaCost"           				"200 250 300"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+				"Function"							"B14T_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B14T_old"
+			{
+				"IsPurgable"		"0"
+				"EffectName"		"particles/b14t/b14t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 		"%B14T_atkBonus"
+				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%B14T_mrBonus"
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B14T_old"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"				"scripts/vscripts/heroes/B_Unified/B14.lua"
+						"Function"					"B14T_old_OnDestroy"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"B14T_old_duration"		"95"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14T_atkBonus"			"45 70 95"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"B14T_mrBonus"			"33"
+			}
+		}
+	}
+
+} // END DOTAAbilities

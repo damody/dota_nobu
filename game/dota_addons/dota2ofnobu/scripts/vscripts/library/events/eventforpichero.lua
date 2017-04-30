@@ -57,7 +57,6 @@ function Nobu:PickHero( keys )
       end
       --【英雄名稱判別】
       if _G.mo then
-        caster:AddAbility("play_1v1"):SetLevel(1)
         Timers:CreateTimer(1, function()
           if caster.score == nil then caster.score = 0 end
           if caster.lastscore == nil then caster.lastscore = 0 end
