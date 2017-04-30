@@ -41,10 +41,25 @@ function Nobu:OnUnitKill( keys )
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
     if killedUnit:IsBuilding() then
       local group = FindUnitsInRadius(AttackerUnit:GetTeamNumber(), killedUnit:GetAbsOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
+      local count = 0
       for _,hero in ipairs(group) do
-        hero.kill_tower = 1
         if not hero:IsIllusion() then
-          print("hero "..hero:GetUnitName())
+          count = count + 1
+        end
+      end
+      
+      local earn = killedUnit:GetGoldBounty() / count
+      if not killedUnit:IsHero() then
+        for _,hero in ipairs(group) do
+          if not hero:IsIllusion() then
+            AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID(), earn)
+          end
+        end
+      else
+        for _,hero in ipairs(group) do
+          if not hero:IsIllusion() then
+            hero.kill_tower = 1
+          end
         end
       end
       

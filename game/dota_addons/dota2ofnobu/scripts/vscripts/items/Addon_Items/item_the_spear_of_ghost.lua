@@ -27,7 +27,7 @@ function Shock( keys )
 	local target = keys.target
 	local skill = keys.ability
 
-	if (caster.nobuorb1 == "item_the_spear_of_ghost" or caster.nobuorb1 == nil) and not target:IsBuilding() and caster.gospear_of_ghost == nil then
+	if (caster.nobuorb1 == "item_the_spear_of_ghost" or caster.nobuorb1 == nil) and not target:IsBuilding() and target:GetUnitName() ~= "npc_dota_cursed_warrior_souls" then
 		caster.nobuorb1 = "item_the_spear_of_ghost"
 		local ran =  RandomInt(0, 100)
 		if (caster.spear_of_ghost == nil) then
@@ -40,22 +40,17 @@ function Shock( keys )
 
 			caster.spear_of_ghost = 0
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-			if (keys.target.spear_of_ghost == nil) then
-				keys.target.spear_of_ghost = 1
-				Timers:CreateTimer(0.1, function() 
-						keys.target.spear_of_ghost = nil
-					end)
-				local dmg = keys.target:GetHealth() * keys.Percent / 100
-				if dmg < keys.MinDmg then
-					dmg = keys.MinDmg
-				end
-				if not keys.target:IsMagicImmune() then
-					AMHC:Damage(caster,keys.target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-					AMHC:CreateNumberEffect(keys.target,dmg,1,AMHC.MSG_DAMAGE,'blue')
-				else
-					AMHC:Damage(caster,keys.target, dmg*1.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-					AMHC:CreateNumberEffect(keys.target,dmg*1.5,1,AMHC.MSG_DAMAGE,{255,100,100})
-				end
+
+			local dmg = keys.target:GetHealth() * keys.Percent / 100
+			if dmg < keys.MinDmg then
+				dmg = keys.MinDmg
+			end
+			if not keys.target:IsMagicImmune() then
+				AMHC:Damage(caster,keys.target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:CreateNumberEffect(keys.target,dmg,1,AMHC.MSG_DAMAGE,'blue')
+			else
+				AMHC:Damage(caster,keys.target, dmg*1.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:CreateNumberEffect(keys.target,dmg*1.5,1,AMHC.MSG_DAMAGE,{255,100,100})
 			end
 			--SE
 			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)

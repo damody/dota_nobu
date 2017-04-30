@@ -89,6 +89,15 @@ function play_1v1( keys )
 	caster.score = caster.score + 1
 end
 
+function warrior_souls_OnDeath( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if (keys.attacker:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+		GameRules: SendCustomMessage("<font color='#ffff00'>織田軍擊殺了武士亡靈</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	else
+		GameRules: SendCustomMessage("<font color='#ffff00'>聯合軍擊殺了武士亡靈</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+	end
+end
 
 function robbers_skill( keys )
 	local caster = keys.caster
@@ -306,4 +315,9 @@ function ninja_hole_end(keys)
     caster:RemoveModifierByName("modifier_ninja2")
 end
 
-
+function warrior_souls_OnAttackLanded(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	target:SetMana(0)
+end

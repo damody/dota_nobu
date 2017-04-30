@@ -454,6 +454,67 @@
 		}
 	}
 
+	// 武士亡靈技能
+	"warrior_souls_skill"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+
+		
+		"Modifiers"
+		{
+			"modifier_warrior_souls_debuff"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "0"
+	            "Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE" "50"
+				}
+			}
+			"Passive_warrior_souls_skill"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+
+	            "Aura"          	"modifier_warrior_souls_debuff"
+	            "Aura_Radius"   	"600"
+	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	            "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	            "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+	            "OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"warrior_souls_OnDeath"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-50"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"warrior_souls_OnAttackLanded"
+						"dmg"	"%attack_damage"
+					}
+				}
+			}
+		}
+	}
+
 	// 叫下忍
 	"call_ninja1"
 	{

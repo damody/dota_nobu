@@ -45,6 +45,9 @@ function A12W( keys )
 	if caster.A12D_B == true then
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_A12W",nil)
 		ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		for _,v in ipairs(group) do
+			v:AddNewModifier( caster, ability, "modifier_stunned" , { duration = ability:GetLevel()*0.5 } )
+		end
 	else
 		ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	end
