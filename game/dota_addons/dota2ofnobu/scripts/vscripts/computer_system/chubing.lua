@@ -62,8 +62,7 @@ Timers:CreateTimer( 2, function()
 end)
 
 -- 中路模式
-_G.mo = nil
-mo = _G.mo
+
 function ShuaGuai( )
 	--ShuaGuai_Of_A( )
 
@@ -148,7 +147,7 @@ function ShuaGuai_Of_AA(num)
 		else
 			for i=1,6 do
 				local go = false
-				if mo == nil then
+				if _G.mo == nil then
 					go = true
 				elseif i==2 or i==5 then
 					go = true
@@ -213,7 +212,7 @@ function ShuaGuai_Of_AB(num)
 		else
 			for i=1,6 do
 				local go = false
-				if mo == nil then
+				if _G.mo == nil then
 					go = true
 				elseif i==2 or i==5 then
 					go = true
@@ -285,7 +284,7 @@ function ShuaGuai_Of_B(num)
 		else
 			for i=1,6 do
 				local go = false
-				if mo == nil then
+				if _G.mo == nil then
 					go = true
 				elseif i==2 or i==5 then
 					go = true
@@ -362,7 +361,7 @@ function ShuaGuai_Of_B(num)
 end
 
 --【騎兵】
-function ShuaGuai_Of_C(num, mo)
+function ShuaGuai_Of_C(num)
 	local tem_count = 0
 	C_count = _G.C_count
 	C_count = C_count + 1
@@ -374,7 +373,7 @@ function ShuaGuai_Of_C(num, mo)
 		else
 			for i=1,6 do
 				local go = false
-				if mo == nil then
+				if _G.mo == nil then
 					go = true
 				elseif i==2 or i==5 then
 					go = true
@@ -453,7 +452,7 @@ end
 
 --織田足輕上
 function soldier_Oda_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 50
 	local tem_count = 0
 	--總共六個出發點 6
@@ -553,7 +552,7 @@ end
 
 --織田足輕下
 function soldier_Oda_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 50
 	local tem_count = 0
 	local pos = 1
@@ -603,7 +602,7 @@ end
 
 --聯合足輕上
 function soldier_Unified_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 50
 	local tem_count = 0
 	--總共六個出發點 6
@@ -703,7 +702,7 @@ end
 
 --聯合足輕下
 function soldier_Unified_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 50
 	local tem_count = 0
 	local pos = 4
@@ -753,7 +752,7 @@ end
 
 --織田弓箭手上
 function archer_Oda_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 70
 	local tem_count = 0
 	--總共六個出發點 6
@@ -851,7 +850,7 @@ end
 
 --織田弓箭手下
 function archer_Oda_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 70
 	local tem_count = 0
 	local pos = 1
@@ -901,7 +900,7 @@ end
 
 --聯合弓箭手上
 function archer_Unified_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 70
 	local tem_count = 0
 	--總共六個出發點 6
@@ -999,7 +998,7 @@ end
 
 --聯合弓箭手下
 function archer_Unified_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 70
 	local tem_count = 0
 	local pos = 4
@@ -1049,7 +1048,7 @@ end
 
 --織田鐵炮兵上
 function gunner_Oda_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	--總共六個出發點 6
@@ -1147,7 +1146,7 @@ end
 
 --織田鐵炮兵下
 function gunner_Oda_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	local pos = 1
@@ -1197,7 +1196,7 @@ end
 
 --聯合鐵炮兵上
 function gunner_Unified_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	--總共六個出發點 6
@@ -1295,7 +1294,7 @@ end
 
 --聯合鐵炮兵下
 function gunner_Unified_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 4
@@ -1344,7 +1343,7 @@ end
 
 --織田騎兵上
 function cavalry_Oda_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	--總共六個出發點 6
@@ -1444,7 +1443,7 @@ end
 
 --織田騎兵下
 function cavalry_Oda_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	local pos = 1
@@ -1495,7 +1494,7 @@ end
 
 --聯合騎兵上
 function cavalry_Unified_top( )
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	--總共六個出發點 6
@@ -1595,7 +1594,7 @@ end
 
 --聯合騎兵下
 function cavalry_Unified_bottom()
-	if mo then return end
+	if _G.mo then return end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 4

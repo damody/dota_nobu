@@ -4,6 +4,14 @@ function B26E_OnSpellStart( keys )
 	local ability = keys.ability
 	local center = caster:GetAbsOrigin()
 	AMHC:AddModelScale(caster, 1.3, 8)
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
+			end
+		end
+	end
 end
 
 function B26W( keys )

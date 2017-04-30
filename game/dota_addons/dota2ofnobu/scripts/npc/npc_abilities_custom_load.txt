@@ -3197,7 +3197,6 @@
 						"Function"	"A17T"
 					}
 				}
-				"States"	{}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"	"%night_sight"
@@ -3205,6 +3204,10 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed_bonus"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_CANNOT_MISS"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"IsBuff"	"1"
 				"OnAttackLanded"

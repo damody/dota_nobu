@@ -9,7 +9,11 @@ function _G.Nobu:InitGameMode()
   local GameMode = GameRules:GetGameModeEntity()
 
   --【模式判斷】
-  if _G.GameMap == "" then
+  if _G.GameMap == "nobu_pk" then
+    _G.mo = 1
+  end
+  if _G.GameMap == "nobu_CN" then
+    _G.CN = 1
   end
 
   --【Setup rules】
@@ -27,10 +31,7 @@ function _G.Nobu:InitGameMode()
   if _G.mo then
     GameRules:SetCustomGameTeamMaxPlayers(2, 1)
     GameRules:SetCustomGameTeamMaxPlayers(3, 1)
-    GameRules:SetCustomGameTeamMaxPlayers(6, 8)
     --自定血條顏色
-    SetTeamCustomHealthbarColor(2,255,150,150)
-    SetTeamCustomHealthbarColor(3,150,150,255)
     GameRules:SetSameHeroSelectionEnabled( true )
   end
 

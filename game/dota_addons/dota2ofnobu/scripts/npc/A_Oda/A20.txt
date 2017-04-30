@@ -1,0 +1,835 @@
+// 九鬼嘉隆
+"DOTAAbilities"
+{
+	"A20_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"	"particles/a20r/a20r.vpcf"
+			"particle"  "particles/a20t_old/a20t_old.vpcf"
+			"particle"  "particles/a20e/a20e.vpcf"
+
+			"particle"  "particles/items_fx/blink_dagger_start_sparkles.vpcf"
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_blast.vpcf"
+			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"particle"	"particles/b34t/b34t.vpcf"
+			"particle"	"particles/b34t/b34t2.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			"soundfile"	"soundevents/a07t.vsndevts"
+			"particle"	"particles/a07t2/a07t2.vpcf"
+			"particle"	"particles/econ/items/razor/razor_punctured_crest/razor_storm_lightning_strike_blade.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_char_glow.vpcf"
+			"particle"  "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_birds.vpcf"
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch_model.vpcf"
+			"particle"  "particles/b26t2/b26t2.vpcf"
+		}
+	}
+
+	//海賊領域
+	"A20W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/A20/A20W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1300"
+		"AbilityCooldown"                           "9"
+		"AbilityManaCost"                           "130 150 170 190"
+		"AOERadius"									"%radius"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+				"Function"						"A20W_OnUpgrade"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+				"Function"						"A20W_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A20W_transparent"
+			{
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INVISIBILITY_LEVEL"	"0"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_A20W_self"
+			{
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20W_self_OnCreated"
+					}
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20W_self_OnCreated"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20W_self_OnCreated"
+					}
+				}
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%healpersec"
+				}
+				"IsPurgable"	"0"
+			}
+			"modifier_A20W"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20W_OnCreated"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20W_OnDestroy"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%bonus_atk"
+				}
+			}
+			"modifier_A20W_aura"
+			{
+				"IsHidden"	"1"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Aura"          	"modifier_A20W"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"  "1.5"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20W_aura_OnIntervalThink"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20W_aura_OnIntervalThink"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"700"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_atk"					"10 20 30 40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max"						"2 3 4 5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"healpersec"				"6 12 18 24"
+			}
+		}
+	}
+
+	//水體爆破
+	"A20E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"                        "custom/A20/A20E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCooldown"                           "14"
+		"AbilityManaCost"                           "110 130 150 170"
+		"AOERadius"	"%radius"
+		"AbilityCastRange"				"%radius"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"particle"	"particles/b34t/b34t.vpcf"
+			"particle"	"particles/b34t/b34t2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A20.lua"
+				"Function"	"A20E_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Roshan.Slam"
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+				"Action"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+				}
+			}
+			"AttachEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/a20e/a20e.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A20E"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus"
+				}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"%duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
+			"modifier_A20E_stun"
+			{
+				"Duration"	"%stun"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"700"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonus"	"-15 -25 -35 -45"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun"	"0.7"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"6"
+			}
+		}
+		"AbilityDamage"	"150 250 350 450"
+	}
+	//海賊長靴
+	"A20R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"                        "custom/A20/A20R"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/earthshaker/fissure.vsnd"
+			"particle"	"particles/generic_gameplay/move_slow.vpcf"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"particle"	"particles/b34t/b34t.vpcf"
+			"particle"	"particles/b34t/b34t2.vpcf"
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A20.lua"
+				"Function"	"A20R_OnProjectileHitUnit"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A20R"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_bonus"
+				}
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"	"modifier_A20R_OnAttackLanded"
+					}
+				}
+				"OnAttacked"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"	"modifier_A20R_OnAttacked"
+					}
+				}
+			}
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"25"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonus"	"7 11 15 19"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage"	"22 40 58 76"
+			}
+		}
+		
+	}
+	// 海賊大名．參上
+	"A20T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"                        "custom/A20/A20T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"90 80 70"
+		"AbilityManaCost"				"50"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A20.lua"
+				"Function"		"A20T_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A20T"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A20T"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.2"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%regen"
+
+				}
+				"AttackAnimationPoint"	"0.2"
+				"Duration"	"%During"
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A20T"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnCreated"
+				{
+
+				}
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"20 25 30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"regen"	"100 150 200"
+			}
+		}
+	}
+
+	//海噬
+	"A20W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/A20/A20W_old"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+		"AbilityCooldown"                           "16 14 12 10"
+		"AbilityManaCost"                           "140 160 180 200"
+		"AOERadius"									"%A11W_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+				"Function"						"A20W_old_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A20W_old"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_dec"
+				}
+			}
+			"modifier_A20W_old_aura"
+			{
+				"IsHidden"	"1"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Aura"          	"modifier_A20W_old"
+				"Aura_Radius"   	"%A11W_radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				
+				
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A11W_radius"				"600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A11W_damage"				"80 90 100 110"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A11W_adjustOnBuilding"		"0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A11W_duration"				"5"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"move_dec"					"-10"
+			}
+		}
+	}
+	//海賊領域
+	"A20E_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/A20/A20E_old"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"1300"
+		"AbilityCooldown"                           "30"
+		"AbilityManaCost"                           "200"
+		"AOERadius"									"%radius"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+				"Function"						"A20E_old_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A20E_self"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%healpersec"
+				}
+				"IsPurgable"	"0"
+			}
+			"modifier_A20E_old_self"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20E_old_self_OnCreated"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20E_old_self_OnDestroy"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%bonus_atk"
+				}
+			}
+			"modifier_A20E_old_aura"
+			{
+				"IsHidden"	"1"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Aura"          	"modifier_A20E_old_self"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"  "1.5"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20E_old_aura_OnIntervalThink"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"modifier_A20E_old_aura_OnIntervalThink"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"700"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"20"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"20 30 40 50"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"healpersec"				"20 30 40 50"
+			}
+		}
+	}
+	//海賊具足 
+	"A20R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"                        "custom/A20/A20R_old"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_A20R_old"
+			{
+				"Passive"	"1"
+			    "IsBuff" "1"
+			    "OnAttacked"
+			    {
+			        "Random"
+			        {
+			            "Chance" "50"
+			            "OnSuccess"
+			            {
+			                "ApplyModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifiera20"
+			                }
+			            }
+			            "OnFailure"
+			            {
+			                "RemoveModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifiera20"
+			                }
+			            }
+			        }
+			    }
+			}
+			"block_modifiera20"
+			{
+			    "IsBuff" "1"
+			    "IsHidden" "1"
+			    "Duration"	"1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%Damage_Income"
+			    }
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Damage_Income"	"80 160 240 320"
+			}
+		}
+	}
+
+
+	// 船醉不知
+	"A20T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"                        "custom/A20/A20T_old"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"100"
+		"AbilityManaCost"				"200 250 300"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A20T_old"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A20T_old"
+			{
+				"EffectName"	"particles/a20t_old/a20t_old.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspeed_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_bonus"
+				}
+				"AttackAnimationPoint"	"0.2"
+				"Duration"	"%During"
+				//"EffectName"	"particles/b06t/b06t.vpcf"
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A20T"
+						"Target" 		"CASTER"
+					}
+				}
+				"ThinkInterval"  "%think"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A20.lua"
+						"Function"						"A20T_old_OnIntervalThink"
+					}
+				}
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"atkspeed_bonus"	"110 165 220"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"movespeed_bonus"	"20 30 40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"think"	"2 1 0.1"
+			}
+		}
+	}
+} // end DOTAAbilities

@@ -56,8 +56,16 @@ function Nobu:OnUnitKill( keys )
         end
         end)
       if _G.mo and killedUnit:GetUnitName() == "com_towera" or (string.match(killedUnit:GetUnitName(), "com_soldiercamp") and killedUnit:GetUnitName()~="com_soldiercamp") then
-        if AttackerUnit.score == nil then AttackerUnit.score = 0 end
-        AttackerUnit.score = AttackerUnit.score + 1
+        for _,hero in ipairs(HeroList:GetAllHeroes()) do
+          if not hero:IsIllusion() then
+            local id = hero:GetPlayerID()
+            local team = PlayerResource:GetTeam(id)
+            if team == AttackerUnit:GetTeamNumber() then
+              if hero.score == nil then hero.score = 0 end
+              hero.score = hero.score + 1
+            end
+          end
+        end
       end
     end
     local neutral = false

@@ -60,6 +60,11 @@ function Nobu:PickHero( keys )
         caster:AddAbility("play_1v1"):SetLevel(1)
         Timers:CreateTimer(1, function()
           if caster.score == nil then caster.score = 0 end
+          if caster.lastscore == nil then caster.lastscore = 0 end
+          if caster.score ~= caster.lastscore then
+            caster.lastscore = caster.score
+            GameRules: SendCustomMessage("<font color='#aaaaff'>".._G.hero_name_zh[nobu_id].."得到 "..caster.score.." 分</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+          end
           if caster.score >= 3 then
             local nobu_id = _G.heromap[caster:GetName()]
             GameRules:SetCustomVictoryMessage(_G.hero_name_zh[nobu_id].." 贏得勝利")

@@ -220,6 +220,14 @@ function B31T_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability= keys.ability
 	AMHC:AddModelScale(caster, 2, 25)
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
+			end
+		end
+	end
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4,1)
 	local ifx2 = ParticleManager:CreateParticle("particles/b31t/b31t2.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx2,0,caster:GetAbsOrigin())
@@ -362,7 +370,15 @@ end
 function B31T_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability= keys.ability
-	AMHC:AddModelScale(caster, 2, 38)
+	AMHC:AddModelScale(caster, 2, 39)
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
+			end
+		end
+	end
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4,1)
 	local ifx2 = ParticleManager:CreateParticle("particles/b31t/b31t2.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
 	ParticleManager:SetParticleControl(ifx2,0,caster:GetAbsOrigin())

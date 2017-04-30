@@ -284,10 +284,11 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"65"
+		"AbilityCooldown"	"60"
 		
 		"AbilityManaCost"	"600"
 		"AbilityCastPoint"	"0.1"
+		"AbilitySharedCooldown" "share_the_overflame_art_of_war"
 		
 		"AOERadius"	"650"
 		"AbilityCastRange"	"700"
@@ -376,10 +377,11 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"65"
+		"AbilityCooldown"	"60"
 		"AbilityCastPoint"	"0.1"
 		
 		"AbilityManaCost"	"400"
+		"AbilitySharedCooldown" "share_the_overflame_art_of_war"
 		
 		"AOERadius"	"650"
 		"AbilityCastRange"	"700"
@@ -1067,6 +1069,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-20"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -1501,7 +1504,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"10"
-		
+		"AbilitySharedCooldown" "share_lightning_scroll"
 		"AbilityManaCost"	"120"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"700"
@@ -3177,10 +3180,10 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"15"
+		"AbilityCooldown"	"10"
 		
 		"AbilityManaCost"	"120"
-		
+		"AbilitySharedCooldown" "share_lightning_scroll"
 		"AbilityCastRange"	"700"
 		"ID"	"2570"
 		"ItemQuality"	"component"
@@ -9077,7 +9080,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"20000"
+		"ItemCost"	"1000"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemSellable" "0"
@@ -11942,7 +11945,7 @@
 		
 		"AbilityCooldown"	"48"
 		"AbilityCastPoint"	"0.1"
-		"AbilityManaCost"	"800"
+		"AbilityManaCost"	"500"
 		"AbilityCastRange"	"1000"
 		"ID"	"2814"
 		"ItemQuality"	"component"
@@ -12005,7 +12008,7 @@
 		
 		"AbilityCooldown"	"48"
 		"AbilityCastPoint"	"0.1"
-		"AbilityManaCost"	"1600"
+		"AbilityManaCost"	"1000"
 		"AbilityCastRange"	"1000"
 		"ID"	"3842"
 		"ItemQuality"	"component"
@@ -12539,6 +12542,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-30"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -12798,6 +12802,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-30"
 				}
 				"Passive"	"0"
 				"Duration"	"5"
@@ -12960,6 +12965,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"50"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "-50"
 				}
 				"Passive"	"0"
 				"Duration"	"5"

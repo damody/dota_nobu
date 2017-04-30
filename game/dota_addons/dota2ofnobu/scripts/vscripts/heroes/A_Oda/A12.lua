@@ -22,16 +22,28 @@ function A12W( keys )
 	-- end
 	local caster = keys.caster
 	local ability = keys.ability
+	local point = caster:GetAbsOrigin()
 	caster.abilityName = "A12W"
-
+	local group = {}
+    local radius = 500
+    group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
+    local knockbackProperties =
+	{
+		center_x = point.x,
+		center_y = point.y,
+		center_z = point.z,
+		duration = 0.3,
+		knockback_duration = 0.3,
+		knockback_distance = 400,
+		knockback_height = 0,
+		should_stun = 1
+	}
+	for _,v in ipairs(group) do
+		ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
+		v:AddNewModifier( caster, nil, "modifier_knockback", knockbackProperties )
+	end
 	if caster.A12D_B == true then
-	    local group = {}
-	    local radius = 500
-	    group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
-		for _,v in ipairs(group) do
-			ability:ApplyDataDrivenModifier(caster,v,"modifier_A12W",nil)
-		end
-
+		ability:ApplyDataDrivenModifier(caster,v,"modifier_A12W",nil)
 		ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	else
 		ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -141,14 +153,13 @@ function A12T( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local special_dmg = ability:GetLevelSpecialValueFor("Special_Damage",ability:GetLevel() - 1)
+	local SpendMana = ability:GetLevelSpecialValueFor("SpendMana",ability:GetLevel() - 1)
 	local damage = 0 
 		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == nil then
 			if caster.A12T == true then
-				damage = caster:GetMana()*special_dmg/100*3
-			else
-				damage = caster:GetMana()*special_dmg/100
+				caster:SetMana(SpendMana*5+caster:GetMana())
 			end
-			
+			damage = caster:GetMana()*special_dmg/100
 			if (target:IsMagicImmune()) then
 				AMHC:Damage( caster,target,damage*0.30,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			else
