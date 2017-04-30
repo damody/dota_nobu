@@ -1,0 +1,427 @@
+// 佐久間盛政
+"DOTAAbilities"
+{
+	"A24_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/a24d/a24d.vpcf" //w
+			"particle"  "particles/a24w_slow/a24w_slow.vpcf"
+			"particle"  "particles/a24w2/a24w2.vpcf" //w explosion
+			"particle"  "particles/a24w/a24w.vpcf"
+			"particle"  "particles/a24e2/a24e2.vpcf" //e
+			"particle"  "particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf"
+			"particle"  "particles/a24r/a24r.vpcf"
+			"particle"	"particles/a24t/a24t.vpcf"
+			"particle"  "particles/a24w3/a24w3.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+	}
+	// 血盾集陣
+	"A24D"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A24/A24D"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"6"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"	"4"
+
+		"Modifiers"
+		{
+			"modifier_A24D_count"
+			{
+				"Passive" "1"
+				"IsDebuff" "0"
+
+			}
+			"modifier_A24D"
+			{
+
+				"IsHidden" "0"
+				"Passive" "1"
+				"IsDebuff" "0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%magicres_bonus"
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A24.lua"
+						"Function"		"modifier_A24D_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"ThinkInterval"		"1.3"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A24.lua"
+						"Function"							"modifier_A24D_OnIntervalThink"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"magicres_bonus"	"10 13 16 19"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"shield_max"	"450 550 650 750"
+			}
+		}
+	}
+
+	// 屠戮彈
+	"A24W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A24/A24W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"AbilityCastPoint"	"0.1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"8 7 6 5"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Venomancer.Attack"
+				//sounds\ambient\horn_radiant.vsnd venomancer_venm_attack_01
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A24.lua"
+				"Function"	"A24W_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A24.lua"
+				"Function"	"A24W_OnProjectileHitUnit"
+				"Target"	"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Batrider.Flamebreak.Impact"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A24W"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"3"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-30"
+				}
+				"EffectName"		"particles/a24w_slow/a24w_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"100 190 280 370"
+	}
+	
+	// 血之突進
+	"A24E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A24/A24E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
+		"AbilityCooldown"	"8"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"800"
+		"LevelsBetweenUpgrades"	"2"
+		"precache"
+		{
+			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"	"particles/b08w2/b08w2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			//"FireSound"
+			//{
+				//"Target"	"CASTER"
+				//"EffectName"	"Hero_Batrider.StickyNapalm.Impact"
+			//}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"Function"	"A24E_OnSpellStart"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A24.lua"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A24E_effect"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_A24E_effect"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A24E_effect"
+			{
+				"IsHidden"	"1"
+				"Duration"	"0.5"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/a24e2/a24e2.vpcf"
+						"EffectAttachType"	"attach_attack1"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+						}
+					}
+				}
+				"IsBuff"	"0"
+			}
+			"modifier_A24E"
+			{
+				"IsHidden"	"1"
+				"Duration"	"6"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%atk_bonus"
+				}
+				"IsBuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_bonus"	"30 50 70 90"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"sheild_bonus"	"35 70 105 140"
+			}
+
+		}
+	}
+
+	//血之共鳴
+	"A24R"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"	"custom/A24/A24R"
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"5"
+		"AbilityManaCost"           				"0"
+		"AbilityCastRange"				"2500"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"						"modifier_A24R"
+				"Target" 							"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A24.lua"
+				"Function"		"A24R_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A24R"
+			{
+				"Duration"		"5.5"
+				"IsDebuff"		"0"
+				"IsHidden"		"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/a24r/a24r.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPoints"
+						{
+							"01"	"1 0 0"
+						}
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_bonus"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"55"
+				}
+				
+			}
+			"modifier_A24R_passive"
+			{
+
+				"IsHidden" "1"
+				"Passive" "1"
+				"IsDebuff" "0"
+				"ThinkInterval"		"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A24.lua"
+						"Function"							"modifier_A24R_passive_OnIntervalThink"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"move_bonus"			"10 15 20 25"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"life_above"			"15 25 35 45"
+			}
+		}
+	}
+
+	// 浴血侵攻
+	"A24T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"	"custom/A24/A24T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		//"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"105 90 75"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST2_STATUE"
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A24.lua"
+				"Function"						"A24T_OnUpgrade"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Roshan.Slam"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A24.lua"
+				"Function"		"A24T_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A24T"
+				"Target" 		"CASTER"
+			}
+			"AttachEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/a24t/a24t.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A24T"
+			{
+				"IsDebuff"	"0"
+				"Duration"	"17"
+			}
+
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"stun"		"0.5 0.8 1.1"
+			}
+		}
+	}
+} // END DOTAAbilities
