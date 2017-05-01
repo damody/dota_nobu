@@ -18,21 +18,9 @@ function Shock( keys )
 		AMHC:Damage(caster,it,275,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 	local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, caster)
-	Timers:CreateTimer(1, function ()
+	Timers:CreateTimer(2, function ()
 		ParticleManager:DestroyParticle(particle, true)
 		end)
-	--跟電卷共用CD
-	--[[
-	for itemSlot=0,5 do
-		local item = caster:GetItemInSlot(itemSlot)
-		if item ~= nil then
-			local itemName = item:GetName()
-			if (itemName == "item_lightning_scroll") then
-				item:StartCooldown(10)
-			end
-		end
-	end
-	]]
 end
 
 --雪走
@@ -198,3 +186,64 @@ function Shock5( keys )
 	end
 end
 
+
+function Shock_book( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local point = caster:GetAbsOrigin()
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+						caster:GetAbsOrigin(),
+						nil,
+						450,
+						DOTA_UNIT_TARGET_TEAM_ENEMY,
+						DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+						DOTA_UNIT_TARGET_FLAG_NONE,
+						FIND_ANY_ORDER,
+						false)
+	for _,it in pairs(direUnits) do
+		ability:ApplyDataDrivenModifier(caster, it,"modifier_frost_bite_root_datadriven",{duration=1.5})
+		AMHC:Damage(caster,it,1000,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
+	local pointx = point.x
+	local pointy = point.y
+	local pointz = point.z
+	local pointx2
+	local pointy2
+	local a	
+	local maxrock = 10
+	for i=1,maxrock do
+		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
+		pointx2 	=  	pointx 	+ 	250 	* 	math.cos(a)
+		pointy2 	=  	pointy 	+ 	250 	*	math.sin(a)
+		point = Vector(pointx2 ,pointy2 , pointz)
+
+		local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point,false,nil,nil,caster:GetTeam())
+		dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=2})
+		dummy:FindAbilityByName("majia"):SetLevel(1)
+		local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, dummy)
+		Timers:CreateTimer(2, function ()
+			ParticleManager:DestroyParticle(particle, true)
+			end)
+	end
+end
+
+function Shock_book2( keys )
+	if keys.event_ability:IsToggle() then return end
+	
+	local caster = keys.caster
+	local ability = keys.ability
+	local point = caster:GetAbsOrigin()
+
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+						caster:GetAbsOrigin(),
+						nil,
+						450,
+						DOTA_UNIT_TARGET_TEAM_ENEMY,
+						DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+						DOTA_UNIT_TARGET_FLAG_NONE,
+						FIND_ANY_ORDER,
+						false)
+	for _,it in pairs(direUnits) do
+		ability:ApplyDataDrivenModifier(caster, it,"modifier_frost_bite_root_datadriven",{duration=0.3})
+	end
+end

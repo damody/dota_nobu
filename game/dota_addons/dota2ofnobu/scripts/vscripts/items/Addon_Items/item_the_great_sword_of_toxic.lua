@@ -5,18 +5,16 @@ function Shock( keys )
 	local dmg = 560
 	local int = 0
 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	local mod = "particles/b33/b33r_old_poison.vpcf"
+	local part = ParticleManager:CreateParticle(mod, PATTACH_ABSORIGIN, target)
 	Timers:CreateTimer( 0,function ()
-		local mod = "particles/b33/b33r_old_poison.vpcf"
 		if int <= 4 then
 			int = int + 1
 			AMHC:Damage( caster,target,50,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			local part = ParticleManager:CreateParticle(mod, PATTACH_ABSORIGIN, target)
-			Timers:CreateTimer(2.9, function ()
-				ParticleManager:DestroyParticle(part, false)
-			end)
 			PopupDamageOverTime(target, 50)
 			return 1
 		else
+			ParticleManager:DestroyParticle(part, false)
 			return nil
 		end
 	end)
@@ -62,4 +60,14 @@ function Shock_poisonous_ring( keys )
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_poisonous_ring",nil)
 		AMHC:Damage( caster,target,20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )	
 	end
+end
+
+function Shock_bow_of_scorpion( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local dmg = 560
+	local int = 0
+	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_the_great_bow_of_scorpion2",nil)
 end
