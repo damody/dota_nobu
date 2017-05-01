@@ -104,13 +104,13 @@ function B14T_OnIntervalThink( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	if GameRules:IsDaytime() then
-		if caster:HasModifier("modifier_invisible") then
-			caster:RemoveModifierByName("modifier_invisible")
+		if caster:HasModifier("modifier_B14T2") then
+			caster:RemoveModifierByName("modifier_B14T2")
 		end
 	else
 		if caster.B14T_timer == nil then
-			if not caster:HasModifier("modifier_invisible") then
-				caster:AddNewModifier( caster , ability , "modifier_invisible" , nil )
+			if not caster:HasModifier("modifier_B14T2") then
+				ability:ApplyDataDrivenModifier(caster,caster,"modifier_B14T2",nil)
 			end
 		end
 	end
@@ -126,7 +126,7 @@ function B14T_OnAction( keys )
 		end
 
 		caster.B14T_timer = Timers:CreateTimer( 0.5, function ()
-			caster:AddNewModifier( caster , ability , "modifier_invisible" , nil )
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_B14T2",nil)
 	      	caster.B14T_timer = nil
 	    end)
 	end

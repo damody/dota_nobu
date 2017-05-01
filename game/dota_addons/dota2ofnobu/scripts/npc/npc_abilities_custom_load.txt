@@ -160,6 +160,64 @@
 			}
 		}
 	}
+	// 1300緩小兵攻速的靈氣
+	"magical_1300"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_127"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"Modifiers"
+		{
+			"modifier_magical_1300_aura"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"	"TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"	"TARGET"
+					}
+				}
+				"Aura"	"modifier_magical_1300"
+				"Aura_Radius"	"500"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster"	"0"
+			}
+			"modifier_magical_1300"
+			{
+				"Passive"	"0"
+				"EffectName"		"particles/items_fx/aura_endurance.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-150" //攻速
+				}
+			}
+		}
+	}
 	// 犒賞
 	"reward6300"
 	{
@@ -472,7 +530,7 @@
 		{
 			"modifier_warrior_souls_debuff"
 			{
-				"Passive"          "1"  
+				"Passive"          "0"
 	            "IsHidden"      "0"
 	            "Properties"
 				{
@@ -506,7 +564,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
 						"Function"	"warrior_souls_OnAttackLanded"
 						"dmg"	"%attack_damage"
 					}
@@ -640,7 +698,7 @@
 	            "IsHidden"      "1"
 
 	            "Aura"        "modifier_show_invi"
-        		"Aura_Radius" "1000"
+        		"Aura_Radius" "1200"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -2087,7 +2145,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
 		"AbilityManaCost"	"20"
-		"AOERadius"		"900"
+		"AOERadius"		"1200"
 
 		"OnSpellStart"
 		{
@@ -2096,22 +2154,6 @@
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"findanything"
 				"Target"	"POINT"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_wantgohome"
-			{
-				"EffectName"	"particles/item/war_speedup3.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OnTakeDamage"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_wantgohome"
-						"Target" 		"TARGET"
-					}
-				}
 			}
 		}
 	}

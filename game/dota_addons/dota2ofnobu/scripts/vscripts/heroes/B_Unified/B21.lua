@@ -335,6 +335,7 @@ function B21T_old_OnHealthChange( keys )
 	end
 	if ability.modifier == nil then
 		if hp <= hp_threshold then
+			caster:SetHealth(hp_threshold)
 			ability.modifier = ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old",nil)
 		end
 	else

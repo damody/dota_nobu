@@ -35,7 +35,7 @@ function Shock( keys )
 	if (ran > 20) then
 		caster.big_tachi_count = caster.big_tachi_count + 1
 	end
-	if (caster.big_tachi_count > 5 or ran <= 20) then
+	if (caster.big_tachi_count >= 5 or ran <= 20) then
 		caster.big_tachi_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 		local rate = caster:GetAttackSpeed()

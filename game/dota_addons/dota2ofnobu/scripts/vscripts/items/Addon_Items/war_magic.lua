@@ -76,6 +76,12 @@ function findanything( keys )
 			local donkey = CreateUnitByName("findeverything_unit", point, true, nil, nil, caster:GetTeamNumber())
 			donkey:FindAbilityByName("true_gem"):SetLevel(1)
 			donkey:FindAbilityByName("majia_2"):SetLevel(1)
+			local spell_hint_table = {
+				duration   = aura_duration,		-- 持續時間
+				radius     = 1200,		-- 半徑
+				teamonly   = true,
+			}
+			donkey:AddNewModifier(donkey,nil,"nobu_modifier_spell_hint",spell_hint_table)
 			if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
 				GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動偵隱戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 			else
@@ -193,12 +199,7 @@ end
 function speedup( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍即將發動神速戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-	else
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍即將發動神速戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
-	end
-	Timers:CreateTimer(3, function()
+	Timers:CreateTimer(0.5, function()
 		if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
 			GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動神速戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 		else
@@ -218,12 +219,7 @@ end
 function moreattack( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍即將發動強攻戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-	else
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍即將發動強攻戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
-	end
-	Timers:CreateTimer(3, function()
+	Timers:CreateTimer(0.5, function()
 		if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
 			GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動強攻戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 		else
@@ -242,12 +238,7 @@ end
 function regen( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍即將發動再起戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-	else
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍即將發動再起戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
-	end
-	Timers:CreateTimer(3, function()
+	Timers:CreateTimer(0.5, function()
 		if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
 			GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動再起戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 		else
@@ -267,19 +258,14 @@ end
 function lessattack( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍即將發動干擾戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-	else
-		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍即將發動干擾戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
-	end
-	Timers:CreateTimer(3, function()
+	Timers:CreateTimer(0.5, function()
 		if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
 			GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動干擾戰法</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 		else
 			GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動干擾戰法</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
 		end
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  90000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			nil,  90000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
 
 		for _, it in pairs(group) do

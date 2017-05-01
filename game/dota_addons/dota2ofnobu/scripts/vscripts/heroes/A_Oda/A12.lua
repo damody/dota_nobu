@@ -151,6 +151,11 @@ function OnToggleOff( keys )
 	local caster = keys.caster
 end
 
+A12_EXCLUDE_TARGET_NAME = {
+  com_general = true,
+  com_general2 = true,
+}
+
 function A12T( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -158,19 +163,22 @@ function A12T( keys )
 	local special_dmg = ability:GetLevelSpecialValueFor("Special_Damage",ability:GetLevel() - 1)
 	local SpendMana = ability:GetLevelSpecialValueFor("SpendMana",ability:GetLevel() - 1)
 	local damage = 0 
+	if A12_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == nil then
-			if caster.A12T == true then
-				caster:SetMana(SpendMana*5+caster:GetMana())
-			end
 			damage = caster:GetMana()*special_dmg/100
+			if caster.A12T == true then
+				damage = damage * 2
+			end
+			
 			if (target:IsMagicImmune()) then
-				AMHC:Damage( caster,target,damage*0.30,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,target,damage*0.3,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			else
 				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 			AMHC:CreateNumberEffect(target,damage,2,AMHC.MSG_ORIT ,{0,0,225},4)
 			--print("A12T"..tostring(damage))		
 		end
+	end
 	caster.A12T = false
 end
 
@@ -187,11 +195,6 @@ function A12T_Start( keys )
 		caster:SpendMana(SpendMana,ability)	--消耗mana
 		if caster:GetMana() < SpendMana then
 		else
-			caster.A12D_Time  = caster.A12D_Time  + 1
-			if caster.A12D_Time  == 4 then
-				caster:FindAbilityByName("A12D"):SetLevel(1)
-			end
-
 			if caster.A12D_B == true then
 				ParticleManager:CreateParticle("particles/a12w2/a12w2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 				caster.A12T = true
@@ -208,7 +211,9 @@ function A12D_OnAbilityExecuted( keys )
 	if keys.event_ability:IsToggle() then return end
 	local caster = keys.caster
 	local handle = caster:FindModifierByName("modifier_A12D")
-	
+	if caster.A12D_Time == nil then
+		caster.A12D_Time = 0
+	end
 	if handle then
 		if handle:GetStackCount() < 4 then
 			handle:SetStackCount(handle:GetStackCount() + 1)

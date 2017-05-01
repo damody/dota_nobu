@@ -35,7 +35,7 @@ function Shock( keys )
 	if (ran > 25) then
 		caster.great_sword_of_precision_count = caster.great_sword_of_precision_count + 1
 	end
-	if (caster.great_sword_of_precision_count > 4 or ran <= 25) then
+	if (caster.great_sword_of_precision_count >= 4 or ran <= 25) then
 		caster.great_sword_of_precision_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 		local rate = caster:GetAttackSpeed()

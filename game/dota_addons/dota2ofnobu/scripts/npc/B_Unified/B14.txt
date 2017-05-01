@@ -306,6 +306,38 @@
 				    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 		"%B14T_atkBonus"
 				}
 			}
+			"modifier_B14T2"
+			{
+				"IsHidden"		"0"
+				"IsPurgable"	"0"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_INVISIBILITY_LEVEL" 	"0"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B14T2"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B14T2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
 			"modifier_B14T_passive"
 			{
 				"IsHidden"			"1"
@@ -344,7 +376,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"B14T_duration"			"20.0"
+				"B14T_duration"			"20"
 			}
 			"02"
 			{
@@ -677,7 +709,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B14T_atkBonus"			"45 70 95"
+				"B14T_atkBonus"			"80 120 160"
 			}
 			"03"
 			{

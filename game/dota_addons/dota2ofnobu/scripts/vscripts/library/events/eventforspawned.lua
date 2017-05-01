@@ -45,6 +45,7 @@ function Nobu:OnHeroIngame( keys )
         hero.herodamage = 0
         hero:AddNewModifier(caster,ability,"modifier_record",{})
         hero:FindModifierByName("modifier_record").caster = caster
+        hero:AddItem(CreateItem("item_S01", hero, hero))
         --hero:AddItem(CreateItem("item_flash_ring", hero, hero))
     		--hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
     		

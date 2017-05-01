@@ -35,7 +35,7 @@ function Shock( keys )
 	if (ran > 27) then
 		caster.kousetsusamonnji_count = caster.kousetsusamonnji_count + 1
 	end
-	if (caster.kousetsusamonnji_count > 4 or ran <= 36) then
+	if (caster.kousetsusamonnji_count >= 4 or ran <= 27) then
 		caster.kousetsusamonnji_count = 0
 		StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 		local rate = caster:GetAttackSpeed()

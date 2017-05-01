@@ -108,6 +108,22 @@ function C05T_OnSpellStart( keys )
 	end)
 end
 
+function C05T_OnAbilityPhaseStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local level = ability:GetLevel()
+	local point = keys.target_points[1]
+
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 3000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+  	
+	for _,v in ipairs(group) do
+		if v:GetUnitName() == "com_general" then
+			caster:Interrupt()
+			break
+		end
+	end
+end
+
 function C05T_OnChannelInterrupted( keys )
 	local caster = keys.caster
 	local ability = keys.ability

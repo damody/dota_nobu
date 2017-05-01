@@ -297,8 +297,9 @@ function A24E_OnSpellStart( keys )
 	--move
 	caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
 	caster:SetAbsOrigin(target:GetAbsOrigin())
-
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = stun_duration})
+	if not target:IsMagicImmune() then
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = stun_duration})
+	end
 	AMHC:Damage(caster,target,1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	
 end

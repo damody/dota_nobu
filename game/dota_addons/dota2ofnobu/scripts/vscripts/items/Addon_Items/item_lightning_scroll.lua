@@ -237,7 +237,7 @@ function Shock2( keys )
 		if (ran > chance) then
 			caster.raikiri = caster.raikiri + 1
 		end
-		if (caster.raikiri > (100/chance+1) or ran <= chance) then
+		if (caster.raikiri > (100/chance) or ran <= chance) then
 			caster.raikiri = 0
 			--【KV】
 			--caster:SetForwardVector(vec)
@@ -287,7 +287,7 @@ function Shock2( keys )
 						ParticleManager:SetParticleControl(particle,1, tem_point)
 					
 						--【DMG】
-						ApplyDamage({ victim = unit, attacker = caster, damage = 400, damage_type = AbilityDamageType})
+						ApplyDamage({ victim = unit, attacker = caster, damage = damage, damage_type = AbilityDamageType})
 
 						-- Increment counter
 						targets_shocked = targets_shocked + 1

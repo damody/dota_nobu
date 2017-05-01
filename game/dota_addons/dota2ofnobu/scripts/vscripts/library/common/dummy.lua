@@ -84,26 +84,38 @@ function killdummy( keys )
 	end
 end
 
+_G.EXCLUDE_TARGET_NAME = {
+  npc_dota_cursed_warrior_souls = true,
+  npc_dota_the_king_of_robbers  = true,
+  com_general = true,
+  com_general2 = true,
+}
 
 function CP_Posistion( keys )
 	local caster = keys.caster
 	caster.origin_pos = caster:GetAbsOrigin()
 	Timers:CreateTimer(1, function ()
-    if IsValidEntity(caster) and not caster:IsIllusion() and not _G.mo then
-      local donkey = CreateUnitByName("cp_soldiercamp", caster.origin_pos, true, caster, caster, caster:GetTeamNumber())
-      donkey:SetAbsOrigin(caster.origin_pos)
-      donkey:AddAbility("majia_cp"):SetLevel(1)
-      donkey:AddAbility("for_no_damage"):SetLevel(1)
-      Timers:CreateTimer(1, function ()
-      	if caster~= nil and IsValidEntity(caster) and caster:IsAlive() then
-      		return 1
-      	else
-          Timers:CreateTimer(10, function ()
-      		  donkey:ForceKill(true)
-            end)
-      	end
-    	end)  	
-      return nil
+    if not _G.mo then
+      if IsValidEntity(caster) and not caster:IsIllusion() then
+        local donkey = CreateUnitByName("cp_soldiercamp", caster.origin_pos, true, caster, caster, caster:GetTeamNumber())
+        donkey:SetAbsOrigin(caster.origin_pos)
+        donkey:AddAbility("majia_cp"):SetLevel(1)
+        donkey:AddAbility("for_no_damage"):SetLevel(1)
+        Timers:CreateTimer(1, function ()
+        	if caster~= nil and IsValidEntity(caster) and caster:IsAlive() then
+        		return 1
+        	else
+            Timers:CreateTimer(10, function ()
+        		  donkey:ForceKill(true)
+              end)
+        	end
+      	end)  	
+        return nil
+      end
+    else
+      if _G.EXCLUDE_TARGET_NAME[caster:GetUnitName()] == nil then
+        caster:ForceKill(true)
+      end
     end
   end)
 	--donkey:AddAbility("majia_cp"):SetLevel(1)

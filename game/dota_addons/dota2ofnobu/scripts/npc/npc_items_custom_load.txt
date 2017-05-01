@@ -1657,7 +1657,7 @@
 		"AbilityTextureName"	"item_custom/S01_2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"26"
+		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"0"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2500"
@@ -1677,25 +1677,16 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"Heal"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_ITEM_D02"
+				"Target"        "CASTER"
+				"HealAmount"	"200"
 			}
-		}
-		// Special
-		
-		"AbilitySpecial"
-		{
-			"01"
+			"RunScript"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus"	"50"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"5"
+				"ScriptFile"	"items/Addon_Items/item_rations.lua"
+				"Function"		"Shock"
+				"Mana"			"100"
 			}
 		}
 	}
@@ -6221,8 +6212,8 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"50"
-		
+		"AbilityCooldown"	"25"
+		"AbilitySharedCooldown" "share_ronin_jitte"
 		"AbilityManaCost"	"450"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"500"
@@ -6284,8 +6275,8 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"50"
-		
+		"AbilityCooldown"	"25"
+		"AbilitySharedCooldown" "share_ronin_jitte"
 		"AbilityManaCost"	"450"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"500"
@@ -6347,8 +6338,8 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"50"
-		
+		"AbilityCooldown"	"25"
+		"AbilitySharedCooldown" "share_ronin_jitte"
 		"AbilityManaCost"	"450"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"500"
@@ -11031,7 +11022,7 @@
 		}
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_prophet_armor"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -11042,7 +11033,7 @@
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "250" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
@@ -11050,7 +11041,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "15"	//魔抗
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20"	//魔抗
 				}
 			}
 			"Passive_true_gem"
@@ -13555,7 +13546,7 @@
 		
 		"Modifiers"
 		{
-			"Passive_lightning_katana"
+			"Passive_storm"
 			{
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -13578,7 +13569,15 @@
 				}
 			}
 		}
-
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_storm_book.lua"
+				"Function"	"storm_break"
+			}
+		}
 		"AbilitySpecial"
 		{
 			"01"
@@ -13599,7 +13598,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"6.0 6.0 6.0"
+				"duration"	"8"
 			}
 			"05"
 			{
@@ -13624,7 +13623,7 @@
 			"09"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"66"
+				"damage"	"50"
 			}
 		}
 	}
@@ -15898,7 +15897,7 @@
 	{
 	    "ID" "3859"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "0"
+		"ItemCost" "500"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"ItemResult" "item_wakizashi"  //合成後物品
@@ -15945,7 +15944,7 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "25" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "8"	//防禦
 				}
 			}
