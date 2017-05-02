@@ -30,7 +30,7 @@ function A15E_OnSpellStart( keys )
 			moonCount = moonCount + 1
 			local randomPoint = point + RandomVector( RandomInt( 0 , radius ) )
 
-			local particle = ParticleManager:CreateParticle( "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf", PATTACH_POINT, caster)
+			local particle = ParticleManager:CreateParticle( "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf", PATTACH_CUSTOMORIGIN, nil)
 			ParticleManager:SetParticleControl( particle, 0, randomPoint )
 			ParticleManager:SetParticleControl( particle, 1, randomPoint )
 			ParticleManager:SetParticleControl( particle, 2, randomPoint )

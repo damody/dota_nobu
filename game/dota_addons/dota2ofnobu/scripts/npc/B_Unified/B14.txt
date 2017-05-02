@@ -70,10 +70,10 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastPoint"                          "0.1"
-		"AbilityCastRange"							"128"
+		"AbilityCastRange"							"250"
 		"AbilityCooldown"                           "15"
 		"AbilityManaCost"                           "100 125 150 175"
-		"AOERadius"									"%B14W_radius"
+		"AOERadius"									"300"
 
 		"OnSpellStart"
 		{
@@ -209,22 +209,11 @@
 				}
 				"OnAttackStart"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"				"modifier_B14R_Crit"
-						"Target"					"CASTER"
-					}
-					"Random"
-					{
-						"Chance"					"18"
-						"OnSuccess"
-						{
-							"RunScript"
-							{
-								"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
-								"Function"							"B14R_OnSuccess"
-							}
-						}
+						"Target"	"CASTER"
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+						"Function"							"B14R_OnAttackStart"
 					}
 				}
 			}
@@ -258,6 +247,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"B14R_critScale"		"200 250 300 350"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance" "18" // %
 			}
 		}
 
@@ -474,7 +468,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B14D_old_damage"		"400 600 800"
+				"B14D_old_damage"		"1000 1400 1800"
 			}
 			"02"
 			{
@@ -502,8 +496,8 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastPoint"                          "0.1"
-		"AbilityCastRange"							"128"
-		"AbilityCooldown"                           "16 13 10 7"
+		"AbilityCastRange"							"250"
+		"AbilityCooldown"                           "7"
 		"AbilityManaCost"                           "100 120 140 160"
 
 		"OnSpellStart"
@@ -540,7 +534,7 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"    					"custom/B14/B14E"
 
-		"AbilityCooldown"							"40 36 32 28"
+		"AbilityCooldown"							"28 26 24 22"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"70 80 90 100"
 		"AbilityCastRange"              			"800"
@@ -596,24 +590,14 @@
 			{
 				"Passive"			"1"
 				"IsPurgable"		"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 				"OnAttackStart"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"				"modifier_B14R_old_Crit"
-						"Target"					"CASTER"
-					}
-					"Random"
-					{
-						"Chance"					"20"
-						"OnSuccess"
-						{
-							"RunScript"
-							{
-								"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
-								"Function"							"B14R_old_OnSuccess"
-							}
-						}
+						"Target"	"CASTER"
+						"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
+						"Function"							"B14R_old_OnAttackStart"
 					}
 				}
 			}
@@ -625,14 +609,6 @@
            		{
                 	"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"    "%B14R_critScale"
            		}
-           		"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"				"modifier_B14R_old_Crit"
-						"Target"					"CASTER"
-					}
-				}
        		}
 		}
 
@@ -642,6 +618,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"B14R_critScale"		"200 250 300 350"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_chance" "20" // %
 			}
 		}
 

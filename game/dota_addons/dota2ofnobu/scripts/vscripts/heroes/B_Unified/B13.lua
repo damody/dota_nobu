@@ -183,12 +183,7 @@ function B13R_old( keys )
 
 
 	local active_delay = 0
-	local mine
-	if caster.skin == "school" then
-		mine = CreateUnitByName("A26_MINE_school", center, false, caster, caster, caster:GetTeamNumber())
-	else
-		mine = CreateUnitByName("A26_MINE", center, false, caster, caster, caster:GetTeamNumber())
-	end
+	local mine = CreateUnitByName("B13_MINE", center, false, caster, caster, caster:GetTeamNumber())
 	
 	mine:AddAbility("for_no_collision"):SetLevel(1)
 	mine:AddAbility("for_magic_immune"):SetLevel(1)

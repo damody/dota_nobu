@@ -281,22 +281,19 @@ end
 function C06D_old_OnAbilityPhaseStart( keys )
 	local caster = keys.caster
 	--caster:Stop()
-	print("C06D_old_OnAbilityPhaseStart")
 	if GameRules:IsDaytime() or caster:FindModifierByName("modifier_C06D_old_check") then
 		caster:Interrupt()
-		print("C06D_old_OnAbilityPhaseStart")
 	end
 end
 
 function C06D_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
+	local ability = keys.ability
 	caster:Stop()
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_C06D_old", {} )
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_invisible", {} )
 end
-
-
 
 function C06E_old_OnSpellStart( keys )
 	local caster = keys.caster
@@ -307,7 +304,7 @@ function C06E_old_OnSpellStart( keys )
 		ParticleManager:SetParticleControl(particle,0, target:GetAbsOrigin())
 	end
 	local level=ability:GetSpecialValueFor("level")
-	local money=target:GetGoldBounty()
+	local money=target:GetGoldBounty() * 6
 	
 	ExecuteOrderFromTable(order)
 	if not target:IsHero() then
@@ -315,9 +312,6 @@ function C06E_old_OnSpellStart( keys )
 		AMHC:Damage(caster,keys.target,keys.target:GetMaxHealth(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 end
-
-
-
 
 function C06T_old_OnSpellStart( keys )
 	local caster = keys.caster

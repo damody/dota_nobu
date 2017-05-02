@@ -87,12 +87,16 @@ function C14T_OnSpellStart( event )
 	local caster = event.caster
 	local duration = ability:GetSpecialValueFor("During")
 	caster:EmitSound( "Hero_Nevermore.ROS_Flames")
+	caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 	--local ifx = ParticleManager:CreateParticle( "particles/c20r_real/c20r.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	--ParticleManager:SetParticleControl( ifx, 0, caster:GetAbsOrigin())
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C14T_model", {duration=duration})
 end
 
-
+function C14T_OnDestroy( event )
+	local caster = event.caster
+	caster:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+end
 
 function modifier_C14T_OnAttackLanded(keys)
 	local caster = keys.caster

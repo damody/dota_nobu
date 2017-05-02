@@ -294,9 +294,13 @@
 						"Target" 		"CASTER"
 					}
 				}
-				"OnCreated"
+				"OnDestroy"
 				{
-
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+						"Function"		"C20T_OnDestroy"
+					}
 				}
 			}
 
@@ -606,9 +610,13 @@
 						"Target" 		"CASTER"
 					}
 				}
-				"OnCreated"
+				"OnDestroy"
 				{
-
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+						"Function"		"C20T_OnDestroy"
+					}
 				}
 			}
 

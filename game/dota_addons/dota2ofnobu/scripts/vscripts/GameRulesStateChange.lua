@@ -98,13 +98,12 @@ function Nobu:OnGameRulesStateChange( keys )
     Timers:CreateTimer(10, function()
     	if _G.mo then
 	    	for _,hero in ipairs(HeroList:GetAllHeroes()) do
-				if not hero:IsIllusion() then
+				if not hero:IsIllusion() and not hero:HasModifier("modifier_play_1v1") then
 					hero:AddAbility("play_1v1"):SetLevel(1)
-					local nobu_id = _G.heromap[hero:GetName()]
-					GameRules: SendCustomMessage("<font color='#aaaaff'>".._G.hero_name_zh[nobu_id].."得到 "..hero.score.." 分</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 				end
 			end
 	    end
+	    return 5
     end)
     
 

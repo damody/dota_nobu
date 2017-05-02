@@ -11576,7 +11576,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 				}
 			}
 		}
@@ -11659,7 +11659,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20" //魔抗
 				}
 			}
@@ -11750,7 +11750,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "75"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 				}
 			}
 			"shield_modifier"
@@ -11846,14 +11846,13 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "15"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
-					"MODIFIER_PROPERTY_MANA_BONUS" "300"				//魔
+					"MODIFIER_PROPERTY_MANA_BONUS" "300"			//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "0"	//跑速
 				}
 			}
 		}
@@ -14639,7 +14638,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 				}
 			}
 		}
@@ -14723,7 +14722,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "60"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20" //魔抗
 				}
 			}
@@ -14815,7 +14814,7 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "75"	//跑速
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 				}
 			}
 			"shield_modifier"
@@ -16752,7 +16751,7 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/the_great_bow_of_scorpion"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -16764,6 +16763,7 @@
 		"AbilityManaCost"	"185"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"1000"
+		"AoERadius"	"500"
 		"ID"	"3870"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -16773,20 +16773,12 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_toxic.lua"
-				"Function"	"OnEquip"
-			}
-		}
 		"OnUnequip"
 		{
 			"RunScript"
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_toxic.lua"
-				"Function"	"OnUnequip"
+				"Function"	"OnUnequip_scorpion"
 			}
 		}
 		"OnSpellStart"
@@ -16795,6 +16787,16 @@
 			{
 				"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_toxic.lua"
 				"Function"				"Shock_bow_of_scorpion"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_toxic.lua"
+				"Function"				"Shock_bow_of_scorpion2"
+				"Target"	"TARGET"
 			}
 		}
 		"AbilitySpecial"
@@ -16807,6 +16809,15 @@
 		}
 		"Modifiers"
 		{
+			"Passive_the_great_bow_of_scorpion3"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "150"
+				}
+			}
 			"Passive_the_great_bow_of_scorpion"
 			{
 				"IsHidden"	"1"
@@ -16826,6 +16837,15 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "200" 	//回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_toxic.lua"
+						"Function"	"OnIntervalThink"
+					}
 				}
 			}
 			"modifier_the_great_bow_of_scorpion2"

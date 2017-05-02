@@ -215,3 +215,41 @@ function B14T_old_OnDestroy( keys )
 	local caster = keys.caster
 	caster:FindAbilityByName("B14D_old"):SetActivated(false)
 end
+
+function B14R_old_OnAttackStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local crit_chance = ability:GetSpecialValueFor("crit_chance")
+	caster:RemoveModifierByName("modifier_B14R_old_Crit")
+	if caster.B14R_count == nil then caster.B14R_count = 0 end
+	caster.B14R_count = caster.B14R_count + 1
+	if RandomInt(1,100)<=crit_chance or caster.B14R_count > (100/crit_chance) then
+		caster.B14R_count = 0
+		local rate = caster:GetAttackSpeed()+0.1
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B14R_old_Crit",{duration=rate})
+		if rate < 1 then
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+		else
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+		end
+	end
+end
+
+function B14R_OnAttackStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local crit_chance = ability:GetSpecialValueFor("crit_chance")
+	caster:RemoveModifierByName("modifier_B14R_Crit")
+	if caster.B14R_count == nil then caster.B14R_count = 0 end
+	caster.B14R_count = caster.B14R_count + 1
+	if RandomInt(1,100)<=crit_chance or caster.B14R_count > (100/crit_chance) then
+		caster.B14R_count = 0
+		local rate = caster:GetAttackSpeed()+0.1
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B14R_Crit",{duration=rate})
+		if rate < 1 then
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+		else
+		    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+		end
+	end
+end

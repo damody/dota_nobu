@@ -419,7 +419,7 @@
 		"AbilityManaCost"                      		"200 220 240 260"
 		"AbilityCastRange"              			"0"
 
-		"AOERadius"									"%A15E_radius"
+		"AOERadius"									"%A15E_vision"
 		
 		"OnSpellStart"
 		{
@@ -436,7 +436,7 @@
 			{
 	            "IsHidden"      	 "1"
 
-	            "ThinkInterval"	"1"
+	            "ThinkInterval"	"0.2"
 				"OnIntervalThink"
 				{
 					"ApplyModifier"
@@ -475,7 +475,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"A15E_radius"					"1000 1300 1600 1900"
+				"A15E_radius"					"1300 1600 1900 2200"
 			}
 			"03" //dummy vision 575             1000-575 1300-575 1600-575 1900-575
 			{

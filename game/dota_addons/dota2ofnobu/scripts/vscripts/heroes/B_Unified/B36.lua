@@ -318,3 +318,7 @@ function B36T_old_OnSpellStart( keys )
 	end
 end
 
+function B36D_old_OnCreated(keys)
+	local caster = keys.caster
+	caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
+end

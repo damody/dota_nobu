@@ -604,6 +604,10 @@ function Precache( context )
     "particles/a11w/a11wonkey_king_spring_water_base.vpcf",
     --地藏王菩薩木雕‧古物
     "particles/c19_projectile/c19_projectile.vpcf",
+    --狂風之書
+    "particles/item/wind.vpcf",
+    --蠍尾妖弓
+    "particles/b33r/b33r.vpcf",
 
     --注意要加,
     }

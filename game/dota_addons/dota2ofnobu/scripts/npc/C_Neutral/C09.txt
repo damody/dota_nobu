@@ -132,7 +132,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_cost"					"6 9 12 15"
+				"mana_cost"					"6 8 10 12"
 			}
 			"05"
 			{
@@ -323,7 +323,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"C09T_armor"		"-16 -22 -28"
+				"C09T_armor"		"-20 -28 -36"
 			}
 			"02"
 			{
@@ -455,7 +455,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_cost"					"8 10 12 14"
+				"mana_cost"					"5 7 9 11"
 			}
 			"05"
 			{
@@ -475,7 +475,7 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"    					"custom/C09/C09E"
-		"AbilityCooldown"							"15"
+		"AbilityCooldown"							"15 12 9 6"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"80 100 120 140"
 		
@@ -618,9 +618,9 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"                        "custom/C09/C09T"
 
-		"AbilityCooldown"           				"160 150 140"
+		"AbilityCooldown"           				"130 120 110"
 		"AbilityManaCost"           				"200 250 300"
-		"AbilityCastRange"							"%C09T_radius"
+		"AbilityCastRange"							"800"
 		
 		"OnSpellStart"
 		{

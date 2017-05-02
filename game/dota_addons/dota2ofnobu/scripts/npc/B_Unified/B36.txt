@@ -738,12 +738,15 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"600"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"572"
 				}
-				"Orb"
+				"OnCreated"
 				{
-					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
-					"ProjectileName"	"particles/b33r/b33r.vpcf"
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+						"Function"		"B36D_old_OnCreated"
+					}
 				}
 			}
 		}

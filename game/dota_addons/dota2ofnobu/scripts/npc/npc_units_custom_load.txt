@@ -4487,6 +4487,74 @@
 		"ModelScale"	"1"
 	}
 
+	"B13_MINE"
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/techies/fx_techiesfx_mine.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"0"			// Name of sound set.
+		"Level"						"1"
+		"ModelScale"				"1.5"
+		"SelectionGroup"			"B13_MINE"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					""			// Ability 1
+		"Ability2"					""			// Ability 2
+		"Ability3"					""			// Ability 3
+		"Ability4"					""			// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			// Damage range min.
+		"AttackDamageMax"			"0"			// Damage range max.	
+		"AttackRate"				"1.0"		// Speed of attack.
+		"AttackAnimationPoint"		"0.0"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
+		"AttackRange"				"0"			// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"140"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"	// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"  // has to be move ground because something about neutral camps
+		"MovementSpeed"				"0"		// Speed.
+		"MovementTurnRate"			"0"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1"		// Base health.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"64"		// Range of vision during day light.
+		"VisionNighttimeRange"		"64"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	}
+
 	"A26_MINE"
 	{
 		// General
@@ -4813,6 +4881,82 @@
 		"AttackDamageMax"	"575.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0.6"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"1100"
+		"AttackRange"	"1100"
+		"ProjectileSpeed"	"1800"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"800.0"
+		"BountyGoldMax"	"800.0"
+		"BountyXP"	"100"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"215"
+		"LumberCost"	"215"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"3"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"4000"
+		"StatusHealthRegen"	"50"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"ProjectileModel"	"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	// 守衛大將
+	"com_general3"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/samurai_harquebus/samurai_harquebus.vmdl"
+		"ModelScale"	"1.46"
+		"Level"	"10"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		"Ability1"	"for_magic_immune"
+		"Ability2"	"tofar_goback"
+		"Ability3"	"magical_800"
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"40"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"570.0"
+		"AttackDamageMax"	"575.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.2"
 		"AttackAnimationPoint"	"0.30"
 		"AttackAcquisitionRange"	"1100"
 		"AttackRange"	"1100"

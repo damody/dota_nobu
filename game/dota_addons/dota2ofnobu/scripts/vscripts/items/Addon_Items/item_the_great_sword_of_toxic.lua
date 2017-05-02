@@ -28,6 +28,23 @@ function OnUnequip( keys )
 	local caster = keys.caster
 end
 
+function OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if caster:GetAttackCapability() == DOTA_UNIT_CAP_RANGED_ATTACK then
+		ability:ApplyDataDrivenModifier(caster,caster,"Passive_the_great_bow_of_scorpion3",nil)
+	elseif caster:HasModifier("Passive_the_great_bow_of_scorpion3") then
+		caster:RemoveModifierByName("Passive_the_great_bow_of_scorpion3")
+	end
+end
+
+function OnUnequip_scorpion( keys )
+	local caster = keys.caster
+	if caster:HasModifier("Passive_the_great_bow_of_scorpion3") then
+		caster:RemoveModifierByName("Passive_the_great_bow_of_scorpion3")
+	end
+end
+
 function Shock2( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -63,6 +80,34 @@ function Shock_poisonous_ring( keys )
 end
 
 function Shock_bow_of_scorpion( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local dmg = 560
+	local int = 0
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, 
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+
+	for _,v in ipairs(group) do
+	local projTable = {
+		EffectName = "particles/b33r/b33r.vpcf",
+		Ability = ability,
+		Target = v,
+		Source = caster,
+		bDodgeable = false,
+		bProvidesVision = false,
+		vSpawnOrigin = caster:GetAbsOrigin(),
+		iMoveSpeed = 1200,
+		iVisionRadius = 0,
+		iVisionTeamNumber = caster:GetTeamNumber(),
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+	}
+	ProjectileManager:CreateTrackingProjectile( projTable )
+	end
+	
+end
+
+function Shock_bow_of_scorpion2( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability

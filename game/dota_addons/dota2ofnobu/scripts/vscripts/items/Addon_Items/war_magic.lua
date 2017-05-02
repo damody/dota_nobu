@@ -41,26 +41,31 @@ function back_wall( keys )
 	local caster = keys.caster
 	local point = 1
 	local ability = keys.ability
-	caster:RemoveAbility("war_magic_back_wall")
-	Timers:CreateTimer(0, function()
-			if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-				GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動背水一戰</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-				point = Entities:FindByName(nil,"dota_goodguys_fort"):GetAbsOrigin()+Vector(-300,300,0)
-				for i=1,5 do
-					local com_general2 = CreateUnitByName("com_general2", point, true, nil, nil, caster:GetTeamNumber())
-					com_general2.pos = point
-					com_general2:AddNewModifier(com_general2,nil,"modifier_kill",{duration=100})
-				end
-			else
-				GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動背水一戰</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
-				point = Entities:FindByName(nil,"dota_badguys_fort"):GetAbsOrigin()+Vector(300,-300,0)
-				for i=1,5 do
-					local com_general2 = CreateUnitByName("com_general2", point, true, nil, nil, caster:GetTeamNumber())
-					com_general2.pos = point
-					com_general2:AddNewModifier(com_general2,nil,"modifier_kill",{duration=100})
-				end
-			end
-		end)
+	
+	if (caster:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍發動背水一戰</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+		local fort = Entities:FindByName(nil,"dota_goodguys_fort")
+		point = fort:GetAbsOrigin()+Vector(-300,300,0)
+		ability:ApplyDataDrivenModifier(caster,fort,"modifier_invulnerable",{duration=5})
+		for i=1,5 do
+			local com_general2 = CreateUnitByName("com_general3", point, true, nil, nil, caster:GetTeamNumber())
+			com_general2.pos = point
+			com_general2:AddNewModifier(com_general2,nil,"modifier_kill",{duration=100})
+		end
+	else
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍發動背水一戰</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+		local fort = Entities:FindByName(nil,"dota_badguys_fort")
+		point = fort:GetAbsOrigin()+Vector(300,-300,0)
+		ability:ApplyDataDrivenModifier(caster,fort,"modifier_invulnerable",{duration=5})
+		for i=1,5 do
+			local com_general2 = CreateUnitByName("com_general3", point, true, nil, nil, caster:GetTeamNumber())
+			com_general2.pos = point
+			com_general2:AddNewModifier(com_general2,nil,"modifier_kill",{duration=100})
+		end
+	end
+	Timers:CreateTimer( 1, function()
+		caster:RemoveAbility("war_magic_back_wall")
+	end)
 end
 
 function findanything( keys )

@@ -267,11 +267,13 @@ function A27T( keys )
 	local level = keys.ability:GetLevel()
 	local hp = ability:GetLevelSpecialValueFor( "healthb", level - 1 )
 	local ability = caster:FindAbilityByName("A27D")
+	caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 	ability:SetLevel(1)
 	ability:SetActivated(true)
 	Timers:CreateTimer(0, function()
 		if (not caster:HasModifier("modifier_A27T")) then
 			ability:SetActivated(false)
+			caster:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
 			return nil
 		end
 		return 1

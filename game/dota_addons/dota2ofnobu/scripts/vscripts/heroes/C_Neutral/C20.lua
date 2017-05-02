@@ -106,6 +106,7 @@ function C20T_OnSpellStart( event )
 	local ability = event.ability
 	local caster = event.caster
 	local duration = ability:GetSpecialValueFor("During")
+	caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 	caster:EmitSound( "Hero_Nevermore.ROS_Flames")
 	--local ifx = ParticleManager:CreateParticle( "particles/c20r_real/c20r.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	--ParticleManager:SetParticleControl( ifx, 0, caster:GetAbsOrigin())
@@ -120,6 +121,11 @@ function C20T_OnSpellStart( event )
 	--ParticleManager:SetParticleControlEnt(ifx, 6, caster, PATTACH_POINT_FOLLOW, "attach_wind_l1", caster:GetAbsOrigin(), true)
 	--ParticleManager:SetParticleControlEnt(ifx, 7, caster, PATTACH_POINT_FOLLOW, "attach_wind_l2", caster:GetAbsOrigin(), true)
 	--ParticleManager:SetParticleControlEnt(ifx, 8, caster, PATTACH_POINT_FOLLOW, "attach_wind_l3", caster:GetAbsOrigin(), true)
+end
+
+function C20T_OnDestroy( event )
+	local caster = event.caster
+	caster:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
 end
 
 function modifier_C20W_old_OnTakeDamage( event )

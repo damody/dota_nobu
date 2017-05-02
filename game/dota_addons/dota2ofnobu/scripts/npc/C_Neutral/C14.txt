@@ -302,6 +302,15 @@
 						"Target" 		"CASTER"
 					}
 				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"	"C14T_OnDestroy"
+						"Target"	"TARGET"
+					}
+				}
 			}
 
 		}
@@ -600,6 +609,15 @@
 					{
 						"ModifierName"	"modifier_C14T"
 						"Target" 		"CASTER"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C14.lua"
+						"Function"	"C14T_OnDestroy"
+						"Target"	"TARGET"
 					}
 				}
 			}
