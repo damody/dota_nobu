@@ -22,6 +22,12 @@ function Nobu:PickHero( keys )
           return 1
         end)
       end
+      Timers:CreateTimer( 2, function()
+        if not caster:HasModifier("modifier_debuff_1") and caster:IsAlive() then
+          --caster:AddAbility("debuff_1"):SetLevel(1)
+        end
+        return 2
+      end)
       -- 預設切換加入切換版本技能
       local nobu_id = _G.heromap[caster:GetName()]
         for i = 0, caster:GetAbilityCount() - 1 do

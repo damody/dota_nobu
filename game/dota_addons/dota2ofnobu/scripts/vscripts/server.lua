@@ -1,3 +1,5 @@
+json = require ("game.dkjson")
+
 local special = {
   128732954, -- damody
   292642709, -- 蘿絲
@@ -150,43 +152,72 @@ end
 
 function Nobu:OpenRoom()
 	Timers:CreateTimer( 5, function()
-		if (#cannotplay == 0) then
-			local ids = {}
-			for pID = 0, 9 do
-				local steamID = PlayerResource:GetSteamAccountID(pID)
-				ids["id_"..(pID+1)] = tostring(steamID)
-			end
-			SendHTTPRequest("open_room", "POST",
+		local ids = {}
+		for pID = 0, 9 do
+			local steamID = PlayerResource:GetSteamAccountID(pID)
+			ids["id_"..(pID+1)] = tostring(steamID)
+		end
+		SendHTTPRequest("open_room", "POST",
 		ids,
 		function(result)
 			-- Decode response into a lua table
 			local resultTable = {}
 			if not pcall(function()
-				resultTable = JSON:decode(result)
+				resultTable = json.decode(result)[1]
+				DumpTable(resultTable)
 			end) then
 				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
 			end
-
+			for pID = 0, 9 do
+				local steamID = PlayerResource:GetSteamAccountID(pID)
+				local player = PlayerResource:GetPlayer(pID)
+		        if player then
+		          local hero = player:GetAssignedHero()
+		          if hero then
+			        local nobu_id = _G.heromap[hero:GetName()]
+			        local heroname = _G.hero_name_zh[nobu_id]
+					steamID = tostring(steamID)
+					if resultTable[steamID] ~= nil then
+						if resultTable[steamID] <=0.3 then
+							GameRules: SendCustomMessage("<font color='#fcac4b'>"..heroname.."是新銅學大家不要欺負他喔~".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							hero.level = 1
+						elseif resultTable[steamID] <=0.55 then
+							GameRules: SendCustomMessage("<font color='#ff8c00'>"..heroname.."為銅牌".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							hero.level = 1
+						elseif resultTable[steamID] <=0.65 then
+							GameRules: SendCustomMessage("<font color='#b5b4b3'>"..heroname.."為銀牌".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							hero.level = 2
+						else
+							GameRules: SendCustomMessage("<font color='#ffe01c'>"..heroname.."為金牌".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							hero.level = 3
+						end
+					end
+				  end
+				end
+			end
 			-- If we get an error response, successBool should be false
 			if resultTable ~= nil and resultTable["errors"] ~= nil then
 				callback(resultTable["errors"], false)
 				return
 			end
-
 			-- If we get a success response, successBool should be true
 			if resultTable ~= nil and resultTable["data"] ~= nil  then
 				callback(resultTable["data"], true)
 				return
 			end
 		end )
-	end
-		return nil
 	end)
-
 end
 
 function Nobu:CheckAFK()
-
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(Nobu, 'OnPlayerConnectFull'), self)
-
 end
+
+function DumpTable( tTable )
+	local inspect = require('inspect')
+	local iDepth = 3
+ 	print(inspect(tTable,
+ 		{depth=iDepth} 
+ 	))
+end
+

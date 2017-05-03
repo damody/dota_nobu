@@ -17,7 +17,7 @@ function Shock( keys )
           false)
 	for _,target in pairs(direUnits) do
 		-- 不能推秋山的石頭跟建築物
-		if not target:IsBuilding() and target:GetUnitName() ~= "B24W_DUMMY" and target:GetUnitName() ~= "B24T_HIDE" and
+		if not target:IsBuilding() and target:GetUnitName() ~= "B24W_dummy" and target:GetUnitName() ~= "B24T_HIDE" and
 			not string.match(target:GetUnitName(), "com_general") and not target:HasAbility("majia") then
 				
 				local knockbackProperties =

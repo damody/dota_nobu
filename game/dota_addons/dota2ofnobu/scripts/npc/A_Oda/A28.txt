@@ -1077,9 +1077,22 @@
 
 		"Modifiers"
 		{
-			"modifier_A28TE_old"
+			"modifier_A28TE_start"
 			{
 				"Passive"			"1"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
+						"Function"		"A28TE_old_on_start"
+					}
+				}
+			}
+			"modifier_A28TE_old"
+			{
+				"Passive"			"0"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 

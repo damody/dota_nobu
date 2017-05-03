@@ -776,7 +776,6 @@
 			}
 			"modifier_A19T_old_4"
 			{
-				"ThinkInterval"	"0.5"
 				"Duration"	"12"
 				"IsDebuff"	"0"
 				"EffectAttachType"	"attach_origin"
@@ -784,6 +783,7 @@
 				{
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
+				"ThinkInterval"	"0.5"
 				"OnIntervalThink"
 				{
 					"ActOnTargets"

@@ -2,6 +2,7 @@
 BUG
 	O大廳裡面也可以捕捉到，這時候caster值為nil
 ]]
+
 local inspect = require("inspect")
 
 function SendHTTPRequest(path, method, values, callback)
@@ -120,6 +121,14 @@ skin_table = {
 	["176398348"] = true,
 }
 
+function DumpTable( tTable )
+	local inspect = require('inspect')
+	local iDepth = 5
+ 	print(inspect(tTable,
+ 		{depth=iDepth} 
+ 	))
+end
+
 local function chat_of_test(keys)
 	print("[Nobu-lua] Test")
 	--DeepPrintTable(keys)
@@ -176,7 +185,7 @@ local function chat_of_test(keys)
 			end
 		end
 		DeepPrintTable(_G.CountUsedAbility_Table)
-		
+		--[[
 		SendHTTPRequest("save_ability_data", "POST",
 			{
 			  data = tostring(inspect(_G.CountUsedAbility_Table)),
@@ -184,7 +193,7 @@ local function chat_of_test(keys)
 			function(result)
 			  print(result)
 			end)
-		
+		]]
 	end
 	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
 	local skin = false
@@ -195,7 +204,7 @@ local function chat_of_test(keys)
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
-	
+
 	if (s == "-skin" and nobu_id == "C17" and skin) then
 		caster.skin = "school"
 		caster:SetModel("models/c17/c17_school.vmdl")

@@ -258,7 +258,7 @@
 			"modifier_reward6300_hero"
 			{
 				"Passive"	"0"
-				"EffectName"		"particles/items_fx/aura_endurance.vpcf"
+				"EffectName"		"particles/item/reward6300.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
@@ -302,7 +302,7 @@
 			"modifier_reward6300"
 			{
 				"Passive"	"0"
-				"EffectName"		"particles/items_fx/aura_endurance.vpcf"
+				"EffectName"		"particles/item/reward6300.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
@@ -356,7 +356,7 @@
 			"modifier_reward63002"
 			{
 				"Passive"	"0"
-				"EffectName"		"particles/items_fx/aura_endurance.vpcf"
+				"EffectName"		"particles/item/reward6300.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
@@ -858,7 +858,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"Modifiers"
 		{
-			"modifier_B01R"
+			"modifier_gunner_attack"
 			{
 				"Passive"	"1"
 				"OnAttackLanded"
@@ -942,7 +942,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"Modifiers"
 		{
-			"modifier_B01R"
+			"modifier_archer_attack"
 			{
 				"Passive"	"1"
 				"OnAttackLanded"
@@ -4334,6 +4334,27 @@
 						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 						"Function"	"killdummy"
 					}
+				}
+			}
+		}
+	}
+
+	//  負面狀態1等
+	"debuff_1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_debuff_1"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"20"
+					"MODIFIER_PROPERTY_TOTAL_DAMAGEOUTGOING_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-100"
 				}
 			}
 		}

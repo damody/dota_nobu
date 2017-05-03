@@ -141,7 +141,8 @@ function reward6300(keys)
 	local ability = keys.ability
 	local pos = caster:GetAbsOrigin()
 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster.donkey.oripos ,false,caster,caster,caster:GetTeamNumber())	
-	dummy:FindAbilityByName("majia"):SetLevel(1)
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_invulnerable",{duration=60})
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=60})
 	dummy:AddAbility("reward6300"):SetLevel(1)
 	dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
 	if _G.full_reward6300 then

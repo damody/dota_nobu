@@ -71,13 +71,14 @@ function Nobu:OnGameRulesStateChange( keys )
     if (_G.nobu_debug) then -- 測試模式給裝
       for_test_equiment()
     end
-    if _G.nobu_server_b then
-      Nobu:OpenRoom()
-    end
+    
     GameRules:SendCustomMessage("歡迎來到 AON信長的野望 20.4HI", DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("5分鐘後可以打 -ff 投降" , DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("目前作者: Damody, Tenmurakumo, BedRock, 佐佐木小籠包", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
+	if _G.nobu_server_b then
+      Nobu:OpenRoom()
+    end
 		--刪除建築物無敵
 	  local allBuildings = Entities:FindAllByClassname('npc_dota_building')
 	  for i = 1, #allBuildings, 1 do
@@ -98,7 +99,7 @@ function Nobu:OnGameRulesStateChange( keys )
     Timers:CreateTimer(10, function()
     	if _G.mo then
 	    	for _,hero in ipairs(HeroList:GetAllHeroes()) do
-				if not hero:IsIllusion() and not hero:HasModifier("modifier_play_1v1") then
+				if not hero:IsIllusion() and not hero:HasModifier("modifier_play_1v1") and hero:IsAlive() then
 					hero:AddAbility("play_1v1"):SetLevel(1)
 				end
 			end

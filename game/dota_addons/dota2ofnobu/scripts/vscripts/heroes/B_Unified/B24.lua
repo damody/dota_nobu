@@ -36,7 +36,7 @@ function B24T( keys )
 		if v:IsHero() then
 			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, v)
 		end
-		if (v:GetUnitName() ~= "B24W_DUMMY") then
+		if (v:GetUnitName() ~= "B24W_dummy") then
 			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 		end
 	end
@@ -106,8 +106,9 @@ function B24W( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local mouse = ability:GetCursorPosition()
-	local dummy	= CreateUnitByName("B24W_DUMMY", mouse, true, nil, nil, caster:GetTeamNumber())
+	local dummy	= CreateUnitByName("B24W_dummy", mouse, true, nil, nil, caster:GetTeamNumber())
 	dummy:SetOwner(caster)
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=12})
 	--local player = caster:GetPlayerID()
 	local point = caster:GetAbsOrigin()
 	local point2 = dummy:GetAbsOrigin() 

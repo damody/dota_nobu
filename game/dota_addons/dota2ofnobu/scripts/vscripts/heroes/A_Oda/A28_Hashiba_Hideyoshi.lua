@@ -580,47 +580,65 @@ function A28T_old( keys )
 	ParticleManager:SetParticleControl(ifx,1,Vector(scale,scale,scale))
 end
 
+function A28TE_old_on_start( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	Timers:CreateTimer( 0.1, function()
+		if not caster:IsIllusion() then
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_A28TE_old",nil)
+		end
+	end)
+end
+
 function A28TE_old_on_created( keys )
 	local caster = keys.caster
-
-	local ifx = ParticleManager:CreateParticle("particles/a28/a28te_old_burning_pathedge.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
-	caster.A28TE_old_ifx = ifx
-	local ifx2 = ParticleManager:CreateParticle("particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
-	caster.A28TE_old_ifx2 = ifx
+	if not caster:IsIllusion() then
+		local ifx = ParticleManager:CreateParticle("particles/a28/a28te_old_burning_pathedge.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+		caster.A28TE_old_ifx = ifx
+		local ifx2 = ParticleManager:CreateParticle("particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster)
+		caster.A28TE_old_ifx2 = ifx
+	else
+		caster:RemoveAbility("A28TE_old")
+		caster:RemoveModifierByName("modifier_A28TE_old")
+	end
 end
 
 function A28TE_old_on_destory( keys )
 	local caster = keys.caster
-	ParticleManager:DestroyParticle(caster.A28TE_old_ifx ,false)
-	ParticleManager:DestroyParticle(caster.A28TE_old_ifx2,false)
+	if not caster:IsIllusion() then
+		ParticleManager:DestroyParticle(caster.A28TE_old_ifx ,false)
+		ParticleManager:DestroyParticle(caster.A28TE_old_ifx2,false)
+	end
 end
 
 function A28TE_old_aoe_damage( keys )
 	local caster = keys.caster
-	local ability = keys.ability
-	local level = ability:GetLevel()-1
-	local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
-	local aoe_damage = ability:GetLevelSpecialValueFor("aoe_damage",level)
+	if not caster:IsIllusion() then
+		local ability = keys.ability
+		local level = ability:GetLevel()-1
+		local aoe_radius = ability:GetLevelSpecialValueFor("aoe_radius",level)
+		local aoe_damage = ability:GetLevelSpecialValueFor("aoe_damage",level)
 
-	local ifx = ParticleManager:CreateParticle("particles/a28/a28te_old_aoeonkey_king_spring_fire_base.vpcf",PATTACH_CUSTOMORIGIN,caster)
-	ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
+		local ifx = ParticleManager:CreateParticle("particles/a28/a28te_old_aoeonkey_king_spring_fire_base.vpcf",PATTACH_CUSTOMORIGIN,caster)
+		ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
 
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		aoe_radius,
-		ability:GetAbilityTargetTeam(),
-		ability:GetAbilityTargetType(),
-		ability:GetAbilityTargetFlags(),
-		FIND_ANY_ORDER,
-		false)
+		local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
+			caster:GetAbsOrigin(),
+			nil,
+			aoe_radius,
+			ability:GetAbilityTargetTeam(),
+			ability:GetAbilityTargetType(),
+			ability:GetAbilityTargetFlags(),
+			FIND_ANY_ORDER,
+			false)
 
-	for _,enemy in pairs(enemies) do
-		ApplyDamage({
-			attacker=caster,
-			victim=enemy,
-			damage_type=ability:GetAbilityDamageType(),
-			damage=aoe_damage})
+		for _,enemy in pairs(enemies) do
+			ApplyDamage({
+				attacker=caster,
+				victim=enemy,
+				damage_type=ability:GetAbilityDamageType(),
+				damage=aoe_damage})
+		end
 	end
 end
 

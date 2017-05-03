@@ -16,45 +16,46 @@ function B16W( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local moonMoon = caster.moonMoon
+	if moonMoon then
+		-- 安裝修改器
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B16W",nil)
+		ability:ApplyDataDrivenModifier(caster,moonMoon,"modifier_B16W",nil)
 
-	-- 安裝修改器
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B16W",nil)
-	ability:ApplyDataDrivenModifier(caster,moonMoon,"modifier_B16W",nil)
+		-- MoonMoon Jump !
+		-------------------------------------------------------------------------------------------------
+		-- 解除即將命中月月的投射物
+		ProjectileManager:ProjectileDodge(moonMoon)
 
-	-- MoonMoon Jump !
-	-------------------------------------------------------------------------------------------------
-	-- 解除即將命中月月的投射物
-	ProjectileManager:ProjectileDodge(moonMoon)
+		-- 強制移動月月到目標旁邊
+		local oldPos = moonMoon:GetAbsOrigin()
+		local targetPos = target:GetAbsOrigin()
+		local dir = (targetPos-oldPos):Normalized()
+		moonMoon:SetForwardVector(dir)
+		FindClearSpaceForUnit(moonMoon,targetPos-dir*100,false)
+		
+		-- 特效
+		local newPos = moonMoon:GetAbsOrigin()
 
-	-- 強制移動月月到目標旁邊
-	local oldPos = moonMoon:GetAbsOrigin()
-	local targetPos = target:GetAbsOrigin()
-	local dir = (targetPos-oldPos):Normalized()
-	moonMoon:SetForwardVector(dir)
-	FindClearSpaceForUnit(moonMoon,targetPos-dir*100,false)
-	
-	-- 特效
-	local newPos = moonMoon:GetAbsOrigin()
+		-- 特效 月月傳送通道
+		local pStart2 = ParticleManager:CreateParticle("particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_halo.vpcf", PATTACH_ABSORIGIN, moonMoon)	
+		ParticleManager:SetParticleControl(pStart2, 0, oldPos)
+		ParticleManager:SetParticleControl(pStart2, 1, oldPos)
+		ParticleManager:SetParticleControlForward(pStart2,1,dir)
+		local pEnd2 = ParticleManager:CreateParticle("particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_ring.vpcf", PATTACH_ABSORIGIN, moonMoon)
+		ParticleManager:SetParticleControl(pEnd2, 0, newPos)
+		ParticleManager:SetParticleControl(pEnd2, 1, newPos-dir*200)
+		ParticleManager:SetParticleControlForward(pEnd2,1,dir)
 
-	-- 特效 月月傳送通道
-	local pStart2 = ParticleManager:CreateParticle("particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_halo.vpcf", PATTACH_ABSORIGIN, moonMoon)	
-	ParticleManager:SetParticleControl(pStart2, 0, oldPos)
-	ParticleManager:SetParticleControl(pStart2, 1, oldPos)
-	ParticleManager:SetParticleControlForward(pStart2,1,dir)
-	local pEnd2 = ParticleManager:CreateParticle("particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_ring.vpcf", PATTACH_ABSORIGIN, moonMoon)
-	ParticleManager:SetParticleControl(pEnd2, 0, newPos)
-	ParticleManager:SetParticleControl(pEnd2, 1, newPos-dir*200)
-	ParticleManager:SetParticleControlForward(pEnd2,1,dir)
+		moonMoon:EmitSound("DOTA_Item.BlinkDagger.Activate")
 
-	moonMoon:EmitSound("DOTA_Item.BlinkDagger.Activate")
-
-	-- 命令月月攻擊目標
-	local order = {
-		UnitIndex = moonMoon:entindex(),
-		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-		TargetIndex = target:entindex()
-	}
-	ExecuteOrderFromTable(order)
+		-- 命令月月攻擊目標
+		local order = {
+			UnitIndex = moonMoon:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = target:entindex()
+		}
+		ExecuteOrderFromTable(order)
+	end
 end
 
 function B16W_M_Created( keys )

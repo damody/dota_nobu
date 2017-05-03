@@ -73,7 +73,7 @@ function new_C15T( keys )
 		deg = deg + 36
 		point_tem = point2 + Vector(distance*math.cos(nobu_degtorad(deg))  , distance*math.sin(nobu_degtorad(deg))  ,point2.z ) 
 		--【Dummy Kv】
-		local dummy = CreateUnitByName("C15T_DUMMY",point_tem ,false,caster,caster,caster:GetTeam())	
+		local dummy = CreateUnitByName("C15T_dummy",point_tem ,false,caster,caster,caster:GetTeam())	
 		--dummy:SetControllableByPlayer(player,false)
 		--ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
 		dummy:AddAbility("majia_vison"):SetLevel(1)		

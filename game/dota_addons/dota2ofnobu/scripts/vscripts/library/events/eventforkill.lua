@@ -48,17 +48,17 @@ function Nobu:OnUnitKill( keys )
         end
       end
       
-      local earn = killedUnit:GetGoldBounty() / count
-      if not killedUnit:IsHero() then
-        for _,hero in ipairs(group) do
-          if not hero:IsIllusion() then
-            AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID(), earn)
-          end
-        end
-      else
+      if killedUnit:IsHero() then
         for _,hero in ipairs(group) do
           if not hero:IsIllusion() then
             hero.kill_tower = 1
+          end
+        end
+      else
+        local earn = killedUnit:GetGoldBounty() / count
+        for _,hero in ipairs(group) do
+          if not hero:IsIllusion() then
+            AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID(), earn)
           end
         end
       end
@@ -114,6 +114,36 @@ function Nobu:OnUnitKill( keys )
       
     elseif string.match(name,"axe") then --幸村開大
       killedUnit:RemoveModifierByName("modifier_B06T")
+    elseif string.match(name,"_D") then --叫兵仔
+      if killedUnit.die_count == nil then killedUnit.die_count = 0 end
+      killedUnit.die_count = killedUnit.die_count + 1
+      if killedUnit.die_count < 3 then
+        killedUnit:RespawnUnit()
+        local archer_attack = killedUnit:FindAbilityByName("archer_attack")
+        if archer_attack then
+          Timers:CreateTimer( 0.1, function()
+          archer_attack:ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_archer_attack",nil)
+          end)
+        end
+        local attack_building = killedUnit:FindAbilityByName("attack_building")
+        if attack_building then
+          Timers:CreateTimer( 0.1, function()
+          attack_building:ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_attack_building",nil)
+          end)
+        end
+        local gunner_attack = killedUnit:FindAbilityByName("gunner_attack")
+        if gunner_attack then
+          Timers:CreateTimer( 0.1, function()
+          gunner_attack:ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_gunner_attack",nil)
+          end)
+        end
+        local for_no_collision = killedUnit:FindAbilityByName("for_no_collision")
+        if for_no_collision then
+          Timers:CreateTimer( 0.1, function()
+          for_no_collision:ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_for_no_collision",nil)
+          end)
+        end
+      end
   	end
 
     if killedUnit:IsRealHero() then

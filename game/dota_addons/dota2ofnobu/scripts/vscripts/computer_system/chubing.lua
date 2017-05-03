@@ -460,7 +460,7 @@ function soldier_Oda_top( )
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -509,7 +509,7 @@ function soldier_Oda_mid( )
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -560,7 +560,7 @@ function soldier_Oda_bottom()
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -610,7 +610,7 @@ function soldier_Unified_top( )
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -659,7 +659,7 @@ function soldier_Unified_mid( )
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -710,7 +710,7 @@ function soldier_Unified_bottom()
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -760,7 +760,7 @@ function archer_Oda_top( )
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -808,7 +808,7 @@ function archer_Oda_mid( )
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -858,7 +858,7 @@ function archer_Oda_bottom()
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -908,7 +908,7 @@ function archer_Unified_top( )
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -956,7 +956,7 @@ function archer_Unified_mid( )
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1006,7 +1006,7 @@ function archer_Unified_bottom()
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1056,7 +1056,7 @@ function gunner_Oda_top( )
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1104,7 +1104,7 @@ function gunner_Oda_mid( )
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1154,7 +1154,7 @@ function gunner_Oda_bottom()
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1204,7 +1204,7 @@ function gunner_Unified_top( )
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1252,7 +1252,7 @@ function gunner_Unified_mid( )
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1302,7 +1302,7 @@ function gunner_Unified_bottom()
 	A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1352,7 +1352,7 @@ function cavalry_Oda_top( )
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1401,7 +1401,7 @@ function cavalry_Oda_mid( )
 	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1452,7 +1452,7 @@ function cavalry_Oda_bottom()
 	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1503,7 +1503,7 @@ function cavalry_Unified_top( )
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1552,7 +1552,7 @@ function cavalry_Unified_mid( )
 	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1603,7 +1603,7 @@ function cavalry_Unified_bottom()
 	--總共六個出發點 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 6 then return nil
+		if tem_count > 3 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3

@@ -957,19 +957,21 @@
 			// 弓箭命中處會產生隱藏單位並裝上這個修改器
 			"modifier_B33R_old_poision_aura"
 			{
-        		"Aura"        "modifier_B33R_old_debuff"
-        		"Aura_Radius" "%poison_radius"
-        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
+        		"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B33.lua"
+						"Function"	"B33R_old_OnIntervalThink"
+					}
+				}
 			}
 			// 毒霧中的敵方單位會被安裝這個修改器
 			"modifier_B33R_old_debuff"
 			{
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE" // 可疊 wow
 
 				"StatusEffectName"	"particles/status_fx/status_effect_poison_viper.vpcf"
 				"StatusEffectPriority"	"1"
@@ -980,22 +982,20 @@
 				// 首次傷害
 				"OnCreated"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_PURE"
-						"Damage"		"%AbilityDamage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B33.lua"
+						"Function"	"B33R_old_damage"
 					}
 				}
 
 				"ThinkInterval"  	"%poison_damage_delay"
 				"OnIntervalThink"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_PURE"
-						"Damage"		"%AbilityDamage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B33.lua"
+						"Function"	"B33R_old_damage"
 					}
 				}
 			}
@@ -1012,12 +1012,12 @@
 			"02" // 毒霧存在時間
 			{
 				"var_type"	"FIELD_FLOAT"
-				"poison_duration"	"2.0"
+				"poison_duration"	"3"
 			}
 			"03" // 毒霧造成傷害間隔
 			{
 				"var_type"	"FIELD_FLOAT"
-				"poison_damage_delay"	"1.0"
+				"poison_damage_delay"	"1"
 			}
 		}
 	}

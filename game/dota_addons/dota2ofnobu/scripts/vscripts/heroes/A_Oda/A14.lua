@@ -15,7 +15,7 @@ function A14W_OnSpellStart( event )
 		TargetIndex = target:entindex()}
 		ExecuteOrderFromTable(order)
 		end)
-	if not target:IsBuilding() and target:GetUnitName() ~= "B24W_DUMMY" and target:GetUnitName() ~= "B24T_HIDE" and
+	if not target:IsBuilding() and target:GetUnitName() ~= "B24W_dummy" and target:GetUnitName() ~= "B24T_HIDE" and
 		not string.match(target:GetUnitName(), "com_general") and not target:HasAbility("majia") then
 		Physics:Unit(target)
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.8})
@@ -202,7 +202,7 @@ function A14W_old_OnSpellStart( event )
 		TargetIndex = target:entindex()}
 		ExecuteOrderFromTable(order)
 		end)
-	if not target:IsBuilding() and target:GetUnitName() ~= "B24W_DUMMY" and target:GetUnitName() ~= "B24T_HIDE" and
+	if not target:IsBuilding() and target:GetUnitName() ~= "B24W_dummy" and target:GetUnitName() ~= "B24T_HIDE" and
 		not string.match(target:GetUnitName(), "com_general") and not target:HasAbility("majia") then
 		Physics:Unit(target)
 		target:SetPhysicsVelocity((point - vec):Normalized()*1700)

@@ -608,6 +608,8 @@ function Precache( context )
     "particles/item/wind.vpcf",
     --蠍尾妖弓
     "particles/b33r/b33r.vpcf",
+    --犒賞
+    "particles/item/reward6300.vpcf",
 
     --注意要加,
     }
