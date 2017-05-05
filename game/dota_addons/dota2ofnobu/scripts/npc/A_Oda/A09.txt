@@ -1,0 +1,678 @@
+// 蜂須賀政勝
+"DOTAAbilities"
+{
+	"A09_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_viper/viper_poison_debuff.vpcf" //w t t_old
+			"particle"  "particles/units/heroes/hero_viper/viper_poison_attack_explosion.vpcf" //w t t_old
+			"particle"  "particles/units/heroes/hero_treant/treant_leech_seed_projectile.vpcf" //w
+			"particle"  "particles/econ/courier/courier_greevil_green/courier_greevil_green_ambient_3.vpcf" //w
+			"particle"  "particles/units/heroes/hero_rhasta/rhasta_spell_hex.vpcf" //e
+			"particle"  "particles/a09r/a09rdeath/monkey_king_spring_arcana_death.vpcf" //r
+			"particle"  "particles/c09r/c09r2.vpcf" //r
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf" //w_old
+			"particle"	"particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_acher_swarm.vpcf" //w_old
+			"particle"  "particles/a09r_old/a09r_old.vpcf" //r_old
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts" //w_old
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts" //r
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts" //w
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts" //t t_old
+		}
+	}
+
+	//樹鬼召喚
+	"A09W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/A09/A09W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+		"AbilityCooldown"                           "13 12 11 10"
+		"AbilityManaCost"                           "125 140 155 170"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A09.lua"
+				"Function"						"A09W_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A09W_treant1"
+			{
+				"IsPurgable"		"0"
+				"ThinkInterval"  	"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09W_treant_OnIntervalThink"
+					}
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+                    {
+                        "EffectName"		"particles/econ/courier/courier_greevil_green/courier_greevil_green_ambient_3.vpcf"
+                        "EffectAttachType"	"follow_origin"
+                        "Target"			"TARGET"
+                    }
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_A09W_treant1"
+						"Target" 		"TARGET"
+					}
+					
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09W_treant_OnDestroy"
+					}
+				}
+			}
+			"modifier_A09W_treant2"
+			{
+				"IsPurgable"		"0"
+				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09W_treant_OnAttackLanded"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09W_treant_OnDestroy"
+					}
+				}
+			}
+			"modifier_A09W_treant_dot"
+			{
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A09W_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A09W_treant1Duration"		"7.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A09W_treant2Duration"		"2.0 3.0 4.0 5.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A09W_dotDamage"			"15"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"A09W_dotDuration"			"2.0"
+			}
+		}
+	}
+
+	//木化術
+	"A09E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"custom/A09/A09E"
+
+		"AbilityCooldown"							"18"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"130 145 160 175"
+		"AbilityCastRange"              			"500"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A09.lua"
+				"Function"							"A09E_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"A09E_duration"                	"1.2 1.8 2.4 3.0"
+			}
+		}
+	}
+
+	//林脈衝擊
+	"A09R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A09/A09R"
+
+
+		"AbilityCastRange"              			"800"
+		"AbilityCastPoint"							"0.1"
+		"AbilityCooldown"                           "3.5"
+		"AbilityManaCost"                           "80 90 100 110"
+		"AOERadius"									"%A09R_radius"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A09.lua"
+				"Function"			"A09R_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_MonkeyKing.Spring.Impact"
+				"Target" 		"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A09R"
+			{
+				"EffectName"		"particles/c09r/c09r2.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A09R_damage"			"150 250 350 450"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"A09R_buffDuration"		"8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A09R_radius"			"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"A09R_damageIncrease"	"0.15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A09R_maxStack"			"5"
+			}
+		}
+
+    }
+
+    //深邃節觸
+	"A09T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A09/A09T"
+		
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"115 95 75"
+		"AbilityManaCost"           				"185 225 265"
+		"AbilityCastRange"							"800"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A09.lua"
+				"Function"			"A09T_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A09T_passive"
+			{
+				"IsPurgable"		"0"
+				"Passive"			"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09T_passive_OnAbilityExecuted"
+					}
+				}
+			}
+			"modifier_A09T_passive_lock"
+			{
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+			}
+			"modifier_A09T_tentacle"
+			{
+				"IsPurgable"		"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09T_tentacle_OnAttackLanded"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09W_treant_OnDestroy"
+					}
+				}
+			}
+			"modifier_A09T_tentacle_dot"
+			{
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%A09T_dotMsBonus" 
+				}
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A09T_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"A09T_duration"		"20.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A09T_unitCount"	"7 9 13"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A09T_dotDamage"	"14 21 36"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A09T_dotMsBonus"	"-3 -4 -5"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"A09T_dotDutaion"	"4.0"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"A09T_passiveUnit"	"2"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"A09T_passiveLock"	"0.3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"A09T_passiveDuration"	"8.0 11.0 14.0"
+			}
+		}
+	}
+
+	//食腐群
+	"A09W_old"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"                        "custom/A09/A09W_old"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+		"AbilityCooldown"                           "15"
+		"AbilityManaCost"                           "100 120 140 160"
+
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+				"Target"						"POINT"
+				"EffectName"					"particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_acher_swarm.vpcf"
+				"MoveSpeed"						"%shock_speed"
+				"StartRadius"					"%shock_width_start"
+				"StartPosition"					"attach_hand_l"
+				"EndRadius"						"%shock_width"
+				"FixedDistance"					"%shock_distance"
+				"TargetTeams"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"					"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone"				"1"
+				"ProvidesVision"				"0"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_DeathProphet.CarrionSwarm"
+				"Target"		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%A09W_old_damage"
+			}
+			"FireSound"
+			{
+	        	"EffectName" 	   	"Hero_DeathProphet.CarrionSwarm.Damage"
+	            "Target" 			"TARGET"
+        	}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"A09W_old_damage"			"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_speed"				"1100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_width"				"300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_distance"			"1000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_width_start"			"110"
+			}
+		}
+	}
+
+	//木化術
+	"A09E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"custom/A09/A09E"
+
+		"AbilityCooldown"							"20"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityCastRange"              			"500"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A09.lua"
+				"Function"							"A09E_OnSpellStart"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"A09E_duration"                	"1.0 2.0 3.0 4.0"
+			}
+		}
+	}
+
+	//玄武之靈
+	"A09R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/A09/A09R_old"
+
+		"AbilityCastRange"							"900"
+
+		"Modifiers"
+		{
+			"modifier_A09R_passiveAura"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"EffectName"		"particles/a09r_old/a09r_old.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Aura"          	"modifier_A09R"
+				"Aura_Radius"   	"900"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "1"
+			}
+			"modifier_A09R"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"EffectName"		"particles/a09r_old/a09r_old_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%A09R_armorBonus"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A09R_armorBonus"		"4 7 10 13"
+			}
+		}
+
+    }
+
+    //生長藤蔓
+	"A09T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A09/A09T"
+		
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"150"
+		"AbilityManaCost"           				"225 270 315"
+		"AbilityCastRange"							"800"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A09.lua"
+				"Function"			"A09T_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A09T_old_tentacle"
+			{
+				"IsPurgable"		"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09T_old_tentacle_OnAttackLanded"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09W_treant_OnDestroy"
+					}
+				}
+			}
+			"modifier_A09T_old_tentacle_dot"
+			{
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%A09T_old_dotDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"A09T_old_duration"		"25.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A09T_old_unitCount"	"10 12 14"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A09T_old_dotDamage"	"15 25 35"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"A09T_old_dotDutaion"	"5.0"
+			}
+		}
+	}
+
+} // END DOTAAbilities

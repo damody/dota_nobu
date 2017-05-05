@@ -4,6 +4,294 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+
+	//蜂須賀政勝 鬼之藤蔓
+	"A09T_old_tentacle"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"		"npc_dota_creature"
+		// Add model
+		"Model"			"models/items/shadowshaman/serpent_ward/tangki_serpent_ward/tangki_serpent_ward.vmdl"
+		"ModelScale"	"1.5"
+
+		"Level"			"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"0"
+		"MagicalResistance"	"30"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"		"0.10"
+		"AttackAcquisitionRange"	"2000"
+		"AttackRate"				"0.45"
+		"AttackDamageMin"			"16.0"
+		"AttackDamageMax"			"20.0"
+		"AttackRange"				"350"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"				"10.0"
+		"BountyGoldMax"				"10.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"1.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"1000"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"500"
+		"VisionNighttimeRange"	"500"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
+	//蜂須賀政勝 多節觸手
+	"A09T_tentacle"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"		"npc_dota_creature"
+		// Add model
+		"Model"			"models/items/shadowshaman/serpent_ward/eyedancer_wrath_ward/eyedancer_wrath_ward.vmdl"
+		"ModelScale"	"1.5"
+
+		"Level"			"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"6"
+		"MagicalResistance"	"30"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"		"0.10"
+		"AttackAcquisitionRange"	"2000"
+		"AttackRate"				"0.9"
+		"AttackDamageMin"			"31.0"
+		"AttackDamageMax"			"36.0"
+		"AttackRange"				"350"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"				"10.0"
+		"BountyGoldMax"				"10.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"1.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"1000"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"500"
+		"VisionNighttimeRange"	"500"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
+	//蜂須賀政勝 樹鬼
+	"A09W_treant2"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"		"npc_dota_creature"
+		// Add model
+		"Model"			"models/heroes/furion/treant.vmdl"
+		"ModelScale"	"0.8"
+
+		"Level"			"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"6"
+		"MagicalResistance"	"30"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"		"0.10"
+		"AttackAcquisitionRange"	"2000"
+		"AttackRate"				"0.9"
+		"AttackDamageMin"			"31.0"
+		"AttackDamageMax"			"41.0"
+		"AttackRange"				"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"				"10.0"
+		"BountyGoldMax"				"10.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"450"
+		"MovementTurnRate"		"1.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"1500"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"500"
+		"VisionNighttimeRange"	"500"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
+	//蜂須賀政勝 邪惡森靈
+	"A09W_treant1"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"		"npc_dota_creature"
+		// Add model
+		"Model"			"models/items/furion/treant/father_treant/father_treant.vmdl"
+		"ModelScale"	"2"
+
+		"ProjectileModel"	"particles/units/heroes/hero_treant/treant_leech_seed_projectile.vpcf"
+		"ProjectileSpeed"	"1500"
+
+		"Level"			"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"320"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"6"
+		"MagicalResistance"	"30"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"		"0.10"
+		"AttackAcquisitionRange"	"1000"
+		"AttackRate"				"0.9"
+		"AttackDamageMin"			"151.0"
+		"AttackDamageMax"			"160.0"
+		"AttackRange"				"400"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"				"10.0"
+		"BountyGoldMax"				"10.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"400"
+		"MovementTurnRate"		"1.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"1500"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+	}
+
 	//加籐清正 惡念障壁
 	"C23W_unit"
 	{
