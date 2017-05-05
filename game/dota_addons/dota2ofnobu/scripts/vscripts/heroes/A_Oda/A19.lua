@@ -348,7 +348,7 @@ function A19R_old_OnAttackLanded( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local dmg = ability:GetSpecialValueFor("dmg")
-	if not target:IsBuilding() then
+	if not target:IsBuilding() and not caster:IsIllusion() then
 		if not target:HasModifier("modifier_A19R_old") then
 			ability:ApplyDataDrivenModifier(caster,target,"modifier_A19R_old",nil)
 			local handle = target:FindModifierByName("modifier_A19R_old")

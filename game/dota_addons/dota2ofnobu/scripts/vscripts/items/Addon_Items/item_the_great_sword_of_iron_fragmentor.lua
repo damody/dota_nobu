@@ -8,6 +8,7 @@ function Spell( keys )
 
 	local dummy = CreateUnitByName("npc_dummy_unit_new",point,false,caster,caster,caster:GetTeamNumber())
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_the_great_sword_of_iron_fragmentor",{duration=duration})
+	dummy:AddAbility("for_no_damage"):SetLevel(1)
 
 	local ifx = ParticleManager:CreateParticle("particles/item/item_the_great_sword_of_iron_fragmentor/item_the_great_sword_of_iron_fragmentor.vpcf",PATTACH_ABSORIGIN,dummy)
 	ParticleManager:SetParticleControl(ifx,3,point+Vector(0,0,50))

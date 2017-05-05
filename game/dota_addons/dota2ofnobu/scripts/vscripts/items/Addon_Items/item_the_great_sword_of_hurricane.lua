@@ -7,6 +7,7 @@ function Shock( keys )
 
 	local dummy = CreateUnitByName("npc_dummy_unit_new",caster:GetAbsOrigin(),false,caster,caster,caster:GetTeamNumber())
 	dummy:AddNewModifier(caster,nil,"modifier_kill",{duration=aura_duration})
+	dummy:AddAbility("for_no_damage"):SetLevel(1)
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_great_sword_of_hurricane_aura", {duration=aura_duration})
 
 	local spell_hint_table = {

@@ -151,6 +151,21 @@ function Nobu:CloseRoom()
 end
 
 function Nobu:OpenRoom()
+	if GetMapName() == "nobu" then
+		_G.game_level = -99
+	end
+	if GetMapName() == "nobu_pk" then
+		_G.game_level = 99
+	end
+	if GetMapName() == "lv1_bronze" then
+		_G.game_level = 1
+	end
+	if GetMapName() == "lv2_silver" then
+		_G.game_level = 2
+	end
+	if GetMapName() == "lv3_gold" then
+		_G.game_level = 3
+	end
 	Timers:CreateTimer( 5, function()
 		local ids = {}
 		for pID = 0, 9 do
@@ -163,7 +178,7 @@ function Nobu:OpenRoom()
 			-- Decode response into a lua table
 			local resultTable = {}
 			if not pcall(function()
-				resultTable = json.decode(result)[1]
+				resultTable = json.decode(result)
 				DumpTable(resultTable)
 			end) then
 				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
@@ -178,9 +193,20 @@ function Nobu:OpenRoom()
 			        local heroname = _G.hero_name_zh[nobu_id]
 					steamID = tostring(steamID)
 					if resultTable[steamID] ~= nil then
-						if resultTable[steamID] <=0.3 then
-							GameRules: SendCustomMessage("<font color='#fcac4b'>"..heroname.."是新銅學大家不要欺負他喔~".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-							hero.level = 1
+						if resultTable[steamID] <=0.44 then
+							hero.level = -1
+							if _G.game_level < 0 then
+								GameRules: SendCustomMessage("<font color='#fcac4b'>"..heroname.."是新銅學大家不要欺負他喔 新手禮包送你抗魔、軍糧丸、御守".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+								
+								hero:AddItem(CreateItem("item_perceive_wine_hyper_new", hero, hero))
+								hero:AddItem(CreateItem("item_rations_new", hero, hero))
+								hero:AddItem(CreateItem("item_protection_amulet_new", hero, hero))
+							else
+								GameRules: SendCustomMessage("<font color='#bb6c00'>"..heroname.."為木牌".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							end
+						elseif resultTable[steamID] <=0.50 then
+							GameRules: SendCustomMessage("<font color='#bb6c00'>"..heroname.."為銅牌".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							hero.level = 0
 						elseif resultTable[steamID] <=0.55 then
 							GameRules: SendCustomMessage("<font color='#ff8c00'>"..heroname.."為銅牌".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 							hero.level = 1

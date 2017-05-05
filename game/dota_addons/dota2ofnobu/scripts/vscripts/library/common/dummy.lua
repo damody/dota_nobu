@@ -89,6 +89,7 @@ _G.EXCLUDE_TARGET_NAME = {
   npc_dota_the_king_of_robbers  = true,
   com_general = true,
   com_general2 = true,
+  EARTH_WALL = true,
 }
 
 function CP_Posistion( keys )

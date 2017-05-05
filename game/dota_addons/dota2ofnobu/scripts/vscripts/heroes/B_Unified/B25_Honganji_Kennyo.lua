@@ -230,6 +230,10 @@ function B25T_start( keys )
 	-- local dummy = CreateUnitByName( "B25T_dummy", target, false, caster, caster, caster:GetTeamNumber() )
 	-- B25T_UNIT[id] = dummy
 
+	local dummyp = CreateUnitByName("npc_dummy_unit",target,false,nil,nil,caster:GetTeamNumber())
+	dummyp:AddNewModifier(dummy,nil,"modifier_kill",{duration=20})
+	dummyp:SetOwner(caster)
+	dummyp:AddAbility("majia"):SetLevel(1)
 	-- -- Get random point
 	local directionConstraint = 0
 	local dummyCount = 0
@@ -238,7 +242,7 @@ function B25T_start( keys )
 	tradius = 10
 	local disstep = 80
 	local loopnum = 5
-	local particle=ParticleManager:CreateParticle("particles/b15t/b15t_fiendsgrip_ground.vpcf",PATTACH_WORLDORIGIN,caster)
+	local particle=ParticleManager:CreateParticle("particles/b15t/b15t_fiendsgrip_ground.vpcf",PATTACH_WORLDORIGIN,dummyp)
 	ParticleManager:SetParticleControl(particle,0,target)
 	table.insert(caster.allparticle, particle)
 	Timers:CreateTimer(0, function()
@@ -249,7 +253,7 @@ function B25T_start( keys )
 			tradius = tradius + disstep
 			for i = 1, loopnum do
 				local point = target + RandomVector(tradius)
-				local particle=ParticleManager:CreateParticle("particles/b25t/b25t_fiends_grip.vpcf",PATTACH_WORLDORIGIN,caster)
+				local particle=ParticleManager:CreateParticle("particles/b25t/b25t_fiends_grip.vpcf",PATTACH_WORLDORIGIN,dummyp)
 				ParticleManager:SetParticleControl(particle,0,point)
 				--ParticleManager:ReleaseParticleIndex(particle)
 				table.insert(caster.allparticle, particle)

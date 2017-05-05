@@ -104,14 +104,23 @@ function Shock( keys )
 	                              false)
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) and IsValidEntity(it) then
-				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				if caster:IsAlive() then
+					AMHC:Damage(caster,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				else
+					AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				end
+				
 				if IsValidEntity(it) then
 					ability:ApplyDataDrivenModifier(dummy, it,"modifier_the_overflame_art_of_war",nil)
 					local rock_effect = ParticleManager:CreateParticle("particles/b26t/b26t.vpcf", PATTACH_ABSORIGIN, it)
 					ParticleManager:SetParticleControl(rock_effect, 0, it:GetAbsOrigin())
 				end
 			else
-				AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				if caster:IsAlive() then
+					AMHC:Damage(caster,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				else
+					AMHC:Damage(dummy,it,ability:GetLevelSpecialValueFor("damage", 0 )*0.2,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				end
 			end
 		end
 		if count > 15 then

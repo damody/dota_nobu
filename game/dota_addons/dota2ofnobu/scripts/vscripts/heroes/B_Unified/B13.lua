@@ -184,7 +184,7 @@ function B13R_old( keys )
 
 	local active_delay = 0
 	local mine = CreateUnitByName("B13_MINE", center, false, caster, caster, caster:GetTeamNumber())
-	
+	mine.caster = caster
 	mine:AddAbility("for_no_collision"):SetLevel(1)
 	mine:AddAbility("for_magic_immune"):SetLevel(1)
 	mine:SetOwner(caster)
@@ -201,6 +201,7 @@ end
 --old地雷爆炸 ref A26D
 function B13R_old_explosion( keys )
 	local caster = keys.caster -- mine
+	local ccaster = caster.caster -- caster
 	local ability = keys.ability
 	local radius_explosion = ability:GetSpecialValueFor("B13R_old_radius_explosion")
 
@@ -228,6 +229,9 @@ function B13R_old_explosion( keys )
 		}
 		if unit:IsHero() then
 			damageTable.damage = damageTable.damage
+		end
+		if ccaster and ccaster:IsAlive() then
+			damageTable.attacker = ccaster
 		end
 		ApplyDamage(damageTable)
 	end

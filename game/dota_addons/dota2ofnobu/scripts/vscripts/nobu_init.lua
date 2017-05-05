@@ -11,9 +11,22 @@ function _G.Nobu:InitGameMode()
   --【模式判斷】
   if _G.GameMap == "nobu_pk" then
     _G.mo = 1
+    _G.game_level = 99
   end
   if _G.GameMap == "nobu_CN" then
     _G.CN = 1
+  end
+  if GetMapName() == "nobu" then
+    _G.game_level = -99
+  end
+  if GetMapName() == "lv1_bronze" then
+    _G.game_level = 1
+  end
+  if GetMapName() == "lv2_silver" then
+    _G.game_level = 2
+  end
+  if GetMapName() == "lv3_gold" then
+    _G.game_level = 3
   end
 
   --【Setup rules】

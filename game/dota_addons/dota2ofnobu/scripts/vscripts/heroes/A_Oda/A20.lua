@@ -145,11 +145,11 @@ function A20E_OnSpellStart( keys )
 		if it:IsHero() then
 			ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, it)
 		end
-		ability:ApplyDataDrivenModifier(it,it,"modifier_A20E",{})
-		Timers:CreateTimer(6, function ()
-			if IsValidEntity(it) and AMHC:IsAlive(it) == true then
+		ability:ApplyDataDrivenModifier(caster,it,"modifier_A20E", nil)
+		Timers:CreateTimer(5.9, function ()
+			if IsValidEntity(it) and AMHC:IsAlive(it) == true and it:HasModifier("modifier_A20E") then
 				print("stun")
-				ability:ApplyDataDrivenModifier(it,it,"modifier_A20E_stun",{duration=0.6})
+				ability:ApplyDataDrivenModifier(it,it,"modifier_A20E_stun",{duration=0.7})
  	 		end
    		end)
 	end

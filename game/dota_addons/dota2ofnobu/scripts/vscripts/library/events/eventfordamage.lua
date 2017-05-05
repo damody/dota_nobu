@@ -40,5 +40,8 @@ function Nobu:DamageFilterEvent( filterTable )
 		}
 		return false
 	end
+	if caster.modify_damage then
+		filterTable.damage = filterTable.damage*caster.modify_damage
+	end
 	return true 
 end

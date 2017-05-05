@@ -30,7 +30,7 @@ function Shock( keys )
 	for _,unit in ipairs(units) do
 
 		-- 避免卡住
-		if (unit:GetUnitName() ~= "EARTH_WALL" ) then
+		if _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
 			unit:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
 		end
 

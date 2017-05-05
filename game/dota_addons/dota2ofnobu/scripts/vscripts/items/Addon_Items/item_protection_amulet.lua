@@ -67,7 +67,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 							EmitSoundOn("DOTA_Item.VeilofDiscord.Activate",self.caster)
 							for itemSlot=0,5 do
 								local item = self.caster:GetItemInSlot(itemSlot)
-								if item ~= nil and item:GetName() == "item_protection_amulet" then
+								if item ~= nil and (item:GetName() == "item_protection_amulet" or item:GetName() == "item_protection_amulet_new") then
 									hasitem = true
 									item:StartCooldown(30)
 								end

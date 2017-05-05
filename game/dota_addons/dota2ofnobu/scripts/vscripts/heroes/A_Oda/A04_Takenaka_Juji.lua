@@ -412,10 +412,6 @@ function A04D_ATTACK_UNIT( event )
 	end
 end
 
-function A04T_End( keys )
-	keys.caster.dummy:ForceKill(false)
-end
-
 function A04T( keys )
 	local ability = keys.ability
 	local caster = keys.caster
@@ -426,6 +422,7 @@ function A04T( keys )
 	local radius = keys.ability:GetLevelSpecialValueFor("radius",level-1)
 	local damage_scepter = keys.ability:GetLevelSpecialValueFor("damage_scepter",level-1)
 	ability:ApplyDataDrivenModifier( dummy, dummy, "modifier_freezing_field_caster_datadriven",{duration=8} )
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=10})
 	caster.dummy = dummy
 	Timers:CreateTimer(function()
 		if  ( caster:IsChanneling() ) then
@@ -600,7 +597,7 @@ function A04T_old_freezing_field_explode( keys )
 	end
 
 	-- Fire effect
-	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster )
+	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster.dummy )
 	ParticleManager:SetParticleControl( fxIndex, 0, attackPoint )
 	
 	-- Fire sound at dummy

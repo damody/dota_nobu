@@ -23,8 +23,32 @@ function Nobu:PickHero( keys )
         end)
       end
       Timers:CreateTimer( 2, function()
-        if not caster:HasModifier("modifier_debuff_1") and caster:IsAlive() then
-          --caster:AddAbility("debuff_1"):SetLevel(1)
+        --[[
+        if _G.game_level == 1 and caster:IsAlive() then
+          if caster.level == 2 and not caster:HasModifier("modifier_debuff_1") then
+            caster:AddAbility("debuff_1"):SetLevel(1)
+            caster.modify_damage = 0.9
+          elseif caster.level == 3 and not caster:HasModifier("modifier_debuff_2") then
+            caster:AddAbility("debuff_2"):SetLevel(1)
+            caster.modify_damage = 0.8
+          end
+        elseif _G.game_level == 2 and caster:IsAlive() then
+          if caster.level == 3 and not caster:HasModifier("modifier_debuff_1") then
+            caster:AddAbility("debuff_1"):SetLevel(1)
+            caster.modify_damage = 0.9
+          end
+        end
+        ]]
+        if _G.game_level < 0 and caster:IsAlive() then
+          if caster.level == -1 and not caster:HasModifier("modifier_buff_4") then
+            caster:AddAbility("buff_4"):SetLevel(1)
+          elseif caster.level == 0 and not caster:HasModifier("modifier_buff_3") then
+            caster:AddAbility("buff_3"):SetLevel(1)
+          elseif caster.level == 1 and not caster:HasModifier("modifier_buff_2") then
+            caster:AddAbility("buff_2"):SetLevel(1)
+          elseif caster.level == 2 and not caster:HasModifier("modifier_buff_1") then
+            caster:AddAbility("buff_1"):SetLevel(1)
+          end
         end
         return 2
       end)
@@ -130,6 +154,21 @@ function Nobu:PickHero( keys )
           return 1
         end)
       elseif nobu_id == "C24" then -- 柳生宗嚴
+        local lvneed = {
+            [17]=true,
+            [19]=true,
+            [21]=true,
+            [22]=true,
+            [23]=true,
+            [24]=true}
+        Timers:CreateTimer(1, function ()
+          if (lvneed[caster:GetLevel()]) then
+            lvneed[caster:GetLevel()] = false
+            caster:SetAbilityPoints(caster:GetAbilityPoints()+1)
+          end
+          return 1
+        end)
+      elseif nobu_id == "C14" then -- 齋藤義龍
         local lvneed = {
             [17]=true,
             [19]=true,

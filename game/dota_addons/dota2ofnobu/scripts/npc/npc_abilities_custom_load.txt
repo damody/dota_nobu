@@ -4339,11 +4339,101 @@
 		}
 	}
 
+	// 正面面狀態1等
+	"buff_1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_137"
+		"Modifiers"
+		{
+			"modifier_buff_1"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-5"
+					//"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_MAGICDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-20"
+				}
+			}
+		}
+	}
+	// 正面面狀態2等
+	"buff_2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_138"
+		"Modifiers"
+		{
+			"modifier_buff_2"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-10"
+					//"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_MAGICDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-20"
+				}
+			}
+		}
+	}
+	// 正面面狀態3等
+	"buff_3"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_139"
+		"Modifiers"
+		{
+			"modifier_buff_3"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-15"
+					//"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_MAGICDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-20"
+				}
+			}
+		}
+	}
+	// 正面面狀態4等
+	"buff_4"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_140"
+		"Modifiers"
+		{
+			"modifier_buff_4"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_MAGICDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-20"
+				}
+			}
+		}
+	}
+
 	//  負面狀態1等
 	"debuff_1"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_143"
 		"Modifiers"
 		{
 			"modifier_debuff_1"
@@ -4352,13 +4442,38 @@
 				"IsHidden"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"20"
-					"MODIFIER_PROPERTY_TOTAL_DAMAGEOUTGOING_PERCENTAGE"	"-100"
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"10"
+					//"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_MAGICDAMAGEOUTGOING_PERCENTAGE"	"-20"
+					//"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-20"
 				}
 			}
 		}
 	}
+
+	//  負面狀態2等
+	"debuff_2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_145"
+		"Modifiers"
+		{
+			"modifier_debuff_2"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"20"
+					//"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-40"
+					//"MODIFIER_PROPERTY_MAGICDAMAGEOUTGOING_PERCENTAGE"	"-40"
+					//"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-40"
+				}
+			}
+		}
+	}
+
 
 	"human_gather"
 	{

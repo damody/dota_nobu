@@ -81,6 +81,7 @@ function findanything( keys )
 			local donkey = CreateUnitByName("findeverything_unit", point, true, nil, nil, caster:GetTeamNumber())
 			donkey:FindAbilityByName("true_gem"):SetLevel(1)
 			donkey:FindAbilityByName("majia_2"):SetLevel(1)
+			donkey:FindAbilityByName("for_no_damage"):SetLevel(1)
 			local spell_hint_table = {
 				duration   = aura_duration,		-- 持續時間
 				radius     = 1200,		-- 半徑
