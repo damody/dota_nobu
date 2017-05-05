@@ -79,6 +79,23 @@ function B01E_CHECK(keys)
 	local caster = keys.caster
 	local target = keys.target
 	table.insert(caster.B01E, target)
+	target:SetBaseDamageMin(70+caster:GetLevel()*10)
+	target:SetBaseDamageMax(70+caster:GetLevel()*10)
+
+	local tem_point = target:GetAbsOrigin()
+	--【Particle】
+	local particle = ParticleManager:CreateParticle("particles/b01e2/b01e2.vpcf",PATTACH_POINT,target)
+	ParticleManager:SetParticleControl(particle,0, tem_point)
+
+end
+
+function B01E_old_CHECK(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	table.insert(caster.B01E, target)
+	target:SetBaseDamageMin(70+caster:GetLevel()*15)
+	target:SetBaseDamageMax(70+caster:GetLevel()*15)
 
 	local tem_point = target:GetAbsOrigin()
 	--【Particle】

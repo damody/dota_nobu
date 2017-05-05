@@ -55,7 +55,7 @@
 			"modifier_A09W_treant1"
 			{
 				"IsPurgable"		"0"
-				"ThinkInterval"  	"0.5"
+				"ThinkInterval"  	"0.8"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -156,7 +156,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"A09W_dotDamage"			"15"
+				"A09W_dotDamage"			"10"
 			}
 			"04"
 			{
@@ -212,11 +212,11 @@
 		"AbilityTextureName"                        "custom/A09/A09R"
 
 
-		"AbilityCastRange"              			"800"
+		"AbilityCastRange"              			"500"
 		"AbilityCastPoint"							"0.1"
 		"AbilityCooldown"                           "3.5"
-		"AbilityManaCost"                           "80 90 100 110"
-		"AOERadius"									"%A09R_radius"
+		"AbilityManaCost"                           "120 140 160 180"
+		"AOERadius"									"300"
 
 		"OnSpellStart"
 		{
@@ -342,6 +342,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"modifier_A09T_tentacle_dot"
@@ -383,7 +384,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"A09T_dotDamage"	"14 21 36"
+				"A09T_dotDamage"	"10 15 20"
 			}
 			"04"
 			{
@@ -599,7 +600,7 @@
 		"AbilityTextureName"                        "custom/A09/A09T"
 		
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"150"
+		"AbilityCooldown"           				"120 110 100"
 		"AbilityManaCost"           				"225 270 315"
 		"AbilityCastRange"							"800"
 		
@@ -636,6 +637,7 @@
 				"States"
 				{
 					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"modifier_A09T_old_tentacle_dot"
