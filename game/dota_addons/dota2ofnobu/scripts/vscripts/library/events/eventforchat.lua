@@ -130,7 +130,6 @@ function DumpTable( tTable )
 end
 
 local function chat_of_test(keys)
-	print("[Nobu-lua] Test")
 	--DeepPrintTable(keys)
 	-- [   VScript ]:    playerid                        	= 0 (number)
 	-- [   VScript ]:    text                            	= "3" (string)
@@ -157,7 +156,7 @@ local function chat_of_test(keys)
 	end
 	if s == "-se" then
 		_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_GOODGUYS
-		for playerID = 0, 14 do
+		for playerID = 0, 9 do
 			local id       = playerID
 	  		local p        = PlayerResource:GetPlayer(id)
 	  		local steamid = PlayerResource:GetSteamAccountID(id)
@@ -240,7 +239,7 @@ local function chat_of_test(keys)
 	end
 			
 	sump = 0
-	for playerID = 0, 14 do
+	for playerID = 0, 9 do
 		local id       = playerID
   		local p        = PlayerResource:GetPlayer(id)
     	if p ~= nil then
@@ -305,14 +304,14 @@ local function chat_of_test(keys)
 			caster:SetTimeUntilRespawn(0)
 		end
 		if string.match(s,"gold") then
-			for i=0,9 do
-			PlayerResource:SetGold(i,99999,false)--玩家ID需要減一
-			end
+			PlayerResource:SetGold(keys.playerid,99999,false)
+		end
+		if string.match(s,"money") then
+			local money = tonumber(string.match(s, '%d+'))
+			PlayerResource:SetGold(keys.playerid,PlayerResource:GetGold(keys.playerid) + money,false)
 		end
 		if string.match(s,"nogo") then
-			for i=0,9 do
-			PlayerResource:SetGold(i,0,false)--玩家ID需要減一
-			end
+			PlayerResource:SetGold(keys.playerid,0,false)
 		end
 		if string.match(s,"cd") then
 			--【Timer】
@@ -403,12 +402,12 @@ local function chat_of_test(keys)
 			    end
 			end
 		end
-		if s == "ShuaGuai" then
-			print("ShuaGuai")
+		if s == "shuaguai" then
+			print("shuaguai")
 			ShuaGuai_Of_AA( 10 )
-			ShuaGuai_Of_AB( 10 )
-			ShuaGuai_Of_B( 10 )
-			ShuaGuai_Of_C( 10 )
+			ShuaGuai_Of_AB( 2 )
+			ShuaGuai_Of_B( 2 )
+			ShuaGuai_Of_C( 2 )
 		end
 
 		if s == "a1" then
@@ -570,8 +569,6 @@ local function chat_of_test(keys)
 end
 
 function Nobu:Chat( keys )
-	print("[Nobu-lua] Chat Init")
-
 	--【測試模式】
 	--if nobu_debug then
 		chat_of_test(keys)

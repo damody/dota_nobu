@@ -335,7 +335,7 @@ function to_war_magic_unit(keys)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
-    	for playerID = 0, 14 do
+    	for playerID = 0, 9 do
     		local id       = playerID
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
@@ -383,7 +383,7 @@ function to_war_magic_unit2(keys)
 		return 0.2
 		end)
 	Timers:CreateTimer(1, function()
-    	for playerID = 0, 14 do
+    	for playerID = 0, 9 do
     		local id       = playerID
 	  		local p        = PlayerResource:GetPlayer(id-1)
 	    	if p ~= nil and (p: GetAssignedHero()) ~= nil then
@@ -464,7 +464,7 @@ function to_soldier_Oda(keys)
 		prestige[2] = goldprestige[2] or 0
 		prestige[3] = goldprestige[3] or 0
 		local sumkill = 0
-		for playerID = 0, 14 do
+		for playerID = 0, 9 do
     		local id       = playerID
 	  		local p        = PlayerResource:GetPlayer(id)
 	    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
@@ -838,7 +838,7 @@ function check_Oda_is_dead(keys)
 		if IsValidEntity(caster) and not caster:IsAlive() then
 			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_BADGUYS
 			local sum = 0
-			for playerID = 0, 14 do
+			for playerID = 0, 9 do
 				local id       = playerID
 		  		local p        = PlayerResource:GetPlayer(id)
 		  		local steamid = PlayerResource:GetSteamAccountID(id)
@@ -868,6 +868,9 @@ function check_Oda_is_dead(keys)
 				end
 			end
 			if sum > 7 then
+				if _G.game_level > 0 and _G.game_level < 10 then
+					_G.CountUsedAbility_Table.rank = 1
+				end
 				SendHTTPRequest("save_ability_data", "POST",
 					{
 					  data = tostring(inspect(_G.CountUsedAbility_Table)),
@@ -890,7 +893,7 @@ function check_Unified_is_dead(keys)
 		if IsValidEntity(caster) and not caster:IsAlive() then
 			_G.CountUsedAbility_Table["winteam"] = DOTA_TEAM_GOODGUYS
 			local sum = 0
-			for playerID = 0, 14 do
+			for playerID = 0, 9 do
 				local id       = playerID
 		  		local p        = PlayerResource:GetPlayer(id)
 		  		local steamid = PlayerResource:GetSteamAccountID(id)
@@ -921,6 +924,9 @@ function check_Unified_is_dead(keys)
 				end
 			end
 			if sum > 7 then
+				if _G.game_level > 0 and _G.game_level < 10 then
+					_G.CountUsedAbility_Table.rank = 1
+				end
 				SendHTTPRequest("save_ability_data", "POST",
 					{
 					  data = tostring(inspect(_G.CountUsedAbility_Table)),

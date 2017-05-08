@@ -134,7 +134,7 @@ function ShuaGuai( )
 end
 
 
---【足輕 、 弓箭手】
+--【足輕】
 function ShuaGuai_Of_AA(num)
 	A_count = _G.A_count
 	A_count = A_count + 1
@@ -162,9 +162,9 @@ function ShuaGuai_Of_AA(num)
 						team = 2
 					end
 					if team == 2 then
-						unit_name = "com_ashigaru_spearmen"
+						unit_name = "com_infantry_oda_" .. RandomInt(1,4)
 					elseif team == 3 then
-						unit_name = "com_ashigaru_spearmen_B"
+						unit_name = "com_infantry_unified_" .. RandomInt(1,4)
 					end
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
@@ -187,9 +187,9 @@ function ShuaGuai_Of_AA(num)
 
 					--顏色
 					if team == 2 then
-						unit:SetRenderColor(255,100,100)
+						--unit:SetRenderColor(255,100,100)
 					elseif team == 3 then
-						unit:SetRenderColor(100,255,100)
+						--unit:SetRenderColor(100,255,100)
 					end
 
 					--讓單位沿著設置好的路線開始行動
@@ -201,7 +201,7 @@ function ShuaGuai_Of_AA(num)
 	end
 	Timers:CreateTimer(ltt)
 end
-
+--【弓箭手】
 function ShuaGuai_Of_AB(num)
 	A_count = _G.A_count
 	local tem_count = 0
@@ -227,11 +227,10 @@ function ShuaGuai_Of_AB(num)
 						team = 2
 					end
 					if team == 2 then
-						unit_name = "com_archer"
+						unit_name = "com_archer_oda_" .. RandomInt(1,4)
 					elseif team == 3 then
-						unit_name = "com_archer_B"
+						unit_name = "com_archer_unified_" .. RandomInt(1,4)
 					end
-					--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
 					
 					--創建單位
@@ -256,9 +255,9 @@ function ShuaGuai_Of_AB(num)
 
 					--顏色
 					if team == 2 then
-						unit:SetRenderColor(255,100,100)
+						--unit:SetRenderColor(255,100,100)
 					elseif team == 3 then
-						unit:SetRenderColor(100,255,100)
+						--unit:SetRenderColor(100,255,100)
 					end
 
 					--讓單位沿著設置好的路線開始行動
@@ -320,7 +319,6 @@ function ShuaGuai_Of_B(num)
 							team = 2
 						end
 						unit_name = "com_gunner"
-						--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
 						
 						--創建單位
@@ -408,7 +406,6 @@ function ShuaGuai_Of_C(num)
 							team = 2
 						end
 						unit_name = "com_cavalry"
-						--if tem_count > 3 then unit_name = "npc_dota_creep_goodguys_melee" else	 unit_name = "npc_dota_creep_badguys_melee" end
 
 						--【騎兵】
 						--創建單位
@@ -467,7 +464,7 @@ function soldier_Oda_top( )
 			local team = nil
 			local unit_name = nil
 			team = 2
-			unit_name = "com_ashigaru_spearmen_D"
+			unit_name = "com_infantry_oda_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -490,9 +487,9 @@ function soldier_Oda_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -516,7 +513,7 @@ function soldier_Oda_mid( )
 			local team = nil
 			local unit_name = nil
 			team = 2
-			unit_name = "com_ashigaru_spearmen_D"
+			unit_name = "com_infantry_oda_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -539,9 +536,9 @@ function soldier_Oda_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -567,7 +564,7 @@ function soldier_Oda_bottom()
 			local team = nil
 			local unit_name = nil
 			team = 2
-			unit_name = "com_ashigaru_spearmen_D"
+			unit_name = "com_infantry_oda_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -589,9 +586,9 @@ function soldier_Oda_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -617,7 +614,7 @@ function soldier_Unified_top( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_ashigaru_spearmen_D"
+			unit_name = "com_infantry_unified_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -640,9 +637,9 @@ function soldier_Unified_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -666,7 +663,7 @@ function soldier_Unified_mid( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_ashigaru_spearmen_D"
+			unit_name = "com_infantry_unified_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -689,9 +686,9 @@ function soldier_Unified_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -717,7 +714,7 @@ function soldier_Unified_bottom()
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_ashigaru_spearmen_D"
+			unit_name = "com_infantry_unified_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -739,9 +736,9 @@ function soldier_Unified_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -767,7 +764,7 @@ function archer_Oda_top( )
 			local team = nil
 			local unit_name = nil
 			team = 2
-			unit_name = "com_archer_D"
+			unit_name = "com_archer_oda_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -789,9 +786,9 @@ function archer_Oda_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -815,7 +812,7 @@ function archer_Oda_mid( )
 			local team = nil
 			local unit_name = nil
 			team = 2
-			unit_name = "com_archer_D"
+			unit_name = "com_archer_oda_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -837,9 +834,9 @@ function archer_Oda_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -865,7 +862,7 @@ function archer_Oda_bottom()
 			local team = nil
 			local unit_name = nil
 			team = 2
-			unit_name = "com_archer_D"
+			unit_name = "com_archer_oda_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -887,9 +884,9 @@ function archer_Oda_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -915,7 +912,7 @@ function archer_Unified_top( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_archer_D"
+			unit_name = "com_archer_unified_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -937,9 +934,9 @@ function archer_Unified_top( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -963,7 +960,7 @@ function archer_Unified_mid( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_archer_D"
+			unit_name = "com_archer_unified_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -985,9 +982,9 @@ function archer_Unified_mid( )
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				----unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				----unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5
@@ -1013,7 +1010,7 @@ function archer_Unified_bottom()
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_archer_D"
+			unit_name = "com_archer_unified_"..RandomInt(1,4).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -1035,9 +1032,9 @@ function archer_Unified_bottom()
 
 			--顏色
 			if team == 2 then
-				unit:SetRenderColor(255,100,100)
+				--unit:SetRenderColor(255,100,100)
 			elseif team == 3 then
-				unit:SetRenderColor(100,255,100)
+				--unit:SetRenderColor(100,255,100)
 			end
 			unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
 			return 0.5

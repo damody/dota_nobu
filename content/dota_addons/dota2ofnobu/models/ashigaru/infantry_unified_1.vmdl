@@ -5,8 +5,8 @@
 		m_meshList = 
 		[
 			{
-				m_meshName = "archer"
-				m_meshFile = "models/archer/archer.fbx"
+				m_meshName = "ashigaru"
+				m_meshFile = "models/ashigaru/ashigaru.fbx"
 				m_materialSearchPath = ""
 				m_bSkinParentedObjects = true
 				m_bLegacySkinParentedTransforms = false
@@ -60,9 +60,9 @@
 								m_name = "Bone_Chest"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
-								m_sBoneName = "Bone_Chest"
-								m_vMinBounds = [ -59.46262, -55.591309, -100.281883 ]
-								m_vMaxBounds = [ 59.926144, 72.966293, 45.966774 ]
+								m_sBoneName = "m3bone_root"
+								m_vMinBounds = [ -49.869564, -65.247032, -14.752836 ]
+								m_vMaxBounds = [ 48.351383, 68.731583, 128.28125 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},
@@ -82,24 +82,11 @@
 				m_attachments = 
 				[
 					{
-						m_name = "attach_attack2"
+						m_name = "attach_origin"
 						m_influences = 
 						[
 							{
-								m_influenceName = "Weapon_L"
-								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
-								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
-								m_flWeight = 1.0
-								m_bRoot = false
-							},
-						]
-					},
-					{
-						m_name = "attach_attack1"
-						m_influences = 
-						[
-							{
-								m_influenceName = "Bone_Hand_R"
+								m_influenceName = "m3bone_root"
 								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
 								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
 								m_flWeight = 1.0
@@ -121,11 +108,24 @@
 						]
 					},
 					{
-						m_name = "attach_origin"
+						m_name = "attach_attack1"
 						m_influences = 
 						[
 							{
-								m_influenceName = "m3bone_root"
+								m_influenceName = "Bone_Hand_R"
+								m_vTranslationOffset = [ -0.000057, -93.372894, -4.89209 ]
+								m_vRotationOffset = [ -0.000013, -0.000003, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_attack2"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Hand_R"
 								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
 								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
 								m_flWeight = 1.0
@@ -184,10 +184,10 @@
 			m_Vanim = 
 			[
 				{
-					m_Animationname = "ashigaru_ani_attack_alternate"
-					m_Filepath = "models/archer/ashigaru_ani_attack_alternate.fbx"
+					m_Animationname = "ashigaru_ani_attack"
+					m_Filepath = "models/ashigaru/ashigaru_ani_attack.fbx"
 					m_nStartframe = 0
-					m_nEndframe = 32
+					m_nEndframe = 36
 					m_flFps = 30.0
 					m_Loop = 
 					{
@@ -248,7 +248,7 @@
 				},
 				{
 					m_Animationname = "ashigaru_ani_death"
-					m_Filepath = "models/archer/ashigaru_ani_death.fbx"
+					m_Filepath = "models/ashigaru/ashigaru_ani_death.fbx"
 					m_nStartframe = 0
 					m_nEndframe = 95
 					m_flFps = 30.0
@@ -311,7 +311,7 @@
 				},
 				{
 					m_Animationname = "ashigaru_ani_stand2"
-					m_Filepath = "models/archer/ashigaru_ani_stand2.fbx"
+					m_Filepath = "models/ashigaru/ashigaru_ani_stand2.fbx"
 					m_nStartframe = 0
 					m_nEndframe = 111
 					m_flFps = 30.0
@@ -356,17 +356,17 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "ashigaru_ani_walk2"
-					m_Filepath = "models/archer/ashigaru_ani_walk2.fbx"
+					m_Animationname = "ashigaru_ani_walk"
+					m_Filepath = "models/ashigaru/ashigaru_ani_walk.fbx"
 					m_nStartframe = 0
-					m_nEndframe = 23
+					m_nEndframe = 18
 					m_flFps = 30.0
 					m_Loop = 
 					{
 						m_bLoop = true
-						m_bSmoothLoop = false
+						m_bSmoothLoop = true
 						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
+						m_nSmoothLoopEnd = 7
 						m_StartLoop = 
 						{
 							_class = "CVAnimCmdStartLoop"
@@ -419,10 +419,67 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "ashigaru_ani_attack_alternate_2"
-					m_Filepath = "models/archer/ashigaru_ani_attack_alternate.fbx"
+					m_Animationname = "ashigaru_ani_walk2"
+					m_Filepath = "models/ashigaru/ashigaru_ani_walk2.fbx"
 					m_nStartframe = 0
-					m_nEndframe = 32
+					m_nEndframe = 23
+					m_flFps = 30.0
+					m_Loop = 
+					{
+						m_bLoop = true
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop = 
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities = [  ]
+					m_AnimationEvents = [  ]
+					m_MotionFrames = 
+					[
+						{
+							m_nFrame = 0
+							m_bExtractTX = true
+							m_bExtractTY = true
+							m_bExtractTZ = false
+							m_bExtractRX = false
+							m_bExtractRY = false
+							m_bExtractRZ = false
+							m_bDiscardTX = false
+							m_bDiscardTY = false
+							m_bDiscardTZ = false
+							m_bDiscardRX = false
+							m_bDiscardRY = false
+							m_bDiscardRZ = false
+						},
+					]
+					m_pIkRules = [  ]
+					m_pAlignAnimation = null
+					m_adjustAnimation = 
+					{
+						m_translation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 0.0, 0.0, 0.0 ]
+					}
+					m_Keywords = [  ]
+					m_sequenceParams = 
+					{
+						m_flFadeInTime = 0.2
+						m_flFadeOutTime = 0.2
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "ashigaru_ani_attack_2"
+					m_Filepath = "models/ashigaru/ashigaru_ani_attack.fbx"
+					m_nStartframe = 0
+					m_nEndframe = 36
 					m_flFps = 30.0
 					m_Loop = 
 					{
@@ -520,7 +577,11 @@
 		[
 			{
 				m_sSearchMaterial = "01_-_default.vmat"
-				m_sReplaceMaterial = "materials/ashigaru/version_01/ashigaru.vmat"
+				m_sReplaceMaterial = "materials/ashigaru/version_01/flag_unified1.vmat"
+			},
+			{
+				m_sSearchMaterial = "*"
+				m_sReplaceMaterial = "materials/ashigaru/ashigaru.vmat"
 			},
 			{
 				m_sSearchMaterial = "02_-_default.vmat"
@@ -528,10 +589,6 @@
 			},
 			{
 				m_sSearchMaterial = "ashigaru1.vmat"
-				m_sReplaceMaterial = "materials/ashigaru/ashigaru.vmat"
-			},
-			{
-				m_sSearchMaterial = "*"
 				m_sReplaceMaterial = "materials/ashigaru/ashigaru.vmat"
 			},
 		]

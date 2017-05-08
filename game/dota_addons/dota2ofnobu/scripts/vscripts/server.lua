@@ -187,7 +187,7 @@ function Nobu:OpenRoom()
 			end) then
 				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
 			end
-
+			_G.rankTable = resultTable
 			for pID = 0, 9 do
 				local steamID = PlayerResource:GetSteamAccountID(pID)
 				local player = PlayerResource:GetPlayer(pID)
