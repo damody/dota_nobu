@@ -103,8 +103,23 @@ function Nobu:PickHero( keys )
           return 1
           end)
       end
-      
-      
+      -- 某些等級沒有技能點
+      local lvneed = {
+            [17]=true,
+            [19]=true,
+            [20]=true,
+            [21]=true,
+            [22]=true,
+            [23]=true,
+            [24]=true}
+        Timers:CreateTimer(180, function ()
+          if (lvneed[caster:GetLevel()]) then
+            lvneed[caster:GetLevel()] = false
+            caster:SetAbilityPoints(1)
+          end
+          return 0.3
+        end)
+
       caster.name = heromap[name]
 
       if nobu_id == "A04" then -- 竹中重治
@@ -134,52 +149,6 @@ function Nobu:PickHero( keys )
               caster:FindAbilityByName("B15D"):SetLevel(1)
             end
             return nil
-          end
-          return 1
-        end)
-      elseif nobu_id == "C06" then -- 石川五右衛門
-        local lvneed = {
-            [17]=true,
-            [19]=true,
-            [20]=true,
-            [21]=true,
-            [22]=true,
-            [23]=true,
-            [24]=true}
-        Timers:CreateTimer(1, function ()
-          if (lvneed[caster:GetLevel()]) then
-            lvneed[caster:GetLevel()] = false
-            caster:SetAbilityPoints(1)
-          end
-          return 1
-        end)
-      elseif nobu_id == "C24" then -- 柳生宗嚴
-        local lvneed = {
-            [17]=true,
-            [19]=true,
-            [21]=true,
-            [22]=true,
-            [23]=true,
-            [24]=true}
-        Timers:CreateTimer(1, function ()
-          if (lvneed[caster:GetLevel()]) then
-            lvneed[caster:GetLevel()] = false
-            caster:SetAbilityPoints(caster:GetAbilityPoints()+1)
-          end
-          return 1
-        end)
-      elseif nobu_id == "C14" then -- 齋藤義龍
-        local lvneed = {
-            [17]=true,
-            [19]=true,
-            [21]=true,
-            [22]=true,
-            [23]=true,
-            [24]=true}
-        Timers:CreateTimer(1, function ()
-          if (lvneed[caster:GetLevel()]) then
-            lvneed[caster:GetLevel()] = false
-            caster:SetAbilityPoints(caster:GetAbilityPoints()+1)
           end
           return 1
         end)

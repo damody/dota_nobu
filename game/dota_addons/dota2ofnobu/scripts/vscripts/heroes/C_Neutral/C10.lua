@@ -14,11 +14,13 @@ function C10T_Init( keys )
    		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
    	
 	for i,v in ipairs(group) do
-		if v:IsHero() then
-			ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
+		if _G.EXCLUDE_TARGET_NAME[v:GetUnitName()] == nil then
+			if v:IsHero() then
+				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
+			end
+			table.insert(keys.caster.C10T_T,v)
+			ability:ApplyDataDrivenModifier(caster,v,"modifier_C10T",nil)
 		end
-		table.insert(keys.caster.C10T_T,v)
-		ability:ApplyDataDrivenModifier(caster,v,"modifier_C10T",nil)
 	end	
 	local delay = ability:GetLevelSpecialValueFor("delay",0)
 	local count = 0

@@ -193,6 +193,7 @@ function B33R_old_on_attck_landed( keys )
 	local hideUnit = CreateUnitByName("npc_dummy_unit_new",target:GetAbsOrigin(),false,caster,caster,caster:GetTeam())
 	hideUnit:AddNewModifier(hideUnit,nil,"modifier_kill",{duration=poison_duration})
 	ability:ApplyDataDrivenModifier(hideUnit,hideUnit,"modifier_B33R_old_poision_aura",{})
+	hideUnit:AddNewModifier(hideUnit,nil,"modifier_invulnerable",{duration=poison_duration})
 
 	local poison_radius = ability:GetSpecialValueFor("poison_radius")
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, poison_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, 

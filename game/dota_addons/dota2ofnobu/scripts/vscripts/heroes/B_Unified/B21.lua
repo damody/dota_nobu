@@ -329,13 +329,15 @@ function B21T_old_OnHealthChange( keys )
 	local hp_threshold2 = ability:GetSpecialValueFor("hp_threshold2")
 	local hp = caster:GetHealth()
 	if caster.nexthp ~= nil then
-		if hp < caster.nexthp then
+		if hp < caster.nexthp and not caster:IsIllusion() then
 			caster:SetHealth(caster.nexthp)
 		end
 	end
 	if ability.modifier == nil then
 		if hp <= hp_threshold then
-			caster:SetHealth(hp_threshold)
+			if not caster:IsIllusion() then
+				caster:SetHealth(hp_threshold)
+			end
 			ability.modifier = ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old",nil)
 		end
 	else

@@ -233,7 +233,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"4 3.5 3 2"
 		"AbilityManaCost"	"40 60 80 100"
-		"AbilityCastRange"	"700"
+		"AbilityCastRange"	"850"
 		"AOERadius"	"%radius"
 		"precache"
 		{
@@ -530,7 +530,8 @@
 				"Properties"	
 				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"%reduce_incoming_physical_damge"
-					// "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%reduce_atk_spd"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%regen_mp"
+					//"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%regen_hp"
 				}
 				"OnCreated"
 				{
@@ -564,12 +565,17 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"reduce_incoming_physical_damge"	"-25 -35 -45 -55" // %
+				"reduce_incoming_physical_damge"	"-20 -25 -30 -35" // %
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"reduce_atk_spd"	"-80 -70 -60 -50" // %
+				"regen_hp"	"20 25 30 35" // 
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"regen_mp"	"5 10 15 20" // 
 			}
 		}
 	}
@@ -727,7 +733,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"6"
 		"AbilityManaCost"	"140 160 180 200"
-		"AbilityCastRange"	"1200"
+		"AbilityCastRange"	"1100"
 		"AoERadius"	"500"
 		"precache"
 		{

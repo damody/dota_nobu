@@ -170,7 +170,7 @@ function A09R_OnSpellStart( keys )
 		modifier_A09R = caster:FindModifierByName("modifier_A09R")
 		modifier_A09R:SetStackCount(1)
 	end
-
+	caster:SpendMana(stackCount*damageIncrease*ability:GetManaCost(-1) ,ability)
 	damage = damage * math.pow( 1 + damageIncrease, stackCount )
 
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), point, nil, radius, 
@@ -209,6 +209,7 @@ function A09T_OnSpellStart( keys )
 		unit:AddNewModifier( caster , ability , "modifier_phased" , { duration = 0.01 } )
 		ability:ApplyDataDrivenModifier( caster , unit , "modifier_A09T_tentacle" , { duration = duration } )
 		EmitSoundOn( "Hero_ShadowShaman.SerpentWard" , unit )
+		ExecuteOrderFromTable( { UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = unit:GetAbsOrigin() })
 	end
 end
 
@@ -218,10 +219,23 @@ function modifier_A09T_tentacle_OnAttackLanded( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local dotDuration = ability:GetSpecialValueFor("A09T_dotDutaion")
+	local dmg = ability:GetSpecialValueFor("A09T_dotDamage")
+	
 	if not target:IsBuilding() then
+		AMHC:Damage(caster, target, dmg, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		local handle = target:FindModifierByName("modifier_A09T_tentacle_dot")
+		local c = 1
+		if handle then
+			c = handle:GetStackCount()+1
+		end
 		ability:ApplyDataDrivenModifier( attacker , target , "modifier_A09T_tentacle_dot" , { duration = dotDuration } )
+		handle = target:FindModifierByName("modifier_A09T_tentacle_dot")
+		if handle then
+			handle:SetStackCount(c)
+		end
 		EmitSoundOn( "ShadowShaman_Ward.ProjectileImpact" , attacker )
 	else
+		AMHC:Damage(caster, target, dmg*0.5, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		EmitSoundOn( "ShadowShaman_Ward.Attack" , attacker )
 	end
 	local particle = ParticleManager:CreateParticle( "particles/units/heroes/hero_viper/viper_poison_attack_explosion.vpcf" , PATTACH_CUSTOMORIGIN , nil )
@@ -237,7 +251,7 @@ function modifier_A09T_passive_OnAbilityExecuted( keys )
 	local count = ability:GetSpecialValueFor("A09T_passiveUnit")
 	local radius = 800
 
-	if not caster:HasModifier("modifier_A09T_passive_lock") then
+	if not caster:HasModifier("modifier_A09T_passive_lock") and string.match(keys.event_ability:GetName(), "A09") then
 		local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, 
 			ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for _,unit in ipairs(units) do
@@ -247,6 +261,7 @@ function modifier_A09T_passive_OnAbilityExecuted( keys )
 				tentacle:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 				tentacle:AddNewModifier( caster , ability , "modifier_phased" , { duration = 0.01 } )
 				ability:ApplyDataDrivenModifier( caster , tentacle , "modifier_A09T_tentacle" , { duration = duration } )
+				ExecuteOrderFromTable( { UnitIndex = tentacle:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = tentacle:GetAbsOrigin() })
 				EmitSoundOn( "Hero_ShadowShaman.SerpentWard" , tentacle )
 			end
 			ability:ApplyDataDrivenModifier( caster , caster , "modifier_A09T_passive_lock" , { duration = lockDuration } )
@@ -268,6 +283,7 @@ function A09T_old_OnSpellStart( keys )
 		unit:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 		unit:AddNewModifier( caster , ability , "modifier_phased" , { duration = 0.01 } )
 		ability:ApplyDataDrivenModifier( caster , unit , "modifier_A09T_old_tentacle" , { duration = duration } )
+		ExecuteOrderFromTable( { UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE , Position = unit:GetAbsOrigin() })
 		EmitSoundOn( "Hero_ShadowShaman.SerpentWard" , unit )
 	end
 end
@@ -278,13 +294,49 @@ function modifier_A09T_old_tentacle_OnAttackLanded( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local dotDuration = ability:GetSpecialValueFor("A09T_old_dotDutaion")
+	local dmg = ability:GetSpecialValueFor("A09T_old_dotDamage")
+	
 	if not target:IsBuilding() then
+		local handle = target:FindModifierByName("modifier_A09T_old_tentacle_dot")
+		local c = 1
+		if handle then
+			c = handle:GetStackCount()+1
+		end
 		ability:ApplyDataDrivenModifier( attacker , target , "modifier_A09T_old_tentacle_dot" , { duration = dotDuration } )
+		handle = target:FindModifierByName("modifier_A09T_old_tentacle_dot")
+		if handle then
+			handle:SetStackCount(c)
+		end
 		EmitSoundOn( "ShadowShaman_Ward.ProjectileImpact" , attacker )
 	else
+		AMHC:Damage(caster, target, dmg*0.5, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		EmitSoundOn( "ShadowShaman_Ward.Attack" , attacker )
 	end
 	local particle = ParticleManager:CreateParticle( "particles/units/heroes/hero_viper/viper_poison_attack_explosion.vpcf" , PATTACH_CUSTOMORIGIN , nil )
 	ParticleManager:SetParticleControl( particle , 0 , target:GetAbsOrigin() + Vector(0,0,50) )
 	ParticleManager:SetParticleControl( particle , 3 , target:GetAbsOrigin() + Vector(0,0,50) )
+end
+
+function modifier_A09T_OnIntervalThink( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local point = ability:GetCursorPosition()
+	local dmg = ability:GetSpecialValueFor("A09T_dotDamage")
+	local handle = target:FindModifierByName("modifier_A09T_tentacle_dot")
+	dmg = dmg * handle:GetStackCount()
+	if dmg > target:GetHealth() then
+		dmg = target:GetHealth() - 10
+	end
+	AMHC:Damage(caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+end
+
+function modifier_A09T_old_OnIntervalThink( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local point = ability:GetCursorPosition()
+	local dmg = ability:GetSpecialValueFor("A09T_old_dotDamage")
+	local handle = target:FindModifierByName("modifier_A09T_old_tentacle_dot")
+	AMHC:Damage(caster,target,dmg * handle:GetStackCount(),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 end

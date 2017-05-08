@@ -180,7 +180,10 @@ function B01R2(keys)
 
 		if target:IsHero() then 
 			per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
-			--print("hero")
+			local dmgori = dmg
+			dmg = dmg * per_atk  / 100
+			--print(dmgori, damageReduction, dmg)
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		elseif  target:IsBuilding() then
 			per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
 			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
@@ -194,10 +197,11 @@ function B01R2(keys)
 			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		else
 			per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
-			--print("unit")
+			local dmgori = dmg
+			dmg = dmg * per_atk  / 100
+			--print(dmgori, damageReduction, dmg)
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end
-		
-
 	end
 end
 

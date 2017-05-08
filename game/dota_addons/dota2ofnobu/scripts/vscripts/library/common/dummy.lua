@@ -90,6 +90,7 @@ _G.EXCLUDE_TARGET_NAME = {
   com_general = true,
   com_general2 = true,
   EARTH_WALL = true,
+  com_general3 = true,
 }
 
 function CP_Posistion( keys )

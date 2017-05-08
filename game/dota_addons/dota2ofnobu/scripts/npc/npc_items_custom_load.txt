@@ -2621,7 +2621,7 @@
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
 		// Item Info
 		
-		"ItemCost"	"1300"
+		"ItemCost"	"900"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"	"1"
@@ -12869,7 +12869,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"		
 		"AbilityCooldown"	"60"		
-		"AbilityManaCost"	"1000"
+		"AbilityManaCost"	"700"
 		"AbilitySharedCooldown" "the_art_of_war"
 		
 		"ID"	"2536"
@@ -13648,7 +13648,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"950"
+		"ItemCost"	"750"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
@@ -16758,7 +16758,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"13"
+		"AbilityCooldown"	"25"
 		
 		"AbilityManaCost"	"185"
 		"AbilityCastPoint"	"0.1"
@@ -16815,7 +16815,7 @@
 				"Passive"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "150"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "100"
 				}
 			}
 			"Passive_the_great_bow_of_scorpion"
@@ -16826,15 +16826,15 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"		//敏
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"	//敏
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
-					"MODIFIER_PROPERTY_MANA_BONUS" "500"				//魔
+					"MODIFIER_PROPERTY_HEALTH_BONUS" 	"0" 		//血
+					"MODIFIER_PROPERTY_MANA_BONUS" 		"500"		//魔
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "4" 	//回魔
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "200" 	//回魔%
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "200" //回魔%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}

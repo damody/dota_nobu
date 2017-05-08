@@ -56,6 +56,7 @@
 			{
 				"IsPurgable"		"0"
 				"ThinkInterval"  	"0.8"
+				"IsHidden"		"1"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -66,12 +67,12 @@
 				}
 				"OnCreated"
 				{
-					"AttachEffect"
-                    {
-                        "EffectName"		"particles/econ/courier/courier_greevil_green/courier_greevil_green_ambient_3.vpcf"
-                        "EffectAttachType"	"follow_origin"
-                        "Target"			"TARGET"
-                    }
+					//"AttachEffect"
+                    //{
+                    //    "EffectName"		"particles/econ/courier/courier_greevil_green/courier_greevil_green_ambient_3.vpcf"
+                    //    "EffectAttachType"	"follow_origin"
+                    //    "Target"			"TARGET"
+                    //}
 				}
 				"OnDeath"
 				{
@@ -94,8 +95,8 @@
 			"modifier_A09W_treant2"
 			{
 				"IsPurgable"		"0"
-				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
-				"EffectAttachType"	"follow_hitloc"
+				//"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				//"EffectAttachType"	"follow_hitloc"
 				"States"
 				{
 					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
@@ -125,8 +126,8 @@
 			{
 				"IsPurgable"		"1"
 				"IsDebuff"			"1"
-				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
-				"EffectAttachType"	"follow_hitloc"
+				//"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
+				//"EffectAttachType"	"follow_hitloc"
 				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"ThinkInterval"  	"1.0"
 				"OnIntervalThink"
@@ -215,7 +216,7 @@
 		"AbilityCastRange"              			"500"
 		"AbilityCastPoint"							"0.1"
 		"AbilityCooldown"                           "3.5"
-		"AbilityManaCost"                           "120 140 160 180"
+		"AbilityManaCost"                           "100 120 140 160"
 		"AOERadius"									"300"
 
 		"OnSpellStart"
@@ -351,7 +352,6 @@
 				"IsDebuff"			"1"
 				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
 				"EffectAttachType"	"follow_hitloc"
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
 				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%A09T_dotMsBonus" 
@@ -359,11 +359,10 @@
 				"ThinkInterval"  	"1.0"
 				"OnIntervalThink"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%A09T_dotDamage"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09T_OnIntervalThink"
 					}
 				}
 			}
@@ -389,7 +388,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"A09T_dotMsBonus"	"-3 -4 -5"
+				"A09T_dotMsBonus"	"-1 -2 -3"
 			}
 			"05"
 			{
@@ -496,7 +495,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"shock_width_start"			"110"
+				"shock_width_start"			"300"
 			}
 		}
 	}
@@ -646,15 +645,13 @@
 				"IsDebuff"			"1"
 				"EffectName"		"particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
 				"EffectAttachType"	"follow_hitloc"
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"ThinkInterval"  	"1.0"
 				"OnIntervalThink"
 				{
-					"Damage"
+					"RunScript"
 					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%A09T_old_dotDamage"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A09.lua"
+						"Function"		"modifier_A09T_old_OnIntervalThink"
 					}
 				}
 			}

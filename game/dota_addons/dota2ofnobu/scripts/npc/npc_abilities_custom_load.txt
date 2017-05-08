@@ -40,7 +40,6 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/icon_128x128_26"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		
 		"Modifiers"
 		{
 			"modifier_play_on_die"
@@ -99,7 +98,6 @@
 				"Function"		"gold_to_prestige"
 			}
 		}
-	
 	}
 	// 800魔抗靈氣
 	"magical_800"
@@ -700,7 +698,7 @@
 	            "Aura"        "modifier_show_invi"
         		"Aura_Radius" "1200"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
         		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
 			}
@@ -925,6 +923,47 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"atk_building"	"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_unit"	"0"
+			}
+		}
+	}
+	//箭塔打英雄額外50% 物傷
+	"tower_attack"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_64"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"Modifiers"
+		{
+			"modifier_archer_attack"
+			{
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"dmg"	"%attack_damage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01R2"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_hero"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_building"	"0"
 			}
 			"03"
 			{

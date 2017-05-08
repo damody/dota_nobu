@@ -2262,7 +2262,7 @@
  		"SoundSet"					""					// Name of sound set.
  		"Level"						"0"
  		"IsAncient"					"1"
- 		"ModelScale"					"1"
+ 		"ModelScale"				"1"
  		"UnitLabel"					"courier"
 
  		// Abilities
@@ -2270,11 +2270,11 @@
  		"AbilityLayout"				"6"		// changes when we change to flying -> "5"
 
  		"Ability1"					"courier_return_to_base"
- 		"Ability2"					"courier_go_to_secretshop"		
+ 		"Ability2"					"courier_go_to_secretshop"
  		"Ability3"					"courier_return_stash_items"
  		"Ability4"					"courier_take_stash_items"
- 		"Ability5"					"courier_transfer_items"	
- 		"Ability6"					"courier_burst"		
+ 		"Ability5"					"courier_transfer_items"
+ 		"Ability6"					"courier_burst"
  		"Ability7"					"courier_morph"
  		"Ability8"					"courier_take_stash_and_transfer_items"
  		"Ability9"					"for_magic_immune"
@@ -2310,8 +2310,8 @@
 		
  		// Vision
  		//----------------------------------------------------------------
- 		"VisionDaytimeRange"		"100"		// Range of vision during day light.
- 		"VisionNighttimeRange"		"100"		// Range of vision at night time.
+ 		"VisionDaytimeRange"		"600"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"600"		// Range of vision at night time.
 
  		// Bots
  		//----------------------------------------------------------------
@@ -7265,7 +7265,7 @@
 		"Ability1"	"play_on_die"
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"20"
+		"ArmorPhysical"	"5"
 		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
@@ -7298,15 +7298,15 @@
 		"StatusHealthRegen"	"1"
 		// Vision
 		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"1100"
-		"VisionNighttimeRange"	"1100"
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"1200"
 		// Team
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
-		"Ability2"	""
+		"Ability2"	"tower_attack"
 		"Ability3"	""
 		"Ability4"	""
 		"Ability5"	""
@@ -8537,7 +8537,7 @@
  		// Movement
  		//----------------------------------------------------------------
  		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
- 		"MovementSpeed"				"320"		// Speed.
+ 		"MovementSpeed"				"550"		// Speed.
 
  		// Status
  		//----------------------------------------------------------------
