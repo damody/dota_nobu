@@ -23,7 +23,7 @@ function B17W_onAttackLanded( keys )
 	local ability = keys.ability
 	local agiBonus = ability:GetSpecialValueFor("B17W_agiBonus")
 	local damageExtra = attacker:GetOwner():GetAgility() * agiBonus
-	if RandomInt(1,100) < 20 and not target:IsMagicImmune() then
+	if RandomInt(1,100) < 20 and not target:IsMagicImmune() and not target:IsBuilding() then
 		ability:ApplyDataDrivenModifier(attacker,target,"modifier_stunned",{duration=0.5})
 	end
 	--[[

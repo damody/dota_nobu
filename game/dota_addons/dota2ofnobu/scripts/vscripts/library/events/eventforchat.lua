@@ -183,6 +183,9 @@ local function chat_of_test(keys)
 			  _G.CountUsedAbility_Table[id+1]["kda"]["steamid"] = steamid
 			end
 		end
+		if _G.game_level > 0 and _G.game_level < 10 then
+			_G.CountUsedAbility_Table.rank = 1
+		end
 		DeepPrintTable(_G.CountUsedAbility_Table)
 		--[[
 		SendHTTPRequest("save_ability_data", "POST",

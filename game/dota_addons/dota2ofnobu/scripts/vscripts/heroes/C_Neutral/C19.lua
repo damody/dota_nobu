@@ -46,7 +46,7 @@ function Teleport( event )
     local units1 = FindUnitsInRadius(caster:GetTeamNumber(),	
 				caster:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_ENEMY, 
 		   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		   		0, 
+		   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
 		   		0, 
 				false) 	
 	for _,unit in ipairs(units1) do
@@ -88,7 +88,7 @@ function Teleport2( event )
     local units1 = FindUnitsInRadius(caster:GetTeamNumber(),	
 				caster:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_ENEMY, 
 		   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		   		0, 
+		   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
 		   		0, 
 				false) 	
 	for _,unit in ipairs(units1) do
@@ -100,9 +100,17 @@ function CreateTeleportParticles2( event )
 	local caster = event.caster
 	local point = event.target_points[1]
 	local particleName = "particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
+	
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 1500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+  	
+	for _,v in ipairs(group) do
+		if v:GetUnitName() == "com_towera" then
+			caster:Interrupt()
+			break
+		end
+	end
 	caster.teleportParticle = ParticleManager:CreateParticle(particleName, PATTACH_WORLDORIGIN, caster)
-	ParticleManager:SetParticleControl(caster.teleportParticle, 1, point)	
-
+	ParticleManager:SetParticleControl(caster.teleportParticle, 1, point)
 end
 
 function C19W_old( keys )
