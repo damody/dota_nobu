@@ -532,8 +532,9 @@ local function chat_of_test(keys)
 		end
 
 		local upper = s:upper()
+		local ai = upper:sub(5,7) == "AI"
 		local team = upper:sub(1,1)
-		local nobu_id = upper:sub(2)
+		local nobu_id = upper:sub(2,4)
 		local dota_hero_name = _G.nobu2dota[nobu_id]
 		if dota_hero_name ~= nil then
 			if team == "0" then

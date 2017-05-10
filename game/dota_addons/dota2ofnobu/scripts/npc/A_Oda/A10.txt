@@ -1,0 +1,795 @@
+// 平手政秀
+"DOTAAbilities"
+{
+	"A10_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/econ/events/ti6/blink_dagger_start_ti6_lvl2.vpcf" //d
+			"particle"  "particles/econ/events/ti6/blink_dagger_end_ti6_lvl2.vpcf" //d
+			"particle"  "particles/a10w/a10w2immortal1.vpcf" //w
+			"particle"  "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold_lvl2.vpcf" //w
+			"particle"  "particles/a10e/a10e.vpcf" //e
+			"particle"  "particles/a10e/a10e_2.vpcf" //e
+			"particle"  "particles/a10e/a10e_hitalliance_explosion.vpcf" //e
+			"particle"  "particles/units/heroes/hero_rubick/rubick_fade_bolt.vpcf" //r w_old
+			"particle"  "particles/a10t/a10t.vpcf" //t
+			"particle"  "particles/a10e_old/a10e_old.vpcf" //e_old
+			"particle"  "particles/a10e_old/a10e_old_2.vpcf" //e_old
+			"particle"  "particles/a10e_old/a10e_old_3.vpcf" //e_old
+			"particle"  "particles/a10e_old/a10e_old_4.vpcf" //e_old
+			"particle"  "particles/a10e_old/a10e_old_5.vpcf" //e_old
+			"particle"  "particles/a10r_old/a10r_oldoffhand_glow.vpcf" //r_old
+			"particle"  "particles/a10r_old/a10r_oldwarlock/warlock_shadow_word_debuff.vpcf" //r_old
+			"particle"  "particles/econ/events/ti5/blink_dagger_start_lvl2_ti5.vpcf" //t_old
+			"particle"  "particles/econ/events/ti5/blink_dagger_end_lvl2_ti5.vpcf" //t_old
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts" //d t_old
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts" //w
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts" //r w_old
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slark.vsndevts" //e
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts" //t e_old
+		}
+	}
+
+	//瞬返之術
+	"A10D"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"                        "custom/A10/A10D"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"0"
+		"AbilityCooldown"                           "16"
+		"AbilityManaCost"                           "150 170 190 210"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"						"A10D_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_QueenOfPain.Blink_out"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"		"A10E_OnProjectileHitUnit"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A10D_timer"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"				"modifier_A10D_timer_OnDeath"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_range"					"550 650 750 850"
+			}
+		}
+	}
+
+	//相移
+	"A10W"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"                        "custom/A10/A10W"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+		"AbilityCooldown"                           "25 21 17 13"
+		"AbilityManaCost"                           "110 135 160 185"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"						"A10W_OnSpellStart"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"		"A10E_OnProjectileHitUnit"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A10W"
+			{
+				"IsPurgable"			"0"
+				"EffectName"			"particles/a10w/a10w2immortal1.vpcf"
+				"EffectAttachType"		"follow_hitloc"
+				"StatusEffectName"		"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold_lvl2.vpcf"
+				"StatusEffectPriority"	"10"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"		"modifier_A10W_OnCreated"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"		"modifier_A10W_OnDestroy"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"2.5"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"200 300 400 500"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"heal"			"200 300 400 500"
+			}
+		}
+	}
+
+	//荒殺陣
+	"A10E"
+	{
+		"BaseClass"									"ability_datadriven"
+		"AbilityBehavior"							"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"						"custom/A10/A10E"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityType"								"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityCastPoint"							"0.1"
+		"AbilityCooldown"							"18 16 14 12"
+		"AbilityManaCost"							"140 155 170 185"
+		"AbilityCastRange"							"1000"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"		"A10E_OnSpellStart"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"		"A10E_OnProjectileHitUnit"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A10E_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"		"modifier_A10E_passive_OnAbilityExecuted"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"collision_radius"	"200"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"splash_radius"		"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"1500"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"distance"			"2000"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"50 95 140 185"
+			}
+			"07"
+			{
+				"var_type" 			"FIELD_INTEGER"
+				"mount_persec" 		"6 7 8 9"
+			}
+			"08"
+			{
+				"var_type" 			"FIELD_INTEGER"
+				"duration" 			"3"
+			}
+		}
+	}
+
+	//移形換位
+	"A10R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A10/A10R"
+
+
+		"AbilityCastRange"              			"%max_range"
+		"AbilityCastPoint"							"0.1"
+		"AbilityCooldown"                           "17"
+		"AbilityManaCost"                           "120 140 160 180"
+
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10R_OnAbilityPhaseStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10R_OnSpellStart"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_rubick/rubick_fade_bolt.vpcf"
+				"EffectAttachType"  "attach_hitloc"
+				"Target"            "CASTER"
+				"ControlPointEntities"
+	            {
+	                "CASTER" 		"attach_attack1"
+	                "TARGET" 		"attach_hitloc"
+	            }
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.FadeBolt.Cast"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"		"A10E_OnProjectileHitUnit"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A10R"
+			{
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"			"modifier_A10R_OnCreated"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"			"modifier_A10R_OnDestroy"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"205 270 335 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_range"				"500 650 800 950"
+			}
+		}
+
+    }
+
+    //震盪
+	"A10T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A10/A10T"
+		"AbilityCastAnimation"                      "ACT_DOTA_CHANNEL_ABILITY_3"
+		
+		"AbilityCastPoint"          				"0.1"
+		"AbilityCooldown"           				"8"
+		"AbilityManaCost"           				"190"
+		"AbilityCastRange"							"1000"
+		"AbilityChannelTime"						"3.5"
+		"AOERadius"                                 "%radius"
+
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10T_OnUpgrade"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10T_OnSpellStart"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10T_OnChannelFinish"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"		"A10E_OnProjectileHitUnit"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A10T_Aura"
+			{
+				"IsPurgable"		"0"
+				"Aura"          	"modifier_A10T"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"modifier_A10T"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%msBonus" 
+				}
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"			"modifier_A10T_OnIntervalThink"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"90 125 160"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"msBonus"			"-15 -25 -35"
+			}
+		}
+	}
+
+	//移型換位
+	"A10W_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/A10/A10R"
+
+		"AbilityCastRange"              			"%max_range"
+		"AbilityCastPoint"							"0.1"
+		"AbilityCooldown"                           "30 27 24 21"
+		"AbilityManaCost"                           "100 110 120 130"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10W_old_OnSpellStart"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_rubick/rubick_fade_bolt.vpcf"
+				"EffectAttachType"  "attach_hitloc"
+				"Target"            "CASTER"
+				"ControlPointEntities"
+	            {
+	                "CASTER" 		"attach_attack1"
+	                "TARGET" 		"attach_hitloc"
+	            }
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Rubick.FadeBolt.Cast"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A10W_old"
+			{
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"			"modifier_A10W_old_OnCreated"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"			"modifier_A10W_old_OnDestroy"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"50 100 150 200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_range"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.0 1.5 2.0 2.5"
+			}
+		}
+	}
+
+	//飛石擊
+	"A10E_old"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"    					"custom/A10/A10E_old"
+
+		"AbilityCooldown"							"15 14 13 12"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityCastRange"              			"1000"
+		"AbilityChannelTime"						"2.5"
+		"AbilityCastAnimation"                      "ACT_DOTA_CHANNEL_ABILITY_3"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"							"A10E_old_OnSpellStart"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"							"A10E_old_OnChannelFinish"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"							"A10E_old_OnProjectileHitUnit"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"collision_radius"	"200"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"splash_radius"		"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"700"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"distance"			"2000"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"90 160 230 300"
+			}
+			"07"
+			{
+				"var_type" 			"FIELD_INTEGER"
+				"pertime_mount" 	"6 7 8 9"
+			}
+		}
+	}
+
+	//疾病
+	"A10R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/A10/A10R_old"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCastRange"							"%radius"
+		"LevelsBetweenUpgrades" 					"3"
+
+
+		"Modifiers"
+		{
+			"modifier_A10R_old_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsPurgable"		"0"
+				"EffectName"		"particles/a10r_old/a10r_oldoffhand_glow.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+				"ThinkInterval"  	"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"		"modifier_A10R_old_passive_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_A10R_old"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"		"1"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/a10r_old/a10r_oldwarlock/warlock_shadow_word_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"		"modifier_A10R_old_OnIntervalThink"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"15 25 36 46"
+			}
+		}
+
+    }
+
+    //聲東擊西
+	"A10T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"                        "custom/A10/A10T_old"
+		
+		"AbilityCastPoint"          				"1.5 1 0.5"
+		"AbilityCooldown"           				"150 120 90"
+		"AbilityManaCost"           				"300 350 400"
+		"AbilityCastRange"							"0"
+
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10T_old_OnAbilityPhaseStart"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10T_old_OnSpellStart"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_QueenOfPain.Blink_out"
+				"Target" 		"TARGET"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+
+		}
+	}
+
+} // END DOTAAbilities
