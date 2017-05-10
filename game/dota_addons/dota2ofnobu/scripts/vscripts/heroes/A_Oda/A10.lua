@@ -215,7 +215,7 @@ function A10E_OnProjectileHitUnit( keys )
 	local splash_radius = A10E:GetSpecialValueFor("splash_radius")
 	local damageMultiplier = 1
 	if ability:GetAbilityName() ~= "A10E" then
-		damageMultiplier = 2/3
+		damageMultiplier = 0.666
 	end
 	local ifx = ParticleManager:CreateParticle( "particles/a10e/a10e_hitalliance_explosion.vpcf", PATTACH_ABSORIGIN, target )
 	local direUnits = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), nil, splash_radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -285,7 +285,13 @@ function A10R_OnAbilityPhaseStart( keys )
 		caster:Interrupt()
 	end
 end
-
+function A10W_old_OnAbilityPhaseStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	if A10R_EXCLUDE_TARGET_NAME[target:GetUnitName()] or target == caster then
+		caster:Interrupt()
+	end
+end
 function A10R_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -417,7 +423,9 @@ function A10W_old_OnSpellStart( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local stunDuration = ability:GetSpecialValueFor("stun_duration")
-	target:AddNewModifier( caster , ability , "modifier_stunned" , { duration = stunDuration } )
+	if target:GetTeamNumber() ~= caster:GetTeamNumber() then 
+		target:AddNewModifier( caster , ability , "modifier_stunned" , { duration = stunDuration } )
+	end
 	ability:ApplyDataDrivenModifier( caster , target , "modifier_A10W_old" , { duration = 0.1 } )
 
 	caster.A10W_old_timer = Timers:CreateTimer( 0.05 , function()
@@ -537,9 +545,10 @@ function A10E_old_OnProjectileHitUnit( keys )
 	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	for _,it in pairs(direUnits) do
 		if it:IsMagicImmune() then
-			AMHC:Damage(caster,it, ability:GetSpecialValueFor("damage")*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			--AMHC:Damage(caster,it, ability:GetSpecialValueFor("damage")*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster,it, ability:GetSpecialValueFor("damage"),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		else
-			AMHC:Damage(caster,it, ability:GetSpecialValueFor("damage"),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster,it, ability:GetSpecialValueFor("damage"),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end
 	end
 end

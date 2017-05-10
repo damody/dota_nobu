@@ -1,14 +1,14 @@
---[[
+     --[[
 淺井長政 AI
 ]]
-
+inspect = require('inspect')
 require( "ai_core" )
 
 behaviorSystem = {} -- create the global so we can assign to it
 
 function Spawn( entityKeyValues )
 	thisEntity:SetContextThink( "AIThink", AIThink, 0.25 )
-    behaviorSystem = AICore:CreateBehaviorSystem( { BehaviorNone, BehaviorEat, BehaviorRunAway, BehaviorLearn } ) 
+    behaviorSystem = AICore:CreateBehaviorSystem( { BehaviorNone, BehaviorEat, BehaviorKill, BehaviorPKill, BehaviorRunAway, BehaviorLearn } ) 
 end
 
 function AIThink() -- For some reason AddThinkToEnt doesn't accept member functions
@@ -27,12 +27,32 @@ POSITIONS_retreat = CollectRetreatMarkers()
 --------------------------------------------------------------------------------------------------------
 
 BehaviorLearn = {}
+LearnString = "WEWEWTWEERRTRR+++T+++++++++++++++++++++++++++"
+
+function GetLearnLevel( str )
+	local w ={}
+	for i=1,#str do
+	  if w[string.sub(str, i,i)] == nil then
+	    w[string.sub(str, i,i)] = 1
+	  else
+	    w[string.sub(str, i,i)] = w[string.sub(str, i,i)] +1
+	  end
+	end
+	return w
+end
 
 function BehaviorLearn:Evaluate()
 	self.LearnAbility1 = thisEntity:FindAbilityByName("choose_11")
 	if self.LearnAbility1 and self.LearnAbility1:IsFullyCastable() then
-		print("self.LearnAbility1 99999")
 		return 99999
+	end
+	learn = GetLearnLevel(LearnString)
+	for k,v in pairs(learn) do
+		local sk = "B08"..k.."_old"
+		local ab = thisEntity:FindAbilityByName(sk)
+		if ab then
+			ab:SetLevel(v)
+		end
 	end
 	return 1
 end
@@ -77,6 +97,11 @@ function BehaviorNone:Begin()
 			OrderType = DOTA_UNIT_ORDER_STOP
 		}
 	end
+	self.order =
+		{
+			UnitIndex = thisEntity:entindex(),
+			OrderType = DOTA_UNIT_ORDER_STOP
+		}
 end
 
 function BehaviorNone:Continue()
@@ -89,35 +114,39 @@ BehaviorEat = {}
 
 function BehaviorEat:Evaluate()
 	self.EatAbility1 = thisEntity:FindAbilityByName("B08W_old")
-	self.EatAbility2 = nil
+	self.EatAbility2 = thisEntity:FindAbilityByName("B08E_old")
+	self.EatAbility4 = nil
 	for i=0,DOTA_ITEM_MAX-1 do
 		local item = thisEntity:GetItemInSlot( i )
 		if item and item:GetAbilityName() == "item_lightning_scroll" then
-			self.EatAbility2 = item
+			self.EatAbility4 = item
 		end
 	end
 	-- 初始化
 	local target
 	local desire = 0
-	self.use_eat1 = nil
-	self.use_eat2 = nil
-	-- let's not choose this twice in a row
-	if AICore.currentBehavior == self then return desire end
-	if self.EatAbility2 and self.EatAbility2:IsFullyCastable() and self.EatAbility1 and self.EatAbility1:IsFullyCastable() then
-		local range = math.min(self.EatAbility1:GetCastRange(), self.EatAbility2:GetCastRange())
-		local damage = self.EatAbility1:GetAbilityDamage() + self.EatAbility2:GetAbilityDamage()
-		target = AICore:RandomEnemyBasicInRange( thisEntity, range, damage )
-		self.use_eat1 = true
-		self.use_eat2 = true
-	elseif self.EatAbility1 and self.EatAbility1:IsFullyCastable() then
-		local range = self.EatAbility1:GetCastRange()
-		local damage = self.EatAbility1:GetAbilityDamage()
-		target = AICore:RandomEnemyBasicInRange( thisEntity, range, damage )
-		self.use_eat1 = true
-	end
 
+	local range = 0
+	local damage = 0
+	self.Eatab = {}
+	for i=1,4 do
+		local sk = "EatAbility"..i
+		if self[sk] and self[sk]:IsFullyCastable() then
+			if self[sk]:GetCastRange() > range then
+				range = self[sk]:GetCastRange()
+			end
+			damage = damage + self[sk]:GetAbilityDamage()
+			table.insert(self.Eatab, self[sk])
+		end
+	end
+	print("eat range", range, damage)
+	target = AICore:RandomEnemyBasicInRange( thisEntity, range, damage*4 )
 	if target then
-		desire = 5
+		print("EAT", target:GetUnitName())
+	end
+	self.target = nil
+	if target then
+		desire = 30
 		self.target = target
 	else
 		desire = 1
@@ -127,20 +156,44 @@ function BehaviorEat:Evaluate()
 end
 
 function BehaviorEat:Begin()
-	self.endTime = GameRules:GetGameTime() + 5
-	if use_eat1 and use_eat2 then
-		self.order =
-		{
-			OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-			UnitIndex = thisEntity:entindex(),
-			TargetIndex = self.target:entindex(),
-			AbilityIndex = self.EatAbility1:entindex()
-		}
+	print("BehaviorEat:Begin")
+	if #self.Eatab > 0 then
+		self.endTime = GameRules:GetGameTime() + 1
+		self.orderTable = {}
+		for k,v in pairs(self.Eatab) do
+			local order =
+			{
+				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+				UnitIndex = thisEntity:entindex(),
+				TargetIndex = self.target:entindex(),
+				AbilityIndex = v:entindex()
+			}
+			table.insert(self.orderTable, order)
+			print("EAT ".. inspect(self.orderTable, {depth =2}))
+			self.order = order
+		end
 	end
-	
 end
 
-BehaviorEat.Continue = BehaviorEat.Begin --if we re-enter this ability, we might have a different target; might as well do a full reset
+function BehaviorEat:Continue()
+	print("BehaviorEat:Continue")
+	if #self.Eatab > 0 then
+		self.endTime = GameRules:GetGameTime() + 1
+		self.orderTable = {}
+		for k,v in pairs(self.Eatab) do
+			local order =
+			{
+				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+				UnitIndex = thisEntity:entindex(),
+				TargetIndex = self.target:entindex(),
+				AbilityIndex = v:entindex()
+			}
+			table.insert(self.orderTable, order)
+			print("EAT ".. inspect(self.orderTable, {depth =2}))
+			self.order = order
+		end
+	end
+end
 
 function BehaviorEat:Think(dt)
 	if not self.target:IsAlive() then
@@ -151,54 +204,174 @@ end
 
 --------------------------------------------------------------------------------------------------------
 
-BehaviorThrowHook = {}
+BehaviorPKill = {}
 
-function BehaviorThrowHook:Evaluate()
-	local desire = 0
-	
-	-- let's not choose this twice in a row
-	if currentBehavior == self then return desire end
-
-	self.hookAbility = thisEntity:FindAbilityByName( "creature_meat_hook" )
-	
-	if self.hookAbility and self.hookAbility:IsFullyCastable() then
-		self.target = AICore:RandomEnemyHeroInRange( thisEntity, self.hookAbility:GetCastRange() )
-		if self.target then
-			desire = 4
+function BehaviorPKill:Evaluate()
+	self.PKillability1 = thisEntity:FindAbilityByName("B08W_old")
+	self.PKillability2 = thisEntity:FindAbilityByName("B08E_old")
+	self.PKillability4 = nil
+	for i=0,DOTA_ITEM_MAX-1 do
+		local item = thisEntity:GetItemInSlot( i )
+		if item and item:GetAbilityName() == "item_lightning_scroll" then
+			self.PKillability4 = item
 		end
 	end
-	
-	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, thisEntity:GetOrigin(), nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
-	if #enemies > 0 then
-		for _,enemy in pairs(enemies) do
-			local enemyVec = enemy:GetOrigin() - thisEntity:GetOrigin()
-			local myForward = thisEntity:GetForwardVector()
-			local dotProduct = enemyVec:Dot( myForward ) 
-			if dotProduct > 0 then
-				desire = 2
+	-- 初始化
+	local target
+	local desire = 0
+
+	local range = 0
+	local damage = 0
+	self.PKillab = {}
+	for i=1,4 do
+		local sk = "PKillability"..i
+		if self[sk] and self[sk]:IsFullyCastable() then
+			if self[sk]:GetCastRange() > range then
+				range = self[sk]:GetCastRange()
 			end
+			damage = damage + self[sk]:GetAbilityDamage()
+			table.insert(self.PKillab, self[sk])
 		end
-	end 
+	end
+	target = AICore:EnemyHeroInRange( thisEntity, range, damage*4 )
+
+	self.target = nil
+	if target then
+		desire = 40
+		self.target = target
+	else
+		desire = 1
+	end
 
 	return desire
 end
 
-function BehaviorThrowHook:Begin()
-	self.endTime = GameRules:GetGameTime() + 1
-
-	local targetPoint = self.target:GetOrigin() + RandomVector( 100 )
-	
-	self.order =
-	{
-		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-		AbilityIndex = self.hookAbility:entindex(),
-		Position = targetPoint
-	}
-
+function BehaviorPKill:Begin()
+	print("BehaviorPKill:Begin")
+	if #self.PKillab > 0 then
+		self.endTime = GameRules:GetGameTime() + 1
+		self.orderTable = {}
+		for k,v in pairs(self.PKillab) do
+			local order =
+			{
+				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+				UnitIndex = thisEntity:entindex(),
+				TargetIndex = self.target:entindex(),
+				AbilityIndex = v:entindex()
+			}
+			table.insert(self.orderTable, order)
+			print("PKill ".. inspect(self.orderTable, {depth =2}))
+			self.order = order
+		end
+		self.PKillab = {}
+	end
 end
 
-BehaviorThrowHook.Continue = BehaviorThrowHook.Begin
+function BehaviorPKill:Continue()
+	print("BehaviorPKill:Continue")
+	self.endTime = GameRules:GetGameTime()
+end
+
+function BehaviorPKill:Think(dt)
+	if not self.target:IsAlive() then
+		self.endTime = GameRules:GetGameTime()
+		return
+	end
+end
+--------------------------------------------------------------------------------------------------------
+
+BehaviorKill = {}
+
+function BehaviorKill:Evaluate()
+	self.Killability1 = thisEntity:FindAbilityByName("B08W_old")
+	self.Killability2 = thisEntity:FindAbilityByName("B08E_old")
+	self.Killability3 = thisEntity:FindAbilityByName("B08T_old")
+	self.Killability4 = nil
+	for i=0,DOTA_ITEM_MAX-1 do
+		local item = thisEntity:GetItemInSlot( i )
+		if item and item:GetAbilityName() == "item_lightning_scroll" then
+			self.Killability4 = item
+		end
+	end
+	-- 初始化
+	local target
+	local desire = 0
+
+	local range = 9999
+	local damage = 0
+	self.Killab = {}
+	for i=1,4 do
+		local sk = "Killability"..i
+		if self[sk] and self[sk]:IsFullyCastable() then
+			if self[sk]:GetCastRange() < range and self[sk]:GetCastRange() > 100 then
+				range = self[sk]:GetCastRange()
+			end
+			damage = damage + self[sk]:GetAbilityDamage()
+			table.insert(self.Killab, self[sk])
+		end
+	end
+	target = AICore:EnemyHeroInRange( thisEntity, range, damage )
+
+	self.target = nil
+	if target then
+		desire = 50
+		self.target = target
+	else
+		desire = 1
+	end
+
+	return desire
+end
+
+function BehaviorKill:Begin()
+	print("BehaviorKill:Begin")
+	if #self.Killab > 0 then
+		self.endTime = GameRules:GetGameTime() + 1
+		self.orderTable = {}
+		for k,v in pairs(self.Killab) do
+			local order =
+			{
+				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+				UnitIndex = thisEntity:entindex(),
+				TargetIndex = self.target:entindex(),
+				AbilityIndex = v:entindex()
+			}
+			table.insert(self.orderTable, order)
+			print("PKill ".. inspect(self.orderTable, {depth =2}))
+			self.order = order
+		end
+		self.Killab = {}
+	end
+end
+
+
+function BehaviorKill:Continue()
+	print("BehaviorKill:Continue")
+	if #self.Killab > 0 then
+		self.endTime = GameRules:GetGameTime() + 1
+		self.orderTable = {}
+		for k,v in pairs(self.Killab) do
+			local order =
+			{
+				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+				UnitIndex = thisEntity:entindex(),
+				TargetIndex = self.target:entindex(),
+				AbilityIndex = v:entindex()
+			}
+			table.insert(self.orderTable, order)
+			print("PKill ".. inspect(self.orderTable, {depth =2}))
+			self.order = order
+		end
+		self.Killab = {}
+	end
+end
+
+function BehaviorKill:Think(dt)
+	if not self.target:IsAlive() then
+		self.endTime = GameRules:GetGameTime()
+		return
+	end
+end
 
 --------------------------------------------------------------------------------------------------------
 
@@ -286,4 +459,4 @@ BehaviorRunAway.Continue = BehaviorRunAway.Begin
 
 --------------------------------------------------------------------------------------------------------
 
-AICore.possibleBehaviors = { BehaviorNone, BehaviorEat, BehaviorRunAway, BehaviorLearn }
+AICore.possibleBehaviors = { BehaviorNone, BehaviorEat, BehaviorKill, BehaviorPKill, BehaviorRunAway, BehaviorLearn }

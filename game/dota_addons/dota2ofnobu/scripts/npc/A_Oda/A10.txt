@@ -275,7 +275,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"50 95 140 185"
+				"damage"			"40 70 110 130"
 			}
 			"07"
 			{
@@ -285,7 +285,7 @@
 			"08"
 			{
 				"var_type" 			"FIELD_INTEGER"
-				"duration" 			"3"
+				"duration" 			"2"
 			}
 		}
 	}
@@ -302,7 +302,7 @@
 		"AbilityTextureName"                        "custom/A10/A10R"
 
 
-		"AbilityCastRange"              			"%max_range"
+		"AbilityCastRange"              			"500 650 800 950"
 		"AbilityCastPoint"							"0.1"
 		"AbilityCooldown"                           "17"
 		"AbilityManaCost"                           "120 140 160 180"
@@ -509,16 +509,23 @@
 		"BaseClass"                 				"ability_datadriven"
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/A10/A10R"
 
-		"AbilityCastRange"              			"%max_range"
+		"AbilityCastRange"              			"600 700 800 900"
 		"AbilityCastPoint"							"0.1"
-		"AbilityCooldown"                           "30 27 24 21"
+		"AbilityCooldown"                           "26 23 20 17"
 		"AbilityManaCost"                           "100 110 120 130"
-
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/A_Oda/A10.lua"
+				"Function"			"A10W_old_OnAbilityPhaseStart"
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -684,7 +691,7 @@
 		"AbilityTextureName"                        "custom/A10/A10R_old"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityCastRange"							"%radius"
+		"AbilityCastRange"							"450"
 		"LevelsBetweenUpgrades" 					"3"
 
 

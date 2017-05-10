@@ -201,11 +201,15 @@ function Nobu:OpenRoom()
 						if idcount < 2 then
 							GameRules: SendCustomMessage("<font color='#fcac4b'>".."你的勝率為 "..(resultTable[steamID]*100).." </font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 						end
-						if resultTable[steamID] <=0.35 then
+						local playcount = 100
+						if resultTable[steamID.."count"] then
+							playcount = resultTable[steamID.."count"]
+						end
+						if resultTable[steamID] <=0.35 or playcount < 10 or (playcount < 50 and resultTable[steamID] < 0.6) then
 							hero.level = -1
 							if _G.game_level < 0 then
 								if idcount < 2 then
-									GameRules: SendCustomMessage("<font color='#fcac4b'>"..heroname.."是新銅學大家不要欺負他喔 新手禮包送你抗魔、軍糧丸、御守".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+									GameRules: SendCustomMessage("<font color='#fcac4b'>"..heroname.."是新銅學大家不要欺負他喔 新手禮包送你抗魔、軍糧丸".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 								end
 								hero:AddItem(CreateItem("item_perceive_wine_hyper_new", hero, hero))
 								hero:AddItem(CreateItem("item_rations_new", hero, hero))

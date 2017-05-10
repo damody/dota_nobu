@@ -103,24 +103,29 @@
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_smoke.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_streak.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_smoke_b.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_sparks.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_haze.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_fire.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_glow_ob.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a23r/a23rfly_lens.vpcf"
@@ -132,6 +137,7 @@
 		{
 			m_bEndCap = true
 			m_ChildRef = resource:"particles/a23r/a23rland_flash.vpcf"
+			m_bDisableChild = true
 		},
 	]
 	m_controlPointConfigurations = 

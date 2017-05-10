@@ -1,4 +1,17 @@
+inspect = require("inspect")
+test="WWEREWRETTWER"
 
+local w ={}
+for i=1,#test do
+  if w[string.sub(test, i,i)] == nil then
+    w[string.sub(test, i,i)] = 1
+  else
+    w[string.sub(test, i,i)] = w[string.sub(test, i,i)] +1
+  end
+end
+print(inspect(w))
+
+--[[
 function readAll(file)
     local f = io.open(file, "rb")
     local content = f:read("*all")
@@ -56,4 +69,4 @@ for idx, val in pairs(heromap) do
   f:write(temp)
   f:close()
 end
-
+]]

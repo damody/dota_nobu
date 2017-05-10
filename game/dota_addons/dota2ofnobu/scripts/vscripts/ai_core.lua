@@ -37,11 +37,26 @@ AICore = {}
 function AICore:RandomEnemyBasicInRange( entity, range, MagicDamage )
 	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 0, 0, false )
 	for i,v in pairs(enemies) do
+		print("RandomEnemyBasicInRange "..v:GetHealth(), MagicDamage)
 		if v:GetHealth() < MagicDamage then
 			return v
 		end
 	end
+	return nil
 end
+
+function AICore:EnemyHeroInRange( entity, range, MagicDamage )
+	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
+	for i,v in pairs(enemies) do
+		local mr = (100-v:GetBaseMagicalResistanceValue())*0.01
+		if v:GetHealth() < (MagicDamage*mr) then
+
+			return v
+		end
+	end
+	return nil
+end
+
 
 function AICore:RandomEnemyHeroInRange( entity, range )
 	local enemies = FindUnitsInRadius( DOTA_TEAM_BADGUYS, entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )

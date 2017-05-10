@@ -1218,7 +1218,7 @@ function gunner_Unified_top( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_gunner_D"
+			unit_name = "com_gunner_unified_"..RandomInt(1,8).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -1266,7 +1266,7 @@ function gunner_Unified_mid( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_gunner_D"
+			unit_name = "com_gunner_unified_"..RandomInt(1,8).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -1316,7 +1316,7 @@ function gunner_Unified_bottom()
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_gunner_D"
+			unit_name = "com_gunner_unified_"..RandomInt(1,8).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -1517,7 +1517,7 @@ function cavalry_Unified_top( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_cavalry_D"
+			unit_name = "com_cavalry_unified_"..RandomInt(1,8).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -1566,7 +1566,7 @@ function cavalry_Unified_mid( )
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_cavalry_D"
+			unit_name = "com_cavalry_unified_"..RandomInt(1,8).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
@@ -1617,7 +1617,7 @@ function cavalry_Unified_bottom()
 			local team = nil
 			local unit_name = nil
 			team = 3
-			unit_name = "com_cavalry_D"
+			unit_name = "com_cavalry_unified_"..RandomInt(1,8).."_D"
 			
 			--創建單位
 			local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)

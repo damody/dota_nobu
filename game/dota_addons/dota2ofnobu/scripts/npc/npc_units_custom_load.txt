@@ -7661,6 +7661,218 @@
 		"MinimapIconSize"	"1"
 		"RingRadius"	"45"
 	}
+	// 叫兵聯合足輕
+	"com_infantry_unified_5_D"
+	{
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/ashigaru/infantry_unified_5.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"130"
+		// Abilities
+		"Ability1"	"attack_building"
+		// Reference: A0GW
+		"Ability2"	"set_level_1"
+		// Armor
+		"ArmorPhysical"	"20"
+		"MagicalResistance"	"50"
+		// Attack
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"138.0"
+		"AttackDamageMax"	"149.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.33"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"	"168"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
+		"BountyXP"	"50"
+		// Gold and Lumber
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		"MovementTurnRate"	"1"
+		// Status
+		"StatusHealth"	"1500"
+		"StatusHealthRegen"	"25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"1"
+		"RingRadius"	"45"
+	}
+	// 叫兵聯合足輕
+	"com_infantry_unified_6_D"
+	{
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/ashigaru/infantry_unified_6.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"130"
+		// Abilities
+		"Ability1"	"attack_building"
+		// Reference: A0GW
+		"Ability2"	"set_level_1"
+		// Armor
+		"ArmorPhysical"	"20"
+		"MagicalResistance"	"50"
+		// Attack
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"138.0"
+		"AttackDamageMax"	"149.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.33"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"	"168"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
+		"BountyXP"	"50"
+		// Gold and Lumber
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		"MovementTurnRate"	"1"
+		// Status
+		"StatusHealth"	"1500"
+		"StatusHealthRegen"	"25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"1"
+		"RingRadius"	"45"
+	}
+	// 叫兵聯合足輕
+	"com_infantry_unified_7_D"
+	{
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/ashigaru/infantry_unified_7.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"130"
+		// Abilities
+		"Ability1"	"attack_building"
+		// Reference: A0GW
+		"Ability2"	"set_level_1"
+		// Armor
+		"ArmorPhysical"	"20"
+		"MagicalResistance"	"50"
+		// Attack
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"138.0"
+		"AttackDamageMax"	"149.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.33"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"	"168"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
+		"BountyXP"	"50"
+		// Gold and Lumber
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		"MovementTurnRate"	"1"
+		// Status
+		"StatusHealth"	"1500"
+		"StatusHealthRegen"	"25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"1"
+		"RingRadius"	"45"
+	}
+	// 叫兵聯合足輕
+	"com_infantry_unified_8_D"
+	{
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/ashigaru/infantry_unified_8.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"130"
+		// Abilities
+		"Ability1"	"attack_building"
+		// Reference: A0GW
+		"Ability2"	"set_level_1"
+		// Armor
+		"ArmorPhysical"	"20"
+		"MagicalResistance"	"50"
+		// Attack
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"138.0"
+		"AttackDamageMax"	"149.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.33"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"	"168"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
+		"BountyXP"	"50"
+		// Gold and Lumber
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		"MovementTurnRate"	"1"
+		// Status
+		"StatusHealth"	"1500"
+		"StatusHealthRegen"	"25"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"1"
+		"RingRadius"	"45"
+	}
 	// 弓箭手
 	"com_archer_C"
 	{
