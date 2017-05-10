@@ -376,7 +376,7 @@ function C02T_OnSpellStart( keys )
 			attacker=caster,
 			victim=target,
 			damage_type=DAMAGE_TYPE_PURE,
-			damage=force_kill_hp
+			damage=99999
 		})
 		-- 處決特效
 		local ifx = ParticleManager:CreateParticle("particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_frostnova.vpcf",PATTACH_ABSORIGIN,target)

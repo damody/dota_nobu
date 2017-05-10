@@ -141,6 +141,7 @@ function ShuaGuai_Of_AA(num)
 	print("A_count "..A_count)
 	local tem_count = 0
 	--總共六個出發點 6
+	local randomkey = RandomInt(1,8)
 	local function ltt()
 		tem_count = tem_count + 1
 		if tem_count > num then return nil
@@ -162,9 +163,9 @@ function ShuaGuai_Of_AA(num)
 						team = 2
 					end
 					if team == 2 then
-						unit_name = "com_infantry_oda_" .. RandomInt(1,8)
+						unit_name = "com_infantry_oda_" .. randomkey
 					elseif team == 3 then
-						unit_name = "com_infantry_unified_" .. RandomInt(1,8)
+						unit_name = "com_infantry_unified_" .. randomkey
 					end
 					--創建單位
 					local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[i] , true, nil, nil, team)
@@ -206,6 +207,7 @@ function ShuaGuai_Of_AB(num)
 	A_count = _G.A_count
 	local tem_count = 0
 	--總共六個出發點 6
+	local randomkey = RandomInt(1,8)
 	local function ltt()
 		tem_count = tem_count + 1
 		if tem_count > num then return nil
@@ -227,9 +229,9 @@ function ShuaGuai_Of_AB(num)
 						team = 2
 					end
 					if team == 2 then
-						unit_name = "com_archer_oda_" .. RandomInt(1,8)
+						unit_name = "com_archer_oda_" .. randomkey
 					elseif team == 3 then
-						unit_name = "com_archer_unified_" .. RandomInt(1,8)
+						unit_name = "com_archer_unified_" .. randomkey
 					end
 
 					
@@ -277,6 +279,7 @@ function ShuaGuai_Of_B(num)
 	B_count = B_count + 1
 	A_count = _G.A_count
 	--總共六個出發點 6
+	local randomkey = RandomInt(1,8)
 	local function ltt()
 		tem_count = tem_count + 1
 		if tem_count > num then return nil
@@ -319,9 +322,9 @@ function ShuaGuai_Of_B(num)
 							team = 2
 						end
 						if team == 2 then
-							unit_name = "com_gunner_oda_" .. RandomInt(1,8)
+							unit_name = "com_gunner_oda_" .. randomkey
 						elseif team == 3 then
-							unit_name = "com_gunner_unified_" .. RandomInt(1,8)
+							unit_name = "com_gunner_unified_" .. randomkey
 						end
 						
 						--創建單位
@@ -368,6 +371,7 @@ function ShuaGuai_Of_C(num)
 	C_count = C_count + 1
 	A_count = _G.A_count
 	--總共六個出發點 6
+	local randomkey = RandomInt(1,8)
 	local function ltt()
 		tem_count = tem_count + 1
 		if tem_count > num then return nil
@@ -409,9 +413,9 @@ function ShuaGuai_Of_C(num)
 							team = 2
 						end
 						if team == 2 then
-							unit_name = "com_cavalry_oda_" .. RandomInt(1,8)
+							unit_name = "com_cavalry_oda_" .. randomkey
 						elseif team == 3 then
-							unit_name = "com_cavalry_unified_" .. RandomInt(1,8)
+							unit_name = "com_cavalry_unified_" .. randomkey
 						end
 
 						--【騎兵】

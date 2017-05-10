@@ -109,6 +109,12 @@ function CreateTeleportParticles2( event )
 			break
 		end
 	end
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 1000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+  	
+	for _,v in ipairs(group) do
+		caster:Interrupt()
+		break
+	end
 	caster.teleportParticle = ParticleManager:CreateParticle(particleName, PATTACH_WORLDORIGIN, caster)
 	ParticleManager:SetParticleControl(caster.teleportParticle, 1, point)
 end
@@ -193,7 +199,7 @@ function C19T_old_OnSpellStart( keys )
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_ninja_cloth",nil)
 	nc = caster:FindModifierByName("modifier_ninja_cloth")
 	nc:SetStackCount(2)
-	Timers:CreateTimer(20,function()
+	Timers:CreateTimer(10,function()
 		nc:SetStackCount(1)
 		end)
 end

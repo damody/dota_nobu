@@ -5,8 +5,8 @@
 		m_meshList = 
 		[
 			{
-				m_meshName = "cavalry"
-				m_meshFile = "models/cavalry/cavalry.fbx"
+				m_meshName = "cavalry_01"
+				m_meshFile = "models/cavalry/cavalry_01.fbx"
 				m_materialSearchPath = ""
 				m_bSkinParentedObjects = true
 				m_bLegacySkinParentedTransforms = false
@@ -57,422 +57,12 @@
 						m_HitBoxes = 
 						[
 							{
-								m_name = "BoneHorseBONE_ABDOMEN"
+								m_name = "Origin Ref "
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_ABDOMEN"
-								m_vMinBounds = [ -23.555988, -34.130379, -17.295494 ]
-								m_vMaxBounds = [ 23.808205, 34.910118, 28.350613 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBONE_PELVIS"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_PELVIS"
-								m_vMinBounds = [ -17.965103, -18.335072, -22.833183 ]
-								m_vMaxBounds = [ 18.144291, 15.2254, 17.752419 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBONE_CHEST"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_CHEST"
-								m_vMinBounds = [ -21.297659, -26.659008, -18.640297 ]
-								m_vMaxBounds = [ 21.476534, 14.085911, 27.065605 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Chest"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Chest"
-								m_vMinBounds = [ -13.206751, -13.611053, -3.857388 ]
-								m_vMaxBounds = [ 14.750746, 41.166138, 124.349213 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg1_Rear_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg1_Rear_L"
-								m_vMinBounds = [ -11.506239, -19.492374, -27.953209 ]
-								m_vMaxBounds = [ 5.816198, 5.601099, 3.538986 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg1_Rear_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg1_Rear_R"
-								m_vMinBounds = [ -4.690797, -19.492287, -21.808311 ]
-								m_vMaxBounds = [ 11.327949, 5.601097, 3.538986 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg1_Front_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg1_Front_L"
-								m_vMinBounds = [ -13.340822, -17.461102, -15.620998 ]
-								m_vMaxBounds = [ 10.7372, 6.759699, 3.444901 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg1_Front_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg1_Front_R"
-								m_vMinBounds = [ -10.484697, -17.410706, -15.608898 ]
-								m_vMaxBounds = [ 13.080767, 6.810095, 3.457001 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Arm1_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Arm1_L"
-								m_vMinBounds = [ -0.5802, -6.174497, -22.185806 ]
-								m_vMaxBounds = [ 18.991295, 13.972142, 8.241997 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBONE_TAIL1"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_TAIL1"
-								m_vMinBounds = [ -7.130441, -0.835194, -33.358002 ]
-								m_vMaxBounds = [ 7.106037, 14.588711, 5.288193 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg2_Rear_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg2_Rear_L"
-								m_vMinBounds = [ -9.848128, -9.061396, -3.778606 ]
-								m_vMaxBounds = [ 10.145198, 9.735703, 5.918396 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg2_Rear_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg2_Rear_R"
-								m_vMinBounds = [ -10.6726, -9.035299, -9.930408 ]
-								m_vMaxBounds = [ 9.392288, 9.638098, 5.954189 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg2_Front_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg2_Front_L"
-								m_vMinBounds = [ -5.336039, -13.710993, -15.6455 ]
-								m_vMaxBounds = [ 10.7342, 8.156502, 8.804298 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg2_Front_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg2_Front_R"
-								m_vMinBounds = [ -10.481798, -13.561197, -15.625099 ]
-								m_vMaxBounds = [ 5.588369, 8.306297, 8.824699 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Pelvis"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Pelvis"
-								m_vMinBounds = [ -31.006134, -45.459209, -25.57531 ]
-								m_vMaxBounds = [ 31.45636, 43.556782, 10.369682 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Arm1_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Arm1_R"
-								m_vMinBounds = [ -17.534498, -7.530929, -22.663803 ]
-								m_vMaxBounds = [ 2.0371, 12.10291, 7.764 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Arm2_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Arm2_L"
-								m_vMinBounds = [ -5.647303, -6.929842, -14.845291 ]
-								m_vMaxBounds = [ 9.921494, 6.929849, 2.507912 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBONE_TAIL2"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_TAIL2"
-								m_vMinBounds = [ -7.118239, -1.1926, -25.364712 ]
-								m_vMaxBounds = [ 7.118239, 12.417206, 14.701686 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg3_Rear_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg3_Rear_L"
-								m_vMinBounds = [ -5.0752, -21.640293, -23.900307 ]
-								m_vMaxBounds = [ 7.509198, 8.392803, 8.859994 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg3_Rear_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg3_Rear_R"
-								m_vMinBounds = [ -7.288898, -23.546295, -24.552811 ]
-								m_vMaxBounds = [ 5.117199, 6.294601, 8.183091 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg3_Front_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg3_Front_L"
-								m_vMinBounds = [ -4.724188, -9.83779, -20.532597 ]
-								m_vMaxBounds = [ 5.8504, 2.304802, 0.110603 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Leg3_Front_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Leg3_Front_R"
-								m_vMinBounds = [ -5.850396, -9.837793, -20.532597 ]
-								m_vMaxBounds = [ 4.724192, 2.304798, 0.110603 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBONE_NECK"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_NECK"
-								m_vMinBounds = [ -15.755542, -13.709203, -25.296391 ]
-								m_vMaxBounds = [ 15.981355, 20.280598, 35.164803 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Leg1_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Leg1_R"
-								m_vMinBounds = [ -20.095398, -23.43627, -29.762897 ]
-								m_vMaxBounds = [ 11.34729, 11.435938, 4.111908 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Leg1_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Leg1_L"
-								m_vMinBounds = [ -11.513054, -23.515841, -30.693909 ]
-								m_vMaxBounds = [ 19.548397, 11.356367, 3.198196 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Arm2_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Arm2_R"
-								m_vMinBounds = [ -9.977993, -6.929842, -14.845291 ]
-								m_vMaxBounds = [ 5.647303, 6.929849, 2.507912 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Hand_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Hand_L"
-								m_vMinBounds = [ -4.804502, -6.839629, -11.439896 ]
-								m_vMaxBounds = [ 7.327694, 4.43431, 1.360199 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBONE_TAIL3"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_TAIL3"
-								m_vMinBounds = [ -5.291001, -2.489101, -12.19651 ]
-								m_vMaxBounds = [ 5.291007, 19.319595, 4.774796 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Hoof_Rear_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Hoof_Rear_L"
-								m_vMinBounds = [ -8.640577, -14.339298, -12.119699 ]
-								m_vMaxBounds = [ 8.058201, 6.6105, 0.397691 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Hoof_Rear_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Hoof_Rear_R"
-								m_vMinBounds = [ -8.058201, -14.339294, -12.119703 ]
-								m_vMaxBounds = [ 8.640577, 6.610504, 0.397687 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Hoof_Front_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Hoof_Front_L"
-								m_vMinBounds = [ -8.746086, -17.458694, -12.482305 ]
-								m_vMaxBounds = [ 6.978002, 2.360804, 0.196997 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBone_Hoof_Front_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBone_Hoof_Front_R"
-								m_vMinBounds = [ -6.977998, -17.458698, -12.482314 ]
-								m_vMaxBounds = [ 8.74609, 2.3608, 0.196997 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "BoneHorseBONE_HEAD"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "BoneHorseBONE_HEAD"
-								m_vMinBounds = [ -8.128176, -28.378403, -24.492104 ]
-								m_vMaxBounds = [ 9.23855, 5.788895, 11.439003 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Leg2_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Leg2_R"
-								m_vMinBounds = [ -13.815498, -20.143169, -33.761398 ]
-								m_vMaxBounds = [ 6.008268, 12.026367, 3.835808 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Leg2_L"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Leg2_L"
-								m_vMinBounds = [ -5.175899, -20.470308, -35.688805 ]
-								m_vMaxBounds = [ 14.4477, 11.782019, 1.9105 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Flag03"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Flag03"
-								m_vMinBounds = [ -2.0, -2.0, -2.0 ]
-								m_vMaxBounds = [ 2.0, 2.0, 2.0 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Cape_01"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Cape_01"
-								m_vMinBounds = [ -2.0, -2.0, -2.0 ]
-								m_vMaxBounds = [ 2.0, 2.0, 2.0 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Hand_R"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Hand_R"
-								m_vMinBounds = [ -7.440594, -6.839628, -11.439896 ]
-								m_vMaxBounds = [ 4.691502, 4.434311, 1.360199 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Bone_Head"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Bone_Head"
-								m_vMinBounds = [ -10.644921, -11.95538, -2.42701 ]
-								m_vMaxBounds = [ 10.623975, 12.405719, 15.762001 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Weapon"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Weapon"
-								m_vMinBounds = [ -2.293097, -126.60611, -3.162506 ]
-								m_vMaxBounds = [ 2.688599, 74.910858, 3.682991 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Flag02"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Flag02"
-								m_vMinBounds = [ -2.0, -2.0, -2.0 ]
-								m_vMaxBounds = [ 2.0, 2.0, 2.0 ]
-								m_bTranslationOnly = false
-								m_cRenderColor = [ 0, 0, 0, 0 ]
-							},
-							{
-								m_name = "Flag01"
-								m_sSurfaceProperty = ""
-								m_nGroupId = 0
-								m_sBoneName = "Flag01"
-								m_vMinBounds = [ -2.0, -2.0, -2.0 ]
-								m_vMaxBounds = [ 2.0, 2.0, 2.0 ]
+								m_sBoneName = "Origin Ref "
+								m_vMinBounds = [ -65.87957, -37.823997, -2.0 ]
+								m_vMaxBounds = [ 99.595627, 32.431812, 138.493591 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},
@@ -496,7 +86,20 @@
 						m_influences = 
 						[
 							{
-								m_influenceName = "m3bone_root"
+								m_influenceName = "Origin Ref "
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						m_name = "attach_root"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Bone_Chest"
 								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
 								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
 								m_flWeight = 1.0
@@ -509,35 +112,9 @@
 						m_influences = 
 						[
 							{
-								m_influenceName = "m3bone_root"
-								m_vTranslationOffset = [ 0.0, 0.0, 105.927551 ]
-								m_vRotationOffset = [ 0.0, -0.0, -0.00001 ]
-								m_flWeight = 1.0
-								m_bRoot = false
-							},
-						]
-					},
-					{
-						m_name = "attach_attack1"
-						m_influences = 
-						[
-							{
-								m_influenceName = "m3bone_root"
-								m_vTranslationOffset = [ 25.399315, -75.826454, 66.542618 ]
-								m_vRotationOffset = [ 0.0, -0.0, -0.000031 ]
-								m_flWeight = 1.0
-								m_bRoot = false
-							},
-						]
-					},
-					{
-						m_name = "attach_attack2"
-						m_influences = 
-						[
-							{
-								m_influenceName = "m3bone_root"
-								m_vTranslationOffset = [ -0.000032, -89.679314, 40.269394 ]
-								m_vRotationOffset = [ 0.0, -0.0, -0.00002 ]
+								m_influenceName = "Bone_Chest"
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
 								m_flWeight = 1.0
 								m_bRoot = false
 							},
@@ -557,13 +134,13 @@
 						]
 					},
 					{
-						m_name = "attach_root"
+						m_name = "attach_attack1"
 						m_influences = 
 						[
 							{
-								m_influenceName = "Bone_Chest"
-								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
-								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_influenceName = "Weapon"
+								m_vTranslationOffset = [ 68.530556, 0.0, 0.0 ]
+								m_vRotationOffset = [ -0.0, 0.0, -0.000001 ]
 								m_flWeight = 1.0
 								m_bRoot = false
 							},
@@ -594,11 +171,11 @@
 			m_Vanim = 
 			[
 				{
-					m_Animationname = "cavalry_ani_attack"
-					m_Filepath = "models/cavalry/cavalry_ani_attack.fbx"
+					m_Animationname = "Attack"
+					m_Filepath = "models/cavalry/anims/Attack.dmx"
 					m_nStartframe = 0
-					m_nEndframe = 31
-					m_flFps = 30.0
+					m_nEndframe = 23
+					m_flFps = 24.0
 					m_Loop = 
 					{
 						m_bLoop = false
@@ -617,7 +194,7 @@
 					m_Activities = 
 					[
 						{
-							m_Name = "ACT_DOTA_ATTACK2"
+							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
 					]
@@ -657,11 +234,51 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "cavalry_ani_death"
-					m_Filepath = "models/cavalry/cavalry_ani_death.fbx"
+					m_Animationname = "blind"
+					m_Filepath = "models/cavalry/anims/blind.dmx"
 					m_nStartframe = 0
-					m_nEndframe = 68
-					m_flFps = 30.0
+					m_nEndframe = 1
+					m_flFps = 24.0
+					m_Loop = 
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop = 
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities = [  ]
+					m_AnimationEvents = [  ]
+					m_MotionFrames = [  ]
+					m_pIkRules = [  ]
+					m_pAlignAnimation = null
+					m_adjustAnimation = 
+					{
+						m_translation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 0.0, 0.0, 0.0 ]
+					}
+					m_Keywords = [  ]
+					m_sequenceParams = 
+					{
+						m_flFadeInTime = 0.2
+						m_flFadeOutTime = 0.2
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "Death"
+					m_Filepath = "models/cavalry/anims/Death.dmx"
+					m_nStartframe = 0
+					m_nEndframe = 52
+					m_flFps = 24.0
 					m_Loop = 
 					{
 						m_bLoop = false
@@ -720,14 +337,54 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "cavalry_ani_stand"
-					m_Filepath = "models/cavalry/cavalry_ani_stand.fbx"
+					m_Animationname = "Decay Flesh"
+					m_Filepath = "models/cavalry/anims/Decay Flesh.dmx"
 					m_nStartframe = 0
-					m_nEndframe = 115
-					m_flFps = 30.0
+					m_nEndframe = 72
+					m_flFps = 24.0
 					m_Loop = 
 					{
-						m_bLoop = true
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop = 
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities = [  ]
+					m_AnimationEvents = [  ]
+					m_MotionFrames = [  ]
+					m_pIkRules = [  ]
+					m_pAlignAnimation = null
+					m_adjustAnimation = 
+					{
+						m_translation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 0.0, 0.0, 0.0 ]
+					}
+					m_Keywords = [  ]
+					m_sequenceParams = 
+					{
+						m_flFadeInTime = 0.2
+						m_flFadeOutTime = 0.2
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "Stand -1"
+					m_Filepath = "models/cavalry/anims/Stand -1.dmx"
+					m_nStartframe = 0
+					m_nEndframe = 68
+					m_flFps = 24.0
+					m_Loop = 
+					{
+						m_bLoop = false
 						m_bSmoothLoop = false
 						m_nSmoothLoopStart = 0
 						m_nSmoothLoopEnd = 0
@@ -766,11 +423,97 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "cavalry_ani_walk"
-					m_Filepath = "models/cavalry/cavalry_ani_walk.fbx"
+					m_Animationname = "Stand Ready"
+					m_Filepath = "models/cavalry/anims/Stand Ready.dmx"
 					m_nStartframe = 0
-					m_nEndframe = 18
-					m_flFps = 30.0
+					m_nEndframe = 36
+					m_flFps = 24.0
+					m_Loop = 
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop = 
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities = [  ]
+					m_AnimationEvents = [  ]
+					m_MotionFrames = [  ]
+					m_pIkRules = [  ]
+					m_pAlignAnimation = null
+					m_adjustAnimation = 
+					{
+						m_translation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 0.0, 0.0, 0.0 ]
+					}
+					m_Keywords = [  ]
+					m_sequenceParams = 
+					{
+						m_flFadeInTime = 0.2
+						m_flFadeOutTime = 0.2
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "Stand"
+					m_Filepath = "models/cavalry/anims/Stand.dmx"
+					m_nStartframe = 0
+					m_nEndframe = 88
+					m_flFps = 24.0
+					m_Loop = 
+					{
+						m_bLoop = false
+						m_bSmoothLoop = false
+						m_nSmoothLoopStart = 0
+						m_nSmoothLoopEnd = 0
+						m_StartLoop = 
+						{
+							_class = "CVAnimCmdStartLoop"
+							m_bEnabled = false
+							m_nLoopRestart = 0
+						}
+					}
+					m_bHidden = false
+					m_bDisable = false
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE"
+							m_nWeight = 1
+						},
+					]
+					m_AnimationEvents = [  ]
+					m_MotionFrames = [  ]
+					m_pIkRules = [  ]
+					m_pAlignAnimation = null
+					m_adjustAnimation = 
+					{
+						m_translation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 0.0, 0.0, 0.0 ]
+					}
+					m_Keywords = [  ]
+					m_sequenceParams = 
+					{
+						m_flFadeInTime = 0.2
+						m_flFadeOutTime = 0.2
+					}
+					m_folderName = ""
+					m_MotionFramesRootBone = ""
+				},
+				{
+					m_Animationname = "Walk"
+					m_Filepath = "models/cavalry/anims/Walk.dmx"
+					m_nStartframe = 0
+					m_nEndframe = 14
+					m_flFps = 24.0
 					m_Loop = 
 					{
 						m_bLoop = true
@@ -790,69 +533,6 @@
 					[
 						{
 							m_Name = "ACT_DOTA_RUN"
-							m_nWeight = 1
-						},
-					]
-					m_AnimationEvents = [  ]
-					m_MotionFrames = 
-					[
-						{
-							m_nFrame = 0
-							m_bExtractTX = true
-							m_bExtractTY = true
-							m_bExtractTZ = false
-							m_bExtractRX = false
-							m_bExtractRY = false
-							m_bExtractRZ = false
-							m_bDiscardTX = false
-							m_bDiscardTY = false
-							m_bDiscardTZ = false
-							m_bDiscardRX = false
-							m_bDiscardRY = false
-							m_bDiscardRZ = false
-						},
-					]
-					m_pIkRules = [  ]
-					m_pAlignAnimation = null
-					m_adjustAnimation = 
-					{
-						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
-					}
-					m_Keywords = [  ]
-					m_sequenceParams = 
-					{
-						m_flFadeInTime = 0.2
-						m_flFadeOutTime = 0.2
-					}
-					m_folderName = ""
-					m_MotionFramesRootBone = ""
-				},
-				{
-					m_Animationname = "cavalry_ani_attack_2"
-					m_Filepath = "models/cavalry/cavalry_ani_attack.fbx"
-					m_nStartframe = 0
-					m_nEndframe = 31
-					m_flFps = 30.0
-					m_Loop = 
-					{
-						m_bLoop = false
-						m_bSmoothLoop = false
-						m_nSmoothLoopStart = 0
-						m_nSmoothLoopEnd = 0
-						m_StartLoop = 
-						{
-							_class = "CVAnimCmdStartLoop"
-							m_bEnabled = false
-							m_nLoopRestart = 0
-						}
-					}
-					m_bHidden = false
-					m_bDisable = false
-					m_Activities = 
-					[
-						{
-							m_Name = "ACT_DOTA_ATTACK"
 							m_nWeight = 1
 						},
 					]
@@ -929,12 +609,12 @@
 		m_vMaterialRemapList = 
 		[
 			{
-				m_sSearchMaterial = "01_-_default.vmat"
-				m_sReplaceMaterial = "materials/ashigaru/version_01/flag_oda5.vmat"
+				m_sSearchMaterial = "cavalry.vmat"
+				m_sReplaceMaterial = "materials/cavalry/cavalry.vmat"
 			},
 			{
-				m_sSearchMaterial = "*"
-				m_sReplaceMaterial = "materials/cavalry/cavalry.vmat"
+				m_sSearchMaterial = "flag.vmat"
+				m_sReplaceMaterial = "materials/ashigaru/version_01/flag_oda5.vmat"
 			},
 		]
 	}
