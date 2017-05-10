@@ -346,6 +346,8 @@ function B23T_old( keys )
 	target.B23T_old = true
 	target:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	target:SetTeam(caster:GetTeam())
+	local ifx = ParticleManager:CreateParticle( "particles/b23t_old/b23t_old.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl( ifx, 2, Vector( duration, 0, 0 ) )
 	local tsum = 0
 	Timers:CreateTimer(0.5, function ()
 		tsum = tsum + 0.5
@@ -353,6 +355,7 @@ function B23T_old( keys )
 			target:SetControllableByPlayer(oriid, true)
 			target:SetTeam(oriteam)
 			target.B23T_old = nil
+			ParticleManager:DestroyParticle( ifx , false )
 			return nil
 		end
 		return 0.5
