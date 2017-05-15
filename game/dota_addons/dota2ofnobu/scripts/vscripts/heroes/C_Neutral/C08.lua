@@ -403,23 +403,13 @@ function C08R_modifier:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
-
-C08T_EXCLUDE_TARGET_NAME = {
-	npc_dota_cursed_warrior_souls	= true,
-	npc_dota_the_king_of_robbers	= true,
-	com_general = true,
-	com_general2 = true,
-}
-
-
-
 function C08T_OnSpellStart( keys )
 
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
 	local duration = ability:GetSpecialValueFor("duration")
-	if C08T_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
 		
 		local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )

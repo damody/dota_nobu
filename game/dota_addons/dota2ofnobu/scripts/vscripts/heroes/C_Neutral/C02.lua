@@ -226,24 +226,29 @@ function C02W_OnProjectileHitUnit( keys )
 end
 
 function C02W_clone_hero( keys )
+	local caster = keys.caster
 	local target = keys.target
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier( caster, target, "modifier_C02W_check", {duration = 0.2} )
+	Timers:CreateTimer(0.1, function()
+		if IsValidEntity(target) and target:HasModifier("modifier_C02W_check")
+				and target:IsHero() and target:IsRealHero() and not target:IsIllusion() then
+			local effect_name = "particles/units/heroes/hero_siren/naga_siren_portrait.vpcf"
+			local player = PlayerResource:GetPlayer(target:GetPlayerID())
+			local ifx = ParticleManager:CreateParticleForPlayer(effect_name,PATTACH_ABSORIGIN_FOLLOW,target,player)
+			Timers:CreateTimer(0.5, function ()
+				ParticleManager:DestroyParticle(ifx,false)
+			end)
 
-	if target:IsHero() and target:IsRealHero() and not target:IsIllusion() then
-		local effect_name = "particles/units/heroes/hero_siren/naga_siren_portrait.vpcf"
-		local player = PlayerResource:GetPlayer(target:GetPlayerID())
-		local ifx = ParticleManager:CreateParticleForPlayer(effect_name,PATTACH_ABSORIGIN_FOLLOW,target,player)
-		Timers:CreateTimer(0.5, function ()
-			ParticleManager:DestroyParticle(ifx,false)
+			local illusion = CreateMirror( keys )
+			-- 命令攻擊目標
+			ExecuteOrderFromTable({
+				UnitIndex = illusion:entindex(),
+				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+				TargetIndex = target:entindex()
+			})
+		end
 		end)
-
-		local illusion = CreateMirror( keys )
-		-- 命令攻擊目標
-		ExecuteOrderFromTable({
-			UnitIndex = illusion:entindex(),
-			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-			TargetIndex = target:entindex()
-		})
-	end
 end
 
 function C02E_OnSpellStart( keys )
@@ -296,13 +301,6 @@ function C02R_OnUpgrade( keys )
 	end
 end
 
-C02R_EXCLUDE_TARGET_NAME = {
-	npc_dota_cursed_warrior_souls	= true,
-	npc_dota_the_king_of_robbers	= true,
-	com_general = true,
-	com_general2 = true,
-}
-
 -- 這招要排除很多可能...
 function C02R_OnAttackLanded( keys )
 	local caster = keys.caster
@@ -322,7 +320,7 @@ function C02R_OnAttackLanded( keys )
 	if not target:IsHero() and not target:IsCreep() then return end
 
 	-- 額外排除項目
-	if C02R_EXCLUDE_TARGET_NAME[target:GetUnitName()] == true then return end
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == true then return end
 
 	-- 製造幻影
 	local illusion = CreateMirror(keys)
@@ -584,8 +582,6 @@ function C02E_old_steal( keys )
 	local steal_mp = ability:GetSpecialValueFor("steal_mp")
 	local hp = target:GetHealth()
 	local mp = target:GetMana()
-	if steal_hp > hp then steal_hp = hp end
-	if steal_mp > mp then steal_mp = mp end
 	ApplyDamage({
 		attacker=caster,
 		victim=target,

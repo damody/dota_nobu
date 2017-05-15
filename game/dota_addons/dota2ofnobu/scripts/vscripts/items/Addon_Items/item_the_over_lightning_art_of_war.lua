@@ -8,7 +8,7 @@ function Shock2( keys )
 	local ability = keys.ability
 	if (caster:GetMana() >= 75) then
 		caster:SpendMana(75, ability)
-		local SEARCH_RADIUS = 500
+		local SEARCH_RADIUS = 1000
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              caster:GetAbsOrigin(),
 	                              nil,
@@ -52,13 +52,16 @@ function Shock( keys )
 	local sumtime = 0
 	Timers:CreateTimer(0.2, function ()
 		sumtime = sumtime + 0.2
-		local pp = point + RandomVector(RandomInt(1, 250))
+		dummy:EmitSound("ITEM_D09.sound")
+		for i=1,3 do
+			local pp = point + RandomVector(RandomInt(1, 400))
 
-		local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN, dummy)
-		-- Raise 1000 if you increase the camera height above 1000
-		ParticleManager:SetParticleControl(particle, 0, Vector(pp.x,pp.y,1000 ))
-		ParticleManager:SetParticleControl(particle, 1, Vector(pp.x,pp.y,pp.z + 10 ))
-		ParticleManager:SetParticleControl(particle, 2, Vector(pp.x,pp.y,pp.z + 10 ))
+			local particle = ParticleManager:CreateParticle("particles/b05e/b05e.vpcf", PATTACH_ABSORIGIN, dummy)
+			-- Raise 1000 if you increase the camera height above 1000
+			ParticleManager:SetParticleControl(particle, 0, Vector(pp.x,pp.y,1000 ))
+			ParticleManager:SetParticleControl(particle, 1, Vector(pp.x,pp.y,pp.z + 10 ))
+			ParticleManager:SetParticleControl(particle, 2, Vector(pp.x,pp.y,pp.z + 10 ))
+		end
 		
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		      point,
@@ -66,7 +69,7 @@ function Shock( keys )
 		      500,
 		      DOTA_UNIT_TARGET_TEAM_ENEMY,
 		      DOTA_UNIT_TARGET_ALL,
-		      DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		      DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 		      FIND_ANY_ORDER,
 		      false)
 

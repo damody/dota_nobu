@@ -67,12 +67,6 @@ function B20W_HitDestination( caster, ability, point )
 	end
 end
 
-B20E_EXCLUDE_TARGET_NAME = {
-	npc_dota_cursed_warrior_souls	= true,
-	npc_dota_the_king_of_robbers	= true,
-	com_general = true,
-	com_general2 = true,
-}
 
 function B20E_OnSpellStart( keys )
 	local caster = keys.caster
@@ -91,7 +85,7 @@ function B20E_OnSpellStart( keys )
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, 
 		ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 	for _,unit in ipairs(units) do
-		if B20E_EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+		if _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
 			FindClearSpaceForUnit( unit, caster:GetAbsOrigin() , true)
 			unit:AddNewModifier( nil, nil, "modifier_phased", { duration = 0.1 } )
 			if not unit:IsMagicImmune() then

@@ -74,11 +74,12 @@ function A10W_OnSpellStart( keys )
 	local damage = ability:GetSpecialValueFor("damage")
 	local heal = ability:GetSpecialValueFor("heal")
 	ability:ApplyDataDrivenModifier( caster , target , "modifier_A10W_stop" , { duration = duration } )
+	ability:ApplyDataDrivenModifier( caster , target , "modifier_stunned" , { duration = duration+0.1 } )
 	ability:ApplyDataDrivenModifier( caster , target , "modifier_A10W" , { duration = duration } )
 
 	EmitSoundOn( "Hero_Rubick.Telekinesis.Target" , target )
 
-	caster.A10W_timer = Timers:CreateTimer( duration + 0.1 , function()
+	caster.A10W_timer = Timers:CreateTimer( duration + 0.05 , function()
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
 			ApplyDamage({
 				victim = target,
@@ -268,27 +269,17 @@ function modifier_A10E_passive_OnAbilityExecuted( keys )
 	end
 end
 
-A10R_EXCLUDE_TARGET_NAME = {
-	npc_dota_cursed_warrior_souls	= true,
-	npc_dota_the_king_of_robbers	= true,
-	com_general = true,
-	com_general2 = true,
-	com_general3 = true,
-	com_general_Unified2 = true,
-	com_general_Nobu2 = true,
-}
-
 function A10R_OnAbilityPhaseStart( keys )
 	local caster = keys.caster
 	local target = keys.target
-	if A10R_EXCLUDE_TARGET_NAME[target:GetUnitName()] or target == caster then
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] or target == caster then
 		caster:Interrupt()
 	end
 end
 function A10W_old_OnAbilityPhaseStart( keys )
 	local caster = keys.caster
 	local target = keys.target
-	if A10R_EXCLUDE_TARGET_NAME[target:GetUnitName()] or target == caster then
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] or target == caster then
 		caster:Interrupt()
 	end
 end
@@ -356,6 +347,8 @@ function A10T_OnSpellStart( keys )
 
 	caster.A10T_particleTimer = Timers:CreateTimer( function()
 		if caster:IsChanneling() then
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 300, 1, false)
+    		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 300, 1, false)
 			local random_int = RandomInt( 10 , 15 )
 			for i=1,random_int do
 				Timers:CreateTimer( RandomFloat( 0 , 0.4 ) , function()
@@ -561,6 +554,19 @@ function A10E_old_OnChannelFinish( keys )
 	end
 end
 
+function modifier_A10R_old_passive_OnDeath( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local radius = ability:GetSpecialValueFor("radius2")
+	local duration = ability:GetSpecialValueFor("duration")
+	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
+										 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+										 FIND_ANY_ORDER, false)
+	for _,unit in pairs(units) do
+		ability:ApplyDataDrivenModifier( caster , unit , "modifier_A10R_old" , { duration = duration } )
+	end
+end
+
 function modifier_A10R_old_passive_OnIntervalThink( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -592,7 +598,7 @@ end
 function A10T_old_OnAbilityPhaseStart( keys )
 	local caster = keys.caster
 	local target = keys.target
-	if A10R_EXCLUDE_TARGET_NAME[target:GetUnitName()] or target == caster then
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] or target == caster then
 		caster:Interrupt()
 	end
 end

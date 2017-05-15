@@ -195,7 +195,7 @@ function B16_AbilityAdjust( keys )
 		-- Todo: 調整月月能力
 		local caster_level = caster:GetLevel()
 		moonMoon:FindModifierByName("modifier_B16D_MoonMoon"):SetStackCount(caster_level)
-		moonMoon:SetBaseMaxHealth(caster:GetMaxHealth())
+		moonMoon:SetBaseMaxHealth(caster:GetMaxHealth()+caster:GetLevel()*100)
 
 	end
 end
@@ -345,13 +345,13 @@ function MoonMoonAdjust_old( keys )
 		-- Todo: 調整月月能力
 		local caster_level = caster:GetLevel()
 		if (caster_level > 20) then
-			caster_level = caster_level * 2
+			caster_level = caster_level * 1.5
 		elseif (caster_level > 15) then
-			caster_level = caster_level * 1.6
+			caster_level = caster_level * 1.5
 		elseif (caster_level > 10) then
-			caster_level = caster_level * 1.3
+			caster_level = caster_level * 1.5
 		elseif (caster_level > 5) then
-			caster_level = caster_level * 1
+			caster_level = caster_level * 1.5
 		end
 		moonMoon:FindModifierByName("modifier_B16W_old_forMoonMoon"):SetStackCount(caster_level)
 	end
@@ -392,7 +392,7 @@ function B16W_old_SpawnMoonMoon( keys )
 	local B16MMT_old = moonMoon:AddAbility("B16MMT_old") -- [永久隱形]
 
 	local baseHP = ability:GetLevelSpecialValueFor("baseHP",ability:GetLevel()-1)
-	moonMoon:SetBaseMaxHealth(baseHP + caster:GetLevel()*50)
+	moonMoon:SetBaseMaxHealth(baseHP + caster:GetLevel()*100)
 end
 
 function B16R_old_M_OnCreated( keys )
@@ -524,7 +524,7 @@ function B16MME_old(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local ran =  RandomInt(0, 100)
-	if ran < 15 and not target:IsBuilding() then
+	if ran <= 30 and not target:IsBuilding() then
 		if not target:IsMagicImmune() then
 			ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
 			AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )

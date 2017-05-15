@@ -79,22 +79,7 @@ function Nobu:OnHeroIngame( keys )
         end
         ]]
       end
-      Timers:CreateTimer(3, function ()
-        for _,m in ipairs(hero.donkey:FindAllModifiers()) do
-          if m:GetName() ~= "modifier_for_magic_immune" and m:GetName() ~= "modifier_courier_transfer_items" then
-            if not string.match(m:GetName(), "Passive_") and not string.match(m:GetName(), "courier_burst")and not m:GetName() == "modifier_invulnerable" then
-              hero.donkey:RemoveModifierByName(m:GetName())
-            end
-          end
-        end
-        for itemSlot=0,5 do
-          local item = hero:GetItemInSlot(itemSlot)
-          if item ~= nil then
-            item:SetPurchaseTime(100000)
-          end
-        end
-        return 5
-        end)
+      
 		end
 	end)
     --等級

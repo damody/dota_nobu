@@ -169,12 +169,6 @@ function A24W_OnSpellStart( keys )
    	--end)
 end
 
-A24_EXCLUDE_TARGET_NAME = {
-	npc_dota_cursed_warrior_souls	= true,
-	npc_dota_the_king_of_robbers	= true,
-	com_general = true,
-	com_general2 = true,
-}
 
 function A24W_OnProjectileHitUnit( keys )
 	local caster = keys.caster
@@ -204,7 +198,7 @@ function A24W_OnProjectileHitUnit( keys )
 	                              FIND_ANY_ORDER,
 	                              false)
 	for _,it in pairs(direUnits) do
-		if (not(it:IsBuilding())) and A24_EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+		if (not(it:IsBuilding())) and _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
 			damage=ability:GetAbilityDamage()+it:GetMaxHealth()*11/100
 
 			if it:IsMagicImmune() then

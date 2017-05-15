@@ -35,12 +35,6 @@ function A26W_OnSpellStart( keys )
 	end
 end
 
-A26E_EXCLUDE_TARGET_NAME = {
-	npc_dota_cursed_warrior_souls	= true,
-	npc_dota_the_king_of_robbers	= true,
-	com_general = true,
-	com_general2 = true,
-}
 
 function A26E_OnSpellStart( keys )
 	local caster = keys.caster
@@ -62,7 +56,7 @@ function A26E_OnSpellStart( keys )
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
-		if A26E_EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+		if _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
 			ApplyDamage({
 				victim = unit,
 				attacker = caster,
@@ -207,6 +201,9 @@ function A26D_OnTrigger( keys )
 
 	EmitSoundOn("Hero_Techies.LandMine.Detonate",caster)
 	caster:RemoveModifierByName("modifier_A26D_mine_aura")
+	for _,unit in ipairs(units) do
+		unit:RemoveModifierByName("modifier_A26D_mine_trigger")
+	end
 	caster:ForceKill(true)
 end
 
@@ -391,7 +388,7 @@ function A26E_old_OnSpellStart( keys )
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
-		if A26E_EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+		if _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
 			damage_table.victim = unit
 			ApplyDamage(damage_table)
 			ability:ApplyDataDrivenModifier(caster,unit,"modifier_rooted",{duration=knockback_duration})

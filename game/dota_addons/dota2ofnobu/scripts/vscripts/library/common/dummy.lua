@@ -58,17 +58,29 @@ end
 
 function nodmg_courier( keys )
   local caster = keys.caster
+  local ability = keys.ability
   --print(dummy:GetUnitName())
 
   local units = FindUnitsInRadius(caster:GetTeamNumber(),  
         caster:GetAbsOrigin(),nil,1400,DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
-          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+          DOTA_UNIT_TARGET_BASIC,
           DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 
           FIND_ANY_ORDER, 
         false)
   for _,it in pairs(units) do
     if it:GetUnitName() == "npc_dota_courier2" then
       it:AddNewModifier(it, nil, "modifier_invulnerable", {duration = 5})
+    end
+  end
+  if not _G.hardcore then 
+    local units = FindUnitsInRadius(caster:GetTeamNumber(),  
+          caster:GetAbsOrigin(),nil,1400,DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+            DOTA_UNIT_TARGET_HERO,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 
+            FIND_ANY_ORDER, 
+          false)
+    for _,it in pairs(units) do
+      ability:ApplyDataDrivenModifier( caster , it , "modifier_for_move300" , { duration = 7 } )
     end
   end
 end
@@ -89,8 +101,12 @@ _G.EXCLUDE_TARGET_NAME = {
   npc_dota_the_king_of_robbers  = true,
   com_general = true,
   com_general2 = true,
-  EARTH_WALL = true,
   com_general3 = true,
+  EARTH_WALL = true,
+  com_general_Unified2 = true,
+  com_general_Nobu2 = true,
+  com_general_oda = true,
+  com_general_unified = true,
 }
 
 function CP_Posistion( keys )

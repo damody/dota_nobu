@@ -793,13 +793,13 @@
 			}
 			"ApplyModifier"
 			{
-				"ModifierName"	"modifier_B32D"
+				"ModifierName"	"modifier_B32R_old"
 				"Target"	"TARGET"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_B32D"
+			"modifier_B32R_old"
 			{
 				"IsDebuff"	"1"
 				"EffectName"	"particles/b32d/b32d_pnt.vpcf"
@@ -817,6 +817,15 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%damage"
 					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.4"
 				}
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%damage2"
+					}
+				}
 				"Duration"	"%duration"
 				"ThinkInterval"	"1"
 				"OnIntervalThink"
@@ -825,7 +834,7 @@
 					{
 						"Target"		"TARGET"
 						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%damage"
+						"Damage"		"%damage2"
 					}
 				}
 			}
@@ -846,6 +855,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"duration"	"5 6 7 8"
+			}
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage2"	"10 20 30 40"
 			}
 		}
 	}

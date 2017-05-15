@@ -233,7 +233,9 @@ function B13R_old_explosion( keys )
 		if ccaster and ccaster:IsAlive() then
 			damageTable.attacker = ccaster
 		end
-		ApplyDamage(damageTable)
+		if not unit:IsMagicImmune() then
+			ApplyDamage(damageTable)
+		end
 	end
 
 	local center = caster:GetAbsOrigin()
@@ -244,6 +246,9 @@ function B13R_old_explosion( keys )
 	ParticleManager:ReleaseParticleIndex(ifx)
 
 	caster:RemoveModifierByName("modifier_B13R_old_detectorAura")
+	for _,unit in ipairs(units) do
+		unit:RemoveModifierByName("modifier_B13R_old_explosion")
+	end
 	caster:ForceKill(true)
 end
 

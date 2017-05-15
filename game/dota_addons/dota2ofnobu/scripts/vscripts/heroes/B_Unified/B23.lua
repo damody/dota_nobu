@@ -302,13 +302,22 @@ end
 function B23T( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-
-	for i=1, #caster.B23D_ghostTable do
-		ability:ApplyDataDrivenModifier( caster, caster.B23D_ghostTable[i], "modifier_B23T_attackspeedBonus", nil )
+	local B23T_radius = ability:GetSpecialValueFor("B23T_radius")
+	if caster.B23D_ghostTable then
+		for i=1, #caster.B23D_ghostTable do
+			ability:ApplyDataDrivenModifier( caster, caster.B23D_ghostTable[i], "modifier_B23T_attackspeedBonus", nil )
+		end
 	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_B23T_castAnimation", nil )
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_B23T_invulnerableAura", nil )
-	Timers:CreateTimer(0.5, function ()
+	local spell_hint_table = {
+		duration   = 0.5,		-- 持續時間
+		radius     = B23T_radius,		-- 半徑
+	}
+	
+	Timers:CreateTimer(0, function ()
+		caster:RemoveModifierByName("nobu_modifier_spell_hint")
+		caster:AddNewModifier(caster,nil,"nobu_modifier_spell_hint",spell_hint_table)
 		if not caster:IsChanneling() then
 			B23T_interrupted(keys)
 			return nil

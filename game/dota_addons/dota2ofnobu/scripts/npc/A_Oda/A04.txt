@@ -612,11 +612,6 @@
 						"EffectAttachType"	"follow_origin"
 						"EffectRadius"	"%radius"
 					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-						"Function"	"A04T_freezing_field_order_explosion"
-					}
 				}
 			}
 			"modifier_freezing_field_northwest_thinker_datadriven"
@@ -1341,11 +1336,6 @@
 						"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"EffectRadius"	"%radius"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
-						"Function"	"A04T_freezing_field_order_explosion"
 					}
 				}
 			}

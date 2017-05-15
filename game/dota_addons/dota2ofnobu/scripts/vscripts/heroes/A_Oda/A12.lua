@@ -151,10 +151,6 @@ function OnToggleOff( keys )
 	local caster = keys.caster
 end
 
-A12_EXCLUDE_TARGET_NAME = {
-  com_general = true,
-  com_general2 = true,
-}
 
 function A12T( keys )
 	local caster = keys.caster
@@ -163,7 +159,7 @@ function A12T( keys )
 	local special_dmg = ability:GetLevelSpecialValueFor("Special_Damage",ability:GetLevel() - 1)
 	local SpendMana = ability:GetLevelSpecialValueFor("SpendMana",ability:GetLevel() - 1)
 	local damage = 0 
-	if A12_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == nil then
 			damage = caster:GetMana()*special_dmg/100
 			if caster.A12T == true then

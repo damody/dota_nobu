@@ -98,14 +98,14 @@ function Shock( keys )
 	monster1:SetControllableByPlayer(caster:GetPlayerID(),false)
 	monster1:AddNewModifier(monster1,ability,"modifier_phased",{duration=0.1})
 	monster1:FindAbilityByName("forest_soldier_W"):SetLevel(1)
-	ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=30})
+	ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=15})
 	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	
 	local monster2 = CreateUnitByName("forest_xcaster1",caster:GetAbsOrigin()+caster:GetForwardVector()*100 ,false,caster,caster,caster:GetTeamNumber())
 	monster2:SetControllableByPlayer(caster:GetPlayerID(),false)
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(1)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
-	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=30})
+	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=15})
 end
 
 function Shock2( keys )
@@ -116,7 +116,7 @@ function Shock2( keys )
 		monster1:SetControllableByPlayer(caster:GetPlayerID(),false)
 		monster1:AddNewModifier(monster1,ability,"modifier_phased",{duration=0.1})
 		monster1:FindAbilityByName("forest_soldier_W"):SetLevel(2)
-		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=30})
+		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=15})
 		caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	end
 	local monster2 = CreateUnitByName("forest_xcaster2",caster:GetAbsOrigin()+caster:GetForwardVector()*100 ,false,caster,caster,caster:GetTeamNumber())
@@ -125,7 +125,7 @@ function Shock2( keys )
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(2)
 	monster2:FindAbilityByName("forest_caster_R"):SetLevel(1)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
-	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=30})
+	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=15})
 end
 
 
@@ -139,7 +139,7 @@ function Shock3( keys )
 		monster1:FindAbilityByName("forest_soldier_W"):SetLevel(3)
 		monster1:FindAbilityByName("forest_soldier_E"):SetLevel(1)
 		monster1:FindAbilityByName("forest_soldier_R"):SetLevel(1)
-		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=30})
+		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=18})
 		caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	end
 	local monster2 = CreateUnitByName("forest_xcaster3",caster:GetAbsOrigin()+caster:GetForwardVector()*200 ,false,caster,caster,caster:GetTeamNumber())
@@ -148,7 +148,7 @@ function Shock3( keys )
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(3)
 	monster2:FindAbilityByName("forest_caster_R"):SetLevel(2)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
-	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=30})
+	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=18})
 end
 
 function Shock4( keys )
@@ -161,7 +161,7 @@ function Shock4( keys )
 		monster1:FindAbilityByName("forest_soldier_W"):SetLevel(4)
 		monster1:FindAbilityByName("forest_soldier_E"):SetLevel(1)
 		monster1:FindAbilityByName("forest_soldier_R"):SetLevel(1)
-		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=30})
+		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=21})
 		caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	end
 	local monster2 = CreateUnitByName("forest_xcaster4",caster:GetAbsOrigin()+caster:GetForwardVector()*300 ,false,caster,caster,caster:GetTeamNumber())
@@ -170,7 +170,7 @@ function Shock4( keys )
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(4)
 	monster2:FindAbilityByName("forest_caster_R"):SetLevel(3)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
-	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=30})
+	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=21})
 end
 
 function soldier1(keys)
@@ -182,18 +182,16 @@ function soldier1(keys)
 	local point = caster:GetAbsOrigin()
 	local point2 = target:GetAbsOrigin()
 	--local point2 = ability:GetCursorPosition()
-	local level = ability:GetLevel() - 1
 	--local vec = caster:GetForwardVector():Normalized()
 
 	--【Varible】
-	--local duration = ability:GetLevelSpecialValueFor("duration",level)
+	local time = ability:GetSpecialValueFor("time")
 	--local radius = ability:GetLevelSpecialValueFor("radius",level)
-	local time = 2
 	if target:IsMagicImmune() then
-		ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = 0.5} )
-	else
-		ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = 1} )
+		time = time * 0.5
 	end
+	print("time", time)
+	ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = time} )
 	AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 
 	for i=0,3 do
@@ -201,7 +199,7 @@ function soldier1(keys)
 		ParticleManager:SetParticleControl(particle2,0, point2+Vector(0,0,i*40))
 		ParticleManager:SetParticleControl(particle2,1, Vector(1,1,1))	
 		ParticleManager:SetParticleControl(particle2,3, point2)	
-		Timers:CreateTimer(1,function ()
+		Timers:CreateTimer(time,function ()
 			ParticleManager:DestroyParticle(particle2,true)
 		end	)
 	end

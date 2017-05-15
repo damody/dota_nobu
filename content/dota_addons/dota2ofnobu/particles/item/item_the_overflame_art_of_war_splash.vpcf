@@ -75,8 +75,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 168, 120, 94, 255 ]
-			m_ColorMin = [ 112, 96, 88, 255 ]
+			m_ColorMax = [ 242, 0, 255, 255 ]
+			m_ColorMin = [ 250, 0, 255, 255 ]
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -118,6 +118,21 @@
 			m_flOpStartFadeOutTime = 0.083333
 			m_flOpEndFadeOutTime = 0.11666
 			m_flOpFadeOscillatePeriod = 30.0
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

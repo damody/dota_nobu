@@ -320,6 +320,11 @@ function B21T_old_OnIntervalThink( keys )
 	local hp_threshold = ability:GetSpecialValueFor("hp_threshold")
 	local hp_threshold2 = ability:GetSpecialValueFor("hp_threshold2")
 	caster.nexthp = caster:GetHealth() - hp_threshold2
+	Timers:CreateTimer(1, function()
+		if caster:GetHealth() > hp_threshold then
+			caster.nexthp = -10
+		end
+		end)
 end
 
 function B21T_old_OnHealthChange( keys )

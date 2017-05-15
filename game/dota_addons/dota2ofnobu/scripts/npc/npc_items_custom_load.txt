@@ -25,6 +25,7 @@
 		"AbilityCastRange"	"700"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"2620"
+		"AbilityDamage"		"700"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/item/item_the_red_lightning_chapter.vpcf"
@@ -118,7 +119,7 @@
 		"AbilityCooldown"	"15"
 		
 		"AbilityManaCost"	"200"
-		
+		"AbilityDamage"		"455"
 		"AbilityCastRange"	"700"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"2516"
@@ -212,8 +213,8 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"80"
-		
+		"AbilityCooldown"	"60"
+		"AbilityDamage"		"800"
 		"AbilityManaCost"	"500"
 
 		"ID"	"2518"
@@ -289,7 +290,7 @@
 		"AbilityManaCost"	"600"
 		"AbilityCastPoint"	"0.1"
 		"AbilitySharedCooldown" "share_the_overflame_art_of_war"
-		
+		"AbilityDamage"		"1000"
 		"AOERadius"	"650"
 		"AbilityCastRange"	"700"
 		"ID"	"2624"
@@ -379,7 +380,7 @@
 		
 		"AbilityCooldown"	"60"
 		"AbilityCastPoint"	"0.1"
-		
+		"AbilityDamage"		"800"
 		"AbilityManaCost"	"400"
 		"AbilitySharedCooldown" "share_the_overflame_art_of_war"
 		
@@ -555,6 +556,7 @@
 		"AbilityManaCost"	"120"
 		"AbilityCastPoint"	"0.1"
 		"AOERadius"	"300"
+		"AbilityDamage"		"560"
 		"AbilityCastRange"	"900"
 		"ID"	"2511"
 		"ItemQuality"	"component"
@@ -642,6 +644,7 @@
 		
 		"AOERadius"	"350"
 		"AbilityCastRange"	"700"
+		"AbilityDamage"		"480"
 		"ID"	"2524"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -1407,7 +1410,7 @@
 		"AbilityTextureName"	"item_custom/the_art_of_war_forest_chapter"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"40"
+		"AbilityCooldown"	"25"
 		"AbilityManaCost"	"125"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2531"
@@ -4384,6 +4387,7 @@
 		"AbilityManaCost"	"300"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"800"
+		"AbilityDamage"		"800"
 		"AOERadius"		"350"
 		"ID"	"2703"
 		"ItemQuality"	"component"
@@ -4984,6 +4988,8 @@
 		"AbilityCooldown"	"60"
 		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"285"
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"ID"	"2710"
 		"ItemQuality"	"component"
 		"Model"	"models/weapon/weapon.vmdl"
@@ -6601,6 +6607,7 @@
 		"AbilityManaCost"	"150"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"700"
+		"AbilityDamage"		"350"
 		"ID"	"2584"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -9871,9 +9878,9 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "10"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "10"		//敏
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "20"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
@@ -11811,7 +11818,7 @@
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"80"
+		"AbilityCooldown"	"25"
 		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"400"
 		
@@ -12608,7 +12615,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilitySharedCooldown" "the_art_of_war"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"30"
 		"AbilityManaCost"	"200"
 
 		"ID"	"2534"
@@ -12869,7 +12876,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"		
-		"AbilityCooldown"	"60"		
+		"AbilityCooldown"	"40"		
 		"AbilityManaCost"	"700"
 		"AbilitySharedCooldown" "the_art_of_war"
 		
@@ -13444,6 +13451,7 @@
 		"AOERadius"		"800"
 		
 		"AbilityCastRange"	"2000"
+		"AbilityDamage"		"700"
 		"ID"	"2513"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
@@ -13642,7 +13650,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"35"
+		"AbilityCooldown"	"20"
 		
 		"AbilityManaCost"	"75"
 		"ID"	"2503"
@@ -14879,6 +14887,7 @@
 		"AbilityManaCost"	"250"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"800"
+		"AbilityDamage"		"700"
 		"ID"	"3085"
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"

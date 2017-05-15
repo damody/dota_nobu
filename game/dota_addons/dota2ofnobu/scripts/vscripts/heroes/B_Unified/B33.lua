@@ -103,7 +103,10 @@ function B33T( keys )
 	Physics:Unit(dummy)
 	keys.ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_tofly",nil)
 	Timers:CreateTimer(0.1, function()
-			dummy:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin())*3)
+			if IsValidEntity(target) and not target:HasModifier("modifier_spawn_spiderlings_datadriven") then
+				dummy:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin())*3)
+				return 0.1
+			end
 		end)
 
 	-- local particle=ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_POINT,caster)

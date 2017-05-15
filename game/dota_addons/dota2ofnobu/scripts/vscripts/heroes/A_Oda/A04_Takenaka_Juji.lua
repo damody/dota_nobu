@@ -148,25 +148,7 @@ end
 	Order the explosion in clockwise direction
 ]]
 function A04T_freezing_field_order_explosion( keys )
-	Timers:CreateTimer( 0.1, function()
-		keys.ability:ApplyDataDrivenModifier( keys.caster, keys.caster, "modifier_freezing_field_northwest_thinker_datadriven", {} )
-		return nil
-		end )
-		
-	Timers:CreateTimer( 0.2, function()
-		keys.ability:ApplyDataDrivenModifier( keys.caster, keys.caster, "modifier_freezing_field_northeast_thinker_datadriven", {} )
-		return nil
-		end )
-	
-	Timers:CreateTimer( 0.3, function()
-		keys.ability:ApplyDataDrivenModifier( keys.caster, keys.caster, "modifier_freezing_field_southeast_thinker_datadriven", {} )
-		return nil
-		end )
-	
-	Timers:CreateTimer( 0.4, function()
-		keys.ability:ApplyDataDrivenModifier( keys.caster, keys.caster, "modifier_freezing_field_southwest_thinker_datadriven", {} )
-		return nil
-		end )
+
 end
 
 --[[
@@ -211,25 +193,7 @@ function A04T_freezing_field_explode( keys )
 	
 	-- From here onwards might be possible to port it back to datadriven through modifierArgs with point but for now leave it as is
 	-- Loop through units
-	local units = FindUnitsInRadius( caster:GetTeamNumber(), attackPoint, caster, radius,
-			targetTeam, targetType, targetFlag, 0, false )
-	for k, v in pairs( units ) do
-		local dmg = abilityDamage
-
-		--判斷是不是建築物:如果是傷害減半
-		if v:IsBuilding() then
-			dmg = 0.55 * dmg
-		end
-
-		local damageTable =
-		{
-			victim = v,
-			attacker = caster,
-			damage = dmg,
-			damage_type = damageType
-		}
-		ApplyDamage( damageTable )
-	end
+	
 
 	-- Fire effect
 	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster )
@@ -419,8 +383,17 @@ function A04T( keys )
 	-- local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() ) 舊單位的技能名稱ability_dummy_unit似乎有問題
 	local dummy = CreateUnitByName( "npc_dummy_unit_new", target, false, caster, caster, caster:GetTeamNumber() )
 	local level  = keys.ability:GetLevel()--獲取技能等級
-	local radius = keys.ability:GetLevelSpecialValueFor("radius",level-1)
-	local damage_scepter = keys.ability:GetLevelSpecialValueFor("damage_scepter",level-1)
+	local radius = keys.ability:GetSpecialValueFor("radius")
+	local damage_scepter = keys.ability:GetSpecialValueFor("damage_scepter")
+	local casterLocation = target
+	local minDistance = ability:GetLevelSpecialValueFor( "explosion_min_dist", ( ability:GetLevel() - 1 ) )
+	local maxDistance = ability:GetLevelSpecialValueFor( "explosion_max_dist", ( ability:GetLevel() - 1 ) )
+	local directionConstraint = keys.section
+	local modifierName = "modifier_freezing_field_debuff_datadriven"
+	local refModifierName = "modifier_freezing_field_ref_point_datadriven"
+	local particleName = "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
+	local soundEventName = "hero_Crystal.freezingField.explosion"
+
 	ability:ApplyDataDrivenModifier( dummy, dummy, "modifier_freezing_field_caster_datadriven",{duration=8} )
 	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=10})
 	caster.dummy = dummy
@@ -432,23 +405,45 @@ function A04T( keys )
 	                              radius,
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
 
 			--effect:傷害+暈眩
 			for _,it in pairs(direUnits) do
 				if (not(it:IsBuilding())) then
-					if (not it:HasModifier("modifier_freezing_field_debuff_datadriven")) and IsValidEntity(ability) then
-						ability:ApplyDataDrivenModifier(caster,it,"modifier_freezing_field_debuff_datadriven", {duration=5})
-					end
+					ability:ApplyDataDrivenModifier(caster,it,"modifier_freezing_field_debuff_datadriven", {duration=5})
 					AMHC:Damage(caster,it,damage_scepter,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				else
 					AMHC:Damage(caster,it,damage_scepter*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				end
 			end
+
+			-- Get random point
+			local castDistance = RandomInt( minDistance, maxDistance )
+			local angle = RandomInt( 0, 90 )
+			local dy = castDistance * math.sin( angle )
+			local dx = castDistance * math.cos( angle )
+			local attackPoint = Vector( 0, 0, 0 )
+			
+			if directionConstraint == 0 then			-- NW
+				attackPoint = Vector( casterLocation.x - dx, casterLocation.y + dy, casterLocation.z )
+			elseif directionConstraint == 1 then		-- NE
+				attackPoint = Vector( casterLocation.x + dx, casterLocation.y + dy, casterLocation.z )
+			elseif directionConstraint == 2 then		-- SE
+				attackPoint = Vector( casterLocation.x + dx, casterLocation.y - dy, casterLocation.z )
+			else										-- SW
+				attackPoint = Vector( casterLocation.x - dx, casterLocation.y - dy, casterLocation.z )
+			end
+			
+			-- From here onwards might be possible to port it back to datadriven through modifierArgs with point but for now leave it as is
+			-- Loop through units
+			-- Fire effect
+			local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster.dummy )
+			ParticleManager:SetParticleControl( fxIndex, 0, attackPoint )
 			return 0.7
 		else
+			caster.dummy:ForceKill(true)
 			return nil
 		end
 	end)
@@ -576,38 +571,12 @@ function A04T_old_freezing_field_explode( keys )
 	
 	-- From here onwards might be possible to port it back to datadriven through modifierArgs with point but for now leave it as is
 	-- Loop through units
-	local units = FindUnitsInRadius( caster:GetTeamNumber(), attackPoint, caster, radius,
-			targetTeam, targetType, targetFlag, 0, false )
-	for k, v in pairs( units ) do
-		local dmg = abilityDamage
 
-		-- 調整對建築物的傷害
-		if v:IsBuilding() then
-			dmg = dmg * ability:GetLevelSpecialValueFor("adjust_damage_on_building",ability:GetLevel()-1)
-		end
-
-		local damageTable =
-		{
-			victim = v,
-			attacker = caster,
-			damage = dmg,
-			damage_type = damageType
-		}
-		ApplyDamage( damageTable )
-	end
 
 	-- Fire effect
 	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster.dummy )
 	ParticleManager:SetParticleControl( fxIndex, 0, attackPoint )
 	
-	-- Fire sound at dummy
-	local dummy = CreateUnitByName( "hide_unit", attackPoint, false, caster, caster, caster:GetTeamNumber() )
-	ability:ApplyDataDrivenModifier( caster, dummy, refModifierName, {} )
-	StartSoundEvent( soundEventName, dummy )
-	Timers:CreateTimer( 0.1, function()
-		dummy:ForceKill( true )
-		return nil
-	end )
 end
 
 -- 普通攻擊命中時觸發，用來判斷是否要增加傷害

@@ -178,26 +178,6 @@
 				"Passive"			"1"
 				"IsHidden"			"1"
 				"IsDebuff"			"0"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_trail.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"	"TARGET"
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_origin"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"	"TARGET"
-					}
-				}
 				"Aura"	"modifier_magical_1300"
 				"Aura_Radius"	"500"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -207,11 +187,9 @@
 			"modifier_magical_1300"
 			{
 				"Passive"	"0"
-				"EffectName"		"particles/items_fx/aura_endurance.vpcf"
-				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-150" //攻速
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-100" //攻速
 				}
 			}
 		}
@@ -479,10 +457,28 @@
 		
 		"Modifiers"
 		{
+			"modifier_fly"
+			{
+				"Passive"       "0"
+	            "IsHidden"      "0"
+	            "States"
+	            {
+	            	"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
+	            }
+			}
 			"Passive_robbers_skill"
 			{
 				"Passive"          "1"  
 	            "IsHidden"      "1"
+	            "ThinkInterval"  "1"
+	            "OnIntervalThink"
+	            {
+	            	"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"robbers_checkfly"
+					}
+	            }
 	            "OnDeath"
 				{
 					"RunScript"
@@ -948,7 +944,7 @@
 					{
 						"dmg"	"%attack_damage"
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
-						"Function"	"B01R2"
+						"Function"	"B01R4"
 					}
 				}
 			}
@@ -2511,12 +2507,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"time"	"1.0 1.5 2.0 2.5"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"dmg"	"90 180 270 360"
+				"time"	"1 1.5 2 2.5"
 			}
 		}
 	}
@@ -3980,45 +3971,13 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"Modifiers"
 		{
-			"modifier_speedup"
-			{
-				"Passive"			"1"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-			
-				"ThinkInterval"	"0.3"
-
-				"OnIntervalThink"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"1400"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_HERO"
-						}
-					
-						"Action"    
-						{
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_for_move300"
-								"Target" 		"TARGET"
-								"Duration"		"7"
-							}
-						}
-					}
-				}
-			}
 			"modifier_nodmg_courier"
 			{
 				"Passive"			"1"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 			
-				"ThinkInterval"	"2"
+				"ThinkInterval"	"0.5"
 
 				"OnIntervalThink"
 				{
@@ -4032,9 +3991,8 @@
 			}
 			"modifier_for_move300"
 			{
-				"Passive"	"1"
+				"Passive"	"0"
 				"IsHidden"	"0"
-				"Duration"	"7"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "300"	//跑速

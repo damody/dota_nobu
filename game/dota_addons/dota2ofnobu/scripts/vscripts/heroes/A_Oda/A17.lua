@@ -163,10 +163,12 @@ function A17T_Succes_Attack2( keys )
 	local dmg = keys.dmg
     local group = {}
     local radius = ability:GetLevelSpecialValueFor("attacked_range",level)
-   	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
-	for i,v in ipairs(group) do
-		AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
-	end	
+    if not _G.hardcore then 	
+	   	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+		for i,v in ipairs(group) do
+			AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
+		end
+	end
 end
 
 -- 11.2B

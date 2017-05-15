@@ -95,6 +95,9 @@ function ShuaGuai( )
 	  	ShuaGuai_Of_AB(AB_num)
 	  	
 	    local time =  26 - 0.1*ShuaGuai_count
+	    if _G.hardcore then 
+	    	time = 30
+	    end
 	    if time < 20 then
 	    	return 20
 	  	else
@@ -110,6 +113,9 @@ function ShuaGuai( )
 		end
   		ShuaGuai_Of_B(B_num)
 	    local time =  100 - 0.5*ShuaGuai_count
+	    if _G.hardcore then 
+	    	time = 45
+	    end
 	    if time < 30 then
 	    	return 30
 	  	else
@@ -125,6 +131,9 @@ function ShuaGuai( )
 		end
   		ShuaGuai_Of_C(C_num)
 	    local time =  70 - 0.5*ShuaGuai_count
+	    if _G.hardcore then 
+	    	time = 45
+	    end
 	    if time < 30 then
 	    	return 30
 	  	else

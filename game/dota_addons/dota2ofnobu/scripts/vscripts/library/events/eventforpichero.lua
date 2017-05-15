@@ -22,6 +22,28 @@ function Nobu:PickHero( keys )
           return 1
         end)
       end
+      Timers:CreateTimer(3, function ()
+        if caster.donkey then
+          for _,m in ipairs(caster.donkey:FindAllModifiers()) do
+            if m:GetName() ~= "modifier_for_magic_immune" and m:GetName() ~= "modifier_courier_transfer_items" then
+              if not (string.match(m:GetName(), "Passive_") or string.match(m:GetName(), "courier_burst")or m:GetName() == "modifier_invulnerable") then
+                print(m:GetName())
+                caster.donkey:RemoveModifierByName(m:GetName())
+              end
+            end
+          end
+          if not _G.hardcore then 
+            for itemSlot=0,5 do
+              local item = caster:GetItemInSlot(itemSlot)
+              if item ~= nil then
+                item:SetPurchaseTime(100000)
+              end
+            end
+          end
+        end
+        return 5
+        end)
+      -- 難度調整
       Timers:CreateTimer( 2, function()
         --[[
         if _G.game_level == 1 and caster:IsAlive() then
@@ -39,7 +61,7 @@ function Nobu:PickHero( keys )
           end
         end
         ]]
-        if _G.game_level < 0 and caster:IsAlive() then
+        if _G.game_level ~= nil and _G.game_level < 0 and caster:IsAlive() and caster.level ~= nil then
           if caster.level == -1 and not caster:HasModifier("modifier_buff_4") then
             caster:AddAbility("buff_4"):SetLevel(1)
           elseif caster.level == 0 and not caster:HasModifier("modifier_buff_3") then

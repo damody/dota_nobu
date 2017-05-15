@@ -99,6 +99,15 @@ function warrior_souls_OnDeath( keys )
 	end
 end
 
+function robbers_checkfly( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if (caster:GetAbsOrigin()-caster.origin_pos):Length2D() > 300 then
+		ability:ApplyDataDrivenModifier( caster , caster , "modifier_fly" , { duration = 1 } )
+	end
+end
+
+
 function robbers_skill( keys )
 	local caster = keys.caster
 	local ability = keys.ability

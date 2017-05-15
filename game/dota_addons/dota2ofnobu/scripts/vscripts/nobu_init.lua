@@ -1,5 +1,5 @@
 
-_G.CN = nil
+_G.hardcore = nil
 
 function _G.Nobu:InitGameMode()
   print( "[Nobu-lua] Nobu:InitGameMode is loaded." )
@@ -13,8 +13,8 @@ function _G.Nobu:InitGameMode()
     _G.mo = 1
     _G.game_level = 99
   end
-  if _G.GameMap == "nobu_CN" then
-    _G.CN = 1
+  if _G.GameMap == "nobu_hardcore" then
+    _G.hardcore = 1
   end
   if GetMapName() == "nobu" then
     _G.game_level = -99
@@ -27,6 +27,9 @@ function _G.Nobu:InitGameMode()
   end
   if GetMapName() == "lv3_gold" then
     _G.game_level = 3
+  end
+  if GetMapName() == "nobu_rank" then
+    _G.game_level = 4
   end
 
   --【Setup rules】
@@ -63,7 +66,7 @@ function _G.Nobu:InitGameMode()
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
   
-  if _G.CN then
+  if _G.hardcore then
     GameRules:SetGoldPerTick(4)-- 設置金錢
     GameRules:SetGoldTickTime(5)--金錢跳錢秒數
     Timers:CreateTimer( 180, function()

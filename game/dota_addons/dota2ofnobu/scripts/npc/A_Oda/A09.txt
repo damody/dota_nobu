@@ -427,7 +427,7 @@
 
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCastRange"							"800"
-		"AbilityCooldown"                           "15"
+		"AbilityCooldown"                           "12 10 8 6"
 		"AbilityManaCost"                           "100 120 140 160"
 
 		"OnSpellStart"
@@ -538,29 +538,45 @@
 	"A09R_old"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"                        "custom/A09/A09R_old"
+		"AbilityCooldown"							"20"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityCastRange"							"2000"
 
-		"AbilityCastRange"							"900"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A09R_old_passiveAura2"
+				"Duration"		"5"
+			}
+		}
 
 		"Modifiers"
 		{
-			"modifier_A09R_passiveAura"
+			"modifier_A09R_old_passiveAura"
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
 				"IsPurgable"		"0"
 				"EffectName"		"particles/a09r_old/a09r_old.vpcf"
 				"EffectAttachType"	"follow_origin"
-				"Aura"          	"modifier_A09R"
-				"Aura_Radius"   	"900"
+				"Aura"          	"modifier_A09R_old"
+				"Aura_Radius"   	"2000"
 				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
 				"Aura_ApplyToCaster" "1"
 			}
-			"modifier_A09R"
+			"modifier_A09R_old"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"
@@ -573,6 +589,31 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%A09R_armorBonus"
 				}
 			}
+			"modifier_A09R_old_passiveAura2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"Aura"          	"modifier_A09R_old2"
+				"Aura_Radius"   	"2000"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "1"
+			}
+			"modifier_A09R_old2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"EffectName"		"particles/a09r_old/a09r_old.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "%A09R_phy_dmg"
+				}
+			}
 		}
 
 		"AbilitySpecial"
@@ -581,6 +622,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"A09R_armorBonus"		"4 7 10 13"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"A09R_phy_dmg"		"-30 -40 -50 -60"
 			}
 		}
 

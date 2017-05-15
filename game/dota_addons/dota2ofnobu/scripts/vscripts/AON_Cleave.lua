@@ -92,11 +92,13 @@ end
 function AON_Cleave_A07_old(keys)
 	--【Basic】
 	local caster = keys.caster
+	local ability = keys.ability
 	local target = keys.target
+	local dmgp = ability:GetSpecialValueFor("damage")*0.01
 	if not target:IsBuilding() then
 		local ability = keys.ability
 		local level = ability:GetLevel() - 1
-		local dmg = keys.dmg
+		local dmg = keys.dmg * dmgp
 		local per_atk = 0
 		local targetArmor = target:GetPhysicalArmorValue()
 		local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
@@ -111,11 +113,11 @@ function AON_Cleave_A07_old(keys)
 				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
 			end
 			if it ~= target then
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			else
-				AMHC:Damage( caster,it,keys.dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			end
 		end
 	end

@@ -2,17 +2,10 @@
 -- 2017.3.24
 
 
-C16D_EXCLUDE_TARGET_NAME = {
-	npc_dota_cursed_warrior_souls	= true,
-	npc_dota_the_king_of_robbers	= true,
-	com_general = true,
-	com_general2 = true,
-	com_general3 = true,
-}
 --D
 function C16D( keys )
 	local target = keys.target
-	if C16D_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		local illusion = CreateMirror( keys )
 	else
 		keys.ability:EndCooldown()
@@ -572,7 +565,7 @@ end
 
 function C16W_old( keys )
 	local target = keys.target
-	if C16D_EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		local illusion = CreateMirror( keys )
 	else
 		keys.ability:EndCooldown()

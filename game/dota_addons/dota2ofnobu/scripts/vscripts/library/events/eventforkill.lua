@@ -1,5 +1,5 @@
 
-die_time = {1, 2, 4, 7, 11, 16, 22, 29, 37, 46, 47, 49, 52, 56, 61, 67, 74, 80}
+die_time = {1, 2, 4, 7, 11, 16, 22, 29, 37, 46, 47, 49, 52, 56, 61, 67, 74, 80, 87, 95, 104, 114, 120}
 
 function Nobu:OnUnitKill( keys )
 --每当单位死亡，检查其是否符合条件，如果符合就刷新任务
@@ -48,7 +48,7 @@ function Nobu:OnUnitKill( keys )
         end
       end
       
-      if killedUnit:IsHero() then
+      if AttackerUnit:IsHero() then
         for _,hero in ipairs(group) do
           if not hero:IsIllusion() then
             hero.kill_tower = 1
@@ -147,7 +147,7 @@ function Nobu:OnUnitKill( keys )
   	end
 
     if killedUnit:IsRealHero() then
-      if _G.CN then
+      if _G.hardcore then
         AMHC:GivePlayerGold_UnReliable(killedUnit:GetPlayerOwnerID(), -300)
       end
       if killedUnit.death_count == nil then
@@ -155,44 +155,48 @@ function Nobu:OnUnitKill( keys )
       else
         killedUnit.death_count = killedUnit.death_count + 1
       end
-      if _G.CN then
+      if _G.hardcore then
         if die_time[killedUnit:GetLevel()] ~= nil then
           killedUnit:SetTimeUntilRespawn(die_time[killedUnit:GetLevel()])
+        else
+          killedUnit:SetTimeUntilRespawn(120)
         end
       else
         if killedUnit:GetLevel() >= 18 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+9)
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+12)
         elseif killedUnit:GetLevel() >= 12 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+6)
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+7)
         elseif killedUnit:GetLevel() >= 6 then
           killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+3)
         else
           killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
         end
       end
-      group = FindUnitsInRadius(
-          killedUnit:GetTeamNumber(), 
-          killedUnit:GetAbsOrigin(), 
-          nil, 
-          2000,
-          DOTA_UNIT_TARGET_TEAM_ENEMY, 
-          DOTA_UNIT_TARGET_HERO, 
-          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
-          FIND_ANY_ORDER, 
-          false)
-      if (#group > 0) then
-        local xp = killedUnit:GetLevel() * 35 / #group
-        for _,v in ipairs(group) do
-          v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
-          if v:IsHero() and killedUnit:GetLevel() > 7 then
-            if killedUnit:GetLevel() > v:GetLevel()+4 then
-              v:AddExperience(xp*3, DOTA_ModifyGold_HeroKill, false, false)
-            elseif killedUnit:GetLevel() > v:GetLevel()+3 then
-              v:AddExperience(xp*2, DOTA_ModifyGold_HeroKill, false, false)
-            elseif killedUnit:GetLevel() > v:GetLevel()+2 then
-              v:AddExperience(xp*1, DOTA_ModifyGold_HeroKill, false, false)
-            elseif killedUnit:GetLevel() > v:GetLevel()+1 then
-              v:AddExperience(xp*0.5, DOTA_ModifyGold_HeroKill, false, false)
+      if not _G.hardcore then 
+        group = FindUnitsInRadius(
+            killedUnit:GetTeamNumber(), 
+            killedUnit:GetAbsOrigin(), 
+            nil, 
+            2000,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, 
+            DOTA_UNIT_TARGET_HERO, 
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+            FIND_ANY_ORDER, 
+            false)
+        if (#group > 0) then
+          local xp = killedUnit:GetLevel() * 30 / #group
+          for _,v in ipairs(group) do
+            v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
+            if v:IsHero() and killedUnit:GetLevel() > 7 then
+              if killedUnit:GetLevel() > v:GetLevel()+4 then
+                v:AddExperience(xp*3, DOTA_ModifyGold_HeroKill, false, false)
+              elseif killedUnit:GetLevel() > v:GetLevel()+3 then
+                v:AddExperience(xp*2, DOTA_ModifyGold_HeroKill, false, false)
+              elseif killedUnit:GetLevel() > v:GetLevel()+2 then
+                v:AddExperience(xp*1, DOTA_ModifyGold_HeroKill, false, false)
+              elseif killedUnit:GetLevel() > v:GetLevel()+1 then
+                v:AddExperience(xp*0.5, DOTA_ModifyGold_HeroKill, false, false)
+              end
             end
           end
         end

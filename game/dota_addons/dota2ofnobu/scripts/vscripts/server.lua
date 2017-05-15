@@ -166,6 +166,9 @@ function Nobu:OpenRoom()
 	if GetMapName() == "lv3_gold" then
 		_G.game_level = 3
 	end
+	if GetMapName() == "nobu_rank" then
+		_G.game_level = 4
+	end
 	Timers:CreateTimer( 5, function()
 		local ids = {}
 		local idcount = 0

@@ -184,6 +184,13 @@ function gohome( keys )
 	end
 	--local particle = ParticleManager:CreateParticle("particles/events/ti6_teams/teleport_start_ti6_lvl3_ehome.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	--ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
+	if target.B23T_old then 
+		Timers:CreateTimer(1, function()
+			target:RemoveModifierByName("modifier_wantgohome")
+			target:RemoveModifierByName("modifier_gohomelua")
+		end)
+		return 
+	end
 	target:AddNewModifier(target,ability,"modifier_gohomelua",{duration=7})
 	target:FindModifierByName("modifier_gohomelua").caster = target
 	Timers:CreateTimer(7, function()
@@ -310,6 +317,10 @@ function to_war_magic_unit(keys)
 	print("to_war_magic_unit")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -360,6 +371,7 @@ function to_war_magic_unit2(keys)
 	print("to_war_magic_unit2")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -368,10 +380,18 @@ function to_war_magic_unit2(keys)
 		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    donkey:AddAbility("war_magic_gohome"):SetLevel(1)
-		    donkey:AddAbility("war_magic_findanything"):SetLevel(1)
-		    donkey:AddAbility("war_magic_treecut"):SetLevel(1)
-		    donkey:AddAbility("war_magic_back_wall"):SetLevel(1)
+		    
+		    if _G.hardcore then 
+		    	donkey:AddAbility("war_magic_gohome"):SetLevel(1)
+				donkey:AddAbility("war_magic_treecut"):SetLevel(1)
+				caster:ForceKill(true)
+				return nil 
+			else
+				donkey:AddAbility("war_magic_gohome"):SetLevel(1)
+			    donkey:AddAbility("war_magic_findanything"):SetLevel(1)
+			    donkey:AddAbility("war_magic_treecut"):SetLevel(1)
+			    donkey:AddAbility("war_magic_back_wall"):SetLevel(1)
+			end
 		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()
@@ -424,6 +444,10 @@ function to_soldier_Oda(keys)
 	print("to_soldier_Oda")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -456,7 +480,11 @@ function to_soldier_Oda(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(donkey, ability, "modifier_soldier_oda", {})
+	donkey:SetModel("models/ashigaru/infantry_oda_6.vmdl")
+	donkey:SetOriginalModel("models/ashigaru/infantry_oda_6.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(donkey, ability, "modifier_soldier_oda", {})
 
 	-- 統計威望
 	local team = donkey:GetTeamNumber()
@@ -531,6 +559,10 @@ function to_soldier_Unified(keys)
 	print("to_soldier_Unified")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -563,7 +595,11 @@ function to_soldier_Unified(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(donkey, ability, "modifier_soldier_unified", {})
+	donkey:SetModel("models/ashigaru/infantry_unified_2.vmdl")
+	donkey:SetOriginalModel("models/ashigaru/infantry_unified_2.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(donkey, ability, "modifier_soldier_unified", {})
 end
 
 
@@ -573,6 +609,10 @@ function to_archer_Oda(keys)
 	print("to_archer_Oda")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -605,7 +645,11 @@ function to_archer_Oda(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(donkey, ability, "modifier_archer", {})
+	donkey:SetModel("models/archer/archer_oda_6.vmdl")
+	donkey:SetOriginalModel("models/archer/archer_oda_6.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(donkey, ability, "modifier_archer", {})
 end
 
 
@@ -615,6 +659,10 @@ function to_archer_Unified(keys)
 	print("to_archer_Unified")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -647,7 +695,11 @@ function to_archer_Unified(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(donkey, ability, "modifier_archer", {})
+	donkey:SetModel("models/archer/archer_unified_2.vmdl")
+	donkey:SetOriginalModel("models/archer/archer_unified_2.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(donkey, ability, "modifier_archer", {})
 end
 
 
@@ -657,8 +709,12 @@ function to_gunner_Oda(keys)
 	print("to_gunner_Oda")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
-		        local ability = caster:GetAbilityByIndex(abilitySlot)
+		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
 		          local abilityLevel = ability:GetLevel()
 		          local abilityName = ability:GetAbilityName()
@@ -689,7 +745,11 @@ function to_gunner_Oda(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(donkey, ability, "modifier_gunner", {})
+	donkey:SetModel("models/arquebusier/gunner_oda_6.vmdl")
+	donkey:SetOriginalModel("models/arquebusier/gunner_oda_6.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(donkey, ability, "modifier_gunner", {})
 end
 
 
@@ -699,6 +759,10 @@ function to_gunner_Unified(keys)
 	print("to_gunner_Unified")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -731,7 +795,11 @@ function to_gunner_Unified(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(donkey, ability, "modifier_gunner", {})
+	donkey:SetModel("models/arquebusier/gunner_unified_2.vmdl")
+	donkey:SetOriginalModel("models/arquebusier/gunner_unified_2.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(donkey, ability, "modifier_gunner", {})
 end
 
 
@@ -742,6 +810,10 @@ function to_cavalry_Oda(keys)
 	print("to_cavalry_Oda")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -774,7 +846,11 @@ function to_cavalry_Oda(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(donkey, ability, "modifier_cavalry", {})
+	donkey:SetModel("models/cavalry/cavalry_oda_6.vmdl")
+	donkey:SetOriginalModel("models/cavalry/cavalry_oda_6.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(donkey, ability, "modifier_cavalry", {})
 end
 
 
@@ -784,6 +860,10 @@ function to_cavalry_Unified(keys)
 	print("to_cavalry_Unified")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
+		if _G.hardcore then 
+			caster:ForceKill(true)
+			return nil 
+		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -816,7 +896,11 @@ function to_cavalry_Unified(keys)
     	end
 		return 1
     	end)
-	donkey:AddNewModifier(caster, ability, "modifier_cavalry", {})
+	donkey:SetModel("models/cavalry/cavalry_unified_2.vmdl")
+	donkey:SetOriginalModel("models/cavalry/cavalry_unified_2.vmdl")
+	donkey:AddNewModifier(donkey, ability, "modifier_rooted", {})
+	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
+	--donkey:AddNewModifier(caster, ability, "modifier_cavalry", {})
 end
 
 

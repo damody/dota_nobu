@@ -89,7 +89,13 @@
 				"Target"		"POINT"
 			}
 		}
-
+		"Modifiers"
+		{
+			"modifier_C02W_check"
+			{
+				"IsHidden"		"1"
+			}
+		}
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"0"
@@ -102,13 +108,13 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
-				"Function"		"C02W_OnProjectileHitUnit"
+				"Function"		"C02W_clone_hero"
 				"Target"		"TARGET"
 			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C02.lua"
-				"Function"		"C02W_clone_hero"
+				"Function"		"C02W_OnProjectileHitUnit"
 				"Target"		"TARGET"
 			}
 		}

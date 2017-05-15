@@ -406,8 +406,8 @@
 		"AbilityCastAnimation"                      "ACT_DOTA_CHANNEL_ABILITY_3"
 		
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"8"
-		"AbilityManaCost"           				"190"
+		"AbilityCooldown"           				"20 14 8"
+		"AbilityManaCost"           				"200 250 300"
 		"AbilityCastRange"							"1000"
 		"AbilityChannelTime"						"3.5"
 		"AOERadius"                                 "%radius"
@@ -682,7 +682,7 @@
 		}
 	}
 
-	//疾病
+	//疫病
 	"A10R_old"
 	{
 		"BaseClass"                 				"ability_datadriven"
@@ -692,8 +692,6 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 
 		"AbilityCastRange"							"450"
-		"LevelsBetweenUpgrades" 					"3"
-
 
 		"Modifiers"
 		{
@@ -713,6 +711,14 @@
 						"Function"		"modifier_A10R_old_passive_OnIntervalThink"
 					}
 				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"		"modifier_A10R_old_passive_OnDeath"
+					}
+				}
 			}
 			"modifier_A10R_old"
 			{
@@ -722,15 +728,23 @@
 				"IsDebuff"			"1"
 				"EffectName"		"particles/a10r_old/a10r_oldwarlock/warlock_shadow_word_debuff.vpcf"
 				"EffectAttachType"	"follow_origin"
-				"ThinkInterval"  	"1.0"
-				"OnIntervalThink"
+				"Properties"
 				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
-						"Function"		"modifier_A10R_old_OnIntervalThink"
-					}
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%damage2"
 				}
+				//"Properties"
+				//{
+				//	"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
+				//}
+				//"ThinkInterval"  	"1.0"
+				//"OnIntervalThink"
+				//{
+				//	"RunScript"
+				//	{
+				//		"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+				//		"Function"		"modifier_A10R_old_OnIntervalThink"
+				//	}
+				//}
 			}
 		}
 
@@ -744,12 +758,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"40.0"
+				"duration"				"35 40 45 50"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"15 25 36 46"
+				"damage"				"40 60 80 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage2"				"-40 -60 -80 -100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius2"				"1000"
 			}
 		}
 
@@ -760,7 +784,7 @@
 	{
 		"BaseClass"                 				"ability_datadriven"
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"                        "custom/A10/A10T_old"
