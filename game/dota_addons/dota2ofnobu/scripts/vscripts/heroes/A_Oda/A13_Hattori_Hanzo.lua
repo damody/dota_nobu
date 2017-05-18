@@ -151,6 +151,7 @@ function A13W( event )
 				illusion[i]:MakeIllusion()
 
 				illusion[i]:SetHealth(caster:GetHealth())
+				illusion[i].illusion_damage = 0.1
 				--分身不能用法球
 				--illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)
@@ -190,7 +191,7 @@ function A13W( event )
 end
 
 
-function A13W_old( event )
+function A13R_old( event )
 	local caster = event.caster
 	local player = caster:GetPlayerID()
 	local ability = event.ability
@@ -261,6 +262,7 @@ function A13W_old( event )
 				illusion[i]:MakeIllusion()
 
 				illusion[i]:SetHealth(caster:GetHealth())
+				illusion[i].illusion_damage = 0.1
 				--分身不能用法球
 				--illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)

@@ -24,7 +24,16 @@ function modifier_A24D_OnIntervalThink( event )
 			caster.a24d_particle=nil
 		end
 		modifier=caster:FindModifierByName("modifier_A24D_count")
-		modifier:SetStackCount(0)
+		if modifier then
+			modifier:SetStackCount(0)
+		else
+			local a24d = caster:FindAbilityByName("A24D")
+			a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+			modifier=caster:FindModifierByName("modifier_A24D_count")
+			if modifier then
+				modifier:SetStackCount(0)
+			end
+		end
 		--unit:RemoveModifierByName("modifier_A24D")
 	else
 		if caster.a24d_particle==nil then
@@ -34,7 +43,16 @@ function modifier_A24D_OnIntervalThink( event )
 			caster.a24d_particle=ifx
 		end
 		modifier=caster:FindModifierByName("modifier_A24D_count")
-		modifier:SetStackCount(unit.AphoticShieldRemaining)
+		if modifier then
+			modifier:SetStackCount(unit.AphoticShieldRemaining)
+		else
+			local a24d = caster:FindAbilityByName("A24D")
+			a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+			modifier=caster:FindModifierByName("modifier_A24D_count")
+			if modifier then
+				modifier:SetStackCount(unit.AphoticShieldRemaining)
+			end
+		end
 	end
 end
 
@@ -72,12 +90,29 @@ function modifier_A24D_OnTakeDamage( event )
 			unit.AphoticShieldRemaining = 0
 			--移除特效
 			modifier=caster:FindModifierByName("modifier_A24D_count")
-			modifier:SetStackCount(0)
-
+			if modifier then
+				modifier:SetStackCount(0)
+			else
+				local a24d = caster:FindAbilityByName("A24D")
+				a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+				modifier=caster:FindModifierByName("modifier_A24D_count")
+				if modifier then
+					modifier:SetStackCount(0)
+				end
+			end
 			--unit:RemoveModifierByName("modifier_A24D")
 		else
 			modifier=caster:FindModifierByName("modifier_A24D_count")
-			modifier:SetStackCount(unit.AphoticShieldRemaining)
+			if modifier then
+				modifier:SetStackCount(unit.AphoticShieldRemaining)
+			else
+				local a24d = caster:FindAbilityByName("A24D")
+				a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+				modifier=caster:FindModifierByName("modifier_A24D_count")
+				if modifier then
+					modifier:SetStackCount(unit.AphoticShieldRemaining)
+				end
+			end
 		end
 	end
 
@@ -107,7 +142,9 @@ function A24W_OnSpellStart( keys )
 		if not caster:FindModifierByName("modifier_A24T") then
 			--caster:SetHealth(caster:GetHealth()-healthCost)
 			caster.selfdamage=true
-			AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if caster:GetHealthPercent() > 0.15 then
+				AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 		if unit.AphoticShieldRemaining == nil then
 			unit.AphoticShieldRemaining=0
@@ -128,7 +165,16 @@ function A24W_OnSpellStart( keys )
 			caster.a24d_particle=ifx
 		end
 		modifier=keys.caster:FindModifierByName("modifier_A24D_count")
-		modifier:SetStackCount(unit.AphoticShieldRemaining)
+		if modifier then
+			modifier:SetStackCount(unit.AphoticShieldRemaining)
+		else
+			local a24d = caster:FindAbilityByName("A24D")
+			a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+			modifier=caster:FindModifierByName("modifier_A24D_count")
+			if modifier then
+				modifier:SetStackCount(unit.AphoticShieldRemaining)
+			end
+		end
 	else
 
 	end
@@ -239,7 +285,9 @@ function A24E_OnSpellStart( keys )
 		if not caster:FindModifierByName("modifier_A24T") then
 			--caster:SetHealth(caster:GetHealth()-healthCost)
 			caster.selfdamage=true
-			AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if caster:GetHealthPercent() > 0.15 then
+				AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 		if unit.AphoticShieldRemaining == nil then
 			unit.AphoticShieldRemaining=0
@@ -258,7 +306,16 @@ function A24E_OnSpellStart( keys )
 			caster.a24d_particle=ifx
 		end
 		modifier=keys.caster:FindModifierByName("modifier_A24D_count")
-		modifier:SetStackCount(unit.AphoticShieldRemaining)
+		if modifier then
+			modifier:SetStackCount(unit.AphoticShieldRemaining)
+		else
+			local a24d = caster:FindAbilityByName("A24D")
+			a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+			modifier=caster:FindModifierByName("modifier_A24D_count")
+			if modifier then
+				modifier:SetStackCount(unit.AphoticShieldRemaining)
+			end
+		end
 	else
 		if unit.AphoticShieldRemaining == nil then
 			unit.AphoticShieldRemaining=0
@@ -277,7 +334,16 @@ function A24E_OnSpellStart( keys )
 			caster.a24d_particle=ifx
 		end
 		modifier=keys.caster:FindModifierByName("modifier_A24D_count")
-		modifier:SetStackCount(unit.AphoticShieldRemaining)
+		if modifier then
+			modifier:SetStackCount(unit.AphoticShieldRemaining)
+		else
+			local a24d = caster:FindAbilityByName("A24D")
+			a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+			modifier=caster:FindModifierByName("modifier_A24D_count")
+			if modifier then
+				modifier:SetStackCount(unit.AphoticShieldRemaining)
+			end
+		end
 	end
 
 	local distance=(target:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
@@ -318,7 +384,9 @@ function A24R_OnSpellStart( keys )
 		if not caster:FindModifierByName("modifier_A24T") then
 			--caster:SetHealth(caster:GetHealth()-healthCost)
 			caster.selfdamage=true
-			AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if caster:GetHealthPercent() > 0.15 then
+				AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 		if unit.AphoticShieldRemaining == nil then
 			unit.AphoticShieldRemaining=0
@@ -338,7 +406,16 @@ function A24R_OnSpellStart( keys )
 			caster.a24d_particle=ifx
 		end
 		modifier=keys.caster:FindModifierByName("modifier_A24D_count")
-		modifier:SetStackCount(unit.AphoticShieldRemaining)
+		if modifier then
+			modifier:SetStackCount(unit.AphoticShieldRemaining)
+		else
+			local a24d = caster:FindAbilityByName("A24D")
+			a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+			modifier=caster:FindModifierByName("modifier_A24D_count")
+			if modifier then
+				modifier:SetStackCount(unit.AphoticShieldRemaining)
+			end
+		end
 	else
 
 	end
@@ -382,7 +459,9 @@ function A24T_OnSpellStart( keys )
 	local shield_max=abilityA24D:GetSpecialValueFor("shield_max")
 	--caster:SetHealth(caster:GetHealth()-healthCost)
 	caster.selfdamage=true
-	AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	if caster:GetHealthPercent() > 0.15 then
+		AMHC:Damage(caster,caster,healthCost,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	end
 	if unit.AphoticShieldRemaining == nil then
 		unit.AphoticShieldRemaining=0
 	end
@@ -396,8 +475,17 @@ function A24T_OnSpellStart( keys )
 		ParticleManager:SetParticleControl(ifx,0,caster:GetAbsOrigin())
 		caster.a24d_particle=ifx
 	end
-	modifier=keys.caster:FindModifierByName("modifier_A24D_count")
-	modifier:SetStackCount(unit.AphoticShieldRemaining)
+	modifier=caster:FindModifierByName("modifier_A24D_count")
+	if modifier then
+		modifier:SetStackCount(unit.AphoticShieldRemaining)
+	else
+		local a24d = caster:FindAbilityByName("A24D")
+		a24d:ApplyDataDrivenModifier(caster, caster,"modifier_A24D_count", nil)
+		modifier=caster:FindModifierByName("modifier_A24D_count")
+		if modifier then
+			modifier:SetStackCount(unit.AphoticShieldRemaining)
+		end
+	end
 
 	local stun_duration = ability:GetSpecialValueFor("stun") 
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),

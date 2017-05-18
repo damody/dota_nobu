@@ -67,7 +67,7 @@ function _G.Nobu:InitGameMode()
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
   
   if _G.hardcore then
-    GameRules:SetGoldPerTick(4)-- 設置金錢
+    GameRules:SetGoldPerTick(8)-- 設置金錢
     GameRules:SetGoldTickTime(5)--金錢跳錢秒數
     Timers:CreateTimer( 180, function()
       GameRules: SendCustomMessage("<font color='#ffff00'>全軍將領得到了金錢支援</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)

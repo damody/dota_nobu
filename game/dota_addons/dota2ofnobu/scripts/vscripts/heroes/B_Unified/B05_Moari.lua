@@ -149,7 +149,7 @@ function ThundergodsWrath(keys)
 	EmitSoundOn(keys.sound, target)
 	AddFOWViewer(caster:GetTeamNumber(), target:GetAbsOrigin(), 100.0, 2.0, false)
 	-- If the target is not invisible, we deal damage to it
-	if target:IsInvisible() ~= true then
+	if not target:IsMagicImmune() then
 		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
 	end
 end

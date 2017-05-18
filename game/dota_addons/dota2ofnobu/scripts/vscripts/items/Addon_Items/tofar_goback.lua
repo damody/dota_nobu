@@ -102,9 +102,14 @@ end
 function robbers_checkfly( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if (caster:GetAbsOrigin()-caster.origin_pos):Length2D() > 300 then
+	if (caster:GetAbsOrigin()-caster.origin_pos):Length2D() > 200 then
 		ability:ApplyDataDrivenModifier( caster , caster , "modifier_fly" , { duration = 1 } )
+	else
+		if caster:GetHealth() == caster:GetMaxHealth() then
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_stunned",{ duration = 1 })
+		end
 	end
+	
 end
 
 
@@ -288,11 +293,29 @@ function near_hero_then_can_use_ability(keys)
 
 end
 
+function update_buy_ninja1(keys)
+	local caster = keys.caster.owner
+	if caster.buy_ninja1 then
+		caster.buy_ninja1 = caster.buy_ninja1 - 1
+	end
+end
+
+function call_ninja1_OnAbilityPhaseStart(keys)
+	local caster = keys.caster
+	if caster.buyer.buy_ninja1 == nil then caster.buyer.buy_ninja1 = 0 end
+	if caster.buyer.buy_ninja1 >= 4 then
+		caster:Interrupt()
+	else
+		caster.buyer.buy_ninja1 = caster.buyer.buy_ninja1 + 1
+	end
+end
+
 function call_ninja1(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
 	local donkey = CreateUnitByName("ninja_unit1", caster:GetAbsOrigin() + Vector(50, 100, 0), true, caster, caster, caster:GetTeamNumber())
     donkey:SetOwner(caster.buyer)
+    donkey.owner = caster.buyer
     donkey:SetControllableByPlayer(caster.buyer:GetPlayerOwnerID(), true)
     donkey:AddNewModifier(donkey,ability,"modifier_phased",{duration=0.1})
 end

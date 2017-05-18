@@ -75,7 +75,13 @@ function test_of_spell( filterTable )
 
 	caster:SetMana(caster:GetMaxMana())
 end
-
+function DumpTable( tTable )
+	local inspect = require('inspect')
+	local iDepth = 2
+ 	print(inspect(tTable,
+ 		{depth=iDepth} 
+ 	))
+end
 
 function spell_ability ( filterTable )
 	local f = filterTable
@@ -320,18 +326,19 @@ function Nobu:eventfororder( filterTable )
 		end
 		--print(DeepPrintTable(_G.CountUsedAbility_Table))
 	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17
+
 		if filterTable.units and filterTable.units["0"] then
+			DumpTable(filterTable)
+			local item = EntIndexToHScript(filterTable.entindex_ability)
+			print(item:GetCost())
+
 			local unit = EntIndexToHScript(filterTable.units["0"])
+			AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.2*item:GetCost())
 			if IsValidEntity(unit) and unit.B23T_old then
 				return false
 			end
 		end
-		--[[
-		local inspect = require('inspect')
-		local iDepth = 1
-	 	print(inspect(filterTable,
-	 		{depth=iDepth} 
-	 	))]]
+		
 	elseif ordertype == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM then --18
 	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19
 		if filterTable.units and filterTable.units["0"] then

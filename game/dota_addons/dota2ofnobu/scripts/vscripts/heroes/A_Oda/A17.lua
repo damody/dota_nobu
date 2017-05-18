@@ -153,7 +153,7 @@ function A17T_Succes_Attack_old( keys )
 	end	
 end
 
-function A17T_Succes_Attack2( keys )
+function A1300_Succes_Attack( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
@@ -168,6 +168,15 @@ function A17T_Succes_Attack2( keys )
 		for i,v in ipairs(group) do
 			AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 		end
+	else
+		local targetArmor = target:GetPhysicalArmorValue()
+		local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
+		local dmg = dmg * (1 - damageReduction)
+		Timers:CreateTimer(0.1, function()
+			if IsValidEntity(target) and target:IsAlive() then
+				target:SetHealth(target:GetHealth()+dmg*0.4)
+			end
+			end)
 	end
 end
 

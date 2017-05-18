@@ -32,8 +32,7 @@
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flBias = 0.75
-			m_flEndScale = 0.5
-			m_flStartScale = 8.0
+			m_flStartScale = 20.0
 		},
 		{
 			_class = "C_OP_Decay"
@@ -113,8 +112,23 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmissionDuration = 0.1
-			m_flEmitRate = 2000.0
+			m_flEmissionDuration = 6.0
+			m_flEmitRate = 40.0
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

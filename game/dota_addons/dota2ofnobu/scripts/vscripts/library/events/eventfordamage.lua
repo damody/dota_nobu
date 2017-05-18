@@ -43,5 +43,8 @@ function Nobu:DamageFilterEvent( filterTable )
 	if caster.modify_damage then
 		filterTable.damage = filterTable.damage*caster.modify_damage
 	end
+	if caster.illusion_damage and filterTable.damagetype_const ~= DAMAGE_TYPE_PHYSICAL then
+		filterTable.damage = filterTable.damage*caster.illusion_damage
+	end
 	return true 
 end

@@ -57,10 +57,10 @@ function CreateMirror2( caster, ability, spawn_point )
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	illusion:MakeIllusion()
 
-	local level = ability:GetLevel()-1
-	local duration = ability:GetLevelSpecialValueFor( "illusion_duration", level )
-	local outgoingDamage = ability:GetLevelSpecialValueFor( "illusion_outgoing_damage", level )
-	local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_incoming_damage", level )
+	local duration = ability:GetSpecialValueFor( "illusion_duration" )
+	local outgoingDamage = ability:GetSpecialValueFor( "illusion_outgoing_damage" )
+	local incomingDamage = ability:GetSpecialValueFor( "illusion_incoming_damage" )
+	illusion.illusion_damage = (100-outgoingDamage)*0.005
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 	illusion:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
@@ -91,6 +91,7 @@ function CreateMirror( keys )
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
+	illusion.illusion_damage = (100-outgoingDamage)*0.005
 	--分身不能用法球
 	--illusion.nobuorb1 = "illusion"
 	

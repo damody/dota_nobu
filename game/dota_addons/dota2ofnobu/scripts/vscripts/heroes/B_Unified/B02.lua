@@ -277,7 +277,11 @@ function B02T(keys)
 			return nil
 		else
 			--【DMG】
-			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )				
+			if target:IsMagicImmune() then
+				AMHC:Damage( caster,target,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 			--【SOUND】
 			-- EmitSoundOn("Hero_Leshrac.Lightning_Storm", target)
 			-- EmitSoundOn("Hero_Leshrac.Lightning_Storm", caster)

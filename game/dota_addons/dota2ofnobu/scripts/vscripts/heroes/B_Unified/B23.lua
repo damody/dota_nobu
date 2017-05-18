@@ -318,6 +318,22 @@ function B23T( keys )
 	Timers:CreateTimer(0, function ()
 		caster:RemoveModifierByName("nobu_modifier_spell_hint")
 		caster:AddNewModifier(caster,nil,"nobu_modifier_spell_hint",spell_hint_table)
+		local units = FindUnitsInRadius(caster:GetTeamNumber(),  
+        caster:GetAbsOrigin(),nil,B23T_radius,DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 
+          FIND_ANY_ORDER, 
+        false)
+		for _,it in pairs(units) do
+			local am = it:FindAllModifiers()
+			for _,v in pairs(am) do
+				if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+					if v:GetParent():GetTeamNumber() ~= it:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= it:GetTeamNumber() then
+						it:RemoveModifierByName(v:GetName())
+					end
+				end
+			end
+		end
 		if not caster:IsChanneling() then
 			B23T_interrupted(keys)
 			return nil

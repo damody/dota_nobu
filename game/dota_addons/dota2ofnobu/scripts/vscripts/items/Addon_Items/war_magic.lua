@@ -112,14 +112,6 @@ function light( keys )
 			ParticleManager:SetParticleControl(particle, 0, Vector(point.x,point.y,200 ))
 			AddFOWViewer(caster:GetTeamNumber(), point, 50, 1.0, false)
 		end)
-	Timers:CreateTimer(2, function() 
-			local particle = ParticleManager:CreateParticle("particles/item/war_light.vpcf", PATTACH_ABSORIGIN, caster)
-			ParticleManager:SetParticleControl(particle, 0, Vector(point.x,point.y,200 ))
-		end)
-	Timers:CreateTimer(4, function() 
-			local particle = ParticleManager:CreateParticle("particles/item/war_light.vpcf", PATTACH_ABSORIGIN, caster)
-			ParticleManager:SetParticleControl(particle, 0, Vector(point.x,point.y,200 ))
-		end)
 
 	Timers:CreateTimer(0.8, function() 
 			AddFOWViewer(caster:GetTeamNumber(), point, 100, 1.0, false)
@@ -317,10 +309,6 @@ function to_war_magic_unit(keys)
 	print("to_war_magic_unit")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	Timers:CreateTimer(1, function() 
-		if _G.hardcore then 
-			caster:ForceKill(true)
-			return nil 
-		end
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -370,8 +358,7 @@ function to_war_magic_unit2(keys)
 	local pos = caster:GetAbsOrigin()
 	print("to_war_magic_unit2")
 	local donkey = CreateUnitByName("npc_dota_courier", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
-	Timers:CreateTimer(1, function() 
-
+	Timers:CreateTimer(1, function()
 			for abilitySlot=0,15 do
 		        local ability = donkey:GetAbilityByIndex(abilitySlot)
 		        if ability ~= nil then 
@@ -380,18 +367,10 @@ function to_war_magic_unit2(keys)
 		          donkey:RemoveAbility(abilityName)
 		        end
 		    end
-		    
-		    if _G.hardcore then 
-		    	donkey:AddAbility("war_magic_gohome"):SetLevel(1)
-				donkey:AddAbility("war_magic_treecut"):SetLevel(1)
-				caster:ForceKill(true)
-				return nil 
-			else
-				donkey:AddAbility("war_magic_gohome"):SetLevel(1)
-			    donkey:AddAbility("war_magic_findanything"):SetLevel(1)
-			    donkey:AddAbility("war_magic_treecut"):SetLevel(1)
-			    donkey:AddAbility("war_magic_back_wall"):SetLevel(1)
-			end
+			donkey:AddAbility("war_magic_gohome"):SetLevel(1)
+		    donkey:AddAbility("war_magic_findanything"):SetLevel(1)
+		    donkey:AddAbility("war_magic_treecut"):SetLevel(1)
+		    donkey:AddAbility("war_magic_back_wall"):SetLevel(1)
 		    caster:ForceKill(true)
 		end)
 	Timers:CreateTimer(1, function()

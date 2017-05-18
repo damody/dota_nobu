@@ -57,46 +57,18 @@
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_wind_walk_fade_datadriven"
+				"ModifierName"	"modifier_wind_walk_datadriven"
+				"Duration"	"%duration"
 			}
-			"DelayedAction"
+			"ApplyModifier"
 			{
-				"Delay"	"%fade_time"
-				"Action"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_invisible"
-						"Duration"	"20"
-					}
-				}
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_invisible"
+				"Duration"	"%duration"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_wind_walk_fade_datadriven"
-			{
-				"Duration"	"%fade_time"
-				"isBuff"	"1"
-				"EffectName"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B02.lua"
-						"Function"	"B02D_OnAttackLanded"
-					}
-				}
-				"IsHidden"	"1"
-			}
 			"modifier_wind_walk_datadriven"
 			{
 				"Duration"	"%duration"
@@ -614,7 +586,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dmg"	"175"
+				"dmg"	"200 250 300"
 			}
 			"05"
 			{
@@ -624,7 +596,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"stun_duration"	"0.35"
+				"stun_duration"	"0.5"
 			}
 		}
 	}
@@ -675,34 +647,18 @@
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_wind_walk_fade_datadriven"
+				"ModifierName"	"modifier_wind_walk_datadriven"
+				"Duration"	"%duration"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_invisible"
+				"Duration"	"%duration"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_wind_walk_fade_datadriven"
-			{
-				"Duration"	"%fade_time"
-				"IsHidden"	"0"
-				"IsBuff"	"1"
-				"EffectName"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
-						"Duration"	"%duration"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_invisible"
-						"Duration"	"%duration"
-					}
-				}
-			}
 			"modifier_wind_walk_datadriven"
 			{
 				"IsBuff"	"1"

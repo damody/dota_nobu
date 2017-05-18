@@ -1116,7 +1116,7 @@ function Containers:Containers_OnSell(args)
   container:RemoveItem(item)
   item:RemoveSelf()
   PlayerResource:ModifyGold(playerID, cost, false, DOTA_ModifyGold_SellItem)
-
+  
   if player then
     SendOverheadEventMessage(player, OVERHEAD_ALERT_GOLD, unit, cost, player)
     EmitSoundOnClient("General.Sell", player)

@@ -184,7 +184,6 @@ function C19T_OnIntervalThink( keys )
 	end
 end
 
-
 function C19T_OnOnCreated( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -198,8 +197,10 @@ function C19T_old_OnSpellStart( keys )
 	caster:RemoveModifierByName("modifier_ninja_cloth")
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_ninja_cloth",nil)
 	nc = caster:FindModifierByName("modifier_ninja_cloth")
+	local particle = ParticleManager:CreateParticle("particles/a02/a02e.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	nc:SetStackCount(2)
 	Timers:CreateTimer(10,function()
+		ParticleManager:DestroyParticle(particle,true)
 		nc:SetStackCount(1)
 		end)
 end

@@ -888,7 +888,7 @@
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
 		// Item Info
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
-		"ItemCost"	"200"
+		"ItemCost"	"400"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
 		"ItemStackable"					"1"
@@ -954,7 +954,7 @@
 		"AbilityTextureName"	"item_custom/perceive_wine_hyper"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"30"
+		"AbilityCooldown"	"50"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2621"
@@ -963,7 +963,7 @@
 		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
 		// Item Info
 		
-		"ItemCost"	"465"
+		"ItemCost"	"500"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
 		"ItemStackable"					"1"
@@ -4029,7 +4029,6 @@
 	"item_izuminokami_kanesada"
 	{
 		// General
-		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/izuminokami_kanesada"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -4104,7 +4103,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"400"
+		"ItemCost"	"300"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
@@ -11438,7 +11437,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"45"
+		"AbilityCooldown"	"50"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2808"
@@ -11521,7 +11520,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"45"
+		"AbilityCooldown"	"50"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2809"
@@ -11604,7 +11603,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"45"
+		"AbilityCooldown"	"50"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2810"
@@ -11688,7 +11687,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"45"
+		"AbilityCooldown"	"50"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2811"
@@ -14499,7 +14498,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"80"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -14583,7 +14582,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"80"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -14667,7 +14666,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"80"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -14752,7 +14751,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"80"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -15115,7 +15114,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"80"
 		"AbilityManaCost"	"500"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"SecretShop" "1"

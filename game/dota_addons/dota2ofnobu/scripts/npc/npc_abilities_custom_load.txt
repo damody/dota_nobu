@@ -572,7 +572,40 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/liubei_hujia"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"0"
+		"AbilityGoldCost"	"150"
+		"AbilityCastPoint"	"0.1"
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"call_ninja1_OnAbilityPhaseStart"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"call_ninja1"
+			}
+		}
+	}
+	// 叫下忍
+	"update_buy_ninja1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -582,13 +615,23 @@
 		"AbilityCastRange"	"50000"
 		"AbilityManaCost"	"0"
 		"AbilityGoldCost"	"150"
-
-		"OnSpellStart"
+		"AbilityCastPoint"	"0.1"
+		"Modifiers"
 		{
-			"RunScript"
+			"modifier_update_buy_ninja1"
 			{
-				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
-				"Function"	"call_ninja1"
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+		
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"update_buy_ninja1"
+					}
+				}
 			}
 		}
 	}
@@ -3380,7 +3423,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A17.lua"
-						"Function"	"A17T_Succes_Attack2"
+						"Function"	"A1300_Succes_Attack"
 						"dmg"	"%attack_damage"
 					}
 				}
