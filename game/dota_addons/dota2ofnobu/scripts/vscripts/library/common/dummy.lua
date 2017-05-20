@@ -92,7 +92,6 @@ function killdummy( keys )
     if IsValidEntity(dummy) then
 		  dummy:ForceKill(true)
     end
-		print(dummy:GetUnitName())
 	end
 end
 

@@ -46,5 +46,10 @@ function Nobu:DamageFilterEvent( filterTable )
 	if caster.illusion_damage and filterTable.damagetype_const ~= DAMAGE_TYPE_PHYSICAL then
 		filterTable.damage = filterTable.damage*caster.illusion_damage
 	end
+	if caster.magic_damage and filterTable.damagetype_const == DAMAGE_TYPE_MAGICAL and not target:IsBuilding() then
+		if (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length2D() < 2500 then
+			filterTable.damage = filterTable.damage*caster.magic_damage
+		end
+	end
 	return true 
 end

@@ -60,7 +60,7 @@ function CreateMirror2( caster, ability, spawn_point )
 	local duration = ability:GetSpecialValueFor( "illusion_duration" )
 	local outgoingDamage = ability:GetSpecialValueFor( "illusion_outgoing_damage" )
 	local incomingDamage = ability:GetSpecialValueFor( "illusion_incoming_damage" )
-	illusion.illusion_damage = (100-outgoingDamage)*0.005
+	illusion.illusion_damage = (100+outgoingDamage)*0.01
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 	illusion:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
@@ -91,7 +91,7 @@ function CreateMirror( keys )
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
-	illusion.illusion_damage = (100-outgoingDamage)*0.005
+	illusion.illusion_damage = (100+outgoingDamage)*0.01
 	--分身不能用法球
 	--illusion.nobuorb1 = "illusion"
 	

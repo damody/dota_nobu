@@ -15,6 +15,7 @@ function Shock( keys )
 	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
 	dummy:FindAbilityByName("majia"):SetLevel(1)
 	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=12})
+	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_invulnerable",{duration=12})
 	caster.dummy = dummy
 
 	casterLoc = keys.target_points[1] - dir:Normalized() * 300
@@ -76,8 +77,6 @@ function Shock( keys )
 		end)
 end
 
-
-
 function storm_break( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -95,7 +94,7 @@ function storm_break( keys )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			if IsValidEntity(caster) and caster:IsAlive() then
-				AMHC:Damage(caster, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage(caster.dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 			else
 				AMHC:Damage(caster.dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 				caster.takedamage = caster.takedamage + dmg

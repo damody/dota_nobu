@@ -627,6 +627,9 @@ function Precache( context )
     --犒賞
     "particles/item/reward6300.vpcf",
 
+    "particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow.vpcf",
+    "particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow_2.vpcf",
+
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

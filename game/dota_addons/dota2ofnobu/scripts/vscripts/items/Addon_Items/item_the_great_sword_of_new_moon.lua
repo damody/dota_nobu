@@ -44,3 +44,35 @@ function Shock( keys )
 			end)
 	end
 end
+
+function Shock3( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster:SetMana(0)
+end
+
+function Shock2( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster.magic_damage = 2.5
+	Timers:CreateTimer(4, function()
+				if caster:HasModifier("Passive_sword_of_xnew_moon_x") then
+					caster.magic_damage = 1.5
+				else
+					caster.magic_damage = nil
+				end
+			end)
+	caster:SetMana(0)
+end
+
+function OnEquip( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster.magic_damage = 1.5
+end
+
+function OnUnequip( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster.magic_damage = nil
+end

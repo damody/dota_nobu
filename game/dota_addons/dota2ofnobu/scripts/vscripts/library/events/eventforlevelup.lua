@@ -11,8 +11,6 @@ function Nobu:LevelUP( keys )
 	local p 	     = PlayerResource:GetPlayer(id-1)
 	local hero 	   = p: GetAssignedHero()
 	local name   = hero:GetUnitName()
-	
-	print(name) -- 沒反應@"@?
 
 	if string.match(name, "naga_siren") then -- 望月千代女
 		local LuaB16 = require("heroes/B_Unified/B16_Mochidsuki_Chiyome")

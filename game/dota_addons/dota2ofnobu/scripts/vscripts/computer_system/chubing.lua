@@ -147,7 +147,7 @@ end
 function ShuaGuai_Of_AA(num)
 	A_count = _G.A_count
 	A_count = A_count + 1
-	print("A_count "..A_count)
+	--print("A_count "..A_count)
 	local tem_count = 0
 	--總共六個出發點 6
 	local randomkey = RandomInt(1,8)

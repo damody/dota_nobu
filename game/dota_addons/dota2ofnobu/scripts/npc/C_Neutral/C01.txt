@@ -415,16 +415,16 @@
 		{
 			"FireSound"
 			{
+				"Target"	"CASTER"
+				"EffectName"	"C01W_old.vo1"
+			}
+			"ApplyModifier"
+			{
 				"Target"
 				{
 				    "Center" "CASTER"
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-				"EffectName"	"C01W_old.vo1"
-			}
-			"ApplyModifier"
-			{
-				"Target"	"CASTER"
 				"ModifierName"	"modifier_C01W_old_buff"
 			}
 		}

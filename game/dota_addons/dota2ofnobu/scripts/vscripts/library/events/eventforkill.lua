@@ -264,8 +264,6 @@ function Nobu:OnUnitKill( keys )
       end
     end
 
-
-    print(killedUnit:GetUnitName() )
     if killedUnit:GetUnitName() == "npc_dota_courier2" then
       killedUnit:RespawnUnit()
       killedUnit:FindAbilityByName("for_magic_immune"):

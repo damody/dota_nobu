@@ -326,12 +326,8 @@ function Nobu:eventfororder( filterTable )
 		end
 		--print(DeepPrintTable(_G.CountUsedAbility_Table))
 	elseif ordertype == DOTA_UNIT_ORDER_SELL_ITEM then --17
-
 		if filterTable.units and filterTable.units["0"] then
-			DumpTable(filterTable)
 			local item = EntIndexToHScript(filterTable.entindex_ability)
-			print(item:GetCost())
-
 			local unit = EntIndexToHScript(filterTable.units["0"])
 			AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.2*item:GetCost())
 			if IsValidEntity(unit) and unit.B23T_old then

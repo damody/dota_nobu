@@ -303,7 +303,7 @@ local function chat_of_test(keys)
 			caster:RemoveAbility("for_move1500")
 			caster:RemoveModifierByName("modifier_for_move1500")
 		end
-		if string.match(s,"re") then
+		if s=="re" then
 			caster:SetTimeUntilRespawn(0)
 		end
 		if string.match(s,"gold") then
@@ -405,8 +405,7 @@ local function chat_of_test(keys)
 			    end
 			end
 		end
-		if s == "shuaguai" then
-			print("shuaguai")
+		if s == "creep" then
 			ShuaGuai_Of_AA( 10 )
 			ShuaGuai_Of_AB( 2 )
 			ShuaGuai_Of_B( 2 )

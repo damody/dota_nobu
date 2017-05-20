@@ -27,7 +27,6 @@ function Nobu:PickHero( keys )
           for _,m in ipairs(caster.donkey:FindAllModifiers()) do
             if m:GetName() ~= "modifier_for_magic_immune" and m:GetName() ~= "modifier_courier_transfer_items" then
               if not (string.match(m:GetName(), "Passive_") or string.match(m:GetName(), "courier_burst")or m:GetName() == "modifier_invulnerable") then
-                print(m:GetName())
                 caster.donkey:RemoveModifierByName(m:GetName())
               end
             end
@@ -134,10 +133,11 @@ function Nobu:PickHero( keys )
             [22]=true,
             [23]=true,
             [24]=true}
-        Timers:CreateTimer(180, function ()
-          if (lvneed[caster:GetLevel()]) then
-            lvneed[caster:GetLevel()] = false
-            caster:SetAbilityPoints(1)
+            local lvcaster = caster
+        Timers:CreateTimer(10, function ()
+          if (lvneed[lvcaster:GetLevel()]) then
+            lvneed[lvcaster:GetLevel()] = false
+            lvcaster:SetAbilityPoints(1)
           end
           return 0.3
         end)

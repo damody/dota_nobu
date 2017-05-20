@@ -4302,7 +4302,7 @@
 		// Status
 		// ----------------------------------------------------------------
 		// Base health.
-		"StatusHealth"	"1"
+		"StatusHealth"	"10000"
 		// Health regeneration rate.
 		"StatusHealthRegen"	"0"
 		// Base mana.
@@ -4774,7 +4774,7 @@
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 		"ModelScale"	"1"
 	}
-
+	// 百地地雷
 	"B13_MINE"
 	{
 		// General
@@ -4783,7 +4783,7 @@
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
-		"ModelScale"				"1.5"
+		"ModelScale"				"1"
 		"SelectionGroup"			"B13_MINE"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 

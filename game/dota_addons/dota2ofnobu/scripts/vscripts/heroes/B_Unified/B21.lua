@@ -124,7 +124,7 @@ function modifier_b21r_lua:OnTakeDamage( keys )
 
 		local attacker = keys.attacker
 		local ability = self:GetAbility()
-		if not attacker:IsBuilding() then
+		if not attacker:IsBuilding() and not attacker:IsInvulnerable() then
 			ApplyDamage({
 				victim = attacker,
 				attacker = unit,

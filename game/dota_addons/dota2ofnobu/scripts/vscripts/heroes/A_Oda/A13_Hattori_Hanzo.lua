@@ -93,7 +93,7 @@ function A13W( event )
 	local eachAngle = 6.28 / people
 	local illusion = {}
 	local target_pos = {}
-	local radius = 700
+	local radius = 900
 	local origin_go_index = RandomInt(1, people)
 	local random_angle = RandomInt(-20, 20) * 0.1
 	local origin_pos = caster:GetOrigin()
@@ -262,7 +262,7 @@ function A13R_old( event )
 				illusion[i]:MakeIllusion()
 
 				illusion[i]:SetHealth(caster:GetHealth())
-				illusion[i].illusion_damage = 0.1
+				illusion[i].illusion_damage = outgoingDamage*0.01
 				--分身不能用法球
 				--illusion[i].nobuorb1 = "illusion"
 				--illusion[i]:SetRenderColor(255,0,255)

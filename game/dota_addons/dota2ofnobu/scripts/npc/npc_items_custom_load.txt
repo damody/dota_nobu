@@ -5106,6 +5106,8 @@
 		}
 	}
 
+	
+
 	// 梅鶯毒．妖刀
 	"item_the_great_sword_of_toxic"
 	{
@@ -14117,7 +14119,6 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop" "1"
-
 		
 		"OnSpellStart"
 		{
@@ -14176,17 +14177,6 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
 				}
-			}
-			"modifier_shuriken"
-			{
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"Duration"	"0.01"
-				"IsDebuff"	"1"
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
 			}
 		}
 	}
@@ -17144,6 +17134,169 @@
 				"ScriptFile"	"items/Addon_Items/item_protection_amulet.lua"
 				"Function"	"OnUnequip"
 			}
+		}
+	}
+
+	// 真．三日月宗近．銘刀
+	"item_the_great_sword_of_xnew_moon_x"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_great_sword_of_new_moon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"60"
+		
+		"AbilityManaCost"	"200"
+		"AbilityCastPoint"	"0.1"
+		"ID"	"3875"
+		"ItemQuality"	"component"
+		"Model"	"models/weapon/weapon.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"7750"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"SideShop"						"1"
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
+				"Function"	"OnEquip"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
+				"Function"	"OnUnequip"
+			}
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_moon_x"
+				"Target" 		"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_stunned"
+				"Target" 		"CASTER"
+				"Duration"		"0.5"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"Passive_sword_of_xnew_moon_x"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "40"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+				}
+			}
+			"modifier_moon_x"
+			{
+				"Passive"	"0"
+				"EffectName"	"particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
+						"Function"				"Shock2"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_moon_x"
+						"Target" 		"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_moon_x2"
+						"Target" 		"CASTER"
+						"Duration"		"4"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
+						"Function"				"Shock2"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_moon_x"
+						"Target" 		"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_moon_x2"
+						"Target" 		"CASTER"
+						"Duration"		"4"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_moon_x2"
+			{
+				"Passive"	"0"
+				"EffectName"	"particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow_2.vpcf"
+				"States"
+				{
+					"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
+						"Function"				"Shock3"
+					}
+				}
+			}
+		}
+	}
+	//真三日月 製作單
+	"item_recipe_the_great_sword_of_xnew_moon_x"
+	{
+	    "ID" "3876"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1000"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SideShop"						"1"
+		"ItemResult" "item_the_great_sword_of_xnew_moon_x"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_great_sword_of_xnew_moon"  //合成所需物品
 		}
 	}
 }
