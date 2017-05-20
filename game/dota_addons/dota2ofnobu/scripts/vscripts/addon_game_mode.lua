@@ -12,6 +12,7 @@ end
 _G.CountUsedAbility_Table = {}
 
 _G.heromap = {
+  npc_dota_hero_kunkka              = "A01",
   npc_dota_hero_windrunner          = "A02",
   npc_dota_hero_ancient_apparition  = "A04",
   npc_dota_hero_troll_warlord       = "A06",
@@ -97,6 +98,7 @@ for k,v in pairs(_G.heromap) do
 end
 
 _G.heromap_version = {
+  A01 = {["11"] = true , ["16"] = true},
   A02 = {["11"] = true , ["16"] = true},
   A04 = {["11"] = true , ["16"] = true},
   A06 = {["11"] = true , ["16"] = true},
@@ -178,6 +180,7 @@ _G.heromap_version = {
 }
 
 _G.heromap_skill = {
+  A01 = {["11"] = "WERT" , ["16"] = "WERT"},
   A02 = {["11"] = "WERT" , ["16"] = "WERT"},
   A04 = {["11"] = "WERDFT" , ["16"] = "WERDT"},
   A06 = {["11"] = "WERT" , ["16"] = "WERDT"},
@@ -260,6 +263,7 @@ _G.heromap_skill = {
 
 
 _G.heromap_autoskill = {
+  A01 = {["11"] = "" , ["16"] = ""},
   A02 = {["11"] = "" , ["16"] = ""},
   A04 = {["11"] = "F" , ["16"] = "D"},
   A06 = {["11"] = "" , ["16"] = ""},
