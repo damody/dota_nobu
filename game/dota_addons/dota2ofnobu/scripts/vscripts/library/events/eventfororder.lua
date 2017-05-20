@@ -329,7 +329,10 @@ function Nobu:eventfororder( filterTable )
 		if filterTable.units and filterTable.units["0"] then
 			local item = EntIndexToHScript(filterTable.entindex_ability)
 			local unit = EntIndexToHScript(filterTable.units["0"])
-			AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.2*item:GetCost())
+			local itemcost = item:GetCost()
+			Timers:CreateTimer(0.1, function()
+				AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.1*itemcost)
+			end)
 			if IsValidEntity(unit) and unit.B23T_old then
 				return false
 			end

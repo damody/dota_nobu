@@ -7,16 +7,19 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/A01.vsndevts"
+			"particle"	"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_ring_dc.vpcf"
+			"particle"	"particles/a01/a01e.vpcf"
+			"particle"	"particles/a01/a01t.vpcf"
 		}
 	}
-	// 井伊直政 釋放怒炎
+	// 德川家康 天下之勢
 	"A01D"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"dragon_knight_breathe_fire"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityTextureName"	"custom/A01/a01d"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -26,8 +29,6 @@
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
 		"LevelsBetweenUpgrades"	"2"
-		"AbilityCastPoint"	"0.0 0.0 0.0 0.0"
-		"AnimationPlaybackRate"	"3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"0"
@@ -44,51 +45,25 @@
 			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 		}
-		"OnSpellStart"
+		"Modifiers"
 		{
-			"FireSound"
+			"modifier_A01D"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"A01D.vo1"
-			}
-			"LinearProjectile"
-			{
-				"Target"	"POINT"
-				"EffectName"	"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
-				"MoveSpeed"	"%speed"
-				"StartRadius"	"%start_radius"
-				"StartPosition"	"attach_origin"
-				"EndRadius"	"%end_radius"
-				"FixedDistance"	"%range"
-				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"TargetTypes"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
-				"HasFrontalCone"	"1"
-				"ProvidesVision"	"0"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_DragonKnight.BreathFire"
-				"Target"	"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01_Ii_Naomasa.lua"
-				"Function"	"A01D_Use"
-				"Target"	"CASTER"
+				"Passive"	"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+						"Function"	"A01D_OnTakeDamage"
+						"dmg"	"%attack_damage"
+					}
+				}
+				"IsPurgable"	"1"
+				"EffectName"	"particles/items_fx/aura_assault.vpcf"
+				"EffectAttachType"	"follow_chest"
 			}
 		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"%dmg"
-			}
-		}
-		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
@@ -120,29 +95,25 @@
 		}
 	}
 
-	// 井伊直政 赤鬼之力
+	// 德川家康 東照權現
 	"A01W"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"dragon_knight_dragon_blood"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"	"custom/A01/a01w"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"FightRecapLevel"	"0"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
-		"AbilityCooldown"	"15"
-		"AbilityManaCost"	"50"
+		"AbilityCooldown"	"4"
+		"AbilityManaCost"	"40 55 70 85"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"0"
+		"AbilityCastRange"	"600"
 		"AbilityCastRangeBuffer"	"250"
-		"precache"
-		{
-			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
-		}
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -150,31 +121,50 @@
 				"Target"	"CASTER"
 				"EffectName"	"A01W.vo1"
 			}
-			"ApplyModifier"
+			"ActOnTargets"
 			{
 				"Target"
 				{
-				    "Center" "CASTER"
-				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+					"Center"  	"CASTER"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				}
-				"ModifierName"	"modifier_A01W"
-				"Duration"	"%A01W_Duration"
+			
+				"Action"    
+				{
+					"ApplyModifier"
+					{
+						"Target"
+						{
+						    "Center" "TARGET"
+						    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+						}
+						"ModifierName"	"modifier_A01W"
+					}
+					"Heal"
+					{
+						"Target"        "TARGET"
+						"HealAmount"	"%heal"
+					}
+				}
 			}
+			
 		}
 		"Modifiers"
 		{
 			"modifier_A01W"
 			{
 				"IsBuff"	"1"
+				"Duration"	"4"
+				"EffectName"	"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_ring_dc.vpcf"
+				"EffectAttachType"	"follow_overhead"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A01W_speed"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"160"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"35"
 				}
 				"States"	{}
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsPurgable"	"1"
-				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
 			}
 		}
 		"AbilitySpecial"
@@ -182,128 +172,35 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A01W_Duration"	"6 8 10 12"
+				"radius"	"600"
 			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A01W_speed"	"5 10 15 20"
-			}
-		}
-	}
-
-	// 井伊直政 赤鬼之力
-	"A01W_old"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"dragon_knight_dragon_blood"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"FightRecapLevel"	"0"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"HotKeyOverride"	"W"
-		"MaxLevel"	"4"
-		"AbilityCooldown"	"18"
-		"AbilityManaCost"	"50"
-		// Stats
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"0"
-		"AbilityCastRangeBuffer"	"250"
-		"precache"
-		{
-			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"A01W_old.vo1"
-			}
-			"ApplyModifier"
-			{
-				"Target"
-				{
-				    "Center" "CASTER"
-				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-				}
-				"ModifierName"	"modifier_A01Wx"
-				"Duration"	"%A01W_Duration"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01_Ii_Naomasa.lua"
-				"Function"	"A01W_old"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_A01Wx"
-			{
-				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A01W_speed"
-					//"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%A01W_speed2"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%A01W_speed2"
-				}
-				"States"	{}
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsPurgable"	"1"
-				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
-			}
-		}
-		"AbilitySpecial"
-		{
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A01W_Duration"	"14"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A01W_speed"	"4 8 12 16"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"A01W_speed2"	"1.2 1 0.85 0.75"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"A01W_dmg"	"0.4 0.5 0.6 0.7"
+				"heal"	"75 120 165 210"
 			}
 		}
 	}
 
-	// 井伊直政 赤流星
+	// 德川家康 赤流星
 	"A01E"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"invoker_exort"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"meepo_earthbind"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"HotKeyOverride"	"E"
-		"MaxLevel"	"4"
-		"RequiredLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"18 15 12 9"
-		"AbilityManaCost"	"80"
-		"AbilityCastRange"	"500 650 800 950"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"12"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"700"
+		"AbilityManaCost"	"120 140 160 180"
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
-			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"	"particles/A01E4/A01E4.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
 		}
 		"OnSpellStart"
 		{
@@ -312,67 +209,59 @@
 				"Target"	"CASTER"
 				"EffectName"	"A01E.vo1"
 			}
-			"TrackingProjectile"
+			"RunScript"
 			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
-				"Dodgeable"	"1"
-				"ProvidesVision"	"1"
-				"MoveSpeed"	"1100"
-				"VisionRadius"	"225"
-				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Sven.StormBolt"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+				"Function"	"A01E"
 			}
 		}
 		"OnProjectileHitUnit"
 		{
-			"DeleteOnHit"	"0"
-			"FireSound"
+			"RunScript"
 			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+				"Function"	"A01E_hit"
 				"Target"	"TARGET"
-				"EffectName"	"Hero_Sven.StormBoltImpact"
-			}
-			"FireEffect"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"ControlPointEntities"
-				{
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-					"TARGET"	"attach_origin"
-				}
-			}
-			"ActOnTargets"
-			{
-				"Target"	"TARGET"
-				"Action"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"150 225 300 375"
-					}
-					"ApplyModifier"
-					{
-						"Target"	"TARGET"
-						"ModifierName"	"modifier_A01E"
-					}
-				}
 			}
 		}
 		"Modifiers"
 		{
 			"modifier_A01E"
 			{
-				"Duration"	"1.850"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%time"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+			}
+			"modifier_A01E_2"
+			{
+				"IsDebuff"		"1"
+				"Duration"	"1.91"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+						"Function"	"A01E_MOVE"
+					}
+				}
+				"ThinkInterval"	"0.1"
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+						"Function"	"A01E_MOVE"
+					}
+				}
+			}
+			"modifier_A01E_3"
+			{
+				"Duration"	"0.05"
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
 				"OverrideAnimation"	"ACT_DOTA_DISABLED"
@@ -384,138 +273,99 @@
 				"IsDebuff"	"1"
 			}
 		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast"	"0.25"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"cast_D"	"580"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"time"	"0.9 1.2 1.5 1.8"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dmg"	"11 18 25 32"
+			}
+		}
 	}
 
-	// 井伊直政 赤炎斬
-	"A01E_old"
+	// 德川家康 雷霆刃
+	"A01R"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"invoker_exort"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"	"zuus_lightning_bolt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"HotKeyOverride"	"E"
+		"HotKeyOverride"	"R"
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
-		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"14 11 8 5"
-		"AbilityManaCost"	"80"
-		"AbilityCastRange"	"250"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCooldown"	"5"
+		"AbilityCastRange"				"310"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityDamage"	"75 150 225 300"
+		"AbilityManaCost"	"55 65 75 85"
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-			"particle"	"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
-			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
 		}
 		"OnSpellStart"
 		{
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"A01E_old.vo1"
+				"EffectName"	"A01R.vo1"
 			}
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01_Ii_Naomasa.lua"
-				"Function"	"A01E_old"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+				"Function"	"A01R_OnSpellStart"
 			}
-			"FireSound"
+			"ApplyModifier"
 			{
-				"Target"	"TARGET"
-				"EffectName"	"Hero_Sven.StormBoltImpact"
-			}
-			"Damage"
-			{
-				"Target"		"TARGET"
-				"Type"			"DAMAGE_TYPE_MAGICAL"
-				"Damage"		"%damage"
+				"ModifierName"	"modifier_A01R"
+				"Target" 		"CASTER"
 			}
 		}
-		"Modifiers"
-		{
-			"modifier_A01E"
-			{
-				"Duration"	"%stun"
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"stun"	"1.25 1.75 2.25 3"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"damage"	"100 200 300 400"
-			}
-		}
-	}
-	// 井伊直政 赤焰流
-	"A01R"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"bloodseeker_blood_bath"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"	"4"
-		"RequiredLevel"	"1"
-		"LevelsBetweenUpgrades"	"2"
-		"AbilityCastPoint"	"0"
 		"Modifiers"
 		{
 			"modifier_A01R"
 			{
-				"Aura"	"modifier_A01R_2"
-				"Aura_Radius"	"800"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_ALL"
-				"Aura_ApplyToCaster"	"1"
-				"Passive"	"1"
-				"IsHidden"	"1"
-			}
-			"modifier_A01R_2"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A01R_SPEED"
-				}
+				"Passive"	"0"
 				"IsBuff"	"1"
-				"AllowIllusionDuplicate"	"1"
-			}
-			"modifier_A01R_passive_attack"
-			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"OnAttack"
+				"Duration"	"5"
+				// 要改Effect
+				"OnAttackLanded"
 				{
-					"RunScript"
+					"Random"
 					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01_Ii_Naomasa.lua"
-						"Function"	"A01R_OnAttack"
-						"Target"	"NONE"
+						"Chance"			"50"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+								"Function"	"A01R_OnAttackLanded"
+							}
+						}
+						"OnFailure"
+						{
+						}
 					}
 				}
-			}
-			"modifier_A01R_to_A01D"
-			{
-				"IsBuff"	"1"
-				"IsHidden"	"0"
+				"States"	{}
 			}
 		}
 		"AbilitySpecial"
@@ -523,65 +373,34 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A01R_SPEED"	"5 9 13 17"
-			}
-		}
-	}
-
-	// 井伊直政 戰魂
-	"A01R_old"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"bloodseeker_blood_bath"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"	"4"
-		"RequiredLevel"	"1"
-		"LevelsBetweenUpgrades"	"2"
-		"AbilityCastPoint"	"0"
-		"Modifiers"
-		{
-			"modifier_A01R"
-			{
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A01R_SPEED"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%A01R_SPEED2"
-				}
-				"IsBuff"	"1"
-			}
-
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"A01R_SPEED"	"4 8 12 16"
+				"dmg"	"80 110 140 170"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A01R_SPEED2"	"15 30 45 60"
+				"radius"	"310"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius2"	"600"
 			}
 		}
 	}
 
-	// 井伊直政 赤鬼之怒
+
+	// 德川家康 三河之勇
 	"A01T"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"huskar_life_break_alt"
+		"AbilityTextureName"	"custom/icon_128x128_119"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"FightRecapLevel"	"0"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"HotKeyOverride"	"T"
-		"MaxLevel"	"3"
-		"RequiredLevel"	"6"
+		"FightRecapLevel"	"0"
+		"RequiredLevel"		"6"
 		"LevelsBetweenUpgrades"	"6"
-		"AbilityCastPoint"	"0.010"
 		"AbilityCooldown"	"90 80 70"
-		"AbilityManaCost"	"300 400 500"
+		"AbilityManaCost"	"200 225 250"
 		"AbilityCastRange"	"0"
 		"AbilityCastRangeBuffer"	"250"
 
@@ -603,53 +422,77 @@
 				    "Center" "CASTER"
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-				"ModifierName"	"modifier_A01T"
-				"Duration"	"20.0"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01_Ii_Naomasa.lua"
-				"Function"	"A01T_Start"
+				"ModifierName"	"modifier_A01T_aura"
 			}
 		}
 		"Modifiers"
 		{
+			"modifier_A01T_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"EffectName"		"particles/a01/a01t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Duration"	"7"
+				"ThinkInterval"  "0.5"
+				"OnCreated"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_A01T"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_A01T"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+				}
+			}
 			"modifier_A01T"
 			{
-				"IsBuff"	"1"
-				// 要改Effect
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01_Ii_Naomasa.lua"
-						"Function"	"A01T_Count"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
-						"Function"	"AON_Cleave_A01"
-						"dmg"	"%attack_damage"
-						"Target"	"TARGET"
-					}
-					"CleaveAttack"
-					{
-						"CleaveEffect"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
-						"CleaveRadius"	"525"
-						"CleavePercent"	"0"
-					}
-					"FireSound"
-					{
-						"Target"	"CASTER"
-						"EffectName"	"A01T.vo1"
-					}
-				}
+				"Passive"	"0"
+				"EffectName"		"particles/a01/a01t_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%A01T_ADD_D"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%regen" //回血%
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"	//防禦
 				}
-				"States"	{}
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			}
 		}
 		"AbilitySpecial"
@@ -657,17 +500,17 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"A01T_ADD_D"	"100 150 200"
+				"regen"	"5 6 7"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"CleavePercent"	"0.7"
+				"armor"	"15 25 36"
 			}
 			"03"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"CleaveRadius"	"550"
+				"var_type"	"FIELD_FLOAT"
+				"radius"	"700"
 			}
 		}
 		"OnCastbar"	"1"
@@ -683,62 +526,4 @@
 		"ItemDeclaresPurchase"	"0"
 	}
 
-	// 井伊直政 赤鬼之怒
-	"A01T_old"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"huskar_life_break_alt"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"FightRecapLevel"	"0"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"HotKeyOverride"	"T"
-		"MaxLevel"	"3"
-		"RequiredLevel"	"6"
-		"LevelsBetweenUpgrades"	"6"
-		"AOERadius"	"450"
-		"precache"
-		{
-			"particle"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
-		}
-		"Modifiers"
-		{
-			"modifier_A01T"
-			{
-				"Passive"	"1"
-				"IsBuff"	"1"
-				// 要改Effect
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01_Ii_Naomasa.lua"
-						"Function"	"A01T_old"
-						"Target"	"TARGET"
-					}
-				}
-				"States"	{}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"dmg"	"180 270 360"
-			}
-		}
-		"OnCastbar"	"1"
-		"OnLearnbar"	"1"
-		"AbilityDuration"	"0.0 0.0 0.0 0.0"
-		"AbilityDamage"	"0 0 0 0"
-		// for stats tracking.
-		"AbilityModifierSupportValue"	"1.0"
-		// for stats tracking.
-		"AbilityModifierSupportBonus"	"0"
-		"ItemCombinable"	"1"
-		"ItemDisassemblable"	"0"
-		"ItemDeclaresPurchase"	"0"
-	}
 }
