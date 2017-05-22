@@ -266,31 +266,33 @@ function A04R_damage_check( event )
 	-- -- Check if the unit has the borrowed time modifier
 	-- if not unit:HasModifier("modifier_borrowed_time") then
 		-- If the damage is bigger than what the shield can absorb, heal a portion
-		if damage > shield_remaining then
-			local newHealth = unit:GetHealth() + shield_remaining
-			unit:SetHealth(newHealth)
-		else
-			local newHealth = unit:GetHealth() + damage			
-			unit:SetHealth(newHealth)
-		end
+	if damage > shield_remaining then
+		local newHealth = unit:GetHealth() + shield_remaining
+		unit:SetHealth(newHealth)
+	else
+		local newHealth = unit:GetHealth() + damage			
+		unit:SetHealth(newHealth)
+	end
 
-		-- Reduce the shield remaining and remove
-		unit.AphoticShieldRemaining = unit.AphoticShieldRemaining-damage
-		if unit.AphoticShieldRemaining <= 0 then
-			unit.AphoticShieldRemaining = nil
-			--移除特效
-			unit:RemoveModifierByName("modifier_A04R")
-			--爆炸
-			local caster = event.caster
-			ability:ApplyDataDrivenModifier(caster,unit,"modifier_A04R_Boom",nil)
-		end
-	-- end
-
+	-- Reduce the shield remaining and remove
+	unit.AphoticShieldRemaining = unit.AphoticShieldRemaining-damage
+	if unit.AphoticShieldRemaining <= 0 then
+		unit.AphoticShieldRemaining = nil
+		--移除特效
+		unit:RemoveModifierByName("modifier_A04R")
+		--爆炸
+		local caster = event.caster
+		ability:ApplyDataDrivenModifier(caster,unit,"modifier_A04R_Boom",nil)
+	end
 end
 
 function A04R_EndShieldParticle( event )
 	local target = event.target
+	local ability = event.ability
 	ParticleManager:DestroyParticle(target.ShieldParticle,false)
+	if target.AphoticShieldRemaining then
+		target:Heal(target.AphoticShieldRemaining,ability)
+	end
 end
 
 
@@ -363,7 +365,7 @@ function A04W_Bonus( event )
 
 	local hModifier = target:FindModifierByNameAndCaster("modifier_A04W_Tech", caster)
 	hModifier:SetStackCount(level)
-	target:SetBaseMaxHealth(600+40*level)
+	target:SetBaseMaxHealth(600+50*level)
 	target:SetHealth(target:GetMaxHealth())
 end
 

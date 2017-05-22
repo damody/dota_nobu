@@ -152,7 +152,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"5"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"10"
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"0.5"
 				}
 				"OnCreated"
@@ -184,7 +184,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"basic_attack_speed"	"1.40 1.25 1.10 0.95"
+				"basic_attack_speed"	"1.40 1.25 1.10 0.8"
 			}
 			"04"
 			{
@@ -525,9 +525,9 @@
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityCastPoint"	"0"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCooldown"	"140 130 120"
+		"AbilityCooldown"	"120 110 100"
 		"AbilityManaCost"	"200 300 400"
-		"AbilityCastRange"	"1200 1400 1600"
+		"AbilityCastRange"	"1100"
 		"AbilityChannelTime"	"8"
 		"AbilityChannelledManaCostPerSecond"	"0"
 		"AOERadius"	"800"
@@ -828,7 +828,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
 		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.1"
 		"AbilityCooldown"				"140"
 		"AbilityManaCost"				"200"
 
@@ -887,7 +887,7 @@
 			"01" // 技能持續時間 duration/attack_delay=冰爆數量
 			{
 				"var_type"			"FIELD_INTEGER"
-				"duration"			"4"
+				"duration"			"10"
 			}
 			"02" // 技能最大範圍
 			{
@@ -1246,7 +1246,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"	"90 80 70"
 		"AbilityManaCost"	"200 300 400"
-		"AbilityCastRange"	"600"
+		"AbilityCastRange"	"1100"
 		"AbilityChannelTime"	"8"
 		"AbilityChannelledManaCostPerSecond"	"0"
 		"AOERadius"	"%radius"

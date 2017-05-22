@@ -137,7 +137,7 @@ function Nobu:PickHero( keys )
         Timers:CreateTimer(10, function ()
           if (lvneed[lvcaster:GetLevel()]) then
             lvneed[lvcaster:GetLevel()] = false
-            lvcaster:SetAbilityPoints(1)
+            lvcaster:SetAbilityPoints(lvcaster:GetAbilityPoints()+1)
           end
           return 0.3
         end)

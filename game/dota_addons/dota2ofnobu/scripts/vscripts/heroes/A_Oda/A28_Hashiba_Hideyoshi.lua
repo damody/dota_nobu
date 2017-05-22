@@ -18,17 +18,19 @@ function A28W(keys)
 	for i,unit in ipairs(units) do
 		unit:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
 		unit:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
+		AMHC:Damage( caster,unit,1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 end
 
 function A28W_old(keys)
 	local ability = keys.ability
 	local caster = keys.caster
-	local casterLocation = keys.target
+	local target = keys.target
 	local duration = ability:GetLevelSpecialValueFor("duration", ( ability:GetLevel() - 1 ))
 
 	keys.target:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_A28W",{duration = duration})
+	AMHC:Damage( caster,target,1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 end
 
 --[[Author: YOLOSPAGHETTI

@@ -201,13 +201,17 @@ function Nobu:OpenRoom()
 			        local heroname = _G.hero_name_zh[nobu_id]
 					steamID = tostring(steamID)
 					if resultTable[steamID] ~= nil then
-						if idcount < 2 then
-							GameRules: SendCustomMessage("<font color='#fcac4b'>".."你的勝率為 "..(resultTable[steamID]*100).." </font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-						end
 						local playcount = 100
 						if resultTable[steamID.."count"] then
 							playcount = resultTable[steamID.."count"]
 						end
+						if idcount < 2 then
+							GameRules: SendCustomMessage("<font color='#fcac4b'>".."你的勝率為 "..(resultTable[steamID]*100).." </font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							if resultTable[steamID.."count"] then
+								GameRules: SendCustomMessage("<font color='#fcac4b'>".."你的信長總場數為 "..(playcount).." 場</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+							end
+						end
+						
 						if resultTable[steamID] <=0.35 or playcount < 10 or (playcount < 50 and resultTable[steamID] < 0.6) then
 							hero.level = -1
 							if _G.game_level < 0 then

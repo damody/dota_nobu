@@ -104,6 +104,7 @@
 		"AbilityTextureName"	"custom/A01/a01w"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"FightRecapLevel"	"0"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
@@ -182,7 +183,7 @@
 		}
 	}
 
-	// 德川家康 赤流星
+	// 德川家康 天羅地網
 	"A01E"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -306,7 +307,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"HotKeyOverride"	"R"
 		"MaxLevel"	"4"
 		"RequiredLevel"	"1"
@@ -401,7 +403,7 @@
 		"LevelsBetweenUpgrades"	"6"
 		"AbilityCooldown"	"90 80 70"
 		"AbilityManaCost"	"200 225 250"
-		"AbilityCastRange"	"0"
+		"AbilityCastRange"	"1500"
 		"AbilityCastRangeBuffer"	"250"
 
 		"precache"
@@ -468,7 +470,27 @@
 							"Center"  	"CASTER"
 							"Radius" 	"%radius"
 							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Types" 	"DOTA_UNIT_TARGET_HERO"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_A01T"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_BASIC"
 						}
 					
 						"Action"    
@@ -492,6 +514,18 @@
 				{
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%regen" //回血%
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"	//防禦
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "%armor2"
+				}
+			}
+			"modifier_A01T2"
+			{
+				"Passive"	"0"
+				"EffectName"		"particles/a01/a01t_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%regen2" //回血%
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"	//防禦
 				}
 			}
 		}
@@ -505,25 +539,401 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"armor"	"15 25 36"
+				"armor"	"15 25 35"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"radius"	"700"
+				"radius"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regen2"	"10 12 14"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"armor2"	"-15 -20 -25"
 			}
 		}
-		"OnCastbar"	"1"
-		"OnLearnbar"	"1"
-		"AbilityDuration"	"0.0 0.0 0.0 0.0"
-		"AbilityDamage"	"0 0 0 0"
-		// for stats tracking.
-		"AbilityModifierSupportValue"	"1.0"
-		// for stats tracking.
-		"AbilityModifierSupportBonus"	"0"
-		"ItemCombinable"	"1"
-		"ItemDisassemblable"	"0"
-		"ItemDeclaresPurchase"	"0"
+	}
+	// 德川家康 東照權現
+	"A01W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A01/a01w"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"AbilityCooldown"	"10"
+		"AbilityManaCost"	"40 55 70 85"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1200"
+		"AbilityCastRangeBuffer"	"250"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A01W.vo1"
+			}
+
+			"Heal"
+			{
+				"Target"        "TARGET"
+				"HealAmount"	"%heal"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A01W_old"
+				"Target" 		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A01W_old"
+			{
+				"IsBuff"	"1"
+				"Duration"	"1"
+				"EffectName"	"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_ring_dc.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"States"	{}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"150 300 450 600"
+			}
+		}
 	}
 
+	// 德川家康 天羅地網
+	"A01E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"meepo_earthbind"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"22"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"700"
+		"AbilityManaCost"	"120 140 160 180"
+		"precache"
+		{
+			"particle"	"particles/A01E4/A01E4.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A01E.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+				"Function"	"A01E_old_OnSpellStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+				"Function"	"A01E_old_OnProjectileHitUnit"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A01E_old"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"%time"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"time"	"1 2 3 4"
+			}
+		}
+	}
+
+	// 德川家康 雷霆刃
+	"A01R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"zuus_lightning_bolt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		
+		"HotKeyOverride"	"R"
+		"MaxLevel"	"4"
+		"RequiredLevel"	"1"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastRange"				"310"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityDamage"	"75 150 225 300"
+		"precache"
+		{
+			"particle"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A01R.vo1"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A01R_old"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				// 要改Effect
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+						"Chance"			"60"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A01.lua"
+								"Function"	"A01R_old_OnAttackLanded"
+							}
+						}
+						"OnFailure"
+						{
+						}
+					}
+				}
+				"States"	{}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"75 150 225 300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"310"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius2"	"600"
+			}
+		}
+	}
+
+	// 德川家康 三河之勇
+	"A01T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_119"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"	"0"
+		"RequiredLevel"		"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCooldown"	"110 100 90"
+		"AbilityManaCost"	"200 225 250"
+		"AbilityCastRange"	"1000"
+		"AbilityCastRangeBuffer"	"250"
+
+		"precache"
+		{
+			"particle"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A01T_old.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A01T_old_aura"
+			}
+		}
+		"Modifiers"
+		{
+			"passive_A01T_old"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%regen3" //回血%
+				}
+			}
+			"modifier_A01T_old_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"EffectName"		"particles/a01/a01t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Duration"	"20"
+				"ThinkInterval"  "0.5"
+				"OnCreated"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_A01T_old"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_A01T_old"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_A01T_old"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+				}
+			}
+			"modifier_A01T_old"
+			{
+				"Passive"	"0"
+				"EffectName"		"particles/a01/a01t_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%regen" //回血%
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%spd"	//防禦
+				}
+			}
+			"modifier_A01T_old2"
+			{
+				"Passive"	"0"
+				"EffectName"		"particles/a01/a01t_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%regen2" //回血%
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%spd"	//防禦
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regen"	"2 3 4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"spd"	"10 15 20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"radius"	"1000"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regen2"	"4 6 8"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regen3"	"1 2 3"
+			}
+		}
+	}
 }

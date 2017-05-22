@@ -277,7 +277,7 @@ function A15E_old_OnSpellStart( keys )
 	dummy:SetOwner(caster)
 	dummy:AddAbility("majia_vison"):SetLevel(1)
 
-	ability:ApplyDataDrivenModifier( caster, dummy, "modifier_A15E_old_show_invi_aura", nil)
+	ability:ApplyDataDrivenModifier( dummy, dummy, "modifier_A15E_old_show_invi_aura", nil)
 	local count = 0
 	local particle = nil
 	Timers:CreateTimer( 0, function()

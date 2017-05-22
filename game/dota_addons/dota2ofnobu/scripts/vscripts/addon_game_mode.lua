@@ -98,7 +98,7 @@ for k,v in pairs(_G.heromap) do
 end
 
 _G.heromap_version = {
-  A01 = {["11"] = false , ["16"] = true},
+  A01 = {["11"] = true , ["16"] = true},
   A02 = {["11"] = true , ["16"] = true},
   A04 = {["11"] = true , ["16"] = true},
   A06 = {["11"] = true , ["16"] = true},

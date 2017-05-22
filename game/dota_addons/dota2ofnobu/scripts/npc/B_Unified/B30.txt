@@ -528,8 +528,8 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/B30/B30R"
-		"AbilityManaCost"							"400 440 480 520"
-		"AbilityCooldown"							"40"
+		"AbilityManaCost"							"180 200 220 240"
+		"AbilityCooldown"							"20"
 
 		"OnSpellStart"
 		{
@@ -588,7 +588,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"B30R_duration"			"32"
+				"B30R_duration"			"16"
 			}
 		}
 

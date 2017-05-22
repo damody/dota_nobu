@@ -45,7 +45,7 @@ function modifier_magic_talisman:OnTakeDamage(event)
 			            		self.caster:Purge( false, true, true, true, true)
 			            		event.caster = self.caster
 				            	if IsValidEntity(ability) then
-					            	event.ability = self:GetAbility()
+					            	event.ability = ability
 					            	ShockTarget(event, self.caster)
 					            end
 				            	local am = self.caster:FindAllModifiers()

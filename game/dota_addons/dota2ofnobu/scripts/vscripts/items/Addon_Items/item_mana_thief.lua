@@ -183,7 +183,7 @@ function Shock( keys )
 		
 		-- Fail check
 		if target:IsMagicImmune() then
-			mana_to_burn = 0
+			mana_to_burn = mana_to_burn * 0.5
 		end
 		
 		-- Apply effect of ability
@@ -236,7 +236,7 @@ function Shock2( keys )
 		
 		-- Fail check
 		if target:IsMagicImmune() then
-			mana_to_burn = 0
+			mana_to_burn = mana_to_burn * 0.5
 		end
 		
 		-- Apply effect of ability
@@ -290,7 +290,7 @@ function Shock3( keys )
 		
 		-- Fail check
 		if target:IsMagicImmune() then
-			mana_to_burn = 0
+			mana_to_burn = mana_to_burn * 0.5
 		end
 		
 		-- Apply effect of ability
