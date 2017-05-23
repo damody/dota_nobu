@@ -493,18 +493,15 @@ function A20E_old_OnSpellStart( keys )
 	local ability = keys.ability
 	local point = ability:GetCursorPosition()
 	local radius = ability:GetSpecialValueFor("radius")
+	local duration = ability:GetSpecialValueFor("duration")
 	local dummy = CreateUnitByName( "npc_dummy_unit", point, false, nil, nil, caster:GetTeamNumber())
 	--dummy:AddNewModifier( dummy, nil, "modifier_kill", {} )
 	dummy:SetOwner( caster)
 	dummy:AddAbility( "majia"):SetLevel(1)
 	ability:ApplyDataDrivenModifier( dummy, dummy, "modifier_A20E_old_aura", nil)
 	--ability:ApplyDataDrivenModifier( dummy, dummy, "modifier_A20E_old_aura_enemy", nil)
-	dummy:AddNewModifier( dummy, nil, "modifier_kill", {duration=20} )
-	Timers:CreateTimer(19,function()
-		dummy:RemoveModifierByName("modifier_A20E_old_aura")
-	end)
-	--ParticleManager:DestroyParticle(ifx,true)
-	
+	dummy:AddNewModifier( dummy, nil, "modifier_kill", {duration=duration} )
+
 end
 
 
@@ -537,12 +534,13 @@ function modifier_A20E_old_aura_OnIntervalThink( keys )
 	local target = keys.target
 	-- 持續提供視野
 	local point = caster:GetAbsOrigin()
+	local radius = ability:GetSpecialValueFor("radius")
 	local ifx = ParticleManager:CreateParticle( "particles/a20w/a20w_2.vpcf", PATTACH_CUSTOMORIGIN, nil)
 	ParticleManager:SetParticleControl( ifx, 0, point + Vector(0,0,50))
 	ParticleManager:SetParticleControl( ifx, 3, point + Vector(0,0,50))
 	AddFOWViewer(caster:GetTeamNumber(),caster:GetAbsOrigin(),700,5.0,false)
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  700 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		nil,  radius , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE , 0, false)
 
 	for _,enemy in pairs(group) do

@@ -4,11 +4,11 @@ local mover = require('amhc_library/mover')
 	B08R_INT={}
 --ednglobal
 
-function B08D_Copy(u, u2)
+function B08D_Copy(u, u2, ability)
 	local  team  = u:GetTeamNumber()
 	local  point = u:GetAbsOrigin()
 	local  tu   = CreateUnitByName("B08D_SE",point,true,nil,nil,team)
-
+	ability:ApplyDataDrivenModifier(tu, tu,"modifier_invulnerable", nil)
 	-- --播放動畫(透明度50%,顏色要改金),隨機播放攻擊動作	
 	--tu: SetRenderColor(255,255,122)
 	-- call SetUnitTimeScale(u,3)
@@ -51,6 +51,7 @@ function B08D_old( keys )
 	local dir={}
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, opoint, 1000, 3.0, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, opoint, 1000, 3.0, false)
+	ability:ApplyDataDrivenModifier(caster, caster,"modifier_invulnerable", {duration = 2.2})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 2.2})
 	for i=1,maxrock do
 		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
@@ -62,7 +63,7 @@ function B08D_old( keys )
 		dir[i] = direction
 		Timers:CreateTimer(0.1*i, function()
 			caster:SetAbsOrigin(pos[i])
-			B08D_Copy(caster, target)
+			B08D_Copy(caster, target, ability)
 			end)
 		Timers:CreateTimer(0.1+0.1*i, function()
 			local projectileTable =

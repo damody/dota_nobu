@@ -145,8 +145,8 @@ end
 
 --【足輕】
 function ShuaGuai_Of_AA(num)
+	_G.A_count = _G.A_count + 1
 	A_count = _G.A_count
-	A_count = A_count + 1
 	--print("A_count "..A_count)
 	local tem_count = 0
 	--總共六個出發點 6

@@ -584,7 +584,7 @@
 		"AbilityCastRange"							"1300"
 		"AbilityCooldown"                           "30"
 		"AbilityManaCost"                           "200"
-		"AOERadius"									"%radius"
+		"AOERadius"									"1500"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -673,7 +673,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"700"
+				"radius"					"1500"
 			}
 			"02"
 			{
@@ -683,12 +683,12 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"40 50 60 70"
+				"damage"						"20 30 40 50"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"healpersec"				"20 30 40 50"
+				"healpersec"				"40 50 60 70"
 			}
 		}
 	}
