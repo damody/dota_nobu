@@ -106,7 +106,18 @@ function Nobu:OnGameRulesStateChange( keys )
 	    end
 	    return 5
     end)
-    
+    if _G.hardcore then
+    	Timers:CreateTimer(900, function()
+	    	_G.turbo = true
+		    Timers:CreateTimer( 0, function()
+		      GameRules: SendCustomMessage("<font color='#ffff00'>全軍將領得到了金錢支援</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+		      for playerID = 0, 9 do
+		        AMHC:GivePlayerGold_UnReliable(playerID, 300)
+		      end
+		      return 60
+		      end)
+	    end)
+    end
 
     Timers:CreateTimer(120, function()
     	_G.can_bomb = true
@@ -122,6 +133,9 @@ function Nobu:OnGameRulesStateChange( keys )
 		  for j=-3,3 do
 		    AddFOWViewer(6, Vector(i*5000,j*5000,0), 10000, 99999, false)
 		  end
+		end
+		if _G.hardcore then
+			_G.war_magic_mana = 0
 		end
 		end)
 

@@ -4,6 +4,158 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	// 嗜血結界
+	"A19W_old_SUMMEND_UNIT"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/heroes/juggernaut/jugg_healing_ward.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Amnb
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0.0"
+		"AttackDamageMax"	"0.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"275"
+		"StatusMana"	"0"
+		"StatusStartingMana"	"0"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"0"
+		"MovementTurnRate"	"0"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"10000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"1000"
+		"StatusManaRegen"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"StatusManaRegen"	"0"
+	}
+	// 珍珠圓盤
+	"a21_weapon"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/props_debris/shop_set_bowl003.vmdl"
+		"ModelScale"	"3"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Amnb
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"20"
+		"MagicalResistance"	"75"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0.0"
+		"AttackDamageMax"	"0.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.9"
+		"AttackAnimationPoint"	"0.5"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"0"
+		"StatusMana"	"400"
+		"StatusStartingMana"	"400"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"25.0"
+		"BountyGoldMax"	"25.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"0"
+		"MovementTurnRate"	"0"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"600"
+		"StatusHealthRegen"	"1"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"1400"
+		// Team
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"StatusManaRegen"	"10"
+	}
 
 	//蜂須賀政勝 鬼之藤蔓
 	"A09T_old_tentacle"
@@ -6304,8 +6456,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6355,8 +6507,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6406,8 +6558,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6458,8 +6610,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6510,8 +6662,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6562,8 +6714,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6614,8 +6766,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6666,8 +6818,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6718,8 +6870,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6770,8 +6922,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6821,8 +6973,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6872,8 +7024,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6924,8 +7076,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -6976,8 +7128,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -7028,8 +7180,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -7080,8 +7232,8 @@
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
+		"BountyGoldMin"	"33.0"
+		"BountyGoldMax"	"35.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8824,8 +8976,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8875,8 +9027,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8926,8 +9078,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8977,8 +9129,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9029,8 +9181,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9081,8 +9233,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9133,8 +9285,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9185,8 +9337,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9237,8 +9389,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9288,8 +9440,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9339,8 +9491,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9390,8 +9542,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9442,8 +9594,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9494,8 +9646,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9546,8 +9698,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9598,8 +9750,8 @@
 		"AttackRange"	"500"
 		"ProjectileSpeed"	"1800"
 		// Bounty
-		"BountyGoldMin"	"25.0"
-		"BountyGoldMax"	"27.0"
+		"BountyGoldMin"	"35.0"
+		"BountyGoldMax"	"37.0"
 		"BountyXP"	"20"
 		// Movement
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -16119,7 +16271,7 @@
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"3600"
+		"StatusHealth"	"2200"
 		"StatusHealthRegen"	"15"
 		// Vision
 		// ----------------------------------------------------------------

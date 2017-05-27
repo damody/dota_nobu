@@ -514,8 +514,9 @@ function B16W_old_attack(keys)
 	dmg = dmg * per_atk  / 100
 	
 	--print(dmgori, damageReduction, dmg)
-	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-
+	if caster:HasModifier("modifier_B16W_old_buff2") then
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	end
 end
 
 function B16MME_old(keys)
@@ -526,7 +527,9 @@ function B16MME_old(keys)
 	local ran =  RandomInt(0, 100)
 	if ran <= 30 and not target:IsBuilding() then
 		if not target:IsMagicImmune() then
-			ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
+			if caster:HasModifier("modifier_B16W_old_buff2") then
+				ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
+			end
 			AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end
 	end
@@ -541,5 +544,18 @@ function B16MMT(keys)
 	if ran < 15 and not target:IsBuilding() then
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MMT_stun",nil)
 		AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
+end
+
+function MoonMoon_buff(keys)
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	local moonMoon = caster.moonMoon
+	if IsValidEntity(moonMoon) then
+		local dis = (caster:GetAbsOrigin()-moonMoon:GetAbsOrigin()):Length2D()
+		if dis < 1000 then
+			ability:ApplyDataDrivenModifier(caster, moonMoon,"modifier_B16W_old_buff2", {duration = 0.6})
+		end
 	end
 end

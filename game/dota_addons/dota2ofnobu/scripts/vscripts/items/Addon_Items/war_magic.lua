@@ -302,6 +302,8 @@ _G.prestige = prestige
 _G.goldprestige = goldprestige
 _G.payprestige = payprestige
 _G.CP_Monster = CP_Monster
+_G.war_magic_mana = 20
+
 
 function to_war_magic_unit(keys)
 	local caster = keys.caster
@@ -327,7 +329,7 @@ function to_war_magic_unit(keys)
 		end)
 	Timers:CreateTimer(1, function()
 		local pres = prestige[donkey:GetTeamNumber()]
-		local maxmana = math.floor(pres / 60) * 5 + 20
+		local maxmana = math.floor(pres / 60) * 5 + _G.war_magic_mana
 		if donkey:GetMana() > maxmana then
 			donkey:SetMana(maxmana)
 		end
@@ -375,7 +377,7 @@ function to_war_magic_unit2(keys)
 		end)
 	Timers:CreateTimer(1, function()
 		local pres = prestige[donkey:GetTeamNumber()]
-		local maxmana = math.floor(pres / 60) * 5 + 20
+		local maxmana = math.floor(pres / 60) * 5 + _G.war_magic_mana
 		if donkey:GetMana() > maxmana then
 			donkey:SetMana(maxmana)
 		end

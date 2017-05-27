@@ -210,6 +210,9 @@ function Nobu:FilterGold( filterTable )
                 local total = #_G.assist - 1
                 if total > 0 then
                   local money = 150/total
+                  if _G.turbo then
+                    money = 300/total
+                  end
                   for _,v in pairs(_G.assist) do
                     if v ~= _G.not_assist then
                       AMHC:GivePlayerGold_UnReliable(v, money)
@@ -233,7 +236,11 @@ function Nobu:FilterGold( filterTable )
           local hero = player:GetAssignedHero()
           Timers:CreateTimer(0.1, function ()
             if hero.kill_tower == 1 then
-              AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID(), gold)
+              if _G.turbo then
+                AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID()*2, gold)
+              else
+                AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID(), gold)
+              end
               if gold == 150 then
                 give_money_for_together_hero(hero, gold, 1000)
               else

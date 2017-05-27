@@ -182,14 +182,12 @@
 	// 柴田勝家 柴田家戰旗
 	"A27E"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/xunyu_jiejie"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.5"
+		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"30"

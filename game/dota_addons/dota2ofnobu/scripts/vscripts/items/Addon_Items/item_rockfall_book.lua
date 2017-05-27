@@ -23,7 +23,7 @@ function Shock( keys )
 	                              SEARCH_RADIUS,
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
 
@@ -31,7 +31,7 @@ function Shock( keys )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			AMHC:Damage(caster,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			ability:ApplyDataDrivenModifier(caster, it,"modifier_rockfall",nil)
+			ability:ApplyDataDrivenModifier(caster, target,"modifier_stunned", {duration = 0.1})
 		end
 	end
 end

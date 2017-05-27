@@ -161,7 +161,13 @@ end
 function Nobu:eventfororder( filterTable )
 	--DeepPrintTable(filterTable)
 	--print("ordertype = "..tostring(ordertype))
-
+	--瑞龍院日秀 偽情報
+	if filterTable.units and filterTable.units["0"] then
+		local unit = EntIndexToHScript(filterTable.units["0"])
+		if IsValidEntity(unit) and unit.A21T then
+			return false
+		end
+	end
 
 	local ordertype = filterTable.order_type
 	if ordertype == DOTA_UNIT_ORDER_MOVE_TO_POSITION then --1
@@ -331,7 +337,11 @@ function Nobu:eventfororder( filterTable )
 			local unit = EntIndexToHScript(filterTable.units["0"])
 			local itemcost = item:GetCost()
 			Timers:CreateTimer(0.1, function()
-				AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.1*itemcost)
+				if _G.hardcore then 
+					AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.2*itemcost)
+				else
+					AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.1*itemcost)
+				end
 			end)
 			if IsValidEntity(unit) and unit.B23T_old then
 				return false

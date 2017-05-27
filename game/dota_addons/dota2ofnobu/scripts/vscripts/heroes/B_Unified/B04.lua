@@ -39,6 +39,7 @@ function B04W_Start( keys )
 	Timers:CreateTimer(duration, function()
 		if IsValidEntity(caster) then
 			caster:RemoveGesture(ACT_DOTA_VERSUS)
+			caster:Stop()
 		end
 		ParticleManager:DestroyParticle(ifx,false)
 	end)

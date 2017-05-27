@@ -38,7 +38,6 @@ function modifier_devil_supressor_armor:OnTakeDamage(event)
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 		            if (damage_type == DAMAGE_TYPE_MAGICAL) then
 		            	if self.magic_shield > 0 then
-		            		print("999 "..self.magic_shield)
 		            		if self.magic_shield > return_damage then
 		            			self.magic_shield = self.magic_shield - return_damage
 		            			self.caster:SetHealth(self.hp)
@@ -89,7 +88,7 @@ function ShockTarget( keys, target )
 	else
 		target:FindModifierByName("modifier_devil_supressor_armor").magic_shield = keys.SHP1
 	end
-	local shield = ParticleManager:CreateParticle("particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	local shield = ParticleManager:CreateParticle("particles/item/supressor_armor.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	target:FindModifierByName("modifier_devil_supressor_armor").shield_effect = shield
 	local sumtime = 0
 	local isend = false

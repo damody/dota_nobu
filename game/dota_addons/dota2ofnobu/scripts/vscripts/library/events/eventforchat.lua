@@ -241,7 +241,7 @@ local function chat_of_test(keys)
         donkey:FindAbilityByName("for_magic_immune"):SetLevel(1)
 	end
 			
-	sump = 0
+	local sump = 0
 	for playerID = 0, 9 do
 		local id       = playerID
   		local p        = PlayerResource:GetPlayer(id)

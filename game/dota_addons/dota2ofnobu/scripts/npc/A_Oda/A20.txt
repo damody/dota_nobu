@@ -605,6 +605,16 @@
 				}
 				"IsPurgable"	"0"
 			}
+			"modifier_A20E_2"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%damage"
+				}
+				"IsPurgable"	"0"
+			}
 			"modifier_A20E_old_self"
 			{
 				"Passive"			"0"
@@ -683,7 +693,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"20 30 40 50"
+				"damage"						"-20 -30 -40 -50"
 			}
 			"04"
 			{
@@ -708,7 +718,7 @@
 			    {
 			        "Random"
 			        {
-			            "Chance" "50"
+			            "Chance" "70"
 			            "OnSuccess"
 			            {
 			                "ApplyModifier"

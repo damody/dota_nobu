@@ -148,6 +148,8 @@ function C17W(keys)
 		ctime = ctime + 0.2
           AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 0.3, false)
           AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 0.3, false)
+          AddFOWViewer(DOTA_TEAM_GOODGUYS, target:GetAbsOrigin(), 100, 0.3, false)
+          AddFOWViewer(DOTA_TEAM_BADGUYS, target:GetAbsOrigin(), 100, 0.3, false)
           if ctime < duration+0.3 then
           	return 0.2
           else

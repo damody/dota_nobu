@@ -541,12 +541,10 @@ function modifier_A20E_old_aura_OnIntervalThink( keys )
 	AddFOWViewer(caster:GetTeamNumber(),caster:GetAbsOrigin(),700,5.0,false)
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
 		nil,  radius , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE , 0, false)
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES , 0, false)
 
 	for _,enemy in pairs(group) do
-		if not enemy:IsMagicImmune() and not enemy:IsBuilding() then
-			AMHC:Damage(caster,enemy, ability:GetSpecialValueFor( "damage"),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		end
+		ability:ApplyDataDrivenModifier(caster, enemy,"modifier_A20E_2", {duration = 1})
 	end
 
 end

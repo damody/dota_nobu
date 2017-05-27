@@ -1,6 +1,7 @@
 
 die_time = {1, 2, 4, 7, 11, 16, 22, 29, 37, 46, 47, 49, 52, 56, 61, 67, 74, 80, 87, 95, 104, 114, 120}
 
+
 function Nobu:OnUnitKill( keys )
 --每当单位死亡，检查其是否符合条件，如果符合就刷新任务
   ------------------------------------------------------------------
@@ -104,6 +105,31 @@ function Nobu:OnUnitKill( keys )
       end
       if killedUnit:IsHero() and not killedUnit:IsIllusion() then
         AttackerUnit.kill_hero_count = AttackerUnit.kill_hero_count + 1
+        --連殺獎勵
+        local sk_kill = 1
+        if AttackerUnit.sk_kill then
+          AttackerUnit.sk_kill = AttackerUnit.sk_kill + 1
+          sk_kill = AttackerUnit.sk_kill
+        else
+          AttackerUnit.sk_kill = 1
+        end
+
+        if AttackerUnit.sk_kill > 1 and _G.turbo and _G.hardcore then
+          AMHC:GivePlayerGold_UnReliable(AttackerUnit:GetPlayerOwnerID(), AttackerUnit.sk_kill*100)
+          local nobu_id = _G.heromap[AttackerUnit:GetName()]
+          GameRules:SendCustomMessage("<font color='#ffff00'>".._G.hero_name_zh[nobu_id].."達成了"..AttackerUnit.sk_kill.."連殺，得到"..(AttackerUnit.sk_kill*100).."獎勵</font>",0,0)
+        end
+        if killedUnit.sk_kill and killedUnit.sk_kill > 1 and _G.turbo and _G.hardcore then
+          AMHC:GivePlayerGold_UnReliable(AttackerUnit:GetPlayerOwnerID(), killedUnit.sk_kill*100)
+          local nobu_id = _G.heromap[AttackerUnit:GetName()]
+          local nobu_id2 = _G.heromap[killedUnit:GetName()]
+          GameRules:SendCustomMessage("<font color='#ffff00'>".._G.hero_name_zh[nobu_id].."中止了".._G.hero_name_zh[nobu_id2].."的連殺，得到"..(killedUnit.sk_kill*100).."獎勵</font>",0,0)
+        end
+        Timers:CreateTimer(15, function()
+          if AttackerUnit.sk_kill == sk_kill then
+            AttackerUnit.sk_kill = nil
+          end
+        end)
       end
     end
     ------------------------------------------------------------------
@@ -148,7 +174,7 @@ function Nobu:OnUnitKill( keys )
 
     if killedUnit:IsRealHero() then
       if _G.hardcore then
-        AMHC:GivePlayerGold_UnReliable(killedUnit:GetPlayerOwnerID(), -300)
+        --AMHC:GivePlayerGold_UnReliable(killedUnit:GetPlayerOwnerID(), -300)
       end
       if killedUnit.death_count == nil then
         killedUnit.death_count = 1
@@ -156,10 +182,16 @@ function Nobu:OnUnitKill( keys )
         killedUnit.death_count = killedUnit.death_count + 1
       end
       if _G.hardcore then
-        if die_time[killedUnit:GetLevel()] ~= nil then
-          killedUnit:SetTimeUntilRespawn(die_time[killedUnit:GetLevel()])
+        if killedUnit:GetLevel() >= 20 then
+          killedUnit:SetTimeUntilRespawn(80)
+        elseif killedUnit:GetLevel() >= 18 then
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*3+20)
+        elseif killedUnit:GetLevel() >= 12 then
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*3)
+        elseif killedUnit:GetLevel() >= 6 then
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+4)
         else
-          killedUnit:SetTimeUntilRespawn(120)
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
         end
       else
         if killedUnit:GetLevel() >= 18 then
@@ -265,14 +297,22 @@ function Nobu:OnUnitKill( keys )
     end
 
     if killedUnit:GetUnitName() == "npc_dota_courier2" then
-      killedUnit:RespawnUnit()
-      Timers:CreateTimer(0.1, function()
-        killedUnit:FindAbilityByName("for_magic_immune"):
-        ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_for_magic_immune",nil)
-        print("for_magic_immune for_magic_immune")
-      end)
-      
-      killedUnit:SetOrigin(killedUnit.oripos)
+      local sump = 0
+      for playerID = 0, 9 do
+        local id       = playerID
+          local p        = PlayerResource:GetPlayer(id)
+          if p ~= nil then
+          sump = sump + 1
+        end
+      end
+      if sump > 1 then
+        killedUnit:RespawnUnit()
+        Timers:CreateTimer(0.1, function()
+          killedUnit:FindAbilityByName("for_magic_immune"):
+          ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_for_magic_immune",nil)
+        end)
+        killedUnit:SetOrigin(killedUnit.oripos)
+      end
     end
     --print("dead")
 end

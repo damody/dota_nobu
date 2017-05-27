@@ -28,6 +28,7 @@ _G.heromap = {
   npc_dota_hero_sniper              = "A17",
   npc_dota_hero_spectre             = "A19",
   npc_dota_hero_skeleton_king       = "A20",
+  npc_dota_hero_luna                = "A21",
   npc_dota_hero_ember_spirit        = "A22",
   npc_dota_hero_witch_doctor        = "A23",
   npc_dota_hero_doom_bringer        = "A24",
@@ -114,6 +115,7 @@ _G.heromap_version = {
   A17 = {["11"] = true , ["16"] = true},
   A19 = {["11"] = true , ["16"] = true},
   A20 = {["11"] = true , ["16"] = true},
+  A21 = {["11"] = true , ["16"] = true},
   A22 = {["11"] = true , ["16"] = true},
   A23 = {["11"] = false , ["16"] = true},
   A24 = {["11"] = false , ["16"] = true},
@@ -196,6 +198,7 @@ _G.heromap_skill = {
   A17 = {["11"] = "WERT" , ["16"] = "WERT"},
   A19 = {["11"] = "WERT" , ["16"] = "WERT"},
   A20 = {["11"] = "WERT" , ["16"] = "WERT"},
+  A21 = {["11"] = "WERDT" , ["16"] = "WERDT"},
   A22 = {["11"] = "WERDT" , ["16"] = "WERT"},
   A23 = {["11"] = "" , ["16"] = "WERT"},
   A24 = {["11"] = "WERT" , ["16"] = "WERDT"},
@@ -279,6 +282,7 @@ _G.heromap_autoskill = {
   A17 = {["11"] = "" , ["16"] = ""},
   A19 = {["11"] = "" , ["16"] = ""},
   A20 = {["11"] = "" , ["16"] = ""},
+  A21 = {["11"] = "D" , ["16"] = "D"},
   A22 = {["11"] = "D" , ["16"] = ""},
   A23 = {["11"] = "" , ["16"] = ""},
   A24 = {["11"] = "" , ["16"] = "D"},
@@ -633,7 +637,8 @@ function Precache( context )
 
     "particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow.vpcf",
     "particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow_2.vpcf",
-
+    --落石
+    "particles/item/item_rockfall_bookinvoker_chaos_meteor_fly2.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do
@@ -657,6 +662,8 @@ function Precache( context )
     "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts",
     "soundevents/a17.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_slark.vsndevts",
+    --制魔
+    "particles/item/supressor_armor.vpcf",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

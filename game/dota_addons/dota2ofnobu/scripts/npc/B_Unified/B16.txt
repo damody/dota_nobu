@@ -722,7 +722,23 @@
 			{
 				"Duration"		"%duration_MM"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
-				
+			}
+			"modifier_B16W_old_master" // 望月在身邊才有的buff
+			{
+				"Passive"	"1"
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B16_Mochidsuki_Chiyome.lua"
+						"Function"		"MoonMoon_buff"
+					}
+				}
+			}
+			"modifier_B16W_old_buff2" // 望月在身邊才有的buff
+			{
+				"EffectName"	"particles/a04/a04d_old_snow_b_arcana1.vpcf"
 			}
 			"modifier_B16W_old_buff"
 			{
@@ -771,7 +787,7 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"2"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"5" 
 				    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"		"3"
-				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"2"
+				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"1"
 				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"1"
 				}
 			}
