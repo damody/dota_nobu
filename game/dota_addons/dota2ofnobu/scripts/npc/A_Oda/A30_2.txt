@@ -1,0 +1,100 @@
+"DOTAHeroes"
+{
+	// 丹羽長秀
+	"A30"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Add model
+		"ModelScale"	"1.3"
+		//"Level"	"5"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		"override_hero"	"npc_dota_hero_slardar"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"A30W"
+		// Reference: A00H
+		"Ability2"	"A30E"
+		// Reference: Aamk
+		"Ability3"	"A30R"
+		// Reference: A00E
+		"Ability4"	"A30D"
+		// Reference: A00G
+		"Ability5"	"attribute_bonusx"
+		// Reference: A0GM
+		"Ability6"	"A30T"
+		// Reference: A00I
+		"Ability7"	"A30_precache"
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"30"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"35.0"
+		"AttackDamageMax"	"47.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.3"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"	"700"
+		"ProjectileSpeed"	"1450"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"	"35"
+		"AttributeStrengthGain"	"1.80"
+		"AttributeBaseIntelligence"	"40"
+		"AttributeIntelligenceGain"	"3.85"
+		"AttributeBaseAgility"	"23"
+		"AttributeAgilityGain"	"1.95"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AbilityLayout"	"6"
+		"ProjectileModel"	"particles/units/heroes/hero_invoker/invoker_forged_spirit_projectile.vpcf"
+	}	
+}
+
+
+
+

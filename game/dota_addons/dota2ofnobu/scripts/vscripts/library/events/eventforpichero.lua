@@ -12,16 +12,6 @@ function Nobu:PickHero( keys )
     if caster ~= nil and IsValidEntity(caster) and not caster:IsIllusion() then
       caster.version = "nan"
       local name = caster:GetUnitName()
-      if name == "npc_dota_hero_slardar" then
-        caster:AddAbility("OBW"):SetLevel(1)
-        caster:AddAbility("majia"):SetLevel(1)
-        caster:AddAbility("for_no_damage"):SetLevel(1)
-        caster:AddNoDraw()
-        Timers:CreateTimer(0,function()
-          caster:SetAbilityPoints(0)
-          return 1
-        end)
-      end
       Timers:CreateTimer(3, function ()
         if caster.donkey and IsValidEntity(caster.donkey) then
           for _,m in ipairs(caster.donkey:FindAllModifiers()) do

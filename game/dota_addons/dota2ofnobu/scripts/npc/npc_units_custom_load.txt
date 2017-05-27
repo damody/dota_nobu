@@ -4,6 +4,157 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+
+	"A30W_wolf"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		// "Model"						"models/heroes/lycan/summon_wolves.vmdl"	// Model.
+ 		"Model"						"models/heroes/lycan/lycan_wolf.vmdl"
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"Level"						"1"
+ 		"ModelScale" 				"1"
+ 		// "IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					""			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"4"			// Physical protection.
+
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"10"		// Damage range min.
+ 		"AttackDamageMax"			"20"		// Damage range max.	
+ 		"AttackRate"				"1"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		//"RingRadius"				"60"						//	|
+ 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"		//	|
+ 		"HealthBarOffset"			"140"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyGoldMin"				"10"		// Gold earned min.
+ 		"BountyGoldMax"				"10"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"380"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1000"		// Base health.
+ 		"StatusHealthRegen"			"10"		// Health regeneration rate.
+ 		"StatusMana"				"400"		// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+ 		// Effect
+ 		//----------------------------------------------------------------
+ 		"SoundSet"					"n_creep_Melee"
+ 	}
+
+ 	"A30W_old_wolf"
+ 	{										
+ 		// General
+ 		//----------------------------------------------------------------
+ 		// "Model"						"models/heroes/lycan/summon_wolves.vmdl"	// Model.
+ 		"Model"						"models/heroes/lycan/lycan_wolf.vmdl"
+ 		"BaseClass"					"npc_dota_creep_neutral"
+ 		"Level"						"1"
+ 		"ModelScale" 				"1"
+ 		// "IsNeutralUnitType"			"1"
+
+ 		// Abilities
+ 		//----------------------------------------------------------------
+ 		"Ability1"					""			// Ability 1
+ 		"Ability2"					""			// Ability 2
+ 		"Ability3"					""			// Ability 3
+ 		"Ability4"					""			// Ability 4
+
+ 		// Armor
+ 		//----------------------------------------------------------------
+ 		"ArmorPhysical"				"16"			// Physical protection.
+ 		"MagicalResistance"			"80"
+ 		// Attack
+ 		//----------------------------------------------------------------
+ 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+ 		"AttackDamageMin"			"50"		// Damage range min.
+ 		"AttackDamageMax"			"60"		// Damage range max.	
+	 		"AttackRate"				"0.8"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
+ 		"AttackRange"				"128"		// Range within a target can be attacked.
+ 		"ProjectileModel"			""			// Particle system model for projectile.
+ 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+ 		// Bounds
+ 		//----------------------------------------------------------------
+ 		//"RingRadius"				"60"						//	|
+ 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"		//	|
+ 		"HealthBarOffset"			"140"
+
+ 		// Bounty
+ 		//----------------------------------------------------------------
+ 		"BountyXP"					"10"		// Experience earn.
+ 		"BountyGoldMin"				"10"		// Gold earned min.
+ 		"BountyGoldMax"				"10"		// Gold earned max.
+
+ 		// Movement
+ 		//----------------------------------------------------------------
+ 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+ 		"MovementSpeed"				"380"		// Speed.
+
+ 		// Status
+ 		//----------------------------------------------------------------
+ 		"StatusHealth"				"1000"		// Base health.
+ 		"StatusHealthRegen"			"10"		// Health regeneration rate.
+ 		"StatusMana"				"400"		// Base mana.
+ 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+	
+ 		// Vision
+ 		//----------------------------------------------------------------
+ 		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
+ 		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
+
+ 		// Team
+ 		//----------------------------------------------------------------
+ 		"TeamName"					"DOTA_TEAM_NEUTRALS"
+ 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+ 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+ 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+ 		// Effect
+ 		//----------------------------------------------------------------
+ 		"SoundSet"					"n_creep_Melee"
+ 	}
+
 	// 嗜血結界
 	"A19W_old_SUMMEND_UNIT"
 	{
@@ -3801,8 +3952,8 @@
  		// Bounty
  		//----------------------------------------------------------------
  		"BountyXP"					"40"		// Experience earn.
- 		"BountyGoldMin"				"40"		// Gold earned min.
- 		"BountyGoldMax"				"40"		// Gold earned max.
+ 		"BountyGoldMin"				"200"		// Gold earned min.
+ 		"BountyGoldMax"				"200"		// Gold earned max.
 
  		// Movement
  		//----------------------------------------------------------------
