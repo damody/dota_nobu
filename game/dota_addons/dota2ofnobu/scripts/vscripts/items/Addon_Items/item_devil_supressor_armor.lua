@@ -45,6 +45,7 @@ function modifier_devil_supressor_armor:OnTakeDamage(event)
 		            			ParticleManager:DestroyParticle(self.shield_effect, false)
 		            			self.caster:SetHealth(self.caster:GetHealth() + self.magic_shield)
 		            			self.magic_shield = 0
+		            			self.caster:RemoveModifierByName("modifier_devil_supressor_armor")
 		            		end
 		            	end
 		            end 
@@ -54,6 +55,14 @@ function modifier_devil_supressor_armor:OnTakeDamage(event)
 	end
 end
 
+function Shock_C04_old( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	keys.SHP1 = tonumber(keys.SHP1)
+	keys.SHP2 = tonumber(keys.SHP2)
+
+	ShockTarget(keys, caster, 90)
+end
 
 function Shock( keys )
 	local caster = keys.caster
@@ -71,15 +80,14 @@ function Shock( keys )
 	          0,
 	          false)
 	for _,target in pairs(direUnits) do
-		ShockTarget(keys, target)
+		ShockTarget(keys, target, 20)
 	end
 
 end
 
-function ShockTarget( keys, target )
+function ShockTarget( keys, target, havetime )
 	local caster = keys.caster
 	local ability = keys.ability
-	local havetime = 20
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_devil_supressor_armor", {duration = havetime} )
 	target:FindModifierByName("modifier_devil_supressor_armor").caster = target
 	target:FindModifierByName("modifier_devil_supressor_armor").hp = target:GetHealth()
