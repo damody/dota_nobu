@@ -19,6 +19,7 @@ function A30W_OnSpellStart(keys)
 	 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_kill",{duration = 8+time})
 	 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_A30W_summend",{duration = 8+time})
 	 	ability:ApplyDataDrivenModifier(caster,target,"modifier_A30W_view",{duration = 8+time})
+	 	wolf:AddAbility("for_no_collision"):SetLevel(1)
 		local order = {UnitIndex = wolf:entindex(),
 						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 						TargetIndex = target:entindex()}
@@ -81,6 +82,7 @@ function A30E_OnSpellStart(keys)
     		ParticleManager:SetParticleControl(particle, 3, poke_pos)
     	else
     		ParticleManager:DestroyParticle(particle,false)
+    		return nil
     	end
 	    return 0.05
     end)
@@ -143,7 +145,7 @@ function A30T_OnSpellStart(keys)
 	ParticleManager:SetParticleControl(particle, 0, targetpos)
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, targetpos, 300, 1, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, targetpos, 300, 1, false)
-	Timers:CreateTimer(0.49, function()
+	Timers:CreateTimer(1, function()
 		if caster:IsChanneling() then
 			dummy:EmitSound("A30T.sound1")
 			local particle = ParticleManager:CreateParticle("particles/a30/a30t.vpcf", PATTACH_CUSTOMORIGIN, nil)
@@ -255,6 +257,7 @@ function A30E_old_OnSpellStart(keys)
     		ParticleManager:SetParticleControl(particle, 3, poke_pos)
     	else
     		ParticleManager:DestroyParticle(particle,false)
+    		return nil
     	end
 	    return 0.05
     end)

@@ -159,6 +159,7 @@ function B24W( keys )
 				Physics:Unit(target)
 				target:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin()):Normalized()*1000)
 				AMHC:Damage( caster,target,ability:GetLevelSpecialValueFor("Damage",ability:GetLevel()-1),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				target:AddNewModifier(caster,ability,"modifier_stunned",{duration=0.1})
 				local wcount = 0
 				Timers:CreateTimer(0.1, function()
 					if IsValidEntity(target) then
