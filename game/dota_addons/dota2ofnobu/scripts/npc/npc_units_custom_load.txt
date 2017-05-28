@@ -4,6 +4,221 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	// 足利帳篷
+	"B07_soldiercamp"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/soildecamp/soildercamp.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0BN
+		"Ability1"	"B07W_old_soldiercamp"
+		// Reference: A0BM
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"150.0"
+		"BountyGoldMax"	"150.0"
+		"BountyXP"	"0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"140"
+		"LumberCost"	"140"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"3300"
+		"StatusHealthRegen"	"15"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"900"
+		"VisionNighttimeRange"	"600"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"192"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"160"
+	}
+	// 足利騎兵精英
+	"B07W_old"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/cavalry/cavalry_01.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	""
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"90.0"
+		"AttackDamageMax"	"98.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.8"
+		"AttackAnimationPoint"	"0.56"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"105"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"30.0"
+		"BountyGoldMax"	"30.0"
+		"BountyXP"	"40"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"5"
+		"LumberCost"	"5"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"3300"
+		"StatusHealthRegen"	"5"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+	// 戰線國崩隊
+	"B07E_UNIT"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/arquebusier/arquebusier.vmdl"
+		"ModelScale"	"1.1"
+		"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference:
+		"Ability1"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"1"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"67.0"
+		"AttackDamageMax"	"73.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.20"
+		"AttackAnimationPoint"	"0.17"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"	"725"
+		// Add projectile
+		"ProjectileModel"	"particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
+		"ProjectileSpeed"	"1400"
+
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"50"
+		"BountyGoldMax"	"50"
+		"BountyXP"	"50"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"280"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"10"
+		"StatusMana"	"0"
+		"StatusStartingMana"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"1100"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		//Inventory
+ 		"HasInventory"				"1"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"SoundSet"	"Hero_Sniper"
+		"PickSound"	"sniper_snip_spawn_01"
+		"BanSound"	"sniper_snip_anger_01"
+		"HeroSelectSoundEffect"	"Hero_Sniper.Pick"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_sniper.vsndevts"
+
+		//"Creature"
+		//{
+		//    "AttachWearables"
+		//    {
+		//    	"1" { "ItemDef" "535" }
+		//    	"2" { "ItemDef" "592" }
+		//    	"3" { "ItemDef" "626" }
+		//        "4" { "ItemDef" "630" }
+		//    }
+		//}
+	}
+
 
 	"A30W_wolf"
  	{										
@@ -107,7 +322,7 @@
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
  		"AttackDamageMin"			"50"		// Damage range min.
  		"AttackDamageMax"			"60"		// Damage range max.	
-	 		"AttackRate"				"0.8"		// Speed of attack.
+	 	"AttackRate"				"0.8"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -6429,20 +6644,6 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
 	}
 
 	// 鐵砲兵
@@ -16434,20 +16635,6 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
 		"RingRadius"	"192"
 		"MinimapIcon"	"minimap_tower90"
 		"MinimapIconSize"	"160"

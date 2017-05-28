@@ -265,8 +265,13 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_DROP_ITEM then --12
 		if filterTable.units and filterTable.units["0"] then
 			local unit = EntIndexToHScript(filterTable.units["0"])
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 		-- DeepPrintTable(filterTable)
@@ -288,8 +293,13 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_GIVE_ITEM then --13
 		if filterTable.units and filterTable.units["0"] then
 			local unit = EntIndexToHScript(filterTable.units["0"])
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_ITEM then --14
@@ -343,8 +353,13 @@ function Nobu:eventfororder( filterTable )
 					AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.1*itemcost)
 				end
 			end)
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 		
@@ -352,8 +367,13 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19
 		if filterTable.units and filterTable.units["0"] then
 			local unit = EntIndexToHScript(filterTable.units["0"])
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit)  then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	 then --20
