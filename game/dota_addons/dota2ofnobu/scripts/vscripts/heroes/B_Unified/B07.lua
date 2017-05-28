@@ -56,28 +56,10 @@ function B07W_2( keys )
 	local casterLocation = keys.target_points[1]
 	local radius =  ability:GetSpecialValueFor("radius")
 	local directionConstraint = keys.section
-	local modifierName = "modifier_freezing_field_debuff_datadriven"
-	local refModifierName = "modifier_freezing_field_ref_point_datadriven"
 	local particleName = "particles/a31/a31w.vpcf"
 	
 	-- Get random point
-	local castDistance = RandomInt( 0, radius )
-	local angle = RandomInt( 0, 90 )
-	local vec = RandomVector(castDistance)
-	local dy = vec.y
-	local dx = vec.x
-	local attackPoint = Vector( 0, 0, 0 )
-	
-	if directionConstraint == 0 then			-- NW
-		attackPoint = Vector( casterLocation.x - dx, casterLocation.y + dy, casterLocation.z )
-	elseif directionConstraint == 1 then		-- NE
-		attackPoint = Vector( casterLocation.x + dx, casterLocation.y + dy, casterLocation.z )
-	elseif directionConstraint == 2 then		-- SE
-		attackPoint = Vector( casterLocation.x + dx, casterLocation.y - dy, casterLocation.z )
-	else										-- SW
-		attackPoint = Vector( casterLocation.x - dx, casterLocation.y - dy, casterLocation.z )
-	end
-	
+	local attackPoint = casterLocation + RandomVector(RandomInt(10,radius))
 	
 	-- Fire effect
 	local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_CUSTOMORIGIN, caster )
@@ -93,16 +75,35 @@ function B07E_OnSpellStart(keys)
 	local point = caster:GetAbsOrigin()
 	local hp = ability:GetSpecialValueFor("hp")
 	local B07R = caster:FindAbilityByName("B07R"):GetLevel()
-
+	if caster.B07E == nil then
+		caster.B07E = {}
+	end
+	local lb07e = {}
+	for i,v in pairs(caster.B07E) do
+		if IsValidEntity(v) and v:IsAlive() then
+			table.insert(lb07e, v)
+		end
+	end
+	
  	local player = caster:GetPlayerID()
  	local wolf = CreateUnitByName("B07E_UNIT",target ,false,caster,caster,caster:GetTeam())
+ 	caster.B07E = {}
+ 	if #lb07e >= 2 then
+		lb07e[1]:ForceKill(true)
+		table.insert(caster.B07E, lb07e[2])
+	else
+		caster.B07E = lb07e
+	end
+ 	table.insert(caster.B07E, wolf)
  	wolf:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	wolf.master = caster
  	wolf:SetBaseMaxHealth(hp)
  	wolf:SetHealth(wolf:GetHealth())
+ 	wolf:SetBaseDamageMax(100+caster:GetLevel()*10)
+ 	wolf:SetBaseDamageMin(80+caster:GetLevel()*10)
 	wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})
-	wolf:AddNewModifier(wolf,ability,"modifier_magic_immune",{duration=0.1})
-	if B07R then
+	wolf:AddAbility("B07W_old_soldiercamp"):SetLevel(1)
+	if B07R >= 3 then
 		ability:ApplyDataDrivenModifier(wolf,wolf,"Passive_insight_gem",nil)
 		local particle = ParticleManager:CreateParticle("particles/b01w/b01w.vpcf",PATTACH_POINT_FOLLOW,caster)
 		ParticleManager:SetParticleControlEnt(particle, 0, wolf, PATTACH_POINT_FOLLOW, "attach_hitloc", wolf:GetAbsOrigin(), true)
@@ -264,7 +265,7 @@ function B07R_old_OnSpellStart( keys )
 	local pos = keys.target_points[1]
 	local radius = ability:GetSpecialValueFor("radius")
 	local dmg = ability:GetAbilityDamage()
-	for i=1,15 do
+	for i=1,20 do
 		B07W_2(keys)
 	end
 	Timers:CreateTimer(0.5, function()
