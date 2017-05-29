@@ -1,0 +1,592 @@
+// 太原雪齋
+"DOTAAbilities"
+{
+	"B22_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/B22.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"  "particles/c11/c11t_ntimage_manavoid_lightning_ti_5.vpcf"
+			"particle"  "particles/b22/b22e.vpcf"
+			"particle"  "particles/b22t_old.vpcf"
+			"particle"  "particles/b22/b22tattack.vpcf"
+		}
+	}
+
+	//木靈展勢
+	"B22D"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/morphling_full"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"3"
+		"MaxLevel"	"1"
+		"AbilityCooldown"	"40"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"200"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"B22D_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_B22D"
+			{
+				"Passive"          "0"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "1200"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"900"
+			}
+		}
+	}
+
+	//自然屏障
+	"B22W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_28"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_NONE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"20 18 16 14"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"750"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"B22W_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"250"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maxrock"	"16"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2 2.5 3 3.5"
+			}
+		}
+	}
+
+	//自然之力
+	"B22E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_30"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"40 35 30 25"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"200"
+		"AOERadius"	"400"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B22E.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"B22E_OnSpellStart"
+				"Target"	"TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Lina.DragonSlave"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"260"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"hp_buff"	"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"atk_buff"	"5"
+			}
+		}
+	}
+
+	//淨化
+	"B22R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/a12w"
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCooldown"                        	"40 35 30 25"
+		"AbilityManaCost"                           "150 200 250 300"
+		"AbilityDamage"			"200 300 400 500"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"B22R_OnSpellStart"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B22R2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/c11/c11t_ntimage_manavoid_lightning_ti_5.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+			"modifier_B22R"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/c11/c11t_ntimage_manavoid_lightning_ti_5.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_movement_speed"			"-100 -200 -300 -400"
+			}
+		}
+		
+    }
+
+    //自然之怒
+	"B22T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"                        "custom/caoren_shuimian"
+
+		"AbilityCastPoint"      "0.1"
+		"AbilityCooldown"       "110 100 90"
+		"AbilityManaCost"       "300"
+		"AbilityCastRange"	"800"
+		"AOERadius"	"1000"
+		"AbilityDamage"	"900 1300 1700"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"		"B22T_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"Passive_B22T"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "100"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+						"Function"		"B22T_OnAttackLanded"
+						"Target"	"TARGET"
+						"dmg"	"%attack_damage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"		"1000"
+			}
+		}
+	}
+
+	//自然屏障
+	"B22W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_28"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_NONE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"	"0.1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"35 30 25 20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"120 140 160 180"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"750"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B05W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"B22W_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"250"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"maxrock"	"16"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"4 5 6 7"
+			}
+		}
+	}
+
+	//自然之力
+	"B22E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_30"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"100 80 60 40"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"200"
+		"AOERadius"	"400"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B22E.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"B22E_old_OnSpellStart"
+				"Target"	"TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Lina.DragonSlave"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"300"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"hp_buff"	"100"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"atk_buff"	"10"
+			}
+		}
+	}
+
+	//淨化
+	"B22R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/a12w"
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCooldown"                        	"45 40 35 30"
+		"AbilityManaCost"                           "150 200 250 300"
+		"AbilityDamage"				"200 300 400 500"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"B22R_old_OnSpellStart"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B22R2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/c11/c11t_ntimage_manavoid_lightning_ti_5.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+			"modifier_B22R"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/c11/c11t_ntimage_manavoid_lightning_ti_5.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_movement_speed"			"-100"
+			}
+		}
+		
+    }
+
+    //自然之怒
+	"B22T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/liubei_shengguangshu"
+
+		"AbilityCastPoint"      "0.1"
+		"AbilityCooldown"       "120 110 100"
+		"AbilityManaCost"       "300"
+		"AbilityCastRange"	"800"
+		"AOERadius"	"600"
+		"AbilityDamage"	"600 800 1000"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"		"B22T_old_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"%dmg"
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"		"600"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun"		"3 3.5 4"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun2"		"6 8 10"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"dmg"		"40 60 80"
+			}
+		}
+	}
+
+} // END DOTAAbilities

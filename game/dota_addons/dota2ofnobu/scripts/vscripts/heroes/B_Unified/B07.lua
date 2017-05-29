@@ -124,8 +124,10 @@ function B07E_OnSpellStart(keys)
 		local item = caster:GetItemInSlot(itemSlot)
 		if item ~= nil then
 			local itemName = item:GetName()
-			local newItem = CreateItem(itemName, wolf, wolf)
-			wolf:AddItem(newItem)
+			if "item_napalm_bomb" ~= itemName then
+				local newItem = CreateItem(itemName, wolf, wolf)
+				wolf:AddItem(newItem)
+			end
 		end
 	end
 end
@@ -180,7 +182,7 @@ function B07W_old_OnSpellStart(keys)
 	local ability = keys.ability
 	local level = keys.ability:GetLevel()
 	local point = caster:GetAbsOrigin()
- 	local wolf = CreateUnitByName("B07_soldiercamp",target ,false,caster,caster,caster:GetTeam())
+ 	local wolf = CreateUnitByName("B07_soldiercamp_hero",target ,false,caster,caster,caster:GetTeam())
  	wolf:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	wolf.master = caster
  	wolf:SetHealth(wolf:GetHealth())

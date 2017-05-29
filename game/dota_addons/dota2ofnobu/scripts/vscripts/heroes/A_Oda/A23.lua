@@ -77,11 +77,13 @@ function A23E( keys )
 		if count > time then
 			return nil
 		end
+		print("ability.state", ability.state)
 		if ability.state ~= "PURGE" then
 			local damageCount = (100 + caster:GetIntellect())*( 1 + 0.05*math.floor(((target:GetOrigin() - stick:GetOrigin()):Length() / increaseDistance)) )
 			if target:IsMagicImmune() then
 				damageCount = damageCount *0.5
 			end
+			print("damageCount", damageCount)
 			ApplyDamage({
 				victim = target,
 				attacker = caster,
@@ -116,14 +118,16 @@ function A23E_OnDestroy( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	if target:IsMagicImmune() then
-		ability.state = "MAGIC_IMMUNE"
-	else
-		ability.state = "PURGE"
-		if ability.particle then
-			ParticleManager:DestroyParticle( ability.particle, false )
+	Timers:CreateTimer(0.1, function() 
+		if target:IsMagicImmune() then
+			ability.state = "MAGIC_IMMUNE"
+		else
+			ability.state = "PURGE"
+			if ability.particle then
+				ParticleManager:DestroyParticle( ability.particle, false )
+			end
 		end
-	end
+		end)
 end
 
 function A23R( keys )

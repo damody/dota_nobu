@@ -121,6 +121,17 @@ function light( keys )
 		end)
 end
 
+function treecut_check( keys )
+	local caster = keys.caster
+	local point = keys.target_points[1] 
+	local ability = keys.ability
+	local heros = FindUnitsInRadius( caster:GetTeamNumber(), point, nil, 1000, 
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+	if #heros == 0 then
+		caster:Interrupt()
+	end
+end
+
 function treecut( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
