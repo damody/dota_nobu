@@ -1,0 +1,647 @@
+"DOTAAbilities"
+{
+	"A08_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a06.vsndevts"
+		}
+	}
+	// 榊原康政 碎顱打擊
+	"A08W"	
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/cps_h10_1 (Copy)"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetFlags""DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"HotKeyOverride"	"W"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"			"200"
+		"AbilityCastPoint"			"0"
+		"AbilityCastAnimation"		"ACT_DOTA_ECHO_SLAM"
+		"AnimationPlayBackRate"		"2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"12"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"70 90 110 130"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22W_old.vo1"
+			}
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_PURE"
+				"Damage"		"%AbilityDamage"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A08W"
+				"Target" 		"CASTER"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A08W"
+			{
+				"Duration"		"8"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspd"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atkspd"	"35 50 65 80"
+			}
+		}
+		"AbilityDamage"				"150 250 350 450"
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------
+
+	// 榊原康政	檄文怒嗥
+	//音效 特效沒換
+	"A08E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/C20/C20R"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"80 105 130 155"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AOERadius" 					"450"
+		"HotKeyOverride"				"E"
+		"AbilitySpecial"
+		{			
+			"1"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun"			"1.75 2.00 2.25 2.50"
+			}
+		}
+
+
+		"OnSpellStart"
+
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
+				"Function"		"C20R_OnSpellStart"
+			}
+			"RunScript"
+
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A08.lua"
+				"Function"		"A08E"
+			}			
+		}
+
+		"Modifiers"
+		{
+			"modifier_C20R"
+			{
+				"Duration"	"%stun"
+				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsBuff"	"0"
+				"IsDebuff"	"1"
+			}
+		
+		}
+	}
+	//榊原康政	不屈武勇-------------------------------------------------------------------------------------
+	//增加力量就無法普攻真傷
+	//普攻真傷弄不出來
+	//血量越低 真傷打越痛 弄不出來
+	"A08R"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_inner_beast"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_str"			"4 8 12 16"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_A08R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%add_str"
+				}
+			}
+		}
+	}
+
+	//榊原康政 剛毅大將----------------------------------------------------------------------------------------------
+	//混沌擴散用不出來
+	//遊戲裡面顯是增加生命是1500 3000 4500
+	//被動不會增加護甲
+	//圖沒換
+	//lua還在研究中  先抄幸村
+
+	"A08T"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/cps_d06_4"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"AbilityCooldown"	"100 90 80"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"150"
+		"precache"
+		{
+			"particle"	"particles/b06t/b06t.vpcf"
+			"particle"	"particles/b06w2/b06w3.vpcf"
+			"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%add_defend"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06T_old.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B06T"
+			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%Bonus_Health"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+				"Function"	"B06T_effect"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B06T"
+			{
+				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+				"Properties"
+				{					
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"100"				
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%add_armro"
+				}
+				"Passive"	"0"
+				"Duration"	"%During"
+				"OnAttackLanded"
+				{
+					"FireSound"	{}
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+						"Function"	"B06T_SE"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B06T"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"add_defend"	"4 6 8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_Health"	"800 1000 1200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"15 18 21"
+			}						
+		}
+	}
+
+
+
+
+
+
+	//榊原康政 old  大覺渾沌擴散不會弄  小招圖示不知怎換 lua都用別人的
+	// 遊戲裡面季能都沒說明
+	//榊原康政    狂熱-------------------------------------------------------------------------------------------------------
+
+
+
+	"A08W_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"dragon_knight_dragon_blood"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"100 120 140 160"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		"AbilityCastRangeBuffer"	"250"
+		"precache"
+		{
+			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06W.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A06W"
+				"Duration"	"%A08W_Duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A06W"
+			{
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%A08W_speed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"20 30 40 50"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%atk"
+				}
+				"States"	{}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsPurgable"	"1"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A08W_Duration"	"12 12 12 12"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"A08W_speed"	"10 20 30 40"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk"	"5 10 15 20"
+			}
+		}
+	}
+		//狂嗥 
+	"A08E_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_98"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"16"
+		"AbilityManaCost"				"100 120 140 160"		
+
+		"AbilityCastRange"				"500"
+		"AOERadius"						"500"
+		"AbilityCastPoint"				"0.1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_attack_speed"	"-10 -20 -30 -40"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"debuff_movement_speed"	"-30 -40 -50 -60"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C03E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C03.lua"
+				"Function"		"C03E_OnSpellStart"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/b26w3/b26w3.vpcf"
+				"EffectAttachType"	"follow_hitloc"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Brewmaster.ThunderClap"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C03E_debuff"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"6"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%debuff_attack_speed"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%debuff_movement_speed" 
+				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+	
+	}
+//------------力量強化
+		"A08R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"beastmaster_inner_beast"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_str"			"8 16 24 32"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_A08R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%add_str"
+				}
+			}
+		}
+	}
+//剛毅大將---------------------------------------------------------------------------------------------------
+
+"A08T_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/cps_d06_4"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"T"
+		"AbilityCooldown"	"140"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityManaCost"	"250 300"
+		"precache"
+		{
+			"particle"	"particles/b06t/b06t.vpcf"
+			"particle"	"particles/b06w2/b06w3.vpcf"			
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"berserkercaster"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B06T_old.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B06T"
+			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%Bonus_Health"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+				"Function"	"B06T_effect"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B06T"
+			{
+				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+				"Properties"
+				{	
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"				
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"				
+				}
+				"Passive"	"0"
+				"Duration"	"%During"
+				"OnAttackLanded"
+				{
+					"FireSound"	{}
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
+						"Function"	"B06T_SE"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_B06T"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"40 40 40"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Bonus_Health"	"600 1000 1400"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"During"	"50 60 70"
+			}						
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+	
