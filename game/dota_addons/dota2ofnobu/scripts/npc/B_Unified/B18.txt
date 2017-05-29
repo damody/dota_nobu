@@ -1,0 +1,599 @@
+// 湖衣姬
+"DOTAAbilities"
+{
+	"B18_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/B18.vsndevts"
+			"particle"  "particles/A25E/A25E.vpcf"
+			"particle"  "particles/b18/b18tikes.vpcf"
+			"particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_soil_rupture.vpcf"
+			"particle"  "particles/c17e2/c17e2.vpcf"
+			"particle"  "particles/b28e_rope.vpcf"
+		}
+	}
+
+	//地襲
+	"B18W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A25E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"4"
+		"LevelsBetweenUpgrades"	"2"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"	"13"
+		"AbilityManaCost"	"120 140 160 180"
+		"AbilityCastRange"	"800"
+		"AOERadius"	"%B18W_range"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B18W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+				"Function"	"B18W_OnSpellStart"
+				"Target"	"POINT"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Lina.DragonSlave"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"B18W_Duration"	"1"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"B18W_range"	"265 305 345 385"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"B18W_attack"	"30 50 70 90"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"B18W_damage"	"100 200 300 400"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"B18W_spike_amount"	"40"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"B18W_damage2"	"40 60 80 100"
+			}
+		}
+	}
+
+	//迴響
+	"B18E"
+	{
+		"BaseClass"                       			"ability_datadriven"
+		"AbilityBehavior"                        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"    					"custom/icon_128x128_14"
+		"AbilityCooldown"							"26"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"120 140 160 180"
+		"AbilityCastRange"              			"460"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+				"Function"	"B18E_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B18E_passive"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"Duration"		"%duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_B18E_passive"
+			{
+				"Passive"			"0"
+				"Duration"		"13"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+				}
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+						"Function"	"B18E_OnIntervalThink"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"bonus_attack_speed"                "65 110 155 200"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"dmg"                "30 55 80 105"
+			}
+			"03"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"radius"                "460"
+			}
+			"02"
+			{
+				"var_type"                			"FIELD_INTEGER"
+				"radius2"                "200"
+			}
+		}
+	}
+
+	//大地庇護
+	"B18R"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/liubei_zhanyi"
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCooldown"                        	"13 10 7 4"
+		"AbilityManaCost"                           "110 135 160 185"
+		"AOERadius"									"300"
+
+		"OnSpellStart"
+		{
+		}
+		"Modifiers"
+		{
+			"modifier_B18E_passive"
+			{
+				"Passive"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%atk"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"	//防禦
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"atk"					"6 12 18 24"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"armor"			"2 4 6 8"
+			}
+		}
+    }
+
+    //大地魔爪
+	"B18T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/B18/B18T"
+
+		"AbilityCastPoint"          				"0.0"
+		"AbilityCooldown"           				"125 118 110"
+		"AbilityManaCost"           				"200 250 300"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+				"Function"		"B18T_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B18T"
+			{
+				"IsHidden"			"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+						"Function"		"B18T_OnAttackLanded"
+					}
+				}
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+						"Function"		"B18T_OnIntervalThink"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"		"800"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"dmg"		"152 202 252"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"		"17 23 29"
+			}
+		}
+	}
+	//勝利的期許
+	"B18W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_134"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"12"
+		"AbilityManaCost"	"160 180 200 220"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B18W_old.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_B18W_old"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B18W_old"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%def"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%cure"
+				}
+				"Duration"	"%duration"
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"EffectName"	"particles/c17e2/c17e2.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"35"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"def"	"6 10 14 18"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cure"	"10 20 30 40"
+			}
+		}
+	}
+
+	//大地之刺
+	"B18E_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A25E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"14"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 120 140 160"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A30E.vo1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Jakiro.IcePath"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+				"Function"		"B18E_old_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"path_delay"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1 1.5 2 2.5"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"100 200 300 400"
+	}
+
+	//大地束縛
+	"B18R_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/icon_128x128_75"
+		"AbilityCastPoint"                        	"0.1"
+		"AbilityCooldown"                        	"13 10 7 4"
+		"AbilityManaCost"                           "110 135 160 185"
+		"AOERadius"									"300"
+
+		"OnSpellStart"
+		{
+		}
+		"Modifiers"
+		{
+			"modifier_B18R_old"
+			{
+				"Passive"	"1"
+				"ThinkInterval"  "0.5"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"300"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_B18R_old2"
+								"Target" 		"TARGET"
+								"Duration"		"0.45"
+							}
+						}
+					}
+				}
+			}
+			"modifier_B18R_old2"
+			{
+				"EffectName"	"particles/b28e_rope.vpcf"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"move"					"-10 -20 -30 -40"
+			}
+		}
+    }
+
+    //大地魔爪
+	"B18T_old"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/B18/B18T"
+
+		"AbilityCooldown"           				"140 130 120"
+		"AbilityManaCost"           				"250 300 350"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+				"Function"		"B18T_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B18T"
+			{
+				"IsHidden"			"0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+						"Function"		"B18T_OnAttackLanded"
+					}
+				}
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
+						"Function"		"B18T_OnIntervalThink"
+					}
+				}
+				"Aura"          	"modifier_B18T2"
+				"Aura_Radius"   	"1100"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster" "0"
+			}
+			"Passive_insight_gem"
+			{
+				"Passive"          "0"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "900"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
+			}
+			"modifier_B18T2"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"		"800"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"dmg"		"152 202 252"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"		"20"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"armor"		"-10 -16 -22"
+			}
+		}
+	}
+
+} // END DOTAAbilities
