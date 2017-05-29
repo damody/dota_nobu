@@ -51,55 +51,73 @@ end
 function equilibrium_constant:GetModifierHealthBonus( params )
     if IsServer() then
         local owner = self:GetParent()
-        local str = owner:GetStrength()
-        local HealthBonus = HP_PER_STR_DIFF * str
-        return HealthBonus
+        if owner:IsHero() then
+            local str = owner:GetStrength()
+            local HealthBonus = HP_PER_STR_DIFF * str
+            return HealthBonus
+        end
+        return 0
     end
 end
 
 function equilibrium_constant:GetModifierManaBonus( params )
     if IsServer() then
         local owner = self:GetParent()
-        local int = owner:GetIntellect()
-        local ManaBonus = MANA_PER_INT_DIFF * int
-        return ManaBonus
+        if owner:IsHero() then
+            local int = owner:GetIntellect()
+            local ManaBonus = MANA_PER_INT_DIFF * int
+            return ManaBonus
+        end
+        return 0
     end
 end
 
 function equilibrium_constant:GetModifierAttackSpeedBonus_Constant( params )
     if IsServer() then
         local owner = self:GetParent()
-        local agi = owner:GetAgility()
-        local AtkSpeedBonus = ATKSPD_PER_AGI_DIFF * agi
-        return AtkSpeedBonus
+        if owner:IsHero() then
+            local agi = owner:GetAgility()
+            local AtkSpeedBonus = ATKSPD_PER_AGI_DIFF * agi
+            return AtkSpeedBonus
+        end
+        return 0
     end
 end
 
 function equilibrium_constant:GetModifierPhysicalArmorBonus( params )
     if IsServer() then
         local owner = self:GetParent()
-        local agi = owner:GetAgility()
-        local ArmorBonus = ARMOR_PER_AGI_DIFF * agi
-        owner.ArmorBonus = ArmorBonus
-        return ArmorBonus
+        if owner:IsHero() then
+            local agi = owner:GetAgility()
+            local ArmorBonus = ARMOR_PER_AGI_DIFF * agi
+            owner.ArmorBonus = ArmorBonus
+            return ArmorBonus
+        end
+        return 0
     end
 end
 
 function equilibrium_constant:GetModifierConstantManaRegen( params )
     if IsServer() then
         local owner = self:GetParent()
-        local int = owner:GetIntellect()
-        local ManaRegenBonus = MANA_REGEN_PER_INT_DIFF * int
-        return ManaRegenBonus
+        if owner:IsHero() then
+            local int = owner:GetIntellect()
+            local ManaRegenBonus = MANA_REGEN_PER_INT_DIFF * int
+            return ManaRegenBonus
+        end
+        return 0
     end
 end
 
 function equilibrium_constant:GetModifierConstantHealthRegen( params )
     if IsServer() then
         local owner = self:GetParent()
-        local str = owner:GetStrength()
-        local HealthRegenBonus = HP_REGEN_PER_STR_DIFF * str
-        return HealthRegenBonus
+        if owner:IsHero() then
+            local str = owner:GetStrength()
+            local HealthRegenBonus = HP_REGEN_PER_STR_DIFF * str
+            return HealthRegenBonus
+        end
+        return 0
     end
 end
 

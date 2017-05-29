@@ -13,6 +13,7 @@
 			"particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_soil_rupture.vpcf"
 			"particle"  "particles/c17e2/c17e2.vpcf"
 			"particle"  "particles/b28e_rope.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 		}
 	}
 
@@ -185,9 +186,7 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"                        "custom/liubei_zhanyi"
 		"AbilityCastPoint"                        	"0.1"
-		"AbilityCooldown"                        	"13 10 7 4"
-		"AbilityManaCost"                           "110 135 160 185"
-		"AOERadius"									"300"
+
 
 		"OnSpellStart"
 		{
@@ -430,9 +429,6 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"                        "custom/icon_128x128_75"
 		"AbilityCastPoint"                        	"0.1"
-		"AbilityCooldown"                        	"13 10 7 4"
-		"AbilityManaCost"                           "110 135 160 185"
-		"AOERadius"									"300"
 
 		"OnSpellStart"
 		{

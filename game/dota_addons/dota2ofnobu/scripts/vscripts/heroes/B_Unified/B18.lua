@@ -60,6 +60,7 @@ function B18E_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	caster.B18E = 0
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B18E_passive",{duration = 13})
 end
 
 function B18E_OnIntervalThink( keys )
@@ -110,6 +111,7 @@ function B18T_OnSpellStart(keys)
 	local point = caster:GetAbsOrigin()
 	local duration = ability:GetSpecialValueFor("duration")
  	local wolf = CreateUnitByName("B18T_unit",caster:GetAbsOrigin()+Vector(100,0,0) ,false,caster,caster,caster:GetTeam())
+ 	wolf:AddNewModifier(wolf,nil,"equilibrium_constant",{})
  	wolf:SetOwner(caster)
  	wolf:AddAbility("for_no_collision"):SetLevel(1)
  	wolf:SetBaseMoveSpeed(800)
@@ -249,6 +251,7 @@ function B18T_old_OnSpellStart(keys)
 	local point = caster:GetAbsOrigin()
 	local duration = ability:GetSpecialValueFor("duration")
  	local wolf = CreateUnitByName("B18T_unit",caster:GetAbsOrigin()+Vector(100,0,0) ,false,caster,caster,caster:GetTeam())
+ 	wolf:AddNewModifier(wolf,nil,"equilibrium_constant",{})
  	wolf:SetOwner(caster)
  	wolf:SetBaseMoveSpeed(800)
  	wolf:AddAbility("for_no_collision"):SetLevel(1)
