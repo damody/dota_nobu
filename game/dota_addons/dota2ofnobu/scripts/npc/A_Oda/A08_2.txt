@@ -1,0 +1,90 @@
+﻿"DOTAHeroes"
+{
+	// 神原
+	"A08"
+	{
+		"ModelScale"	"1.4"
+		//"Level"	"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: AInv
+		"Ability1"	"A08W"
+		// Reference: A0DN
+		"Ability2"	"A08E"
+		// Reference: Aamk
+		"Ability3"	"A08R"
+		// Reference: A00O
+		"Ability4"	"A08T"
+		// Reference: A00P
+		"Ability5"	"attribute_bonusx"
+		// Reference: A00Q
+		"Ability6"	"A08T"
+		// Reference: A0NZ
+		"Ability7"	"A08_precache"
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"7"
+		"MagicalResistance"	"30"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"83.0"
+		"AttackDamageMax"	"103.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.80"
+		"AttackAnimationPoint"	"0.38"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"128"
+		"ProjectileSpeed"	"10000"
+		// Attributes
+		// ----------------------------------------------------------------
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"	"38"
+		"AttributeStrengthGain"	"3"
+		"AttributeBaseIntelligence"	"26"
+		"AttributeIntelligenceGain"	"1.7"
+		"AttributeBaseAgility"	"23"
+		"AttributeAgilityGain"	"2"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"300.0"
+		"BountyGoldMax"	"300.0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1.50"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"400"
+		"StatusHealthRegen"	"0.25"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0.01"
+		"StatusStartingMana"	"100"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1800"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"override_hero"	"npc_dota_hero_troll_warlord"
+		"Model"	"models/naomasaii/naomasaii.vmdl"
+		"AbilityLayout"	"6"
+		"DisableWearables"	"1"
+	}	
+}
