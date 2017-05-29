@@ -99,8 +99,8 @@ function B07E_OnSpellStart(keys)
  	wolf.master = caster
  	wolf:SetBaseMaxHealth(hp)
  	wolf:SetHealth(wolf:GetHealth())
- 	wolf:SetBaseDamageMax(100+caster:GetLevel()*10)
- 	wolf:SetBaseDamageMin(80+caster:GetLevel()*10)
+ 	wolf:SetBaseDamageMax(100+caster:GetLevel()*5)
+ 	wolf:SetBaseDamageMin(80+caster:GetLevel()*5)
 	wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})
 	wolf:AddAbility("B07W_old_soldiercamp"):SetLevel(1)
 	if B07R >= 3 then
@@ -111,6 +111,13 @@ function B07E_OnSpellStart(keys)
 		--ParticleManager:SetParticleControl(particle,0, point)
 		ParticleManager:SetParticleControl(particle,1, Vector(10,0,0))
 		ParticleManager:SetParticleControl(particle,2, wolf:GetAbsOrigin())
+		Timers:CreateTimer(1, function() 
+			if not wolf:IsAlive() then
+				ParticleManager:DestroyParticle(particle,true)
+				return nil
+			end
+			return 1
+			end)
 	end
  	--ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_invulnerable",nil)
  	for itemSlot=0,1 do
@@ -180,6 +187,7 @@ function B07W_old_OnSpellStart(keys)
 	wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})
 	wolf:AddNewModifier(wolf,nil,"modifier_kill",{duration=41})
 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_B07W_old2",nil)
+	wolf:RemoveModifierByName("modifier_invulnerable")
 
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),  
         target,nil,300,DOTA_UNIT_TARGET_TEAM_BOTH, 
@@ -211,6 +219,7 @@ function B07W_old_OnIntervalThink(keys)
 	local level = keys.ability:GetLevel()
 	local point = caster:GetAbsOrigin()
  	local wolf = CreateUnitByName("B07W_old",caster:GetAbsOrigin()+Vector(100,0,0) ,false,caster,caster,caster:GetTeam())
+ 	wolf:SetOwner(master)
  	wolf:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	wolf:SetHealth(wolf:GetHealth())
 	wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})

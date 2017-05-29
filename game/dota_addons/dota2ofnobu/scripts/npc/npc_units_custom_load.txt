@@ -4,6 +4,70 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	// 大地魔爪
+	"B18T_unit"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		"Model"	"models/cavalry/cavalry_01.vmdl"
+		"ModelScale"	"0.01"
+		"Level"	"3"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	""
+		// Reference: A0GW
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"5"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.3"
+		"AttackAnimationPoint"	"0.56"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"	"105"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"30.0"
+		"BountyGoldMax"	"30.0"
+		"BountyXP"	"30"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"5"
+		"LumberCost"	"5"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"0.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"3300"
+		"StatusHealthRegen"	"5"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
 	// 足利帳篷
 	"B07_soldiercamp"
 	{
@@ -32,8 +96,8 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"150.0"
-		"BountyGoldMax"	"150.0"
+		"BountyGoldMin"	"20.0"
+		"BountyGoldMax"	"20.0"
 		"BountyXP"	"0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
@@ -44,7 +108,7 @@
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"3300"
+		"StatusHealth"	"2200"
 		"StatusHealthRegen"	"15"
 		// Vision
 		// ----------------------------------------------------------------
@@ -97,7 +161,7 @@
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"30.0"
 		"BountyGoldMax"	"30.0"
-		"BountyXP"	"40"
+		"BountyXP"	"30"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"5"
@@ -172,7 +236,8 @@
 		// ----------------------------------------------------------------
 		"StatusHealth"	"1000"
 		"StatusHealthRegen"	"10"
-		"StatusMana"	"200"
+		"StatusMana"	"250"
+		"StatusManaRegen"	"0"
 		"StatusStartingMana"	"200"
 		// Vision
 		// ----------------------------------------------------------------

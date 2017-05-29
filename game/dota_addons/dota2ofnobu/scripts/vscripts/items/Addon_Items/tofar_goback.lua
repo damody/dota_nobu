@@ -146,23 +146,26 @@ function gold_to_prestige( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local add_prestige = 100
-	_G.goldprestige[caster:GetTeamNumber()] = _G.goldprestige[caster:GetTeamNumber()] + add_prestige
-	
+	if caster:IsHero() then
+		_G.goldprestige[caster:GetTeamNumber()] = _G.goldprestige[caster:GetTeamNumber()] + add_prestige
+	end
 end
 
 function reward6300(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local pos = caster:GetAbsOrigin()
-	local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster.donkey.oripos ,false,caster,caster,caster:GetTeamNumber())	
-	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_invulnerable",{duration=60})
-	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=60})
-	dummy:AddAbility("reward6300"):SetLevel(1)
-	dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
-	if _G.full_reward6300 then
-		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)	
-	else
-		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura2",nil)
+	if caster:IsHero() then
+		local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster.donkey.oripos ,false,caster,caster,caster:GetTeamNumber())	
+		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_invulnerable",{duration=60})
+		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=60})
+		dummy:AddAbility("reward6300"):SetLevel(1)
+		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
+		if _G.full_reward6300 then
+			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)	
+		else
+			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura2",nil)
+		end
 	end
 end
 

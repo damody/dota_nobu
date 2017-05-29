@@ -19,11 +19,22 @@ function A30W_OnSpellStart(keys)
 	 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_kill",{duration = 8+time})
 	 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_A30W_summend",{duration = 8+time})
 	 	ability:ApplyDataDrivenModifier(caster,target,"modifier_A30W_view",{duration = 8+time})
-	 	wolf:AddAbility("for_no_collision"):SetLevel(1)
+	 	Timers:CreateTimer(1, function() 
+	 		wolf:AddAbility("for_no_collision"):SetLevel(1)
+	 		end)
 		local order = {UnitIndex = wolf:entindex(),
 						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 						TargetIndex = target:entindex()}
 		ExecuteOrderFromTable(order)
+		Timers:CreateTimer(1, function() 
+			if wolf:IsAlive() and target:IsAlive() then
+				wolf:SetForceAttackTarget(target)
+				return 1
+			else
+				wolf:SetForceAttackTarget(nil)
+			end
+			end)
+		
 	end
 end
 

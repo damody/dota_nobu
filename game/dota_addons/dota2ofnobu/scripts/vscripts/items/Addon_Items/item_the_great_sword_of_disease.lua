@@ -36,7 +36,10 @@ function Shock( keys )
 	local target = keys.target
 	local ability = keys.ability
   local monster = CreateUnitByName("great_sword_of_disease_unit",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeamNumber())
-  monster:SetControllableByPlayer(caster:GetPlayerID(),false)
+  monster:SetControllableByPlayer(caster:GetPlayerOwnerID(),false)
+  if caster:GetUnitName() == "B07E_UNIT" then
+    monster:SetControllableByPlayer(caster.master:GetPlayerOwnerID(),false)
+  end
   monster:AddNewModifier(monster,ability,"modifier_phased",{duration=0.1})
   ability:ApplyDataDrivenModifier(monster, monster,"modifier_dead", {duration=60})
   caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})

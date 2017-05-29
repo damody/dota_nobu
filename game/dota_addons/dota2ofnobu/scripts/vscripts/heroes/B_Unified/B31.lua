@@ -341,7 +341,7 @@ function B31E_old_OnSpellStart( keys )
 					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 					iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NONE,
-					vVelocity = velocityVec * projectile_speed
+					vVelocity = velocityVec * RandomInt(300,1200)
 				}
 				ProjectileManager:CreateLinearProjectile( projectileTable )
 			end
