@@ -129,12 +129,11 @@ function A15R_bounceAttack(keys)
 		if target:IsBuilding() then
 			tt = 0.1
 		end
-			Timers:CreateTimer(tt, function ()
-				if IsValidEntity(target) then
-					target.hit[current] = nil
-				end
-				end)
-		
+		Timers:CreateTimer(tt, function ()
+			if IsValidEntity(target) then
+				target.hit[current] = nil
+			end
+			end)
 	end
 
 	-- Deal damage

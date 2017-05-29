@@ -114,6 +114,16 @@ function spell_ability ( filterTable )
 		-- [   VScript             ]:    position_y                      	= -6421.2026367188 (number)
 		-- [   VScript             ]:    issuer_player_id_const          	= 0 (number)
 		-- [   VScript             ]: }
+		if filterTable.units and filterTable.units["0"] then
+			local unit = EntIndexToHScript(filterTable.units["0"])
+			if IsValidEntity(unit) then
+				local itemID = filterTable.entindex_ability
+    			local itemName = Containers.itemIDs[itemID]
+				if unit:GetUnitName() == "B07E_UNIT" and itemName == "item_napalm_bomb" then
+					return false
+				end
+			end
+		end
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET then --6
 		-- [   VScript             ]: {
 		-- [   VScript             ]:    entindex_ability                	= 453 (number)
@@ -265,8 +275,13 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_DROP_ITEM then --12
 		if filterTable.units and filterTable.units["0"] then
 			local unit = EntIndexToHScript(filterTable.units["0"])
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 		-- DeepPrintTable(filterTable)
@@ -288,11 +303,27 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_GIVE_ITEM then --13
 		if filterTable.units and filterTable.units["0"] then
 			local unit = EntIndexToHScript(filterTable.units["0"])
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 	elseif ordertype == DOTA_UNIT_ORDER_PICKUP_ITEM then --14
+		if filterTable.units and filterTable.units["0"] then
+			local unit = EntIndexToHScript(filterTable.units["0"])
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
+			end
+		end
 		--[[DeepPrintTable(filterTable)
 		local f = filterTable
 		local caster = EntIndexToHScript(f.units["0"])
@@ -312,6 +343,17 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_PURCHASE_ITEM then --16
 		local itemID = filterTable.entindex_ability
     	local itemName = Containers.itemIDs[itemID]
+    	if filterTable.units and filterTable.units["0"] then
+			local unit = EntIndexToHScript(filterTable.units["0"])
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
+			end
+		end
     	if filterTable.units ~= nil and filterTable.units["0"] ~= nil then
 	    	local unit = EntIndexToHScript(filterTable.units["0"])
 	    	if itemName == "item_c06e" or itemName == "item_the_soul_of_power" or string.match(itemName, "_new") then
@@ -343,8 +385,13 @@ function Nobu:eventfororder( filterTable )
 					AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.1*itemcost)
 				end
 			end)
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit) then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 		
@@ -352,13 +399,18 @@ function Nobu:eventfororder( filterTable )
 	elseif ordertype == DOTA_UNIT_ORDER_MOVE_ITEM	 then --19
 		if filterTable.units and filterTable.units["0"] then
 			local unit = EntIndexToHScript(filterTable.units["0"])
-			if IsValidEntity(unit) and unit.B23T_old then
-				return false
+			if IsValidEntity(unit)  then
+				if unit.B23T_old then
+					return false
+				end
+				if unit:GetUnitName() == "B07E_UNIT" then
+					return false
+				end
 			end
 		end
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO	 then --20
 	elseif ordertype == DOTA_UNIT_ORDER_STOP	 then --21 --出生時會有三次
-		print("stop")
+
 	elseif ordertype == DOTA_UNIT_ORDER_TAUNT	 then --22
 	elseif ordertype == DOTA_UNIT_ORDER_BUYBACK	 then --23
 	elseif ordertype == DOTA_UNIT_ORDER_GLYPH	 then --24

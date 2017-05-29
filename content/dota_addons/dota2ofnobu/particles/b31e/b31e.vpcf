@@ -15,7 +15,7 @@
 			m_ModelList = 
 			[
 				{
-					m_model = resource:"models/cavalry/cavalry.vmdl"
+					m_model = resource:"models/cavalry/cavalry_unified_2.vmdl"
 				},
 			]
 			m_bAnimated = true
@@ -65,6 +65,11 @@
 			m_bNormalize = true
 			m_nFieldOutput = 21
 		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 1.5
+			m_flEndScale = 1.5
+		},
 	]
 	m_Initializers = 
 	[
@@ -79,7 +84,7 @@
 		{
 			_class = "C_INIT_RandomColor"
 			m_ColorMax = [ 255, 0, 0, 255 ]
-			m_ColorMin = [ 255, 2, 53, 255 ]
+			m_ColorMin = [ 222, 144, 161, 255 ]
 		},
 		{
 			_class = "C_INIT_NormalAlignToCP"

@@ -40,7 +40,7 @@ function Nobu:OnUnitKill( keys )
 	
     local AttackerUnit = EntIndexToHScript( keys.entindex_attacker )
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
-    if killedUnit:IsBuilding() then
+    if killedUnit:IsBuilding() and killedUnit:GetUnitName() ~= "B07_soldiercamp" then
       local group = FindUnitsInRadius(AttackerUnit:GetTeamNumber(), killedUnit:GetAbsOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
       local count = 0
       for _,hero in ipairs(group) do
