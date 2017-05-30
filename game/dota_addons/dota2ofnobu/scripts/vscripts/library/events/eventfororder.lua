@@ -114,16 +114,6 @@ function spell_ability ( filterTable )
 		-- [   VScript             ]:    position_y                      	= -6421.2026367188 (number)
 		-- [   VScript             ]:    issuer_player_id_const          	= 0 (number)
 		-- [   VScript             ]: }
-		if filterTable.units and filterTable.units["0"] then
-			local unit = EntIndexToHScript(filterTable.units["0"])
-			if IsValidEntity(unit) then
-				local itemID = filterTable.entindex_ability
-    			local itemName = Containers.itemIDs[itemID]
-				if unit:GetUnitName() == "B07E_UNIT" and itemName == "item_napalm_bomb" then
-					return false
-				end
-			end
-		end
 	elseif ordertype == DOTA_UNIT_ORDER_CAST_TARGET then --6
 		-- [   VScript             ]: {
 		-- [   VScript             ]:    entindex_ability                	= 453 (number)

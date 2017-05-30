@@ -70,22 +70,15 @@ function B24T( keys )
 		pointy2 	=  	pointy 	+ 	420 	*	math.sin(a)
 		point = Vector(pointx2 ,pointy2 , pointz)
 
-		
-
 		local dummy = CreateUnitByName("B24T_HIDE",point,false,nil,nil,caster:GetTeam())
 		ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24T",nil)
 		Timers:CreateTimer(0.2, function()
-		local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,caster)
-		ParticleManager:SetParticleControl(particle,0,dummy:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle,1,dummy:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle,2,Vector(6,6,6))
+			local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,caster)
+			ParticleManager:SetParticleControl(particle,0,dummy:GetAbsOrigin())
+			ParticleManager:SetParticleControl(particle,1,dummy:GetAbsOrigin())
+			ParticleManager:SetParticleControl(particle,2,Vector(6,6,6))
+			dummy.B24Tparticle = particle
 		end)
-		--dummy:SetOrigin(point)--不加會卡點
-		
-		--紀錄
-		dummy.B24Tparticle = particle
-
-		--dummy:EmitSound("Creep_Siege_Dire.Destruction") 
 	end
 end
 

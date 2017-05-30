@@ -107,7 +107,7 @@
 		"BaseClass"					"ability_datadriven"
 		"AbilityTextureName"		"custom/guanyu_xzizhan"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastPoint"	"0.01"
+		"AbilityCastPoint"	"0.3"	//stun
 		"AbilityCooldown"	"20 16 13 10"
 		"AbilityManaCost"	"120 140 160 180"
 		"OnSpellStart"
@@ -263,7 +263,7 @@
 		"AbilityTextureName"	"custom/icon_128x128_39"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.1"
+		"AbilityCastPoint"	"0.3"	//stun
 		"AbilityCooldown"	"30"
 		"AbilityManaCost"	"165"
 

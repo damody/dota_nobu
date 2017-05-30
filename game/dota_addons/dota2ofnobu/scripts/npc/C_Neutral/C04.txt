@@ -91,8 +91,8 @@
 		"AbilityCooldown"           	"2"
 		"AbilityManaCost"           	"0"
 		"AbilityDamage"					"70"
-		"AbilityCastRange"				"400"
-		"AOERadius"						"400"
+		"AbilityCastRange"				"500"
+		"AOERadius"						"500"
 
         "OnToggleOn"
 		{
@@ -201,7 +201,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityCastPoint"	"0.1"
+		"AbilityCastPoint"	"0.3"	//stun
 		"AbilityCooldown"	"21 19 17 15"
 		"AbilityManaCost"	"115 140 165 190"
 		"AbilityCastRange"	"850"
@@ -567,7 +567,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_NONE"
-		"AbilityCastPoint"	"0.1"
+		"AbilityCastPoint"	"0.3"	//stun
 		"AbilityCooldown"	"16 14 12 10"
 		"AbilityManaCost"	"100 120 140 160"
 		"AbilityCastRange"	"800"
@@ -605,7 +605,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/zhaoyun_shanbi"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"

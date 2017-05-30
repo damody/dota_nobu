@@ -211,7 +211,6 @@ function B19T_OnSpellStart( keys )
 		wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})
 	 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_kill",{duration = duration})
 	 	table.insert(wolfall, wolf)
-	 	caster:SetRenderAlpha(0.1*i)
 	end
 	Timers:CreateTimer(1, function() 
 		for i,wolf in pairs(wolfall) do

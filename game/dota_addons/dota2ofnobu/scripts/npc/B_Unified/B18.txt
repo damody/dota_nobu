@@ -28,7 +28,7 @@
 		"HotKeyOverride"	"E"
 		"MaxLevel"	"4"
 		"LevelsBetweenUpgrades"	"2"
-		"AbilityCastPoint"	"0.1"
+		"AbilityCastPoint"	"0.3"	//stun
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"13"
 		"AbilityManaCost"	"120 140 160 180"
@@ -193,7 +193,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_B18E_passive"
+			"modifier_B18R_passive"
 			{
 				"Passive"			"1"
 				"Properties"
@@ -279,7 +279,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"dmg"		"152 202 252"
+				"dmg"		"200 300 400"
 			}
 			"03"
 			{
@@ -361,7 +361,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityCastPoint"	"0.1"
+		"AbilityCastPoint"	"0.3"	//stun
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"14"

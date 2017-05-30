@@ -98,7 +98,7 @@ function modifier_B09E_OnIntervalThink( keys )
 	local distance=(caster:GetAbsOrigin()-target:GetAbsOrigin()):Length()
 
 				--超出距離摧毀特效 停止計時
-	if distance> ability:GetSpecialValueFor("max_range") or target:IsMagicImmune() or not caster:IsAlive() then
+	if distance> ability:GetSpecialValueFor("max_range") or target:IsMagicImmune() or not caster:IsAlive() or not caster:IsChanneling() then
 		target:RemoveModifierByName("modifier_B09E")
 		caster:InterruptChannel()	
 	end

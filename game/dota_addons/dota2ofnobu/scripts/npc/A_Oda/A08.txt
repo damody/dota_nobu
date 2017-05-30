@@ -7,6 +7,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/a06.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
 	}
 	// 榊原康政 碎顱打擊
@@ -95,10 +96,10 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastPoint"				"0.3"	//stun
 		"AbilityCooldown"				"20 18 16 14"
 		"AbilityManaCost"				"80 105 130 155"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AOERadius" 					"450"
 		"HotKeyOverride"				"E"
 		"AbilitySpecial"
@@ -109,40 +110,17 @@
 				"stun"			"1.75 2.00 2.25 2.50"
 			}
 		}
-
-
 		"OnSpellStart"
-
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C20.lua"
-				"Function"		"C20R_OnSpellStart"
-			}
-			"RunScript"
-
-			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A08.lua"
-				"Function"		"A08E"
-			}			
+				"Function"		"A08E_OnSpellStart"
+			}
 		}
 
 		"Modifiers"
 		{
-			"modifier_C20R"
-			{
-				"Duration"	"%stun"
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"IsBuff"	"0"
-				"IsDebuff"	"1"
-			}
-		
 		}
 	}
 	//榊原康政	不屈武勇-------------------------------------------------------------------------------------
@@ -157,6 +135,28 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		
+		"Modifiers"
+		{
+			"modifier_A08R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%add_str"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A08.lua"
+						"Function"		"A08R_OnAttackLanded"
+					}
+				}
+			}
+		}
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -164,30 +164,20 @@
 				"var_type"			"FIELD_INTEGER"
 				"add_str"			"4 8 12 16"
 			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_A08R_passive"
+			"02"
 			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%add_str"
-				}
+				"var_type"			"FIELD_INTEGER"
+				"dmg1"			"20 30 40 50"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"dmg2"			"5 10 15 20"
 			}
 		}
 	}
 
 	//榊原康政 剛毅大將----------------------------------------------------------------------------------------------
-	//混沌擴散用不出來
-	//遊戲裡面顯是增加生命是1500 3000 4500
-	//被動不會增加護甲
-	//圖沒換
-	//lua還在研究中  先抄幸村
-
 	"A08T"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -204,8 +194,8 @@
 		"AbilityManaCost"	"150"
 		"precache"
 		{
-			"particle"	"particles/b06t/b06t.vpcf"
-			"particle"	"particles/b06w2/b06w3.vpcf"
+			"particle"	"particles/A08t/A08t.vpcf"
+			"particle"	"particles/A08w2/A08w3.vpcf"
 			"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%add_defend"
 		}
 		"OnSpellStart"
@@ -218,7 +208,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"B06T_old.vo1"
+				"EffectName"	"A08T_old.vo1"
 			}
 			"ApplyModifier"
 			{
@@ -227,50 +217,57 @@
 				    "Center" "CASTER"
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-				"ModifierName"	"modifier_B06T"
+				"ModifierName"	"modifier_A08T"
 			}
 			"Heal"
 			{
 				"Target"        "CASTER"
 				"HealAmount"	"%Bonus_Health"
 			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
-				"Function"	"B06T_effect"
-			}
 		}
 		"Modifiers"
 		{
-			"modifier_B06T"
+			"modifier_A08T"
 			{
 				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
 				"Properties"
 				{					
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"100"				
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%add_armro"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"100"
 				}
 				"Passive"	"0"
 				"Duration"	"%During"
-				"OnAttackLanded"
-				{
-					"FireSound"	{}
-					"RunScript"
-					{
-						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
-						"Function"	"B06T_SE"
-					}
-				}
 				"OnDeath"
 				{
 					"RemoveModifier"
 					{
-						"ModifierName"	"modifier_B06T"
+						"ModifierName"	"modifier_A08T"
 						"Target" 		"CASTER"
 					}
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_A08"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%radius"
+						"CleaveEffect"	"particles/a07r/a07r.vpcf"
+					}
+				}
+			}
+			"modifier_A08T2"
+			{
+				"Passive"	"1"
+				"Properties"
+				{					
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%add_defend"
 				}
 			}
 		}
@@ -290,7 +287,12 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"During"	"15 18 21"
-			}						
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"radius"	"400"
+			}
 		}
 	}
 
@@ -496,7 +498,7 @@
 	}
 //剛毅大將---------------------------------------------------------------------------------------------------
 
-"A08T_old"
+	"A08T_old"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/cps_d06_4"
@@ -512,8 +514,8 @@
 		"AbilityManaCost"	"250 300"
 		"precache"
 		{
-			"particle"	"particles/b06t/b06t.vpcf"
-			"particle"	"particles/b06w2/b06w3.vpcf"			
+			"particle"	"particles/A08t/A08t.vpcf"
+			"particle"	"particles/A08w2/A08w3.vpcf"			
 		}
 		"OnSpellStart"
 		{
@@ -525,7 +527,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"B06T_old.vo1"
+				"EffectName"	"A08T_old.vo1"
 			}
 			"ApplyModifier"
 			{
@@ -534,47 +536,48 @@
 				    "Center" "CASTER"
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-				"ModifierName"	"modifier_B06T"
+				"ModifierName"	"modifier_A08T"
 			}
 			"Heal"
 			{
 				"Target"        "CASTER"
 				"HealAmount"	"%Bonus_Health"
 			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
-				"Function"	"B06T_effect"
-			}
 		}
 		"Modifiers"
 		{
-			"modifier_B06T"
+			"modifier_A08T"
 			{
 				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
 				"Properties"
 				{	
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"				
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"				
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-30"		
 				}
 				"Passive"	"0"
 				"Duration"	"%During"
 				"OnAttackLanded"
 				{
-					"FireSound"	{}
 					"RunScript"
 					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_A08"
+						"dmg"	"%attack_damage"
 						"Target"	"TARGET"
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
-						"Function"	"B06T_SE"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%radius"
+						"CleaveEffect"	"particles/a07r/a07r.vpcf"
 					}
 				}
 				"OnDeath"
 				{
 					"RemoveModifier"
 					{
-						"ModifierName"	"modifier_B06T"
+						"ModifierName"	"modifier_A08T"
 						"Target" 		"CASTER"
 					}
 				}
@@ -596,52 +599,14 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"During"	"50 60 70"
-			}						
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"radius"	"400"
+			}
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-
-
-	

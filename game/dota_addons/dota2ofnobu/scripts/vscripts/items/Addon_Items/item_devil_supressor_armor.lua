@@ -61,7 +61,7 @@ function Shock_C04_old( keys )
 	keys.SHP1 = tonumber(keys.SHP1)
 	keys.SHP2 = tonumber(keys.SHP2)
 
-	ShockTarget(keys, caster, 90)
+	ShockTarget(keys, keys.target, 90)
 end
 
 function Shock( keys )

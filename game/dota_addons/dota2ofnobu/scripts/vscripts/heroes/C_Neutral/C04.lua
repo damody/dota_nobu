@@ -67,8 +67,8 @@ function C04R_OnSpellStart( keys )
 	for _,unit in ipairs(units) do
 		if IsValidEntity(unit) then
 			unit:SetAbsOrigin(pos)
-			unit:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
-			unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=0.1})
+			unit:AddNewModifier(unit,ability,"modifier_phased",{duration=0.1})
+			unit:AddNewModifier(unit,ability,"modifier_stunned",{duration=0.1})
 		end
 		ApplyDamage({
 			victim = unit,

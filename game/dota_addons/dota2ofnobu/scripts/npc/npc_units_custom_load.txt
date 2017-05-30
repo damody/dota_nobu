@@ -4,6 +4,178 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	//太原 自然之怒
+	"B22E_treant2"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"		"npc_dota_creature"
+		// Add model
+		"Model"			"models/props_gameplay/rune_regeneration01.vmdl"
+		"ModelScale"	"1.2"
+
+		"Level"			"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"10"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"		"0.10"
+		"AttackAcquisitionRange"	"2000"
+		"AttackRate"				"0.5"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRange"				"0"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"				"10.0"
+		"BountyGoldMax"				"10.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"0"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"800"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"1000"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"Ability1"	""
+		"ProjectileModel"	"particles/b22/b22e.vpcf"
+		"ProjectileSpeed"	"600"
+	}
+	//太原 樹人
+	"B22E_treant"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"		"npc_dota_creature"
+		// Add model
+		"Model"			"models/heroes/furion/treant.vmdl"
+		"ModelScale"	"1.2"
+
+		"Level"			"1"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"	"160"
+
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"		"20"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackAnimationPoint"		"0.10"
+		"AttackAcquisitionRange"	"2000"
+		"AttackRate"				"0.5"
+		"AttackDamageMin"			"41.0"
+		"AttackDamageMax"			"51.0"
+		"AttackRange"				"600"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"				"10.0"
+		"BountyGoldMax"				"10.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"380"
+		"MovementTurnRate"		"1.5"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"1500"
+		"StatusHealthRegen"		"0"
+		"StatusMana"			"0"
+		"StatusStartingMana"	"0"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"1000"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"Ability1"	""
+		"ProjectileModel"	"particles/b22/b22e.vpcf"
+		"ProjectileSpeed"	"600"
+	}
+	// 太原石頭
+	"B22_rock_hero"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_building"
+		// Add model
+		"Model"	"models/props_rock/riveredge_rock008a.vmdl"
+		"ModelScale"	"1"
+		"Level"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
+		"HealthBarOffset"	"180"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0BN
+		"Ability1"	""
+		// Reference: A0BM
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"10.0"
+		"BountyGoldMax"	"10.0"
+		"BountyXP"	"0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"	"140"
+		"LumberCost"	"140"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"500"
+		"StatusHealthRegen"	"15"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"900"
+		"VisionNighttimeRange"	"600"
+		// Team
+		// ----------------------------------------------------------------
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+		"RingRadius"	"192"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"160"
+	}
 	// 足利騎兵精英
 	"B19T_old"
 	{
@@ -114,8 +286,8 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"800"
-		"MovementTurnRate"	"0.5"
+		"MovementSpeed"	"3000"
+		"MovementTurnRate"	"2.5"
 		// Status
 		// ----------------------------------------------------------------
 		"StatusHealth"	"3300"
@@ -134,7 +306,7 @@
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}
 	// 足利帳篷
-	"B07_soldiercamp"
+	"B07_soldiercamp_hero"
 	{
 		// General
 		// ----------------------------------------------------------------

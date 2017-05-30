@@ -164,7 +164,7 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastPoint"                          "0.1"
+		"AbilityCastPoint"                          "0.3"	//stun
 		"AbilityCastRange"							"700"
 		"AbilityCooldown"                           "25 23 21 19"
 		"AbilityManaCost"                           "140 160 180 200"
@@ -483,9 +483,9 @@
 				"EffectName" "particles/generic_gameplay/natures_attendants.vpcf"
 				"EffectAttachType" "follow_overhead"
 			}
-			"Passive_insight_gem"
+			"Passive_A21W_old3"
 			{
-				"Passive"          "1"  
+				"Passive"          "0"  
 	            "IsHidden"      "1"
 	            "ThinkInterval"     "0.25"
 	            "OnIntervalThink"

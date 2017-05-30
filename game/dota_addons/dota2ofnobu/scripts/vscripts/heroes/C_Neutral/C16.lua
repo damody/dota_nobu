@@ -75,6 +75,7 @@ function CreateMirror( keys )
 	if target:IsHero() then
 		incomingDamage = ability:GetSpecialValueFor( "incoming_damage2")
 	end
+	illusion.illusion_damage = (100+outgoingDamage)*0.01
 	illusion:AddNewModifier(target, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	illusion:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
 	illusion:SetForwardVector(target:GetForwardVector())
