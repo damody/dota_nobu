@@ -98,7 +98,7 @@ function modifier_B09E_OnIntervalThink( keys )
 	local distance=(caster:GetAbsOrigin()-target:GetAbsOrigin()):Length()
 
 				--超出距離摧毀特效 停止計時
-	if distance> ability:GetSpecialValueFor("max_range") or target:IsMagicImmune() or not caster:IsAlive() or not caster:IsChanneling() then
+	if distance> ability:GetSpecialValueFor("max_range") or target:IsMagicImmune() or not caster:IsAlive() then
 		target:RemoveModifierByName("modifier_B09E")
 		caster:InterruptChannel()	
 	end
@@ -114,7 +114,7 @@ function B09E_OnSpellStart( keys )
 	ParticleManager:SetParticleControlEnt(particle3, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(particle3, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	Timers:CreateTimer(0.2, function ()
-      	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_B09E") then
+      	if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_B09E") and caster:IsChanneling() then
       		local particle2 = ParticleManager:CreateParticle("particles/b09e/b09e.vpcf", PATTACH_CUSTOMORIGIN, caster)
 			ParticleManager:SetParticleControlEnt(particle2, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
 			ParticleManager:SetParticleControlEnt(particle2, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
