@@ -216,7 +216,7 @@ function A10E_OnProjectileHitUnit( keys )
 	local splash_radius = A10E:GetSpecialValueFor("splash_radius")
 	local damageMultiplier = 1
 	if ability:GetAbilityName() ~= "A10E" then
-		damageMultiplier = 0.666
+		damageMultiplier = 0.4
 	end
 	local ifx = ParticleManager:CreateParticle( "particles/a10e/a10e_hitalliance_explosion.vpcf", PATTACH_ABSORIGIN, target )
 	local direUnits = FindUnitsInRadius( caster:GetTeamNumber(), target:GetAbsOrigin(), nil, splash_radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
