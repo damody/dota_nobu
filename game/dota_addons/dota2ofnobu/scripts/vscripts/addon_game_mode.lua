@@ -70,6 +70,7 @@ _G.heromap = {
   npc_dota_hero_earthshaker         = "B24",
   npc_dota_hero_pugna               = "B25",
   npc_dota_hero_brewmaster          = "B26",
+  npc_dota_hero_abaddon             = "B27", 
   npc_dota_hero_disruptor           = "B28",
   npc_dota_hero_abyssal_underlord   = "B30",
   npc_dota_hero_shadow_demon        = "B31",
@@ -166,6 +167,7 @@ _G.heromap_version = {
   B24 = {["11"] = false , ["16"] = true},
   B25 = {["11"] = true , ["16"] = true},
   B26 = {["11"] = false , ["16"] = true},
+  B27 = {["11"] = true , ["16"] = true},
   B28 = {["11"] = true , ["16"] = true},
   B30 = {["11"] = true , ["16"] = true},
   B31 = {["11"] = true , ["16"] = true},
@@ -258,6 +260,8 @@ _G.heromap_skill = {
   B24 = {["11"] = "" , ["16"] = "WERT"},
   B25 = {["11"] = "WERT" , ["16"] = "WERT"},
   B26 = {["11"] = "" , ["16"] = "WERDT"},
+  B27 = {["11"] = "WERT" , ["16"] = "WERT"},
+  B28 = {["11"] = "WERT" , ["16"] = "WERT"},
   B28 = {["11"] = "WERT" , ["16"] = "WERT"},
   B30 = {["11"] = "WERT" , ["16"] = "WERT"},
   B31 = {["11"] = "WERT" , ["16"] = "WERT"},
@@ -351,6 +355,7 @@ _G.heromap_autoskill = {
   B24 = {["11"] = "" , ["16"] = ""},
   B25 = {["11"] = "" , ["16"] = ""},
   B26 = {["11"] = "" , ["16"] = ""},
+  B27 = {["11"] = "" , ["16"] = ""},
   B28 = {["11"] = "" , ["16"] = ""},
   B30 = {["11"] = "" , ["16"] = ""},
   B31 = {["11"] = "" , ["16"] = ""},
@@ -675,6 +680,8 @@ function Precache( context )
     "particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow_2.vpcf",
     --落石
     "particles/item/item_rockfall_bookinvoker_chaos_meteor_fly2.vpcf",
+    --平蜘蛛釜
+    "particles/item/kotennmyohiragumo.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

@@ -18,6 +18,17 @@ function C18D_OnAbilityExecuted( keys )
 			handle:SetStackCount(1)
 		end
 	end
+	for itemSlot=0,5 do
+		local item = caster:GetItemInSlot(itemSlot)
+		if item ~= nil then
+			local itemName = item:GetName()
+			if itemName == "item_flash_ring" or itemName == "item_flash_shoes" or itemName == "item_magic_ring" then
+				if item:IsCooldownReady() then
+					item:StartCooldown(3)
+				end
+			end
+		end
+	end
 end
 
 function C18D_OnIntervalThink( keys )
@@ -37,6 +48,7 @@ function C18D_OnIntervalThink( keys )
 
 			-- 處理搜尋結果
 			for _,unit in ipairs(units) do
+				unit:Stop()
 				ApplyDamage({
 					victim = unit,
 					attacker = caster,

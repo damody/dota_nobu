@@ -59,7 +59,7 @@ function ShockTarget( keys, target )
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_kotennmyohiragumo", {duration = havetime} )
 	target:FindModifierByName("modifier_kotennmyohiragumo").caster = target
 	target:FindModifierByName("modifier_kotennmyohiragumo").hp = caster:GetHealth()
-	local shield = ParticleManager:CreateParticle("particles/econ/events/ti6/radiance_owner_ti6_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	local shield = ParticleManager:CreateParticle("particles/item/kotennmyohiragumo.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	target:FindModifierByName("modifier_kotennmyohiragumo").shield_effect = shield
 	local sumtime = 0
 	local isend = false

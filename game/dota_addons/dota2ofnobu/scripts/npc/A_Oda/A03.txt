@@ -13,6 +13,7 @@
 			"particle"  "particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_acher_swarm.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
 			"particle"  "particles/a03t_old.vpcf"
+			"particle"  "particles/a03/a03t_old2.vpcf"
 		}
 	}
 
@@ -28,8 +29,11 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 
-		
-		"AbilityDamage"					"50 80 110 140"
+		"AbilityCastRange"	"800"
+		"AbilityCooldown"	"20 18 16 14"
+		"AbilityManaCost"	"140 160 180 200"
+		"AbilityDamage"		"50 80 110 140"
+
 
 		"precache"
 		{
@@ -198,7 +202,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "38"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "1.3"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "1.3"
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%hp"
 					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"-470"
@@ -210,7 +214,7 @@
 					{
 						"dmg"	"%attack_damage"
 						"ScriptFile"	"items/Addon_Items/item_muramasa_katana.lua"
-						"Function"	"StealLife"
+						"Function"	"StealLife2"
 						"StealPercent"	"30"
 					}
 				}
