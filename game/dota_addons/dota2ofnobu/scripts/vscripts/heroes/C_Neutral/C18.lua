@@ -41,7 +41,7 @@ function C18D_OnIntervalThink( keys )
 			
 			local base = ability:GetSpecialValueFor("base")
 			local lvbuff = ability:GetSpecialValueFor("lvbuff")*caster:GetIntellect()
-			local dmg = (base+lvbuff)*c
+			local dmg = (base+lvbuff)*(0.5+c*0.5)
 			local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
 			nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
