@@ -51,5 +51,16 @@ function Nobu:DamageFilterEvent( filterTable )
 			filterTable.damage = filterTable.damage*caster.magic_damage
 		end
 	end
+	if target.A05T then
+		if caster.A05T_target == nil then
+			if target:HasModifier("modifier_A05E") then
+				target:Heal(filterTable.damage*0.5,target:FindAbilityByName("A05E"))
+			end
+			return false
+		end
+	end
+	if caster.A05T_target and target.A05T == nil then
+		filterTable.damage = filterTable.damage * 0.5
+	end
 	return true 
 end

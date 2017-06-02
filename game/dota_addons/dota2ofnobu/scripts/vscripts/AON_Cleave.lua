@@ -305,11 +305,6 @@ function AON_Cleave_A08(keys)
 			AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
-	if target:IsBuilding() then
-		AMHC:Damage( caster,target,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-		AMHC:Damage( caster,target,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-		AMHC:Damage( caster,target,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-	end
 end
 
 

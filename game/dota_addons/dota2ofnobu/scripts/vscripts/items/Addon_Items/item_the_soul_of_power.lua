@@ -9,7 +9,7 @@ function item_soul_OnTakeDamage( event )
 			if damage > caster:GetHealth() and not caster:IsIllusion() then
 				caster:StartGestureWithPlaybackRate(ACT_DOTA_DIE,1)
 				caster:SetHealth(caster:GetMaxHealth())
-				caster:SetHealth(caster:GetMaxMana())
+				caster:SetMana(caster:GetMaxMana())
 				local am = caster:FindAllModifiers()
 				for _,v in pairs(am) do
 					if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then

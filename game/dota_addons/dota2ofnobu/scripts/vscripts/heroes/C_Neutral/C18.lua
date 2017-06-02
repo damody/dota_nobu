@@ -7,7 +7,11 @@ function C18D_OnAbilityExecuted( keys )
 		local handle = caster:FindModifierByName("modifier_C18D")
 		if handle then
 			local c = handle:GetStackCount()
-			c = c + 1
+			if keys.event_ability:IsItem() then
+				c = c + 1
+			else
+				c = c + 2
+			end
 			ability:ApplyDataDrivenModifier(caster,caster,"modifier_C18D",nil)
 			handle:SetStackCount(c)
 		end
@@ -15,17 +19,10 @@ function C18D_OnAbilityExecuted( keys )
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C18D",nil)
 		local handle = caster:FindModifierByName("modifier_C18D")
 		if handle then
-			handle:SetStackCount(1)
-		end
-	end
-	for itemSlot=0,5 do
-		local item = caster:GetItemInSlot(itemSlot)
-		if item ~= nil then
-			local itemName = item:GetName()
-			if itemName == "item_flash_ring" or itemName == "item_flash_shoes" or itemName == "item_magic_ring" then
-				if item:IsCooldownReady() then
-					item:StartCooldown(3)
-				end
+			if keys.event_ability:IsItem() then
+				handle:SetStackCount(1)
+			else
+				handle:SetStackCount(2)
 			end
 		end
 	end
@@ -41,7 +38,7 @@ function C18D_OnIntervalThink( keys )
 			
 			local base = ability:GetSpecialValueFor("base")
 			local lvbuff = ability:GetSpecialValueFor("lvbuff")*caster:GetIntellect()
-			local dmg = (base+lvbuff)*(0.5+c*0.5)
+			local dmg = (base+lvbuff)*(0.8+c*0.2)
 			local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
 			nil,  400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
@@ -68,6 +65,17 @@ function C18W_OnSpellStart( keys )
 	local duration = ability:GetSpecialValueFor("duration")
 	caster.C18W = {}
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C18W",{duration = duration})
+	for itemSlot=0,5 do
+		local item = caster:GetItemInSlot(itemSlot)
+		if item ~= nil then
+			local itemName = item:GetName()
+			if itemName == "item_flash_ring" or itemName == "item_flash_shoes" or itemName == "item_magic_ring" then
+				if item:IsCooldownReady() then
+					item:StartCooldown(3)
+				end
+			end
+		end
+	end
 end
 
 function C18W_OnIntervalThink( keys )

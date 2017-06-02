@@ -296,8 +296,10 @@ function A27R_old_crit_judgment( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
-
-	if RandomInt(1,100)<=crit_chance then
+	if caster.A27Rcount == nil then caster.A27Rcount = 0 end
+	caster.A27Rcount = caster.A27Rcount + 1
+	if RandomInt(1,100)<=crit_chance or caster.A27Rcount >= 5 then
+		caster.A27Rcount = 0
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_A27R_old_critical_strike",nil)
 	end
 end

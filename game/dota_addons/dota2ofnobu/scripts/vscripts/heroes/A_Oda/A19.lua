@@ -97,6 +97,9 @@ function A19R_OnAbilityExecuted( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local dmg = ability:GetSpecialValueFor("dmg")
+	if keys.event_ability:IsItem() then
+		dmg = dmg * 0.5
+	end
 	-- 搜尋
 	if keys.event_ability:IsToggle() then return end
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
