@@ -296,11 +296,12 @@ end
 function C17R_old_OnEnable( keys )
 	local target = keys.target
 	local ability = keys.ability
+	local caster = ability:GetCaster()
 	local level = ability:GetLevel()-1
 	local max_life_time = ability:GetLevelSpecialValueFor("max_life_time",level)
 	ability:ApplyDataDrivenModifier(target,target,"modifier_C17R_old_aura",nil)
-	target:AddNewModifier(target,nil,"modifier_invisible",nil)
-	target:AddNewModifier(target,nil,"modifier_kill", {duration = max_life_time})
+	target:AddNewModifier(caster,nil,"modifier_invisible",nil)
+	target:AddNewModifier(caster,nil,"modifier_kill", {duration = max_life_time})
 end
 
 function C17R_old_on_trigger( keys )

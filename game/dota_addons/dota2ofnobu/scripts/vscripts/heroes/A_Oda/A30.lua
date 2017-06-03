@@ -134,7 +134,7 @@ function A30R_OnAttackLanded(keys)
     	end
 	    return 1
     end)
-    Timers:CreateTimer(duration,
+    Timers:CreateTimer(duration,function()
     	ParticleManager:DestroyParticle(particle,false)
     	end)
 end

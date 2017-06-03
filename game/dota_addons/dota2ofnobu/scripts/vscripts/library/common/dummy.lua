@@ -106,6 +106,12 @@ _G.EXCLUDE_TARGET_NAME = {
   com_general_Nobu2 = true,
   com_general_oda = true,
   com_general_unified = true,
+  C17R_old_SUMMEND_UNIT_bag_hero = true,
+  C17R_old_SUMMEND_UNIT_hero = true,
+  B13_MINE_hero = true,
+  A26_MINE_hero = true,
+  A26_MINE_school_hero = true,
+  B17W_deathGuard_hero = true,
 }
 
 function CP_Posistion( keys )

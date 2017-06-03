@@ -3508,30 +3508,27 @@
 		}
 		"Modifiers"
 		{
-			"Passive_true_gem"
+			"Passive_insight_gem600"
 			{
 				"Passive"          "1"  
 	            "IsHidden"      "1"
-
-	            "Aura"        "modifier_show_invi"
-        		"Aura_Radius" "600"
-        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-        		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
-			}
-			"modifier_show_invi"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"1"
-
-				"Priority" "MODIFIER_PRIORITY_ULTRA"
-
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
-				}
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "600"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
 			}
 		}
 		
@@ -11052,30 +11049,27 @@
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "20"	//魔抗
 				}
 			}
-			"Passive_true_gem"
+			"Passive_insight_gem"
 			{
 				"Passive"          "1"  
 	            "IsHidden"      "1"
-
-	            "Aura"        "modifier_show_invi"
-        		"Aura_Radius" "900"
-        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
-			}
-			"modifier_show_invi"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"1"
-
-				"Priority" "MODIFIER_PRIORITY_ULTRA"
-
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
-				}
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "600"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
 			}
 			"shield_modifier"
 			{
@@ -15239,38 +15233,27 @@
 		}
 		"Modifiers"
 		{
-			"Passive_true_gem"
+			"Passive_insight_gem"
 			{
 				"Passive"          "1"  
 	            "IsHidden"      "1"
-
-	            "Aura"        "modifier_show_invi"
-        		"Aura_Radius" "600"
-        		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
-        		"OnDeath"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
-						"Function"	"Death"
-					}
-				}
-			}
-			"modifier_show_invi"
-			{
-				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"1"
-
-				"Priority" "MODIFIER_PRIORITY_ULTRA"
-
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
-				}
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "600"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
 			}
 		}
 		

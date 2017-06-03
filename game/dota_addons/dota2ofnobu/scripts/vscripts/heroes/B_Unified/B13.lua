@@ -181,13 +181,13 @@ function B13R_old( keys )
 	local center = caster:GetAbsOrigin()
 	local ability = keys.ability
 
-
 	local active_delay = 0
 	local mine = CreateUnitByName("B13_MINE_hero", center, false, caster, caster, caster:GetTeamNumber())
 	mine:RemoveModifierByName("modifier_invulnerable")
 	mine.caster = caster
 	mine:AddAbility("for_no_collision"):SetLevel(1)
 	mine:AddAbility("for_magic_immune"):SetLevel(1)
+	mine:AddNewModifier(caster,ability,"modifier_invisible",{})
 	mine:SetOwner(caster)
 	mine:SetBaseMaxHealth( ability:GetSpecialValueFor("B13R_old_hp") )
 	mine:SetHealth( mine:GetMaxHealth() )

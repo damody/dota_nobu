@@ -325,7 +325,7 @@
 		"AbilityTextureName"	"custom/icon_128x128_112"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"FightRecapLevel"	"0"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"HotKeyOverride"	"T"
@@ -358,6 +358,16 @@
 				"ModifierName"	"modifier_A05T"
 				"Duration"	"%duration"
 			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A05T2"
+				"Duration"	"%duration"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A05.lua"
@@ -367,6 +377,10 @@
 		}
 		"Modifiers"
 		{
+			"modifier_A05T2"
+			{
+				"IsBuff"	"1"
+			}
 			"modifier_A05T"
 			{
 				"IsBuff"	"1"
