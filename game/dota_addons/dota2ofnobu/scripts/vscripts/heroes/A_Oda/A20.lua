@@ -124,7 +124,7 @@ function modifier_A20W_aura_OnIntervalThink( keys )
 	local target = keys.target
 	-- 持續提供視野
 	local point = caster:GetAbsOrigin()
-	local ifx = ParticleManager:CreateParticle( "particles/a20w/a20w_2.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	local ifx = ParticleManager:CreateParticle( "particles/a20w/a20w_5.vpcf", PATTACH_CUSTOMORIGIN, nil)
 	ParticleManager:SetParticleControl( ifx, 0, point + Vector(0,0,50))
 	ParticleManager:SetParticleControl( ifx, 3, point + Vector(0,0,50))
 	AddFOWViewer(caster:GetTeamNumber(),caster:GetAbsOrigin(),700,5.0,false)

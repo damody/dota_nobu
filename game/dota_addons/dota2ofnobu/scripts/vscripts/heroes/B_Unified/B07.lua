@@ -183,13 +183,13 @@ function B07W_old_OnSpellStart(keys)
 	local level = keys.ability:GetLevel()
 	local point = caster:GetAbsOrigin()
  	local wolf = CreateUnitByName("B07_soldiercamp_hero",target ,false,caster,caster,caster:GetTeam())
+ 	wolf:RemoveModifierByName("modifier_invulnerable")
  	wolf:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	wolf.master = caster
  	wolf:SetHealth(wolf:GetHealth())
 	wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})
 	wolf:AddNewModifier(wolf,nil,"modifier_kill",{duration=41})
 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_B07W_old2",nil)
-	wolf:RemoveModifierByName("modifier_invulnerable")
 
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),  
         target,nil,300,DOTA_UNIT_TARGET_TEAM_BOTH, 

@@ -21,13 +21,11 @@
 			"particle"  "particles/units/heroes/hero_rubick/rubick_fade_bolt_debuff.vpcf"
 			"particle"  "particles/items2_fx/rod_of_atos.vpcf"
 
-			// C05R_old
-			"particle"  "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
-
-			// C05T_old
-			"particle"  "particles/econ/items/invoker/invoker_ti6/invoker_deafening_blast_disarm_ti6_debuff.vpcf"
-			"particle"  "particles/units/heroes/hero_zuus/zuus_arc_lightning_impact.vpcf"
-			"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_bodyarc_immortal_lightningyzuus_lightning_bolt_bodyarc_immortal_lightning.vpcf"
+			// B27E
+			"particle"  "particles/b27/b27e.vpcf"
+			"particle"  "particles/b27/b27e_old.vpcf"
+			// B27T
+			"particle"  "particles/b27/b27t.vpcf"
 		}
 	}
 
@@ -49,7 +47,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"buff_duration"			"7 10 13 16"
+				"buff_duration"			"10 13 16 19"
 			}
 			"02"
 			{
@@ -59,7 +57,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bonus_attack_speed"		"100"
+				"bonus_attack_speed"		"150"
 			}
 		}
 
@@ -82,9 +80,12 @@
 		{
 			"ApplyModifier"
 			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_B27W_buff"
-				"Target" 		"CASTER"
-				"Duration"		"%buff_duration"
 			}
 		}
 
@@ -96,7 +97,7 @@
 
 				"EffectName" "particles/items_fx/armlet.vpcf"
 				"EffectAttachType"	"follow_origin"
-
+				"Duration"		"%buff_duration"
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -116,8 +117,7 @@
 		}
 	}
 
-	// 小島貞興 [剛力擊]----------------------------------------------------------------	
-	//特效可能要換一個 有點不明顯
+	// 小島貞興 [剛力擊]----------------------------------------------------------------
 	"B27E"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -143,15 +143,35 @@
 				"Target"	"CASTER"
 				"EffectName"	"B34W_old.vo1"
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
-				"Function"	"B27E"
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
 				"EffectName"	"Hero_Beastmaster.Wild_Axes"
+			}
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/b27/b27e.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"900"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B27E"
+				"Target" 		"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
+				"Function"	"B27E_OnProjectileHitUnit"
+				"Target" 		"TARGET"
 			}
 		}
 		"Modifiers"
@@ -160,6 +180,7 @@
 			{
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
+				"Duration"	"0.2"
 				"OnCreated"
 				{
 					"Stun"
@@ -179,7 +200,6 @@
 						"EffectName"	"Hero_Beastmaster.Attack"
 					}
 				}
-				"Duration"	"0"
 			}
 		}
 		"AbilitySpecial"
@@ -192,8 +212,6 @@
 		}
 		"AbilityDamage"	"100 200 300 400"
 	}
-	
-
 
 	// 小島貞興 [無畏衝鋒]
 	"B27R"
@@ -227,14 +245,16 @@
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_C03w"
-				"Target"	"CASTER"
-				"Duration"	"%duration"
-				
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
-				"Function"	"B27W_OnSpellStart"
+				"Function"	"B27R_OnSpellStart"
 			}
 		}
 		"Modifiers"
@@ -244,7 +264,7 @@
 				"Passive"	"0"
 				"IsHidden"	"0"
 				"IsDebuff"	"0"				
-				
+				"Duration"	"%duration"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"				
@@ -263,12 +283,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_bonus"	"40 60 80 100"
+				"attack_bonus"	"40 50 60 70"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"3 4 5 6"
+				"duration"	"6 7 8 9"
 			}						
 		}
 	}
@@ -290,7 +310,7 @@
 		"AbilityCooldown"	"95"
 		"AbilityManaCost"	"150 175 200"
 		"AbilityCastRange"	"1000"
-		"AOERadius"		"1000"
+		"AOERadius"		"1200"
 		"AnimationPlaybackRate"	"3"
 		"HotKeyOverride"	"T"
 		"precache"
@@ -310,13 +330,22 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
-				"Function"	"B27T"
+				"Function"	"B27T_OnSpellStart"
 			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
 				"EffectName"	"Roshan.Slam"
-			}			
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B27T_2"
+			}		
 		}
 
 		"Modifiers"
@@ -330,15 +359,8 @@
 				}
 				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"Duration"	"%duration"
 				"IsDebuff"	"1"
 				"IsPurgable"	"1"
-			}
-			"RunScript"
-			{
-				"Target"	"CASTER"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
-				"Function"		"B27T_OnSpellStart"
 			}
 			"modifier_B27T_2"
 			{
@@ -357,7 +379,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
+				"radius"	"1200"
 			}
 			"02"
 			{
@@ -372,12 +394,12 @@
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"5.5 7.0 8.5"
+				"duration"	"5 6 7"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"dmg"	"400"
+				"dmg"	"400 600 800"
 			}	
 			"06"
 			{
@@ -446,8 +468,11 @@
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_B27W_buff"
-				"Target" 		"CASTER"
-				"Duration"		"%buff_duration"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 			}
 		}
 
@@ -456,7 +481,7 @@
 			"modifier_B27W_buff"
 			{
 				"IsBuff"			"1"
-
+				"Duration"		"%buff_duration"
 				"EffectName" "particles/items_fx/armlet.vpcf"
 				"EffectAttachType"	"follow_origin"
 
@@ -505,15 +530,29 @@
 				"Target"	"CASTER"
 				"EffectName"	"B34W_old.vo1"
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
-				"Function"	"B27E_old"
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
 				"EffectName"	"Hero_Beastmaster.Wild_Axes"
+			}
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/b27/b27e_old.vpcf"
+				"Dodgeable"	"1"
+				"ProvidesVision"	"1"
+				"MoveSpeed"	"900"
+				"VisionRadius"	"225"
+				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B27E_old"
+				"Target" 		"TARGET"
 			}
 		}
 		"Modifiers"
@@ -552,25 +591,22 @@
 				"duration"	"1 1.5 2 2.5"
 			}
 		}
-		"AbilityDamage"	"100 200 300 400"
+		"AbilityDamage"	"200 300 400 500"
 	}
 
 	// 小島貞興 11.2B [法術護盾]---------------------------------------------------------------------------------------------------------
-	// 從御守去弄  看不懂
 	"B27R_old"
 	{
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/zhangbao_shandianqiu"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
-		"AbilityCooldown"				"15"
-		"AbilityManaCost"				"100 120 140 160"
-		"AbilityDamage"					"150 250 350 450"
+		"AbilityCooldown"				"50 42 34 26"
 
 		"AbilityCastRange"				"200"
 		"AbilityCastPoint"				"0.1"
@@ -589,24 +625,22 @@
 		{
 			"particle"  "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
 		}
-
-		"OnAbilityPhaseStart"
+		"Modifiers"
 		{
-			"FireSound"
+			"modifier_B27R_old"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C05R_old.vo1"
-			}
-		}
-
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C05.lua"
-				"Function"		"C05R_old_OnSpellStart"
-				"Target"		"TARGET"
-			}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
+						"Function"	"B27R_old_OnIntervalThink"
+					}
+				}
+				"Passive"	"1"
+				"IsHidden"	"1"
+			}			
 		}
 	}
 
@@ -645,7 +679,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
-				"Function"	"B27T"
+				"Function"	"B27T_old_OnSpellStart"
 			}
 			"FireSound"
 			{
@@ -664,7 +698,6 @@
 				}
 				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"Duration"	"%duration"
 				"IsDebuff"	"1"
 				"IsPurgable"	"1"
 			}			
@@ -674,7 +707,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"radius"	"400"
+				"radius"	"1200"
 			}
 			"02"
 			{
@@ -689,7 +722,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"5.5 7.0 8.5"
+				"duration"	"8 9 10"
 			}
 			"05"
 			{

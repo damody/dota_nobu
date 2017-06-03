@@ -36,7 +36,7 @@ function B24T( keys )
 		if v:IsHero() then
 			ParticleManager:CreateParticle("particles/shake2.vpcf", PATTACH_ABSORIGIN, v)
 		end
-		if (v:GetUnitName() ~= "B24W_dummy") then
+		if _G.EXCLUDE_TARGET_NAME[v:GetUnitName()] == nil then
 			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 		end
 	end
@@ -70,7 +70,9 @@ function B24T( keys )
 		pointy2 	=  	pointy 	+ 	420 	*	math.sin(a)
 		point = Vector(pointx2 ,pointy2 , pointz)
 
-		local dummy = CreateUnitByName("B24T_HIDE",point,false,nil,nil,caster:GetTeam())
+		local dummy = CreateUnitByName("B24T_HIDE_hero",point,false,nil,nil,caster:GetTeam())
+		dummy:RemoveModifierByName("modifier_invulnerable")
+		ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = 6})
 		ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24T",nil)
 		Timers:CreateTimer(0.2, function()
 			local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,caster)
@@ -99,7 +101,8 @@ function B24W( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local mouse = ability:GetCursorPosition()
-	local dummy	= CreateUnitByName("B24W_dummy", mouse, true, nil, nil, caster:GetTeamNumber())
+	local dummy	= CreateUnitByName("B24W_dummy_hero", mouse, true, nil, nil, caster:GetTeamNumber())
+	dummy:RemoveModifierByName("modifier_invulnerable")
 	dummy:SetOwner(caster)
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=12})
 	--local player = caster:GetPlayerID()
@@ -161,15 +164,13 @@ function B24W( keys )
 							nil,
 							100,
 							DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-							DOTA_UNIT_TARGET_ALL,
+							DOTA_UNIT_TARGET_BUILDING,
 							DOTA_UNIT_TARGET_FLAG_NONE,
 							FIND_ANY_ORDER,
 							false)
 						for _,it in pairs(its) do
-							if it:GetUnitName() == "B24T_HIDE" then
-								target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*(1000 - wcount*150))
-								return nil
-							end
+							target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*(1000 - wcount*150))
+							return nil
 						end
 						wcount = wcount + 1
 						if (wcount > 5) then

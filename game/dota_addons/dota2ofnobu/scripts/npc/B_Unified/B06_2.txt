@@ -8,11 +8,12 @@
 	// 真田幸村
 	"B06"
 	{
-		// General
-		// ----------------------------------------------------------------
-		// Add model
 		"Model"	"models/b06/b06_model.vmdl"
 		"ModelScale"	"1.5"
+		
+		"SoundSet"	"Hero_Axe"
+		"VoiceFile" "soundevents/voscripts/game_sounds_vo_axe.vsndevts"
+		"GameSoundsFile" "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"

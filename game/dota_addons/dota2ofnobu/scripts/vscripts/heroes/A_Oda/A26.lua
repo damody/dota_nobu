@@ -144,10 +144,11 @@ function CreateMine( ability, position, duration )
 	local active_delay = ability:GetSpecialValueFor("active_delay")
 	local mine 
 	if caster.skin == "school" then
-		mine = CreateUnitByName("A26_MINE_school", position, false, caster, caster, caster:GetTeamNumber())
+		mine = CreateUnitByName("A26_MINE_school_hero", position, false, caster, caster, caster:GetTeamNumber())
 	else
-		mine = CreateUnitByName("A26_MINE", position, false, caster, caster, caster:GetTeamNumber())
+		mine = CreateUnitByName("A26_MINE_hero", position, false, caster, caster, caster:GetTeamNumber())
 	end
+	mine:RemoveModifierByName("modifier_invulnerable")
 	mine:SetForwardVector(RandomVector(1)) 
 	mine:SetOwner(caster)
 	ability:ApplyDataDrivenModifier(caster,mine,"modifier_A26D_mine_passive",{})

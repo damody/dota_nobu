@@ -130,11 +130,13 @@ function A30R_OnAttackLanded(keys)
 		end
 		tsum = tsum + 1
     	if tsum > duration then
-    		ParticleManager:DestroyParticle(particle,false)
     		return nil
     	end
 	    return 1
     end)
+    Timers:CreateTimer(duration,
+    	ParticleManager:DestroyParticle(particle,false)
+    	end)
 end
 
 

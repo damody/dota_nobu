@@ -43,7 +43,10 @@ function modifier_devil_supressor_armor:OnTakeDamage(event)
 		            			self.caster:SetHealth(self.hp)
 		            		else
 		            			ParticleManager:DestroyParticle(self.shield_effect, false)
-		            			self.caster:SetHealth(self.caster:GetHealth() + self.magic_shield)
+		            			local nhp = self.hp-(return_damage-self.magic_shield)*((100-self.caster:GetMagicalArmorValue())*0.01)
+		            			if nhp > 0 then
+		            				self.caster:SetHealth(nhp)
+		            			end
 		            			self.magic_shield = 0
 		            			self.caster:RemoveModifierByName("modifier_devil_supressor_armor")
 		            		end

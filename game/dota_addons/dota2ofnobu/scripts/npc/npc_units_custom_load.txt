@@ -1553,11 +1553,11 @@
 	}
 
 	// 霧隱才藏 死亡守衛
-	"B17W_deathGuard"
+	"B17W_deathGuard_hero"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"			"npc_dota_creature"
+		"BaseClass"			"npc_dota_building"
 		// Add model
 		"Model"				"models/heroes/venomancer/venomancer_ward.vmdl"
 		"ModelScale"		"1"
@@ -4729,11 +4729,11 @@
  	}
 
  	// 靜滯陷阱
-	"C17R_old_SUMMEND_UNIT"
+	"C17R_old_SUMMEND_UNIT_hero"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_building"
 		// Add model
 		"Model"	"models/heroes/juggernaut/jugg_healing_ward.vmdl"
 		"ModelScale"	"1.2"
@@ -4807,11 +4807,11 @@
 	}
 
 	// 靜滯陷阱
-	"C17R_old_SUMMEND_UNIT_bag"
+	"C17R_old_SUMMEND_UNIT_bag_hero"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_building"
 		// Add model
 		"Model"	"models/c17/c17_school_bag.vmdl"
 		"ModelScale"	"1.2"
@@ -5460,11 +5460,11 @@
 	}
 
 	// 地靈石碑
-	"B24W_dummy"
+	"B24W_dummy_hero"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_building"
 		// Add model
 		"Model"	"models/items/earthshaker/totem_dragon_wall/fissure_body.vmdl"
 		"ModelScale"	"2.5"
@@ -5535,11 +5535,11 @@
 	}
 
 	// 巨石
-	"B24T_HIDE"
+	"B24T_HIDE_hero"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_building"
 		// Add model
 		"Model"	"models/particle/earth_spirit_rockspikesphy.vmdl"
 		"ModelScale"	"0.1"
@@ -5597,11 +5597,11 @@
 	}
 
 	// 忍法．土盾之書 產生的石牆
-	"EARTH_WALL"
+	"EARTH_WALL_hero"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_building"
 		// Add model
 		"Model"	"models/development/invisiblebox.vmdl"
 		"ModelScale"	"20"
@@ -5746,16 +5746,16 @@
 		"ModelScale"	"1"
 	}
 	// 百地地雷
-	"B13_MINE"
+	"B13_MINE_hero"
 	{
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/techies/fx_techiesfx_mine.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creature"
+		"BaseClass"					"npc_dota_building"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
 		"ModelScale"				"1"
-		"SelectionGroup"			"B13_MINE"
+		"SelectionGroup"			"B13_MINE_hero"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 
 		// Abilities
@@ -5814,16 +5814,16 @@
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 	}
 
-	"A26_MINE"
+	"A26_MINE_hero"
 	{
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/techies/fx_techiesfx_mine.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creature"
+		"BaseClass"					"npc_dota_building"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
 		"ModelScale"				"0.5"
-		"SelectionGroup"			"A26_MINE"
+		"SelectionGroup"			"A26_MINE_hero"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
 
 		// Abilities
@@ -5882,16 +5882,16 @@
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 	}
 
-	"A26_MINE_school"
+	"A26_MINE_school_hero"
 	{
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/a26/book_explosion.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creature"
+		"BaseClass"					"npc_dota_building"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
 		"ModelScale"				"3"
-		"SelectionGroup"			"A26_MINE"
+		"SelectionGroup"			"A26_MINE_hero"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
 
 		// Abilities

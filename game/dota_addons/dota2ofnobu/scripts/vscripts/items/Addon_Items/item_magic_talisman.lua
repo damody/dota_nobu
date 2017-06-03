@@ -164,10 +164,9 @@ function modifier_magic_talisman2:OnTakeDamage(event)
 		            			self.caster:SetHealth(self.hp)
 		            		else
 		            			ParticleManager:DestroyParticle(self.shield_effect, false)
-		            			if (self.hp > self.caster:GetHealth() + self.magic_shield) then
-		            				self.caster:SetHealth(self.caster:GetHealth() + self.magic_shield)
-		            			else
-		            				self.caster:SetHealth(self.hp)
+		            			local nhp = self.hp-(return_damage-self.magic_shield)*((100-self.caster:GetMagicalArmorValue())*0.01)
+		            			if nhp > 0 then
+		            				self.caster:SetHealth(nhp)
 		            			end
 		            			self.magic_shield = 0
 		            		end

@@ -273,17 +273,18 @@ end
 function C17R_old( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local point = ability:GetCursorPosition()
+	local point = keys.target_points[1]
 
-	local unit
+	local unit = 1
 	-- 把caster換成暈帳這樣之後的modifier就能用caster拿到暈帳，用ability拿到阿市
 	-- skin
 	if caster.skin == "school" then
-	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT_bag",point,true,caster,caster,caster:GetTeam())
+	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT_bag_hero",point,false,nil,nil,caster:GetTeam())
 	   	unit:SetForwardVector(Vector(0, -1, 0))
 	else
-	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT",point,true,caster,caster,caster:GetTeam())
+	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT_hero",point,false,nil,nil,caster:GetTeam())
 	end
+	unit:RemoveModifierByName("modifier_invulnerable")
 	unit:SetHealth(200)
 	unit:SetMana(ability:GetAbilityDamage())
 	if ability then

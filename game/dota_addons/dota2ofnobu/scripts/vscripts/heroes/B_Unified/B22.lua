@@ -44,9 +44,10 @@ function B22W_OnSpellStart( keys )
 		local dummy = CreateUnitByName("B22_rock_hero",point,false,nil,nil,caster:GetTeam())
 		ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
 		ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_magic_immune",{duration = duration})
+		dummy:RemoveModifierByName("modifier_invulnerable")
 		table.insert(rocks, dummy)
 	end
-	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, nil, radius+50, 
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), point, nil, radius+300, 
 		DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	for _,it in pairs(enemies) do
 		if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
