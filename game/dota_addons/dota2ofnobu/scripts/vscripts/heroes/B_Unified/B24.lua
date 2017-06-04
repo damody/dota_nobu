@@ -156,6 +156,7 @@ function B24W( keys )
 				target:SetPhysicsVelocity((target:GetAbsOrigin() - dummy:GetAbsOrigin()):Normalized()*1000)
 				AMHC:Damage( caster,target,ability:GetLevelSpecialValueFor("Damage",ability:GetLevel()-1),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				target:AddNewModifier(caster,ability,"modifier_stunned",{duration=0.1})
+				target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 				local wcount = 0
 				Timers:CreateTimer(0.1, function()
 					if IsValidEntity(target) then
@@ -169,8 +170,10 @@ function B24W( keys )
 							FIND_ANY_ORDER,
 							false)
 						for _,it in pairs(its) do
-							target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*(1000 - wcount*150))
-							return nil
+							if it ~= dummy then
+								target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*(1000 - wcount*150))
+								return nil
+							end
 						end
 						wcount = wcount + 1
 						if (wcount > 5) then

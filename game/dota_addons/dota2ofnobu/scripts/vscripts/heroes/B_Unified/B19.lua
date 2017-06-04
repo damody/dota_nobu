@@ -229,6 +229,20 @@ function B19T_OnSpellStart( keys )
 			ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
 		end
 	end
+	
+	Timers:CreateTimer(0.1, function()
+			local enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetpos, nil, radius, 
+			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false )
+			if #enemies > 0 then
+				for i,wolf in pairs(wolfall) do
+					local order = {UnitIndex = wolf:entindex(),
+							OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+							TargetIndex = enemies[1]:entindex()}
+					ExecuteOrderFromTable(order)
+				end
+			end
+		end)
+	
 	local dummy = CreateUnitByName( "npc_dummy", targetpos, false, caster, caster, caster:GetTeamNumber() )
 	dummy:EmitSound( "A25E.spiked_carapace" )
 	Timers:CreateTimer( 0.5, function()

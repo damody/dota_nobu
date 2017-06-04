@@ -301,11 +301,6 @@
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_C04T"
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
-				"Function"	"C04T_END"
-			}
 		}
 		"OnChannelInterrupted"
 		{
@@ -313,11 +308,6 @@
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_C04T"
-			}
-			"RunScript"
-			{
-				"Function"	"C04T_END"
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
 			}
 		}
 		"Modifiers"
@@ -352,11 +342,6 @@
 					{
 						"Target"	"TARGET"
 						"EffectName"	"Ability.static.end"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
-						"Function"	"C04T_SE"
 					}
 					"FireSound"
 					{

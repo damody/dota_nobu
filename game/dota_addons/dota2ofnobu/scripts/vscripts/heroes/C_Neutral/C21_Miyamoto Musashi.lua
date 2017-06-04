@@ -136,7 +136,7 @@ function Trig_C21TActions( keys )
         	u2 = group[RandomInt(1,#group)]
         	if u2:HasModifier("modifier_majia") then
         		for _,xx in pairs(group) do
-        			if u2:HasModifier("modifier_majia") then
+        			if not u2:HasModifier("modifier_majia") then
         				u2 = xx
         				break
         			end
@@ -436,8 +436,10 @@ function C21R_old_crit_judgment( keys )
 	local ability = keys.ability
 	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
 	caster:RemoveModifierByName("modifier_C21R_old_critical_strike")
-		
-	if RandomInt(1,100)<=crit_chance then
+	if caster.C21Rcount == nil then caster.C21Rcount = 0 end
+	caster.C21Rcount = caster.C21Rcount + 1
+	if RandomInt(1,100)<=crit_chance or caster.C21Rcount > (100/crit_chance) then
+		caster.C21Rcount = 0
 		local rate = caster:GetAttackSpeed()+0.1
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21R_old_critical_strike",{duration=rate})
 		if rate < 1 then

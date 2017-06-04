@@ -187,7 +187,7 @@ function B13R_old( keys )
 	mine.caster = caster
 	mine:AddAbility("for_no_collision"):SetLevel(1)
 	mine:AddAbility("for_magic_immune"):SetLevel(1)
-	mine:AddNewModifier(caster,ability,"modifier_invisible",{})
+	--mine:AddNewModifier(caster,ability,"modifier_invisible",{})
 	mine:SetOwner(caster)
 	mine:SetBaseMaxHealth( ability:GetSpecialValueFor("B13R_old_hp") )
 	mine:SetHealth( mine:GetMaxHealth() )

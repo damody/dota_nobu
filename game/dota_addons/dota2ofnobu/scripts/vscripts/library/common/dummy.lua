@@ -112,6 +112,8 @@ _G.EXCLUDE_TARGET_NAME = {
   A26_MINE_hero = true,
   A26_MINE_school_hero = true,
   B17W_deathGuard_hero = true,
+  npc_dummy_unit = true,
+  npc_dummy_unit_Ver2 = true,
 }
 
 function CP_Posistion( keys )

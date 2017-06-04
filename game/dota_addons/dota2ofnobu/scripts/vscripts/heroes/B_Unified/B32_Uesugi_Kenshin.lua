@@ -11,7 +11,6 @@ function B32W( keys )
 	local order = {UnitIndex = caster:entindex(),
 					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 					TargetIndex = target:entindex()}
-
 	ExecuteOrderFromTable(order)
 end
 

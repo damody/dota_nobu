@@ -85,12 +85,15 @@ function Shock( keys )
 	for _,target in pairs(direUnits) do
 		ShockTarget(keys, target, 20)
 	end
-
 end
 
 function ShockTarget( keys, target, havetime )
 	local caster = keys.caster
 	local ability = keys.ability
+	local handle = target:FindModifierByName("modifier_devil_supressor_armor")
+	if handle then
+		ParticleManager:DestroyParticle(handle.shield_effect, false)
+	end
 	ability:ApplyDataDrivenModifier( caster, target, "modifier_devil_supressor_armor", {duration = havetime} )
 	target:FindModifierByName("modifier_devil_supressor_armor").caster = target
 	target:FindModifierByName("modifier_devil_supressor_armor").hp = target:GetHealth()

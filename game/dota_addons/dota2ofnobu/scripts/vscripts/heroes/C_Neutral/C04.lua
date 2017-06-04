@@ -108,6 +108,10 @@ function C04T( keys )
           	end)
 	Timers:CreateTimer(0.2, function ()
           if target ~= nil and IsValidEntity(target) and target:HasModifier("modifier_C04T") and caster:HasModifier("modifier_C04T2") and caster:IsChanneling() then
+          	--[[ 現在新版阿國的大絕被御守檔下後會重新再綁定
+          	if not target:HasModifier("modifier_C04T") then
+          		ability:ApplyDataDrivenModifier(caster,target,"modifier_C04T",{duration = 5})
+          	end]]
           	return 0.2
           else
           	if IsValidEntity(target) then
