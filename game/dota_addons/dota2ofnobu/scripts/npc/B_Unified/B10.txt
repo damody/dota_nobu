@@ -1,0 +1,879 @@
+//三好長慶
+"DOTAAbilities"
+{
+	"B10_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"particle"  "particles/b03w/b03w.vpcf" //w
+			"particle"  "particles/b03w/b03w2.vpcf" //w
+			"particle"  "particles/b03e/b03e.vpcf" //e
+			"particle"  "particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf" //r
+			"particle"  "particles/b03t/b03t.vpcf" //t
+			"particle"  "particles/b03t/b03t2.vpcf" //t
+			"particle"  "particles/b03w_old/b03w_old.vpcf" //w_old
+			"particle"  "particles/b03t_old/b03t_oldfallback_mid.vpcf" //t_old
+			"particle"  "particles/b03t_old/b03t_old2egset.vpcf" //t_old
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts" //t
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts" //w
+		}
+	}
+	//三好長慶 亡靈之怒	  完全複製果心的  緩速弄不出來 鬼魂攻擊力不知道  把C16.lua copy到B10.lua 鬼魂就消失了 所以都先用果心的 	
+	"B10W"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "custom/C16/C16R"
+
+		"AbilityCooldown"							"22"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"80 110 140 170"
+		"AOERadius"									"800"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spirits"				"1 2 3 4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spirit_speed"			"700"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_distance"			"800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"give_up_distance"		"1200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_damage"			"108 128 148 168"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"108 128 148 168"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_percent"				"25"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"average_damage"		"98"
+			}
+			// Extra
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"16"
+			}
+			"11"	
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay_between_spirits"		"0.1"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"min_time_between_attacks"	"0.5"
+			}
+		}		
+		
+
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_death_prophet/death_prophet_spirit_model.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_exorcism_attack_building.vpcf"
+			"particle"  "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C16.lua"
+				"Function"		"ExorcismDeath"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_exorcism"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Hero_DeathProphet.Exorcism.Cast"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_exorcism"
+			{
+				"IsHidden"	"0"
+				"IsPurgable"	"0"
+				"OnCreated"
+				{
+					
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C16.lua"
+						"Function"		"ExorcismStart"
+						"DummyName"		"C16E_ghost"
+					}
+
+					"FireSound"
+					{
+						"EffectName"	"Hero_DeathProphet.Exorcism"
+						"Target" 		"CASTER"
+					}
+				}
+
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C16.lua"
+						"Function"		"ExorcismAttack"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C16.lua"
+						"Function"		"ExorcismEnd"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C16.lua"
+						"Function"		"ExorcismEnd"
+					}
+				}
+			}
+
+			"modifier_exorcism_spirit"
+			{	
+				"OverrideAnimation"     "ACT_DOTA_RUN"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C16.lua"
+						"Function"		"ExorcismPhysics"
+					}
+
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"CASTER"	"attach_origin"
+						}
+					}
+				}
+		
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+    }
+	//亡骸之襲	  特效還沒改  用sf_fire_arcana_ambient_head 改黑色 不錯 不會條顏色
+	"B10E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A24/A24W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"16"
+		"AbilityManaCost"	"90 120 150 180"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/beastmaster/wild_axes.vsnd"
+			"soundfile"	"sounds/weapons/hero/beastmaster/attack03.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B34W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B10.lua"
+				"Function"	"B10E"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Beastmaster.Wild_Axes"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B10E"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"OnCreated"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%duration"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Beastmaster.Attack"
+					}
+				}
+				"Duration"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"0.8 1.4 2.0 2.6"
+			}
+		}
+		"AbilityDamage"	"100 150 200 250"
+	}
+	//魔性戰魂			只有靈氣攻速效果  吸血.鬼切效果沒弄出來
+	"B10R"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_67"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		
+		"AoERadius"	"900"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_atkspeed"			"20 30 40 50"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/b21/b21r_buff.vpcf" // 腳下光圈
+			"particle"  "particles/b21/b21r_old_buff_soft.vpcf" // 隊友buff光圈
+		}
+
+		"Modifiers"
+		{
+			"modifier_B10R_aura"
+			{
+				"Passive"			"1"
+
+				"Aura"	"modifier_B10R_buff"
+				"Aura_Radius"	"800"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster"	"0"
+			
+				"EffectName" "particles/b21/b21r_buff.vpcf"
+				"EffectAttachType"  "follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%add_atkspeed"
+				}
+			}
+
+			"modifier_B10R_buff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%add_atkspeed"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B10.lua"
+						"Function"		"B10R_buff_OnCreated"
+						"Target"		"TARGET"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B10.lua"
+						"Function"		"B10R_buff_OnDestroy"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+	}
+    //深淵之力	------------------------------只有扣防靈氣效果 	 補血功能	
+   
+	"B10T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_80"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"	"0"	
+		"HotKeyOverride"	"T"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCooldown"	"105"
+		"AbilityManaCost"	"185 205 225"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		"AbilityCastRangeBuffer"	"800"
+		"precache"
+		{
+			"particle"	"particles/dire_fx/dire_ancient_base001_destruction_l1.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A01T_old.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B10T_aura"				
+				
+			}
+		}
+		
+		"Modifiers"
+		{
+
+			"modifier_B10T_aura" 																//零氣
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"EffectName"		"particles/a01/a01t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Duration"	"42"
+				"ThinkInterval"  "0.5"
+				"OnCreated"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_B10T"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+				}
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_B10T"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_BASIC"
+						}
+					
+						"Action"    
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_B10T"
+								"Target" 		"TARGET"
+								"Duration"		"1"
+							}
+						}
+					}																
+				}
+			}
+			"modifier_B10T"
+			{
+				"Passive"	"0"
+				"EffectName"		"particles/a01/a01t_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{					
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
+				}
+			}
+			"modifier_B10T2"
+			{
+				"Passive"	"0"
+				"EffectName"		"particles/a01/a01t_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{					
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"				//-------------零氣
+				}
+			}
+			"modifier_B10T3"	//跑速 	
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"42"		
+
+				"Properties"
+				{				
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_bonus"
+				}
+			}			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor_reduction"	"-7 -10 -13"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"radius"	"800"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespeed_bonus"	"15 20 25"
+			}			
+		}
+	}	
+
+
+	//----------------------------------------------------------------------------------------------------------------------
+
+			//縮骨術	 不知道怎麼穿過建築 只有穿過小兵功用	
+
+	"B10W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/A33/A33T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"50 55 60 65"
+		
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"movespeed"		"15 20 25 30" // %
+			}	
+			"02"
+			{	"var_type"		"FIELD_INTEGER"	
+				"duration"		"15 16 17 18"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
+			"particle"  "particles/a02/a02e.vpcf"
+			"particle"  "particles/a02/a02e_bow.vpcf"
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B10W"
+			}
+		}
+		
+
+		"Modifiers"
+		{
+			"modifier_B10W"
+			{
+				"IsBuff"	"1"
+				"Duration"	"%duration"			
+				
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed"
+				}				
+			
+				"states"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//黑炎之襲	將闍炎附加於刀上，再砍向敵人。造成目標[100/200/300/400]傷害 並擊暈[0.5/1/1.5/2]秒。
+	//消耗法力[100/120/140/160]，等待時間15秒。
+	"B10E_old"	
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/A24/A24W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"15"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/beastmaster/wild_axes.vsnd"
+			"soundfile"	"sounds/weapons/hero/beastmaster/attack03.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B34W.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B10.lua"
+				"Function"	"B10E"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Beastmaster.Wild_Axes"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B10E"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"OnCreated"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%duration"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Beastmaster.Attack"
+					}
+				}
+				"Duration"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"0.8 1.4 2.0 2.6"
+			}
+		}
+		"AbilityDamage"	"100 150 200 250"
+	}
+	//武士戰魂		增加 900範圍內的友軍[2/4/6/8]%移動速度、[15/20/25/30]%攻擊速度。
+	"B10R_old"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_67"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		
+		"AoERadius"	"900"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_atkspeed"			"15 20 25 30"
+			}
+			"02"
+			{
+				"vsr_type"			"FIELD_INTEGER"
+				"add_movespeed"			"2 4 6 8"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/b21/b21r_buff.vpcf" // 腳下光圈
+			"particle"  "particles/b21/b21r_old_buff_soft.vpcf" // 隊友buff光圈
+		}
+
+		"Modifiers"
+		{
+			"modifier_B10R_aura"
+			{
+				"Passive"			"1"
+
+				"Aura"	"modifier_B10R_buff"
+				"Aura_Radius"	"800"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster"	"0"
+			
+				"EffectName" "particles/b21/b21r_buff.vpcf"
+				"EffectAttachType"  "follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%add_atkspeed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%add_movespeed"
+				}
+			}
+
+			"modifier_B10R_buff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%add_atkspeed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%add_movespeed"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B10.lua"
+						"Function"		"B10R_buff_OnCreated"
+						"Target"		"TARGET"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B10.lua"
+						"Function"		"B10R_buff_OnDestroy"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+	}
+
+
+	// 深淵之力		
+	"B10T_old"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_80"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AbilityCooldown"	"135"
+		"AbilityManaCost"	"250 310 370"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		"AbilityCastRangeBuffer"	"250"
+		"precache"
+		{
+			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06W.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A06W"
+				"Duration"	"%B10T_Duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A06W"
+			{
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%atkspeed"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%atk"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"10 20 30"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"80 100 130"
+				}
+				"States"	{}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsPurgable"	"1"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"B10T_Duration"	"25 25 25"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespeed"	"10 20 30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk"	"10 20 30"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"ADD_AGI"	"80 100 130"
+			}
+			"05"
+			{
+				"var_type" "FIELD_INTEGER"
+				"atkspeed"	"40 70 100"
+			}
+		}
+	}	
+}
