@@ -123,13 +123,13 @@ function A01R_OnSpellStart( keys )
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),			-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		radius,			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	caster:EmitSound("ITEM_D09.sound")
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
@@ -160,13 +160,13 @@ function A01R_OnAttackLanded( keys )
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),			-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		radius,			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	caster:EmitSound("ITEM_D09.sound")
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
@@ -201,13 +201,13 @@ function A01R_old_OnAttackLanded( keys )
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),			-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		radius,			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	caster:EmitSound("ITEM_D09.sound")
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do

@@ -38,13 +38,13 @@ function A14W_OnSpellStart( event )
 				target:SetPhysicsVelocity(Vector(0,0,0))
 				local unitss = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				target:GetAbsOrigin(),							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				350,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
 				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 				FIND_ANY_ORDER,					-- 結果的排列方式
-				false) 							-- 好像是優化用的參數不懂怎麼用
+				false)
 				AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
 				for _a,unit2 in ipairs(unitss) do
 					local damageTable = {victim=unit2,   
@@ -62,13 +62,13 @@ function A14W_OnSpellStart( event )
 		end
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin()+targetvec,							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		300,					-- 搜尋半徑
 		DOTA_UNIT_TARGET_TEAM_BOTH,	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 		for _,unit in ipairs(units) do
 			if (unit~=target and CalcDistanceBetweenEntityOBB(unit,target)<=100)or timecounter==80 or target:GetPhysicsVelocity():Length()<100 then
 				StartSoundEvent( "A07T.attack", target )
@@ -77,13 +77,13 @@ function A14W_OnSpellStart( event )
 				target:SetPhysicsVelocity(Vector(0,0,0))
 				local unitss = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				target:GetAbsOrigin(),							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				350,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
 				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 				FIND_ANY_ORDER,					-- 結果的排列方式
-				false) 							-- 好像是優化用的參數不懂怎麼用
+				false)
 				AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
 				target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
 				FindClearSpaceForUnit(target, target:GetAbsOrigin(), false)
@@ -229,13 +229,13 @@ function A14W_old_OnSpellStart( event )
 		end
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin()+targetvec,							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		250,					-- 搜尋半徑
 		DOTA_UNIT_TARGET_TEAM_BOTH,	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 		print("target:GetPhysicsVelocity():Length()", target:GetPhysicsVelocity():Length())
 		if (timecounter<80 and target:GetPhysicsVelocity():Length()<100) then
 			ApplyDamage(damageTable)
@@ -319,13 +319,13 @@ function A14E_old_DelayedAction( keys )
 	
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		300,					-- 搜尋半徑
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 		for _,unit in ipairs(units) do
 			if  (not unit:IsBuilding()) then
 				unit:Stop()

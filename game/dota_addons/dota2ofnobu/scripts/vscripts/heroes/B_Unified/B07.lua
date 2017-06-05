@@ -22,7 +22,7 @@ function B07W_OnSpellStart( keys )
 				second = second + 1
 				local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 						casterLocation,							-- 搜尋的中心點
-						nil, 							-- 好像是優化用的參數不懂怎麼用
+						nil,
 						radius,					-- 搜尋半徑
 						ability:GetAbilityTargetTeam(),	-- 目標隊伍
 						ability:GetAbilityTargetType(),	-- 目標類型
@@ -144,7 +144,7 @@ function B07T_OnSpellStart(keys)
 		if caster:IsChanneling() then
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				caster:GetAbsOrigin(),							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
@@ -282,7 +282,7 @@ function B07R_old_OnSpellStart( keys )
 	Timers:CreateTimer(0.5, function()
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				pos,							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
@@ -311,7 +311,7 @@ function B07T_old_OnSpellStart(keys)
 		if caster:IsChanneling() then
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				caster:GetAbsOrigin(),							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型

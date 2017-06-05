@@ -73,7 +73,7 @@ function B18E_OnIntervalThink( keys )
 	if caster.B18E <= 9 then
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				caster:GetAbsOrigin(),							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
@@ -89,7 +89,7 @@ function B18E_OnIntervalThink( keys )
 			end)
 			local units2 = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				unit:GetAbsOrigin(),							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius2,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
@@ -129,7 +129,7 @@ function B18T_OnAttackLanded( keys )
 	local dmg = ability:GetSpecialValueFor("dmg")
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			caster:GetAbsOrigin(),							-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			radius,					-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -210,7 +210,7 @@ function B18E_old_OnSpellStart(keys)
 		poke_pos = start_pos + dir*distance*tsum
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			poke_pos,							-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			200,					-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型

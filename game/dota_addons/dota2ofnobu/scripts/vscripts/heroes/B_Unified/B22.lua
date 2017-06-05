@@ -127,13 +127,13 @@ function B22T_OnSpellStart( keys )
 				ParticleManager:SetParticleControl(ifx, 0, dummy:GetAbsOrigin())
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				dummy:GetAbsOrigin(),			-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,			-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
 				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 				FIND_ANY_ORDER,					-- 結果的排列方式
-				false) 							-- 好像是優化用的參數不懂怎麼用
+				false)
 			dummy:Destroy()
 			-- 處理搜尋結果
 			for _,unit in ipairs(units) do
@@ -274,13 +274,13 @@ function B22T_old_OnSpellStart( keys )
 			dummy:EmitSound("B22T.sound1")
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				point,			-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,			-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
 				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 				FIND_ANY_ORDER,					-- 結果的排列方式
-				false) 							-- 好像是優化用的參數不懂怎麼用
+				false)
 
 			-- 處理搜尋結果
 			for _,unit in ipairs(units) do

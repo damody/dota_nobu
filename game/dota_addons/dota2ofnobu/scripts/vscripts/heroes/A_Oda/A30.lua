@@ -65,7 +65,7 @@ function A30E_OnSpellStart(keys)
 		poke_pos = start_pos + dir*distance*tsum
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			poke_pos,							-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			200,					-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -114,7 +114,7 @@ function A30R_OnAttackLanded(keys)
 	Timers:CreateTimer(0, function()
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			targetpos,							-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			radius,					-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -170,7 +170,7 @@ function A30T_OnSpellStart(keys)
 	        AddFOWViewer(DOTA_TEAM_BADGUYS, targetpos, 300, 1, false)
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				targetpos,							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
@@ -238,7 +238,7 @@ function A30E_old_OnSpellStart(keys)
 		poke_pos = start_pos + dir*distance*tsum
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			poke_pos,							-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			200,					-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -296,7 +296,7 @@ function A30R_old_OnAttackLanded(keys)
 	Timers:CreateTimer(0, function()
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			targetpos,							-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			radius,					-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -349,7 +349,7 @@ function A30T_old_OnSpellStart(keys)
 	        AddFOWViewer(DOTA_TEAM_BADGUYS, targetpos, 300, 1, false)
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				targetpos,							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				radius,					-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型

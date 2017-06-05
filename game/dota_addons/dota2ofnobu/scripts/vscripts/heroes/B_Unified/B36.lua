@@ -55,13 +55,13 @@ function B36E_OnSpellStart( keys )
 	local ability = keys.ability
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		ability:GetSpecialValueFor("radius"),					-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	local counter=0
 	for _,unit in ipairs(units) do
 		if unit ~= caster and unit:IsRealHero() then
@@ -129,13 +129,13 @@ function B36R_OnSpellStart( event )
 	
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),			-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		ability:GetCastRange(),			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	for _,unit in pairs(units) do
 		B36R_Dmage(event, unit)
 	end
@@ -232,25 +232,25 @@ function B36E_old_OnIntervalThink( keys )
 	local ability = keys.ability
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		ability:GetSpecialValueFor("radius"),					-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	for _,unit in ipairs(units) do
 		AMHC:Damage(caster,unit,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 	units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		ability:GetSpecialValueFor("radius2"),					-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	if #units > 0 then
 		local v = units[RandomInt(1,#units)]
 		local split_shot_projectile = "particles/b36/b36e_old.vpcf"

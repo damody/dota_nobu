@@ -46,7 +46,7 @@ function C24E_OnSpellStart( keys )
 		-- 搜尋
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			point,			-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			300,			-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -77,7 +77,7 @@ function C24E_OnAttackLanded( keys )
 		caster.C24E = 0
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			caster:GetAbsOrigin(),			-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			300,			-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型

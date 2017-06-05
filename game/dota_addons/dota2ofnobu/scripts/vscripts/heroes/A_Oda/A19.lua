@@ -22,7 +22,7 @@ function A19W_OnSpellStart( keys )
 		-- 搜尋
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			point,			-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			450,			-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -55,7 +55,7 @@ function A19W_OnSpellStart( keys )
 		-- 搜尋
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			point,			-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			450,			-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -78,13 +78,13 @@ function A19E_OnProjectileHitUnit( keys )
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		450,			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
@@ -104,13 +104,13 @@ function A19R_OnAbilityExecuted( keys )
 	if keys.event_ability:IsToggle() then return end
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		ability:GetCastRange(),			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	local dmgx = caster:GetIntellect() * dmg
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
@@ -263,7 +263,7 @@ function A19W_old_OnSpellStart( keys )
 		-- 搜尋
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			point,			-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			450,			-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -295,7 +295,7 @@ function A19W_old_OnSpellStart( keys )
 		-- 搜尋
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 			point,			-- 搜尋的中心點
-			nil, 							-- 好像是優化用的參數不懂怎麼用
+			nil,
 			450,			-- 搜尋半徑
 			ability:GetAbilityTargetTeam(),	-- 目標隊伍
 			ability:GetAbilityTargetType(),	-- 目標類型
@@ -331,13 +331,13 @@ function A19E_old_OnProjectileHitUnit( keys )
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		250,			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
@@ -383,13 +383,13 @@ function A19R_old_OnDeath( keys )
 	local dmg = ability:GetSpecialValueFor("dmg2")
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin(),							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		400,			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
 		AMHC:Damage(caster,unit, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )

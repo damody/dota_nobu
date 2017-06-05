@@ -27,13 +27,13 @@ function DealDamage( keys )
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		target:GetAbsOrigin(),			-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		aoe_radius,						-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 
 	-- 傷害資訊
 	local damage_table = {

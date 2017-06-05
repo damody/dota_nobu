@@ -40,13 +40,13 @@ function C03E_OnSpellStart( keys )
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		center,							-- 搜尋的中心點
-		nil, 							-- 好像是優化用的參數不懂怎麼用
+		nil,
 		ability:GetCastRange(),			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		ability:GetAbilityTargetType(),	-- 目標類型
 		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
-		false) 							-- 好像是優化用的參數不懂怎麼用
+		false)
 
 	local damage_table = {
 		--victim = unit,
@@ -162,13 +162,13 @@ function C03T_OnSpellStart( keys )
 			-- 搜尋
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				pos,							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				500,			-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
 				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 				FIND_ANY_ORDER,					-- 結果的排列方式
-				false) 							-- 好像是優化用的參數不懂怎麼用
+				false)
 
 			local damage_table = {
 				--victim = unit,
@@ -250,13 +250,13 @@ function C03T_old_OnSpellStart( keys )
 			-- 搜尋
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 				pos,							-- 搜尋的中心點
-				nil, 							-- 好像是優化用的參數不懂怎麼用
+				nil,
 				500,			-- 搜尋半徑
 				ability:GetAbilityTargetTeam(),	-- 目標隊伍
 				ability:GetAbilityTargetType(),	-- 目標類型
 				ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
 				FIND_ANY_ORDER,					-- 結果的排列方式
-				false) 							-- 好像是優化用的參數不懂怎麼用
+				false)
 
 			local damage_table = {
 				--victim = unit,
