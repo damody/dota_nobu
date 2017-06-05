@@ -1,0 +1,470 @@
+//前野長康
+
+//地刺 圖"custom/A25E"
+"DOTAAbilities"
+{
+	"A36_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/b02.vsndevts"
+		}
+	}
+	//前野長康 風行步	
+	"A36W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B14/B14R"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"8 7 6 5"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"60 85 110 135"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B02W_old.vo1"
+			}
+			"FireEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+				"Target"	"CASTER"
+				"EffectAttachType"	"attach_origin"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_BountyHunter.WindWalk"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_wind_walk_datadriven"
+				"Duration"	"%duration"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_invisible"
+				"Duration"	"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_wind_walk_datadriven"
+			{
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_oda/A36.lua"
+						"Function"	"A36W_first_hit"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed"
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fade_time"	"0.1"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"6 6 6 6"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"120 200 280 360"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"speed"	"10 10 10 10"
+			}
+		}
+	}
+	
+	
+	//前野長康 尖刺陷阱  在指定的地點放置一個地刺陷阱，陷阱為隱形，可以手動觸發，當觸發時對陷阱其上的敵人造成(200/300/400/500)傷害，並且減緩35%移動速度，場上最多可以同時存在(2/4/6/8)個陷阱。
+	//不知道怎把地雷爆炸效果拿掉、地雷增加技能
+	"A36E"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"                	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                       	"custom/A25E"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"							"8"
+		"AbilityCastPoint"							"0"
+		"AbilityManaCost"                      		"80 100 120 140"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"							"B13R_old"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_B13R_old_detectorAura"
+			{
+				"IsHidden"									"0"
+				"Aura" 										"modifier_B13R_old_explosion"
+		        "Aura_Radius" 								"%B13R_old_radius_detector"
+		        "Aura_Teams" 								"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		        "Aura_Types" 								"DOTA_UNIT_TARGET_HERO"
+		        "Aura_Flags" 								"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		        "Aura_ApplyToCaster" 						"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" 	"%B13R_old_radius_detector" // 把地雷的攻擊距離拿來顯示爆炸範圍
+				}
+				"States"
+				{	
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_B13R_old_explosion"
+			{
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A36.lua"
+						"Function"		"B13R_old_explosion"
+					}
+				}
+			}
+			"modifier_B13R_old_rooted"
+			{
+				"IsHidden"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_damage"					"300 600 900 1200"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_hp"						"500 500 500"
+			}
+			"03" //爆炸範圍
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_radius_explosion"			"300"
+			}
+			"04" //觸發範圍
+			{
+				"var_type"							"FIELD_INTEGER"
+				"B13R_old_radius_detector"			"250"
+			}
+		}
+    }
+	// 穿刺  500HP 6armor 本想看石川數正小鹿 結果卻找不到a03.lua
+	"A36EW"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/A25E"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"200"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AOERadius" 					"400"
+		"AbilityDamage"					"400"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"	"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"movespeed"			"35"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A03TW_old"
+			{
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_A03"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
+					"CleaveAttack"
+					{
+						"CleavePercent"	"0"
+						"CleaveRadius"	"%radius"
+					}
+				}
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A36.lua"
+				"Function"		"A36EW_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+		}
+	}
+
+	//前野長康 苦楚秘釀-----------------------------------------------無敵弄不出來 不知道lua寫錯 還是在這邊放錯位置
+	"A36R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			 "custom/B03/B03T"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilityCooldown"				"26 24 22 20"
+		"AbilityManaCost"				"130 150 170 190"
+		"HotKeyOverride"	"R"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"buff_duration"			"4.5"
+			}			
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_attack_speed"		"25 40 55 70"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"hp_hold"			"0.06 0.12 0.18"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/world_shrine/radiant_shrine_regen.vpcf"
+			"particle"  "particles/items_fx/armlet.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C05W.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A36R_buff"
+			}
+			"RunScript"
+			{
+				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A36.lua"
+				"Function"							"A36R_invulnerable"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_A36R_buff"
+			{
+				"IsBuff"			"1"
+
+				"EffectName" "particles/items_fx/armlet.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Duration"		"%buff_duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/world_shrine/radiant_shrine_regen.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"            "TARGET"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+				}
+			}
+			"modifier_A36R_invulnerable"	//無敵
+			{
+				"Properties"
+				{
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A36.lua"
+						"Function"							"A36R_invulnerable"
+					}
+				}
+			}			
+		}
+	}
+
+	//前野長康 奪命攻擊--------------------------------------------------------------------------------------------------------------------------------
+	//沒有無視魔免暈 
+	"A36T"	
+		{
+		
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"	
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                        "dota2/b11_r"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		
+		"Modifiers"
+		{
+			"modifier_A36T_passive"
+            {
+            	"Passive" "1"
+            	"OnAttackLanded"
+            	{
+            		"Random"
+            		{
+            			"Chance"			"%A36T_chance"
+            			"OnSuccess"
+            			{
+            				"RunScript"
+            				{
+            					"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A36.lua"
+								"Function"							"A36T_OnAttackLanded"
+            				}
+            			}
+            		}
+            	}
+            }
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"A36T_chance"               "15"
+			}
+			"02"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"A36T_damage"          		"150 200 250"
+			}
+			"03"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"A36T_stunDuration"         "0.8 1.0 1.2"
+			}
+		}
+    }	
+} // DOTAAbilities end
