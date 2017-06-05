@@ -221,7 +221,6 @@ function A05T_old_OnTakeDamage( event )
 			local caster =ability:GetCaster()
 			local A05T_old = caster:FindAbilityByName("A05T_old")
 			if damage > caster:GetHealth() and not caster:IsIllusion() and A05T_old:IsCooldownReady() then
-				caster:StartGestureWithPlaybackRate(ACT_DOTA_DIE,2)
 				caster:SetHealth(caster:GetMaxHealth())
 				caster:SetMana(caster:GetMaxMana())
 				local am = caster:FindAllModifiers()

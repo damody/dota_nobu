@@ -1,70 +1,78 @@
-function A29W_init_damage( keys )
-	if keys.ability then
-		local damage = keys.ability:GetSpecialValueFor("damage")
-		local target = keys.target
-		AMHC:CreateNumberEffect( target,damage,2,AMHC.MSG_POISION,"green",5 )
-	end
-end
-
-function A29W_debuff( keys )
-	if keys.ability then
-		local damage = keys.ability:GetSpecialValueFor("debuff_damage")
-		local target = keys.target
-		AMHC:CreateNumberEffect( target,damage,2,AMHC.MSG_POISION,"green",5 )
-	end
-end
-
-function A29R_mana_lost( keys )
+function B10E( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local i = keys.ability:GetLevel() - 1
-	local current_mana = caster:GetMana()
-	local manalost =  math.min( current_mana, keys.ability:GetLevelSpecialValueFor("mana_lost", i) )
-	if keys.unit:IsMagicImmune() then
-		keys.unit:ReduceMana(manalost*0.5)
-	else
-		keys.unit:ReduceMana(manalost)
-	end
-	ability:ApplyDataDrivenModifier(caster,keys.unit,"modifier_A29R_3",{duration = 5})
+	local target = keys.target
+	local point   = caster:GetAbsOrigin()
+	local point2  = target:GetAbsOrigin()
+	local vec = nobu_atan2( point2,point )
+	local distance = 35
+
+	local temp_point = nobu_move( point, point2 , distance )
+
+	local particle = ParticleManager:CreateParticle("particles/b10/b10e.vpcf",PATTACH_POINT,target)
+	ParticleManager:SetParticleControl(particle,0,point)
+	ParticleManager:SetParticleControl(particle,2,Vector(0,0,10))
+
+	Timers:CreateTimer(function()
+		point2  = target:GetAbsOrigin()
+        temp_point = nobu_move( temp_point, point2 , distance )
+
+        --temp_point = nobu_move_ver2( temp_point , distance ,RandomFloat(0,-30))
+
+        --print(nobu_radtodeg(math.atan2(point2.y-point.y,point2.x-point.x)))
+
+		if nobu_distance( temp_point,point2 ) < 50  or not target:IsAlive()  then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_B10E",nil)
+			ParticleManager:DestroyParticle(particle,false)
+
+			--print("Stop")
+			return nil
+		else
+			ParticleManager:SetParticleControl(particle,0,temp_point)
+			return 0.01
+		end
+	end)
 end
 
-function A29R_debuff( keys )
-	local caster = keys.caster
+function B10R_buff_OnCreated( keys )
+	local target = keys.target
+	local ifx = ParticleManager:CreateParticle("particles/b21/b21r_old_buff_soft.vpcf",PATTACH_ABSORIGIN_FOLLOW,target)
+	ParticleManager:SetParticleControl(ifx,1,Vector(target:BoundingRadius2D()*4))
+	target.ifx_B21R_old_buff = ifx
+end
+
+function B10R_buff_OnDestroy( keys )
+	local target = keys.target
+	ParticleManager:DestroyParticle(target.ifx_B21R_old_buff,false)
+end
+
+
+function b10T3_OnIntervalThink( keys )
 	local ability = keys.ability
-	if caster:IsAlive() then
-		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  1400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-		for _,enemy in pairs(group) do
-			if enemy:IsMagicImmune() then
-				ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_2",{duration = 1})
+	local target = keys.target
+	local caster = keys.caster
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				caster:RemoveModifierByName(v:GetName())
 			end
 		end
 	end
 end
 
-function A29R_old_debuff( keys )
-	local caster = keys.caster
-	local ability = keys.ability
-	if caster:IsAlive() then
-		local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  1200 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-		for _,enemy in pairs(group) do
-			if enemy:IsMagicImmune() then
-				ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old_debuff",{duration = 1})
-			else
-				local ss = enemy:GetMana()/enemy:GetMaxMana()
-				local stack = 5 - math.floor(ss*10)
-				if stack > 0 then
-					ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A29R_old",{duration = 1})
-					local handle = enemy:FindModifierByName("modifier_A29R_old")
-					handle:SetStackCount(stack)
-				end
-			end
-		end
-	end
+function B10T_heal( event )
+	local ability = event.ability	
+	local caster = event.caster
+	caster:Heal(caster:GetMaxHealth(),ability)
 end
+
+function B10T_regen( event )
+	local ability = event.ability	
+	local caster = event.caster
+	caster:Heal(caster:GetMaxHealth()*0.75,ability)
+end
+
 
 function ExorcismStart( event )
 	local caster = event.caster
@@ -78,13 +86,12 @@ function ExorcismStart( event )
 
 	-- Initialize the table to keep track of all spirits
 	ability.spirits = {}
-	--print("Spawning "..spirits.." spirits")
 	for i=1,spirits do
 		Timers:CreateTimer(i * delay_between_spirits, function()
 			if (caster:IsAlive()) then
 				-- local unit = CreateUnitByName(unit_name, caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 				local unit = CreateUnitByName(unit_name, caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
-
+				unit:SetRenderColor(RandomInt(1,255), RandomInt(1,255), RandomInt(1,255))
 				-- The modifier takes care of the physics and logic
 				ability:ApplyDataDrivenModifier(caster, unit, "modifier_exorcism_spirit", {})
 				
@@ -197,7 +204,7 @@ function ExorcismPhysics( event )
 		local enemies = nil
 
 		-- Use this if skipping frames is needed (--if frameCount == 0 then..)
-		frameCount = (frameCount + 1) % 3
+		frameCount = (frameCount + 1) % 2
 		if frameCount == 0 then
 			-- Movement and Collision detection are state independent
 
@@ -222,10 +229,9 @@ function ExorcismPhysics( event )
 				local newVel = RotatePosition(Vector(0,0,0), QAngle(0,-10,0), unit:GetPhysicsVelocity())
 				unit:SetPhysicsVelocity(newVel)
 			end
-		
 			-- COLLISION CHECK
 			local distance = (point - current_position):Length()
-			local collision = distance < 300
+			local collision = distance < 200
 
 			-- MAX DISTANCE CHECK
 			local distance_to_caster = (source - current_position):Length()
@@ -254,7 +260,7 @@ function ExorcismPhysics( event )
 				if time_between_last_attack >= min_time_between_attacks then
 					-- If the unit doesn't have a target locked, find enemies near the caster
 					enemies = FindUnitsInRadius(caster:GetTeamNumber(), source, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, 
-												  abilityTargetType, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+												  abilityTargetType, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
 
 					-- Check the possible enemies
 					-- Focus the last attacked target if there's any
@@ -278,7 +284,7 @@ function ExorcismPhysics( event )
 						unit.state = "target_acquired"
 						unit.current_target = target_enemy
 						point = unit.current_target:GetAbsOrigin()
-						--print("Acquiring -> Enemy Target acquired: "..unit.current_target:GetUnitName())
+						print("Acquiring -> Enemy Target acquired: "..unit.current_target:GetUnitName())
 
 					-- If no enemies, set the unit to collide with a random idle point.
 					else
@@ -300,7 +306,7 @@ function ExorcismPhysics( event )
 					point = source + RandomVector(RandomInt(radius/2, radius))
 					point.z = GetGroundHeight(point,nil)
 					
-					--print("Waiting for attack time. Acquiring -> Random Point Target acquired")
+					print("Waiting for attack time. Acquiring -> Random Point Target acquired")
 					if Debug then DebugDrawCircle(point, idleColor, 100, 25, true, draw_duration) end
 				end
 
@@ -338,6 +344,7 @@ function ExorcismPhysics( event )
 							damage_table.damage = spirit_damage
 
 							ApplyDamage(damage_table)
+							ability:ApplyDataDrivenModifier(caster,unit.current_target,"modifier_B10W_slow",{})
 
 							-- Calculate how much physical damage was dealt
 							local targetArmor = unit.current_target:GetPhysicalArmorValue()
@@ -396,10 +403,6 @@ function ExorcismPhysics( event )
 
 				if collision then 
 					unit.state = "acquiring"
-					local heal_done =  unit.numberOfHits * average_damage* heal_percent
-					caster:Heal(heal_done, ability)
-					caster:EmitSound("Hero_DeathProphet.Exorcism.Heal")
-					unit.numberOfHits = 0
 				end	
 
 			-- if set the state to end, the point is also the caster position, but the units will be removed on collision
@@ -431,7 +434,6 @@ function ExorcismEnd( event )
 	local ability = event.ability
 	local targets = ability.spirits
 
-	--print("Exorcism End")
 	caster:StopSound("Hero_DeathProphet.Exorcism")
 	for _,unit in pairs(targets) do		
 	   	if unit and IsValidEntity(unit) then
@@ -458,7 +460,6 @@ function ExorcismDeath( event )
 	local ability = event.ability
 	local targets = ability.spirits or {}
 
-	--print("Exorcism Death")
 	caster:StopSound("Hero_DeathProphet.Exorcism")
 	for _,unit in pairs(targets) do		
 	   	if unit and IsValidEntity(unit) then
@@ -472,17 +473,21 @@ function ExorcismDeath( event )
 	end
 end
 
--- 11.2B
-----------------------------------------------------------------------------------------------
-
-function ExorcismAttack_old( keys )
-	local ability = keys.ability
+function B10R_OnAttackLanded( keys )
+	local caster = keys.caster
 	local target = keys.target
-
-	ability.last_targeted = target
-
-	if ability.aim_effect ~= nil then
-		ParticleManager:DestroyParticle(ability.aim_effect,false)
+	local ability = keys.ability
+	local cut = ability:GetSpecialValueFor("cut")
+	local rnd = RandomInt(1,100)
+	if caster.B10R == nil then caster.B10R = 0 end
+	caster.B10R = caster.B10R + 1
+	if cut < rnd and caster.B10R > 5 then
+		caster.B10R = 0
+		caster:Heal(ability:GetAbilityDamage(),ability)
+		if target:IsMagicImmune() then
+			AMHC:Damage( caster,target,ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		else
+			AMHC:Damage( caster,target,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
 	end
-	ability.aim_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_sniper/sniper_crosshair_c.vpcf",PATTACH_OVERHEAD_FOLLOW,target)
 end
