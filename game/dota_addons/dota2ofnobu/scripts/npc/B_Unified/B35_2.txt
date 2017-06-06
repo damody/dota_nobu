@@ -1,25 +1,26 @@
 "DOTAHeroes"
 {
-	// 柳生宗嚴
-	"C24"
+	// 上泉
+	"B35"
 	{
 		// General
 		// ----------------------------------------------------------------
-		"ModelScale"	"1.6"
+		"ModelScale"	"1.4"
+		"override_hero"	"npc_dota_hero_faceless_void"	
 		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"
 		// Abilities
 		// ---------------
-		"Ability1"	"C24W"
-		"Ability2"	"C24E"
-		"Ability3"	"C24R"
+		"Ability1"	"B35W_old"
+		"Ability2"	"B35E_old"
+		"Ability3"	"B35R_old"
 		"Ability4"	"attribute_bonusx"
-		"Ability5"	"C24T"
-		"Ability6"	"C24_precache"
+		"Ability5"	"B35T_old"
+		"Ability6"	"B35_precache"
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"4"
+		"ArmorPhysical"	"7"
 		"MagicalResistance"	"30"
 		// Attack
 		// ----------------------------------------------------------------
@@ -34,13 +35,13 @@
 		"ProjectileSpeed"	"10000"
 		// Attributes
 		// ----------------------------------------------------------------
-		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"	"42"
-		"AttributeStrengthGain"	"2.9"
-		"AttributeBaseAgility"	"23"
-		"AttributeAgilityGain"	"1.8"
-		"AttributeBaseIntelligence"	"26"
-		"AttributeIntelligenceGain"	"1.9"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"29"
+		"AttributeStrengthGain"	"2.1"
+		"AttributeBaseAgility"	"33"
+		"AttributeAgilityGain"	"2.7"
+		"AttributeBaseIntelligence"	"23"
+		"AttributeIntelligenceGain"	"2"
 		// Bounty
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"300.0"
@@ -80,9 +81,7 @@
 		"Ability13"	""
 		"Ability14"	""
 		"Ability15"	""
-		"Ability16"	""
-		"override_hero"	"npc_dota_hero_batrider"
-		"Model"	"models/c24/c24.vmdl"
-		"DisableWearables"	"1"
+		"Ability16"	""	
+		//"DisableWearables"	"1"
 	}	
 }
