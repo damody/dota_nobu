@@ -10,35 +10,54 @@ function A36W_first_hit( keys )
 	AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 end
 
-function B13R_old( keys )
+function A36E_OnSpellStart( keys )
 	local caster = keys.caster
-	local center = caster:GetAbsOrigin()
+	local center = keys.target_points[1]
 	local ability = keys.ability
+	local maxc = ability:GetSpecialValueFor("maxc")
+	local lA36E = {}
+	if caster.A36E == nil then caster.A36E = {} end
+	for i,v in pairs(caster.A36E) do
+		if IsValidEntity(v) and v:IsAlive() then
+			table.insert(lA36E, v)
+		end
+	end
+	
+ 	local player = caster:GetPlayerID()
+ 	local mine = CreateUnitByName("B13_MINE_hero", center, false, caster, caster, caster:GetTeamNumber())
+ 	caster.A36E = {}
+ 	if #lA36E >= maxc then
+		lA36E[1]:ForceKill(true)
+		for i=2,#lA36E do
+			table.insert(caster.A36E, lA36E[i])
+		end
+	else
+		caster.A36E = lA36E
+	end
+	table.insert(caster.A36E, mine)
 
-	local active_delay = 0
-	local mine = CreateUnitByName("B13_MINE_hero", center, false, caster, caster, caster:GetTeamNumber())
+	local active_delay = 1.5
 	mine:RemoveModifierByName("modifier_invulnerable")
 	mine.caster = caster
 	mine:AddAbility("for_no_collision"):SetLevel(1)
 	mine:AddAbility("for_magic_immune"):SetLevel(1)
-	mine:AddNewModifier(caster,ability,"modifier_invisible",{})
 	mine:SetOwner(caster)
-	mine:SetBaseMaxHealth( ability:GetSpecialValueFor("B13R_old_hp") )
+	mine:SetBaseMaxHealth( ability:GetSpecialValueFor("A36E_hp") )
 	mine:SetHealth( mine:GetMaxHealth() )
-	ability:ApplyDataDrivenModifier(caster,mine,"modifier_B13R_old_rooted",{})
+	ability:ApplyDataDrivenModifier(caster,mine,"modifier_A36E_rooted",{})
 	Timers:CreateTimer( active_delay, function()
 		if IsValidEntity(mine) and mine:IsAlive() then
-			ability:ApplyDataDrivenModifier( mine, mine,"modifier_B13R_old_detectorAura", nil )
+			ability:ApplyDataDrivenModifier( mine, mine,"modifier_A36E_detectorAura", nil )
 		end
 	end)
 end
 
 --old地雷爆炸 ref A26D
-function B13R_old_explosion( keys )
+function A36E_explosion( keys )
 	local caster = keys.caster -- mine
 	local ccaster = caster.caster -- caster
 	local ability = keys.ability
-	local radius_explosion = ability:GetSpecialValueFor("B13R_old_radius_explosion")
+	local radius_explosion = ability:GetSpecialValueFor("A36E_radius_explosion")
 
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
@@ -58,10 +77,11 @@ function B13R_old_explosion( keys )
 			victim = unit,
 			attacker = caster,
 			ability = ability,
-			damage = ability:GetSpecialValueFor("B13R_old_damage"),
+			damage = ability:GetSpecialValueFor("A36E_damage"),
 			damage_type = ability:GetAbilityDamageType(),
 			damage_flags = DOTA_DAMAGE_FLAG_NONE
 		}
+		ability:ApplyDataDrivenModifier(caster,unit,"modifier_A36E_slow",{})
 		if unit:IsHero() then
 			damageTable.damage = damageTable.damage
 		end
@@ -80,9 +100,9 @@ function B13R_old_explosion( keys )
 	ParticleManager:SetParticleControl(ifx,2,Vector(1,0,0))
 	ParticleManager:ReleaseParticleIndex(ifx)
 
-	caster:RemoveModifierByName("modifier_B13R_old_detectorAura")
+	caster:RemoveModifierByName("modifier_A36E_detectorAura")
 	for _,unit in ipairs(units) do
-		unit:RemoveModifierByName("modifier_B13R_old_explosion")
+		unit:RemoveModifierByName("modifier_A36E_explosion")
 	end
 	caster:ForceKill(true)
 end
@@ -96,9 +116,6 @@ function A36R_invulnerable( keys )
 		caster:SetHealth(caster:GetMaxHealth()*hp_hold)
 	end
 end
-
-
-
 
 function A36T_OnAttackLanded( keys )
 	local target = keys.target

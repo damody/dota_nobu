@@ -27,12 +27,14 @@ function B29W_OnSpellStart( event )
 			ApplyDamage(damageTable)
 		end
 	end
+	StartSoundEvent("Hero_ElderTitan.EarthSplitter.Cast",caster)
 end
 function B29E_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local center = caster:GetAbsOrigin()
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END,2)
+	StartSoundEvent("Hero_ElderTitan.EarthSplitter.Cast",caster)
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		center,							-- 搜尋的中心點
@@ -99,79 +101,29 @@ function B29R_OnSpellStart( keys )
 	end)
 end
 
-function B29T_Effect( keys, point )
-	local dmg = 84
-	local SEARCH_RADIUS = 240
-	local caster = keys.caster
-	local level = keys.ability:GetLevel()
-
-	Timers:CreateTimer(0.45, function()
-		local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
-		dummy:EmitSound( "C01T.sound" )
-		Timers:CreateTimer( 0.5, function()
-						dummy:ForceKill( true )
-						return nil
-					end
-				)
-		-- 砍樹
-		GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
-		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-	                              point,
-	                              nil,
-	                              SEARCH_RADIUS,
-	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
-	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-	                              FIND_ANY_ORDER,
-	                              false)
-
-		--effect:傷害+暈眩
-		for _,it in pairs(direUnits) do
-			if (not(it:IsBuilding())) then
-				if it:IsHero() then
-					ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, it)
-				end
-				AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_B29T",nil)
-			else
-				AMHC:Damage(caster,it,dmg*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			end
-		end
-		return nil
-	end)
-
-
-	--particle
-	local chaos_meteor_fly_particle_effect = ParticleManager:CreateParticle("particles/invoker_chaos_meteor_fly2.vpcf", PATTACH_ABSORIGIN, keys.caster)
-	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 0, point + Vector (1000, 0, 1000))
-	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 1, point)
-	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 2, Vector(0.5, 0, 0))
-
-end
-
 
 function B29T( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
 	local level = keys.ability:GetLevel()
 	local skillcount = 0
-	local skillmax = keys.ability:GetLevelSpecialValueFor("B29T_Amount",level-1)
-	--大絕直徑
-	local sk_radius = keys.ability:GetLevelSpecialValueFor("B29T_Radius",level-1)
-	sk_radius = sk_radius + 100
+	local ability = keys.ability
+	local skillmax = ability:GetSpecialValueFor("B29T_Amount")
+	local sk_radius = ability:GetSpecialValueFor("B29T_Radius")
+	local duration = ability:GetSpecialValueFor("B29T_Duration")
+	sk_radius = sk_radius
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 6.0, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 6.0, false)
 	--轉半徑
+	local dummy = CreateUnitByName("npc_dummy_unit",point,false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=10})
 	sk_radius = sk_radius*0.5
 	Timers:CreateTimer(0.1, function()
+		dummy:EmitSound( "C01T.sound" )
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
 		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
 		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 0.5, false)
-		if ( RandomInt(1, 10) > 3) then
-			B29T_Effect(keys, point + RandomVector(RandomInt(sk_radius*0.7, sk_radius)))
-		else
-			B29T_Effect(keys, point + RandomVector(RandomInt(1, sk_radius*0.5)))
-		end
+		B29T_Effect(keys, point + RandomVector(RandomInt(10, sk_radius)), 60, duration)
 
 		if  ( (skillcount < skillmax) and caster:IsChanneling() ) then
 			skillcount = skillcount + 1
@@ -181,12 +133,6 @@ function B29T( keys )
 		end
 	end)
 end
-
-
-
-
-
-
 
 function B29W_old_OnSpellStart( event )
 	-- Variables
@@ -212,6 +158,7 @@ function B29W_old_OnSpellStart( event )
 			ApplyDamage(damageTable)
 		end
 	end
+	StartSoundEvent("Hero_ElderTitan.EarthSplitter.Cast",caster)
 end
 
 
@@ -220,6 +167,7 @@ function B29E_old_OnSpellStart( keys )
 	local ability = keys.ability
 	local center = caster:GetAbsOrigin()
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END,2)
+	StartSoundEvent("Hero_ElderTitan.EarthSplitter.Cast",caster)
 	-- 搜尋
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		center,							-- 搜尋的中心點
@@ -248,23 +196,13 @@ function B29E_old_OnSpellStart( keys )
 	end
 end
 
-
-
-
-function B29T_old_Effect( keys, point )
-	local dmg = 84
-	local SEARCH_RADIUS = 240
+function B29T_Effect( keys, point, dmg, stun)
+	local SEARCH_RADIUS = 340
 	local caster = keys.caster
 	local level = keys.ability:GetLevel()
-
+	local ability = keys.ability
 	Timers:CreateTimer(0.45, function()
-		local dummy = CreateUnitByName( "npc_dummy", point, false, caster, caster, caster:GetTeamNumber() )
-		dummy:EmitSound( "C01T.sound" )
-		Timers:CreateTimer( 0.5, function()
-						dummy:ForceKill( true )
-						return nil
-					end
-				)
+		
 		-- 砍樹
 		GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
@@ -284,7 +222,7 @@ function B29T_old_Effect( keys, point )
 					ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, it)
 				end
 				AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-				keys.ability:ApplyDataDrivenModifier(caster, it,"modifier_B29T_old",nil)
+				ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = 0.2})
 			else
 				AMHC:Damage(caster,it,dmg*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
@@ -294,10 +232,49 @@ function B29T_old_Effect( keys, point )
 
 
 	--particle
-	local chaos_meteor_fly_particle_effect = ParticleManager:CreateParticle("particles/invoker_chaos_meteor_fly2.vpcf", PATTACH_ABSORIGIN, keys.caster)
-	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 0, point + Vector (1000, 0, 1000))
-	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 1, point)
-	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 2, Vector(0.5, 0, 0))
+	local chaos_meteor_fly_particle_effect = ParticleManager:CreateParticle("particles/b29/b29tattack.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 0, point)
+
+end
+
+function B29T_old_Effect( keys, point, dmg, stun)
+	local SEARCH_RADIUS = 240
+	local caster = keys.caster
+	local level = keys.ability:GetLevel()
+	local ability = keys.ability
+	Timers:CreateTimer(0.45, function()
+		
+		-- 砍樹
+		GridNav:DestroyTreesAroundPoint(point, SEARCH_RADIUS, false)
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              point,
+	                              nil,
+	                              SEARCH_RADIUS,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+	                              FIND_ANY_ORDER,
+	                              false)
+
+		--effect:傷害+暈眩
+		for _,it in pairs(direUnits) do
+			if (not(it:IsBuilding())) then
+				if it:IsHero() then
+					ParticleManager:CreateParticle("particles/shake1.vpcf", PATTACH_ABSORIGIN, it)
+				end
+				AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = 0.2})
+			else
+				AMHC:Damage(caster,it,dmg*0.3,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+		end
+		return nil
+	end)
+
+
+	--particle
+	local chaos_meteor_fly_particle_effect = ParticleManager:CreateParticle("particles/b29/b29tattack.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	ParticleManager:SetParticleControl(chaos_meteor_fly_particle_effect, 0, point)
 
 end
 
@@ -305,25 +282,29 @@ end
 function B29T_old( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
-	local level = keys.ability:GetLevel()
+	local ability = keys.ability
+	local interval = ability:GetSpecialValueFor("interval")
+	local stun = ability:GetSpecialValueFor("B29T_old_Duration")
 	local skillcount = 0
-	local skillmax = keys.ability:GetLevelSpecialValueFor("B29T_old_Amount",level-1)
+	local skillmax = ability:GetSpecialValueFor("B29T_old_Amount")
 	--大絕直徑
-	local sk_radius = keys.ability:GetLevelSpecialValueFor("B29T_old_Radius",level-1)
+	local sk_radius = ability:GetSpecialValueFor("B29T_old_Radius")
+	local dmg = ability:GetAbilityDamage()
 	sk_radius = sk_radius + 100
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 6.0, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 6.0, false)
 	--轉半徑
 	sk_radius = sk_radius*0.5
-	Timers:CreateTimer(0.1, function()
+	local dummy = CreateUnitByName("npc_dummy_unit",point,false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=10})
+	dummy:SetOwner(caster)
+	Timers:CreateTimer(interval, function()
+		dummy:EmitSound( "C01T.sound" )
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
 		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 0.5, false)
 		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 0.5, false)
-		if ( RandomInt(1, 10) > 3) then
-			B29T_old_Effect(keys, point + RandomVector(RandomInt(sk_radius*0.7, sk_radius)))
-		else
-			B29T_old_Effect(keys, point + RandomVector(RandomInt(1, sk_radius*0.5)))
-		end
+		B29T_old_Effect(keys, point + RandomVector(RandomInt(10, sk_radius)), dmg, stun)
+		B29T_old_Effect(keys, point + RandomVector(RandomInt(10, sk_radius)), dmg, stun)
 
 		if  ( (skillcount < skillmax) and caster:IsChanneling() ) then
 			skillcount = skillcount + 1
@@ -332,4 +313,24 @@ function B29T_old( keys )
 			return nil
 		end
 	end)
+end
+
+function B29R_OnAttackStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local unit = keys.attacker
+	local crit_chance = ability:GetSpecialValueFor("crit_chance")
+	unit:RemoveModifierByName("modifier_A18R_critical_strike")
+	if unit.C21Rcount == nil then unit.C21Rcount = 0 end
+	unit.C21Rcount = unit.C21Rcount + 1
+	if RandomInt(1,100)<=crit_chance or unit.C21Rcount > (100/crit_chance) then
+		unit.C21Rcount = 0
+		local rate = unit:GetAttackSpeed()+0.1
+		ability:ApplyDataDrivenModifier(caster,unit,"modifier_A18R_critical_strike",{duration=rate})
+		if rate < 1 then
+		    unit:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+		else
+		    unit:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+		end
+	end
 end
