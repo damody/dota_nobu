@@ -122,18 +122,21 @@ function B24W( keys )
 	--一定要放紀錄次數下面
 	ability:ApplyDataDrivenModifier(dummy, dummy,"modifier_B24W",nil)
 
-
-	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-	          dummy:GetAbsOrigin(),
-	          nil,
-	          250,
-	          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-	          DOTA_UNIT_TARGET_HERO,
-	          DOTA_UNIT_TARGET_FLAG_NONE,
-	          0,
-	          false)
-	for _,target in pairs(direUnits) do
-		target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+   	local group = FindUnitsInRadius(
+   		caster:GetTeamNumber(), 
+   		mouse, 
+   		nil, 
+   		300 ,
+   		DOTA_UNIT_TARGET_TEAM_BOTH, 
+   		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
+   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+   		FIND_ANY_ORDER, 
+   		false)
+	for _,v in ipairs(group) do
+		if _G.EXCLUDE_TARGET_NAME[v:GetUnitName()] == nil then
+			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+			print(v:GetUnitName())
+		end
 	end
 	local count = 0
 	Timers:CreateTimer(function ()

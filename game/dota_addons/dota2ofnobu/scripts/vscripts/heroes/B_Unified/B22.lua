@@ -1,4 +1,5 @@
 
+
 function B22D_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -74,11 +75,11 @@ function B22E_OnSpellStart( keys )
 	dummy:SetOwner(caster)
 	dummy:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
-	dummy:SetBaseMaxHealth(600+caster:GetLevel()*hp_buff)
-	dummy:SetMaxHealth(600+caster:GetLevel()*hp_buff)
+	dummy:SetBaseMaxHealth(1500+caster:GetLevel()*hp_buff)
+	dummy:SetMaxHealth(1500+caster:GetLevel()*hp_buff)
 	dummy:SetHealth(dummy:GetMaxHealth())
-	dummy:SetBaseDamageMax(51+caster:GetLevel()*atk_buff)
-	dummy:SetBaseDamageMin(41+caster:GetLevel()*atk_buff)
+	dummy:SetBaseDamageMax(71+caster:GetLevel()*atk_buff)
+	dummy:SetBaseDamageMin(61+caster:GetLevel()*atk_buff)
 	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=0.1})
 end
 
@@ -113,6 +114,7 @@ end
 
 
 function B22T_OnSpellStart( keys )
+	GridNav:RegrowAllTrees()
 	local caster = keys.caster
 	local ability = keys.ability
 	local point = keys.target_points[1]
@@ -153,6 +155,10 @@ function B22T_OnSpellStart( keys )
 			end
 		end
 		end)
+	point.z = 400
+	dummy:SetAbsOrigin(point)
+	local ifx = ParticleManager:CreateParticle("particles/a10e/a10e_hitexplosion_alliance_trail.vpcf",PATTACH_CUSTOMORIGIN,nil)
+	ParticleManager:SetParticleControl(ifx, 0, dummy:GetAbsOrigin())
 end
 
 --11.2B
@@ -170,12 +176,12 @@ function B22E_old_OnSpellStart( keys )
 	dummy:SetOwner(caster)
 	dummy:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
-	dummy:SetBaseMaxHealth(900+caster:GetLevel()*hp_buff)
-	dummy:SetMaxHealth(900+caster:GetLevel()*hp_buff)
+	dummy:SetBaseMaxHealth(1500+caster:GetLevel()*hp_buff)
+	dummy:SetMaxHealth(1500+caster:GetLevel()*hp_buff)
 	dummy:SetHealth(dummy:GetMaxHealth())
-	dummy:SetBaseDamageMax(51+caster:GetLevel()*atk_buff)
-	dummy:SetBaseDamageMin(41+caster:GetLevel()*atk_buff)
-	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=0.1})
+	dummy:SetBaseDamageMax(71+caster:GetLevel()*atk_buff)
+	dummy:SetBaseDamageMin(61+caster:GetLevel()*atk_buff)
+	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=5})
 end
 
 
@@ -210,6 +216,7 @@ end
 
 
 function B22T_old_OnSpellStart( keys )
+	GridNav:RegrowAllTrees()
 	local caster = keys.caster
 	local ability = keys.ability
 	local point = keys.target_points[1]

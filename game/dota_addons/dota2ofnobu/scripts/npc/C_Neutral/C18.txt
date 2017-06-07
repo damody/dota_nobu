@@ -134,6 +134,21 @@
 					}
 				}
 			}
+			"modifier_C18W2"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_EVADE_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_BLIND"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"0.2"
+				"IsDebuff"	"1"
+				"EffectName"	"particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka_glow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
 		}
 		"AbilitySpecial"
 		{

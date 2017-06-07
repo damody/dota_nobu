@@ -132,6 +132,7 @@ function A19T_OnSpellStart( keys )
 	local point2 = ability:GetCursorPosition()
 	local level = ability:GetLevel() - 1
 	local vec = (point2-point):Normalized()
+	local duration = ability:GetSpecialValueFor("duration")
 	local pointx = vec.x
 	local pointy = vec.y
 	local cs1	=	math.cos(30* bj_DEGTORAD)
@@ -146,7 +147,7 @@ function A19T_OnSpellStart( keys )
 		
 	local vec1 = Vector(pointx1 ,pointy1 , 0)
 	local vec2 = Vector(pointx2 ,pointy2 , 0)
-	print(pointx2 ,pointy2)
+	
 	--【Varible】
 	--local duration = ability:GetLevelSpecialValueFor("duration",level)
 	--local radius = ability:GetLevelSpecialValueFor("radius",level)
@@ -156,28 +157,28 @@ function A19T_OnSpellStart( keys )
 	local point_tem1 = point + Vector(100*vec.x,100*vec.y) 
 	local point_tem2 = point + Vector(100*vec.x,100*vec.y) 
 	local distance = 200
-
+	local time = GameRules:GetGameTime()
+	local endtime = time + duration
 	--【Timer】
 	local num = 0
+	local pos = {}
+	pos[1] = {}
+	pos[2] = {}
+	pos[3] = {}
 	Timers:CreateTimer(0.03,function()
+		num = num + 1
 		if num == 15 then
 			return nil
 		else
 			point_tem = Vector(point_tem.x+distance*vec.x ,  point_tem.y+distance*vec.y , point_tem.z)
 			local z = GetGroundHeight(point_tem, nil)
 			point_tem.z = z
-			local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point_tem ,false,caster,caster,caster:GetTeam())	
-			dummy:SetOwner(caster)
-			dummy:FindAbilityByName("majia"):SetLevel(1)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_2",nil)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_4",nil)
-			dummy:SetAbsOrigin(point_tem)
-			AddFOWViewer ( caster:GetTeam(), point_tem, 200, 12, true)
-			num = num + 1
-			Timers:CreateTimer(13, function()
-				if IsValidEntity(dummy) then
-					dummy:ForceKill(true)
-				end
+			local numx = num
+			table.insert(pos[1], point_tem)
+			local ifx = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_CUSTOMORIGIN,nil)
+				ParticleManager:SetParticleControl(ifx, 0, point_tem)
+			Timers:CreateTimer(duration, function()
+					ParticleManager:DestroyParticle(ifx,true)
 				end)
 			return 0.03
 		end
@@ -189,17 +190,12 @@ function A19T_OnSpellStart( keys )
 			point_tem1 = Vector(point_tem1.x+distance*vec1.x ,  point_tem1.y+distance*vec1.y , point_tem1.z)
 			local z = GetGroundHeight(point_tem1, nil)
 			point_tem1.z = z
-			local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point_tem1 ,false,caster,caster,caster:GetTeam())	
-			dummy:SetOwner(caster)
-			dummy:FindAbilityByName("majia"):SetLevel(1)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_2",nil)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_4",nil)
-			dummy:SetAbsOrigin(point_tem1)
-			AddFOWViewer ( caster:GetTeam(), point_tem1, 200, 12, true)
-			Timers:CreateTimer(13, function()
-				if IsValidEntity(dummy) then
-					dummy:ForceKill(true)
-				end
+			local numx = num
+			table.insert(pos[2], point_tem1)
+			local ifx = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_CUSTOMORIGIN,nil)
+				ParticleManager:SetParticleControl(ifx, 0, point_tem1)
+			Timers:CreateTimer(duration, function()
+					ParticleManager:DestroyParticle(ifx,true)
 				end)
 			return 0.03
 		end
@@ -211,21 +207,36 @@ function A19T_OnSpellStart( keys )
 			point_tem2 = Vector(point_tem2.x+distance*vec2.x ,  point_tem2.y+distance*vec2.y , point_tem2.z)
 			local z = GetGroundHeight(point_tem2, nil)
 			point_tem2.z = z
-			local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point_tem2 ,false,caster,caster,caster:GetTeam())	
-			dummy:SetOwner(caster)
-			dummy:FindAbilityByName("majia"):SetLevel(1)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_2",nil)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_4",nil)
-			dummy:SetAbsOrigin(point_tem2)
-			AddFOWViewer ( caster:GetTeam(), point_tem2, 200, 12, true)
-			Timers:CreateTimer(13, function()
-				if IsValidEntity(dummy) then
-					dummy:ForceKill(true)
-				end
+			table.insert(pos[3], point_tem2)
+			local ifx = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_CUSTOMORIGIN,nil)
+				ParticleManager:SetParticleControl(ifx, 0, point_tem2)
+			Timers:CreateTimer(duration, function()
+					ParticleManager:DestroyParticle(ifx,true)
 				end)
 			return 0.03
 		end
 	end)
+	Timers:CreateTimer(0.1, function()
+			for line = 1,3 do
+				for i=1,num do
+					if pos[line][i] then
+						local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos[line][i], nil, 200, 
+							DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 
+							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+						for i,v in pairs(enemies) do
+							if v:IsBuilding() then
+								ability:ApplyDataDrivenModifier(caster,v,"modifier_A19T_5",{duration = 1.1})
+							else
+								ability:ApplyDataDrivenModifier(caster,v,"modifier_A19T_3",{duration = 1.1})
+							end
+						end
+					end
+				end
+			end
+			if GameRules:GetGameTime() < endtime then
+				return 1
+			end
+			end)
 end
 
 
@@ -432,28 +443,50 @@ function A19T_old_OnSpellStart( keys )
 	local distance = 100
 
 	--【Timer】
+	local time = GameRules:GetGameTime()
+	local endtime = time + 11
 	local num = 0
+	local pos = {}
+	pos[1] = {}
+	pos[2] = {}
+	pos[3] = {}
 	Timers:CreateTimer(0.03,function()
+		num = num + 1
 		if num == 40 then
 			return nil
 		else
 			point_tem = Vector(point_tem.x+distance*vec.x ,  point_tem.y+distance*vec.y , point_tem.z)
 			local z = GetGroundHeight(point_tem, nil)
 			point_tem.z = z
-			local dummy = CreateUnitByName("npc_dummy_unit_Ver2",point_tem ,false,caster,caster,caster:GetTeam())	
-			dummy:SetOwner(caster)
-			dummy:FindAbilityByName("majia"):SetLevel(1)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_old_2",nil)
-			ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_A19T_old_4",nil)
-			dummy:SetAbsOrigin(point_tem)
-			AddFOWViewer ( caster:GetTeam(), point_tem, 200, 12, true)
-			num = num + 1
-			Timers:CreateTimer(13, function()
-				if IsValidEntity(dummy) then
-					dummy:ForceKill(true)
-				end
+			local numx = num
+			table.insert(pos[1], point_tem)
+			local ifx = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_CUSTOMORIGIN,nil)
+				ParticleManager:SetParticleControl(ifx, 0, point_tem)
+			Timers:CreateTimer(11, function()
+					ParticleManager:DestroyParticle(ifx,true)
 				end)
 			return 0.03
 		end
 	end)
+	Timers:CreateTimer(0.1, function()
+			for line = 1,3 do
+				for i=1,num do
+					if pos[line][i] then
+						local enemies = FindUnitsInRadius( caster:GetTeamNumber(), pos[line][i], nil, 250, 
+							DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 
+							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+						for i,v in pairs(enemies) do
+							if v:IsBuilding() then
+								ability:ApplyDataDrivenModifier(caster,v,"modifier_A19T_old_5",{duration = 1.1})
+							else
+								ability:ApplyDataDrivenModifier(caster,v,"modifier_A19T_old_3",{duration = 1.1})
+							end
+						end
+					end
+				end
+			end
+			if GameRules:GetGameTime() < endtime then
+				return 1
+			end
+			end)
 end

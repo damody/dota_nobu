@@ -284,6 +284,7 @@ function C17R_old( keys )
 	else
 	   	unit = CreateUnitByName("C17R_old_SUMMEND_UNIT_hero",point,false,nil,nil,caster:GetTeam())
 	end
+	unit:AddAbility("for_no_collision"):SetLevel(1)
 	unit:RemoveModifierByName("modifier_invulnerable")
 	unit:SetHealth(200)
 	unit:SetMana(ability:GetAbilityDamage())
@@ -355,19 +356,11 @@ function C17R_old_on_trigger( keys )
 					Timers:CreateTimer(0.1,function()
 						damage_table.victim = unit
 						ApplyDamage(damage_table)
-						if not unit:IsRealHero() then
-							ApplyDamage(damage_table)
-							ApplyDamage(damage_table)
-						end
 						unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
 					end)
 				else
 					damage_table.victim = unit
 					ApplyDamage(damage_table)
-					if not unit:IsRealHero() then
-						ApplyDamage(damage_table)
-						ApplyDamage(damage_table)
-					end
 					unit.c17r_old = target
 					unit:AddNewModifier(caster,ability,"modifier_stunned",{duration=duration_stun})
 					Timers:CreateTimer(1,function()

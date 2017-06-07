@@ -3,7 +3,7 @@
 function A35W_OnSpellStart( event )
 	local caster		= event.caster
 	local ability		= event.ability
-	local pathLength	= (ability:GetCursorPosition() - caster:GetAbsOrigin()):Length()
+	local pathLength	= (ability:GetCursorPosition() - caster:GetAbsOrigin()):Length2D()
 	local pathDelay		= event.path_delay
 	local pathDuration	= event.duration
 	local pathRadius	= event.path_radius
@@ -45,7 +45,7 @@ function A35W_OnSpellStart( event )
 	end
 
 	local projectileRadius = pathRadius * math.sqrt(2)
-	local numProjectiles = math.floor( pathLength / (pathRadius*2) ) + 1
+	local numProjectiles = math.floor( pathLength / (pathRadius*2) ) + 2
 	local stepLength = pathLength / ( numProjectiles - 1 )
 
 	for i=1, numProjectiles do
@@ -62,11 +62,31 @@ function A35W_OnSpellStart( event )
 
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
-			AMHC:Damage( caster,it,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			if it.A35W == nil then
+				it.A35W = true
+				AMHC:Damage( caster,it,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+		end		
+	end
+	for i=1, numProjectiles do
+		local projectilePos = startPos + caster:GetForwardVector() * (i-1) * stepLength
+		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+                              projectilePos,
+                              nil,
+                              projectileRadius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                              DOTA_UNIT_TARGET_FLAG_NONE,
+                              FIND_ANY_ORDER,
+                              false)
+		--effect:傷害+暈眩
+		for _,it in pairs(direUnits) do
+			it.A35W = nil
 		end		
 	end
 	caster:SetAbsOrigin(ability:GetCursorPosition())
 	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
+
 end
 
 
@@ -120,7 +140,7 @@ function A35T_OnIntervalThink( keys )
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
-		ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration = 0.3})
+		ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration = 0.1})
 		unit:Stop()
 		ApplyDamage({
 			victim = unit,
@@ -130,7 +150,7 @@ function A35T_OnIntervalThink( keys )
 			damage_type = ability:GetAbilityDamageType(),
 			damage_flags = DOTA_DAMAGE_FLAG_NONE,
 		})
-		
+		unit:ReduceMana(ability:GetAbilityDamage())
 	end
 end
 

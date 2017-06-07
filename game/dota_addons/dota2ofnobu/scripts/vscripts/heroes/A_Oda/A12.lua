@@ -14,12 +14,6 @@
 -- end
 
 function A12W( keys )
-	-- if keys.ability:GetLevel() == 1 then
-	-- 	keys.caster:AddNewModifier(keys.caster, keys.ability, "A12W_modifier", { duration = nil}) 
-	-- 	if keys.caster:FindModifierByName("A12W_modifier") 	~= nil then
-	-- 		print("A12W learn")
-	-- 	end
-	-- end
 	local caster = keys.caster
 	local ability = keys.ability
 	local point = caster:GetAbsOrigin()
@@ -27,20 +21,15 @@ function A12W( keys )
 	local group = {}
     local radius = 500
     group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), 0, false)
-    local knockbackProperties =
-	{
-		center_x = point.x,
-		center_y = point.y,
-		center_z = point.z,
-		duration = 0.3,
-		knockback_duration = 0.3,
-		knockback_distance = 400,
-		knockback_height = 0,
-		should_stun = 1
-	}
-	for _,v in ipairs(group) do
-		ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, v)
-		v:AddNewModifier( caster, nil, "modifier_knockback", knockbackProperties )
+    
+	for _,unit in ipairs(group) do
+		ParticleManager:CreateParticle("particles/a12w/a12w.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+		Physics:Unit(unit)
+		local diff = unit:GetAbsOrigin()-point
+		diff.z = 0
+		local dir = diff:Normalized()
+		unit:SetVelocity(Vector(0,0,-9.8))
+		unit:AddPhysicsVelocity(dir*800)
 	end
 	if caster.A12D_B == true then
 		ability:ApplyDataDrivenModifier(caster,v,"modifier_A12W",nil)
