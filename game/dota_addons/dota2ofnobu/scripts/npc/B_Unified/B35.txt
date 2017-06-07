@@ -15,7 +15,7 @@
 		}
 	}
 	// 上泉信綱 劍聖
-	"B35W_old"
+	"B35W"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
@@ -51,13 +51,13 @@
 				    "Center" "CASTER"
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-				"ModifierName"	"modifier_B35W_old"
+				"ModifierName"	"modifier_B35W"
 				"Duration"	"%B35W_Duration"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_B35W_old"
+			"modifier_B35W"
 			{
 				"IsBuff"	"1"
 				"Properties"
@@ -104,7 +104,7 @@
 	}
 
 	// 上泉信綱 新陰流．一閃
-	"B35E_old"
+	"B35E"
 	{
 		"BaseClass"                                 "ability_datadriven"
 		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT"
@@ -125,7 +125,7 @@
 			"RunScript"
 			{
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B35.lua"
-				"Function"							"B35E_old_OnSpellStart"
+				"Function"							"B35E_OnSpellStart"
 			}
 			"LinearProjectile"
 			{
@@ -136,7 +136,7 @@
 				"StartPosition"  "attach_attack1"
 				"EndRadius"      "%B35E_radius"
 				"HasFrontalCone" "0"
-				"FixedDistance"  "%B30E_distance"
+				"FixedDistance"  "%B35E_distance"
 				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
@@ -157,7 +157,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_B35E_old"
+			"modifier_B35E"
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
@@ -167,7 +167,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"	"B35E_old_OnAttackLanded"
+						"Function"	"B35E_OnAttackLanded"
 					}
 				}
 			}
@@ -198,7 +198,7 @@
 	}
 
 	// 上泉信綱 新陰流  跟柳生一模一樣
-	"B35R_old"	
+	"B35R"	
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dota2/c24_r"
@@ -221,7 +221,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"	"B35R_old_OnAttackStart"
+						"Function"	"B35R_OnAttackStart"
 					}
 				}
 			}
@@ -272,7 +272,7 @@
 	}
 
 
-	//  絕‧陰流最終祕劍轉  柳生的 拿過來而已
+	//  絕‧陰流最終祕劍轉  柳生的 拿過來放而去 沒去弄 
 	"B35T"
 	{
 		"BaseClass"	"ability_datadriven"

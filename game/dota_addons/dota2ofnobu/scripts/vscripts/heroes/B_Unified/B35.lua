@@ -1,4 +1,4 @@
-function B35E_old_OnSpellStart( keys )
+function B35E_OnSpellStart( keys )
 	local caster = keys.caster
 	local center = caster:GetAbsOrigin()
 	local ability = keys.ability
@@ -30,10 +30,10 @@ function B35E_old_OnSpellStart( keys )
 end
 
 
-function B35E_old_OnAttackLanded( keys )
+function B35E_OnAttackLanded( keys )
 		local caster = keys.caster
 		local ability = keys.ability
-		local handle = caster:FindAbilityByName("B35E_old")
+		local handle = caster:FindAbilityByName("B35E")
 		if handle then
 			if not handle:IsCooldownReady() then
 				local t = handle:GetCooldownTimeRemaining()
@@ -43,7 +43,7 @@ function B35E_old_OnAttackLanded( keys )
 		end
 end
 
-function B35R_old_OnAttackStart( keys )
+function B35R_OnAttackStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
