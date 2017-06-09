@@ -1,4 +1,4 @@
-// 上泉信綱
+// 上泉信綱    	新版只有W跟T有弄 E.R兩招都還要重弄
 "DOTAAbilities"
 {
 	"B35_precache"
@@ -14,8 +14,395 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
 		}
 	}
-	// 上泉信綱 劍聖
+	// 上泉信綱 劍之極意
 	"B35W"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_126"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"	"0"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"HotKeyOverride"	"W"
+		"MaxLevel"	"4"
+		"AbilityCooldown"	"35 32 30 25"
+		"AbilityManaCost"	"150 180 210 240"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		"AbilityCastRangeBuffer"	"250"
+		"precache"
+		{
+			"particle"	"particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A06W.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B35W"
+				"Duration"	"%B35W_Duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B35W"
+			{
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%hp"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%atk"					
+				}
+				"States"	{}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsPurgable"	"1"
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"B35W_Duration"	"20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"hp"	"15 25 35 45"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor"	"2 4 6 8"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk"	"25 35 45 55"
+			}			
+		}
+	}
+
+	// 上泉信綱 新陰流‧一瞬
+	"B35E"     //沒弄出來   類似佐久丟球 但他有消耗生命 lua裡面看好亂   開魔獸看 他距離大概快4000 從家裡溫泉能丟到本陣附近第三個小帳棚  
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/caoren_shuimian"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"AbilityCastPoint"	"0.1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"13"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"150 170 190 210"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"0"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Venomancer.Attack"
+				//sounds\ambient\horn_radiant.vsnd venomancer_venm_attack_01
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+				"Function"	"B35E_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+				"Function"	"B35E_OnProjectileHitUnit"
+				"Target"	"TARGET"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Batrider.Flamebreak.Impact"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B35E"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"3"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-30"
+				}
+				"EffectName"		"particles/a24w_slow/a24w_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"250 350 450 550"
+	}
+
+	// 上泉信綱 新陰流 ‧無刀取      開啟後 只有20%範圍傷害  是拿蜻切的來用 調傷害的時候 就跑不出來了  沉默也不會弄 
+	"B35R"
+
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityTextureName"                        "dota2/c24_r"
+
+		"AbilityCastPoint"          	"0.1"
+		"AbilityCooldown"           	"8"
+		"AbilityManaCost"           	"0"
+		"MaxLevel"						"4"
+		"AbilityDamage"					"200 225 250 275"
+		"AbilityCastRange"				"200"
+		"AOERadius"						"200"
+
+        "OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+				"Function"	"B35R_OnToggleOn"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B35R"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B35R_locker"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+				"Function"	"B35R_OnToggleOff"
+			}
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_B35R"
+			}
+		}
+
+        "Modifiers"
+        {
+        	// 暫時鎖住此技能
+			"modifier_B35R_locker"
+			{
+				"Duration" "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+						"Function"		"B35R_lock"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+						"Function"		"B35R_unlock"
+					}
+				}
+			}
+           "modifier_B35R"
+			{
+				"IsBuff"	"1"
+				"Properties"
+				{
+					
+				}
+				"EffectName" "particles/a32/A32T.vpcf"
+				"ThinkInterval"  "0.5"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+						"Function"	"Shock"
+					}
+				}
+			}
+        }
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"dmg"		"200 225 250 275"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"silence_time"		"0.4 0.6 0.8 1.0"
+			}
+		}	
+    }
+
+
+	//  新陰流‧祕轉  
+	"B35T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/caoren_siyao"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetFlags""DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"HotKeyOverride"	"T"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"			"200"
+		"AbilityCastPoint"			"0"
+		"AbilityCastAnimation"		"ACT_DOTA_ECHO_SLAM"
+		"AnimationPlayBackRate"		"2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"90 80 70"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"300 325 350"
+		// Data driven
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22W_old.vo1"
+			}
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_PURE"
+				"Damage"		"%AbilityDamage"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_A08W"
+				"Target" 		"CASTER"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_B35T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B35T"
+			{
+				"Duration"	"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%criticalstrike"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+						"Function"	"B35T"
+					}
+				}
+				"IsBuff"	"1"
+				"IsPurgable"	"1"
+				"StatusEffectName"	"particles/b34r/b34r.vpcf"
+				"StatusEffectPriority"	"10"
+				"EffectName"	"particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+		}
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"2 4 6"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"criticalstrike"	"250"
+			}
+		}
+		"AbilityDamage"				"500 700 900"
+	}	
+	
+	// 上泉信綱 劍聖
+	"B35W_old"
 	{
 		// General
 		// -------------------------------------------------------------------------------------------------------------
@@ -51,13 +438,13 @@
 				    "Center" "CASTER"
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-				"ModifierName"	"modifier_B35W"
+				"ModifierName"	"modifier_B35W_old"
 				"Duration"	"%B35W_Duration"
 			}
 		}
 		"Modifiers"
 		{
-			"modifier_B35W"
+			"modifier_B35W_old"
 			{
 				"IsBuff"	"1"
 				"Properties"
@@ -104,7 +491,7 @@
 	}
 
 	// 上泉信綱 新陰流．一閃
-	"B35E"
+	"B35E_old"
 	{
 		"BaseClass"                                 "ability_datadriven"
 		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_POINT"
@@ -125,7 +512,7 @@
 			"RunScript"
 			{
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B35.lua"
-				"Function"							"B35E_OnSpellStart"
+				"Function"							"B35E_old_OnSpellStart"
 			}
 			"LinearProjectile"
 			{
@@ -157,7 +544,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_B35E"
+			"modifier_B35E_old"
 			{
 				"Passive"			"1"
 				"IsHidden"			"1"
@@ -167,7 +554,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"	"B35E_OnAttackLanded"
+						"Function"	"B35E_old_OnAttackLanded"
 					}
 				}
 			}
@@ -198,7 +585,7 @@
 	}
 
 	// 上泉信綱 新陰流  跟柳生一模一樣
-	"B35R"	
+	"B35R_old"	
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dota2/c24_r"
@@ -212,7 +599,7 @@
 
 		"Modifiers"
 		{
-			"modifier_B35R"
+			"modifier_B35R_old"
 			{
 				"Passive"	"1"
 				"IsHidden"	"0"
@@ -221,7 +608,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"	"B35R_OnAttackStart"
+						"Function"	"B35R_old_OnAttackStart"
 					}
 				}
 			}
@@ -273,7 +660,7 @@
 
 
 	//  絕‧陰流最終祕劍轉  柳生的 拿過來放而去 沒去弄 
-	"B35T"
+	"B35T_old"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"dota2/c24_t"
@@ -324,15 +711,15 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
-				"Function"		"C24T_OnSpellStart"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+				"Function"		"B35T_old_OnSpellStart"
 				"Target"		"TARGET"
 			}
 		}
 
 		"Modifiers"
 		{
-			"modifier_C24T_playing"
+			"modifier_B35T_old_playing"
 			{
 				"Duration"	"%play_time"
 				"Priority" "MODIFIER_PRIORITY_ULTRA"
@@ -345,7 +732,7 @@
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
-			"modifier_C24T_stunned"
+			"modifier_B35T_old_stunned"
 			{
 				"IsHidden"			"1"
 				"Priority" "MODIFIER_PRIORITY_ULTRA"
