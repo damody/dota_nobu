@@ -229,7 +229,7 @@ function A35E_old_OnIntervalThink( keys )
 		ability:GetCastRange(),			-- 搜尋半徑
 		ability:GetAbilityTargetTeam(),	-- 目標隊伍
 		DOTA_UNIT_TARGET_HERO,	-- 目標類型
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,-- 額外選擇或排除特定目標
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,-- 額外選擇或排除特定目標
 		FIND_ANY_ORDER,					-- 結果的排列方式
 		false) 					
 

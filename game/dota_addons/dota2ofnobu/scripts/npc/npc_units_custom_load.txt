@@ -89,9 +89,9 @@
 		"BaseClass"	"npc_dota_creature"
 		// Add model
 		"Model"	"models/heroes/weaver/weaver.vmdl"
-		"ModelScale"	"1.2"
+		"ModelScale"	"0.8"
 		"Level"	"3"
-		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"HealthBarOffset"	"180"
 		// Abilities
 		// ----------------------------------------------------------------
@@ -130,7 +130,7 @@
 		"MovementTurnRate"	"0.5"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"2500"
+		"StatusHealth"	"1500"
 		"StatusHealthRegen"	"5"
 		"StatusMana"	"1000"
 		"StatusStartingMana"	"1000"

@@ -279,7 +279,7 @@ function B15T(keys)
 	end
 	-- local ability = event.ability
 	-- local duration = ability:GetLevelSpecialValueFor( "A13W_Duration", ability:GetLevel() - 1 )
-	local time = 0.90 - ( 0.20 * keys.ability:GetLevel() )
+	local time = 0.9 - ( 0.1 * keys.ability:GetLevel() )
 	local num = 12
 	Timers:CreateTimer(time,function( )
 		if not keys.caster:IsAlive() then

@@ -50,7 +50,7 @@ function Shock( keys )
 	--local tem_point = nil
 
 
-	local cone_units = GetEnemiesInCone( caster,vec, start_radius, end_radius, end_distance )
+	local cone_units = GetEnemiesInCone( caster,vec, start_radius, end_radius, end_distance,point2 )
 	local targets_shocked = 1 --Is targets=extra targets or total?
 	for _,unit in pairs(cone_units) do
 		if targets_shocked < targets and (caster:CanEntityBeSeenByMyTeam(unit)) then
@@ -91,7 +91,7 @@ function Shock( keys )
 end
 
 
-function GetEnemiesInCone( unit,vec,start_radius, end_radius, end_distance)
+function GetEnemiesInCone( unit,vec,start_radius, end_radius, end_distance, point2)
 	local DEBUG = false
 	-- Positions
 	local fv = vec
@@ -127,7 +127,7 @@ function GetEnemiesInCone( unit,vec,start_radius, end_radius, end_distance)
 	local iOrder = FIND_ANY_ORDER
 
 	local start_units = FindUnitsInRadius(team, start_point, nil, start_radius, iTeam, iType, iFlag, iOrder, false)
-	local start_units2 = FindUnitsInRadius(team, start_point2, nil, start_radius*1.5, iTeam, iType, iFlag, iOrder, false)	
+	local start_units2 = FindUnitsInRadius(team, point2, nil, end_radius, iTeam, iType, iFlag, iOrder, false)	
 	local end_units = FindUnitsInRadius(team, end_point, nil, end_radius, iTeam, iType, iFlag, iOrder, false)
 	local mid_units = FindUnitsInRadius(team, mid_point, nil, mid_radius, iTeam, iType, iFlag, iOrder, false)
 	local mid_units2 = FindUnitsInRadius(team, mid_point2, nil, mid_radius, iTeam, iType, iFlag, iOrder, false)

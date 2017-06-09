@@ -75,12 +75,13 @@ function B22E_OnSpellStart( keys )
 	dummy:SetOwner(caster)
 	dummy:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
+	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_fly",{duration = 3})
 	dummy:SetBaseMaxHealth(1500+caster:GetLevel()*hp_buff)
 	dummy:SetMaxHealth(1500+caster:GetLevel()*hp_buff)
 	dummy:SetHealth(dummy:GetMaxHealth())
-	dummy:SetBaseDamageMax(71+caster:GetLevel()*atk_buff)
-	dummy:SetBaseDamageMin(61+caster:GetLevel()*atk_buff)
-	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=0.1})
+	dummy:SetBaseDamageMax(51+caster:GetLevel()*atk_buff)
+	dummy:SetBaseDamageMin(41+caster:GetLevel()*atk_buff)
+	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=3})
 end
 
 function B22R_OnSpellStart( keys )
@@ -181,7 +182,8 @@ function B22E_old_OnSpellStart( keys )
 	dummy:SetHealth(dummy:GetMaxHealth())
 	dummy:SetBaseDamageMax(71+caster:GetLevel()*atk_buff)
 	dummy:SetBaseDamageMin(61+caster:GetLevel()*atk_buff)
-	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=5})
+	dummy:AddNewModifier(dummy,ability,"modifier_phased",{duration=3})
+	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_fly",{duration = 3})
 end
 
 

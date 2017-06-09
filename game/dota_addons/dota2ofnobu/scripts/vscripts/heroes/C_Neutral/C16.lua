@@ -102,6 +102,8 @@ function C16E( keys )
 
     ghost:AddNewModifier(caster, nil, "modifier_phased",{duration=0.1})
     ghost:AddNewModifier(caster, nil, "modifier_invisible", nil )
+    ghost:AddNewModifier(caster, nil, "modifier_magic_immune", nil )
+    ghost:AddNewModifier(caster, nil, "modifier_kill",{duration=300})
     keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_vison", nil )
     --ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
 end
@@ -265,7 +267,7 @@ function ExorcismPhysics( event )
 
 			-- COLLISION CHECK
 			local distance = (point - current_position):Length()
-			local collision = distance < 200
+			local collision = distance < 300
 
 			-- MAX DISTANCE CHECK
 			local distance_to_caster = (source - current_position):Length()
@@ -579,6 +581,8 @@ function C16E_old( keys )
 
     ghost:AddNewModifier(caster, nil, "modifier_phased",{duration=0.1})
     ghost:AddNewModifier(caster, nil, "modifier_invisible", nil )
+    ghost:AddNewModifier(caster, nil, "modifier_magic_immune", nil )
+    ghost:AddNewModifier(caster, nil, "modifier_kill",{duration=300})
     --ghost:AddNewModifier(caster, nil, "modifier_illusion", { duration = keys.ability:GetSpecialValueFor("C16E_ghostDuration") })
     keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_C16E_old_passiveAura", nil )
     keys.ability:ApplyDataDrivenModifier( caster, ghost , "modifier_vison", nil )

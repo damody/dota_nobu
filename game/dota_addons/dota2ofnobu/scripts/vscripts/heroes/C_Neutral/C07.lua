@@ -1,10 +1,3 @@
-function C07W( keys )
-	local caster = keys.caster
-	local ability = keys.ability
-	local point  = keys.caster:GetAbsOrigin()
-
-	--se
-end
 
 function C07E( keys )
 	local caster = keys.caster
@@ -360,6 +353,8 @@ function C07W( keys )
 
 	local dummy = CreateUnitByName("Dummy_Ver1",point2 ,false,nil,nil,caster:GetTeam())
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07W",nil)
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_invulnerable",nil)
+	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=10})
 	dummy:FindAbilityByName("majia"):SetLevel(1)
 
 	--debug
@@ -380,10 +375,6 @@ function C07W( keys )
 		----print(particle)
 	end
 
-	Timers:CreateTimer(10,function()
-		dummy:ForceKill(false)
-		--ParticleManager:DestroyParticle(particle,true)
-	end)
 end
 
 function C07W_DMG(keys)

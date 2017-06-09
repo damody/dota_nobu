@@ -86,6 +86,8 @@ function A03W_old_OnDeath( keys )
 	local wolf = CreateUnitByName("A03W_old",target:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
  	wolf.master = caster
  	wolf:SetOwner(caster)
+ 	wolf:SetBaseMaxHealth(target:GetMaxHealth()*2)
+ 	wolf:SetHealth(wolf:GetMaxHealth())
  	wolf:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_kill",{duration = 150})
 end

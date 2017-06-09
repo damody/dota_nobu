@@ -163,7 +163,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"40 35 30 25"
 		"AbilityManaCost"	"120 140 160 180"
-		"AbilityCastRange"	"200"
+		"AbilityCastRange"	"300"
 		"AOERadius"	"400"
 		"precache"
 		{
@@ -189,6 +189,15 @@
 		}
 		"Modifiers"
 		{
+			"modifier_fly"
+			{
+				"Passive"       "0"
+	            "IsHidden"      "0"
+	            "States"
+	            {
+	            	"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
+	            }
+			}
 		}
 		"AbilitySpecial"
 		{
@@ -416,7 +425,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCooldown"	"100 80 60 40"
 		"AbilityManaCost"	"120 140 160 180"
-		"AbilityCastRange"	"200"
+		"AbilityCastRange"	"300"
 		"AOERadius"	"400"
 		"precache"
 		{
@@ -442,6 +451,15 @@
 		}
 		"Modifiers"
 		{
+			"modifier_fly"
+			{
+				"Passive"       "0"
+	            "IsHidden"      "0"
+	            "States"
+	            {
+	            	"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
+	            }
+			}
 		}
 		"AbilitySpecial"
 		{

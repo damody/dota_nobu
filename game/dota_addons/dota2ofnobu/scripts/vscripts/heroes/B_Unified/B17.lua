@@ -27,6 +27,25 @@ function B17W_onAttackLanded( keys )
 	if RandomInt(1,100) < 20 and not target:IsMagicImmune() and not target:IsBuilding() then
 		ability:ApplyDataDrivenModifier(attacker,target,"modifier_stunned",{duration=0.5})
 	end
+	local targetArmor = target:GetPhysicalArmorValue()
+	if target:IsHero() then
+		damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
+	else
+		damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
+	end
+	if damageReduction < 0 then
+		damageReduction = 1
+	end
+	if damageReduction > 1 then
+		damageReduction = 1
+	end
+	--print("steal "..dmg*keys.StealPercent*0.02*(1-damageReduction))
+	if target:IsBuilding() then
+		local hp = target:GetHealth()
+		Timers:CreateTimer(0.01, function()
+			target:SetHealth(hp)
+			end)
+	end
 	--[[
 	local dmgt = {
 		victim = target,
