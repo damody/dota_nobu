@@ -1,0 +1,345 @@
+//茶茶
+"DOTAAbilities"
+{
+	"C25_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/C25.vsndevts"
+		}
+	}	
+	 //茶茶 一刀‧順   有50%機率能夠瞬移  沒有做
+	"C25D"
+	{	"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/cps_d08_2"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"HotKeyOverride"	"E"
+		"MaxLevel"	"1"
+		"RequiredLevel"	"0"		
+		"AbilityCastPoint"	"0.6"	//延遲0.6後
+		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
+		"AbilityCooldown"	"16"
+		"AbilityManaCost"	"100"
+		"AbilityCastRange"	"1100"
+		"AbilityDamage"	"250"
+		"precache"
+		{
+			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
+			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"	"particles/b08w2/b08w2.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B08E_old.vo1"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"Function"	"C25D_Action1"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C25.lua"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C25D"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C25D"
+			{
+				"IsHidden"	"1"
+				"Duration"	"0.5"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/b08w2/b08w2.vpcf"
+						"EffectAttachType"	"attach_attack1"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_attack1"
+							"CASTER"	"attach_attack1"
+						}
+					}
+				}
+				"IsBuff"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"C25D_Damage"	"250"
+			}
+		}
+	}	
+	//迴旋裂斬   範圍200 距離很小 一定要配天生計順 但順cd太久
+	"C25W"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"dota2/b11_w"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"7"
+		"AbilityManaCost"				"80 100 120 140"
+		"AbilityDamage"					"250 350 450 550"
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.1"
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C25.lua"
+				"Function"		"C25W_OnSpellStart"
+			}
+		}
+	}
+	//短刃投擲   
+	"C25E"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/btnthoriumranged"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+		"AbilityCooldown"	"16"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"300"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/beastmaster/wild_axes.vsnd"
+			"soundfile"	"sounds/weapons/hero/beastmaster/attack03.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C22W_old.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C25.lua"
+				"Function"	"C25E"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C25E"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"OnCreated"
+				{
+					"Stun"
+					{
+						"Target"	"TARGET"
+						"Duration"	"%duration"
+					}
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Sven.StormBoltImpact"
+					}
+				}
+				"Duration"	"0"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"0.5 1.0 1.5 2.0"
+			}
+		}
+		"AbilityDamage"	"100 200 300 400"
+	}
+	//炫目			沒有弄25%消去它最多[150/250/350/450]點法力.不知道持續時間多久
+	"C25R"
+	{
+		"BaseClass"                                 "ability_datadriven"
+		"AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"                        "custom/B23/B23D"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"						"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"						"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilityCastPoint"                          "0.1"
+		"AbilityCastRange"							"800"
+
+		"AbilityCooldown"                           "15"
+		"AbilityManaCost"                           "50 60 70 80"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"					"TARGET"
+				"ModifierName"				"modifier_C25R_debuff"
+			}			
+		}
+
+		"Modifiers"
+		{
+			"modifier_C25R_debuff"
+			{
+				"EffectName" 						"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff_b.vpcf"
+                "EffectAttachType" 					"follow_overhead"	
+				"IsDebuff"							"1"
+				"Duration"							"%C25R_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"	"%C25R_Miss"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"C25R_duration"		"6 7 8 9"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"C25R_Miss"		"30 40 50 60"
+			}
+		}
+	}
+	//放血之術  不知道施法距離.3等招式傷害 還有他說明 不知道是開大後+攻擊 還是被動+攻擊  我弄被動+攻 應該玩是接計 影響不大 三等大決的傷害我也等差加上去
+	"C25T"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/C08/C08W"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		// Unit Targeting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"	
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"90 104 118"
+		"AbilityManaCost"	"200 250 300"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"	"3"
+		"RequiredLevel"	"6"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"500"
+		// Precache
+		// -------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C25.lua"
+				"Function"		"C25T_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"Properties"
+				{
+				"Passive"		"1"
+				"Properties"
+				{					
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%add_atk"									
+				}				
+			}	
+			"modifier_C25T_bleeding"
+			{
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"	"%duration"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C25.lua"
+						"Function"		"modifier_C25T_bleeding_OnIntervalThink"
+					}
+				}
+				"ThinkInterval"	"2"
+			}								
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"12"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"250 425 600"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"add_atk"	"30 40 50"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"stun_time"	"1"
+			}
+		}
+	}
+}

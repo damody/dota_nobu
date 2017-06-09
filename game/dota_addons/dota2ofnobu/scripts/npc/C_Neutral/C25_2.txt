@@ -1,47 +1,59 @@
-"DOTAHeroes"
-{
-	// 大谷吉繼
-	"A12"
+ "DOTAHeroes"
+ {
+	// 茶茶
+
+	"C25"
 	{
-		"ModelScale"	"1.2"
+		// General
+		// ----------------------------------------------------------------
+		"override_hero"	"npc_dota_hero_sven"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"
-		// Abilities
-		// ----------------------------------------------------------------
+		//"Model"	"models/heroes/mirana/mirana.vmdl"
 		
-		"Ability1"	"A12W"
-		"Ability2"	"A12E"
-		"Ability3"	"A12R"
-		"Ability4"	"A12D"
-		"Ability5"	"attribute_bonusx"
-		"Ability6"	"A12T"
-		"Ability7"	"A12D_HIDE"
-		"Ability8"	"A12_precache"
+		// //"Enabled"		"1"
+		// "HeroUnlockOrder"		"1"
+		// "Role"			"Carry,Support,Escape,Nuker,Disabler"
+		// "Rolelevels"	"1,1,2,1,1"
+		// "Team"		"Good"
+		// "HeroID"		"9"
+		"ModelScale"	"1"
+		"HeroGlowColor"	"220 194 248"
+		"CMEnabled"	"1"
+		// Abilities
+		// ---------------
+		"Ability1"	"C25W"
+		"Ability2"	"C25E"
+		"Ability3"	"C25R"
+		"Ability4"	"attribute_bonusx"
+		"Ability5"	"C25T"
+		"Ability6"	"C25_precache"
+		"Ability7"	"C25D"
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"5"
+		"ArmorPhysical"	"6"
 		"MagicalResistance"	"30"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"	"115.0"
-		"AttackDamageMax"	"129.0"
+		"AttackDamageMin"	"104.0"
+		"AttackDamageMax"	"120.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.80"
-		"AttackAnimationPoint"	"0.40"
-		"AttackAcquisitionRange"	"750"
-		"AttackRange"	"700"
-		"ProjectileSpeed"	"1700"
+		"AttackAnimationPoint"	"0.30"
+		"AttackAcquisitionRange"	"128"
+		"AttackRange"	"128"
+		"ProjectileSpeed"	"1800"
 		// Attributes
 		// ----------------------------------------------------------------
-		"AttributePrimary"	"DOTA_ATTRIBUTE_INTELLECT"
-		"AttributeBaseStrength"	"37"
-		"AttributeStrengthGain"	"2"
-		"AttributeBaseAgility"	"23"
-		"AttributeAgilityGain"	"1.8"
-		"AttributeBaseIntelligence"	"36"
-		"AttributeIntelligenceGain"	"3.5"		
+		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"	"22"
+		"AttributeStrengthGain"	"2.10"
+		"AttributeBaseAgility"	"29"
+		"AttributeAgilityGain"	"2.75"
+		"AttributeBaseIntelligence"	"28"
+		"AttributeIntelligenceGain"	"2.00"		
 		// Bounty
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"300.0"
@@ -72,6 +84,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability8"	""
 		"Ability9"	""
 		"Ability10"	""
 		"Ability11"	""
@@ -80,8 +93,6 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"override_hero"	"npc_dota_hero_storm_spirit"
-		"AbilityLayout"	"5"
-		"ProjectileModel"	"particles/units/heroes/hero_stormspirit/stormspirit_base_attack.vpcf"
-	}	
+	}
+
 }

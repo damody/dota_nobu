@@ -84,6 +84,7 @@ _G.heromap = {
   npc_dota_hero_bane                = "B32",
   npc_dota_hero_drow_ranger         = "B33",
   npc_dota_hero_beastmaster         = "B34",
+  npc_dota_hero_faceless_void       = "B35",
   npc_dota_hero_visage              = "B36",
 
   npc_dota_hero_viper               = "C01",
@@ -108,6 +109,7 @@ _G.heromap = {
   npc_dota_hero_jakiro              = "C22",
   npc_dota_hero_undying             = "C23",
   npc_dota_hero_batrider            = "C24",
+  npc_dota_hero_sven                = "C25",
 }
 
 _G.nobu2dota = {}
@@ -187,6 +189,7 @@ _G.heromap_version = {
   B32 = {["11"] = true , ["16"] = true},
   B33 = {["11"] = true , ["16"] = true},
   B34 = {["11"] = true , ["16"] = true},
+  B35 = {["11"] = true , ["16"] = true},
   B36 = {["11"] = true , ["16"] = true},
 
   C01 = {["11"] = true , ["16"] = true},
@@ -212,6 +215,7 @@ _G.heromap_version = {
   C22 = {["11"] = true , ["16"] = true},
   C23 = {["11"] = false , ["16"] = true},
   C24 = {["11"] = true , ["16"] = true},
+  C25 = {["11"] = false , ["16"] = true},
 }
 
 _G.heromap_skill = {
@@ -286,6 +290,7 @@ _G.heromap_skill = {
   B32 = {["11"] = "WERDT" , ["16"] = "WERDT"},
   B33 = {["11"] = "WERT" , ["16"] = "WERT"},
   B34 = {["11"] = "WERT" , ["16"] = "WERT"},
+  B35 = {["11"] = "WERT" , ["16"] = "WERT"},
   B36 = {["11"] = "WERDT" , ["16"] = "WERDT"},
 
   C01 = {["11"] = "WERDT" , ["16"] = "WERT"},
@@ -311,6 +316,7 @@ _G.heromap_skill = {
   C22 = {["11"] = "WERT" , ["16"] = "WERDT"},
   C23 = {["11"] = "WERT" , ["16"] = "WERT"},
   C24 = {["11"] = "WERT" , ["16"] = "WERT"},
+  C25 = {["11"] = "" , ["16"] = "WERDT"},
 }
 
 
@@ -386,6 +392,7 @@ _G.heromap_autoskill = {
   B32 = {["11"] = "D" , ["16"] = ""},
   B33 = {["11"] = "" , ["16"] = ""},
   B34 = {["11"] = "" , ["16"] = ""},
+  B35 = {["11"] = "" , ["16"] = ""},
   B36 = {["11"] = "D" , ["16"] = ""},
 
   C01 = {["11"] = "D" , ["16"] = ""},
@@ -410,6 +417,7 @@ _G.heromap_autoskill = {
   C22 = {["11"] = "" , ["16"] = "D"},
   C23 = {["11"] = "" , ["16"] = ""},
   C24 = {["11"] = "" , ["16"] = ""},
+  C25 = {["11"] = "" , ["16"] = "D"},
 }
 
 _G.hero_name_zh = {
@@ -509,6 +517,7 @@ _G.hero_name_zh = {
   C22 = "佐佐木小次郎",
   C23 = "加藤清正",
   C24 = "柳生宗嚴",
+  C25 = "茶茶",
 }
 
 
