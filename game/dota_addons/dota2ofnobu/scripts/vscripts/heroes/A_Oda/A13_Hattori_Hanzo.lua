@@ -475,14 +475,14 @@ function a13e_modifier:OnIntervalThink()
 		                              nil,
 		                              SEARCH_RADIUS,
 		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-		                              DOTA_UNIT_TARGET_ALL,
+		                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 		                              FIND_ANY_ORDER,
 		                              false)
 				local hashook = false
 				for _,it in pairs(direUnits) do
 
-					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") and not string.match(it:GetUnitName(), "warrior_souls") and not it:HasAbility("majia") then
+					if not string.match(it:GetUnitName(), "com_general") and not string.match(it:GetUnitName(), "warrior_souls") and not it:HasAbility("majia") then
 						local tbl = { victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
 							damage_type = self.damage_type, ability = self:GetAbility()}
 						if it:IsMagicImmune() then
@@ -492,6 +492,9 @@ function a13e_modifier:OnIntervalThink()
 						hashook = true
 						if (it:HasModifier("modifier_invisible")) then
 							it:RemoveModifierByName("modifier_invisible")
+						end
+						if string.match(it:GetUnitName(), "C17R_old_SUMMEND_UNIT") then
+							it:ForceKill(true)
 						end
 						it:AddNewModifier(it, self:GetCaster(), "a13e_hook_back", { duration = 2}) 
 						local hModifier = it:FindModifierByNameAndCaster("a13e_hook_back", it)

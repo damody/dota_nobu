@@ -39,6 +39,7 @@ function choose_16( keys )
     if nobu_id == "C08" and caster:HasModifier("modifier_C08D_old_duge") then
     	caster:RemoveModifierByName("modifier_C08D_old_duge")
     end
+    caster:AddAbility(nobu_id.."_precache"):SetLevel(1)
 end
 
 function choose_11( keys )
@@ -80,6 +81,7 @@ function choose_11( keys )
     for si=1,#askill do
       caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
     end
+    caster:AddAbility(nobu_id.."_precache"):SetLevel(1)
 end
 
 function play_1v1( keys )

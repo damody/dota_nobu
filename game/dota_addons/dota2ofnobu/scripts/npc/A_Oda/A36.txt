@@ -177,7 +177,7 @@
 				"Aura" 										"modifier_A36E_explosion"
 		        "Aura_Radius" 								"%A36E_radius_detector"
 		        "Aura_Teams" 								"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		        "Aura_Types" 								"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		        "Aura_Types" 								"DOTA_UNIT_TARGET_HERO"
 		        "Aura_Flags" 								"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		        "Aura_ApplyToCaster" 						"0"
 				"Properties"
@@ -213,6 +213,78 @@
 					"MODIFIER_STATE_ROOTED"			"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
+			"modifier_A36E_slow"
+			{
+				"IsHidden"			"0"
+				"Duration"		"6"
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-35"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-35" 
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"A36E_damage"					"300 400 500 600"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"A36E_hp"						"500 500 500"
+			}
+			"03" //爆炸範圍
+			{
+				"var_type"							"FIELD_INTEGER"
+				"A36E_radius_explosion"			"500"
+			}
+			"04" //觸發範圍
+			{
+				"var_type"							"FIELD_INTEGER"
+				"A36E_radius_detector"			"250"
+			}
+			"05" //觸發範圍
+			{
+				"var_type"							"FIELD_INTEGER"
+				"maxc"			"2 4 6 8"
+			}
+		}
+    }
+
+    "A36EW"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"                	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                       	"custom/A25E"
+		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCooldown"							"8"
+		"AbilityCastPoint"							"0.1"
+		"AbilityManaCost"                      		"0"
+		"AbilityCastRange"				"500"
+		"Maxlevel"	"1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A36.lua"
+				"Function"		"A36E_explosion"
+			}
+		}
+
+		"Modifiers"
+		{
 			"modifier_A36E_slow"
 			{
 				"IsHidden"			"0"
@@ -358,12 +430,12 @@
 
 	//前野長康 奪命攻擊--------------------------------------------------------------------------------------------------------------------------------
 	"A36T"	
-		{
+	{
 		
 		"BaseClass"                 				"ability_datadriven"
 		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_ULTIMATE"	
-		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"                        "dota2/b11_r"
 		"RequiredLevel"	"6"
 		"LevelsBetweenUpgrades"	"6"

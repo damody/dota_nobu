@@ -14356,7 +14356,6 @@
 				{
 					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_EVADE_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_CANNOT_MISS"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_BLIND"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -15253,6 +15252,14 @@
 	                    "ModifierName"      "modifier_truesight"
 	                    "Duration"      "0.50"
 	                }
+	            }
+	            "OnDeath"
+	            {
+	            	"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
+						"Function"		"Death"
+					}
 	            }
 			}
 		}

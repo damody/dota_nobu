@@ -25,6 +25,8 @@ function A36E_OnSpellStart( keys )
 	
  	local player = caster:GetPlayerID()
  	local mine = CreateUnitByName("B13_MINE_hero", center, false, caster, caster, caster:GetTeamNumber())
+ 	mine:AddAbility("A36EW"):SetLevel(1)
+ 	mine:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	caster.A36E = {}
  	if #lA36E >= maxc then
 		lA36E[1]:ForceKill(true)
@@ -37,7 +39,7 @@ function A36E_OnSpellStart( keys )
 	table.insert(caster.A36E, mine)
 
 	local active_delay = 1.5
-	mine:RemoveModifierByName("modifier_invulnerable")
+	ability:ApplyDataDrivenModifier(caster,mine,"modifier_invulnerable",{duration = 1.5})
 	mine.caster = caster
 	mine:AddAbility("for_no_collision"):SetLevel(1)
 	mine:AddAbility("for_magic_immune"):SetLevel(1)

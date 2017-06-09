@@ -31,13 +31,13 @@
 		"AttackDamageMin"	"118.0"
 		"AttackDamageMax"	"134.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.80"
+		"AttackRate"	"1.8"
 		"AttackAnimationPoint"	"0.30"
 		"AttackAcquisitionRange"	"528"
 		"AttackRange"	"528"
 		// Add projectile
-		"ProjectileModel"	"particles/A36p/A36p.vpcf"
-		"ProjectileSpeed"	"1200"
+		"ProjectileModel"	"particles/units/heroes/hero_huskar/huskar_base_attack.vpcf"
+		"ProjectileSpeed"	"1600"
 		// Attributes
 		// ----------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
@@ -46,7 +46,7 @@
 		"AttributeBaseAgility"	"28"
 		"AttributeAgilityGain"	"2.7"
 		"AttributeBaseIntelligence"	"30"
-		"AttributeIntelligenceGain"	"2.8"		
+		"AttributeIntelligenceGain"	"2.8"
 		// Bounty
 		// ----------------------------------------------------------------
 		"BountyGoldMin"	"300.0"

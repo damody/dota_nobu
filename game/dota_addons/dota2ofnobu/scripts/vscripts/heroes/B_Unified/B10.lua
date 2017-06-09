@@ -477,17 +477,19 @@ function B10R_OnAttackLanded( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local cut = ability:GetSpecialValueFor("cut")
-	local rnd = RandomInt(1,100)
-	if caster.B10R == nil then caster.B10R = 0 end
-	caster.B10R = caster.B10R + 1
-	if cut < rnd and caster.B10R > 5 then
-		caster.B10R = 0
-		caster:Heal(ability:GetAbilityDamage(),ability)
-		if target:IsMagicImmune() then
-			AMHC:Damage( caster,target,ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-		else
-			AMHC:Damage( caster,target,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	if not target:IsBuilding() then
+		local cut = ability:GetSpecialValueFor("cut")
+		local rnd = RandomInt(1,100)
+		if caster.B10R == nil then caster.B10R = 0 end
+		caster.B10R = caster.B10R + 1
+		if cut < rnd and caster.B10R > 5 then
+			caster.B10R = 0
+			caster:Heal(ability:GetAbilityDamage(),ability)
+			if target:IsMagicImmune() then
+				AMHC:Damage( caster,target,ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			else
+				AMHC:Damage( caster,target,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 	end
 end
