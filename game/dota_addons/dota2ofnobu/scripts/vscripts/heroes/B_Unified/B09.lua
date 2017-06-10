@@ -350,7 +350,7 @@ function B09T_old_OnSpellStart( keys )
 	-- 配合特效稍微條快動畫速度
 	--Kagutsuchi:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_3, 1.3)
 	-- 特效
-	local ifx = ParticleManager:CreateParticle("particles/b13/b13t.vpcf",PATTACH_ABSORIGIN_FOLLOW,Kagutsuchi)
+	local ifx = ParticleManager:CreateParticle("particles/b09/b09t.vpcf",PATTACH_ABSORIGIN_FOLLOW,Kagutsuchi)
 	ParticleManager:SetParticleControl(ifx,0,Kagutsuchi:GetAbsOrigin())
 	Timers:CreateTimer(life_time, function ()
 		ParticleManager:DestroyParticle(ifx,true)

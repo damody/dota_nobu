@@ -4,6 +4,72 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	//龍造寺隆信 狂風
+	"c13r_wind"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		// Add model
+		//"Model"	"models/items/terrorblade/dotapit_s3_fallen_light_metamorphosis/dotapit_s3_fallen_light_metamorphosis.vmdl"
+		"ModelScale"	"1"
+		"Level"	"2"
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"        "100"
+		"HealthBarOffset"	"450"
+
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: Amnb
+		"Ability1"	""
+		"Ability2"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"1000"
+		"MagicalResistance"	"100"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"		"DAMAGE_TYPE_NONE"
+		"AttackDamageMin"	"150.0"
+		"AttackDamageMax"	"158.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.6"
+		"AttackAnimationPoint"	"0"
+		"AttackAcquisitionRange"	"1500"
+		"AttackRange"	"128"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"100.0"
+		"BountyGoldMax"	"100.0"
+		// Gold and Lumber
+		// ----------------------------------------------------------------
+		"GoldCost"		"0"
+		"LumberCost"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"		"400"
+		"MovementTurnRate"	"3"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"			"1000"
+		"StatusHealthRegen"		"1"
+		"StatusMana"			"400"
+		"StatusManaRegen"		"10"
+		"StatusStartingMana"	"-1"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1000"
+		"VisionNighttimeRange"	"1000"
+		// Team
+		// ----------------------------------------------------------------
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"HasInventory" 		"0"
+	}
 	//上泉分身
 	"B35T_SE"
 	{
@@ -1727,21 +1793,6 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		"Ability3"	""
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
 
 		"HasInventory" 		"0"
 	}

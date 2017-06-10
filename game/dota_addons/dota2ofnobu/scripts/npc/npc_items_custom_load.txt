@@ -275,7 +275,6 @@
 	"item_the_overflame_art_of_war_hyper"
 	{
 		// General
-		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/dayan"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
@@ -4354,6 +4353,7 @@
 					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_MUTED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_EVADE_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Duration"	"5"
 				"IsDebuff"	"1"

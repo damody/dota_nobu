@@ -1,0 +1,633 @@
+// 龍造寺隆信
+"DOTAAbilities"
+{
+	"C13_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/C13.vsndevts"
+			"particle"  "particles/units/heroes/hero_zeus/zues_screen_empty.vpcf"
+
+			// C13w_old
+			"particle"  "particles/c13/c13r.vpcf"
+
+			// C13E_old
+			"particle"  "particles/C13/C13e_debuff.vpcf"
+			"particle"  "particles/units/heroes/hero_razor/razor_static_link_buff.vpcf"
+
+			// C13R_old
+			"particle"  "particles/c13/c13r.vpcf"
+			"particle"	"particles/item/item_thunderstorms.vpcf"
+
+			// C13T_old
+			"particle"  "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf"
+		}
+	}
+
+	// 龍造寺隆信 [虹吸]
+	"C13W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_72"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"HotKeyOverride"	"E"
+		"AbilityCastPoint"	"0.25"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"20"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"125 145 165 185"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"900"
+		"AoERadius"	"%radius"
+		"precache"
+		{
+			"particle"	"particles/status_fx/status_effect_frost_lich.vpcf"
+			"particle"	"particles/a34e2/a34e2.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+			"particle"	"particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+				"Function"		"C13W_OnSpellStart"
+				"Target"		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"dmg"	"100"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"interval"	"0.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"move"	"190"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"count"	"2 3 4 5"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"200 300 400 500"
+	}
+
+	// 龍造寺隆信 [龍捲波]
+	"C13E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_106"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"15 12 9 6"
+		"AbilityManaCost"				"120 140 160 180"
+		"AbilityDamage"					"200 300 400 500"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"dmg"	"100"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"interval"	"0.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"move"	"100"
+			}
+		}
+
+		"precache"
+		{
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C13E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+				"Function"		"C13E_OnSpellStart"
+				"Target"		"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%AbilityDamage"
+			}
+		}
+		"Modifiers"
+		{
+		}
+	}
+
+	// 龍造寺隆信 [狂嵐之握]
+	"C13R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_fury2"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"120 140 160 180"
+		"AbilityDamage"					"150 250 350 450"
+
+		"AbilityCastRange"				"700"
+
+		"AoERadius"						"450"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"str"		"4 8 12 16"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"move"	"12 24 36 48"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/C13/C13r.vpcf"
+			"particle"	"particles/item/item_thunderstorms.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C13R.vo1"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C13R"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%str"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%move" 
+				}
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+						"Function"		"C13R_OnKill"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"modifier_C13R2"
+			{
+				"IsHidden"			"0"
+				"ThinkInterval"  "1"
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+						"Function"		"C13R_OnIntervalThink"
+					}
+				}
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+						"Function"		"C13R_OnKill"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+	}
+
+	// 龍造寺隆信 [龍捲之漩渦]
+	"C13T"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/B09/B09T_old"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"130 120 110"
+		"AbilityManaCost"				"300 400 500"
+		"AbilityDamage"			"280 400 520"
+		"AbilityChannelTime"	"5.5"
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+				"Function"		"C13T_OnSpellStart"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"28 40 52"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/C13/C13t_ntimage_manavoid_ti_5.vpcf"
+			"particle"  "particles/units/heroes/hero_zeus/zues_screen_empty.vpcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_C13T"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_EVADE_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_BLIND"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	// 11.2b
+	// 龍造寺隆信 [風之鎖]
+	"C13D_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B09/B09T_old"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"HotKeyOverride"	"E"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"30"
+		"AbilityManaCost"	"150"
+		"AbilityCastRange"	"900"
+		"AoERadius"	"%radius"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+				"Function"		"C13D_old_OnSpellStart"
+				"Target"		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C13D_old"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_EVADE_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_BLIND"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Duration"	"2"
+				"IsDebuff"	"1"
+				"EffectName"	"particles/b09/b09t.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"200"
+	}
+	// 11.2B
+	// 龍造寺隆信 [血腥狂風]
+	"C13W_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_fury2"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"130 160 190 220"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage" "50 70 90 110"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration" "40"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/C13/C13w_old_buff.vpcf"
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+				"Function"		"C13W_old_OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_C13W_old"
+			{
+				"IsHidden"			"0"
+				"ThinkInterval"  "1"
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+						"Function"		"C13R_OnIntervalThink"
+					}
+				}
+			}
+		}
+	}
+
+	// 龍造寺隆信 [龍捲波]
+	"C13E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_106"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"15 12 9 6"
+		"AbilityManaCost"				"120 140 160 180"
+		"AbilityDamage"					"200 300 400 500"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"dmg"	"100"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"interval"	"0.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"move"	"100"
+			}
+		}
+
+		"precache"
+		{
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C13E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+				"Function"		"C13E_OnSpellStart"
+				"Target"		"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%AbilityDamage"
+			}
+		}
+		"Modifiers"
+		{
+		}
+	}
+
+	// 龍造寺隆信 [力量強化]
+	"C13R_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_139"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_str"			"8 16 24 32"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_A08R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%add_str"
+				}
+			}
+		}
+	}
+
+	// 龍造寺隆信 [龍捲之漩渦]
+	"C13T_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/B09/B09T_old"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"130 120 110"
+		"AbilityManaCost"				"300 400 500"
+		"AbilityDamage"			"240 350 460"
+		"AbilityChannelTime"	"4"
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"1.1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+				"Function"		"C13T_old_OnSpellStart"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"	"24 35 46"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/C13/C13t_ntimage_manavoid_ti_5.vpcf"
+			"particle"  "particles/units/heroes/hero_zeus/zues_screen_empty.vpcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_C13T"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_EVADE_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_BLIND"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+} // END DOTAAbilities
