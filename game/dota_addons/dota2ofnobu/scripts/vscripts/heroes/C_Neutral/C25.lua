@@ -3,13 +3,16 @@ function C25D_Action1( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local level  = keys.ability:GetLevel()
-	
-	--move
-	caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
-	caster:SetAbsOrigin(target:GetAbsOrigin())
-	if not target:IsMagicImmune() then
-		local dmg = keys.ability:GetLevelSpecialValueFor("C25D_Damage", keys.ability:GetLevel() - 1 )
-		AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	local rnd = RandomInt(1,100)
+	if rnd <= 50 then
+		caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
+		caster:SetAbsOrigin(target:GetAbsOrigin())
+		if not target:IsMagicImmune() then
+			local dmg = keys.ability:GetLevelSpecialValueFor("C25D_Damage", keys.ability:GetLevel() - 1 )
+			AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		end
+	else
+		ability:EndCooldown()
 	end
 end
 
@@ -31,7 +34,6 @@ function C25W_OnSpellStart( keys )
 
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
-
 		--基礎傷害
 		ApplyDamage({
 			victim = unit,
@@ -49,6 +51,16 @@ function C25W_OnSpellStart( keys )
 	end
 end
 
+function C25R_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local mana = ability:GetSpecialValueFor("mana")
+	local rnd = RandomInt(1,100)
+	if rnd <= 25 then
+		target:ReduceMana(mana)
+	end
+end
 
 function C25E( keys )
 	local caster = keys.caster
@@ -68,11 +80,8 @@ function C25E( keys )
 	Timers:CreateTimer(function()
 		point2  = target:GetAbsOrigin()
         temp_point = nobu_move( temp_point, point2 , distance )
-
         --temp_point = nobu_move_ver2( temp_point , distance ,RandomFloat(0,-30))
-
         --print(nobu_radtodeg(math.atan2(point2.y-point.y,point2.x-point.x)))
-
 		if nobu_distance( temp_point,point2 ) < 50  or not target:IsAlive()  then
 			ability:ApplyDataDrivenModifier(caster,target,"modifier_C25E",nil)
 			ParticleManager:DestroyParticle(particle,false)
@@ -88,18 +97,26 @@ end
 
 
 function C25T_OnSpellStart( keys )
-
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
 	StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_C25T_bleeding",{})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_C25T_bleeding",{duration = 12})
 	--ability:ApplyDataDrivenModifier(caster,target,"modifier_C25T_slience",{})
 	local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
 	ParticleManager:SetParticleControl( fxIndex, 0, target:GetAbsOrigin() )
 	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )		
-	AddFOWViewer(caster:GetTeamNumber(),target:GetAbsOrigin(),600,3.0,false)
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT,0.6)
+	local tsum = 0.1
+	Timers:CreateTimer(0.1, function()
+		if IsValidEntity(target) and not target:HasModifier("modifier_C25T_bleeding") then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_C25T_bleeding",{duration = 12-tsum})
+		end
+		tsum = tsum + 0.1
+		if tsum < 12 then
+			return 0.1
+		end
+		end)
 end
 
 
@@ -122,8 +139,8 @@ function modifier_C25T_bleeding_OnIntervalThink( keys )
 		end
 		--ExecuteOrderFromTable({UnitIndex = target:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP, Queue = false}) 
 		target:Stop()
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = ability:GetSpecialValueFor("stun_time")})
 	end
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = ability:GetSpecialValueFor("stun_time")})
 	AddFOWViewer(caster:GetTeamNumber(),target:GetAbsOrigin(),600,3.0,false)
 	
 end

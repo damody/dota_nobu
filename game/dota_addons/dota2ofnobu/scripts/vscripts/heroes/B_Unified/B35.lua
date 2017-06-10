@@ -1,26 +1,72 @@
-function B35R_OnToggleOn( event )
-	local ability = event.ability
-	local caster = event.caster
-	caster.attackvoid = 1	
-	Timers:CreateTimer(0.1,function()
-		if caster.next_attack ~= nil then
-			caster.next_attack.ability = ability
-			--[[
-			local targetArmor = caster.next_attack.victim:GetPhysicalArmorValue()
-			local damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
-			caster.next_attack.damage = caster.next_attack.damage/(1-damageReduction)
-			]]
-			ApplyDamage(caster.next_attack)
-			caster.next_attack = nil
-		end
-		return 0.1
-		end)
+require('libraries/animations')
+
+function B35E_OnSpellStart( keys )
+	local ability = keys.ability
+	local caster = keys.caster
+	local targetpoint = keys.target_points[1]
+	local dir=targetpoint-caster:GetAbsOrigin()
+	caster:SetForwardVector(dir:Normalized())
+	--local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
+	local distance = 3000
+	local radius =  400
+	local collision_radius = 150
+	local projectile_speed = 2000
+	local projectileTable = {
+			Ability = ability,
+			EffectName =  "particles/b35/b35e.vpcf",
+			vSpawnOrigin = caster:GetAbsOrigin(),
+			fDistance = distance,
+			fStartRadius = collision_radius,
+			fEndRadius = collision_radius,
+			Source = caster,
+			bHasFrontalCone = false,
+			bReplaceExisting = false,
+			bProvidesVision = false,
+			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NONE,
+			vVelocity = caster:GetForwardVector():Normalized() * projectile_speed
+		}
+	ProjectileManager:CreateLinearProjectile( projectileTable )
 end
 
-function B35R_OnToggleOff( event )
-	local ability = event.ability
-	local caster = event.caster
-	caster.attackvoid = nil	
+function B35E_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local point =target:GetAbsOrigin()
+	local ifx = ParticleManager:CreateParticle("particles/b35w2.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleControl( ifx, 0, point + Vector(0,0,100))
+	ParticleManager:SetParticleControl( ifx, 1, point + Vector(0,0,100))
+	ParticleManager:SetParticleControl( ifx, 2, point + Vector(0,0,100))
+	ParticleManager:SetParticleControl( ifx, 3, point + Vector(0,0,100))
+	ParticleManager:SetParticleControl( ifx, 4, point + Vector(0,0,100))
+	ParticleManager:SetParticleControl( ifx, 5, point + Vector(0,0,100))
+	ParticleManager:SetParticleControl( ifx, 6, point + Vector(0,0,100))
+	ParticleManager:SetParticleControl( ifx, 20, point + Vector(0,0,100))
+
+	Timers:CreateTimer(1, function ()
+		ParticleManager:DestroyParticle(ifx,false)
+	end)
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+		target:GetAbsOrigin(),
+		nil,
+		500,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		FIND_ANY_ORDER,
+		false)
+	for _,it in pairs(direUnits) do
+		if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+			if it:IsMagicImmune() then
+				ability:ApplyDataDrivenModifier(caster,it,"modifier_B35E", {})
+			else
+				ability:ApplyDataDrivenModifier(caster,it,"modifier_B35E", {})
+				AMHC:Damage(caster,it, ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+		end
+	end
 end
 
 function B35R_lock( keys )
@@ -31,33 +77,30 @@ function B35R_unlock( keys )
 	keys.ability:SetActivated(true)
 end
 
-function Shock( keys )
+function B35R_OnAttacked( keys )
 	local caster = keys.caster
+	local ability = keys.ability
+	local silence_time = ability:GetSpecialValueFor("silence_time")
 	if not caster:IsIllusion() then
 		local target = keys.target
 		local skill = keys.ability
 		local ran =  RandomInt(0, 100)
 		local dmg = keys.dmg
 		--local dmg = ability:GetSpecialValueFor("dmg")
-		if (caster.great_spear_of_dragonfly_count == nil) then
-			caster.great_spear_of_dragonfly_count = 0
+		if (caster.B35R_count == nil) then
+			caster.B35R_count = 0
 		end
 		
 		if (ran > 20) then
-			caster.great_spear_of_dragonfly_count = caster.great_spear_of_dragonfly_count + 1
+			caster.B35R_count = caster.B35R_count + 1
 		end
-		if (caster.great_spear_of_dragonfly_count > 5 or ran <= 20) then
-			caster.great_spear_of_dragonfly_count = 0
-			if (caster.great_spear_of_dragonfly == nil) then
-				caster.great_spear_of_dragonfly = 1
-				Timers:CreateTimer(0.1, function() 
-						caster.great_spear_of_dragonfly = nil
-					end)
+		if (caster.B35R_count > 5 or ran <= 20) then
+			caster.B35R_count = 0
 				StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 				local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		                              target:GetAbsOrigin(),
 		                              nil,
-		                              250,
+		                              200,
 		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 		                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
@@ -71,48 +114,29 @@ function Shock( keys )
 						Timers:CreateTimer(0.3, function ()
 							ParticleManager:DestroyParticle(flame, false)
 						end)
+						ability:ApplyDataDrivenModifier(caster, it,"modifier_silence", {duration=silence_time})
 						if it:IsMagicImmune() then
-							--AMHC:Damage(caster,it,"dmg",AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) ) 
-							AMHC:Damage(target,it,"100",AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 						else
-							--AMHC:Damage(caster,it,"dmg",AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-							AMHC:Damage(target,it,"100",AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+							AMHC:Damage(target,it,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 						end
 					end
 				end
-				--SE
-				-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
-				-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
-				--動作
 				local rate = caster:GetAttackSpeed()
-				--print(tostring(rate))
-
-				--播放動畫
-			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
-				if rate < 1 then
-				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
-				else
-				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
-				end
-			end
+				caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK,2)
 		end
 	end
 end
 
-
-function B35T( keys )
+function B35T_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster.B35T = caster.B35T - 1
-	if caster.B35T == 0 then
-		caster:RemoveModifierByName("modifier_B35T")
+	local target = keys.target
+	if target:IsMagicImmune() then
+		AMHC:Damage(caster,target,ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	else
+		AMHC:Damage(caster,target,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 end
-
-
-
-
-
 
 function B35E_old_OnSpellStart( keys )
 	local caster = keys.caster
@@ -143,20 +167,49 @@ function B35E_old_OnSpellStart( keys )
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_knockback",knockbackProperties)
 
 	EmitSoundOn("Hero_Clinkz.WindWalk",caster)
+
+	local projectileTable =
+	{
+		EffectName = "particles/item/dragon.vpcf",
+		Ability = ability,
+		vSpawnOrigin = center,
+		vVelocity = dir * speed,
+		fDistance = distance,
+		fStartRadius = 175,
+		fEndRadius = 175,
+		Source = caster,
+		bHasFrontalCone = false,
+		bReplaceExisting = false,
+		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		bProvidesVision = true,
+		iVisionRadius = vision_radius,
+		iVisionTeamNumber = caster:GetTeamNumber()
+	}
+	Timers:CreateTimer(0.1, function()
+		ProjectileManager:CreateLinearProjectile(projectileTable)
+		end)
+	
 end
 
+function B35E_old_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	caster:PerformAttack(keys.target, true, true, true, true, true, false, true)
+end
 
 function B35E_old_OnAttackLanded( keys )
-		local caster = keys.caster
-		local ability = keys.ability
-		local handle = caster:FindAbilityByName("B35E_old")
-		if handle then
-			if not handle:IsCooldownReady() then
-				local t = handle:GetCooldownTimeRemaining()
-				handle:EndCooldown()
-				handle:StartCooldown(t-ability:GetLevel()*0.5)
-			end
+	local caster = keys.caster
+	local ability = keys.ability
+	local handle = caster:FindAbilityByName("B35E_old")
+	if handle then
+		if not handle:IsCooldownReady() then
+			local t = handle:GetCooldownTimeRemaining()
+			handle:EndCooldown()
+			handle:StartCooldown(t-ability:GetLevel()*0.5)
 		end
+	end
 end
 
 function B35R_old_OnAttackStart( keys )
@@ -176,6 +229,37 @@ function B35R_old_OnAttackStart( keys )
 	end
 end
 
+function B35T_Copy(u, u2, ability)
+	local  team  = u:GetTeamNumber()
+	local  point = u:GetAbsOrigin()
+	local  tu   = CreateUnitByName("B35T_SE",point,true,nil,nil,team)
+	ability:ApplyDataDrivenModifier(tu, tu,"modifier_invulnerable", nil)
+	ability:ApplyDataDrivenModifier(tu, tu,"modifier_B35T_old_stunned2", nil)
+	-- --播放動畫(透明度50%,顏色要改金),隨機播放攻擊動作	
+	--tu: SetRenderColor(255,255,122)
+	-- call SetUnitTimeScale(u,3)
+	-- call SetUnitAnimation(u,"Attack Slam")
+	-- --紀錄特效單位在群組
+	tu:SetForwardVector((u2:GetAbsOrigin()-point):Normalized())
+	--tu:SetPlaybackRate(3)
+    --播放動畫
+    local count = 0
+    Timers:CreateTimer(
+    	function()
+    		count = count + 1
+    		if (tu:IsAlive()) then
+    			tu:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 1 )	
+    		end
+    		if (count > 25) then
+    			tu:ForceKill(false)
+                tu:Destroy()
+    			return nil
+    		else
+    			return 0.2
+    		end
+    	end)
+end
+
 function B35T_old_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -183,6 +267,9 @@ function B35T_old_OnSpellStart( keys )
 	local damage = ability:GetAbilityDamage()
 	local damage_type = ability:GetAbilityDamageType()
 	local play_time = ability:GetSpecialValueFor("play_time")
+	local direction = (target:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
+	local spos = target:GetAbsOrigin() - direction * 400
+	local epos = target:GetAbsOrigin() + direction * 400
 	print("B35T_old_OnSpellStart")
 	caster:Stop()
 	target:Stop()
@@ -193,19 +280,19 @@ function B35T_old_OnSpellStart( keys )
 		damage=1
 	})
 
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B35T_old_stunned",{duration=play_time+1})
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B35T_old_stunned",{duration=play_time+2})
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B35T_old_playing",{duration=play_time})
 	Timers:CreateTimer(0.15, function ()
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time+1})
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time+2})
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_playing",{duration=play_time})
 		end)
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time+1})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time+2})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_playing",{duration=play_time})
 
 	local arena = ParticleManager:CreateParticle("particles/B35/B35t_old_arena.vpcf",PATTACH_ABSORIGIN,target)
 
 	local hit_num = 30
-	local hit_delay = (play_time-0.5)/hit_num
+	local hit_delay = (play_time-1.1)/hit_num
 	local center = target:GetAbsOrigin()
 	local center_ori = target:GetAbsOrigin()
 	AddFOWViewer(caster:GetTeamNumber(),center,500,play_time,false)
@@ -217,13 +304,12 @@ function B35T_old_OnSpellStart( keys )
 			local dx = math.cos(angle)
 			local dy = math.sin(angle)
 			local dir = Vector(dx,dy,0)
-			local attack_point = center_ori-dir*150+Vector(0,0,100+i*10)
+			local attack_point = center_ori-dir*150+Vector(0,0,100)
 			local cast_point = attack_point-Vector(0,0,100)
 			caster:SetAbsOrigin(cast_point)
 			caster:SetForwardVector(dir)
 			target:SetForwardVector(-dir)
 			local tar_pos = center
-			tar_pos.z = center_ori.z + i*10
 			target:SetAbsOrigin(tar_pos)
 			-- 失能動畫
 			caster:EmitSound( "C01W.sound"..RandomInt(1, 3))
@@ -234,13 +320,9 @@ function B35T_old_OnSpellStart( keys )
 			-- 攻擊動畫
 			StartAnimation(caster, {
 				duration=0.1,
-				activity=ACT_DOTA_CAST_ABILITY_2, 
+				activity=ACT_DOTA_ATTACK, 
 				rate=4
 			})
-			local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_odds_hero_arrow_parent.vpcf",PATTACH_POINT,target)
-			ParticleManager:SetParticleControl(ifx,0,center+dir*RandomFloat(0,100))
-			ParticleManager:SetParticleControl(ifx,6,attack_point)
-			ParticleManager:ReleaseParticleIndex(ifx)
 			Timers:CreateTimer(0.1, function ()
 				local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger.vpcf",PATTACH_POINT,target)
 				ParticleManager:SetParticleControlForward(ifx,0,dir)
@@ -251,17 +333,24 @@ function B35T_old_OnSpellStart( keys )
 		end)
 	end
 
-	Timers:CreateTimer(play_time-0.5,function ()
-		local diff = center-caster:GetAbsOrigin()
-		diff.z = 0
-		caster:SetForwardVector( diff:Normalized() )
-		-- 跳砍動畫
-		StartAnimation(caster, {
-			duration=0.5,
-			activity=ACT_DOTA_ATTACK, 
-			translate="duel_kill"
-		})
-		Timers:CreateTimer(0.5,function ()
+	Timers:CreateTimer(play_time-1.1,function ()
+		caster:SetAbsOrigin(spos)
+		local knockbackProperties =
+		{
+			center_x = epos.x,
+			center_y = epos.y,
+			center_z = epos.z,
+			duration = 1,
+			knockback_duration = 1,
+			knockback_distance = -800,--負數往目標點移動
+			knockback_height = 300,
+			should_stun = 0
+		}
+		caster:SetForwardVector(direction)
+		caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 1 )
+		caster:AddNewModifier( caster, nil, "modifier_knockback", knockbackProperties )
+		
+		Timers:CreateTimer(1.1,function ()
 			FindClearSpaceForUnit(caster,caster:GetAbsOrigin(),true)
 			end)
 	end)
@@ -279,19 +368,35 @@ function B35T_old_OnSpellStart( keys )
 			damage_type=damage_type,
 			damage=damage
 		})
-		-- 命令攻擊
-		ExecuteOrderFromTable({
-			UnitIndex = caster:entindex(),
-			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-			TargetIndex = target:entindex(),
-			Queue = false
-		})
 		caster:EmitSound( "B35T.end")
-		target:SetAbsOrigin(center_ori)
+		
+
 		-- 延遲一個frame在移除暈眩狀態
 		Timers:CreateTimer(0, function ()
 			if IsValidEntity(caster) then caster:RemoveModifierByNameAndCaster("modifier_B35T_old_stunned",caster) end
 			if IsValidEntity(target) then target:RemoveModifierByNameAndCaster("modifier_B35T_old_stunned",caster) end
 		end)
 	end)
+
+	local maxrock = 6
+	local pointx2
+	local pointy2
+	local opoint = target:GetAbsOrigin()
+	local pointx = opoint.x
+	local pointy = opoint.y
+	local pos = {}
+	local dir = {}
+	for i=1,maxrock do
+		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
+		pointx2 	=  	pointx 	+ 	300 	* 	math.cos(a)
+		pointy2 	=  	pointy 	+ 	300 	*	math.sin(a)
+		point = Vector(pointx2 ,pointy2 , pointz)
+		local direction = (opoint - point):Normalized()
+		pos[i] = point
+		dir[i] = direction
+		--Timers:CreateTimer(0.1*i, function()
+			caster:SetAbsOrigin(pos[i])
+			B35T_Copy(caster, target, ability)
+		--	end)
+	end
 end

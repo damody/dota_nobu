@@ -9,9 +9,14 @@
 		{
 			"soundfile"	"soundevents/C24.vsndevts"
 			"particle"  "particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_buff.vpcf"
-			"particle"  "particles/c19e/c19e.vpcf"
+			"particle"  "particles/b35/b35e.vpcf"
+			"particle"  "particles/b35w2.vpcf"
+			"particle"  "particles/a04/a04d_old_casterribbons_arcana1.vpcf"
 			"soundfile"	"soundevents/c01w.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
 		}
 	}
 	// 上泉信綱 劍之極意
@@ -114,15 +119,9 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		
 		"AbilityCastPoint"	"0.1"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"13"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"13 12 11 10"
 		"AbilityManaCost"	"150 170 190 210"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"0"
+		"AbilityCastRange"	"1500"
 		// Data driven
 		// -------------------------------------------------------------------------------------------------------------
 		"OnSpellStart"
@@ -166,7 +165,7 @@
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-30"
 				}
-				"EffectName"		"particles/a24w_slow/a24w_slow.vpcf"
+				"EffectName"		"particles/generic_gameplay/move_slow.vpcf"
 				"EffectAttachType"	"follow_overhead"
 			}
 		}
@@ -179,30 +178,24 @@
 
 	// 上泉信綱 新陰流 ‧無刀取      開啟後 只有20%範圍傷害  是拿蜻切的來用 調傷害的時候 就跑不出來了  沉默也不會弄 
 	"B35R"
-
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"                        "dota2/c24_r"
 
 		"AbilityCastPoint"          	"0.1"
-		"AbilityCooldown"           	"8"
-		"AbilityManaCost"           	"0"
+		"AbilityCooldown"           	"12"
+		"AbilityManaCost"           	"120 140 160 180"
 		"MaxLevel"						"4"
 		"AbilityDamage"					"200 225 250 275"
 		"AbilityCastRange"				"200"
 		"AOERadius"						"200"
 
-        "OnToggleOn"
+        "OnSpellStart"
 		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-				"Function"	"B35R_OnToggleOn"
-			}
 			"ApplyModifier"
 			{
 				"Target"
@@ -210,70 +203,29 @@
 				    "Center" "CASTER"
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-				"ModifierName"	"modifier_B35R"
-			}
-			"ApplyModifier"
-			{
-				"Target"
-				{
-				    "Center" "CASTER"
-				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-				}
-				"ModifierName"	"modifier_B35R_locker"
-			}
-		}
-		"OnToggleOff"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-				"Function"	"B35R_OnToggleOff"
-			}
-			"RemoveModifier"
-			{
-				"Target"	"CASTER"
 				"ModifierName"	"modifier_B35R"
 			}
 		}
 
         "Modifiers"
         {
-        	// 暫時鎖住此技能
-			"modifier_B35R_locker"
-			{
-				"Duration" "1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"		"B35R_lock"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"		"B35R_unlock"
-					}
-				}
-			}
            "modifier_B35R"
 			{
+				"Passive"	"0"
 				"IsBuff"	"1"
+				"Duration"	"8"
 				"Properties"
 				{
 					
 				}
-				"EffectName" "particles/a32/A32T.vpcf"
-				"ThinkInterval"  "0.5"
-				"OnAttackLanded"
+				"EffectName" "particles/a04/a04d_old_casterribbons_arcana1.vpcf"
+				"OnAttacked"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"	"Shock"
+						"Function"	"B35R_OnAttacked"
+						"dmg" "%attack_damage"
 					}
 				}
 			}
@@ -295,7 +247,6 @@
 		}	
     }
 
-
 	//  新陰流‧祕轉  
 	"B35T"
 	{
@@ -306,7 +257,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY" 
-		"AbilityUnitTargetFlags""DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetFlags""DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"	"3"
@@ -334,11 +285,10 @@
 				"Target"	"CASTER"
 				"EffectName"	"C22W_old.vo1"
 			}
-			"Damage"
+			"RunScript"
 			{
-				"Target"		"TARGET"
-				"Type"			"DAMAGE_TYPE_PURE"
-				"Damage"		"%AbilityDamage"
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+				"Function"	"B35T_OnSpellStart"
 			}
 			"ApplyModifier"
 			{
@@ -369,14 +319,6 @@
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%criticalstrike"
 				}
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
-						"Function"	"B35T"
-					}
-				}
 				"IsBuff"	"1"
 				"IsPurgable"	"1"
 				"StatusEffectName"	"particles/b34r/b34r.vpcf"
@@ -390,7 +332,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"2 4 6"
+				"duration"	"4 6 8"
 			}
 			"02"
 			{
@@ -504,7 +446,7 @@
 
 		"AbilityCastRange"							"800"
 		"AbilityCastPoint"							"0.1"
-		"AbilityCooldown"                           "12"
+		"AbilityCooldown"                           "12 11 10 8"
 		"AbilityManaCost"                           "100 120 140 160"
 
 		"OnSpellStart"
@@ -514,27 +456,17 @@
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B35.lua"
 				"Function"							"B35E_old_OnSpellStart"
 			}
-			"LinearProjectile"
-			{
-			    "Target"      	 "POINT"
-			    "EffectName"	 "particles/item/dragon.vpcf"
-				"MoveSpeed"		 "%B35E_speed"
-				"StartRadius"	 "%B35E_radius"
-				"StartPosition"  "attach_attack1"
-				"EndRadius"      "%B35E_radius"
-				"HasFrontalCone" "0"
-				"FixedDistance"  "%B35E_distance"
-				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
-			    "ProvidesVision" "1"
-			    "VisionRadius" 	 "225"
-			}
 		}
 
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"0"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
+				"Function"	"B35E_old_OnProjectileHitUnit"
+				"Target"		"TARGET"
+			}
 			"Damage"
 			{
 				"Target"		"TARGET"
@@ -546,7 +478,7 @@
 		{
 			"modifier_B35E_old"
 			{
-				"Passive"			"1"
+				"Passive"			"0"
 				"IsHidden"			"1"
 				"IsDebuff"			"0"
 				"OnAttackLanded"
@@ -564,7 +496,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"B35E_speed"				"3000"
+				"B35E_speed"				"6000"
 			}
 			"02"
 			{
@@ -579,7 +511,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"B35E_distance"				"850"
+				"B35E_distance"				"1150"
 			}
 		}
 	}
@@ -658,7 +590,6 @@
 		}
 	}
 
-
 	//  絕‧陰流最終祕劍轉  柳生的 拿過來放而去 沒去弄 
 	"B35T_old"
 	{
@@ -673,19 +604,19 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastRange"				"250"
+		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.1"
 
-		"AbilityCooldown"				"90"
+		"AbilityCooldown"				"110"
 		"AbilityManaCost"				"200 250 300"
-		"AbilityDamage"					"1300 1600 2000"
+		"AbilityDamage"					"1450 1800 2300"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"play_time"		"5"
+				"play_time"		"6"
 			}
 		}
 
@@ -739,6 +670,15 @@
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_B35T_old_stunned2"
+			{
+				"IsHidden"			"1"
+				"Priority" "MODIFIER_PRIORITY_ULTRA"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS"		"fear"
 				}
 			}
 		}

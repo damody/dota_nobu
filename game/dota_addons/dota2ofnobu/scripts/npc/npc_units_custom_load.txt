@@ -4,6 +4,42 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+	//上泉分身
+	"B35T_SE"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"majia"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"ModelScale"	"1.30"
+		"Model"	"models/heroes/sven/sven.vmdl"
+		"VisionDaytimeRange"	"600"
+		"VisionNighttimeRange"	"600"
+		"Creature"
+		{
+		    "AttachWearables"
+		    {
+		        "1" { "ItemDef" "16" }
+		        "2" { "ItemDef" "17" }
+		        "3" { "ItemDef" "18" }
+		        "4" { "ItemDef" "19" }
+		        "5" { "ItemDef" "20" }
+		    }
+		}
+	}
 	// 石川 巨蠱‧四腳獸
 	"A03T_old"
 	{
@@ -4781,8 +4817,8 @@
 		"StatusManaRegen"	"0"
 		// Vision
 		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"800"
-		"VisionNighttimeRange"	"800"
+		"VisionDaytimeRange"	"200"
+		"VisionNighttimeRange"	"200"
 		// Team
 		// ----------------------------------------------------------------
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
@@ -4859,8 +4895,8 @@
 		"StatusManaRegen"	"0"
 		// Vision
 		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"800"
-		"VisionNighttimeRange"	"800"
+		"VisionDaytimeRange"	"300"
+		"VisionNighttimeRange"	"300"
 		// Team
 		// ----------------------------------------------------------------
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_LIGHT"

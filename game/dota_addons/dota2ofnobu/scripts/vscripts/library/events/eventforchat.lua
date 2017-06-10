@@ -517,10 +517,8 @@ local function chat_of_test(keys)
 			end
 		end
 
-		if s == "smsm" then
-			for _,m in ipairs(caster.donkey:FindAllModifiers()) do
-				GameRules: SendCustomMessage("[Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
-			end
+		if s == "model" then
+			GameRules: SendCustomMessage("[ModelName] "..caster:GetModelName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 		end
 
 		if s == "cu_es" then

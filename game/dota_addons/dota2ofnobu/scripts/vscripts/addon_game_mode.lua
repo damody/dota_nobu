@@ -84,7 +84,7 @@ _G.heromap = {
   npc_dota_hero_bane                = "B32",
   npc_dota_hero_drow_ranger         = "B33",
   npc_dota_hero_beastmaster         = "B34",
-  npc_dota_hero_faceless_void       = "B35",
+  npc_dota_hero_sven                = "B35",
   npc_dota_hero_visage              = "B36",
 
   npc_dota_hero_viper               = "C01",
@@ -103,13 +103,13 @@ _G.heromap = {
   npc_dota_hero_rubick              = "C16",
   npc_dota_hero_puck                = "C17",
   npc_dota_hero_pudge               = "C18",
-  npc_dota_hero_templar_assassin    = "C19",
+  npc_dota_hero_life_stealer        = "C19",
   npc_dota_hero_terrorblade         = "C20",
   npc_dota_hero_alchemist           = "C21",
   npc_dota_hero_jakiro              = "C22",
   npc_dota_hero_undying             = "C23",
   npc_dota_hero_batrider            = "C24",
-  npc_dota_hero_sven                = "C25",
+  npc_dota_hero_templar_assassin    = "C25",
 }
 
 _G.nobu2dota = {}

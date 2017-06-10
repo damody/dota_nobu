@@ -55,7 +55,6 @@ function B24T( keys )
 		ability:ApplyDataDrivenModifier(caster, v,"modifier_B24T_2",{duration=100})
 	end
 
-
 	--【For】
 	local pointx = point.x
 	local pointy = point.y
@@ -173,7 +172,7 @@ function B24W( keys )
 							FIND_ANY_ORDER,
 							false)
 						for _,it in pairs(its) do
-							if it ~= dummy then
+							if it ~= dummy and it:GetUnitName() == "B24T_HIDE_hero" then
 								target:SetPhysicsVelocity((dummy:GetAbsOrigin() - target:GetAbsOrigin()):Normalized()*(1000 - wcount*150))
 								return nil
 							end
