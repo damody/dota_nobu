@@ -9,6 +9,7 @@
 		{
 			"particle"  "particles/a21/a21r.vpcf" //r
 			"particle"  "particles/a21/a21e.vpcf" //e
+			"soundfile"	"soundevents/a21.vsndevts"
 		}
 	}
 	//竊魔
@@ -244,6 +245,11 @@
 				"Target"	"TARGET"
 				"Type"	"DAMAGE_TYPE_MAGICAL"
 				"Damage"	"%dmg"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"A21R.vo1"
 			}
 		}
 		"Modifiers"
@@ -573,6 +579,11 @@
 				"Target"	"TARGET"
 				"Type"	"DAMAGE_TYPE_MAGICAL"
 				"Damage"	"%dmg"
+			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"A21R.vo1"
 			}
 		}
 		"Modifiers"

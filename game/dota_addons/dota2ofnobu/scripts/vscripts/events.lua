@@ -209,10 +209,11 @@ function Nobu:FilterGold( filterTable )
               Timers:CreateTimer( 0.1, function()
                 local total = #_G.assist - 1
                 if total > 0 then
-                  local money = 150/total
-                  if _G.turbo then
-                    money = 300/total
+                  local moneyb = 0
+                  if prestige[hero:GetTeamNumber()] > 100 then
+                    moneyb = math.floor(prestige[hero:GetTeamNumber()]/100)*20
                   end
+                  local money = (150+moneyb)/total
                   for _,v in pairs(_G.assist) do
                     if v ~= _G.not_assist then
                       AMHC:GivePlayerGold_UnReliable(v, money)
@@ -228,29 +229,6 @@ function Nobu:FilterGold( filterTable )
         end
         return false
       end
-    end
-    if reason == DOTA_ModifyGold_Building then
-      if gold == 150 or gold == 750 then
-        local player = PlayerResource:GetPlayer(playerID)
-        if player then
-          local hero = player:GetAssignedHero()
-          Timers:CreateTimer(0.1, function ()
-            if hero.kill_tower == 1 then
-              if _G.turbo then
-                AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID()*2, gold)
-              else
-                AMHC:GivePlayerGold_UnReliable(hero:GetPlayerOwnerID(), gold)
-              end
-              if gold == 150 then
-                give_money_for_together_hero(hero, gold, 1000)
-              else
-                give_money_for_together_hero(hero, 200, 1000)
-              end
-            end
-            end)
-        end
-      end
-      return false
     end
 
     return true

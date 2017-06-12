@@ -119,7 +119,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"13 12 11 10"
+		"AbilityCooldown"	"10 9 8 7"
 		"AbilityManaCost"	"150 170 190 210"
 		"AbilityCastRange"	"1500"
 		// Data driven
@@ -180,15 +180,13 @@
 	"B35R"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"                        "dota2/c24_r"
 
 		"AbilityCastPoint"          	"0.1"
-		"AbilityCooldown"           	"12"
-		"AbilityManaCost"           	"120 140 160 180"
 		"MaxLevel"						"4"
 		"AbilityDamage"					"200 225 250 275"
 		"AbilityCastRange"				"200"
@@ -211,9 +209,8 @@
         {
            "modifier_B35R"
 			{
-				"Passive"	"0"
+				"Passive"	"1"
 				"IsBuff"	"1"
-				"Duration"	"8"
 				"Properties"
 				{
 					
@@ -266,8 +263,8 @@
 		"HotKeyOverride"	"T"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"			"200"
-		"AbilityCastPoint"			"0"
+		"AbilityCastRange"			"500"
+		"AbilityCastPoint"			"0.1"
 		"AbilityCastAnimation"		"ACT_DOTA_ECHO_SLAM"
 		"AnimationPlayBackRate"		"2"
 		// Time

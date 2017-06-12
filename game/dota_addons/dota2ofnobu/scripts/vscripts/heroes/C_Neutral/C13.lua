@@ -49,44 +49,47 @@ end
 function C13R_OnKill( keys )
 	local ability = keys.ability
 	local caster = ability:GetCaster()
-	local Kagutsuchi = CreateUnitByName("c13r_wind",caster:GetAbsOrigin() ,true,caster,caster,caster:GetTeam())
- 	Kagutsuchi:SetOwner(caster)
- 	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_kill",{duration = 30})
- 	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_invulnerable",{duration = 30})
- 	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_C13R2",{duration = 30})
- 	Kagutsuchi:SetBaseDamageMin(70+caster:GetLevel()*10)
-	Kagutsuchi:SetBaseDamageMax(70+caster:GetLevel()*10)
-	Kagutsuchi:AddAbility("for_no_collision"):SetLevel(1)
-	local ifx = ParticleManager:CreateParticle("particles/c13/c13r.vpcf",PATTACH_ABSORIGIN_FOLLOW,Kagutsuchi)
-	ParticleManager:SetParticleControl(ifx,0,Kagutsuchi:GetAbsOrigin())
-	Timers:CreateTimer(30, function ()
-		ParticleManager:DestroyParticle(ifx,true)
-	end)
+	local duration = 15
+	if caster.C13Rcount == nil then caster.C13Rcount = 0 end
+	if caster.C13Rcount < 6 then
+		caster.C13Rcount = caster.C13Rcount + 1
+		local Kagutsuchi = CreateUnitByName("c13r_wind",caster:GetAbsOrigin() ,true,caster,caster,caster:GetTeam())
+	 	Kagutsuchi:SetOwner(caster)
+	 	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_kill",{duration = duration})
+	 	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_invulnerable",{duration = duration})
+	 	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_C13R2",{duration = duration})
+	 	Kagutsuchi:SetBaseDamageMin(70+caster:GetLevel()*5)
+		Kagutsuchi:SetBaseDamageMax(70+caster:GetLevel()*5)
+		Kagutsuchi:AddAbility("for_no_collision"):SetLevel(1)
+		local ifx = ParticleManager:CreateParticle("particles/c13/c13r.vpcf",PATTACH_ABSORIGIN_FOLLOW,Kagutsuchi)
+		ParticleManager:SetParticleControl(ifx,0,Kagutsuchi:GetAbsOrigin())
+		Timers:CreateTimer(duration, function ()
+			caster.C13Rcount = caster.C13Rcount - 1
+			ParticleManager:DestroyParticle(ifx,true)
+		end)
+	end
+end
+
+function C13R_OnAttackLanded( keys )
+	local attacker = keys.attacker
+	local target = keys.target
+	local ability = keys.ability
+	local targetArmor = target:GetPhysicalArmorValue()
+	--print("steal "..dmg*keys.StealPercent*0.02*(1-damageReduction))
+	if target:IsBuilding() then
+		local hp = target:GetHealth()
+		Timers:CreateTimer(0.01, function()
+			local hp2 = hp-target:GetHealth()
+			target:SetHealth(hp-hp2*0.2)
+			end)
+	end
 end
 
 function C13R_OnIntervalThink( keys )
 	local caster = keys.caster
-	caster:SetForceAttackTarget(nil)
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  500 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
-			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
-	if #group > 0 then
-		local order = {UnitIndex = caster:entindex(),
-					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-					TargetIndex = group[1]:entindex()}
-		if not caster:CanEntityBeSeenByMyTeam(group[1]) then
-			order = {UnitIndex = caster:entindex(),
-					OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-					Position = group[1]:GetAbsOrigin(),
-				}
-		end
-		ExecuteOrderFromTable(order)
-		caster:SetForceAttackTarget(group[1])
-		return
-	end
-	group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  1000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+			nil,  1000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
+			DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 	if #group > 0 then
 		local order = {UnitIndex = caster:entindex(),
 					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
@@ -174,8 +177,8 @@ function C13W_old_OnSpellStart( keys )
  	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_kill",{duration = duration})
  	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_invulnerable",{duration = duration})
  	ability:ApplyDataDrivenModifier(Kagutsuchi,Kagutsuchi,"modifier_C13W_old",{duration = duration})
- 	Kagutsuchi:SetBaseDamageMin(damage+caster:GetLevel()*10)
-	Kagutsuchi:SetBaseDamageMax(damage+caster:GetLevel()*10)
+ 	Kagutsuchi:SetBaseDamageMin(damage+caster:GetLevel()*5)
+	Kagutsuchi:SetBaseDamageMax(damage+caster:GetLevel()*5)
 	Kagutsuchi:AddAbility("for_no_collision"):SetLevel(1)
 	local ifx = ParticleManager:CreateParticle("particles/c13/c13r.vpcf",PATTACH_ABSORIGIN_FOLLOW,Kagutsuchi)
 	ParticleManager:SetParticleControl(ifx,0,Kagutsuchi:GetAbsOrigin())

@@ -50,7 +50,9 @@ function A22R_OnIntervalThink( keys )
 		if enemy:IsMagicImmune() then
 			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A22R",{duration = 1})
 		end
-		AMHC:Damage(caster,enemy, regen * enemy:GetMaxHealth()*0.01,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		if enemy:GetUnitName() ~= "npc_dota_cursed_warrior_souls" and not string.match(enemy:GetUnitName(),"C17R_old") then
+			AMHC:Damage(caster,enemy, regen * enemy:GetMaxHealth()*0.01,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		end
 	end
 end
 

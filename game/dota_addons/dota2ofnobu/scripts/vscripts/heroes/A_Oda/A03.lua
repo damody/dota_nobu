@@ -28,10 +28,14 @@ function A03W_OnUnitMoved( keys )
 	local lastpos = target.lastpos
 	local triggerlen = ability:GetSpecialValueFor("triggerlen")
 	local dmg = ability:GetSpecialValueFor("dmg")
+	
 	if lastpos == nil then
 		lastpos = pos
 		target.A03W_len = 0
 	else
+		if target:IsMagicImmune() then
+			dmg = dmg *0.5
+		end
 		local dis = (pos-lastpos):Length2D()
 		target.A03W_len = target.A03W_len + dis
 		if target.A03W_len > triggerlen then
@@ -54,10 +58,11 @@ function A03E_OnToggleOn( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	caster:SetModel("models/heroes/weaver/weaver.vmdl")
-	caster:SetOriginalModel("models/heroes/weaver/weaver.vmdl")
+	caster:SetModel("models/creeps/nian/nian_creep.vmdl")
+	caster:SetOriginalModel("models/creeps/nian/nian_creep.vmdl")
 	caster:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
 	caster:NotifyWearablesOfModelChange(true)
+	caster:SetModelScale(0.5)
 end
 
 function A03E_OnToggleOff( keys )
@@ -67,6 +72,7 @@ function A03E_OnToggleOff( keys )
 	caster:SetModel("models/heroes/lone_druid/lone_druid.vmdl")
 	caster:SetOriginalModel("models/heroes/lone_druid/lone_druid.vmdl")
 	caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
+	caster:SetModelScale(1)
 end
 
 function A03R_OnAttackLanded( keys )
@@ -77,6 +83,26 @@ function A03R_OnAttackLanded( keys )
 	if not target:IsBuilding() then
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_A03R_debuff",{duration = duration})
 	end
+end
+
+function A03W_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local duration = ability:GetSpecialValueFor("duration")
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_A03W_debuff",{duration = duration})
+	local tsum = 0
+	Timers:CreateTimer(0.1, function()
+		if target:IsHero() then
+			if not target:HasModifier("modifier_A03W_debuff") then
+				ability:ApplyDataDrivenModifier(caster,target,"modifier_A03W_debuff",{duration = duration-tsum})
+			end
+		end
+		tsum = tsum + 0.1
+		if tsum < duration then
+			return 0.1
+		end
+		end)
 end
 
 function A03W_old_OnDeath( keys )

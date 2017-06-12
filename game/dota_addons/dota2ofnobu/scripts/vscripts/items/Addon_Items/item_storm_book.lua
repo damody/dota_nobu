@@ -5,6 +5,9 @@ function Shock( keys )
 	local casterLoc = caster:GetAbsOrigin()
 	local targetLoc = keys.target_points[1]
 	local dir = caster:GetCursorPosition() - caster:GetOrigin()
+	if dir:Length2D() < 1 then
+		dir = caster:GetForwardVector()
+	end
 	caster:SetForwardVector(dir:Normalized())
 	local duration = ability:GetSpecialValueFor( "duration")
 	local distance = ability:GetSpecialValueFor( "distance")

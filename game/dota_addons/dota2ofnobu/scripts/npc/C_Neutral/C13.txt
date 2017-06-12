@@ -265,6 +265,15 @@
 						"Target"		"TARGET"
 					}
 				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+						"Function"		"C13R_OnAttackLanded"
+						"dmg" "%attack_damage"
+					}
+				}
 			}
 		}
 	}
@@ -452,6 +461,15 @@
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
 						"Function"		"C13R_OnIntervalThink"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
+						"Function"		"C13R_OnAttackLanded"
+						"dmg" "%attack_damage"
 					}
 				}
 			}

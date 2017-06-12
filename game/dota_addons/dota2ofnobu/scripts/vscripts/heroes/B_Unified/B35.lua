@@ -136,6 +136,12 @@ function B35T_OnSpellStart( keys )
 	else
 		AMHC:Damage(caster,target,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
+	caster:SetAbsOrigin(target:GetAbsOrigin())
+	caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
+	local order = {UnitIndex = caster:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = target:entindex()}
+	ExecuteOrderFromTable(order)
 end
 
 function B35E_old_OnSpellStart( keys )

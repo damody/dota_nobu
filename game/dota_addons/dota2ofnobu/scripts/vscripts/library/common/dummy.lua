@@ -80,7 +80,7 @@ function nodmg_courier( keys )
             FIND_ANY_ORDER, 
           false)
     for _,it in pairs(units) do
-      ability:ApplyDataDrivenModifier( caster , it , "modifier_for_move300" , { duration = 7 } )
+      ability:ApplyDataDrivenModifier( caster , it , "modifier_for_move300" , { duration = 6 } )
     end
   end
 end

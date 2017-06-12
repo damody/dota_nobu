@@ -235,26 +235,40 @@ function A35E_old_OnIntervalThink( keys )
 
 	caster.A35E_old = caster.A35E_old + 1
 	-- 處理搜尋結果
-	if #units > 0 and caster.A35Ecount > 0 and math.mod(caster.A35E_old, 4) == 0 then
-		local split_shot_projectile = "particles/a35/a35e_old_2.vpcf"
-		local projectile_info = 
-			{
-				EffectName = split_shot_projectile,
-				Ability = ability,
-				vSpawnOrigin = caster:GetAbsOrigin(),
-				Target = units[1],
-				Source = caster,
-				bHasFrontalCone = false,
-				iMoveSpeed = 700,
-				bReplaceExisting = false,
-				bProvidesVision = false
-			}
-		ProjectileManager:CreateTrackingProjectile(projectile_info)
-		ParticleManager:DestroyParticle(caster.A35E[caster.A35Ecount],true)
-		caster.A35Ecount = caster.A35Ecount - 1
-		if caster.A35Ecount == 0 then
-			caster.A35Ecount = nil
-			caster:RemoveModifierByName("modifier_A35E_old")
+	if #units > 0 and caster.A35Ecount > 0 then
+		local num = -1
+		for i=1,#units do
+			if units[i].A35E == nil then
+				num = i
+			end
+		end
+		if num > 0 then
+			units[num].A35E = true
+			Timers:CreateTimer(1.2, function()
+				if IsValidEntity(units[num]) then
+					units[num].A35E = nil
+				end
+				end)
+			local split_shot_projectile = "particles/a35/a35e_old_2.vpcf"
+			local projectile_info = 
+				{
+					EffectName = split_shot_projectile,
+					Ability = ability,
+					vSpawnOrigin = caster:GetAbsOrigin(),
+					Target = units[num],
+					Source = caster,
+					bHasFrontalCone = false,
+					iMoveSpeed = 700,
+					bReplaceExisting = false,
+					bProvidesVision = false
+				}
+			ProjectileManager:CreateTrackingProjectile(projectile_info)
+			ParticleManager:DestroyParticle(caster.A35E[caster.A35Ecount],true)
+			caster.A35Ecount = caster.A35Ecount - 1
+			if caster.A35Ecount == 0 then
+				caster.A35Ecount = nil
+				caster:RemoveModifierByName("modifier_A35E_old")
+			end
 		end
 	end
 end

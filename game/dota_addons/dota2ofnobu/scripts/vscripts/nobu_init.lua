@@ -68,10 +68,10 @@ function _G.Nobu:InitGameMode()
   
   if _G.hardcore then
     GameRules:SetGoldPerTick(10)-- 設置金錢
-    GameRules:SetGoldTickTime(4)--金錢跳錢秒數
+    GameRules:SetGoldTickTime(3)--金錢跳錢秒數
   else
-    GameRules:SetGoldPerTick(20)-- 設置金錢
-    GameRules:SetGoldTickTime(2)--金錢跳錢秒數
+    GameRules:SetGoldPerTick(10)-- 設置金錢
+    GameRules:SetGoldTickTime(3)--金錢跳錢秒數
   end
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵

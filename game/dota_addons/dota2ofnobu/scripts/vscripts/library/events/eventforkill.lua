@@ -84,11 +84,21 @@ function Nobu:OnUnitKill( keys )
         end
       end
     end
-    local neutral = false
-    if string.match(killedUnit:GetUnitName(), "neutral") then
-      neutral = true
+    if IsValidEntity(AttackerUnit:GetOwner()) then
+      local hero = AttackerUnit:GetOwner()
+      if hero.IsRealHero and hero:IsRealHero() and AttackerUnit:GetTeamNumber() ~= killedUnit:GetTeamNumber() then
+        AttackerUnit = hero
+      end
     end
-    if (AttackerUnit:IsRealHero()) and not neutral then
+    if (AttackerUnit:IsHero()) then
+      if AttackerUnit:IsIllusion() then
+        for _,hero in ipairs(HeroList:GetAllHeroes()) do
+          if not hero:IsIllusion() and hero:GetPlayerOwnerID() == AttackerUnit:GetPlayerOwnerID() then
+            AttackerUnit = hero
+          end
+        end
+      end
+
       if AttackerUnit.kill_hero_count == nil then
         AttackerUnit.kill_hero_count = 0
       end
@@ -103,8 +113,13 @@ function Nobu:OnUnitKill( keys )
       else
         AttackerUnit.kill_count = AttackerUnit.kill_count + 1
       end
+      if math.mod(AttackerUnit.kill_count, 100) == 0 then
+        local nobu_id = _G.heromap[AttackerUnit:GetName()]
+        GameRules:SendCustomMessage("<font color='#ff8888'>".._G.hero_name_zh[nobu_id].."擊破了"..AttackerUnit.kill_count.."的敵軍</font>",0,0)
+      end
       if killedUnit:IsHero() and not killedUnit:IsIllusion() then
         AttackerUnit.kill_hero_count = AttackerUnit.kill_hero_count + 1
+
         --連殺獎勵
         local sk_kill = 1
         if AttackerUnit.sk_kill then
@@ -114,16 +129,16 @@ function Nobu:OnUnitKill( keys )
           AttackerUnit.sk_kill = 1
         end
 
-        if AttackerUnit.sk_kill > 1 and _G.turbo and _G.hardcore then
-          AMHC:GivePlayerGold_UnReliable(AttackerUnit:GetPlayerOwnerID(), AttackerUnit.sk_kill*100)
+        if AttackerUnit.sk_kill > 1 then
+          AMHC:GivePlayerGold_UnReliable(AttackerUnit:GetPlayerOwnerID(), AttackerUnit.sk_kill*50)
           local nobu_id = _G.heromap[AttackerUnit:GetName()]
-          GameRules:SendCustomMessage("<font color='#ffff00'>".._G.hero_name_zh[nobu_id].."達成了"..AttackerUnit.sk_kill.."連殺，得到"..(AttackerUnit.sk_kill*100).."獎勵</font>",0,0)
+          GameRules:SendCustomMessage("<font color='#ffff00'>".._G.hero_name_zh[nobu_id].."達成了"..AttackerUnit.sk_kill.."連殺，得到"..(AttackerUnit.sk_kill*50).."獎勵</font>",0,0)
         end
-        if killedUnit.sk_kill and killedUnit.sk_kill > 1 and _G.turbo and _G.hardcore then
-          AMHC:GivePlayerGold_UnReliable(AttackerUnit:GetPlayerOwnerID(), killedUnit.sk_kill*100)
+        if killedUnit.sk_kill and killedUnit.sk_kill > 1 then
+          AMHC:GivePlayerGold_UnReliable(AttackerUnit:GetPlayerOwnerID(), killedUnit.sk_kill*50)
           local nobu_id = _G.heromap[AttackerUnit:GetName()]
           local nobu_id2 = _G.heromap[killedUnit:GetName()]
-          GameRules:SendCustomMessage("<font color='#ffff00'>".._G.hero_name_zh[nobu_id].."中止了".._G.hero_name_zh[nobu_id2].."的連殺，得到"..(killedUnit.sk_kill*100).."獎勵</font>",0,0)
+          GameRules:SendCustomMessage("<font color='#ffff00'>".._G.hero_name_zh[nobu_id].."中止了".._G.hero_name_zh[nobu_id2].."的連殺，得到"..(killedUnit.sk_kill*50).."獎勵</font>",0,0)
         end
         Timers:CreateTimer(15, function()
           if AttackerUnit.sk_kill == sk_kill then
@@ -315,4 +330,22 @@ function Nobu:OnUnitKill( keys )
       end
     end
     --print("dead")
+  -- 統計威望
+  prestige = _G.prestige
+  goldprestige = _G.goldprestige
+  prestige[2] = goldprestige[2] or 0
+  prestige[3] = goldprestige[3] or 0
+  local sumkill = 0
+  local allHeroes = HeroList:GetAllHeroes()
+  for k, v in pairs( allHeroes ) do
+    if not v:IsIllusion() then
+      local hero     = v
+      if (hero.kill_count ~= nil)  then
+        prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_count
+      end
+      if (hero.kill_hero_count ~= nil)  then
+        prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_hero_count*5
+      end
+    end
+  end
 end

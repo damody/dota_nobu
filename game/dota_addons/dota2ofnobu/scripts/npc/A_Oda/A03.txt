@@ -53,10 +53,10 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_A03W_debuff"
-				"Target" 		"TARGET"
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A03.lua"
+				"Function"				"A03W_OnProjectileHitUnit"
 			}
 		}
 		"Modifiers"
@@ -64,7 +64,6 @@
 			"modifier_A03W_debuff"
 			{
 				"IsDebuff"	"1"
-				"Duration"	"%duration"
 				"StatusEffectName"		"particles/status_fx/status_effect_poison_viper.vpcf"
 
 				"Properties"

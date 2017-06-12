@@ -72,7 +72,7 @@ function Nobu:OnGameRulesStateChange( keys )
       for_test_equiment()
     end
     
-    GameRules:SendCustomMessage("歡迎來到 AON信長的野望 20.6JK", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("歡迎來到 AON信長的野望 20.6L", DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("5分鐘後可以打 -ff 投降" , DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("目前作者: Damody, Tenmurakumo, BedRock, 佐佐木小籠包, DowDow", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
@@ -106,18 +106,37 @@ function Nobu:OnGameRulesStateChange( keys )
 	    end
 	    return 5
     end)
-    if _G.hardcore then
-    	Timers:CreateTimer(900, function()
-	    	_G.turbo = true
-		    Timers:CreateTimer( 0, function()
-		      GameRules: SendCustomMessage("<font color='#ffff00'>全軍將領得到了金錢支援</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-		      for playerID = 0, 9 do
-		        AMHC:GivePlayerGold_UnReliable(playerID, 300)
-		      end
-		      return 60
-		      end)
-	    end)
-    end
+    local ccpres = 0
+	Timers:CreateTimer( 0, function()
+		ccpres = ccpres + 1
+		for n=2,3 do
+			local pres = (ccpres/3)*100
+			if GetMapName() == "nobu_rank" then
+				pres = prestige[n] - goldprestige[n]
+			end
+			if pres > 100 then
+				local money = math.floor(pres/100)*50
+				if money > 600 then
+					money = 600
+				end
+				if n == 3 then
+					GameRules: SendCustomMessage("<font color='#ffff00'>聯合將領得到了"..(money).."金錢支援</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+				elseif n == 2 then
+					GameRules: SendCustomMessage("<font color='#ffff00'>織田將領得到了"..(money).."金錢支援</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+				end
+				for playerID = 0, 9 do
+					local player = PlayerResource:GetPlayer(playerID)
+					if player then
+						local hero = player:GetAssignedHero()
+						if hero and hero:GetTeamNumber()==n then
+							AMHC:GivePlayerGold_UnReliable(playerID, money)
+						end
+					end
+				end
+			end
+		end
+		return 60
+		end)
 
     Timers:CreateTimer(120, function()
     	_G.can_bomb = true
@@ -129,14 +148,7 @@ function Nobu:OnGameRulesStateChange( keys )
     end)
     
     Timers:CreateTimer(2, function ()
-		for i=-3,3 do
-		  for j=-3,3 do
-		    AddFOWViewer(6, Vector(i*5000,j*5000,0), 10000, 99999, false)
-		  end
-		end
-		if _G.hardcore then
 			_G.war_magic_mana = 0
-		end
 		end)
 
     

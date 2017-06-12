@@ -370,7 +370,7 @@ function Nobu:eventfororder( filterTable )
 			local itemcost = item:GetCost()
 			Timers:CreateTimer(0.1, function()
 				if _G.hardcore then 
-					AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.2*itemcost)
+					AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.1*itemcost)
 				else
 					AMHC:GivePlayerGold_UnReliable(unit:GetPlayerOwnerID(), -0.1*itemcost)
 				end

@@ -217,7 +217,7 @@ end
 function nogohome( keys )
 	local caster = keys.caster
 	caster:RemoveModifierByName("modifier_wantgohome")
-	print("nogohome")
+
 end
 
 function speedup( keys )
@@ -340,7 +340,7 @@ function to_war_magic_unit(keys)
 		end)
 	Timers:CreateTimer(1, function()
 		local pres = prestige[donkey:GetTeamNumber()]
-		local maxmana = math.floor(pres / 60) * 5 + _G.war_magic_mana
+		local maxmana = math.floor(pres / 50) * 5 + _G.war_magic_mana
 		if donkey:GetMana() > maxmana then
 			donkey:SetMana(maxmana)
 		end
@@ -388,7 +388,7 @@ function to_war_magic_unit2(keys)
 		end)
 	Timers:CreateTimer(1, function()
 		local pres = prestige[donkey:GetTeamNumber()]
-		local maxmana = math.floor(pres / 60) * 5 + _G.war_magic_mana
+		local maxmana = math.floor(pres / 50) * 5 + _G.war_magic_mana
 		if donkey:GetMana() > maxmana then
 			donkey:SetMana(maxmana)
 		end
@@ -478,27 +478,6 @@ function to_soldier_Oda(keys)
 	donkey:AddNewModifier(donkey, ability, "modifier_invulnerable", {})
 	--donkey:AddNewModifier(donkey, ability, "modifier_soldier_oda", {})
 
-	-- 統計威望
-	local team = donkey:GetTeamNumber()
-	Timers:CreateTimer(1, function()
-		prestige[2] = goldprestige[2] or 0
-		prestige[3] = goldprestige[3] or 0
-		local sumkill = 0
-		for playerID = 0, 9 do
-    		local id       = playerID
-	  		local p        = PlayerResource:GetPlayer(id)
-	    	if p ~= nil and (p:GetAssignedHero()) ~= nil then
-			  local hero     = p: GetAssignedHero()
-			  if (hero.kill_count ~= nil)  then
-			  	prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_count
-			  end
-			  if (hero.kill_hero_count ~= nil)  then
-			  	prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_hero_count*5
-			  end
-			end
-    	end
-    	return 1
-    	end)
 	--強化cp怪
 	Timers:CreateTimer(60, function()
 		CP_Monster = CP_Monster + 1
