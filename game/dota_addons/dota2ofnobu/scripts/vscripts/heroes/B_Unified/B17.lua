@@ -12,8 +12,11 @@ function B17W( keys )
 	unit:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W", nil)
 	ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W_notActivate", nil)
-	unit:AddNewModifier( unit, nil, "modifier_invisible", nil)
-	ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W_detectorAura", nil)
+	
+	Timers:CreateTimer(1.5, function()
+		unit:AddNewModifier( unit, nil, "modifier_invisible", nil)
+		ability:ApplyDataDrivenModifier(unit, unit, "modifier_B17W_detectorAura", nil)
+		end)
 	unit:SetBaseDamageMax(atk)
 	unit:SetBaseDamageMin(atk)
 end

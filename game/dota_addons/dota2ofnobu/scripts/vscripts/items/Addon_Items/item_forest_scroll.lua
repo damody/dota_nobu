@@ -161,7 +161,7 @@ function Shock4( keys )
 		monster1:FindAbilityByName("forest_soldier_W"):SetLevel(4)
 		monster1:FindAbilityByName("forest_soldier_E"):SetLevel(1)
 		monster1:FindAbilityByName("forest_soldier_R"):SetLevel(1)
-		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=21})
+		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=30})
 		caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 	end
 	local monster2 = CreateUnitByName("forest_xcaster4",caster:GetAbsOrigin()+caster:GetForwardVector()*300 ,false,caster,caster,caster:GetTeamNumber())
@@ -170,7 +170,7 @@ function Shock4( keys )
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(4)
 	monster2:FindAbilityByName("forest_caster_R"):SetLevel(3)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
-	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=21})
+	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=30})
 end
 
 function soldier1(keys)

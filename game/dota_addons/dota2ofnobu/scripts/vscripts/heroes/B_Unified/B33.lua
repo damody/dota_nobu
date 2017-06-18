@@ -246,8 +246,8 @@ function B33R_old_OnIntervalThink( keys )
 			local handle = unit:FindModifierByName("modifier_B33R_old_debuff")
 			local c = handle:GetStackCount()
 			c = c + 1
-			if c > 3 then
-				c = 3
+			if c > 2 then
+				c = 2
 			end
 			handle:SetStackCount(c)
 		end

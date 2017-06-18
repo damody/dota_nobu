@@ -237,7 +237,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_reduction"				"-3 -5 -7 -9"
+				"armor_reduction"				"-3 -6 -9 -12"
 			}
 		}
 		"Modifiers"
@@ -336,7 +336,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"	"-9 -12 -15"
+				"armor_reduction"	"-18 -22 -26"
 			}
 		}
 	}
@@ -477,7 +477,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_reduction"				"-3 -5 -7 -9"
+				"armor_reduction"				"-3 -6 -9 -12"
 			}
 		}
 		"Modifiers"
@@ -542,7 +542,7 @@
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"                        "custom/A33/A33T_old"
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"150"
+		"AbilityCooldown"           				"130 120 110"
 		"AbilityManaCost"           				"450 550 650"
 		"AOERadius"                                 "%radius"
 		"AbilityCastRange"              			"1100"

@@ -78,7 +78,11 @@ function Nobu:OnUnitKill( keys )
             local team = PlayerResource:GetTeam(id)
             if team == AttackerUnit:GetTeamNumber() then
               if hero.score == nil then hero.score = 0 end
-              hero.score = hero.score + 1
+              if (string.match(killedUnit:GetUnitName(), "com_soldiercamp") and killedUnit:GetUnitName()~="com_soldiercamp") then
+                hero.score = hero.score + 1
+              else
+                hero.score = hero.score + 0.5
+              end
             end
           end
         end
@@ -333,6 +337,8 @@ function Nobu:OnUnitKill( keys )
   -- 統計威望
   prestige = _G.prestige
   goldprestige = _G.goldprestige
+  if prestige == nil then prestige = {} end
+  if goldprestige == nil then goldprestige = {} end
   prestige[2] = goldprestige[2] or 0
   prestige[3] = goldprestige[3] or 0
   local sumkill = 0

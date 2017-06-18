@@ -53,11 +53,13 @@ function modifier_protection_b27r_old:OnTakeDamage(event)
 										self:SetStackCount(self:GetStackCount() - 1)
 									else
 										self.caster:RemoveModifierByName("modifier_protection_b27r_old")
+										ParticleManager:DestroyParticle(self.caster.B27R_effect,false)
+										caster.B27R_effect = nil
 									end
 								end
 							end
 		            		end)
-
+		            	
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
 			            	self.caster:SetHealth(self.hp)
 			            	self.caster:SetMana(self.mp)
@@ -88,6 +90,18 @@ function B27R_old_OnIntervalThink( keys )
 		handle.mp = caster:GetMana()
 		handle:SetStackCount(1)
 		ability:StartCooldown(ability:GetCooldown(-1))
+
+		local shield_size = 1000
+		if caster.B27R_effect then
+			ParticleManager:DestroyParticle(caster.B27R_effect,false)
+		end
+		caster.B27R_effect = ParticleManager:CreateParticle("particles/item/protection.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		ParticleManager:SetParticleControl(caster.B27R_effect, 1, Vector(shield_size,0,shield_size))
+		ParticleManager:SetParticleControl(caster.B27R_effect, 2, Vector(shield_size,0,shield_size))
+		ParticleManager:SetParticleControl(caster.B27R_effect, 4, Vector(shield_size,0,shield_size))
+		ParticleManager:SetParticleControl(caster.B27R_effect, 5, Vector(shield_size,0,0))
+		-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
+		ParticleManager:SetParticleControlEnt(caster.B27R_effect, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 	end
 	local handle = caster:FindModifierByName("modifier_protection_b27r_old")
 	if handle then

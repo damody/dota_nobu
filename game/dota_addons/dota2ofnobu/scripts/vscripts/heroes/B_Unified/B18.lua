@@ -125,6 +125,7 @@ end
 function B18T_OnAttackLanded( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	local target = keys.target
 	local radius = ability:GetSpecialValueFor("radius")
 	local dmg = ability:GetSpecialValueFor("dmg")
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
@@ -137,14 +138,21 @@ function B18T_OnAttackLanded( keys )
 			FIND_ANY_ORDER,					-- 結果的排列方式
 			false) 
 	for _,unit in pairs(units) do
-		local spike = ParticleManager:CreateParticle("particles/b18/b18tikes.vpcf", PATTACH_ABSORIGIN, unit)
-		ParticleManager:SetParticleControl(spike, 3, unit:GetAbsOrigin())
-		Timers:CreateTimer(2, function() 
-				ParticleManager:DestroyParticle(spike,true)
-			end)
 		if unit:IsBuilding() then
-			AMHC:Damage(caster, unit, dmg*0.3,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			if not target:IsRealHero() then
+				local spike = ParticleManager:CreateParticle("particles/b18/b18tikes.vpcf", PATTACH_ABSORIGIN, unit)
+				ParticleManager:SetParticleControl(spike, 3, unit:GetAbsOrigin())
+				Timers:CreateTimer(2, function() 
+						ParticleManager:DestroyParticle(spike,true)
+					end)
+				AMHC:Damage(caster, unit, dmg*0.2,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			end
 		else
+			local spike = ParticleManager:CreateParticle("particles/b18/b18tikes.vpcf", PATTACH_ABSORIGIN, unit)
+			ParticleManager:SetParticleControl(spike, 3, unit:GetAbsOrigin())
+			Timers:CreateTimer(2, function() 
+					ParticleManager:DestroyParticle(spike,true)
+				end)
 			AMHC:Damage(caster, unit, dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 		end
 	end
@@ -155,7 +163,7 @@ function B18T_OnIntervalThink( keys )
 	local caster = keys.caster
 	caster:SetForceAttackTarget(nil)
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  2000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+			nil,  500 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 	if #group > 0 then
 		local order = {UnitIndex = caster:entindex(),
@@ -172,7 +180,7 @@ function B18T_OnIntervalThink( keys )
 		return
 	end
 	group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  2000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_BASIC,
+			nil,  1200 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 	if #group > 0 then
 		local order = {UnitIndex = caster:entindex(),

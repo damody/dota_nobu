@@ -61,6 +61,7 @@ function modifier_magic_talisman:OnTakeDamage(event)
 								end
 							end
 		            		end)
+		            	ParticleManager:DestroyParticle(self.caster.magic_talisman_effect,false)
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
 
 		            		if self.caster:HasModifier("modifier_magic_talisman2") then
@@ -99,12 +100,24 @@ function OnEquip( keys )
 	end
 	Timers:CreateTimer(1, function()
 		if IsValidEntity(caster) and caster:IsAlive() then
-			if not caster:HasModifier("modifier_magic_talisman") and IsValidEntity(ability) and ability:IsCooldownReady() then
+			if not caster:HasModifier("modifier_magic_talisman") and IsValidEntity(ability) and ability:IsCooldownReady() and caster:IsRealHero() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_magic_talisman", {} )
 				local handle = caster:FindModifierByName("modifier_magic_talisman")
 				handle.caster = caster
 				handle.hp = caster:GetHealth()
 				handle.mp = caster:GetMana()
+
+				if caster.magic_talisman_effect then
+					ParticleManager:DestroyParticle(caster.magic_talisman_effect,false)
+				end
+				local shield_size = 1000
+				caster.magic_talisman_effect = ParticleManager:CreateParticle("particles/item/protection.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+				ParticleManager:SetParticleControl(caster.magic_talisman_effect, 1, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.magic_talisman_effect, 2, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.magic_talisman_effect, 4, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.magic_talisman_effect, 5, Vector(shield_size,0,0))
+				-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
+				ParticleManager:SetParticleControlEnt(caster.magic_talisman_effect, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 			elseif caster.has_item_magic_talisman == true then
 				return 0.5
 			else
@@ -119,7 +132,12 @@ end
 function OnUnequip( keys )
 	local caster = keys.caster
 	if IsValidEntity(caster) then
+		local caster = keys.caster
 		caster.has_item_magic_talisman = nil
+		if caster.magic_talisman_effect and caster:IsRealHero() then
+			ParticleManager:DestroyParticle(keys.caster.magic_talisman_effect,false)
+			caster.magic_talisman_effect = nil
+		end
 	end
 end
 

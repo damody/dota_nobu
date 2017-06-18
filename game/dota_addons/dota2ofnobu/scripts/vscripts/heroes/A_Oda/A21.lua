@@ -139,13 +139,16 @@ function A21R_OnSpellStart(keys)
 	local level = keys.ability:GetLevel()
 	local point = caster:GetAbsOrigin()
 	local radius = ability:GetLevelSpecialValueFor( "radius", level - 1 )
-
+	local dmg = ability:GetSpecialValueFor("dmg")
  	local player = caster:GetPlayerID()
  	local roubang = CreateUnitByName("a21_weapon",targetLoc ,false,caster,caster,caster:GetTeam())
  	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 300, 3, true)
  	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 300, 3, true)
 	roubang:SetControllableByPlayer(player, true)
+	caster.A21R_unit = roubang
 	roubang:SetBaseMaxHealth(800+level*150)
+	roubang:SetBaseDamageMin(dmg)
+	roubang:SetBaseDamageMax(dmg)
 	roubang:SetHealth(roubang:GetMaxHealth())
 	roubang:AddNewModifier(roubang,ability,"modifier_phased",{duration=0.1})
  	ability:ApplyDataDrivenModifier(roubang,roubang,"modifier_A21R",{duration = 25})
@@ -343,6 +346,23 @@ function A21E_old_OnIntervalThink( keys )
 				bProvidesVision = false
 			}
 		ProjectileManager:CreateTrackingProjectile(projectile_info)
+	end
+end
+
+function A21R_Sound( keys )
+	-- Variables
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	if IsValidEntity(caster.A21R_unit) then
+		caster.A21R_unit:PerformAttack(target, true, true, true, true, true, false, true)
+	end
+	if ability.A21R == nil then
+		target:EmitSound("A21R.vo1")
+		ability.A21R = 1
+		Timers:CreateTimer(0.4-RandomFloat(0, 0.3), function()
+			ability.A21R = nil
+		end)
 	end
 end
 

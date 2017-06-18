@@ -27,7 +27,7 @@ function OnLockAndStartPressed()
 	// Don't allow a forced start if there are unassigned players
 	if ( Game.GetUnassignedPlayerIDs().length > 0  )
 		return;
-	if (Game.GetMapInfo().map_display_name == "nobu_rank")
+	if (Game.GetMapInfo().map_display_name == "nobux")
 		return;
 		
 	// Lock the team selection so that no more team changes can be made
@@ -292,7 +292,7 @@ function UpdateTimer()
 	
 	//$.Msg(Game.GetMapInfo().map_display_name);
 	
-	if (Game.GetMapInfo().map_display_name == "nobu_rank") {
+	if (Game.GetMapInfo().map_display_name == "nobux") {
 		count = count + 1;
 		if (count < 30) {
 			Game.AutoAssignPlayersToTeams();

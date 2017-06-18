@@ -40,7 +40,11 @@
 			}
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A13D"
 				"Duration"	"20.0"
 			}
@@ -51,7 +55,11 @@
 			//}
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_invisible"
 				"Duration"	"20"
 			}
@@ -149,7 +157,11 @@
 			}
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_A13D"
 				"Duration"	"20.0"
 			}
@@ -160,7 +172,11 @@
 			//}
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 				"ModifierName"	"modifier_invisible"
 				"Duration"	"20"
 			}
@@ -264,7 +280,11 @@
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_A13W"
-				"Target"	"CASTER"
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
 			}
 		}
 		"OnUpgrade"

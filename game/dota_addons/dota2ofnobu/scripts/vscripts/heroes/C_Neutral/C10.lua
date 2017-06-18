@@ -51,7 +51,7 @@ function C10T_END( keys )
 				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, v)
 			end
 			v:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
-			if not string.match(v:GetUnitName(), "com_general") then
+			if not string.match(v:GetUnitName(), "MINE") and _G.EXCLUDE_TARGET_NAME[v:GetUnitName()] == nil then
 				v:SetAbsOrigin(point)
 				if not (v:HasModifier("modifier_C10T")) then
 					keys.ability:ApplyDataDrivenModifier(caster,v,"modifier_C10T",{duration=3})

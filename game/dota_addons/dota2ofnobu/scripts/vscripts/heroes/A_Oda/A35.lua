@@ -278,7 +278,11 @@ function A35E_old_OnProjectileHitUnit( keys )
 	local ability = keys.ability
 	local target = keys.target
 	AMHC:Damage(caster,target,250,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ))
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 1})
+	if target:IsMagicImmune() then
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.5})
+	else
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 1})
+	end
 	local particleName = "particles/a35/a35t_h.vpcf"
 	local pfx2 = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, target )
 	ParticleManager:SetParticleControl(pfx2,3,target:GetAbsOrigin())

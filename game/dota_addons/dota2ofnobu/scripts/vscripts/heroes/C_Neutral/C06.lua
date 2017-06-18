@@ -267,12 +267,9 @@ function C06T_OnSpellStart( keys )
 		end
 	end
 
-
-	AMHC:GivePlayerGold_UnReliable(caster:GetPlayerOwnerID(), 300)
-	AMHC:GivePlayerGold_UnReliable(target:GetPlayerOwnerID(), -300)
-		local order = {UnitIndex =  keys.caster:entindex(),
-					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-					TargetIndex = keys.target:entindex()}
+	local order = {UnitIndex =  keys.caster:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = keys.target:entindex()}
 
 	ExecuteOrderFromTable(order)
 
@@ -304,7 +301,7 @@ function C06E_old_OnSpellStart( keys )
 		ParticleManager:SetParticleControl(particle,0, target:GetAbsOrigin())
 	end
 	local level=ability:GetSpecialValueFor("level")
-	local money=target:GetGoldBounty() * 6
+	local money=target:GetGoldBounty() * 4
 	
 	ExecuteOrderFromTable(order)
 	if not target:IsHero() then

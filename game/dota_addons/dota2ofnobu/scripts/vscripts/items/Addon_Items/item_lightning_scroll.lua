@@ -50,10 +50,12 @@ function Shock( keys )
 	--local tem_point = nil
 
 
-	local cone_units = GetEnemiesInCone( caster,vec, start_radius, end_radius, end_distance )
+	local cone_units = FindUnitsInRadius( caster:GetTeamNumber(), point2, nil, 700, 
+					DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 
+					0, FIND_CLOSEST, false )
 	local targets_shocked = 1 --Is targets=extra targets or total?
 	for _,unit in pairs(cone_units) do
-		if targets_shocked < targets and (caster:CanEntityBeSeenByMyTeam(unit)) then
+		if targets_shocked < targets then
 			if unit.has_D09 ~= true then
 				unit.has_D09 = true
 				-- Particle
@@ -81,25 +83,9 @@ function Shock( keys )
 
 	--【SOUND】
 	caster:EmitSound("ITEM_D09.sound")
-	--target:EmitSound("ITEM_D09.sound")
 	Timers:CreateTimer(2,function()
 		caster:StopSound("ITEM_D09.sound")
-		--target:StopSound("ITEM_D09.sound")
 	end)
-	--跟凍牙輪共用CD
-	--[[
-	if math.abs(damage - 350) < 1 then
-		for itemSlot=0,5 do
-			local item = caster:GetItemInSlot(itemSlot)
-			if item ~= nil then
-				local itemName = item:GetName()
-				if (itemName == "item_frozen_ring") then
-					item:StartCooldown(10)
-				end
-			end
-		end
-	end
-	]]
 end
 
 

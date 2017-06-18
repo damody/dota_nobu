@@ -233,7 +233,7 @@
 
 		"AbilityCastPoint"          				"0.0"
 		"AbilityCooldown"           				"125 118 110"
-		"AbilityManaCost"           				"200 250 300"
+		"AbilityManaCost"           				"200 350 500"
 		
 		"OnSpellStart"
 		{
@@ -266,6 +266,28 @@
 						"Function"		"B18T_OnIntervalThink"
 					}
 				}
+				"Passive_insight_gem"
+				{
+					"Passive"          "0"  
+		            "IsHidden"      "1"
+		            "ThinkInterval"     "0.25"
+		            "OnIntervalThink"
+		            {
+		                "ApplyModifier"
+		                {
+		                    "Target"
+		                    {
+		                        "Center"    "CASTER"
+		                        "Radius"    "900"
+		                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		                    }
+		                    "ModifierName"      "modifier_truesight"
+		                    "Duration"      "0.50"
+		                }
+		            }
+				}
 			}
 		}
 
@@ -279,7 +301,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"dmg"		"200 300 400"
+				"dmg"		"200 350 500"
 			}
 			"03"
 			{
@@ -577,7 +599,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"dmg"		"152 202 252"
+				"dmg"		"200 250 300"
 			}
 			"03"
 			{

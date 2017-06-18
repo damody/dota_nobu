@@ -611,4 +611,7 @@ function A10T_old_OnSpellStart( keys )
 	FindClearSpaceForUnit( target , caster:GetAbsOrigin() , false )
 	target:AddNewModifier( nil, nil , "modifier_phased" , { duration = 0.01 } )
 	ParticleManager:CreateParticle( "particles/econ/events/ti5/blink_dagger_end_lvl2_ti5.vpcf", PATTACH_ABSORIGIN, target )
+	Timers:CreateTimer(0.2, function()
+		AMHC:SetCamera(target:GetPlayerOwnerID(), target)
+		end)
 end

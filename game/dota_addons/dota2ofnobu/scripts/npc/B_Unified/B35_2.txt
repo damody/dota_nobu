@@ -6,6 +6,7 @@
 		// General
 		// ----------------------------------------------------------------
 		"ModelScale"	"1.4"
+		"Model"	"models/b35/b35.vmdl"
 		"override_hero"	"npc_dota_hero_sven"	
 		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
@@ -31,15 +32,15 @@
 		"AttackRate"	"1.80"
 		"AttackAnimationPoint"	"0.33"
 		"AttackAcquisitionRange"	"500"
-		"AttackRange"	"128"
+		"AttackRange"	"150"
 		"ProjectileSpeed"	"10000"
 		// Attributes
 		// ----------------------------------------------------------------
 		"AttributePrimary"	"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"	"29"
-		"AttributeStrengthGain"	"2.1"
+		"AttributeBaseStrength"	"35"
+		"AttributeStrengthGain"	"2.7"
 		"AttributeBaseAgility"	"33"
-		"AttributeAgilityGain"	"2.7"
+		"AttributeAgilityGain"	"3.1"
 		"AttributeBaseIntelligence"	"23"
 		"AttributeIntelligenceGain"	"2"
 		// Bounty
@@ -82,6 +83,6 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""	
-		//"DisableWearables"	"1"
+		"DisableWearables"	"1"
 	}	
 }

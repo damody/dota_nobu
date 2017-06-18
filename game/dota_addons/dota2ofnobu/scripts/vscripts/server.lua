@@ -216,10 +216,8 @@ function Nobu:OpenRoom()
 							hero.level = -1
 							if _G.game_level < 0 then
 								if idcount < 2 then
-									GameRules: SendCustomMessage("<font color='#fcac4b'>"..heroname.."是新銅學大家不要欺負他喔 新手禮包送你抗魔、軍糧丸".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+									GameRules: SendCustomMessage("<font color='#fcac4b'>"..heroname.."是新銅學大家不要欺負他喔".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 								end
-								hero:AddItem(CreateItem("item_perceive_wine_hyper_new", hero, hero))
-								hero:AddItem(CreateItem("item_rations_new", hero, hero))
 							else
 								GameRules: SendCustomMessage("<font color='#bb6c00'>"..heroname.."為木牌".."</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 							end

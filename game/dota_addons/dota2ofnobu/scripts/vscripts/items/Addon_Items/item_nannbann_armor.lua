@@ -62,7 +62,7 @@ function modifier_nannbann_armor:OnTakeDamage(event)
 								end
 							end
 		            		end)
-
+		            	ParticleManager:DestroyParticle(self.caster.nannbann_armor_effect,false)
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
 			            	self.caster:SetHealth(self.hp)
 			            	self.caster:SetMana(self.mp)
@@ -105,12 +105,24 @@ function OnEquip( keys )
 			return nil
 		end
 		if IsValidEntity(caster) and caster:IsAlive() then
-			if not caster:HasModifier("modifier_nannbann_armor") and IsValidEntity(ability) and ability:IsCooldownReady() then
+			if not caster:HasModifier("modifier_nannbann_armor") and IsValidEntity(ability) and ability:IsCooldownReady() and caster:IsRealHero() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_nannbann_armor", {} )
 				local handle = caster:FindModifierByName("modifier_nannbann_armor")
 				handle.caster = caster
 				handle.hp = caster:GetHealth()
 				handle.mp = caster:GetMana()
+
+				local shield_size = 1000
+				if caster.nannbann_armor_effect then
+					ParticleManager:DestroyParticle(caster.nannbann_armor_effect,false)
+				end
+				caster.nannbann_armor_effect = ParticleManager:CreateParticle("particles/item/protection.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+				ParticleManager:SetParticleControl(caster.nannbann_armor_effect, 1, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.nannbann_armor_effect, 2, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.nannbann_armor_effect, 4, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.nannbann_armor_effect, 5, Vector(shield_size,0,0))
+				-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
+				ParticleManager:SetParticleControlEnt(caster.nannbann_armor_effect, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 			end
 			if caster.has_item_nannbann_armor == true then
 				return 0.5
@@ -127,6 +139,10 @@ function OnUnequip( keys )
 	local caster = keys.caster
 	if IsValidEntity(caster) then
 		caster.has_item_nannbann_armor = nil
+		if caster.nannbann_armor_effect and caster:IsRealHero() then
+			ParticleManager:DestroyParticle(caster.nannbann_armor_effect,false)
+			caster.nannbann_armor_effect = nil
+		end
 	end
 end
 

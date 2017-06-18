@@ -16,6 +16,7 @@ end
 
 function modifier_protection_amulet:OnCreated( event )
 	self:StartIntervalThink(0.2)
+	
 end
 
 function modifier_protection_amulet:OnIntervalThink()
@@ -54,7 +55,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 								end
 							end
 		            		end)
-
+		            	ParticleManager:DestroyParticle(self.caster.protection_amulet_effect,false)
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
 			            	self.caster:SetHealth(self.hp)
 			            	self.caster:SetMana(self.mp)
@@ -91,12 +92,24 @@ function OnEquip( keys )
 			return nil
 		end
 		if IsValidEntity(caster) and caster:IsAlive() then
-			if not caster:HasModifier("modifier_protection_amulet") and IsValidEntity(ability) and ability:IsCooldownReady() then
+			if not caster:HasModifier("modifier_protection_amulet") and IsValidEntity(ability) and ability:IsCooldownReady() and caster:IsRealHero() then
 				ability:ApplyDataDrivenModifier( caster, caster, "modifier_protection_amulet", {} )
 				local handle = caster:FindModifierByName("modifier_protection_amulet")
 				handle.caster = caster
 				handle.hp = caster:GetHealth()
 				handle.mp = caster:GetMana()
+
+				local shield_size = 1000
+				if caster.protection_amulet_effect then
+					ParticleManager:DestroyParticle(caster.protection_amulet_effect,false)
+				end
+				caster.protection_amulet_effect = ParticleManager:CreateParticle("particles/item/protection.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+				ParticleManager:SetParticleControl(caster.protection_amulet_effect, 1, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.protection_amulet_effect, 2, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.protection_amulet_effect, 4, Vector(shield_size,0,shield_size))
+				ParticleManager:SetParticleControl(caster.protection_amulet_effect, 5, Vector(shield_size,0,0))
+				-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
+				ParticleManager:SetParticleControlEnt(caster.protection_amulet_effect, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
 			end
 			if caster.has_item_protection_amulet == true then
 				return 0.5
@@ -111,6 +124,11 @@ end
 
 function OnUnequip( keys )
 	if IsValidEntity(keys.caster) then
-		keys.caster.has_item_protection_amulet = nil
+		local caster = keys.caster
+		caster.has_item_protection_amulet = nil
+		if caster.protection_amulet_effect and caster:IsRealHero() then
+			ParticleManager:DestroyParticle(caster.protection_amulet_effect,false)
+			caster.protection_amulet_effect = nil
+		end
 	end
 end

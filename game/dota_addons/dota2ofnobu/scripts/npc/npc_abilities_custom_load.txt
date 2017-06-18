@@ -34,6 +34,31 @@
 			}
 		}
 	}
+	// mvp
+	"play_mvp"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_26"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_play_mvp"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_soul_of_power.lua"
+						"Function"		"MVP_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+			}
+		}
+	}
 	// 死亡倒地
 	"play_on_die"
 	{

@@ -235,7 +235,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"6 5 4 3"
-		"AbilityManaCost"	"200"
+		"AbilityManaCost"	"140 160 180 200"
 		"AbilityCastRange"	"600 700 800 1000"
 		"AOERadius"	"200"
 		"precache"
@@ -643,7 +643,7 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 
-				"Duration"			"2.5"
+				"Duration"			"1.5"
 				"OnDestroy"
 				{
 					"RunScript"
@@ -654,7 +654,6 @@
 				}
 				"States"
 				{
-					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			// 用來感測有沒有敵人靠進
@@ -703,7 +702,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration_stun"		"3.5 4.5 5.5 6.5"
+				"duration_stun"		"2 3 4 5"
 			}
 			"02"
 			{

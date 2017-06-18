@@ -209,7 +209,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
@@ -240,16 +240,17 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A21.lua"
+				"Function"	"A21R_Sound"
+				"Target"	"TARGET"
+			}
 			"Damage"
 			{
 				"Target"	"TARGET"
 				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"%dmg"
-			}
-			"FireSound"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"A21R.vo1"
+				"Damage"	"30"
 			}
 		}
 		"Modifiers"
@@ -373,7 +374,7 @@
 
 		"MaxLevel"	"5"
 		"AbilityCastPoint"                          "0.1"
-		"AbilityCastRange"							"1000"
+		"AbilityCastRange"							"600"
 		"AbilityCooldown"                           "12"
 		"AbilityManaCost"                           "80"
 
@@ -410,7 +411,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"				"10"
+				"duration"				"30"
 			}
 		}
 	}
@@ -550,7 +551,7 @@
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"31"
+		"AbilityCooldown"	"31 27 24 21"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100 120 140 160"
@@ -580,10 +581,11 @@
 				"Type"	"DAMAGE_TYPE_MAGICAL"
 				"Damage"	"%dmg"
 			}
-			"FireSound"
+			"RunScript"
 			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A21.lua"
+				"Function"	"A21R_Sound"
 				"Target"	"TARGET"
-				"EffectName"	"A21R.vo1"
 			}
 		}
 		"Modifiers"
@@ -692,7 +694,7 @@
 		"AbilityTextureName"                        "custom/icon_128x128_157"
 		
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"200 160 120"
+		"AbilityCooldown"           				"140 120 100"
 		"AbilityManaCost"           				"300"
 		"AbilityCastRange"							"700"
 		
@@ -732,12 +734,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"duration"		"15"
+				"duration"		"7"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"mana"		"1100"
+				"mana"		"1100 1500 2000"
 			}
 		}
 	}

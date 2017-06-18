@@ -7,6 +7,16 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/C12.vsndevts"
+			"particle"  "particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
+			"particle"  "particles/a17/a17tecon/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
+			"particle"  "particles/units/heroes/hero_sniper/sniper_crosshair_c.vpcf"
+			"soundfile"	"soundevents/a17.vsndevts"
+			"particle"	"particles/a07w5/a07w5.vpcf"
+			"particle"	"particles/a07e/a07e.vpcf"
+			"particle"	"particles/a07w3/a07w3.vpcf"
+			"particle"	"particles/a04r/a04r.vpcf"
+			"particle"	"particles/a04r3/a04r3.vpcf"
+			"particle"	"particles/c12/c12t_2/b08t.vpcf"
 		}
 	}
 	// 定位導彈  只有給視野功能 魔獸只要在距離1000內 效果都還在  這邊不知道怎設距離 
@@ -22,18 +32,19 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"HotKeyOverride"				"D"
 		"AbilityCastPoint"                          "0.1"
-		"AbilityCastRange"							"650 700 750 800"
-
+		"AbilityCastRange"							"700"
+		"MaxLevel"	"1"
 		"AbilityCooldown"                           "5"
 		"AbilityManaCost"                           "35"
 
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"					"TARGET"
-				"ModifierName"				"modifier_C12D_debuff"
-			}				
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
+				"Function"		"C12D_OnSpellStart"
+				"Target"	"TARGET"
+			}
 		}
 
 		"Modifiers"
@@ -41,12 +52,19 @@
 			"modifier_C12D_debuff"
 			{
 				"IsDebuff"					"1"			
-				"EffectName"		"particles/a33t/a33t.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Duration"				"%C12D_duration"				
+				"EffectName"		"particles/units/heroes/hero_sniper/sniper_crosshair_c.vpcf"
+				"EffectAttachType"	"follow_head"
 				"States"
 				{
 					"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
+						"Function"		"C12D_OnUnitMoved"
+					}
 				}
 			}
 		}
@@ -58,14 +76,13 @@
 				"var_type"			"FIELD_INTEGER"
 				"C12D_duration"		"60"
 			}
-			
 		}
 	}
 
 	//  導彈發射   只有弄範圍傷害          特效 噴火箭弄不出來 
 	"C12W"
 	{
-		"BaseClass"             		"icon_128x128_57"
+		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"custom/icon_128x128_57"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 
@@ -82,6 +99,17 @@
 		"AbilityCastPoint"				"0.1"
 
 
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
+				"Function"		"C12W_OnProjectileHitUnit"
+				"Target"	"TARGET"
+			}
+		}
+
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -97,10 +125,24 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/crystal_nova_icon"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"120 140 160 180"
+		"AbilityDamage"					"120 180 240 300"
+		"AbilityCastRange"				"600"
+		"precache"
+		{
+			"particle"	"particles/a07w5/a07w5.vpcf"
+			"particle"	"particles/a07e/a07e.vpcf"
+			"particle"	"particles/a07w3/a07w3.vpcf"
+			"soundfile"	"sounds/weapons/hero/ancient_apparition/ice_vortex_cast.vsnd"
+			"soundfile"	"soundevents/game_sounds_hero_pick.vsndevts"
+			"particle"	"particles/a04r/a04r.vpcf"
+		}
 		"OnSpellStart"
 		{
 			"FireSound"
@@ -119,7 +161,7 @@
 				"MaxBlinkRange"	"%blink_range"
 				"BlinkRangeClamp"	"%blink_range"
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
-				"Function"	"C12E"
+				"Function"	"C12E_OnSpellStart"
 			}
 		}
 		
@@ -134,6 +176,34 @@
 				{
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%add_int"
 				}				
+			}
+			"modifier_C12E"
+			{
+				"IsBuff"	"1"
+				"EffectName"	"particles/a04r/a04r.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
+						"Function"	"C12E_damage_check"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"Properties"	{}
+				"States"	{}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
+						"Function"	"C12E_EndShieldParticle"
+					}
+				}
+				"Duration"	"10"
 			}
 		}
 
@@ -175,11 +245,12 @@
 
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
-				"Target"					"TARGET"
-				"ModifierName"				"modifier_C12R_invisible"
-			}	
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
+				"Function"		"C12R_OnSpellStart"
+				"Target"	"TARGET"
+			}
 			"Heal"
 			{
 				"Target"        "TARGET"
@@ -189,32 +260,6 @@
 
 		"Modifiers"
 		{
-			"modifier_C12R_invisible"
-			{
-				"IsDebuff"					"0"					
-				"EffectAttachType"	"follow_origin"
-				"Duration"				"%C12R_duration"				
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"OnAttackLanded"
-				{					
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_C12R_invisible"
-					}					
-				}
-				"OnAbilityExecuted"
-				{					
-					"RemoveModifier"
-					{
-						"Target"	"CASTER"
-						"ModifierName"	"modifier_C12R_invisible"
-					}
-				}
 		}
 
 		"AbilitySpecial"
@@ -238,7 +283,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/zhuge_wolongguangxian"
 		"AbilityCooldown"	"100 85 70"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
@@ -271,20 +316,11 @@
 				"Target"	"CASTER"
 				"EffectName"	"B08T.vo1"
 			}
-			"LinearProjectile"
+			"RunScript"
 			{
-				"Target"	"POINT"
-				"EffectName"	"particles/b08t_2/b08t.vpcf"
-				"MoveSpeed"	"%dragon_slave_speed"
-				"StartRadius"	"%dragon_slave_width_initial"
-				"StartPosition"	"attach_origin"
-				"EndRadius"	"%dragon_slave_width_end"
-				"FixedDistance"	"%dragon_slave_distance"
-				"TargetTeams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"TargetTypes"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				"TargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
-				"HasFrontalCone"	"1"
-				"ProvidesVision"	"0"
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C12.lua"
+				"Function"		"C12T_OnSpellStart"
+				"Target"	"TARGET"
 			}
 			"FireSound"
 			{
@@ -358,6 +394,6 @@
 		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"800 1200 1600"
+		"AbilityDamage"	"100 160 220"
 	}		
 } // DOTAAbilities end

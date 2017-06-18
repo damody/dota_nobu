@@ -3,16 +3,11 @@ function C25D_Action1( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local level  = keys.ability:GetLevel()
-	local rnd = RandomInt(1,100)
-	if rnd <= 50 then
-		caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
-		caster:SetAbsOrigin(target:GetAbsOrigin())
-		if not target:IsMagicImmune() then
-			local dmg = keys.ability:GetLevelSpecialValueFor("C25D_Damage", keys.ability:GetLevel() - 1 )
-			AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		end
-	else
-		ability:EndCooldown()
+	caster:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})--添加0.1秒的相位状态避免卡位
+	caster:SetAbsOrigin(target:GetAbsOrigin())
+	if not target:IsMagicImmune() then
+		local dmg = keys.ability:GetLevelSpecialValueFor("C25D_Damage", keys.ability:GetLevel() - 1 )
+		AMHC:Damage( caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 end
 

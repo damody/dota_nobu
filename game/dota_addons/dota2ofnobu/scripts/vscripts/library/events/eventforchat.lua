@@ -218,6 +218,11 @@ local function chat_of_test(keys)
 		caster:SetModel("models/a26/a26_school.vmdl")
 		caster:SetOriginalModel("models/a26/a26_school.vmdl")
 	end
+	if (s == "-skin" and nobu_id == "B16" and skin) then
+		caster.skin = "school"
+		caster:SetModel("models/b16/b16_school.vmdl")
+		caster:SetOriginalModel("models/b16/b16_school.vmdl")
+	end
 	if (s == "-long" and nobu_id == "A31") then
 		caster:SetModel("models/a31/a31_long.vmdl")
 		caster:SetOriginalModel("models/a31/a31_long.vmdl")

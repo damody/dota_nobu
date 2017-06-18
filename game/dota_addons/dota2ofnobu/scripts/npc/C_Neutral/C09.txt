@@ -150,7 +150,7 @@
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"    					"custom/C09/C09E"
 		"AbilityCooldown"							"5"
-		"AbilityManaCost"                      		"80 100 120 140"
+		"AbilityManaCost"                      		"80 90 100 110 120"
 		
 		"OnSpellStart"
 		{
@@ -323,7 +323,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"C09T_armor"		"-20 -28 -36"
+				"C09T_armor"		"-30 -48 -46"
 			}
 			"02"
 			{
@@ -455,7 +455,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_cost"					"5 7 9 11"
+				"mana_cost"					"2 3 4 5"
 			}
 			"05"
 			{
@@ -477,7 +477,7 @@
 		"AbilityTextureName"    					"custom/C09/C09E"
 		"AbilityCooldown"							"6 5 4 3"
 		"AbilityCastPoint"							"0.1"
-		"AbilityManaCost"                      		"80 100 120 140"
+		"AbilityManaCost"                      		"70 80 90 100"
 		
 		"OnSpellStart"
 		{
@@ -540,7 +540,7 @@
 
 		"AbilityCooldown"							"16 14 12 10"
 		"AbilityCastPoint"							"0.1"
-		"AbilityManaCost"                      		"100 120 140 160"
+		"AbilityManaCost"                      		"100 110 120 130 140"
 
 		"OnSpellStart"
 		{
@@ -650,7 +650,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"C09T_armor"		"-32 -44 -56"
+				"C09T_armor"		"-42 -54 -66"
 			}
 			"02"
 			{

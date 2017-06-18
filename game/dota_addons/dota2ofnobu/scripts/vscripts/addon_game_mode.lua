@@ -721,6 +721,7 @@ function Precache( context )
     "particles/item/item_rockfall_bookinvoker_chaos_meteor_fly2.vpcf",
     --平蜘蛛釜
     "particles/item/kotennmyohiragumo.vpcf",
+    "particles/item/protection.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

@@ -227,7 +227,6 @@ function B35R_old_OnAttackStart( keys )
 		caster.C21R = 0
 	end
 	caster.C21R = caster.C21R + 1
-	print("caster.C21R", caster.C21R)
 	if RandomInt(1,100)<=crit_chance or caster.C21R > 9 then
 		local rate = caster:GetAttackSpeed()+0.1
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_B35R2",{duration=rate})
@@ -254,7 +253,7 @@ function B35T_Copy(u, u2, ability)
     	function()
     		count = count + 1
     		if (tu:IsAlive()) then
-    			tu:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK, 1 )	
+    			tu:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_1, 1 )	
     		end
     		if (count > 25) then
     			tu:ForceKill(false)

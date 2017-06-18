@@ -50,7 +50,9 @@ function Shock( keys )
 	--local tem_point = nil
 
 
-	local cone_units = GetEnemiesInCone( caster,vec, start_radius, end_radius, end_distance,point2 )
+	local cone_units = FindUnitsInRadius( caster:GetTeamNumber(), point2, nil, 700, 
+					DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 
+					0, FIND_CLOSEST, false )
 	local targets_shocked = 1 --Is targets=extra targets or total?
 	for _,unit in pairs(cone_units) do
 		if targets_shocked < targets and (caster:CanEntityBeSeenByMyTeam(unit)) then

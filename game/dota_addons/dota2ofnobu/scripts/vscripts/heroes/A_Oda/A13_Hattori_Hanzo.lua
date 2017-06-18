@@ -187,7 +187,9 @@ function A13W( event )
 				return nil
 			end )
 	end
-	
+	Timers:CreateTimer(0.25, function()
+		AMHC:SetCamera(caster:GetPlayerOwnerID(), caster)
+		end)
 end
 
 

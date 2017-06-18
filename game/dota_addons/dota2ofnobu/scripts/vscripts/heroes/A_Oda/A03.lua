@@ -93,10 +93,12 @@ function A03W_OnProjectileHitUnit( keys )
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_A03W_debuff",{duration = duration})
 	local tsum = 0
 	Timers:CreateTimer(0.1, function()
-		if target:IsHero() then
-			if not target:HasModifier("modifier_A03W_debuff") then
+		if IsValidEntity(target) and target:IsHero() and target:IsAlive() then
+			if not target:HasModifier("modifier_A03W_debuff") and target:IsMagicImmune() then
 				ability:ApplyDataDrivenModifier(caster,target,"modifier_A03W_debuff",{duration = duration-tsum})
 			end
+		else
+			return nil
 		end
 		tsum = tsum + 0.1
 		if tsum < duration then
@@ -116,6 +118,7 @@ function A03W_old_OnDeath( keys )
  	wolf:SetHealth(wolf:GetMaxHealth())
  	wolf:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_kill",{duration = 150})
+ 	wolf:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 end
 
 
@@ -146,6 +149,7 @@ function A03T_old_OnSpellStart( keys )
 	ability:ApplyDataDrivenModifier(caster,Kagutsuchi,"modifier_A03T_old",nil)
 	local hModifier = Kagutsuchi:FindModifierByNameAndCaster("modifier_A03T_old", caster)
 	hModifier:SetStackCount(level)
+	Kagutsuchi:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	
 	local ifx = ParticleManager:CreateParticle( "particles/a03t_old.vpcf", PATTACH_CUSTOMORIGIN, Kagutsuchi)
 	ParticleManager:SetParticleControl( ifx, 0, Kagutsuchi:GetAbsOrigin())

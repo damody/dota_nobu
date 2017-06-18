@@ -1,0 +1,587 @@
+//島左近
+
+"DOTAAbilities"
+{
+	"A35_precache"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"precache"
+		{
+			"soundfile"	"soundevents/a35.vsndevts"
+			"particle"	"particles/a35/a35w.vpcf"
+			"particle"	"particles/a35/a35t.vpcf"
+			"particle"	"particles/a35/a35wbice_path_b.vpcf"
+			"particle"	"particles/a35/a35e_old_2.vpcf"
+			"particle"  "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+		}
+	}
+	//島左近 焰襲	
+	"A35W"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B32E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint" "0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"2"
+		"AbilityCooldown"	"12 11 10 9"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"900"
+		"AbilityDamage"		"200 300 400 500"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"	"particles/units/heroes/hero_jakiro/jakiro_ice_path.vpcf"
+			"particle"	"particles/units/heroes/hero_jakiro/jakiro_ice_path_b.vpcf"
+			"particle"	"particles/a04e/a04e.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32E.vo1"
+			}
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+				"MoveSpeed"	"5000"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Jakiro.IcePath"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+				"Function"	"A35W_OnSpellStart"
+				"path_delay"	"%path_delay"
+				"duration"	"%duration"
+				"path_radius"	"200"
+				"Target"	"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+		}
+		"Modifiers"
+		{
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"50 80 110 140"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 200 300 400"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"path_delay"	"0"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration2"	"0.5 1 1.5 2"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"path_radius"	"100"
+			}
+		}
+	}
+	
+	
+	//島左近 熾焰封魔
+	"A35E"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_fury2"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"30 28 26 24"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"250 350 450 550"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A35E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+				"Function"		"A35E_OnSpellStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A35E"
+			{
+				"EffectName" "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_3.vpcf"
+				"Passive"		"0"
+				"IsHidden"		"1"
+				"Duration"		"3"
+				"States"
+				{
+					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+    }
+
+	//島左近 炎之迅捷
+	"A35R"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_54"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_agi"			"8 16 24 32"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_B04R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%add_agi"
+				}
+			}
+		}
+	}
+
+	//島左近 焦灼之火
+	"A35T"	
+	{
+		"BaseClass"                 	"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"  					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"            "dota2/b11_r"
+		"AbilityCooldown"				"125 110 95"
+		"AbilityManaCost"				"150 190 230"
+		"AbilityDamage"					"300 500 700"
+		"AbilityCastRange"				"500"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A35T.vo1"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A35T"
+				
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A35T"
+            {
+            	"Duration"	"%duration"
+            	"Passive" "0"
+            	"ThinkInterval"  "%think"
+            	"OnIntervalThink"
+            	{
+            		"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+						"Function"		"A35T_OnIntervalThink"
+					}
+            	}
+            	"OnCreated"
+            	{
+            		"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+						"Function"		"A35T_OnIntervalThink"
+					}
+            	}
+            }
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"think"               "1.2"
+			}
+			"02"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"dmg"          		"300 500 700"
+			}
+			"03"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"duration"         "5"
+			}
+			"04"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"radius"          		"500"
+			}
+		}
+    }	
+
+    //島左近 焰襲	
+	"A35W_old"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/B32E"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint" "0.1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"	"2"
+		"AbilityCooldown"	"12 11 10 9"
+		"AbilityManaCost"	"100 120 140 160"
+		"AbilityCastRange"	"900"
+		"AbilityDamage"		"200 300 400 500"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"	"particles/units/heroes/hero_jakiro/jakiro_ice_path.vpcf"
+			"particle"	"particles/units/heroes/hero_jakiro/jakiro_ice_path_b.vpcf"
+			"particle"	"particles/a04e/a04e.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B32E.vo1"
+			}
+			"TrackingProjectile"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+				"MoveSpeed"	"5000"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Jakiro.IcePath"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+				"Function"	"A35W_OnSpellStart"
+				"path_delay"	"%path_delay"
+				"duration"	"%duration"
+				"path_radius"	"200"
+				"Target"	"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+		}
+		"Modifiers"
+		{
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"50 80 110 140"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 200 300 400"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"path_delay"	"0"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration2"	"0.5 1 1.5 2"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"path_radius"	"100"
+			}
+		}
+	}
+	
+	//島左近 炙焰護衛
+	"A35E_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/juggernaut_blade_fury2"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"30 28 26 24"
+		"AbilityManaCost"				"100 120 140 160"
+		"AbilityDamage"					"150 250 350 450"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_base_attack_explosion_b.vpcf"
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A35E.vo1"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+				"Function"		"A35E_old_OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_A35E_old"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+				"Function"		"A35E_old_OnProjectileHitUnit"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_A35E_old"
+			{
+				"Passive"		"0"
+				"IsHidden"		"1"
+				"Duration"		"30"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+						"Function"		"A35E_old_OnDestroy"
+					}
+				}
+				"ThinkInterval"  "0.2"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+						"Function"		"A35E_old_OnIntervalThink"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"count"			"1 2 3 4"
+			}
+		}
+    }
+
+	//島左近 炎之迅捷
+	"A35R_old"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_54"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"add_agi"			"8 16 24 32"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_B04R_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%add_agi"
+				}
+			}
+		}
+	}
+
+	//島左近 焦灼之火
+	"A35T_old"	
+	{
+		"BaseClass"                 	"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"  					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"            "dota2/b11_r"
+		"AbilityCooldown"				"125 110 95"
+		"AbilityManaCost"				"200 250 300"
+		"AbilityDamage"					"36 54 74"
+		"AbilityCastRange"				"700"
+		"AOERadius"	"1200"
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A35T.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A35.lua"
+				"Function"		"A35T_old_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"think"               "0.2"
+			}
+			"02"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"dmg"          		"36 54 72"
+			}
+			"03"
+			{
+				"var_type"                		"FIELD_FLOAT"
+				"duration"         "22 26 30"
+			}
+			"04"
+			{
+				"var_type"                		"FIELD_INTEGER"
+				"radius"          		"1200"
+			}
+		}
+    }	
+} // DOTAAbilities end

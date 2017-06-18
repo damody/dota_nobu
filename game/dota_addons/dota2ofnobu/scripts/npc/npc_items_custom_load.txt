@@ -953,7 +953,7 @@
 		"AbilityTextureName"	"item_custom/perceive_wine_hyper"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"45"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		// Valve's version of this item uses the ID "1".
 		"ID"	"2621"
@@ -1132,7 +1132,12 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_fire_scroll"
+						"ModifierName"	"modifier_fire_attack"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_fire_scroll"
 					}
 				}
 			}
@@ -1144,11 +1149,22 @@
 		}
 		"Modifiers"
 		{
-			"modifier_item_fire_scroll"
+			"modifier_fire_attack"
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"40"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
+				}
+				"Passive"	"0"
+				"Duration"	"8"
+				"IsHidden"	"1"
+				"EffectAttachType"	"follow_overhead"
+			}
+			"modifier_fire_scroll"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
 				}
 				"Passive"	"0"
 				"Duration"	"8"
@@ -1205,6 +1221,11 @@
 						"Target"	"TARGET"
 						"ModifierName"	"modifier_item_art_of_war_flame_chapter"
 					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_fire_attack"
+					}
 				}
 			}
 			"RunScript"
@@ -1232,11 +1253,22 @@
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
 				}
 			}
+			"modifier_fire_attack"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
+				}
+				"Passive"	"0"
+				"Duration"	"8"
+				"IsHidden"	"1"
+				"EffectAttachType"	"follow_overhead"
+			}
 			"modifier_item_art_of_war_flame_chapter"
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"40"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
 				}
 				"Passive"	"0"
 				"Duration"	"8"
@@ -3856,7 +3888,12 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_D03"
+						"ModifierName"	"modifier_red_spear"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_fire_attack"
 					}
 				}
 			}
@@ -3868,7 +3905,18 @@
 		}
 		"Modifiers"
 		{
-			"modifier_item_D03"
+			"modifier_fire_attack"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
+				}
+				"Passive"	"0"
+				"Duration"	"8"
+				"IsHidden"	"1"
+				"EffectAttachType"	"follow_overhead"
+			}
+			"modifier_red_spear"
 			{
 				"Properties"
 				{
@@ -5780,7 +5828,7 @@
 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-6"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"
 				}
 			}
 
@@ -5793,7 +5841,7 @@
 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-6"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"
 				}
 			}
 			"Passive_great_sword_of_disarmament"
@@ -7034,7 +7082,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-8"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"	//防禦
 				}
 			}
 			"modifier_spear_of_saddle2"
@@ -7045,7 +7093,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-4"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-5"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle"
@@ -7131,7 +7179,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-14"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-18"	//防禦
 				}
 			}
 			"modifier_spear_of_saddle2"
@@ -7142,7 +7190,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-7"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-9"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle_1"
@@ -7227,7 +7275,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-20"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-26"	//防禦
 				}
 			}
 			"modifier_spear_of_saddle2"
@@ -7238,7 +7286,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-13"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle_2"
@@ -9875,9 +9923,9 @@
 				"Passive"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "20"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "15"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "15"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "15"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
@@ -10886,7 +10934,6 @@
 			    "IsBuff" "1"
 			    "IsHidden" "1"
 			    "Duration"	"1"
-			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "100"
@@ -11432,7 +11479,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"45"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2808"
@@ -11515,7 +11562,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"45"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2809"
@@ -11598,7 +11645,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"45"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2810"
@@ -11682,7 +11729,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"45"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"200"
 		"ID"	"2811"
@@ -12641,7 +12688,12 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_fire_scroll"
+						"ModifierName"	"modifier_the_lost_art_of_war_1"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_fire_attack"
 					}
 				}
 			}
@@ -12668,11 +12720,22 @@
 					}
 				}
 			}
-			"modifier_item_fire_scroll"
+			"modifier_fire_attack"
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"40"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
+				}
+				"Passive"	"0"
+				"Duration"	"8"
+				"IsHidden"	"1"
+				"EffectAttachType"	"follow_overhead"
+			}
+			"modifier_the_lost_art_of_war_1"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
 				}
 				"Passive"	"0"
 				"Duration"	"8"
@@ -12861,7 +12924,6 @@
 	"item_the_art_of_war"
 	{
 		// General
-		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/the_art_of_war"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
@@ -12903,7 +12965,12 @@
 					"ApplyModifier"
 					{
 						"Target"	"TARGET"
-						"ModifierName"	"modifier_item_fire_scroll"
+						"ModifierName"	"modifier_the_art_of_war"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_fire_attack"
 					}
 				}
 			}
@@ -12952,6 +13019,17 @@
 				"EffectAttachType"	"follow_overhead"
 				"IsBuff"	"1"
 			}
+			"modifier_fire_attack"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
+				}
+				"Passive"	"0"
+				"Duration"	"8"
+				"IsHidden"	"1"
+				"EffectAttachType"	"follow_overhead"
+			}
 			"modifier_art_of_war_mountain_chapter"
 			{
 				"Properties"
@@ -12992,11 +13070,11 @@
 					}
 				}
 			}
-			"modifier_item_fire_scroll"
+			"modifier_the_art_of_war"
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"40"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
 				}
 				"Passive"	"0"
 				"Duration"	"8"
@@ -13041,9 +13119,9 @@
 				"Aura_ApplyToCaster" "1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "20"	//力
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "20"	//智
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "30"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "30"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "30"	//智
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
 					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
 					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
@@ -14480,7 +14558,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"80"
+		"AbilityCooldown"	"70"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -14564,7 +14642,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"80"
+		"AbilityCooldown"	"70"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -14648,7 +14726,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"80"
+		"AbilityCooldown"	"70"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -14733,7 +14811,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"80"
+		"AbilityCooldown"	"70"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityManaCost"	"500"
 		
@@ -14841,7 +14919,6 @@
 			    "IsBuff" "1"
 			    "IsHidden" "1"
 			    "Duration"	"1"
-			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
 			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
@@ -15096,7 +15173,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"80"
+		"AbilityCooldown"	"70"
 		"AbilityManaCost"	"500"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"SecretShop" "1"
@@ -15172,14 +15249,45 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"   "150" //跑速
 				}
 			}
-			"modifier_ninja_cloth"
+			"shield_modifier6"
 			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
-				}
+			    "Passive" "1"
+			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttacked"
+			    {
+			        "Random"
+			        {
+			            "Chance" "65"
+			            "OnSuccess"
+			            {
+			                "ApplyModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier6"
+			                }
+			            }
+			            "OnFailure"
+			            {
+			                "RemoveModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier6"
+			                }
+			            }
+			        }
+			    }
+			}
+			"block_modifier6"
+			{
+			    "IsBuff" "1"
+			    "IsHidden" "1"
+			    "Duration"	"1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "100"
+			    }
 			}
 		}
 	}
@@ -16876,7 +16984,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"30"
+		"AbilityCooldown"	"50"
 		
 		"AbilityManaCost"	"350"
 		"AbilityCastRange"	"450"
@@ -16949,178 +17057,6 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
 				}
-			}
-		}
-	}
-
-	// 軍糧丸
-	"item_rations_new"
-	{
-		// General
-		
-		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_custom/rations"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"	"1"
-		
-		"AbilityCooldown"	"30"
-		"ID"	"3872"
-		"ItemQuality"	"component"
-		"Model"	"models/props_gameplay/tpscroll01.vmdl"
-		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemShopTags"					"consumable"
-		"ItemQuality"					"consumable"
-		"ItemStackable"					"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"2"
-		"SideShop"						"1"
-		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"OnSpellStart"
-		{
-			"Heal"
-			{
-				"Target"        "CASTER"
-				"HealAmount"	"420"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_rations.lua"
-				"Function"		"Shock"
-				"Mana"			"210"
-			}
-			"DelayedAction"
-            {
-            	"Delay"     "0.1"
-            	"Action"    
-            	{
-            		"SpendCharge"
-					{}
-            	}
-            }
-		}
-	}
-
-	// 抗魔
-	"item_perceive_wine_hyper_new"
-	{
-		// General
-		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"item_custom/perceive_wine_hyper"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"30"
-		"AbilitySharedCooldown" "share_perceive_wine_hyper"
-		// Valve's version of this item uses the ID "1".
-		"ID"	"3873"
-		"ItemQuality"	"component"
-		"Model"							"models/props_gameplay/salve_blue.vmdl"
-		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
-		// Item Info
-		
-		"ItemCost"	"0"
-		"ItemShopTags"					"consumable"
-		"ItemQuality"					"consumable"
-		"ItemStackable"					"1"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"2"
-		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SideShop"	"1"
-		"precache"
-		{
-			"particle"	"particles/item/item_perceive_wine.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-			  	"ScriptFile"	"items/Addon_Items/item_perceive_wine.lua"
-				"Function"	"Shock"
-				"Time"	"10"
-			}
-			"DelayedAction"
-            {
-            	"Delay"     "0.1"
-            	"Action"    
-            	{
-            		"SpendCharge"
-					{}
-            	}
-            }
-		}
-		"Modifiers"
-		{
-			"modifier_perceive_wine"
-			{
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"Passive"	"0"
-				"EffectName"	"particles/item/item_perceive_wine.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"IsHidden"	"0"
-			}
-		}
-		// Special
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"10"
-			}
-		}
-	}
-
-	// 御守
-	"item_protection_amulet_new"
-	{
-		// General
-		
-		"BaseClass"	"item_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"	"item_custom/protection_amulet"
-		"FightRecapLevel"	"1"
-		"ID"	"3874"
-		"ItemQuality"	"component"
-		"Model"	"models/props_gameplay/tpscroll01.vmdl"
-		"Effect"	"particles/generic_gameplay/dropped_item.vpcf"
-		// Item Info
-		
-		"ItemCost"	"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"SideShop"	"1"
-		"ItemShopTags"		"damage"
-		"ItemRequirements"	{}
-		"AbilityCooldown"	"30"
-		"precache"
-		{
-			"particle"	"particles/a07w5/a07w5.vpcf"
-		}
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_protection_amulet.lua"
-				"Function"	"OnEquip"
-			}
-		}
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/item_protection_amulet.lua"
-				"Function"	"OnUnequip"
 			}
 		}
 	}
