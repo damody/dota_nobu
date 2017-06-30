@@ -162,7 +162,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"B30E_armorBonus"				"-3 -5 -7 -9"
+				"B30E_armorBonus"				"-4 -8 -12 -16"
 			}
 			"03"
 			{
@@ -450,7 +450,7 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"    					"custom/B30/B30E"
 
-		"AbilityCooldown"							"16"
+		"AbilityCooldown"							"16 14 12 10"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"110 130 150 170"
 		"AbilityCastRange"							"250"
@@ -512,7 +512,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"B30E_duration"					"5.0"
+				"B30E_duration"					"7"
 			}
 		}
 	}

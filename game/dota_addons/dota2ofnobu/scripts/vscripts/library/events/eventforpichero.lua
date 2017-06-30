@@ -21,7 +21,9 @@ function Nobu:PickHero( keys )
               end
             end
           end
-          
+          if caster.donkey:HasModifier("Passive_insight_gem") then
+            caster.donkey:RemoveModifierByName("Passive_insight_gem")
+          end
             for itemSlot=0,5 do
               local item = caster:GetItemInSlot(itemSlot)
               if item ~= nil then

@@ -30,7 +30,7 @@ function C20W_OnTakeDamage( event )
 					function( )
 						caster.c20w_lock=nil
 						return nil
-					end, 0.5)
+					end, 0.3)
 				end
 			end
 		end
@@ -157,7 +157,7 @@ function modifier_C20W_old_OnTakeDamage( event )
 						end
 					end
 				end
-				Timers:CreateTimer(0.5, function ()
+				Timers:CreateTimer(0.3, function ()
 					caster.c20w_lock=nil
 					return nil
 				end)

@@ -4,7 +4,26 @@
     background-color: #42494e;
     z-index:5;
     width: 200px;
- }
+}
+
+#TopBarDirePlayers
+{
+    margin-top:0px;
+    margin-right:300px;
+    z-index:1;
+	width: 200px;
+	height: 20px;
+}
+
+#TopBarRadiantTeam
+{
+    margin-top:0px;
+    margin-right:400px;
+    z-index:1;
+	width: 200px;
+	height: 20px;
+}
+
 #Slider1
 {
     margin-top:0px;
@@ -27,6 +46,7 @@
     z-index:8;
     border-radius: 4px;
 }
+
 .ZoomLabel
 {
     vertical-align: center;
@@ -34,6 +54,7 @@
     color: #55AAFF;
     font-size: 16px;
 }
+
 .ZoomLabelVal
 {
      horizontal-align: right;
@@ -42,3 +63,20 @@
     color: #FFFFFF;
     font-size: 14px;
 }
+
+#TopBarDireTeam2
+{
+	margin-left: 52px;
+}
+
+#TopBarRadiantTeam2 .TopBarBackground
+{
+    transform: scaleX(-1);
+}
+
+#TopBarRadiantTeam2
+{
+	horizontal-align: right;
+	margin-right: 52px;
+}
+

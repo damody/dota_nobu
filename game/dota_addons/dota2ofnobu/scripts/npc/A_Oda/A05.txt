@@ -9,6 +9,7 @@
 			"soundfile"	"soundevents/A05.vsndevts"
 			"particle"	"particles/a05/a05wred/courier_greevil_red_ambient_3.vpcf"
 			"particle"	"particles/a05/a05r.vpcf"
+			"particle"	"particles/a05/a05t.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
 	}
@@ -101,7 +102,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
-		"AbilityCooldown"	"15"
+		"AbilityCooldown"	"15 13 11 9"
 		"AbilityManaCost"	"90 105 120 135"
 		"AbilityCastRange"	"500"
 		"AbilityDamage"		"200 300 400 500"
@@ -260,7 +261,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"R"
 		"MaxLevel"	"4"
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"2"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"400"
 		"AbilityDamage"		"60 120 180 240"
@@ -379,12 +380,15 @@
 			"modifier_A05T2"
 			{
 				"IsBuff"	"1"
+				"EffectName"	"particles/a05/a05t.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 			"modifier_A05T"
 			{
-				"IsBuff"	"1"
+				"EffectName"	"particles/a05/a05t.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"IsDebuff"	"1"
 				// 要改Effect
-				
 				"States"	{}
 				"OnDestroy"
 				{

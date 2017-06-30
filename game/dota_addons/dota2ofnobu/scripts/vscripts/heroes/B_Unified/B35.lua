@@ -81,6 +81,7 @@ function B35R_OnAttacked( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local silence_time = ability:GetSpecialValueFor("silence_time")
+	local heal = ability:GetSpecialValueFor("heal")
 	if not caster:IsIllusion() then
 		local target = keys.target
 		local skill = keys.ability
@@ -96,6 +97,7 @@ function B35R_OnAttacked( keys )
 		end
 		if (caster.B35R_count > 5 or ran <= 20) then
 			caster.B35R_count = 0
+			caster:Heal(heal,ability)
 				StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
 				local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		                              target:GetAbsOrigin(),

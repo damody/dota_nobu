@@ -119,6 +119,7 @@ function B18T_OnSpellStart(keys)
 	wolf:AddNewModifier(wolf,ability,"modifier_invulnerable",nil)
 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_kill",{duration = duration})
 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_B18T",nil)
+	wolf.origin = caster:GetAbsOrigin()
 end
 
 
@@ -162,8 +163,8 @@ end
 function B18T_OnIntervalThink( keys )
 	local caster = keys.caster
 	caster:SetForceAttackTarget(nil)
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  500 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster.origin,
+			nil,  1000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 	if #group > 0 then
 		local order = {UnitIndex = caster:entindex(),
@@ -179,8 +180,8 @@ function B18T_OnIntervalThink( keys )
 		caster:SetForceAttackTarget(group[1])
 		return
 	end
-	group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-			nil,  1200 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_BASIC,
+	group = FindUnitsInRadius(caster:GetTeamNumber(), caster.origin,
+			nil,  2000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 	if #group > 0 then
 		local order = {UnitIndex = caster:entindex(),
@@ -268,5 +269,6 @@ function B18T_old_OnSpellStart(keys)
 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_kill",{duration = duration})
 	ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_B18T",nil)
 	ability:ApplyDataDrivenModifier(wolf,wolf,"Passive_insight_gem",nil)
+	wolf.origin = caster:GetAbsOrigin()
 end
 

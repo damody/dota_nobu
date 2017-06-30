@@ -25,7 +25,7 @@ function A36E_OnSpellStart( keys )
 	
  	local player = caster:GetPlayerID()
  	local mine = CreateUnitByName("B13_MINE_hero", center, false, caster, caster, caster:GetTeamNumber())
- 	mine:AddAbility("A36EW"):SetLevel(1)
+ 	mine:AddAbility("A36EW"):SetLevel(ability:GetLevel())
  	mine:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
  	caster.A36E = {}
  	if #lA36E >= maxc then

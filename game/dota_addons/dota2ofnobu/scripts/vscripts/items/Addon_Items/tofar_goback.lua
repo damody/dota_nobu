@@ -40,6 +40,11 @@ function choose_16( keys )
     	caster:RemoveModifierByName("modifier_C08D_old_duge")
     end
     caster:AddAbility(nobu_id.."_precache"):SetLevel(1)
+    for i=1,4 do
+    	if caster:HasModifier("modifier_buff_"..i) then
+    		caster:AddAbility("buff_"..i):SetLevel(1)
+    	end
+    end
 end
 
 function choose_11( keys )
@@ -82,6 +87,11 @@ function choose_11( keys )
       caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_old"):SetLevel(1)
     end
     caster:AddAbility(nobu_id.."_precache"):SetLevel(1)
+    for i=1,4 do
+    	if caster:HasModifier("modifier_buff_"..i) then
+    		caster:AddAbility("buff_"..i):SetLevel(1)
+    	end
+    end
 end
 
 function play_1v1( keys )
@@ -151,6 +161,25 @@ function gold_to_prestige( keys )
 	if caster:IsHero() then
 		_G.goldprestige[caster:GetTeamNumber()] = _G.goldprestige[caster:GetTeamNumber()] + add_prestige
 	end
+	prestige = _G.prestige
+	goldprestige = _G.goldprestige
+	if prestige == nil then prestige = {} end
+	if goldprestige == nil then goldprestige = {} end
+	prestige[2] = goldprestige[2] or 0
+	prestige[3] = goldprestige[3] or 0
+	local sumkill = 0
+	local allHeroes = HeroList:GetAllHeroes()
+	for k, v in pairs( allHeroes ) do
+	if not v:IsIllusion() then
+	  local hero     = v
+	  if (hero.kill_count ~= nil)  then
+	    prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_count
+	  end
+	  if (hero.kill_hero_count ~= nil)  then
+	    prestige[hero:GetTeamNumber()] = prestige[hero:GetTeamNumber()] + hero.kill_hero_count*5
+	  end
+	end
+	end
 end
 
 function reward6300(keys)
@@ -163,11 +192,7 @@ function reward6300(keys)
 		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=60})
 		dummy:AddAbility("reward6300"):SetLevel(1)
 		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
-		if _G.full_reward6300 then
-			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)	
-		else
-			dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura2",nil)
-		end
+		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_auramodifier_reward6300_aura",nil)
 	end
 end
 

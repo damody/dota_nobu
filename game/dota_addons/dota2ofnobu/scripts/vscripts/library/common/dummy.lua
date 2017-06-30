@@ -116,6 +116,24 @@ _G.EXCLUDE_TARGET_NAME = {
   npc_dummy_unit_Ver2 = true,
 }
 
+_G.EXCLUDE_MODIFIER_NAME = {
+  modifier_C04T = true,
+  modifier_C04T2 = true,
+  modifier_A11E = true,
+  modifier_A11E2 = true,
+  modifier_C07E = true,
+  modifier_C07E2 = true,
+  modifier_B28E = true,
+  modifier_B28E2 = true,
+  modifier_voodoo_lua = true,
+  modifier_B36R = true,
+  modifier_A28W = true,
+  modifier_A09E = true,
+  modifier_weakness = true,
+  modifier_C08T_bleeding = true,
+}
+
+
 function CP_Posistion( keys )
 	local caster = keys.caster
 	caster.origin_pos = caster:GetAbsOrigin()

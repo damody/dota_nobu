@@ -225,25 +225,32 @@
 		{
 			"modifier_C01R"
 			{
-				"OnCreated"
+				"ThinkInterval"  "6"
+				"OnIntervalThink"
 				{
 					"RunScript"
 					{
 						"Target"	"CASTER"
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
-						"Function"	"C01R"
+						"Function"	"C01R_OnIntervalThink"
 					}
 				}
 				"IsBuff"	"1"
 				"Passive"	"1"
+				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"EffectAttachType"	"follow_attachment"
-				"EffectName"	"particles/c09r/c09r_1.vpcf"
+				
 				"Properties"	{}
 				"AllowIllusionDuplicate"	"0"
 				"States"	{}
 				"IsHidden"	"0"
 				"TextureName"	"btnheromitsuhideakechi_iconb"
+			}
+			"modifier_C01R_4"
+			{
+				"Passive"	"0"
+				"EffectName"	"particles/c09r/c09r_1.vpcf"
+				"EffectAttachType"	"attach_attack1"
 			}
 			"modifier_C01R_3"
 			{
@@ -272,25 +279,6 @@
 					}
 				}
 				"IsHidden"	"1"
-				"IsBuff"	"1"
-			}
-			"modifier_C01R_4"
-			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"	"CASTER"
-						"ControlPoints"
-						{
-							"attach_attack1"	"particles/c09r/c09r_1.vpcf"
-						}
-						"EffectName"	"particles/c09r/c09r_1.vpcf"
-						"EffectAttachType"	"attach_attack1"
-					}
-				}
 				"IsBuff"	"1"
 			}
 		}

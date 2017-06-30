@@ -27,7 +27,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
 		"AbilityCooldown"	"16"
 		"AbilityManaCost"	"100"
-		"AbilityCastRange"	"1100"
+		"AbilityCastRange"	"1400"
 		"AbilityDamage"	"250"
 		"precache"
 		{
@@ -104,15 +104,15 @@
 		"AbilityTextureName"			"dota2/b11_w"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"				"3"
+		"AbilityCooldown"				"1"
 		"AbilityManaCost"				"80"
-		"AbilityDamage"					"250 350 450 550"
+		"AbilityDamage"					"100 200 300 400"
 		"AbilityCastRange"				"200"
 		"AbilityCastPoint"				"0.1"
 

@@ -28,6 +28,8 @@ skin_table = {
 	["180580201"] = true, --買濃姬跟阿市
 	["237024969"] = true, --買濃姬跟阿市
 	["377214232"] = true, --大陸 李維
+	["100789172"] = true, --大陸 Sai
+	
 	
 	["404284631"] = true,
 	["404414261"] = true,
@@ -203,7 +205,7 @@ local function chat_of_test(keys)
 	if skin_table[tostring(steamid)] == true then
 		skin = true
 	end
-	--CustomUI:DynamicHud_Create(-1,"mainWin","file://{resources}/layout/custom_game/game_info.xml",nil)
+	
 	--DebugDrawText(caster:GetAbsOrigin(), "殺爆全場就是現在", false, 10)
 	--舊版模式
 	local nobu_id = _G.heromap[caster:GetName()]
@@ -518,6 +520,12 @@ local function chat_of_test(keys)
 
 		if s == "sm" then
 			for _,m in ipairs(caster:FindAllModifiers()) do
+				GameRules: SendCustomMessage("[Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
+			end
+		end
+
+		if s == "smm" then
+			for _,m in ipairs(caster.donkey:FindAllModifiers()) do
 				GameRules: SendCustomMessage("[Modifier] "..m:GetName(),DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS,0)
 			end
 		end

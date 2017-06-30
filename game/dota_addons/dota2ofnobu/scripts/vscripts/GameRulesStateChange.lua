@@ -106,6 +106,23 @@ function Nobu:OnGameRulesStateChange( keys )
 	    end
 	    return 5
     end)
+    Timers:CreateTimer(1200, function()
+    	if _G.mo then
+	    	local c1 = HeroList:GetAllHeroes()[1]
+	    	local c2 = HeroList:GetAllHeroes()[2]
+	    	if c1 and c2 then
+	    		if c1.score == nil then c1.score = 0 end
+	    		if c2.score == nil then c2.score = 0 end
+	    		if c1.score > c2.score then
+	    			c1.score = 3
+	    		end
+	    		if c2.score > c1.score then
+	    			c2.score = 3
+	    		end
+	    	end
+	    end
+	    return 1
+    end)
     local ccpres = 0
 	Timers:CreateTimer( 0, function()
 		ccpres = ccpres + 1
@@ -142,16 +159,41 @@ function Nobu:OnGameRulesStateChange( keys )
     	_G.can_bomb = true
 	    GameRules:SendCustomMessage("可以開始使用爆裂彈了！",0,0)
     end)
-    Timers:CreateTimer(1200, function()
-    	_G.full_reward6300 = true
-	    GameRules:SendCustomMessage("犒賞有攻擊加成了！",0,0)
-    end)
     
     Timers:CreateTimer(2, function ()
 			_G.war_magic_mana = 0
 		end)
-
-    
+    local start = 0
+    for playerID = 0, 9 do
+		local id       = playerID
+  		local p        = PlayerResource:GetPlayer(id)
+  		local steamid = PlayerResource:GetSteamAccountID(id)
+  		if tostring(steamid) == "19350721" then
+  			Timers:CreateTimer(start, function()
+	  			CustomUI:DynamicHud_Create(-1,"mainWin1","file://{resources}/layout/custom_game/game_info_dowdow.xml",nil)
+				Timers:CreateTimer(6, function()
+					CustomUI:DynamicHud_Destroy(-1,"mainWin1")
+			        end)
+				end)
+  			start = start + 7
+  		elseif tostring(steamid) == "55017646" then
+  			Timers:CreateTimer(start, function()
+	  			CustomUI:DynamicHud_Create(-1,"mainWin2","file://{resources}/layout/custom_game/game_info_night.xml",nil)
+				Timers:CreateTimer(6, function()
+					CustomUI:DynamicHud_Destroy(-1,"mainWin2")
+			        end)
+				end)
+  			start = start + 7
+  		elseif tostring(steamid) == "128732954" then
+  			Timers:CreateTimer(start, function()
+	  			CustomUI:DynamicHud_Create(-1,"mainWin3","file://{resources}/layout/custom_game/game_info.xml",nil)
+				Timers:CreateTimer(6, function()
+					CustomUI:DynamicHud_Destroy(-1,"mainWin3")
+			        end)
+				end)
+  			start = start + 7
+  		end
+  	end
 
 	elseif(newState == DOTA_GAMERULES_STATE_POST_GAME) then
     if _G.nobu_server_b then

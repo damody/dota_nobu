@@ -20,7 +20,7 @@ function Shock( keys )
 			if c > 3 then
 				c = 3
 			end
-			--ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu",nil)
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_bizennosafunekanemitsu",nil)
 			handle:SetStackCount(c)
 			caster.bizennosafunekanemitsu = c
 		end

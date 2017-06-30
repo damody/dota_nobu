@@ -3539,7 +3539,7 @@
 		}
 		"Modifiers"
 		{
-			"Passive_insight_gem600"
+			"Passive_insight_gem"
 			{
 				"Passive"          "1"  
 	            "IsHidden"      "1"
@@ -5176,7 +5176,7 @@
 		"Model"	"models/weapon/weapon.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"5800"
-		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		
@@ -8959,7 +8959,7 @@
 				"Passive"			"0"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
-				"Duration"			"3"
+				"Duration"			"4"
 				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
@@ -14006,11 +14006,12 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"	"1"
 		
 		"AbilityDamage"		"150"
-		"AbilityCooldown"	"0.5"
+		"AbilityCooldown"	"0.1"
 		"AbilityCastRange"	"800"
 		"AoERadius"			"250"
 
@@ -16748,7 +16749,6 @@
 	"item_puffer_poison"
 	{
 		// General
-		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/puffer_poison"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -16762,7 +16762,7 @@
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"3300"
-		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		"AbilitySpecial"
@@ -16865,7 +16865,7 @@
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
 		"ItemCost"	"5050"
-		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 		

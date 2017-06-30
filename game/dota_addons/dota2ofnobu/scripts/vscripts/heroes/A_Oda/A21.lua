@@ -355,7 +355,7 @@ function A21R_Sound( keys )
 	local ability = keys.ability
 	local target = keys.target
 	if IsValidEntity(caster.A21R_unit) then
-		caster.A21R_unit:PerformAttack(target, true, true, true, true, true, false, true)
+		--caster.A21R_unit:PerformAttack(target, true, true, true, true, true, false, true)
 	end
 	if ability.A21R == nil then
 		target:EmitSound("A21R.vo1")

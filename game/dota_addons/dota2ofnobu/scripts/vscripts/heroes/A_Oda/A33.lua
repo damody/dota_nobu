@@ -74,15 +74,10 @@ function modifier_A33E_OnTakeDamage( event )
 		local attacker= event.attacker
 		if ability then
 			local caster =ability:GetCaster() 
-			if damage >= 35 and caster.a33e_count>0 and (attacker:IsBuilding() or attacker:IsHero()) then
+			if damage >= 50 and caster.a33e_count>0 and (attacker:IsBuilding() or attacker:IsHero()) then
 				local newHealth = caster:GetHealth() + damage
 				caster:SetHealth(newHealth)
 				caster.a33e_count=caster.a33e_count-1
-			elseif damage < 35 and (attacker:IsBuilding() or attacker:IsHero()) then
-				if caster:FindModifierByName("modifier_A33E") then
-					caster:RemoveModifierByName("modifier_A33E")
-					caster:RemoveModifierByName("modifier_A33E2")
-				end
 			elseif caster.a33e_count==0 and (attacker:IsBuilding() or attacker:IsHero()) then
 				if caster:FindModifierByName("modifier_A33E") then
 					caster:RemoveModifierByName("modifier_A33E")

@@ -44,7 +44,12 @@ function modifier_protection_b27r_old:OnTakeDamage(event)
 								for _,v in pairs(am) do
 									if IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
 										if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-											self.caster:RemoveModifierByName(v:GetName())
+											if _G.EXCLUDE_MODIFIER_NAME[v:GetName()] == nil then
+												self.caster:RemoveModifierByName(v:GetName())
+											end
+											if v:GetElapsedTime() < 0.1 and _G.EXCLUDE_MODIFIER_NAME[v:GetName()] == true then
+												self.caster:RemoveModifierByName(v:GetName())
+											end
 										end
 									end
 								end
@@ -76,8 +81,6 @@ function modifier_protection_b27r_old:OnTakeDamage(event)
 	end
 end
 
-
-
 function B27R_old_OnIntervalThink( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -105,7 +108,7 @@ function B27R_old_OnIntervalThink( keys )
 	end
 	local handle = caster:FindModifierByName("modifier_protection_b27r_old")
 	if handle then
-		if handle:GetStackCount() < ability:GetLevel() and ability:IsCooldownReady() then
+		if handle:GetStackCount() < ability:GetLevel()*2 and ability:IsCooldownReady() then
 			handle:SetStackCount(handle:GetStackCount()+1)
 			ability:StartCooldown(ability:GetCooldown(-1))
 		end

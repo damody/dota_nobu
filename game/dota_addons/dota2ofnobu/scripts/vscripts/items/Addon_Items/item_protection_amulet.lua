@@ -46,7 +46,12 @@ function modifier_protection_amulet:OnTakeDamage(event)
 								for _,v in pairs(am) do
 									if IsValidEntity(v:GetParent()) and IsValidEntity(self.caster) and IsValidEntity(v:GetCaster()) then
 										if v:GetParent():GetTeamNumber() ~= self.caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= self.caster:GetTeamNumber() then
-											self.caster:RemoveModifierByName(v:GetName())
+											if _G.EXCLUDE_MODIFIER_NAME[v:GetName()] == nil then
+												self.caster:RemoveModifierByName(v:GetName())
+											end
+											if v:GetElapsedTime() < 0.1 and _G.EXCLUDE_MODIFIER_NAME[v:GetName()] == true then
+												self.caster:RemoveModifierByName(v:GetName())
+											end
 										end
 									end
 								end
@@ -55,7 +60,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 								end
 							end
 		            		end)
-		            	ParticleManager:DestroyParticle(self.caster.protection_amulet_effect,false)
+		            	
 		            	if (IsValidEntity(self.caster) and self.caster:IsAlive()) then
 			            	self.caster:SetHealth(self.hp)
 			            	self.caster:SetMana(self.mp)
@@ -74,6 +79,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 								end
 							end
 						end
+						ParticleManager:DestroyParticle(self.caster.protection_amulet_effect,false)
 		            end 
 		        end 
 		    end

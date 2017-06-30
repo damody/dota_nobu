@@ -6,6 +6,7 @@ function OnValueChanged(slider)
 {
 	$.Msg(slider.value);
 	GameUI.SetCameraDistance( slider.value );
+
 }
 
 function  Check()
@@ -14,6 +15,7 @@ function  Check()
 		OnValueChanged(slider);
 	lastValue = slider.value;
 	$.Schedule(0.03, Check);
+	  
 }
 
 (function()
@@ -23,15 +25,24 @@ function  Check()
 	slider.value = 1100;
 	lastValue = slider.value;
     $.Schedule(0.03, Check);
-	
+
+
+var y = $.GetContextPanel().GetParent().GetParent().GetParent();
+  y = y.FindChildTraverse('HUDElements')
+  y = y.FindChildTraverse('topbar')
+  var dire = y.FindChildTraverse('TopBarDireTeam')
+  var radiant = y.FindChildTraverse('TopBarRadiantTeam')
+  var TopBarDirePlayers = dire.FindChildTraverse('TopBarDirePlayers')
+  var TopBarRadiantPlayers = radiant.FindChildTraverse('TopBarRadiantPlayers')
+  TopBarDirePlayers.SetParent('TopBarRadiantTeam')
+  TopBarRadiantPlayers.SetParent('TopBarDireTeam')
+  $.Msg(dire.id);
+  
 	 // 暫時先讓所有和天賦樹的UI都點不到
   $.Msg("Disable Talent Tree")
   var x = $.GetContextPanel().GetParent().GetParent().GetParent();
   x = x.FindChildTraverse('HUDElements')
   x = x.FindChildTraverse('lower_hud')
-  //x = x.FindChildTraverse('GlyphScanContainer')
-  //x = x.FindChildTraverse('GlyphButton')
-
   x = x.FindChildTraverse('center_with_stats')
   x = x.FindChildTraverse('center_block')
   var level_stats_frame = x.FindChildTraverse('level_stats_frame')

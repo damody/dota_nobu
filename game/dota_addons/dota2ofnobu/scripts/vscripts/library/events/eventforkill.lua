@@ -71,14 +71,14 @@ function Nobu:OnUnitKill( keys )
           end
         end
         end)
-      if _G.mo and killedUnit:GetUnitName() == "com_towera" or (string.match(killedUnit:GetUnitName(), "com_soldiercamp") and killedUnit:GetUnitName()~="com_soldiercamp") then
+      if _G.mo and killedUnit:GetUnitName() == "com_tower_1_mid" or (killedUnit:GetUnitName()== "com_soldiercamp_unified_mid_1") or (killedUnit:GetUnitName()== "com_soldiercamp_oda_mid_1") then
         for _,hero in ipairs(HeroList:GetAllHeroes()) do
           if not hero:IsIllusion() then
             local id = hero:GetPlayerID()
             local team = PlayerResource:GetTeam(id)
             if team == AttackerUnit:GetTeamNumber() then
               if hero.score == nil then hero.score = 0 end
-              if (string.match(killedUnit:GetUnitName(), "com_soldiercamp") and killedUnit:GetUnitName()~="com_soldiercamp") then
+              if killedUnit:GetUnitName()=="com_soldiercamp_unified_mid_1" or killedUnit:GetUnitName()=="com_soldiercamp_oda_mid_1" then
                 hero.score = hero.score + 1
               else
                 hero.score = hero.score + 0.5
@@ -156,13 +156,10 @@ function Nobu:OnUnitKill( keys )
   	if string.match(name,"silencer") then
   		-- 這隻角色天生會帶一個modifier我們需要砍掉他
       -- 一般是立花道雪在用他
-      
-    elseif string.match(name,"axe") then --幸村開大
-      killedUnit:RemoveModifierByName("modifier_B06T")
-    elseif string.match(name,"_D") then --叫兵仔
+    elseif string.match(name,"_123D") then --叫兵仔
       if killedUnit.die_count == nil then killedUnit.die_count = 0 end
       killedUnit.die_count = killedUnit.die_count + 1
-      if killedUnit.die_count < 3 then
+      if killedUnit.die_count < 2 then
         killedUnit:RespawnUnit()
         local archer_attack = killedUnit:FindAbilityByName("archer_attack")
         if archer_attack then

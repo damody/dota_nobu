@@ -92,9 +92,12 @@ function C18W_OnIntervalThink( keys )
 		end
 	end
 	for i,unit in pairs(caster.C18W) do
-		unit:SetAbsOrigin(caster:GetAbsOrigin()-caster:GetForwardVector()*100)
-		unit:AddNewModifier(caster,ability,"modifier_pased",{duration=0.1})
-		ability:ApplyDataDrivenModifier(caster,unit,"modifier_C18W2",{duration = 0.2})
+		local dis = (unit:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
+		if dis < 500 then
+			unit:SetAbsOrigin(caster:GetAbsOrigin()-caster:GetForwardVector()*100)
+			unit:AddNewModifier(caster,ability,"modifier_pased",{duration=0.1})
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_C18W2",{duration = 0.2})
+		end
 	end
 end
 

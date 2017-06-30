@@ -167,13 +167,18 @@ function A35E_old_OnSpellStart( keys )
 		end
 		caster.A35Ecount = count
 	else
-		local op = caster.A35Ecount + 1
-		local ed = caster.A35Ecount + count + 1
-		for i=op,ed do
-			local pfx = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster )
-			caster.A35E[i] = pfx
+		if caster.A35Ecount < 8 then
+			local op = caster.A35Ecount + 1
+			local ed = caster.A35Ecount + count + 1
+			if ed > 8 then
+				ed = 8
+			end
+			for i=op,ed do
+				local pfx = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster )
+				caster.A35E[i] = pfx
+			end
+			caster.A35Ecount = ed
 		end
-		caster.A35Ecount = ed
 	end
 
 	-- 搜尋

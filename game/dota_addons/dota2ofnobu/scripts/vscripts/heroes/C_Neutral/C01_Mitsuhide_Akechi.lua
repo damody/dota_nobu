@@ -57,10 +57,17 @@ function C01W( keys )
 	local skill = keys.ability
 
 	--判斷有沒有R技的modifier
-	if caster:HasModifier("modifier_C01R") then
+	if caster:HasModifier("modifier_C01R_4") then
 
-		--刪除血刃魔法特效
-		caster:RemoveModifierByName("modifier_C01R")
+		local handle = caster:FindModifierByName("modifier_C01R_4")
+		if handle then
+			local c = handle:GetStackCount()-1
+			if c > 0 then
+				handle:SetStackCount(c)
+			else
+				caster:RemoveModifierByName("modifier_C01R_4")
+			end
+		end
 
 		--給予攻速技能
 		skill:ApplyDataDrivenModifier(caster, caster,"modifier_C01W_2",nil)
@@ -130,17 +137,6 @@ function C01E_Mitsuhide_Akechi ( keys )
 	local level = keys.ability:GetLevel()
 	local skillcount = 0
 
-	--判斷有沒有R技的modifier
-	if caster:HasModifier("modifier_C01R") then
-
-		--刪除血刃魔法特效
-		caster:RemoveModifierByName("modifier_C01R")
-
-		b = true
-	else
-		b = false
-	end
-
 	--timer : 第一次火焰
     Timers:CreateTimer(time, function()
     	C01E_Mitsuhide_Akechi_Effect(keys, skillcount, caster,level,point)
@@ -153,12 +149,16 @@ function C01E_Mitsuhide_Akechi ( keys )
     	if skillcount >= 3 then
         	return nil -- 每秒再次调用
         else
-
-
-        	--判斷是否通過機率
-        	--or 如果有魔法特效，免費送一次效果
-        	if RandomInt( 1 , 100 ) <= 15 + 10 * level or b == true then
-
+        	if caster:HasModifier("modifier_C01R_4") then
+				local handle = caster:FindModifierByName("modifier_C01R_4")
+				if handle then
+					local c = handle:GetStackCount()-1
+					if c > 0 then
+						handle:SetStackCount(c)
+					else
+						caster:RemoveModifierByName("modifier_C01R_4")
+					end
+				end
         		skillcount = skillcount + 1
         		b 	= false
 
@@ -176,31 +176,26 @@ function C01E_Mitsuhide_Akechi ( keys )
 end
 
 
-function C01R( keys )
+function C01R_OnIntervalThink( keys )
 	local caster = keys.caster
 	local skill = keys.ability
-	local time = 10
-	local id  = caster:GetPlayerID()
-
-	--debug
-	if C01R_B[id] == nil then
-
-		--timer
-	    Timers:CreateTimer(time, function()
-
-			--如果沒有R技的modifier，就給予modifer
-	    	if caster:HasModifier("modifier_C01R") == false then
-	    		skill:ApplyDataDrivenModifier(caster,caster,"modifier_C01R",nil)
-	    	end
-	        return time -- 每10秒再次调用
-	    end)
-
-	end
-
-	--avoid
-	--避免二次創造計時器
-	C01R_B[id] = true
-
+	if not caster:HasModifier("modifier_C01R_4") then
+    	skill:ApplyDataDrivenModifier(caster,caster,"modifier_C01R_4",nil)
+    	local handle = caster:FindModifierByName("modifier_C01R_4")
+		if handle then
+			handle:SetStackCount(1)
+		end
+    else
+    	local handle = caster:FindModifierByName("modifier_C01R_4")
+		local c = 1
+		if handle then
+			c = handle:GetStackCount()+1
+			if c > 3 then
+				c = 3
+			end
+			handle:SetStackCount(c)
+		end
+    end
 end
 
 

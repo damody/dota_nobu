@@ -259,10 +259,14 @@ end
 function C22R_old_on_attack( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	local heal = ability:GetSpecialValueFor("heal")
 	local crit_chance = ability:GetLevelSpecialValueFor("crit_chance",ability:GetLevel()-1)
-
-	if RandomInt(1,100) <= crit_chance then
+	if caster.C22R_old == nil then caster.C22R_old = 0 end
+	caster.C22R_old = caster.C22R_old + 1
+	if RandomInt(1,100) <= crit_chance or caster.C22R_old > (100/crit_chance) then
+		caster.C22R_old = 0
 		ability:ApplyDataDrivenModifier(caster,caster,"modifier_C22R_old_critical_strike_crit",nil)
+		caster:Heal(heal,ability)
 	end
 end
 

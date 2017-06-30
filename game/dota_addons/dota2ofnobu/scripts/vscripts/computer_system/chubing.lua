@@ -11,6 +11,7 @@ BUG
 	O移動速度會莫名其妙lag --解決
 	O尋路系統效能耗超大 --解決
 ]]
+if _G.A_count == nil then
 prestige = nil
 payprestige = nil
 Timers:CreateTimer(5, function()
@@ -31,6 +32,11 @@ _G.A_count = -1
 _G.B_count = -1
 _G.C_count = -1
 
+_G.call_team = {}
+_G.call_team[2] = 0
+_G.call_team[3] = 0
+_G.max_call = 4
+
 _G.team_broken = {}
 _G.team_broken[2] = {}
 _G.team_broken[2]["top"] = 0
@@ -41,6 +47,7 @@ _G.team_broken[3]["top"] = 0
 _G.team_broken[3]["mid"] = 0
 _G.team_broken[3]["down"] = 0
 
+end
 --紀錄出兵起始點、路徑 (必須要用計時器，初始化時物體還沒建造)
 Timers:CreateTimer( 2, function()
 	ShuaGuai_entity={
@@ -70,7 +77,11 @@ function ShuaGuai( )
 	--50秒出第一波，之後每26秒出一波
 	local speedup = 0.01
 	local ShuaGuai_count = -1
- 	Timers:CreateTimer(60, function()--50
+	local start_time = 60
+	if GetMapName() == "nobu_pk" then
+		start_time = 30
+	end
+ 	Timers:CreateTimer(start_time, function()--50
  		ShuaGuai_count = ShuaGuai_count + 1
  		--強化箭塔
  		local allBuildings = Entities:FindAllByClassname('npc_dota_tower')
@@ -94,10 +105,10 @@ function ShuaGuai( )
 	  	ShuaGuai_Of_AA(AA_num)
 	  	ShuaGuai_Of_AB(AB_num)
 	  	
-	    local time =  30 - 0.1*ShuaGuai_count
+	    local time = 30 - 0.1*ShuaGuai_count
 
-	    if time < 20 then
-	    	return 20
+	    if time < 25 then
+	    	return 25
 	  	else
 	  		return time
 	  	end
@@ -110,10 +121,10 @@ function ShuaGuai( )
 			B_num = 3
 		end
   		ShuaGuai_Of_B(B_num)
-	    local time =  100 - 0.5*ShuaGuai_count
+	    local time =  80 - 0.5*ShuaGuai_count
 
-	    if time < 30 then
-	    	return 30
+	    if time < 40 then
+	    	return 40
 	  	else
 	  		return time
 	  	end
@@ -128,8 +139,8 @@ function ShuaGuai( )
   		ShuaGuai_Of_C(C_num)
 	    local time =  70 - 0.5*ShuaGuai_count
 
-	    if time < 30 then
-	    	return 30
+	    if time < 40 then
+	    	return 40
 	  	else
 	  		return time
 	  	end
@@ -140,8 +151,8 @@ end
 --【足輕】
 function ShuaGuai_Of_AA(num)
 	_G.A_count = _G.A_count + 1
-	A_count = _G.A_count
-	--print("A_count "..A_count)
+	local A_count = _G.A_count
+	print("A_count "..A_count)
 	local tem_count = 0
 	--總共六個出發點 6
 	local randomkey = RandomInt(1,8)
@@ -207,8 +218,9 @@ function ShuaGuai_Of_AA(num)
 end
 --【弓箭手】
 function ShuaGuai_Of_AB(num)
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	local tem_count = 0
+	
 	--總共六個出發點 6
 	local randomkey = RandomInt(1,8)
 	local function ltt()
@@ -280,7 +292,8 @@ function ShuaGuai_Of_B(num)
 	local tem_count = 0
 	B_count = _G.B_count
 	B_count = B_count + 1
-	A_count = _G.A_count
+	local A_count = _G.A_count
+	print("A_count "..A_count)
 	--總共六個出發點 6
 	local randomkey = RandomInt(1,8)
 	local function ltt()
@@ -372,7 +385,8 @@ function ShuaGuai_Of_C(num)
 	local tem_count = 0
 	C_count = _G.C_count
 	C_count = C_count + 1
-	A_count = _G.A_count
+	local A_count = _G.A_count
+	print("A_count "..A_count)
 	--總共六個出發點 6
 	local randomkey = RandomInt(1,8)
 	local function ltt()
@@ -462,16 +476,25 @@ function ShuaGuai_Of_C(num)
 end
 
 --織田足輕上
-function soldier_Oda_top( )
+function soldier_Oda_top(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 50
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -512,15 +535,24 @@ function soldier_Oda_top( )
 end
 
 --織田足輕中
-function soldier_Oda_mid( )
+function soldier_Oda_mid(keys)
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 50
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -562,16 +594,25 @@ end
 
 
 --織田足輕下
-function soldier_Oda_bottom()
+function soldier_Oda_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 50
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -612,16 +653,25 @@ end
 
 
 --聯合足輕上
-function soldier_Unified_top( )
+function soldier_Unified_top(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 50
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -662,15 +712,24 @@ function soldier_Unified_top( )
 end
 
 --聯合足輕中
-function soldier_Unified_mid( )
+function soldier_Unified_mid(keys)
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 50
 	local tem_count = 0
 	local pos = 5
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -712,16 +771,25 @@ end
 
 
 --聯合足輕下
-function soldier_Unified_bottom()
+function soldier_Unified_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 50
 	local tem_count = 0
 	local pos = 4
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -762,16 +830,25 @@ end
 
 
 --織田弓箭手上
-function archer_Oda_top( )
+function archer_Oda_top(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 70
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -811,15 +888,24 @@ function archer_Oda_top( )
 end
 
 --織田弓箭手中
-function archer_Oda_mid( )
+function archer_Oda_mid(keys)
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 70
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -860,16 +946,25 @@ end
 
 
 --織田弓箭手下
-function archer_Oda_bottom()
+function archer_Oda_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 70
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -910,16 +1005,25 @@ end
 
 
 --聯合弓箭手上
-function archer_Unified_top( )
+function archer_Unified_top(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 70
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -959,15 +1063,24 @@ function archer_Unified_top( )
 end
 
 --聯合弓箭手中
-function archer_Unified_mid( )
+function archer_Unified_mid(keys)
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 70
 	local tem_count = 0
 	local pos = 5
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1008,16 +1121,25 @@ end
 
 
 --聯合弓箭手下
-function archer_Unified_bottom()
+function archer_Unified_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 70
 	local tem_count = 0
 	local pos = 4
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1058,16 +1180,25 @@ end
 
 
 --織田鐵炮兵上
-function gunner_Oda_top( )
+function gunner_Oda_top(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1106,15 +1237,24 @@ function gunner_Oda_top( )
 end
 
 --織田鐵炮兵中
-function gunner_Oda_mid( )
+function gunner_Oda_mid(keys)
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1155,16 +1295,25 @@ end
 
 
 --織田鐵炮兵下
-function gunner_Oda_bottom()
+function gunner_Oda_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1205,16 +1354,25 @@ end
 
 
 --聯合鐵炮兵上
-function gunner_Unified_top( )
+function gunner_Unified_top(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1254,15 +1412,24 @@ function gunner_Unified_top( )
 end
 
 --聯合鐵炮兵中
-function gunner_Unified_mid( )
+function gunner_Unified_mid(keys)
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 5
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1303,16 +1470,25 @@ end
 
 
 --聯合鐵炮兵下
-function gunner_Unified_bottom()
+function gunner_Unified_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 4
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1352,17 +1528,26 @@ function gunner_Unified_bottom()
 end
 
 --織田騎兵上
-function cavalry_Oda_top( )
+function cavalry_Oda_top(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	print("A_count "..A_count)
 	local pos = 3
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1402,16 +1587,25 @@ function cavalry_Oda_top( )
 end
 
 --織田騎兵中
-function cavalry_Oda_mid( )
+function cavalry_Oda_mid(keys)
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	local pos = 2
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1452,17 +1646,26 @@ end
 
 
 --織田騎兵下
-function cavalry_Oda_bottom()
+function cavalry_Oda_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[2] < _G.max_call then
+		_G.call_team[2] = _G.call_team[2] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[2] = _G.call_team[2] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[2] = payprestige[2] + 100
 	local tem_count = 0
 	local pos = 1
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1503,17 +1706,26 @@ end
 
 
 --聯合騎兵上
-function cavalry_Unified_top( )
+function cavalry_Unified_top(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	--總共六個出發點 6
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	print("A_count "..A_count)
 	local pos = 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1553,16 +1765,25 @@ function cavalry_Unified_top( )
 end
 
 --聯合騎兵中
-function cavalry_Unified_mid( )
+function cavalry_Unified_mid(keys)
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 5
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	--總共六個出發點 6
 	print("A_count "..A_count)
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3
@@ -1603,17 +1824,26 @@ end
 
 
 --聯合騎兵下
-function cavalry_Unified_bottom()
+function cavalry_Unified_bottom(keys)
 	if _G.mo then return end
+	if _G.call_team[3] < _G.max_call then
+		_G.call_team[3] = _G.call_team[3] + 1
+		Timers:CreateTimer(60, function()
+			_G.call_team[3] = _G.call_team[3] - 1
+			end)
+	else
+		keys.ability:EndCooldown()
+		return
+	end
 	payprestige[3] = payprestige[3] + 100
 	local tem_count = 0
 	local pos = 4
-	A_count = _G.A_count
+	local A_count = _G.A_count
 	print("A_count "..A_count)
 	--總共六個出發點 6
 	Timers:CreateTimer(function()
 		tem_count = tem_count + 1
-		if tem_count > 3 then return nil
+		if tem_count > 5 then return nil
 		else
 			--DOTA_TEAM_GOODGUYS = 2
 			--DOTA_TEAM_BADGUYS = 3

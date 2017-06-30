@@ -235,7 +235,8 @@ function C17T(keys)
 	-- local particle = ParticleManager:CreateParticle("particles/c17t2/c17t2.vpcf",PATTACH_POINT,caster)
 	-- ParticleManager:SetParticleControl(particle,0, point2+Vector(0,0,40))
 	--【Group】	
- 	local group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, aoeradius,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
+ 	local group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, aoeradius,ability:GetAbilityTargetTeam(),
+ 	 ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_CLOSEST, false)
 	for i,v in ipairs(group) do
 		if (not v:IsBuilding()) then
 			local dmg2 = v:GetMaxHealth()*hpx/100

@@ -1,72 +1,178 @@
-inspect = require("inspect")
-test="WWEREWRETTWER"
+require("equilibrium_constant")
+LinkLuaModifier( "modifier_record", "items/Addon_Items/record.lua",LUA_MODIFIER_MOTION_NONE )
+--單位創建也會運行
 
-local w ={}
-for i=1,#test do
-  if w[string.sub(test, i,i)] == nil then
-    w[string.sub(test, i,i)] = 1
-  else
-    w[string.sub(test, i,i)] = w[string.sub(test, i,i)] +1
+heromap = _G.heromap 
+
+function Nobu:OnHeroIngame( keys )
+  --PrintTable(keys)
+  local hero = EntIndexToHScript( keys.entindex )
+    
+  if hero ~= nil and IsValidEntity(hero) and hero:IsHero() then
+    local caster = hero
+    if caster:HasModifier("modifier_record") then
+      caster:RemoveModifierByName("modifier_record")
+    end
+    caster.name = heromap[caster:GetUnitName()]
+    caster.version = "16"
+    caster:AddNewModifier(caster,ability,"modifier_record",{})
+    caster:FindModifierByName("modifier_record").caster = caster
+
+	-- 拿掉天賦樹的技能
+    for i = 0, caster:GetAbilityCount() - 1 do
+        local ability = caster:GetAbilityByIndex(i)
+        if ability and string.match(ability:GetName(),"special") then
+          caster:RemoveAbility(ability:GetName())
+        end
+    end
+
+    local name = caster:GetUnitName()
+    for hname,v in pairs(heromap) do
+      if name == hname then
+        if caster:FindAbilityByName(v.."W") == nil then
+          caster.version = "11"
+          break
+        end
+      end
+    end
+	Timers:CreateTimer ( 1, function ()
+	  if hero ~= nil and IsValidEntity(hero) and not hero:IsIllusion() and caster:GetTeamNumber() < 4 then
+      if hero.init1 == nil then
+        hero.init1 = true
+        hero.kill_count = 0
+        hero.damage = 0
+        hero.takedamage = 0
+        hero.herodamage = 0
+        hero:AddNewModifier(caster,ability,"modifier_record",{})
+        hero:FindModifierByName("modifier_record").caster = caster
+        hero:AddItem(CreateItem("item_S01", hero, hero))
+        --hero:AddItem(CreateItem("item_flash_ring", hero, hero))
+    		--hero:AddItem(CreateItem("item_pleated_skirt", hero, hero))
+    		
+    		local donkey = CreateUnitByName("npc_dota_courier2", hero:GetAbsOrigin()+Vector(100, 100, 0), true, hero, hero, hero:GetTeam())
+    		donkey:SetOwner(hero)
+        donkey:SetHullRadius(1)
+    		donkey:SetControllableByPlayer(hero:GetPlayerID(), true)
+        donkey:FindAbilityByName("courier_return_to_base"):SetLevel(1)
+        donkey:FindAbilityByName("courier_go_to_secretshop"):SetLevel(1)
+        donkey:FindAbilityByName("courier_return_stash_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_take_stash_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_transfer_items"):SetLevel(1)
+        donkey:FindAbilityByName("courier_burst"):SetLevel(1)
+        donkey:FindAbilityByName("courier_morph"):SetLevel(1)
+        donkey:FindAbilityByName("courier_take_stash_and_transfer_items"):SetLevel(1)
+        donkey:FindAbilityByName("for_magic_immune"):SetLevel(1)
+        donkey:FindAbilityByName("for_no_collision"):SetLevel(1)
+        
+        donkey.oripos = donkey:GetAbsOrigin()
+        hero.donkey = donkey
+
+
+        --[[
+        for abilitySlot=0,15 do
+          local ability = donkey:GetAbilityByIndex(abilitySlot)
+            if ability ~= nil then 
+              local abilityLevel = ability:GetLevel()
+              local abilityName = ability:GetAbilityName()
+              donkey:RemoveAbility(abilityName)
+            end
+        end
+        ]]
+      end
+      
+		end
+	end)
+    --等級
+    for i=1,5 do
+      --hero:HeroLevelUp(false)
+    end
+  end
+
+  if _G.nobu_server_b then
+    if hero:IsHero() then
+      --AddAFKTimer(hero)
+      --hero.start_afk()
+    end
   end
 end
-print(inspect(w))
 
---[[
-function readAll(file)
-    local f = io.open(file, "rb")
-    local content = f:read("*all")
-    f:close()
-    return content
+-- 統計英雄使用情況
+function Nobu:CountUsedAbility( keys )
+  local keyid = keys.PlayerID + 1
+  if (_G.CountUsedAbility_Table[keyid] == nil) then
+    _G.CountUsedAbility_Table[keyid]  = {}
+  end
+  if (_G.CountUsedAbility_Table[keyid][keys.abilityname] == nil) then
+    _G.CountUsedAbility_Table[keyid][keys.abilityname] = 1
+  else
+    _G.CountUsedAbility_Table[keyid][keys.abilityname] =
+      _G.CountUsedAbility_Table[keyid][keys.abilityname] + 1
+  end
+  --DeepPrintTable(_G.CountUsedAbility_Table)
 end
 
-heromap = {
-  bristleback = "b15",
-  earthshaker = "b24",
-  brewmaster = "b26",
-  silencer = "c07",
-  sniper = "a17",
-  beastmaster = "b34",
-  huskar = "a16",
 
-  mirana = "c15",
-  antimage = "c10",
-  crystal_maiden = "a34",
-  storm_spirit = "a12",
-  
-  troll_warlord = "a06",
-  faceless_void = "b02",
-  broodmother = "a13",
-
-  invoker = "a28",
-  omniknight = "a27",
-  oracle = "a29",
-  ancient_apparition = "a04",
-  dragon_knight = "b32",
-  drow_ranger = "b33",
-  
-  nevermore = "b01",
-  pugna = "b25",
-  axe = "b06",
-  viper = "c01",
-  windrunner = "c17",
-  keeper_of_the_light = "b05",
-  jakiro = "c22",
-  alchemist = "c21",
-  treant = "a25",
-  templar_assassin = "c19",
-  medusa = "a31",
-  magnataur = "b08",
-  centaur = "a07",
-  naga_siren = "b16",
-}
-
-local template = readAll("game_sounds_vo_template.vsndevts")
-for idx, val in pairs(heromap) do
-  local temp = template
-  temp = string.gsub(temp, "template", idx)
-  temp = string.gsub(temp, "XNUM", val)
-  local f = io.open("game_sounds_vo_"..idx..".vsndevts", "wb")
-  f:write(temp)
-  f:close()
+function SendHTTPRequest(path, method, values, callback)
+	local req = CreateHTTPRequestScriptVM( method, "http://140.114.235.19/"..path )
+	for key, value in pairs(values) do
+		req:SetHTTPRequestGetOrPostParameter(key, value)
+	end
+	req:Send(function(result)
+		callback(result.Body)
+	end)
 end
-]]
+
+function AddAFKTimer( hero )
+  hero.afkcount = 0
+  hero.start_afk = function()
+	  local hasafk = false
+      local pos = hero:GetAbsOrigin()
+      Timers:CreateTimer( 1, function()
+        if (hero:IsAlive() and pos == hero:GetAbsOrigin()) then
+          hero.afkcount = hero.afkcount + 1
+        else
+          pos = hero:GetAbsOrigin()
+          hero.afkcount = 0
+        end
+        if (hero.afkcount > 180 and not hasafk) then
+    		  hero.afkcount = 0
+    		  hasafk = true
+          local pID = hero:GetPlayerOwner():GetPlayerID()
+          local steamID = PlayerResource:GetSteamAccountID(pID)
+          print("steamID "..steamID)
+          GameRules:SendCustomMessage("玩家"..pID.."中離", DOTA_TEAM_GOODGUYS, 0)
+          SendHTTPRequest("afk", "POST",
+            {
+              id = tostring(steamID),
+            },
+            function(result)
+              print(result)
+              if (result == "error") then
+                player:Destroy()
+              end
+              -- Decode response into a lua table
+              local resultTable = {}
+              if not pcall(function()
+                resultTable = JSON:decode(result)
+              end) then
+                Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+              end
+
+              -- If we get an error response, successBool should be false
+              if resultTable ~= nil and resultTable["errors"] ~= nil then
+                callback(resultTable["errors"], false)
+                return
+              end
+
+              -- If we get a success response, successBool should be true
+              if resultTable ~= nil and resultTable["data"] ~= nil  then
+                callback(resultTable["data"], true)
+                return
+              end
+            end
+          )
+        end
+        return 1
+      end)
+    end
+end

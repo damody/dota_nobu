@@ -27,7 +27,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"300 320 340 360"
+		"AbilityManaCost"				"200 220 240 260"
 		"AOERadius" "300"
 		
 		"AbilitySpecial"
@@ -120,7 +120,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		
-		"AbilityCooldown"				"24"
+		"AbilityCooldown"				"18"
 		"AbilityManaCost"				"80 100 120 140"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilitySpecial"
@@ -341,7 +341,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCooldown"				"24"
-		"AbilityManaCost"				"300 320 340 360"
+		"AbilityManaCost"				"200 220 240 260"
 		"AOERadius" "300"
 		
 		"AbilitySpecial"
@@ -434,7 +434,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		
-		"AbilityCooldown"				"55"
+		"AbilityCooldown"				"35"
 		"AbilityManaCost"				"100 120 140 160"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilitySpecial"
@@ -496,7 +496,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastPoint" "0.25" //stun
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"14"
 		"AbilityManaCost"				"160 180 200 220"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		"AOERadius" 					"550"
@@ -581,8 +581,8 @@
 				{
 					//"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"1.5"
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%Bonus_Health"
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack"
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"422"
+					//"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack"
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"572"
 				}
 				"Duration"	"%During"
 				//"EffectName"	"particles/b06t/b06t.vpcf"
@@ -631,17 +631,17 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Bonus_Health"	"400 700 1000"
+				"Bonus_Health"	"800 1400 2000"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"During"	"70"
+				"During"	"100"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"attack"	"30 50 70"
+				"attack"	"20 30 40"
 			}
 		}
 	}

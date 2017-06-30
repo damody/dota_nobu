@@ -608,7 +608,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"10"
 		"AbilityManaCost"	"100 120 140 160"
-		"AbilityCastRange"	"500 625 750 875"
+		"AbilityCastRange"	"900 1000 1100 1200"
 		"precache"
 		{
 			"particle"	"particles/c20e/c20e.vpcf"
@@ -660,11 +660,6 @@
 				"ModifierName"	"modifier_C22E_old_stun"
 				"Target" 		"TARGET"
 				"Duration"		"%stun_time"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_C22E_old"
-				"Target" 		"CASTER"
 			}
 			"DelayedAction"
 			{
@@ -826,6 +821,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"crit_chance"	"30 35 40 45"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"	"40 60 80 100"
 			}
 		}
 	}

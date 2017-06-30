@@ -176,7 +176,7 @@
 		"AbilityDamage"	"250 350 450 550"
 	}
 
-	// 上泉信綱 新陰流 ‧無刀取      開啟後 只有20%範圍傷害  是拿蜻切的來用 調傷害的時候 就跑不出來了  沉默也不會弄 
+	// 上泉信綱 新陰流‧無刀取      開啟後 只有20%範圍傷害  是拿蜻切的來用 調傷害的時候 就跑不出來了  沉默也不會弄 
 	"B35R"
 	{
 		"BaseClass"                 				"ability_datadriven"
@@ -240,6 +240,11 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"silence_time"		"0.4 0.6 0.8 1.0"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"heal"		"50 60 70 80"
 			}
 		}	
     }
@@ -441,7 +446,7 @@
 		"AbilityUnitDamageType"               		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastRange"							"800"
+		"AbilityCastRange"							"1150"
 		"AbilityCastPoint"							"0.1"
 		"AbilityCooldown"                           "12 11 10 8"
 		"AbilityManaCost"                           "100 120 140 160"
@@ -577,7 +582,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"crit_chance"	"10 12 14 16"
+				"crit_chance"	"9"
 			}
 			"03"
 			{
@@ -604,7 +609,7 @@
 		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.1"
 
-		"AbilityCooldown"				"110"
+		"AbilityCooldown"				"130 120 110"
 		"AbilityManaCost"				"200 250 300"
 		"AbilityDamage"					"1450 1800 2300"
 

@@ -539,7 +539,7 @@
 		"AOERadius"                                 "600"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"                        	"0.1"
-		"AbilityCooldown"                        	"3"
+		"AbilityCooldown"                        	"20 18 16 14"
 		"AbilityManaCost"                           "110"
 		"MaxLevel"									"4"
 		
@@ -549,7 +549,7 @@
 			"RunScript"
 			{
 				"ScriptFile"        		"scripts/vscripts/heroes/B_Unified/B23.lua"
-				"Function"                	"B23D_OnSpellStart"
+				"Function"                	"B23D_old_OnSpellStart"
 				"Target"
 				{
 					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
@@ -563,23 +563,6 @@
 			{
 				"Target"					"CASTER"
 				"EffectName"				"n_creep_ghost.Death"
-			}
-		}
-
-		"OnAbilityPhaseStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"        		"scripts/vscripts/heroes/B_Unified/B23.lua"
-				"Function"                	"B23D_check"
-				"Target"
-				{
-					"Types"                	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-					"Teams"            	    "DOTA_UNIT_TARGET_TEAM_BOTH"
-					"Flags"					"DOTA_UNIT_TARGET_FLAG_DEAD"
-					"Center"     			"CASTER"
-					"Radius"     		   	"600"
-				}
 			}
 		}
 
@@ -855,6 +838,24 @@
 				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
 				"Function"			"B23T_old"
 				"Target"		"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_B23T_old"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
+						"Function"		"B23T_old_OnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
 			}
 		}
 

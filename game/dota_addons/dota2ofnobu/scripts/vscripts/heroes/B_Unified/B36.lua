@@ -278,6 +278,7 @@ function B36R_old_OnSpellStart(keys)
 
 	keys.target:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_B36R",{duration = duration})
+	AMHC:Damage(caster,target,1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ))
 end
 
 function B36T_old_OnSpellStart( keys )

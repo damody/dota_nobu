@@ -26,7 +26,7 @@
 		"AbilityCooldown"	"8 7 6 5"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"60 85 110 135"
+		"AbilityManaCost"	"80 70 60 50"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -158,6 +158,7 @@
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"100 120 140 160"
 		"AbilityCastRange"				"500"
+		"AbilityDamage"			"300 400 500 600"
 
 		"OnSpellStart"
 		{
@@ -272,6 +273,7 @@
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"0"
 		"AbilityCastRange"				"500"
+		"AbilityDamage"			"300 400 500 600"
 		"Maxlevel"	"1"
 
 		"OnSpellStart"

@@ -50,7 +50,9 @@ function _G.Nobu:InitGameMode()
     --自定血條顏色
     GameRules:SetSameHeroSelectionEnabled( true )
   end
-
+  -- 別在顯示pk畫面了
+  GameRules:SetStrategyTime( 10 )
+  GameRules:SetShowcaseTime( 1 )
   --GameRules:SetCustomGameTeamMaxPlayers(2, 7)
   --GameRules:SetCustomGameTeamMaxPlayers(3, 7)
 

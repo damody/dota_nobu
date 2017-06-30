@@ -34,8 +34,34 @@ function B23D_OnSpellStart( keys )
 		hModifier:SetStackCount( #caster.B23D_ghostTable )
 	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_diedTrigger", nil)
 	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_distanceDetector_ghost", nil)
+    end    
+end
+
+function B23D_old_OnSpellStart( keys )
+	local caster = keys.caster
+    local count = keys.ability:GetLevelSpecialValueFor("B23D_count", keys.ability:GetLevel()-1 )
+    local spawnPosition = caster:GetAbsOrigin()
+    if caster.B23D_ghostTable == nil then
+    	keys.caster.B23D_ghostTable = {} 
     end
-    
+    if #caster.B23D_ghostTable < count then
+    	local ghost = CreateUnitByName("B23D_ghost", spawnPosition, true, nil, nil , caster:GetTeamNumber())
+	    ghost:SetOwner(caster)
+	    ghost:SetControllableByPlayer(caster:GetPlayerID(), true)
+	    ghost:SetBaseDamageMin( 52 + 6 * caster:GetLevel() )
+	    ghost:SetBaseDamageMax( 58 + 6 * caster:GetLevel() )
+	    ghost:SetBaseMaxHealth( 700 + 50 * caster:GetLevel() )
+	    ghost:SetHealth( ghost:GetMaxHealth() )
+	    ghost:AddNewModifier(caster,nil,"modifier_phased",{duration=0.1})
+
+	    table.insert(caster.B23D_ghostTable, ghost)
+
+	    keys.ability:ApplyDataDrivenModifier( caster, caster, "modifier_B23D_damageReduction", nil )
+		local hModifier = caster:FindModifierByNameAndCaster("modifier_B23D_damageReduction", caster)
+		hModifier:SetStackCount( #caster.B23D_ghostTable )
+	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_diedTrigger", nil)
+	    keys.ability:ApplyDataDrivenModifier( caster, ghost, "modifier_B23D_distanceDetector_ghost", nil)
+    end    
 end
 
 function B23D_OnCreated( keys )
@@ -362,28 +388,53 @@ end
 function B23T_old( keys )
 	local caster = keys.caster
 	local target = keys.target
+	local ability = keys.ability
 	local duration = keys.ability:GetSpecialValueFor("duration")
 	local oriid = target:GetPlayerOwnerID()
 	local oriteam = target:GetTeam()
 	if target:IsMagicImmune() then
 		duration = duration * 0.5
 	end
+	target.oriteam = oriteam
 	target.B23T_old = true
 	target:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	target:SetTeam(caster:GetTeam())
 	local ifx = ParticleManager:CreateParticle( "particles/b23t_old/b23t_old.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl( ifx, 2, Vector( duration, 0, 0 ) )
 	local tsum = 0
-	Timers:CreateTimer(0.5, function ()
-		tsum = tsum + 0.5
-		if not caster:IsAlive() or tsum >= duration then
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_B23T_old", {duration=duration})
+	Timers:CreateTimer(0.1, function ()
+		tsum = tsum + 0.1
+		if not caster:IsAlive() or tsum >= duration or target.B23T_old == nil then
 			target:SetControllableByPlayer(oriid, true)
 			target:SetTeam(oriteam)
 			target.B23T_old = nil
 			ParticleManager:DestroyParticle( ifx , false )
 			return nil
 		end
-		return 0.5
+		return 0.1
 	  end)
 	--target:SetControllableByPlayer(keys.playerid,true)
+end
+
+
+function B23T_old_OnTakeDamage( event )
+	-- Variables
+	if IsServer() then
+		local damage = event.DamageTaken
+		local ability = event.ability
+		if ability then
+			local caster = event.unit
+			if damage > caster:GetHealth() then
+				caster:SetHealth(1)
+				caster.B23T_old = nil
+				caster:RemoveModifierByName("modifier_B23T_old")
+				caster:AddNewModifier(caster, nil, "modifier_invulnerable", {duration=0.15} )
+				Timers:CreateTimer(0.15, function()
+					caster:RemoveModifierByName("modifier_invulnerable")
+					AMHC:Damage(ability:GetCaster(),caster,100,AMHC:DamageType( "DAMAGE_TYPE_PURE" ))
+    			end)
+			end
+		end
+	end
 end
