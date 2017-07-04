@@ -1,0 +1,19 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "grasstile_preview.vfx"
+
+	//---- Color ----
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+	TextureColor "materials/c04/c04_01.jpg"
+
+	//---- GrassSize ----
+	g_flGrassFlexibility "0.500"
+	g_flGrassHeightMax "55.000"
+	g_flGrassHeightMin "35.000"
+	g_flGrassWidth "35.000"
+
+	//---- Translucent ----
+	TextureTranslucency "materials/default/default_trans.tga"
+}
