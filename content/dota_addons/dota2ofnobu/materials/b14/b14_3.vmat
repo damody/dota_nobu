@@ -4,6 +4,9 @@ Layer0
 {
 	shader "hero.vfx"
 
+	//---- 2-Sided Rendering ----
+	F_RENDER_BACKFACES 1
+
 	//---- Blend To Full ----
 	g_flEnvMapBlendToFull "0.000"
 	g_flMetalnessBlendToFull "0.000"

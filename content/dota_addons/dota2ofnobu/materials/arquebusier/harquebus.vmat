@@ -7,6 +7,13 @@ Layer0
 	//---- 2-Sided Rendering ----
 	F_RENDER_BACKFACES 1
 
+	//---- Masks ----
+	F_MASKS_1 1
+	F_MASKS_2 1
+
+	//---- Tint Self Ilum ----
+	F_TINT_SELF_ILUM 1
+
 	//---- Blend To Full ----
 	g_flEnvMapBlendToFull "0.000"
 	g_flMetalnessBlendToFull "0.000"
@@ -30,6 +37,7 @@ Layer0
 	TextureColor "materials/arquebusier/harquebus.tga"
 
 	//---- Fresnel ----
+	g_flFresnelModulatesAlpha "0.000"
 	TextureFresnelWarpColor "materials/default/default_fresnelwarpcolor.tga"
 	TextureFresnelWarpRim "materials/default/default_fresnelwarprim.tga"
 	TextureFresnelWarpSpec "materials/default/default_fresnelwarpspec.tga"
@@ -39,6 +47,18 @@ Layer0
 	g_flBloomScale "0.000"
 	g_flBloomShift "0.000"
 	g_vBloomColor "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Mask 1 ----
+	TextureDetailMask "materials/default/default_detailmask.tga"
+	TextureDiffuseWarpMask "materials/default/default_diffusemask.tga"
+	TextureMetalnessMask "materials/default/default_metalnessmask.tga"
+	TextureSelfIllumMask "materials/default/default_selfillummask.tga"
+
+	//---- Mask 2 ----
+	TextureRimMask "materials/default/default_rimmask.tga"
+	TextureSpecularExponent "materials/default/default_specexp.tga"
+	TextureSpecularMask "materials/default/default_specmask.tga"
+	TextureTintByBaseMask "materials/default/default_basetintmask.tga"
 
 	//---- Normal Map ----
 	TextureNormal "materials/default/default_normal.tga"
