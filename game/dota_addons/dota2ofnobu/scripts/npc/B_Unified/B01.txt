@@ -8,6 +8,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/b01.vsndevts"
+			"particle"	"particles/title/b01t.vpcf"
 		}
 	}
 	//雜賀孫市 狙擊模式
@@ -493,6 +494,12 @@
 				"Function"	"C01W_sound"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b01t.vpcf"
+			}
 		}
 		"Modifiers"
 		{
@@ -571,6 +578,12 @@
 			{
 				"Function"	"C01W_sound"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b01t.vpcf"
 			}
 		}
 		"Modifiers"

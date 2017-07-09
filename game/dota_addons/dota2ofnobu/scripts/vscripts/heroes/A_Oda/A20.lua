@@ -447,7 +447,7 @@ function A20W_old_OnSpellStart( keys )
 			return nil
 		end
 
-		local ifx = ParticleManager:CreateParticle( "particles/a11w/a11wonkey_king_spring_water_base.vpcf", PATTACH_CUSTOMORIGIN, nil)
+		local ifx = ParticleManager:CreateParticle( "particles/a20/a20w_oldonkey_king_spring_water_base.vpcf", PATTACH_CUSTOMORIGIN, nil)
 		local random=RandomVector(RandomInt(0,300))
 		ParticleManager:SetParticleControl( ifx, 0, point + Vector(0,0,50)+random)
 		ParticleManager:SetParticleControl( ifx, 3, point + Vector(0,0,50)+random)

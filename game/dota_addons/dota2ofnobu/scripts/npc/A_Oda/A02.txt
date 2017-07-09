@@ -25,6 +25,7 @@
 			// A02T_old
 			"particle"  "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
 			"particle"  "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf"
+			"particle"	"particles/title/a02t.vpcf"
 		}
 	}
 
@@ -350,6 +351,7 @@
 				"Target"	"CASTER"
 				"EffectName"	"A02T.vo1"
 			}
+			
 		}
 
 		"OnSpellStart"
@@ -363,6 +365,12 @@
 				}
 				"ModifierName"	"modifier_A02T"
 				"Duration"		"%duration"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a02t.vpcf"
 			}
 		}
 
@@ -762,6 +770,12 @@
 				}
 				"ModifierName"	"modifier_A02T_old"
 				"Duration"		"%duration"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a02t.vpcf"
 			}
 		}
 

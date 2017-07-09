@@ -3,7 +3,9 @@
 	// 石田三成
 	"A29"
 	{
-		"ModelScale"	"0.9"
+		"ModelScale"	"1.5"
+		"Model"	"models/a29/a29.vmdl"
+		"DisableWearables"	"1"
 		//"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"
@@ -27,7 +29,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.80"
 		"AttackAnimationPoint"	"0.59"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"600"
 		"ProjectileSpeed"	"1300"
 		// Attributes

@@ -184,14 +184,23 @@ function Nobu:OnGameRulesStateChange( keys )
 			        end)
 				end)
   			start = start + 7
-  		elseif tostring(steamid) == "128732954" then
+  		elseif tostring(steamid) == "423877076" then
   			Timers:CreateTimer(start, function()
-	  			CustomUI:DynamicHud_Create(-1,"mainWin3","file://{resources}/layout/custom_game/game_info.xml",nil)
+	  			CustomUI:DynamicHud_Create(-1,"mainWin3","file://{resources}/layout/custom_game/game_info_father.xml",nil)
 				Timers:CreateTimer(6, function()
 					CustomUI:DynamicHud_Destroy(-1,"mainWin3")
 			        end)
 				end)
   			start = start + 7
+  		elseif tostring(steamid) == "128732954" then
+  			Timers:CreateTimer(start, function()
+	  			CustomUI:DynamicHud_Create(-1,"mainWin4","file://{resources}/layout/custom_game/game_info.xml",nil)
+				Timers:CreateTimer(6, function()
+					CustomUI:DynamicHud_Destroy(-1,"mainWin4")
+			        end)
+				end)
+  			start = start + 7
+  		
   		end
   	end
 

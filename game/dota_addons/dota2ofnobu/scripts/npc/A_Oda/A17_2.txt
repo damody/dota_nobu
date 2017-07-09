@@ -3,9 +3,9 @@
 	// 佐佐成政
 	"A17"
 	{
-		// General
-		// ----------------------------------------------------------------
-		"Model"	"models/heroes/sniper/sniper.vmdl"
+		"ModelScale"	"1.5"
+		"Model"	"models/a17/a17.vmdl"
+		"DisableWearables"	"1"
 		"Portrait"	"vgui/hud/heroportraits/portrait_sniper"
 		"IdleExpression"	"scenes/sniper/sniper_exp_idle_01.vcd"
 		"SoundSet"	"Hero_Sniper"
@@ -16,7 +16,6 @@
 		"Rolelevels"	"3,1"
 		"Team"	"Good"
 		"override_hero"	"npc_dota_hero_sniper"
-		"ModelScale"	"1.2"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"

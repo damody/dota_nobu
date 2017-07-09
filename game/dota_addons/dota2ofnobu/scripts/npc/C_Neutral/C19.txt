@@ -9,6 +9,7 @@
 		{
 			"soundfile"	"soundevents/c19.vsndevts"
 			"particle"	"particles/a02/a02e.vpcf"
+			"particle"	"particles/c19_projectile/c19_projectile_2.vpcf"
 		}
 	}
 	//松姬 媚誘目光
@@ -732,6 +733,32 @@
 				"EffectAttachType"	"follow_overhead"
 				"IsDebuff"	"1"
 				"Duration"  "5"
+			}
+		}
+	}
+	//棒球
+	"C19_school"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bristleback_viscous_nasal_goo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"Modifiers"
+		{
+			"modifier_psi_blades"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/c19_projectile/c19_projectile_2.vpcf"
+				}
 			}
 		}
 	}

@@ -14,7 +14,7 @@ end
 
 function modifier_C08D_old:GetModifierModelChange()
 	--找不到模組
-	return "models/props_structures/wood_post001.vmdl"
+	return "models/props_tree/cypress/tree_cypress009.vmdl"
 end
 
 function modifier_C08D_old:GetModifierMoveSpeedOverride()

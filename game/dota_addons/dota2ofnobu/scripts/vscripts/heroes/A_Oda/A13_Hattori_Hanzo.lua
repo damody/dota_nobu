@@ -633,7 +633,7 @@ function A13T( keys )
 					Source = caster,
 					bHasFrontalCone = false,
 					bReplaceExisting = false,
-					bProvidesVision = false,
+					bProvidesVision = true,
 					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 					iUnitTargetFlags  = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
@@ -721,7 +721,7 @@ function A13T_old( keys )
 					Source = caster,
 					bHasFrontalCone = false,
 					bReplaceExisting = false,
-					bProvidesVision = false,
+					bProvidesVision = true,
 					iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 					iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 					iUnitTargetFlags  = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
@@ -760,6 +760,11 @@ function A13T_break( keys )
 	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
+	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger.vpcf",PATTACH_POINT,target)
+				ParticleManager:SetParticleControlForward(ifx,0,target:GetForwardVector())
+				ParticleManager:SetParticleControl(ifx,1,target:GetAbsOrigin())
+				ParticleManager:SetParticleControlForward(ifx,1,target:GetForwardVector())
+				ParticleManager:ReleaseParticleIndex(ifx)
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			if IsValidEntity(caster) and caster:IsAlive() then

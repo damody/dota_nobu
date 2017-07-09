@@ -14,6 +14,7 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"particle"	"particles/title/b13t.vpcf"
 		}
 	}
 
@@ -154,6 +155,11 @@
 				"Target"					"TARGET"
 				"Type"						"DAMAGE_TYPE_MAGICAL"
 				"Damage"					"1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"         			"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"                		"B13R"
 			}
 		}
 
@@ -349,6 +355,14 @@
 			{
 				"Target"					"POINT"
 				"EffectName"				"Hero_Invoker.Tornado"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"dummy"	"1"
+				"Target"	"POINT"
+				"title"	"particles/title/b13t.vpcf"
 			}
 		}
 
@@ -715,6 +729,14 @@
 			{
 				"Target"					"POINT"
 				"EffectName"				"Hero_Invoker.Tornado"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"dummy"	"1"
+				"Target"	"POINT"
+				"title"	"particles/title/b13t.vpcf"
 			}
 		}
 

@@ -59,6 +59,130 @@
 			}
 		}
 	}
+	// 羽柴秀吉 [治療之風]
+	"heal_wind"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"zuus_arc_lightning"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityCastPoint"	"0.1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"4"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"160"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
+			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
+			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
+			"soundfile"	"sounds/weapons/hero/zuus/arc_lightning.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"A28E_old.vo1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Zuus.ArcLightning.Cast"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
+				"Function"	"A28E"
+				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
+			}
+			"AttachEffect"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
+				"EffectAttachType"	"start_at_customorigin"
+				"ControlPointEntities"
+				{
+					"CASTER"	"start_at_origin"
+					"CASTER"	"attach_attack1"
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_go_heal"
+			{
+				"Passive"	"1"
+				"ThinkInterval"  "4"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
+						"Function"	"for_heal"
+					}
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"HealingWave"
+					}
+				}
+			}
+			"modifier_arc_lightning_datadriven"
+			{
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
+						"Function"	"A28E_Jump"
+						"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+					}
+					"Heal"
+		            {
+		                "Target"        "TARGET"
+		                "HealAmount"    "%AbilityDamage"
+		            }
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"650"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"jump_count"	"15"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"jump_delay"	"0.1"
+			}
+		}
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"600"
+	}
 	// 死亡倒地
 	"play_on_die"
 	{
@@ -250,8 +374,8 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 			
-				"Duration"	"60"
-				"ThinkInterval"  "3"
+				"Duration"	"120"
+				"ThinkInterval"  "10"
 				"OnCreated"
 				{
 					"ActOnTargets"
@@ -270,7 +394,7 @@
 							{
 								"ModifierName"	"modifier_reward6300_hero"
 								"Target" 		"TARGET"
-								"Duration"		"4"
+								"Duration"		"10"
 							}
 						}
 					}
@@ -293,7 +417,7 @@
 							{
 								"ModifierName"	"modifier_reward6300_hero"
 								"Target" 		"TARGET"
-								"Duration"		"4"
+								"Duration"		"10"
 							}
 						}
 					}
@@ -317,9 +441,9 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 			
-				"Duration"	"60"
+				"Duration"	"120"
 				"EffectName"		"particles/item/reward6300.vpcf"
-				"ThinkInterval"  "3"
+				"ThinkInterval"  "10"
 				"OnCreated"
 				{
 					"ActOnTargets"
@@ -361,7 +485,7 @@
 							{
 								"ModifierName"	"modifier_reward6300"
 								"Target" 		"TARGET"
-								"Duration"		"4"
+								"Duration"		"10"
 							}
 						}
 					}
@@ -377,74 +501,6 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "50"	//攻
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "4" //回血%
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "100" //攻速
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "20"	//防禦
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS" "100"	//跑速
-				}
-			}
-			"modifier_reward6300_aura2"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-			
-				"Duration"	"60"
-				"EffectName"		"particles/item/reward6300.vpcf"
-				"ThinkInterval"  "3"
-				"OnCreated"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"100000"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_BASIC"
-						}
-					
-						"Action"    
-						{
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_reward63002"
-								"Target" 		"TARGET"
-								"Duration"		"4"
-							}
-						}
-					}
-				}
-				"OnIntervalThink"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"100000"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_BASIC"
-						}
-					
-						"Action"    
-						{
-							"ApplyModifier"
-							{
-								"ModifierName"	"modifier_reward63002"
-								"Target" 		"TARGET"
-								"Duration"		"4"
-							}
-						}
-					}
-				}
-			}
-			"modifier_reward63002"
-			{
-				"Passive"	"0"
-				//"EffectName"		"particles/item/reward6300.vpcf"
-				//"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "4" //回血%
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "20"	//防禦
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS" "100"	//跑速
 				}
@@ -553,7 +609,6 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"AbilityCooldown"	"1"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-
 		
 		"Modifiers"
 		{
@@ -677,7 +732,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"	"0.2"
+		"AbilityCooldown"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
 		"AbilityManaCost"	"0"
@@ -735,12 +790,47 @@
 			}
 		}
 	}
+	// 叫上忍
+	"update_buy_ninja3"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/liubei_hujia"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"	"1"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"0"
+		"AbilityGoldCost"	"150"
+		"AbilityCastPoint"	"0.1"
+		"Modifiers"
+		{
+			"modifier_update_buy_ninja3"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+		
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"update_buy_ninja3"
+					}
+				}
+			}
+		}
+	}
 	// 叫中忍
 	"call_ninja2"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/liubei_hujia"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -750,6 +840,7 @@
 		"AbilityCastRange"	"50000"
 		"AbilityManaCost"	"0"
 		"AbilityGoldCost"	"300"
+		"AbilityCastPoint"	"0.1"
 
 		"OnSpellStart"
 		{
@@ -765,17 +856,25 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/liubei_hujia"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
+		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"0"
-		"AbilityGoldCost"	"450"
-
+		"AbilityGoldCost"	"900"
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"	"call_ninja3_OnAbilityPhaseStart"
+			}
+		}
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -815,6 +914,20 @@
 						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
 						"Function"		"dead_give_item"
 						"item"	"item_the_soul_of_power"
+					}
+				}
+			}
+			"modifier_dead_give_item2"
+			{
+				"IsHidden"      "1"
+				"Passive"	"1"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"		"dead_give_item"
+						"item"	"item_reward6300"
 					}
 				}
 			}
@@ -1153,6 +1266,47 @@
 			}
 		}
 	}
+	//弓手打建築物兩倍痛
+	"archer_attack2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_64"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"Modifiers"
+		{
+			"modifier_archer_attack"
+			{
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"dmg"	"%attack_damage"
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
+						"Function"	"B01R2"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_hero"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_building"	"200"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"atk_unit"	"200"
+			}
+		}
+	}
 	// 變身為賣忍者
 	"to_sell_ninja_unit"
 	{
@@ -1297,6 +1451,32 @@
 			}
 		}
 	}
+	// 織田忍軍
+	"soldier_Oda_big"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_40"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"1000"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/computer_system/chubing.lua"
+				"Function"	"soldier_Oda_big"
+			}
+		}
+	}
+
 	// 織田足輕上
 	"soldier_Oda_top"
 	{
@@ -1405,6 +1585,31 @@
 				{
 					"MODIFIER_PROPERTY_DISABLE_TURNING" "1"
 				}
+			}
+		}
+	}
+	// 聯合忍軍
+	"soldier_Unified_big"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_40"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"1000"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/computer_system/chubing.lua"
+				"Function"	"soldier_Unified_big"
 			}
 		}
 	}
@@ -2375,17 +2580,8 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"10"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityManaCost"	"10"
-		"AOERadius"	"500"
-		"OnAbilityPhaseStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"items/Addon_Items/war_magic.lua"
-				"Function"	"treecut_check"
-				"Target"	"POINT"
-			}
-		}
+		"AbilityManaCost"	"0"
+		"AOERadius"	"300"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3431,6 +3627,23 @@
 					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	"for_no_hp_bar"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"rubick_empty1"
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}

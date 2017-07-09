@@ -116,7 +116,7 @@ function B03T_OnIntervalThink( keys )
 		        vSpawnOrigin = caster:GetAbsOrigin(),
 		        Target = v,
 		        Source = caster,
-		        bDodgeable = false,
+		        bDodgeable = true,
 		        iMoveSpeed = 700,
 		        iVisionRadius = 225,
 				iVisionTeamNumber = caster:GetTeamNumber(),

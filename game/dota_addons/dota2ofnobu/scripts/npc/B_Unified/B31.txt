@@ -32,6 +32,7 @@
 			"particle"  "particles/radiant_fx2/fs_altardestruction_growinitsphere.vpcf"
 			"particle"  "particles/a23r/a23rfly.vpcf"
 			"soundfile"	"soundevents/b31.vsndevts"
+			"particle"	"particles/title/b31t.vpcf"
 
 		}
 	}
@@ -423,6 +424,12 @@
 				"Target"	"CASTER"
 				"EffectName"	"ITEM_D03.sound"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b31t.vpcf"
+			}
 		}
 		"Modifiers"
 		{
@@ -808,6 +815,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"ITEM_D03.sound"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b31t.vpcf"
 			}
 		}
 		"Modifiers"

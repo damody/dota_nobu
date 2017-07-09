@@ -41,7 +41,7 @@ _G.heromap = {
   npc_dota_hero_omniknight          = "A27",
   npc_dota_hero_invoker             = "A28",
   npc_dota_hero_oracle              = "A29",
-  npc_dota_hero_slardar             = "A30",
+  npc_dota_hero_sand_king           = "A30",
   npc_dota_hero_medusa              = "A31",
   npc_dota_hero_juggernaut          = "A32",
   npc_dota_hero_shadow_shaman       = "A33",
@@ -722,6 +722,9 @@ function Precache( context )
     --平蜘蛛釜
     "particles/item/kotennmyohiragumo.vpcf",
     "particles/item/protection.vpcf",
+    "particles/units/heroes/hero_lina/lina_base_attack.vpcf",
+    --御魂
+    "particles/item/soul_adderrope.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

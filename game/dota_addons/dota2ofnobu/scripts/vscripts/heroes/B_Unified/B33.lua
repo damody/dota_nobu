@@ -63,7 +63,7 @@ function B33R(keys)
 				Source = target,
 				Ability = ability,
 				EffectName = keys.particle,
-				bDodgeable = false,
+				bDodgeable = true,
 				iMoveSpeed = 9000,
 				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION
 				}

@@ -3,14 +3,13 @@
 	// 丹羽長秀
 	"A30"
 	{
-		// General
-		// ----------------------------------------------------------------
-		// Add model
-		"ModelScale"	"1.3"
+		"ModelScale"	"1.5"
+		"Model"	"models/a30/a30.vmdl"
+		"DisableWearables"	"1"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"
-		"override_hero"	"npc_dota_hero_slardar"
+		"override_hero"	"npc_dota_hero_sand_king"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: AInv
@@ -39,7 +38,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.80"
 		"AttackAnimationPoint"	"0.3"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"700"
 		"ProjectileSpeed"	"1450"
 		// Attributes

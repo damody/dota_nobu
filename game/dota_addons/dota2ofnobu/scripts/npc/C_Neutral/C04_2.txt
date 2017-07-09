@@ -8,9 +8,10 @@
 		"override_hero"	"npc_dota_hero_lina"
 		// //"Enabled"	"1"
 		"HeroUnlockOrder"	"3"
+		"Model"	"models/c04/c04.vmdl"
 		"Role"	"Carry,Support,Disabler,Initiator,Nuker"
 		"Rolelevels"	"1,1,2,2,1"
-		"ModelScale"	"1"
+		"ModelScale"	"2"
 		"LoadoutScale"	"0.8"
 		"PickSound"	"silencer_silen_spawn_01"
 		"BanSound"	"silencer_silen_anger_07"
@@ -20,7 +21,7 @@
 		"HeroSelectSoundEffect"	"Hero_Silencer.Pick"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"HealthBarOffset"	"180"
+		"HealthBarOffset"	"240"
 		// Abilities
 		// ----------------------------------------------------------------
 		"Ability1"	"C04W"
@@ -42,7 +43,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.80"
 		"AttackAnimationPoint"	"0.50"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"600"
 		"ProjectileSpeed"	"1800"
 		// Attributes
@@ -93,6 +94,7 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AbilityLayout"	"5"
+		"DisableWearables"	"1"
 	}
 
 }

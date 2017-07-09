@@ -414,7 +414,7 @@
 		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"    					"custom/A15/A15E_old"
 
-		"AbilityCooldown"							"18"
+		"AbilityCooldown"							"28"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"200 220 240 260"
 		"AbilityCastRange"              			"0"
@@ -605,6 +605,11 @@
 				"EffectName"		"particles/a15t/a15t.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"ThinkInterval"  	"0.5"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-20"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "20" 
+				}
 				"OnIntervalThink"
 				{
 					"RunScript"

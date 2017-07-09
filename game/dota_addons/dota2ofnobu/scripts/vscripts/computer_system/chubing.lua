@@ -475,6 +475,142 @@ function ShuaGuai_Of_C(num)
 	Timers:CreateTimer(ltt)
 end
 
+--織田忍軍
+function soldier_Oda_big(keys)
+	payprestige[2] = payprestige[2] + 1000
+	local tem_count1 = 0
+	local tem_count2 = 0
+	local tem_count3 = 0
+	local A_count = _G.A_count
+	GameRules: SendCustomMessage("<font color=\"#cc3333\">織田軍派譴使用去甲賀尋找忍者援軍</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	GameRules: SendCustomMessage("<font color=\"#cc3333\">一分鐘後織田軍下路將出現忍者援軍</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	Timers:CreateTimer(60, function()
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">忍者援軍從下路支援織田軍了</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+		local pos = 1
+		Timers:CreateTimer(function()
+			tem_count1 = tem_count1 + 1
+			if tem_count1 > 3 then return nil
+			else
+				local team = 2
+				local unit_name = "com_b16_D"
+				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
+				unit:AddAbility("set_level_1"):SetLevel(1)
+				unit:SetForwardVector(ShuaGuai_entity_forvec[pos])
+				unit:SetMustReachEachGoalEntity(false)
+				unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
+				local hp = unit:GetMaxHealth()
+				unit:SetBaseMaxHealth(hp+A_count*50)
+				unit:SetHealth(unit:GetMaxHealth())
+				return 0.5
+			end
+		end)
+
+		Timers:CreateTimer(1, function()
+			tem_count2 = tem_count2 + 1
+			if tem_count2 > 2 then return nil
+			else
+				local team = 2
+				local unit_name = "com_b02_D"
+				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
+				unit:AddAbility("set_level_1"):SetLevel(1)
+				unit:SetForwardVector(ShuaGuai_entity_forvec[pos])
+				unit:SetMustReachEachGoalEntity(false)
+				unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
+				local hp = unit:GetMaxHealth()
+				unit:SetBaseMaxHealth(hp+A_count*40)
+				unit:SetHealth(unit:GetMaxHealth())
+				return 0.5
+			end
+		end)
+
+		Timers:CreateTimer(2, function()
+			tem_count3 = tem_count3 + 1
+			if tem_count3 > 1 then return nil
+			else
+				local team = 2
+				local unit_name = "com_a19_D"
+				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
+				unit:AddAbility("set_level_1"):SetLevel(1)
+				unit:SetForwardVector(ShuaGuai_entity_forvec[pos])
+				unit:SetMustReachEachGoalEntity(false)
+				unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
+				local hp = unit:GetMaxHealth()
+				unit:SetBaseMaxHealth(hp+A_count*25)
+				unit:SetHealth(unit:GetMaxHealth())
+				return 0.5
+			end
+		end)
+		end)
+end
+
+
+--聯合忍軍
+function soldier_Unified_big(keys)
+	payprestige[3] = payprestige[3] + 1000
+	local tem_count1 = 0
+	local tem_count2 = 0
+	local tem_count3 = 0
+	GameRules: SendCustomMessage("<font color=\"#cc3333\">聯合軍派譴使用去伊賀尋找忍者援軍</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	GameRules: SendCustomMessage("<font color=\"#cc3333\">一分鐘後聯合軍上路將出現忍者援軍</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+	Timers:CreateTimer(60, function()
+		GameRules: SendCustomMessage("<font color=\"#cc3333\">忍者援軍從上路支援聯合軍了</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+		local pos = 6
+		Timers:CreateTimer(function()
+			tem_count1 = tem_count1 + 1
+			if tem_count1 > 3 then return nil
+			else
+				local team = 3
+				local unit_name = "com_b16_D"
+				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
+				unit:AddAbility("set_level_1"):SetLevel(1)
+				unit:SetForwardVector(ShuaGuai_entity_forvec[pos])
+				unit:SetMustReachEachGoalEntity(false)
+				unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
+				local hp = unit:GetMaxHealth()
+				unit:SetBaseMaxHealth(hp+A_count*50)
+				unit:SetHealth(unit:GetMaxHealth())
+				return 0.5
+			end
+		end)
+
+		Timers:CreateTimer(1, function()
+			tem_count2 = tem_count2 + 1
+			if tem_count2 > 2 then return nil
+			else
+				local team = 3
+				local unit_name = "com_b02_D"
+				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
+				unit:AddAbility("set_level_1"):SetLevel(1)
+				unit:SetForwardVector(ShuaGuai_entity_forvec[pos])
+				unit:SetMustReachEachGoalEntity(false)
+				unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
+				local hp = unit:GetMaxHealth()
+				unit:SetBaseMaxHealth(hp+A_count*40)
+				unit:SetHealth(unit:GetMaxHealth())
+				return 0.5
+			end
+		end)
+
+		Timers:CreateTimer(2, function()
+			tem_count3 = tem_count3 + 1
+			if tem_count3 > 1 then return nil
+			else
+				local team = 3
+				local unit_name = "com_a19_D"
+				local unit = CreateUnitByName(unit_name, ShuaGuai_entity_point[pos] , true, nil, nil, team)
+				unit:AddAbility("set_level_1"):SetLevel(1)
+				unit:SetForwardVector(ShuaGuai_entity_forvec[pos])
+				unit:SetMustReachEachGoalEntity(false)
+				unit:SetInitialGoalEntity(ShuaGuai_entity[pos])
+				local hp = unit:GetMaxHealth()
+				unit:SetBaseMaxHealth(hp+A_count*25)
+				unit:SetHealth(unit:GetMaxHealth())
+				return 0.5
+			end
+		end)
+		end)
+end
+
 --織田足輕上
 function soldier_Oda_top(keys)
 	if _G.mo then return end

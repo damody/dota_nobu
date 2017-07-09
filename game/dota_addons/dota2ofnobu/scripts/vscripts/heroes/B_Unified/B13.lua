@@ -307,7 +307,7 @@ function B13E_old_OnSpellStart( keys )
 	local ability = keys.ability
 	caster.can_dmg = 1
 	caster.B13E_old_target = target
-
+	target:EmitSound("SleepBirth1")
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_B13E_old_sleep",{duration = ability:GetSpecialValueFor("B13E_old_duration")})
 	AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	Timers:CreateTimer(0.1, function()
@@ -337,7 +337,7 @@ function B13E_OnSpellStart( keys )
 	local ability = keys.ability
 	caster.can_dmg = 1
 	caster.B13E_old_target = target
-
+	target:EmitSound("SleepBirth1")
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_B13E_sleep", nil)
 	AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	Timers:CreateTimer(0.1, function()

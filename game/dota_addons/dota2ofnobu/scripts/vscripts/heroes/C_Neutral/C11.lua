@@ -16,7 +16,7 @@ function C11W_start( keys )
 		Source = caster,
 		Ability = ability,
 		EffectName = "particles/c11/c11w.vpcf",
-		bDodgeable = false,
+		bDodgeable = true,
 		bProvidesVision = true,
 		iMoveSpeed = projectile_speed,
         iVisionRadius = 800,

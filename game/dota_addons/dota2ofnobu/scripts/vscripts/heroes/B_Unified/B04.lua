@@ -58,7 +58,7 @@ function B04W_OnTrigger( keys )
 		Source = caster,
 		Ability = ability,
 		EffectName = "particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf",
-		bDodgeable = false,
+		bDodgeable = true,
 		bProvidesVision = false,
 		iMoveSpeed = speed*0.5,
 		iVisionRadius = 0,

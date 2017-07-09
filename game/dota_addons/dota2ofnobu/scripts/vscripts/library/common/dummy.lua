@@ -131,6 +131,7 @@ _G.EXCLUDE_MODIFIER_NAME = {
   modifier_A09E = true,
   modifier_weakness = true,
   modifier_C08T_bleeding = true,
+  modifier_soul_adder = true,
 }
 
 
@@ -162,4 +163,26 @@ function CP_Posistion( keys )
     end
   end)
 	--donkey:AddAbility("majia_cp"):SetLevel(1)
+end
+
+function showTitle( keys )
+  local caster = keys.caster
+  local pos = caster:GetAbsOrigin()
+  if keys.target_points then
+    pos = keys.target_points[1]
+  end
+  if keys.target and keys.target ~= caster then
+    pos = keys.target:GetAbsOrigin()
+  end
+  
+  if keys.dummy then
+    local dummy = CreateUnitByName("npc_dummy_unit_Ver2",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeam())
+    dummy:FindAbilityByName("majia"):SetLevel(1)
+    dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
+    local spike = ParticleManager:CreateParticle(keys.title, PATTACH_ABSORIGIN, dummy)
+    ParticleManager:SetParticleControl(spike, 0, pos+Vector(0,0,300))
+  else
+    local spike = ParticleManager:CreateParticle(keys.title, PATTACH_OVERHEAD_FOLLOW, caster)
+    ParticleManager:SetParticleControl(spike, 0, pos+Vector(0,0,300))
+  end
 end

@@ -6,7 +6,9 @@
 		// General
 		// ----------------------------------------------------------------
 		"override_hero"	"npc_dota_hero_monkey_king"
-		"ModelScale"	"1"
+		"ModelScale"	"1.4"
+		"Model"	"models/a09/a09.vmdl"
+		"DisableWearables"	"1"
 		// Abilities
 		// ----------------------------------------------------------------
 		"Ability1"	"A09W"
@@ -60,7 +62,7 @@
 		// Bounds
 		// ----------------------------------------------------------------
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"HealthBarOffset"	"140"
+		"HealthBarOffset"	"200"
 
 		// Movement
 		// ----------------------------------------------------------------
@@ -95,6 +97,6 @@
 		// ----------------------------------------------------------------
 		"TeamName"				"DOTA_TEAM_NEUTRALS"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
-		"DisableWearables"	"0"
+
 	}
 } // END DOTAHeroes

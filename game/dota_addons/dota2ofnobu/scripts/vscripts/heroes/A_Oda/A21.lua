@@ -168,6 +168,13 @@ function A21R_OnSpellStart(keys)
  	for _,unit in pairs(units) do
 		ability:ApplyDataDrivenModifier(caster, unit,"modifier_stunned", {duration = 0.1})
 	end
+	Timers:CreateTimer(1, function()
+		if IsValidEntity(roubang) and roubang:IsAlive() then
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, roubang:GetAbsOrigin(), 300, 3, true)
+ 			AddFOWViewer(DOTA_TEAM_BADGUYS, roubang:GetAbsOrigin(), 300, 3, true)
+ 			return 1
+		end
+	end)
 end
 
 function A21R_OnIntervalThink( keys )
@@ -315,6 +322,13 @@ function A21E_old_OnSpellStart(keys)
  	for _,unit in pairs(units) do
 		ability:ApplyDataDrivenModifier(caster, unit,"modifier_stunned", {duration = 0.1})
 	end
+	Timers:CreateTimer(1, function()
+		if IsValidEntity(roubang) and roubang:IsAlive() then
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, roubang:GetAbsOrigin(), 300, 3, true)
+ 			AddFOWViewer(DOTA_TEAM_BADGUYS, roubang:GetAbsOrigin(), 300, 3, true)
+ 			return 1
+		end
+	end)
 end
 
 function A21E_old_OnIntervalThink( keys )

@@ -127,6 +127,9 @@ function B07E_OnSpellStart(keys)
 			if "item_napalm_bomb" ~= itemName then
 				local newItem = CreateItem(itemName, wolf, wolf)
 				wolf:AddItem(newItem)
+				if "item_the_great_sword_of_disease" == itemName then
+					newItem:StartCooldown(30)
+				end
 			end
 		end
 	end

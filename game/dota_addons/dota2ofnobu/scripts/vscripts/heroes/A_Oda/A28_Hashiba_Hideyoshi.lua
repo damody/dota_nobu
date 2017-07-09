@@ -142,7 +142,7 @@ function A28E(keys)
 	else
 		ability.instance = ability.instance + 1
 	end
-
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_arc_lightning_datadriven", nil)
 	local angel = caster:GetAngles().y
 	local point = Vector(caster:GetAbsOrigin().x+75*math.cos(angel*bj_DEGTORAD) ,  caster:GetAbsOrigin().y+75*math.sin(angel*bj_DEGTORAD), caster:GetAbsOrigin().z + caster:GetBoundingMaxs().z)
 	
@@ -651,3 +651,31 @@ function DumpTable( tTable )
  		{depth=iDepth} 
  	))
 end
+
+
+function for_heal(keys)
+	local ability = keys.ability
+	local caster = keys.caster
+	if ability:IsFullyCastable() then
+		
+		local units =  FindUnitsInRadius(caster:GetTeamNumber(),
+	                              caster:GetAbsOrigin(),
+	                              nil,
+	                              1600,
+	                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+	                              0,
+	                              0,
+	                              false)
+		for i,unit in ipairs(units) do
+			if unit:GetHealthPercent() < 95 then
+				print("for_heal")
+				keys.target = unit
+				A28E(keys)
+				break
+			end
+		end
+	end
+end
+
+

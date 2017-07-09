@@ -12,6 +12,7 @@
 			"particle"  "particles/c19e/c19e.vpcf"
 			"soundfile"	"soundevents/c01w.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"particle"	"particles/title/c24t.vpcf"
 		}
 	}
 	// 柳生宗嚴 柳生新陰流．神取
@@ -600,6 +601,14 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C24.lua"
 				"Function"		"C24T_old_OnSpellStart"
 				"Target"		"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"Target" "TARGET"
+				"dummy"	"1"
+				"title"	"particles/title/c24t.vpcf"
 			}
 		}
 

@@ -29,6 +29,7 @@
 			"particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch_model.vpcf"
 			"particle"  "particles/b26t2/b26t2.vpcf"
 			"particle"  "particles/a22/a22wold.vpcf"
+			"particle"	"particles/title/a14t.vpcf"
 		}
 	}
 
@@ -300,6 +301,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a14t.vpcf"
 			}
 		}
 		"Modifiers"
@@ -623,6 +630,12 @@
 				"Target"	"CASTER"
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A14.lua"
 				"Function"	"modifier_A14T_old_OnCreated"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a14t.vpcf"
 			}
 		}
 		"Modifiers"

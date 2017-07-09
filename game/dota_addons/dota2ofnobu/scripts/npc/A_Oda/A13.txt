@@ -7,6 +7,8 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/a13.vsndevts"
+			"particle"	"particles/title/a13t.vpcf"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger.vpcf"
 		}
 	}
 	// 服部半藏 忍法．風行步
@@ -682,23 +684,13 @@
 		}
 		"OnAbilityPhaseStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Tinker.March_of_the_Machines.Cast"
-			}
 		}
 		"OnSpellStart"
 		{
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"A13T.vo1"
-			}
-			"FireSound"
-			{
-				"Target"	"POINT"
-				"EffectName"	"Hero_Tinker.March_of_the_Machines"
+				"EffectName"	"MirrorImage"
 			}
 			"RunScript"
 			{
@@ -711,6 +703,26 @@
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_invisible"
 				"Duration"	"3"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a13t.vpcf"
+				"dummy"	"1"
+				"Target"	"POINT"
+			}
+			"DelayedAction"
+			{
+				"Delay"     "2"
+				"Action"    
+				{
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"MirrorImage"
+					}
+				}
 			}
 		}
 		"OnProjectileHitUnit"
@@ -834,23 +846,13 @@
 		}
 		"OnAbilityPhaseStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_Tinker.March_of_the_Machines.Cast"
-			}
 		}
 		"OnSpellStart"
 		{
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"A13T_old.vo1"
-			}
-			"FireSound"
-			{
-				"Target"	"POINT"
-				"EffectName"	"Hero_Tinker.March_of_the_Machines"
+				"EffectName"	"MirrorImage"
 			}
 			"RunScript"
 			{
@@ -863,6 +865,26 @@
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_invisible"
 				"Duration"	"3"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a13t.vpcf"
+				"dummy"	"1"
+				"Target"	"POINT"
+			}
+			"DelayedAction"
+			{
+				"Delay"     "2"
+				"Action"    
+				{
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"MirrorImage"
+					}
+				}
 			}
 		}
 		"OnProjectileHitUnit"

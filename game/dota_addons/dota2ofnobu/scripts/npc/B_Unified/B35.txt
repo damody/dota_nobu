@@ -17,6 +17,7 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			"particle"	"particles/title/b35t.vpcf"
 		}
 	}
 	// 上泉信綱 劍之極意
@@ -647,6 +648,14 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B35.lua"
 				"Function"		"B35T_old_OnSpellStart"
 				"Target"		"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"Target" "TARGET"
+				"dummy"	"1"
+				"title"	"particles/title/b35t.vpcf"
 			}
 		}
 

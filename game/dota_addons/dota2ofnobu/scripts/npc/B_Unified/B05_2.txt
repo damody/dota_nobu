@@ -3,11 +3,9 @@
 	// 毛利元就
 	"B05"
 	{
-		// General
-		// ----------------------------------------------------------------
-		// Add model
-		//"Model"	"models/maori/maori_model.vmdl"
-		"ModelScale"	"0.9"
+		"ModelScale"	"1.5"
+		"Model"	"models/maori/maori_model.vmdl"
+		"DisableWearables"	"1"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"
@@ -31,7 +29,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.80"
 		"AttackAnimationPoint"	"0.40"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"600"
 		"ProjectileSpeed"	"1350"
 		// Attributes

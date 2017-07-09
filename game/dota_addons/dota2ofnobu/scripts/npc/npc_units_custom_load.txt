@@ -4,6 +4,194 @@
 "DOTAUnits"
 {
 	"Version"		"1"
+
+	// 叫兵黑田
+	"com_a19_D"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/a19/a19.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"20"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"130"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	"archer_attack"
+		// Reference: A0GW
+		"Ability2"	"for_magic_immune"
+		"Ability3"	"heal_wind"
+		"Ability4"	"set_level_1"
+		"Ability5"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"20"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"69.0"
+		"AttackDamageMax"	"85.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"1.0"
+		"AttackAnimationPoint"	"0.62"
+		"AttackAcquisitionRange"	"700"
+		"AttackRange"	"700"
+		"ProjectileSpeed"	"1800"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"36.0"
+		"BountyGoldMax"	"38.0"
+		"BountyXP"	"20"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"440"
+		"MovementTurnRate"	"1"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"5000"
+		"StatusHealthRegen"	"10"
+		"StatusMana"	"10000"
+		"StatusStartingMana"	"10000"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"AttackRangeBuffer"	"250"
+		"ProjectileModel"	"particles/units/heroes/hero_lina/lina_base_attack.vpcf"
+		"ProjectileSpeed"	"1600"
+		"AutoAttacksByDefault"	"1"
+	}
+
+	// 叫兵望月
+	"com_b16_D"
+	{
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/b16/b16_school.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"20"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"130"
+		// Abilities
+		"Ability1"	"for_magic_immune"
+		// Reference: A0GW
+		"Ability2"	"set_level_1"
+		"Ability3"	""
+		// Armor
+		"ArmorPhysical"	"50"
+		"MagicalResistance"	"0"
+		// Attack
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"138.0"
+		"AttackDamageMax"	"149.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.6"
+		"AttackAnimationPoint"	"0.33"
+		"AttackAcquisitionRange"	"1200"
+		"AttackRange"	"168"
+		"ProjectileSpeed"	"10000"
+		// Bounty
+		"BountyGoldMin"	"148.0"
+		"BountyGoldMax"	"153.0"
+		"BountyXP"	"50"
+		// Gold and Lumber
+		"GoldCost"	"0"
+		"LumberCost"	"0"
+		// Movement
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"450"
+		"MovementTurnRate"	"1"
+		// Status
+		"StatusHealth"	"4500"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"MinimapIcon"	"minimap_tower90"
+		"MinimapIconSize"	"1"
+		"RingRadius"	"45"
+	}
+
+	// 叫兵松姬
+	"com_b02_D"
+	{
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creep_lane"
+		// Add model
+		"Model"	"models/new/c19/c19_model.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"20"
+		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"	"130"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Reference: A0GD
+		"Ability1"	"archer_attack"
+		// Reference: A0GW
+		"Ability2"	"for_magic_immune"
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"34"
+		"MagicalResistance"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"169.0"
+		"AttackDamageMax"	"185.0"
+		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"	"0.6"
+		"AttackAnimationPoint"	"0.62"
+		"AttackAcquisitionRange"	"700"
+		"AttackRange"	"700"
+		"ProjectileSpeed"	"1800"
+		// Bounty
+		// ----------------------------------------------------------------
+		"BountyGoldMin"	"136.0"
+		"BountyGoldMax"	"138.0"
+		"BountyXP"	"20"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"440"
+		"MovementTurnRate"	"1"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"2750"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
+		// Vision
+		// ----------------------------------------------------------------
+		"VisionDaytimeRange"	"1400"
+		"VisionNighttimeRange"	"800"
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability3"	"set_level_1"
+		"AttackRangeBuffer"	"250"
+		"ProjectileModel"	"particles/c19_projectile/c19_projectile.vpcf"
+		"ProjectileSpeed"	"1600"
+		"AutoAttacksByDefault"	"1"
+	}
+
 	//龍造寺隆信 狂風
 	"c13r_wind"
 	{
@@ -719,7 +907,7 @@
 		"StatusHealthRegen"	"10"
 		"StatusMana"	"250"
 		"StatusManaRegen"	"0"
-		"StatusStartingMana"	"0"
+		"StatusStartingMana"	"200"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1400"
@@ -1003,7 +1191,7 @@
 		"Model"	"models/props_structures/good_fountain001.vmdl"
 		"ModelScale"	"0.5"
 		"Level"	"2"
-		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"BoundsHullName"	"DOTA_HULL_SIZE_BARRACKS"
 		"HealthBarOffset"	"180"
 		// Abilities
 		// ----------------------------------------------------------------
@@ -1076,8 +1264,8 @@
 		// ----------------------------------------------------------------
 		"BaseClass"		"npc_dota_creature"
 		// Add model
-		"Model"			"models/items/shadowshaman/serpent_ward/tangki_serpent_ward/tangki_serpent_ward.vmdl"
-		"ModelScale"	"2.5"
+		"Model"			"models/a09_r/a09r.vmdl"
+		"ModelScale"	"1"
 
 		"Level"			"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
@@ -1147,8 +1335,8 @@
 		// ----------------------------------------------------------------
 		"BaseClass"		"npc_dota_creature"
 		// Add model
-		"Model"			"models/items/shadowshaman/serpent_ward/eyedancer_wrath_ward/eyedancer_wrath_ward.vmdl"
-		"ModelScale"	"2.5"
+		"Model"			"models/a09_r/a09r.vmdl"
+		"ModelScale"	"1"
 
 		"Level"			"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
@@ -1693,7 +1881,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"0.5"
 		"AttackAnimationPoint"		"0.1"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"				"600"
 		"StatusMana"				"0"
 		"StatusStartingMana"		"0"
@@ -2077,7 +2265,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.9"
 		"AttackAnimationPoint"		"0.1"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"				"520"
 
 		"ArmorPhysical"		"0"
@@ -2153,8 +2341,8 @@
 		"AttackAnimationPoint"	"0.30"
 		"AttackAcquisitionRange"	"500"
 		"AttackRate"				"0.5"
-		"AttackDamageMin"	"150.0"
-		"AttackDamageMax"	"200.0"
+		"AttackDamageMin"	"200.0"
+		"AttackDamageMax"	"250.0"
 		"AttackRange"	"128"
 		// Bounty
 		// ----------------------------------------------------------------
@@ -2171,10 +2359,10 @@
 		"MovementTurnRate"	"2"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"1000"
-		"StatusHealthRegen"	"3"
-		"StatusMana"	"200"
-		"StatusStartingMana"	"200"
+		"StatusHealth"	"2000"
+		"StatusHealthRegen"	"10"
+		"StatusMana"	"600"
+		"StatusStartingMana"	"600"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"300"
@@ -2185,7 +2373,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability1"	""
+		"Ability1"	"update_buy_ninja3"
 		"Ability2"	"forest_soldier_E"
 		"Ability3"	""
 		"Ability4"	""
@@ -7284,7 +7472,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7335,7 +7523,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7386,7 +7574,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7437,7 +7625,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7489,7 +7677,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7541,7 +7729,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7593,7 +7781,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7645,7 +7833,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7697,7 +7885,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7749,7 +7937,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7801,7 +7989,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7852,7 +8040,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7903,7 +8091,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -7955,7 +8143,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8007,7 +8195,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8059,7 +8247,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8111,7 +8299,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8171,7 +8359,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8250,7 +8438,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8329,7 +8517,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"1.58"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"138"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8408,7 +8596,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0.9"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"168"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8489,7 +8677,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0.9"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"168"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8570,7 +8758,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0.9"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"168"
 		"ProjectileSpeed"	"10000"
 		// Bounty
@@ -8645,7 +8833,7 @@
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0.9"
 		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1200"
 		"AttackRange"	"168"
 		"ProjectileSpeed"	"10000"
 		// Bounty

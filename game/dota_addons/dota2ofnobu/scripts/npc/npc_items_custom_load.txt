@@ -553,7 +553,7 @@
 		"AbilityCooldown"	"20"
 		
 		"AbilityManaCost"	"120"
-		"AbilityCastPoint"	"0.1"
+		"AbilityCastPoint"	"0.2"
 		"AOERadius"	"300"
 		"AbilityDamage"		"560"
 		"AbilityCastRange"	"900"
@@ -734,9 +734,9 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/magic_ring"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.0"
+		"AbilityCastPoint"	"0.01"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"200"
 		"AOERadius"	"425"
@@ -806,9 +806,9 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/flash_ring"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.0"
+		"AbilityCastPoint"	"0.01"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"250"
 		"AOERadius"	"850"
@@ -3318,6 +3318,11 @@
 				"Function"	"Shock"
 				"Target"	"TARGET"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"SleepBirth1"
+			}
 		}
 		
 		"Modifiers"
@@ -3346,6 +3351,53 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-30"	//魔抗
+				}
+			}
+			"modifier_soul_adderx"
+			{
+				"Duration"	"4"
+				"EffectName"	"particles/item/soul_adderrope.vpcf"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Puck.Phase_Shift"
+						"Target"	"TARGET"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"over"
+						"Target"	"TARGET"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"over"
+						"Target"	"TARGET"
+					}
+				}
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"over"
+						"Target"	"TARGET"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"			"MODIFIER_STATE_VALUE_ENABLED"	// Don't use these state for a channeling ability.
+					// 	"MODIFIER_STATE_OUT_OF_GAME"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"Passive_soul_adder"
@@ -3518,6 +3570,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"RevealMap"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
@@ -3536,6 +3593,7 @@
                 "ModifierName"      "modifier_truesight"
                 "Duration"      "10"
             }
+            
 		}
 		"Modifiers"
 		{
@@ -4100,6 +4158,11 @@
 				"Target"        "TARGET"
 				"HealAmount"	"400"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"HolyBolt"
+			}
 		}
 		
 		"Modifiers"
@@ -4178,6 +4241,12 @@
 					{}
             	}
             }
+            "RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"RestorationPotion"
+			}
 		}
 	}
 
@@ -5323,6 +5392,11 @@
 				"ModifierName"	"modifier_great_sword_of_teleport"
 				"Target" 		"CASTER"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"MassTeleportTarget"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -5781,7 +5855,7 @@
 		"AbilityCooldown"	"70"
 		
 		"AbilityManaCost"	"275"
-
+		"AbilityCastRange"				"800"
 		"ID"	"2718"
 		"ItemQuality"	"component"
 		"Model"	"models/weapon/weapon.vmdl"
@@ -6475,6 +6549,12 @@
 				"Function"	"Shock"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"AncestralSpirit"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -6771,6 +6851,12 @@
 				"ScriptFile"	"items/Addon_Items/item_ninja_sword.lua"
 				"Function"	"Shock"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"WindWalk"
+			}
 		}
 		
 		"Modifiers"
@@ -6959,6 +7045,12 @@
 				"ScriptFile"	"items/Addon_Items/item_commander_of_fan.lua"
 				"Function"	"Shock"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"Silence1"
 			}
 		}
 		
@@ -8951,6 +9043,11 @@
 				"Target"        "TARGET"
 				"HealAmount"	"650"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"HolyBolt"
+			}
 		}
 		"Modifiers"
 		{
@@ -10074,6 +10171,12 @@
 		            }
             	}
             }
+            "RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"HealingWave"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -10257,6 +10360,12 @@
 				"Target"	"CASTER"
 				"ModifierName"      "modifier_poketto_of_meiso"
 	            "Duration"      "6"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"ManaPotion"
 			}
 		}
 		
@@ -10728,6 +10837,12 @@
 				"Function"		"Shock"
 				"Mana"			"500"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"RestorationPotion"
+			}
 		}
 		
 		"Modifiers"
@@ -10792,6 +10907,12 @@
 				"ScriptFile"	"items/Addon_Items/item_rations.lua"
 				"Function"		"Shock"
 				"Mana"			"600"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"RestorationPotion"
 			}
 		}
 		
@@ -11063,6 +11184,11 @@
                 "ModifierName"      "modifier_truesight"
                 "Duration"      "10"
             }
+            "FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"RevealMap"
+			}
 		}
 		"OnUnequip"
 		{
@@ -12204,6 +12330,12 @@
 				"ScriptFile"	"items/Addon_Items/item_reito_lantern.lua"
 				"Function"	"reito_lantern"
 				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"HealingWave"
 			}
 			"AttachEffect"
 			{
@@ -14011,7 +14143,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityDamage"		"150"
-		"AbilityCooldown"	"0.1"
+		"AbilityCooldown"	"0.2"
 		"AbilityCastRange"	"800"
 		"AoERadius"			"250"
 
@@ -15321,6 +15453,11 @@
 
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"RevealMap"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"items/Addon_Items/item_insight_gem.lua"
@@ -15407,9 +15544,9 @@
 		
 		"ID"	"3831"
 		"ItemQuality"	"component"
-		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Model"	"models/weapon/weapon.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"6300"
+		"ItemCost"	"1000"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"SideShop"						"1"
 
@@ -15782,9 +15919,9 @@
 		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/flash_shoes"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.0"
+		"AbilityCastPoint"	"0.01"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"250"
 		"AOERadius"	"850"

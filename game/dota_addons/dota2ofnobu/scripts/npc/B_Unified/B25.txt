@@ -7,6 +7,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/b25.vsndevts"
+			"particle"	"particles/title/b25t.vpcf"
 		}
 	}
 	// 本願寺顯如 退魔擊
@@ -662,6 +663,14 @@
 				"Function"			"B25T_start"
 				"Target"			"POINT"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"Target"			"POINT"
+				"dummy"	"1"
+				"title"	"particles/title/b25t.vpcf"
+			}
 		}
 
 		"Modifiers"
@@ -776,6 +785,14 @@
 				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B25_Honganji_Kennyo.lua"
 				"Function"			"B25T_start"
 				"Target"			"POINT"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"Target"			"POINT"
+				"dummy"	"1"
+				"title"	"particles/title/b25t.vpcf"
 			}
 		}
 

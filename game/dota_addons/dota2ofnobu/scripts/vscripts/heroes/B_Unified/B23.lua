@@ -259,7 +259,7 @@ function B23E_onSpellStart( keys )
 	        vSpawnOrigin = caster.B23D_ghostTable[i]:GetOrigin(),
 	        Target = target,
 	        Source = caster.B23D_ghostTable[i],
-	        bDodgeable = false,
+	        bDodgeable = true,
 	        iMoveSpeed = 1300,
 	        iVisionRadius = 225,
 			iVisionTeamNumber = caster:GetTeamNumber(),

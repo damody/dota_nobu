@@ -17,8 +17,9 @@
 			_class = "C_OP_RenderSprites"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bAdditive = true
-			m_hTexture = resource:"materials/particle/lanaya/lanaya_psionic_trap.vtex"
+			m_hTexture = resource:"materials/title/a17t.vtex"
 			m_nOrientationType = 2
+			m_flAddSelfAmount = 1.0
 		},
 	]
 	m_Operators = 
@@ -48,6 +49,11 @@
 			m_flOffset = 10.0
 			m_bIncludeWater = true
 		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 2.0
+			m_flEndScale = 3.0
+		},
 	]
 	m_Initializers = 
 	[
@@ -66,15 +72,19 @@
 	[
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_core_crystal.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_core.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_rings.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_rings_inner.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_bits.vpcf"
@@ -86,13 +96,38 @@
 		},
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_core_glow.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_core_rays.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/a17/a17t_old_buff_core_ring.vpcf"
+			m_bDisableChild = true
 		},
 	]
 	m_flConstantRotationSpeed = 0.2
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
 }

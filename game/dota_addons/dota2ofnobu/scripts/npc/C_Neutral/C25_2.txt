@@ -3,21 +3,14 @@
 	// 茶茶
 	"C25"
 	{
-		// General
-		// ----------------------------------------------------------------
+		"ModelScale"	"1.6"
+		"Model"	"models/c25/c25.vmdl"
+		"DisableWearables"	"1"
 		"override_hero"	"npc_dota_hero_templar_assassin"
 		//"Level"	"5"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"
-		//"Model"	"models/heroes/mirana/mirana.vmdl"
 		
-		// //"Enabled"		"1"
-		// "HeroUnlockOrder"		"1"
-		// "Role"			"Carry,Support,Escape,Nuker,Disabler"
-		// "Rolelevels"	"1,1,2,1,1"
-		// "Team"		"Good"
-		// "HeroID"		"9"
-		"ModelScale"	"1"
 		"HeroGlowColor"	"220 194 248"
 		"CMEnabled"	"1"
 		// Abilities

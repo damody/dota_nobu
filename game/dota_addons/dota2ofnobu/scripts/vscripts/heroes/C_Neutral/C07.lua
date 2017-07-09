@@ -228,7 +228,11 @@ function C07_Effect( keys )
 	local dummyx = caster.C07T_dummy
 	
 	local ii = 0
+	local dis = 99999
 	if caster.C07E_target ~= nil and IsValidEntity(caster.C07E_target) then
+		local dis = (caster.C07E_target:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
+	end
+	if dis<1400 then
 		local v = caster.C07E_target
 		ii = 1
 		StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )

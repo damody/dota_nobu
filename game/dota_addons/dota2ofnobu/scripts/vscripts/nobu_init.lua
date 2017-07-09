@@ -68,13 +68,8 @@ function _G.Nobu:InitGameMode()
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
   
-  if _G.hardcore then
-    GameRules:SetGoldPerTick(10)-- 設置金錢
-    GameRules:SetGoldTickTime(3)--金錢跳錢秒數
-  else
-    GameRules:SetGoldPerTick(10)-- 設置金錢
-    GameRules:SetGoldTickTime(3)--金錢跳錢秒數
-  end
+  GameRules:SetGoldPerTick(10)-- 設置金錢
+  GameRules:SetGoldTickTime(3)--金錢跳錢秒數
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
   GameRules:SetCustomGameEndDelay(30) --遊戲結束時間 --正常30

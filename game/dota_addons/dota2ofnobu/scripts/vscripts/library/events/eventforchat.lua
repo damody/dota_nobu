@@ -5,15 +5,6 @@ BUG
 
 local inspect = require("inspect")
 
-function SendHTTPRequest(path, method, values, callback)
-	local req = CreateHTTPRequestScriptVM( method, "http://140.114.235.19/"..path )
-	for key, value in pairs(values) do
-		req:SetHTTPRequestGetOrPostParameter(key, value)
-	end
-	req:Send(function(result)
-		callback(result.Body)
-	end)
-end
 
 skin_table = {
 	["128732954"] = true,
@@ -132,6 +123,17 @@ function DumpTable( tTable )
  	))
 end
 
+
+function SendHTTPRequest(path, method, values, callback)
+	local req = CreateHTTPRequestScriptVM( method, "http://127.0.0.1/"..path )
+	for key, value in pairs(values) do
+		req:SetHTTPRequestGetOrPostParameter(key, value)
+	end
+	req:Send(function(result)
+		callback(result.Body)
+	end)
+end
+
 local function chat_of_test(keys)
 	--DeepPrintTable(keys)
 	-- [   VScript ]:    playerid                        	= 0 (number)
@@ -190,7 +192,7 @@ local function chat_of_test(keys)
 			_G.CountUsedAbility_Table.rank = 1
 		end
 		DeepPrintTable(_G.CountUsedAbility_Table)
-		--[[
+		
 		SendHTTPRequest("save_ability_data", "POST",
 			{
 			  data = tostring(inspect(_G.CountUsedAbility_Table)),
@@ -198,7 +200,7 @@ local function chat_of_test(keys)
 			function(result)
 			  print(result)
 			end)
-		]]
+		
 	end
 	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
 	local skin = false
@@ -224,6 +226,12 @@ local function chat_of_test(keys)
 		caster.skin = "school"
 		caster:SetModel("models/b16/b16_school.vmdl")
 		caster:SetOriginalModel("models/b16/b16_school.vmdl")
+	end
+	if (s == "-skin" and nobu_id == "C19" and skin) then
+		caster.skin = "school"
+		caster:SetModel("models/c19/c19_school.vmdl")
+		caster:SetOriginalModel("models/c19/c19_school.vmdl")
+		caster:AddAbility("C19_school"):SetLevel(1)
 	end
 	if (s == "-long" and nobu_id == "A31") then
 		caster:SetModel("models/a31/a31_long.vmdl")

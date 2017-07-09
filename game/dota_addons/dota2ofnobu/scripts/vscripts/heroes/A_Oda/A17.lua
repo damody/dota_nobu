@@ -84,7 +84,7 @@ function A17T( event )
 		Ability = ability,
 		Target = target,
 		Source = caster,
-		bDodgeable = false,
+		bDodgeable = true,
 		bProvidesVision = false,
 		vSpawnOrigin = point,
 		iMoveSpeed = projectile_speed,

@@ -227,7 +227,7 @@ function B02R_MOVE(keys)
 		Source = dummy,
 		Ability = ability,
 		EffectName = "particles/b02r4/b02r4.vpcf",
-		bDodgeable = false,
+		bDodgeable = true,
 		bProvidesVision = true,
 		iMoveSpeed = 1000,
         iVisionRadius = 10,

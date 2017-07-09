@@ -122,6 +122,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
 				"Function"	"A12D"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a12d.vpcf"
+			}
 		}
 		"Modifiers"
 		{

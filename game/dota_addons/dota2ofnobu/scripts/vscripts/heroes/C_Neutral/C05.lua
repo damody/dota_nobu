@@ -11,7 +11,7 @@ function C05E_OnSpellStart( keys )
 		Source = caster,
 		Ability = ability,
 		EffectName = "particles/econ/items/zeus/lightning_weapon_fx/zuus_base_attack_immortal_lightning.vpcf",
-		bDodgeable = false,
+		bDodgeable = true,
 		bProvidesVision = false,
 		iMoveSpeed = projectile_speed,
 		iVisionRadius = 0,

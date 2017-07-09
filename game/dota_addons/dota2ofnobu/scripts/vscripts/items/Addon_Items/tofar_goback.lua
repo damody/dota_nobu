@@ -105,9 +105,18 @@ function warrior_souls_OnDeath( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	if (keys.attacker:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then
-		GameRules: SendCustomMessage("<font color='#ffff00'>織田軍擊殺了武士亡靈</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+		GameRules: SendCustomMessage("<font color='#ffff00'>織田軍擊殺了武士亡靈並得到黃金</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 	else
-		GameRules: SendCustomMessage("<font color='#ffff00'>聯合軍擊殺了武士亡靈</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+		GameRules: SendCustomMessage("<font color='#ffff00'>聯合軍擊殺了武士亡靈並得到黃金</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+	end
+	for playerID=0,9 do
+		local player = PlayerResource:GetPlayer(playerID)
+        if player then
+          local hero = player:GetAssignedHero()
+          if hero:GetTeamNumber() == keys.attacker:GetTeamNumber() then
+          	AMHC:GivePlayerGold_UnReliable(playerID, 1000)
+          end
+      	end
 	end
 end
 
@@ -192,7 +201,7 @@ function reward6300(keys)
 		ability:ApplyDataDrivenModifier(caster,dummy,"modifier_kill",{duration=60})
 		dummy:AddAbility("reward6300"):SetLevel(1)
 		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_hero_aura",nil)
-		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_auramodifier_reward6300_aura",nil)
+		dummy:FindAbilityByName("reward6300"):ApplyDataDrivenModifier(dummy,dummy,"modifier_reward6300_aura",nil)
 	end
 end
 
@@ -290,7 +299,7 @@ function dead_give_item(keys)
 	local pos = caster:GetAbsOrigin()
 	print("keys.item "..keys.item)
 	local item = CreateItem(keys.item,nil, nil)
-	CreateItemOnPositionSync(pos, item)
+	CreateItemOnPositionSync(pos+RandomVector(100), item)
 end
 
 function near_hero_then_can_use_ability(keys)
@@ -321,6 +330,23 @@ function near_hero_then_can_use_ability(keys)
     	break
     end
 
+end
+
+function update_buy_ninja3(keys)
+	local caster = keys.caster.owner
+	if caster.buy_ninja3 then
+		caster.buy_ninja3 = caster.buy_ninja3 - 1
+	end
+end
+
+function call_ninja3_OnAbilityPhaseStart(keys)
+	local caster = keys.caster
+	if caster.buyer.buy_ninja3 == nil then caster.buyer.buy_ninja3 = 0 end
+	if caster.buyer.buy_ninja3 >= 15 then
+		caster:Interrupt()
+	else
+		caster.buyer.buy_ninja3 = caster.buyer.buy_ninja3 + 1
+	end
 end
 
 function update_buy_ninja1(keys)
@@ -355,6 +381,7 @@ function call_ninja2(keys)
 	local pos = caster:GetAbsOrigin()
 	local donkey = CreateUnitByName("ninja_unit2", caster:GetAbsOrigin() + Vector(50, 100, 0), true, caster, caster, caster:GetTeamNumber())
     donkey:SetOwner(caster.buyer)
+    donkey.owner = caster.buyer
     donkey:SetControllableByPlayer(caster.buyer:GetPlayerOwnerID(), true)
     donkey:AddNewModifier(donkey,ability,"modifier_phased",{duration=0.1})
     donkey:FindAbilityByName("ninja_hole"):SetLevel(1)
@@ -365,6 +392,7 @@ function call_ninja3(keys)
 	local pos = caster:GetAbsOrigin()
 	local donkey = CreateUnitByName("ninja_unit3", caster:GetAbsOrigin() + Vector(50, 100, 0), true, caster, caster, caster:GetTeamNumber())
     donkey:SetOwner(caster.buyer)
+    donkey.owner = caster.buyer
     donkey:SetControllableByPlayer(caster.buyer:GetPlayerOwnerID(), true)
     donkey:AddNewModifier(donkey,ability,"modifier_phased",{duration=0.1})
 end

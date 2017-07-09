@@ -57,7 +57,7 @@ function B28R_OnIntervalThink( keys )
 		        vSpawnOrigin = caster:GetAbsOrigin(),
 		        Target = v,
 		        Source = caster,
-		        bDodgeable = false,
+		        bDodgeable = true,
 		        iMoveSpeed = 1300,
 		        iVisionRadius = 225,
 				iVisionTeamNumber = caster:GetTeamNumber(),
@@ -392,16 +392,12 @@ function B28T_old( keys )
 		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 200, 1, false)
 		for i=1,5 do
 			local random = RandomVector(RandomInt( (i-1)*radius/6 , i*radius/6 ))
-			local ifx = ParticleManager:CreateParticle("particles/b28t_old/b28t_old.vpcf", PATTACH_CUSTOMORIGIN, caster)
+			local ifx = ParticleManager:CreateParticle("particles/b34t/b34t2_a.vpcf", PATTACH_CUSTOMORIGIN, caster)
 			ParticleManager:SetParticleControl(ifx, 0, point + random)
-			local ifx2 = ParticleManager:CreateParticle("particles/b28t_old/b28t_old2.vpcf", PATTACH_CUSTOMORIGIN, caster)
-			ParticleManager:SetParticleControl(ifx2, 0, point + random)
 			for j=1,2 do
 				local random2 = RandomVector(RandomInt( 4*radius/6 , 5*radius/6 ))
-				local ifx3 = ParticleManager:CreateParticle("particles/b28t_old/b28t_old.vpcf", PATTACH_CUSTOMORIGIN, caster)
+				local ifx3 = ParticleManager:CreateParticle("particles/b34t/b34t2_a.vpcf", PATTACH_CUSTOMORIGIN, caster)
 				ParticleManager:SetParticleControl(ifx3, 0, point + random2)
-				local ifx4 = ParticleManager:CreateParticle("particles/b28t_old/b28t_old2.vpcf", PATTACH_CUSTOMORIGIN, caster)
-				ParticleManager:SetParticleControl(ifx4, 0, point + random2)
 			end
 		end
 

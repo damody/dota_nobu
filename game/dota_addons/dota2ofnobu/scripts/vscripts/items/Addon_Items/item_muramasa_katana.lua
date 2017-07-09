@@ -26,20 +26,19 @@ function StealLife(keys)
 			caster.nobuorb1 = "muramasa_katana"
 			local damageReduction = 0
 			local targetArmor = target:GetPhysicalArmorValue()
-			if target:IsHero() then
+			if targetArmor > 0 then
 				damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
 			else
+				targetArmor = -targetArmor
 				damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
+				damageReduction = -damageReduction
 			end
-			--print("steal1 "..dmg*keys.StealPercent*0.02*(damageReduction))
-			--print("steal2 "..dmg*keys.StealPercent*0.02)
-			if damageReduction < 0 then
-				damageReduction = 1
+			if damageReduction < -1 then
+				damageReduction = -1
 			end
 			if damageReduction > 1 then
 				damageReduction = 1
 			end
-			--print(dmg, damageReduction, target:GetPhysicalArmorValue(), dmg*keys.StealPercent*0.01*(1-damageReduction))
 			caster:Heal(dmg*keys.StealPercent*0.01*(1-damageReduction), ability)
 		    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 		end
@@ -58,18 +57,19 @@ function StealLife2(keys)
 		if not target:IsBuilding() then
 			local damageReduction = 0
 			local targetArmor = target:GetPhysicalArmorValue()
-			if target:IsHero() then
+			if targetArmor > 0 then
 				damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
 			else
+				targetArmor = -targetArmor
 				damageReduction = ((0.06 * targetArmor) / (1 + 0.06* targetArmor))
+				damageReduction = -damageReduction
 			end
-			if damageReduction < 0 then
-				damageReduction = 1
+			if damageReduction < -1 then
+				damageReduction = -1
 			end
 			if damageReduction > 1 then
 				damageReduction = 1
 			end
-			--print("steal "..dmg*keys.StealPercent*0.02*(1-damageReduction))
 			caster:Heal(dmg*keys.StealPercent*0.01*(1-damageReduction), ability)
 		    ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, caster)
 		end

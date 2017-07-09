@@ -166,6 +166,7 @@ function C21E_OnSpellStart(keys)
     local  point2 = u2:GetAbsOrigin() --獲取目標的座標
     local  time = keys.ability:GetLevel()+1--獲取技能等級
     keys.ability:ApplyDataDrivenModifier(u,u2,"modifier_C21EStun",{duration = 0.5})
+    AMHC:Damage(u,u2,1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ))
     --timer2
     u:FindAbilityByName("C21W"):SetActivated(false)
     Timers:CreateTimer(0.5*(time+1), function()
@@ -380,7 +381,7 @@ function C21E_old_start( keys )
 	local level = ability:GetLevel()-1
 	local attack_count = ability:GetLevelSpecialValueFor("attack_count",level)
 	local attack_delay = ability:GetLevelSpecialValueFor("attack_delay",level)
-
+	AMHC:Damage(caster,target,1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ))
 	-- 安裝無敵修改器！
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_C21E_old",{duration=attack_count*attack_delay})
 

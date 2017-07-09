@@ -8,7 +8,7 @@ function A03W_OnSpellStart( keys )
 		Ability = ability,
 		Target = target,
 		Source = caster,
-		bDodgeable = false,
+		bDodgeable = true,
 		bProvidesVision = false,
 		vSpawnOrigin = caster:GetAbsOrigin(),
 		iMoveSpeed = 1200,
@@ -69,10 +69,10 @@ function A03E_OnToggleOff( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	caster:SetModel("models/heroes/lone_druid/lone_druid.vmdl")
-	caster:SetOriginalModel("models/heroes/lone_druid/lone_druid.vmdl")
+	caster:SetModel("models/a03/a03.vmdl")
+	caster:SetOriginalModel("models/a03/a03.vmdl")
 	caster:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
-	caster:SetModelScale(1)
+	caster:SetModelScale(1.4)
 end
 
 function A03R_OnAttackLanded( keys )

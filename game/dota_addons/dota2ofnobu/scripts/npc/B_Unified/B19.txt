@@ -128,21 +128,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"A25E.vo1"
-			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B19.lua"
 				"Function"	"B19E_OnSpellStart"
 				"Target"	"POINT"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Lina.DragonSlave"
-				"Target"	"CASTER"
 			}
 		}
 		"Modifiers"

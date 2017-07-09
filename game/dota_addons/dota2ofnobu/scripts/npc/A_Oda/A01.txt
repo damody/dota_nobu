@@ -10,6 +10,7 @@
 			"particle"	"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_ring_dc.vpcf"
 			"particle"	"particles/a01/a01e.vpcf"
 			"particle"	"particles/a01/a01t.vpcf"
+			"particle"	"particles/title/a01t.vpcf"
 		}
 	}
 	// 德川家康 天下之勢
@@ -120,7 +121,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"A01W.vo1"
+				"EffectName"	"HolyBolt"
 			}
 			"ActOnTargets"
 			{
@@ -426,6 +427,12 @@
 				}
 				"ModifierName"	"modifier_A01T_aura"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a01t.vpcf"
+			}
 		}
 		"Modifiers"
 		{
@@ -583,10 +590,9 @@
 		{
 			"FireSound"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"A01W.vo1"
+				"Target"	"TARGET"
+				"EffectName"	"HolyBolt"
 			}
-
 			"Heal"
 			{
 				"Target"        "TARGET"
@@ -796,6 +802,12 @@
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
 				"ModifierName"	"modifier_A01T_old_aura"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a01t.vpcf"
 			}
 		}
 		"Modifiers"

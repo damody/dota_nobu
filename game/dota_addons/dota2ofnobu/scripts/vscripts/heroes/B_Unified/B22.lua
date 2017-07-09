@@ -255,7 +255,7 @@ function B22T_old_OnSpellStart( keys )
 					Source = dummy,
 					Ability = ability,
 					EffectName = "particles/b22t_old.vpcf",
-					bDodgeable = false,
+					bDodgeable = true,
 					bProvidesVision = false,
 					iMoveSpeed = 600,
 			        iVisionRadius = 0,

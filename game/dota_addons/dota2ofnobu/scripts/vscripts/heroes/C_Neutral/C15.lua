@@ -230,7 +230,7 @@ function C15W_old( keys )
 				Source = caster,
 				Ability = ability,
 				EffectName = "particles/units/heroes/hero_mirana/mirana_base_attack.vpcf",
-				bDodgeable = false,
+				bDodgeable = true,
 				bProvidesVision = true,
 				iMoveSpeed = 1500,
 			    iVisionRadius = 0,

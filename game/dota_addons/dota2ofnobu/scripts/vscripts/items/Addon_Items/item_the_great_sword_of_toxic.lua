@@ -94,7 +94,7 @@ function Shock_bow_of_scorpion( keys )
 		Ability = ability,
 		Target = v,
 		Source = caster,
-		bDodgeable = false,
+		bDodgeable = true,
 		bProvidesVision = false,
 		vSpawnOrigin = caster:GetAbsOrigin(),
 		iMoveSpeed = 1200,
