@@ -36,12 +36,17 @@ function Shock( keys )
 	local target = keys.target
 	local ability = keys.ability
   local monster = CreateUnitByName("great_sword_of_disease_unit",caster:GetAbsOrigin() ,false,caster,caster,caster:GetTeamNumber())
-  monster:SetControllableByPlayer(caster:GetPlayerOwnerID(),false)
+  
   if caster:GetUnitName() == "B07E_UNIT" then
     monster:SetControllableByPlayer(caster.master:GetPlayerOwnerID(),false)
+    ability:ApplyDataDrivenModifier(monster, monster,"modifier_kill", {duration=30})
+    monster.master = caster.master
+  else
+    ability:ApplyDataDrivenModifier(monster, monster,"modifier_kill", {duration=60})
+    monster:SetControllableByPlayer(caster:GetPlayerOwnerID(),false)
+    monster.master = caster
   end
   monster:AddNewModifier(monster,ability,"modifier_phased",{duration=0.1})
-  ability:ApplyDataDrivenModifier(monster, monster,"modifier_dead", {duration=60})
   caster:AddNewModifier(caster,ability,"modifier_phased",{duration=0.1})
 end
 
@@ -62,6 +67,13 @@ function getmana( keys )
     caster:SetMana(caster:GetMana()+150)
 end
 
+function sword_of_disease_W( keys )
+    --【Basic】
+    local caster = keys.caster
+    local target = keys.target
+    local ability = keys.ability
+    ability:ApplyDataDrivenModifier(caster, target,"modifier_perceive_wine_hyper", {duration=(5+caster.master:GetLevel()*0.16)})
+end
 
 function attackgo( keys )
     --【Basic】
@@ -74,20 +86,24 @@ function attackgo( keys )
     if caster:GetMana() < spe_value then
 
     else
-        caster:SetMana(caster:GetMana() - spe_value)
-        local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-                                  target:GetAbsOrigin(),
-                                  nil,
-                                  300,
-                                  DOTA_UNIT_TARGET_TEAM_ENEMY,
-                                  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
-                                  DOTA_UNIT_TARGET_FLAG_NONE,
-                                  FIND_ANY_ORDER,
-                                  false)
-
-        for _,it in pairs(direUnits) do
-          AMHC:Damage(caster,it,320,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+      caster:SetMana(caster:GetMana() - spe_value)
+      local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+            target:GetAbsOrigin(),
+            nil,
+            300,
+            DOTA_UNIT_TARGET_TEAM_ENEMY,
+            DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
+            DOTA_UNIT_TARGET_FLAG_NONE,
+            FIND_ANY_ORDER,
+            false)
+      local dmg = 150+caster.master:GetLevel()*5
+      for _,it in pairs(direUnits) do
+        if it:IsBuilding() then
+          AMHC:Damage(caster,it,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+        else
+          AMHC:Damage(caster,it,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
         end
+      end
     end
 end
 
@@ -104,14 +120,14 @@ end
 function ToSick(keys)
     local caster = keys.caster
     local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
-                                  caster:GetAbsOrigin(),
-                                  nil,
-                                  500,
-                                  DOTA_UNIT_TARGET_TEAM_ENEMY,
-                                  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-                                  DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-                                  FIND_ANY_ORDER,
-                                  false)
+          caster:GetAbsOrigin(),
+          nil,
+          500,
+          DOTA_UNIT_TARGET_TEAM_ENEMY,
+          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+          FIND_ANY_ORDER,
+          false)
 
     --effect:傷害+暈眩
     for _,it in pairs(direUnits) do
@@ -124,14 +140,17 @@ end
 function make_line(keys)
     local caster = keys.caster
     local target = keys.target
-    local chaos_effect1 = ParticleManager:CreateParticle("particles/radiant_fx/tower_good3_powerline.vpcf", PATTACH_ABSORIGIN, keys.caster)
-    ParticleManager:SetParticleControl(chaos_effect1,0, caster:GetAbsOrigin()+Vector(0, 0, 100))
-    ParticleManager:SetParticleControl(chaos_effect1,4, target:GetAbsOrigin()+Vector(0, 0, 100))
-    local chaos_effect2 = ParticleManager:CreateParticle("particles/radiant_fx/tower_good3_powerline.vpcf", PATTACH_ABSORIGIN, keys.caster)
-    ParticleManager:SetParticleControl(chaos_effect2,0, caster:GetAbsOrigin()+Vector(0, 0, 100))
-    ParticleManager:SetParticleControl(chaos_effect2,4, target:GetAbsOrigin()+Vector(0, 0, 100))
+    local chaos_effect1 = ParticleManager:CreateParticle("particles/a11e/a11e_rope.vpcf", PATTACH_CUSTOMORIGIN, caster)
+    ParticleManager:SetParticleControlEnt(chaos_effect1, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetAbsOrigin(), true)
+    ParticleManager:SetParticleControlEnt(chaos_effect1, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+    caster.A11E_target = target
+
+    local chaos_effect2 = ParticleManager:CreateParticle("particles/a11e/a11e_rope_flames.vpcf", PATTACH_CUSTOMORIGIN, caster)
+    ParticleManager:SetParticleControlEnt(chaos_effect2, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetAbsOrigin(), true)
+    ParticleManager:SetParticleControlEnt(chaos_effect2, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
     caster.chaos_effect1 = chaos_effect1
     caster.chaos_effect2 = chaos_effect2
+    
 end
 
 function line_end(keys)
@@ -139,7 +158,6 @@ function line_end(keys)
     ParticleManager:DestroyParticle(caster.chaos_effect1, false)
     ParticleManager:DestroyParticle(caster.chaos_effect2, false)
 end
-
 
 function Real_OnSpellStart( keys )
   local caster = keys.caster

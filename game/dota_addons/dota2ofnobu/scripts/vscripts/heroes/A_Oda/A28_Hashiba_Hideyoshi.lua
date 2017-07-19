@@ -53,15 +53,14 @@ function A28E_Jump(keys)
 	else
 		target:Heal(ability:GetAbilityDamage(), caster)
 	end
-	-- Removes the hidden modifier
-	target:RemoveModifierByName("modifier_arc_lightning_datadriven")
+	
 	local count = 0
 	-- Waits on the jump delay
 
 	Timers:CreateTimer(jump_delay,
 	function()
 	-- Finds the current instance of the ability by ensuring both current targets are the same
-	local current
+	local current = ability.instance
 	for i=0,ability.instance do
 		if ability.target[i] ~= nil then
 			if ability.target[i] == target then
@@ -90,18 +89,20 @@ function A28E_Jump(keys)
 		local new_target
 		for i,unit in ipairs(units) do
 			-- Positioning and distance variables
-			local unit_location = unit:GetAbsOrigin()
-			local vector_distance = pos - unit_location
-			local distance = (vector_distance):Length2D()
-			-- Checks if the unit is closer than the closest checked so far
-			if distance < closest then
-				-- If the unit has not been hit yet, we set its distance as the new closest distance and it as the new target
-				if unit.hit == nil then
-					new_target = unit
-					closest = distance
-				elseif unit.hit[current] == nil then
-					new_target = unit
-					closest = distance
+			if unit ~= target then
+				local unit_location = unit:GetAbsOrigin()
+				local vector_distance = pos - unit_location
+				local distance = (vector_distance):Length2D()
+				-- Checks if the unit is closer than the closest checked so far
+				if distance < closest then
+					-- If the unit has not been hit yet, we set its distance as the new closest distance and it as the new target
+					if unit.hit == nil then
+						new_target = unit
+						closest = distance
+					elseif unit.hit[current] == nil then
+						new_target = unit
+						closest = distance
+					end
 				end
 			end
 		end
@@ -123,13 +124,17 @@ function A28E_Jump(keys)
 		-- If there are no more jumps, we set the current target to nil to indicate this instance is over
 		ability.target[current] = nil
 	end
+	-- Removes the hidden modifier
+	if IsValidEntity(target) then
+		target:RemoveModifierByName("modifier_arc_lightning_datadriven")
+	end
 	end)
 end
 
 --[[Author: YOLOSPAGHETTI
 	Date: March 24, 2016
 	Keeps track of all instances of the spell (since more than one can be active at once)]]
-function A28E(keys)
+function A28E_old(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
@@ -671,7 +676,7 @@ function for_heal(keys)
 			if unit:GetHealthPercent() < 95 then
 				print("for_heal")
 				keys.target = unit
-				A28E(keys)
+				A28E_old(keys)
 				break
 			end
 		end

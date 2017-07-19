@@ -729,7 +729,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-				"Function"	"A28E"
+				"Function"	"A28E_old"
 				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
 			}
 			"AttachEffect"
@@ -777,7 +777,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"jump_count"	"15"
+				"jump_count"	"4 6 8 10"
 			}
 			"03"
 			{
@@ -787,7 +787,7 @@
 		}
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"150 300 450 600"
+		"AbilityDamage"	"200 300 400 500"
 	}
 
 	// 羽柴秀吉 [火炎彈]

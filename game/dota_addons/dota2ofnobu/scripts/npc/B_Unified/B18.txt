@@ -14,6 +14,7 @@
 			"particle"  "particles/c17e2/c17e2.vpcf"
 			"particle"  "particles/b28e_rope.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"	"particles/title/b18t.vpcf"
 		}
 	}
 
@@ -241,6 +242,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
 				"Function"		"B18T_OnSpellStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b18t.vpcf"
 			}
 		}
 
@@ -526,6 +533,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B18.lua"
 				"Function"		"B18T_old_OnSpellStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b18t.vpcf"
 			}
 		}
 

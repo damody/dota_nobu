@@ -136,7 +136,7 @@ function A03T_old_OnSpellStart( keys )
  	local base_hp = ability:GetLevelSpecialValueFor("base_hp",level)
 
  	local Kagutsuchi = CreateUnitByName("A03T_old",point2 ,true,caster,caster,caster:GetTeam())
- 	-- 設定火神數值
+ 	
  	Kagutsuchi:AddAbility("A03TW_old"):SetLevel(ability:GetLevel())
  	Kagutsuchi:SetForwardVector(dir)
 	Kagutsuchi:SetControllableByPlayer(player, true)

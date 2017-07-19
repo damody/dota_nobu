@@ -294,6 +294,11 @@ function attack_building(keys)
 end
 
 
+function dead_destroy(keys)
+	local caster = keys.caster
+	caster:Destroy()
+end
+
 function dead_give_item(keys)
 	local caster = keys.caster
 	local pos = caster:GetAbsOrigin()
@@ -413,3 +418,40 @@ function warrior_souls_OnAttackLanded(keys)
 	local target = keys.target
 	target:SetMana(0)
 end
+
+function afk_gogo(keys)
+	for _,hero in ipairs(HeroList:GetAllHeroes()) do
+		local id = hero:GetPlayerID()
+		local team = PlayerResource:GetTeam(id)
+		local state = PlayerResource:GetConnectionState(id)
+		if state == 3 then -- 2 = connected
+			if hero.donkey ~= nil then
+				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
+   				if hero.stop == nil then
+   					hero.stop = 1
+   				else
+   					hero.stop = hero.stop + 1
+   					if hero.stop > 3 then
+		   				hero:SetAbsOrigin(Vector(99999,99999,0))
+		   			end
+		   			hero:Stop()
+   				end
+   			end
+   			hero:AddNewModifier(nil, nil, 'modifier_stunned', {duration=1.5})
+   		elseif state == 2 then
+   			if hero.stop ~= nil then
+   				hero.stop = nil
+   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
+   				hero:RemoveModifierByName("modifier_stunned")
+   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+   			end
+   			if hero:GetAbsOrigin().x > 90000 then
+   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+   			end
+   			if hero.donkey ~= nil and hero.donkey:GetAbsOrigin().x > 90000 then
+   				FindClearSpaceForUnit(hero.donkey,hero.donkey.oripos,true)
+   			end
+		end
+	end
+end
+

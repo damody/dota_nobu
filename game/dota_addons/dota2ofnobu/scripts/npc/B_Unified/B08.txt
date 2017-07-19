@@ -7,6 +7,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/b08.vsndevts"
+			"particle"	"particles/title/b08d.vpcf"
 		}
 	}
 	// 淺井長政 一刀．連牙斷空
@@ -39,6 +40,14 @@
 			{
 				"ModifierName"	"modifier_shockwave_hidden_cast"
 				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"Target"	"TARGET"
+				"dummy"		"1"
+				"title"	"particles/title/b08d.vpcf"
 			}
 		}
 		"OnSpellStart"
@@ -509,7 +518,7 @@
 		"LevelsBetweenUpgrades"	"2"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
-		"AbilityCooldown"	"10 9 8 7"
+		"AbilityCooldown"	"7"
 		"AbilityManaCost"	"120 130 140 150"
 		"AbilityCastRange"	"1150 1200 1250 1300"
 		"AbilityDamage"	"300 400 500 600"

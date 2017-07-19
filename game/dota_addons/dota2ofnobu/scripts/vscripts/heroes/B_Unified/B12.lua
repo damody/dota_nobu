@@ -10,6 +10,7 @@ function B12W_OnSpellStart( keys )
 		ParticleManager:DestroyParticle(particle,true)
 		return nil
     	end)
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1,1)
 end
 
 
@@ -41,7 +42,6 @@ function B12W_DelayedAction( keys )
 			end
 		end
 	end	
-
 end
 
 function B12E_OnSpellStart( keys )

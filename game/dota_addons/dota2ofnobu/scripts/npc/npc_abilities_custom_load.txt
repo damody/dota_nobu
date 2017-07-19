@@ -232,6 +232,32 @@
 			}
 		}
 	}
+	// 中離右上角
+	"afk_gogo"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_26"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		
+		"Modifiers"
+		{
+			"modifier_afkgogo"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"ThinkInterval"  "3"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"		"afk_gogo"
+					}
+				}
+			}
+		}
+	}
 	// 買兵力
 	"gold_to_prestige"
 	{
@@ -928,6 +954,40 @@
 						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
 						"Function"		"dead_give_item"
 						"item"	"item_reward6300"
+					}
+				}
+			}
+		}
+	}
+	// 死了消失
+	"dead_destroy"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_21"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"50000"
+		"AbilityManaCost"	"20"
+		"AOERadius"		"900"
+
+		"Modifiers"
+		{
+			"dead_destroy"
+			{
+				"IsHidden"      "1"
+				"Passive"	"1"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"		"dead_destroy"
 					}
 				}
 			}
@@ -2444,7 +2504,7 @@
 	"war_magic_back_wall"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"custom/icon_128x128_47"
+		"AbilityTextureName"	"custom/icon_128x128_48"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -2778,7 +2838,6 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "40"	//回血
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "20" 	//回魔
 				}
 				"Passive"	"0"
 				"Duration"	"20"
@@ -3302,10 +3361,11 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
 				"Target"	"TARGET"
-				"ModifierName"	"modifier_perceive_wine_hyper"
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_disease.lua"
+				"Function"	"sword_of_disease_W"
 			}
 		}
 		"Modifiers"
@@ -3489,6 +3549,8 @@
 						"Damage"	"185"
 					}
 				}
+				"EffectName"		"particles/a11e/a11e2.vpcf"
+				"EffectAttachType"	"follow_origin"
 				"Duration"	"2.6"
 				"IsPurgable"	"1"
 				"IsDebuff"		"1"
@@ -3579,6 +3641,12 @@
 			{
 				"Passive"	"0"
 				"IsHidden"	"0"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"    "particles/item/disease_unit.vpcf"
+				}
+				
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -4356,7 +4424,7 @@
 				"Passive"			"1"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
-			
+				"Duration"		"600"
 				"ThinkInterval"	"0.5"
 
 				"OnIntervalThink"

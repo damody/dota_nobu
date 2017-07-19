@@ -10,8 +10,7 @@ function EventForSpellTarget( filterTable )
 	local target = EntIndexToHScript(f.entindex_target)
 	local unitname = caster:GetUnitName()
 	local targetname = target:GetUnitName()
-
-
+	
 end
 
 --已知BUG:沒辦法捕捉非英雄單位order事件
@@ -26,8 +25,8 @@ function EventForAttackTarget( filterTable )
 	end
 	return true
 
-	 --    DeepPrintTable(filterTable)
-	 --    [   VScript                ]: {
+	--    DeepPrintTable(filterTable)
+	--    [   VScript                ]: {
 	-- [   VScript                ]:    entindex_ability                	= 0 (number)
 	-- [   VScript                ]:    sequence_number_const           	= 13 (number)
 	-- [   VScript                ]:    queue                           	= 0 (number)
@@ -88,8 +87,87 @@ function spell_ability ( filterTable )
 	local ordertype = filterTable.order_type
 	local caster = EntIndexToHScript(f.units["0"])
 	local ability = EntIndexToHScript(f.entindex_ability)
-	if (caster:GetUnitName() == "npc_dota_courier2") 
-		and not string.match(ability:GetName(), "courier") then
+	local target = EntIndexToHScript(f.entindex_target)
+	if f.entindex_target == 0 then
+		target = nil
+	end
+	local abname = ability:GetName()
+	local len = string.len(abname)
+	local big_skill = false
+	if len == 4 and string.sub(abname, 4, 4) == "T" then
+		big_skill = true
+	end
+	if len == 8 and string.sub(abname, 4, 8) == "T_old" then
+		big_skill = true
+	end
+	if target and target:GetTeamNumber() ~= caster:GetTeamNumber() and not big_skill then
+		local dis = (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length2D()
+		local items_protection = {
+	    	["modifier_protection_amulet"] = "item_protection_amulet",
+	    	["modifier_nannbann_armor"] = "item_nannbann_armor",
+	    	["modifier_magic_talisman"] = "item_magic_talisman",
+	    }
+
+		local items_effect = {
+	    	["modifier_protection_amulet"] = "protection_amulet_effect",
+	    	["modifier_nannbann_armor"] = "nannbann_armor_effect",
+	    	["modifier_magic_talisman"] = "magic_talisman_effect",
+	    }
+	    local range = ability:GetCastRange()
+	    if range == 0 then 
+	    	range = 100000
+	    end
+		if dis < range then
+			local pro = false
+			local itemx = ""
+			for i,v in pairs(items_protection) do
+				if target:HasModifier(i) then
+					pro = true
+					itemx = v
+					ParticleManager:DestroyParticle(target[items_effect[i]],false)
+					target:RemoveModifierByName(i)
+					local AmpDamageParticle = ParticleManager:CreateParticle("particles/econ/items/puck/puck_merry_wanderer/puck_illusory_orb_explode_merry_wanderer.vpcf", PATTACH_POINT_FOLLOW, target)
+					ParticleManager:SetParticleControlEnt(AmpDamageParticle,3,target,PATTACH_POINT_FOLLOW,"attach_hitloc",target:GetAbsOrigin(),true)
+					ParticleManager:ReleaseParticleIndex(AmpDamageParticle)
+					break
+				end
+			end
+			if pro then
+				EmitSoundOn("DOTA_Item.VeilofDiscord.Activate",target)
+				ability:StartCooldown(ability:GetCooldown(-1))
+				for itemSlot=0,5 do
+					local item = target:GetItemInSlot(itemSlot)
+					if item ~= nil and (item:GetName() == itemx) then
+						print("item:StartCooldown", item:GetCooldown(-1))
+						item:StartCooldown(item:GetCooldown(-1))
+					end
+				end
+				
+				return false
+			end
+		else
+			local pro = false
+			local itemx = ""
+			for i,v in pairs(items_protection) do
+				if target:HasModifier(i) then
+					pro = true
+					break
+				end
+			end
+			if pro then
+				return false
+			end
+		end
+	end
+	if (caster:GetUnitName() == "npc_dota_courier2") and not string.match(ability:GetName(), "courier") then
+		return false
+	end
+	local items_nosell = {
+    	["item_contemporary_armor"] = true,
+    	["item_contemporary_armor_1"] = true,
+    	["item_rations"] = true,
+    }
+	if caster:GetUnitName() == "B07E_UNIT" and items_nosell[ability:GetName()] == true then
 		return false
 	end
 	if ability and ability:GetName() == "item_napalm_bomb" and _G.can_bomb == nil then

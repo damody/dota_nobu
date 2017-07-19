@@ -67,6 +67,13 @@ function B07W_2( keys )
 	
 end
 
+function B07E_mana_max(keys)
+	local caster = keys.caster
+	if caster:GetMana()>caster.mana then
+		caster:SetMana(caster.mana)
+	end
+end
+
 function B07E_OnSpellStart(keys)
 	local caster = keys.caster
 	local target = keys.target_points[1]
@@ -87,6 +94,7 @@ function B07E_OnSpellStart(keys)
 	
  	local player = caster:GetPlayerID()
  	local wolf = CreateUnitByName("B07E_UNIT",target ,false,caster,caster,caster:GetTeam())
+ 	wolf.mana = 10
  	caster.B07E = {}
  	if #lb07e >= 2 then
 		lb07e[1]:ForceKill(true)
@@ -102,6 +110,7 @@ function B07E_OnSpellStart(keys)
  	wolf:SetBaseDamageMax(100+caster:GetLevel()*5)
  	wolf:SetBaseDamageMin(80+caster:GetLevel()*5)
 	wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})
+	ability:ApplyDataDrivenModifier(wolf,wolf,"Passive_mana_max",nil)
 	wolf:AddAbility("B07W_old_soldiercamp"):SetLevel(1)
 	if B07R >= 3 then
 		ability:ApplyDataDrivenModifier(wolf,wolf,"Passive_insight_gem",nil)
@@ -127,9 +136,6 @@ function B07E_OnSpellStart(keys)
 			if "item_napalm_bomb" ~= itemName then
 				local newItem = CreateItem(itemName, wolf, wolf)
 				wolf:AddItem(newItem)
-				if "item_the_great_sword_of_disease" == itemName then
-					newItem:StartCooldown(30)
-				end
 			end
 		end
 	end

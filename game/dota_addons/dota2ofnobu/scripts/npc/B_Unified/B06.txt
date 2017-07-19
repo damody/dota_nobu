@@ -8,6 +8,7 @@
 		{
 			"soundfile"	"soundevents/b06.vsndevts"
 			"soundfile"	"soundevents/b01.vsndevts"
+			"particle"	"particles/title/b06t.vpcf"
 		}
 	}
 	// 真田幸村 真田勇士
@@ -203,6 +204,17 @@
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_B06E"
 			}
+			"FireSound"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"Hero_Jakiro.LiquidFire"
+			}
+			"FireEffect"
+			{
+				"Target"	"TARGET"
+				"EffectName"	"particles/b06e3/b06e3.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+			}
 			"RunScript"
 			{
 				"Target"	"TARGET"
@@ -229,115 +241,6 @@
 				}
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"Hero_Jakiro.LiquidFire"
-					}
-					"FireEffect"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"particles/b06e3/b06e3.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-					}
-				}
-				"IsDebuff"	"1"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"Stun_Time"	"0.5 0.8 1.1 1.4"
-			}
-		}
-		"AbilityDamage"	"100 180 260 340"
-	}
-
-	// 真田幸村 連牙炎突HIDE
-	"B06E_HIDE"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"custom/cps_d06_2"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"AbilityCastRange"	"99999"
-		"precache"
-		{
-			"soundfile"	"sounds/weapons/hero/jakiro/liquid_fire.vsnd"
-			"particle"	"particles/b06e2/b06e2.vpcf"
-			"particle"	"particles/generic_gameplay/generic_stunned.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
-			"particle"	"particles/b06e3/b06e3.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"B06E_HIDE.vo1"
-			}
-			"TrackingProjectile"
-			{
-				"Target"	"TARGET"
-				"EffectName"	"particles/b06e2/b06e2.vpcf"
-				"MoveSpeed"	"900"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"1"
-			"ApplyModifier"
-			{
-				"Target"	"TARGET"
-				"ModifierName"	"modifier_B06E_HIDE"
-			}
-			"RunScript"
-			{
-				"Target"	"TARGET"
-				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
-				"Function"	"b06e_Shot"
-			}
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_MAGICAL"
-				"Damage"	"%AbilityDamage"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_B06E_HIDE"
-			{
-				"IsPurgable"	"1"
-				"IsDebuff"		"1"
-				"Duration"	"%Stun_Time"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"Hero_Jakiro.LiquidFire"
-					}
-					"FireEffect"
-					{
-						"Target"	"TARGET"
-						"EffectName"	"particles/b06e3/b06e3.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-					}
-				}
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"IsDebuff"	"1"
 			}
 		}
@@ -680,6 +583,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
 				"Function"	"B06T_effect"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b06t.vpcf"
+			}
 		}
 		"Modifiers"
 		{
@@ -807,6 +716,12 @@
 				"Target"	"TARGET"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B06_Sanada_Yukimura.lua"
 				"Function"	"B06T_effect"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b06t.vpcf"
 			}
 		}
 		"Modifiers"

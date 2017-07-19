@@ -11,6 +11,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/b33.vsndevts"
+			"particle"	"particles/title/b33t.vpcf"
 		}
 	}
 	"Version"		"1"
@@ -533,6 +534,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"broodmother_broo_win_01"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b33t.vpcf"
 			}
 		}
 		"Modifiers"
@@ -1076,6 +1083,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"broodmother_broo_win_01"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b33t.vpcf"
 			}
 		}
 		"Modifiers"

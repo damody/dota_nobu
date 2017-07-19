@@ -10,6 +10,8 @@
 			"particle"	"particles/units/heroes/hero_dazzle/dazzle_weave_circle_ray.vpcf"
 			"particle"	"particles/c04/c04w.vpcf"
 			"particle"	"particles/c04/c04r_old.vpcf"
+			"particle"	"particles/title/c04t11.vpcf"
+			"particle"	"particles/title/c04t16.vpcf"
 		}
 	}
 	// 阿國 神速之舞
@@ -292,6 +294,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"Hero_razor.Attack"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c04t16.vpcf"
 			}
 		}
 		"OnChannelFinish"
@@ -607,6 +615,12 @@
 				"Function"	"Shock_C04_old"
 				"SHP1"	"%armor"
 				"SHP2"	"%armor"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c04t11.vpcf"
 			}
 		}
 		"AbilitySpecial"

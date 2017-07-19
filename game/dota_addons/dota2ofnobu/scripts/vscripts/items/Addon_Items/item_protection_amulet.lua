@@ -34,7 +34,7 @@ function modifier_protection_amulet:OnTakeDamage(event)
 	    local damage_type = event.damage_type
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
-	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
+	    if (self.caster ~= nil) and IsValidEntity(self.caster) and false then
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster then
 		        if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then

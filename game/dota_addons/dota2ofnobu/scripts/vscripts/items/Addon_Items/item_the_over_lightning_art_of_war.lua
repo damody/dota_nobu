@@ -40,7 +40,7 @@ function Shock( keys )
 	local ability = keys.ability
 	GridNav:DestroyTreesAroundPoint(point, 500, false)
 
-	local dummy = AMHC:CreateUnit( "hide_unit",point,caster:GetForwardVector(),caster,caster:GetTeamNumber())
+	local dummy =  CreateUnitByName("hide_unit", point , true, nil, caster, caster:GetTeamNumber()) 
 	dummy:AddAbility("majia"):SetLevel(1)
 	dummy:SetOwner(caster)
 	local spell_hint_table = {

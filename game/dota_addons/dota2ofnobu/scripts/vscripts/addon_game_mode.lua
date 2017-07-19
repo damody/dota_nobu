@@ -725,6 +725,11 @@ function Precache( context )
     "particles/units/heroes/hero_lina/lina_base_attack.vpcf",
     --御魂
     "particles/item/soul_adderrope.vpcf",
+    "particles/item/disease_unit.vpcf",
+    "particles/a11e/a11e2.vpcf",
+    --童子切
+    "particles/item/great_sword_of_disarmament_2.vpcf",
+    "particles/item/great_sword_of_disarmament.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do
@@ -750,6 +755,7 @@ function Precache( context )
     "soundevents/game_sounds_heroes/game_sounds_slark.vsndevts",
     --制魔
     "particles/item/supressor_armor.vpcf",
+    "soundevents/game_sounds_roshan_halloween.vsndevts",
     }
     for i,v in ipairs(sound_Precache_Table) do
       PrecacheResource("soundfile", v, context)

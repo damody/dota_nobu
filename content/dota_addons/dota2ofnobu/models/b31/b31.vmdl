@@ -13,6 +13,7 @@
 				m_bExpensiveTangents = false
 				m_bHighPrecisionTexCoords = false
 				m_bPerVertexCurvature = false
+				m_bBentNormals = false
 				m_bIgnoreCloth = false
 				m_bGetSkinningFromLod0 = false
 				m_pMorphInfo = null
@@ -953,7 +954,7 @@
 		m_vMaterialRemapList = 
 		[
 			{
-				m_sSearchMaterial = "takedashingen1.vmat"
+				m_sSearchMaterial = "*"
 				m_sReplaceMaterial = "materials/b31/b31_01.vmat"
 			},
 			{

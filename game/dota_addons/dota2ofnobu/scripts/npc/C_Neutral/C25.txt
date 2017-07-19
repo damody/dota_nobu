@@ -8,6 +8,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/C25.vsndevts"
+			"particle"	"particles/title/c25t.vpcf"
 		}
 	}	
 	 //茶茶 一刀‧順   有50%機率能夠瞬移  沒有做
@@ -299,6 +300,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C25.lua"
 				"Function"		"C25T_OnSpellStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c25t.vpcf"
 			}
 		}
 		"Modifiers"

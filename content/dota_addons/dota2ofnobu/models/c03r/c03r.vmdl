@@ -97,7 +97,7 @@
 					m_adjustAnimation = 
 					{
 						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 90.0, 0.0, 90.0 ]
 					}
 					m_Keywords = [  ]
 					m_sequenceParams = 
@@ -129,7 +129,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_RUN"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -137,7 +143,7 @@
 					m_adjustAnimation = 
 					{
 						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 90.0, 0.0, 90.0 ]
 					}
 					m_Keywords = [  ]
 					m_sequenceParams = 
@@ -194,7 +200,7 @@
 					m_adjustAnimation = 
 					{
 						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 90.0, 0.0, 90.0 ]
 					}
 					m_Keywords = [  ]
 					m_sequenceParams = 
@@ -206,7 +212,7 @@
 					m_MotionFramesRootBone = ""
 				},
 				{
-					m_Animationname = "Stand"
+					m_Animationname = "ACT_DOTA_IDLE"
 					m_Filepath = "models/c03r/anims/Stand.dmx"
 					m_nStartframe = 0
 					m_nEndframe = 1
@@ -226,7 +232,13 @@
 					}
 					m_bHidden = false
 					m_bDisable = false
-					m_Activities = [  ]
+					m_Activities = 
+					[
+						{
+							m_Name = "ACT_DOTA_IDLE"
+							m_nWeight = 1
+						},
+					]
 					m_AnimationEvents = [  ]
 					m_MotionFrames = [  ]
 					m_pIkRules = [  ]
@@ -234,7 +246,7 @@
 					m_adjustAnimation = 
 					{
 						m_translation = [ 0.0, 0.0, 0.0 ]
-						m_rotation = [ 0.0, 0.0, 0.0 ]
+						m_rotation = [ 90.0, 0.0, 90.0 ]
 					}
 					m_Keywords = [  ]
 					m_sequenceParams = 

@@ -362,7 +362,7 @@
 		    }
 		}
 	}
-	// 石川 蟲蟲
+	// 石川 天牛
 	"A03W_old"
 	{
 		// General
@@ -567,7 +567,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: A0BN
-		"Ability1"	""
+		"Ability1"	"dead_destroy"
 		// Reference: A0BM
 		"Ability2"	""
 		// Armor
@@ -623,7 +623,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: A0GD
-		"Ability1"	""
+		"Ability1"	"dead_destroy"
 		// Reference: A0GW
 		"Ability2"	""
 		// Armor
@@ -754,7 +754,7 @@
 		// Reference: A0BN
 		"Ability1"	"B07W_old_soldiercamp"
 		// Reference: A0BM
-		"Ability2"	""
+		"Ability2"	"dead_destroy"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"0"
@@ -905,9 +905,9 @@
 		// ----------------------------------------------------------------
 		"StatusHealth"	"1000"
 		"StatusHealthRegen"	"10"
-		"StatusMana"	"250"
+		"StatusMana"	"450"
 		"StatusManaRegen"	"0"
-		"StatusStartingMana"	"200"
+		"StatusStartingMana"	"0"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1400"
@@ -945,10 +945,11 @@
 		//{
 		//    "AttachWearables"
 		//    {
-		//    	"1" { "ItemDef" "535" }
-		//    	"2" { "ItemDef" "592" }
-		//    	"3" { "ItemDef" "626" }
-		//        "4" { "ItemDef" "630" }
+		//    	"1" { "ItemDef" "487" }
+		//    	"2" { "ItemDef" "489" }
+		//    	"3" { "ItemDef" "490" }
+		//        "4" { "ItemDef" "491" }
+		//        "5" { "ItemDef" "492" }
 		//    }
 		//}
 	}
@@ -3731,19 +3732,16 @@
 		// General
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_creature"
-		"ModelScale"	"1"
+		"ModelScale"	"1.5"
 		"Level"	"3"
-		"Model"	"models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_small.vmdl"
+		"Model"	"models/heroes/venomancer/venomancer.vmdl"
+		//"Model"	"models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_small.vmdl"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"	"180"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference: A00F
-		"Ability1"	"great_sword_of_disease_W"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"20"
-		"MagicalResistance"	"50"
+		"MagicalResistance"	"-50"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -3767,14 +3765,14 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"300"
+		"MovementSpeed"	"400"
 		"MovementTurnRate"	"0.90"
 		// Status
 		// ----------------------------------------------------------------
 		"StatusHealth"	"3000"
 		"StatusHealthRegen"	"10"
 		"StatusMana"	"1000"
-		"StatusStartingMana"	"200"
+		"StatusStartingMana"	"0"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1200"
@@ -3785,6 +3783,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Ability1"	"great_sword_of_disease_W"
 		"Ability2"	"great_sword_of_disease_E"
 		"Ability3"	"great_sword_of_disease_R"
 		"Ability4"	"great_sword_of_disease_D"
@@ -3800,7 +3799,17 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"ProjectileModel"	"particles/units/heroes/hero_undying/undying_decay_fakeprojectile_glow.vpcf"
+		"ProjectileModel"	"particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf"
+		"Creature"
+		{
+		    "AttachWearables"
+		    {
+		    	"1" { "ItemDef" "6642" }
+		    	"2" { "ItemDef" "6643" }
+		    	"3" { "ItemDef" "6644" }
+		    	"4" { "ItemDef" "6645" }
+		    }
+		}
 	}
 
 	// Creature: 水式神 LV4
@@ -5869,8 +5878,8 @@
 		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_building"
 		// Add model
-		"Model"	"models/development/invisiblebox.vmdl"
-		"ModelScale"	"20"
+		"Model"	"models/props_rock/riveredge_rock001a.vmdl"
+		"ModelScale"	"1"
 		"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_BARRACKS"
 		"HealthBarOffset"	"200"
@@ -5903,7 +5912,7 @@
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability1"	""
+		"Ability1"	"dead_destroy"
 		"Ability2"	""
 		"Ability3"	""
 		"Ability4"	""
@@ -5973,6 +5982,7 @@
 		"Ability15"	""
 		"Ability16"	""
 		"Model"	"models/items/disruptor/lightning_strike_weapon/lightning_strike_weapon.vmdl"
+		//"Model"	"models/c03r/c03r.vmdl"
 		"AttackDamageMin"	"0"
 		"AttackDamageMax"	"0"
 		"MovementSpeed"	"100"
@@ -7365,141 +7375,6 @@
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}
 
-	// 鐵砲兵
-	"Test_com_gunner_clone"
-	{
-		// General
-		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
-		// Add model
-		"Model"	"models/arquebusier/arquebusier.vmdl"
-		"ModelScale"	"0.8"
-		"Level"	"3"
-		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"HealthBarOffset"	"180"
-		// Abilities
-		// ----------------------------------------------------------------
-		// Reference: A0NH
-		"Ability1"	"gunner_attack"
-		// Reference: A0GD
-		"Ability2"	""
-		// Reference: A0GW
-		"Ability3"	""
-		// Armor
-		// ----------------------------------------------------------------
-		"ArmorPhysical"	"2"
-		"MagicalResistance"	"0"
-		// Attack
-		// ----------------------------------------------------------------
-		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"	"77.0"
-		"AttackDamageMax"	"85.0"
-		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"2"
-		"AttackAnimationPoint"	"0.17"
-		"AttackAcquisitionRange"	"700"
-		"AttackRange"	"650"
-		"ProjectileSpeed"	"99999"
-		// Bounty
-		// ----------------------------------------------------------------
-		"BountyGoldMin"	"61.0"
-		"BountyGoldMax"	"63.0"
-		"BountyXP"	"30"
-		// Gold and Lumber
-		// ----------------------------------------------------------------
-		"GoldCost"	"60"
-		"LumberCost"	"60"
-		// Movement
-		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"290"
-		"MovementTurnRate"	"0.5"
-		// Status
-		// ----------------------------------------------------------------
-		"StatusHealth"	"780"
-		"StatusHealthRegen"	"0.25"
-		"StatusMana"	"200"
-		"StatusManaRegen"	"0"
-		"StatusStartingMana"	"200"
-		// Vision
-		// ----------------------------------------------------------------
-		"VisionDaytimeRange"	"1400"
-		"VisionNighttimeRange"	"800"
-		// Team
-		// ----------------------------------------------------------------
-		"TeamName"	"DOTA_TEAM_NEUTRALS"
-		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability4"	""
-		"Ability5"	""
-		"Ability6"	""
-		"Ability7"	""
-		"Ability8"	""
-		"Ability9"	""
-		"Ability10"	""
-		"Ability11"	""
-		"Ability12"	""
-		"Ability13"	""
-		"Ability14"	""
-		"Ability15"	""
-		"Ability16"	""
-		"AutoAttacksByDefault"	"1"
-		"ProjectileModel"	"particles/items2_fx/necronomicon_archer_projectile.vpcf"
-
-	}
-
-
-	// 足輕
-	"com_ashigaru_spearmen"
-	{
-		// General
-		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creep_lane"
-		// Add model
-		"Model"	"models/ashigaru/ashigaru_b.vmdl"
-		"ModelScale"	"0.9"
-		"Level"	"3"
-		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"HealthBarOffset"	"130"
-		"Ability1"	""
-		"Ability2"	""
-		"ArmorPhysical"	"2"
-		"MagicalResistance"	"0"
-		// Attack
-		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"58.0"
-		"AttackDamageMax"	"59.0"
-		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"	"1.58"
-		"AttackAnimationPoint"	"0.33"
-		"AttackAcquisitionRange"	"1200"
-		"AttackRange"	"138"
-		"ProjectileSpeed"	"10000"
-		// Bounty
-		"BountyGoldMin"	"23.0"
-		"BountyGoldMax"	"25.0"
-		"BountyXP"	"20"
-		// Movement
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"325"
-		"MovementTurnRate"	"0.50"
-		// Status
-		"StatusHealth"	"650"
-		"StatusHealthRegen"	"10"
-		"StatusMana"	"200"
-		"StatusStartingMana"	"200"
-		// Vision
-		"VisionDaytimeRange"	"1400"
-		"VisionNighttimeRange"	"800"
-		// Team
-		"TeamName"	"DOTA_TEAM_GOODGUYS"
-		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"MinimapIcon"	"minimap_tower90"
-		"MinimapIconSize"	"1"
-		"RingRadius"	"45"
-	}
 	// 織田足輕
 	"com_infantry_oda_1"
 	{
@@ -16348,7 +16223,7 @@
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
 		"Ability3"	"play_mvp"
-		"Ability4"	""
+		"Ability4"	"afk_gogo"
 		"Ability5"	""
 		"Ability6"	""
 		"Ability7"	""
@@ -17406,7 +17281,7 @@
 
 	"hide_unit"
 	{
-		"BaseClass"	"npc_dota_thinker"
+		"BaseClass"	"npc_dota_creature"
 		"Ability1"	"majia"
 		"Ability2"	""
 		"Ability3"	""

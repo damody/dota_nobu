@@ -142,6 +142,20 @@
 	                }
 	            }
 			}
+			"Passive_mana_max"
+			{
+				"Passive"          "0"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B07.lua"
+						"Function"	"B07E_mana_max"
+					}
+	            }
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------

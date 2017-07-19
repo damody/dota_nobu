@@ -13,6 +13,7 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 			"particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
 			"particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+			"particle"	"particles/title/c20t.vpcf"
 		}
 	}
 	//長宗我部元親 炎之加護
@@ -251,6 +252,12 @@
 			{
 				"ModifierName"	"modifier_C20T"
 				"Target" 		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c20t.vpcf"
 			}
 		}
 
@@ -567,6 +574,12 @@
 			{
 				"ModifierName"	"modifier_C20T"
 				"Target" 		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c20t.vpcf"
 			}
 		}
 

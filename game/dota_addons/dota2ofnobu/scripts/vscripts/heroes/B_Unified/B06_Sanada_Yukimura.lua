@@ -70,7 +70,7 @@ function b06e_Shot( keys )
 
 	local id	 = keys.caster:GetPlayerOwnerID() --獲取玩家ID
 	local p        = PlayerResource:GetPlayer(id)--可以用索引轉換玩家方式，來捕捉玩家
-  	local caster   = p: GetAssignedHero() --获取该玩家的英雄
+  	local caster   = ability:GetCaster()
   	local point  = target:GetAbsOrigin()
 
   	--次數紀錄
@@ -81,7 +81,6 @@ function b06e_Shot( keys )
 
     --獲取攻擊範圍
     local group = {}
-    local radius = 400
     local teams = DOTA_UNIT_TARGET_TEAM_ENEMY
     local types = DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO     --+DOTA_UNIT_TARGET_BUILDING
 
@@ -104,7 +103,7 @@ function b06e_Shot( keys )
   		-- local new_target = group[RandomInt(1,#group)]
 
     	--馬甲&技能(除非有單位才創造)
-    	local dummy = AMHC:CreateUnit( "hide_unit",target:GetOrigin(),caster:GetForwardVector(),caster,caster:GetTeamNumber())
+    	local dummy = CreateUnitByName("hide_unit", point , true, nil, caster, caster:GetTeamNumber()) 
 		local level  = keys.ability:GetLevel()--獲取技能等級
 	    local spell = dummy:AddAbility("B06E_HIDE")  
 	    spell:SetLevel(level)
@@ -127,7 +126,20 @@ function b06e_Shot( keys )
 	            AbilityIndex = spell:entindex(),
 	            Queue = true
 	        }
-		ExecuteOrderFromTable(order)
+		--ExecuteOrderFromTable(order)
+		local projectile_info = 
+			{
+				EffectName = "particles/b06e2/b06e2.vpcf",
+				Ability = ability,
+				vSpawnOrigin = target:GetAbsOrigin(),
+				Target = new_target,
+				Source = target,
+				bHasFrontalCone = false,
+				iMoveSpeed = 900,
+				bReplaceExisting = false,
+				bProvidesVision = true
+			}
+		ProjectileManager:CreateTrackingProjectile(projectile_info)
     end
 
 end

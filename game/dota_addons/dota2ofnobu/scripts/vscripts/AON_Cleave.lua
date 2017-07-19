@@ -208,7 +208,7 @@ function AON_Cleave_C14(keys)
 		--local dmg = dmg / (1 - damageReduction)
 
 		local group = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(),
-			nil, 400 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			nil, 300 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 		for _, it in pairs(group) do

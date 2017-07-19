@@ -10,6 +10,7 @@
 			"soundfile"	"soundevents/b01.vsndevts"
 			"particle"	"particles/a07/a07t2.vpcf"
 			"particle"	"particles/a07/a07t3.vpcf"
+			"particle"	"particles/title/a07t.vpcf"
 		}
 	}
 	// 本多忠勝 奮起
@@ -683,8 +684,6 @@
 	// 本多忠勝 戰國最強．啟動
 	"A07T"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/A07T_Ver2"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
@@ -754,6 +753,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a07t.vpcf"
 			}
 		}
 		"Modifiers"
@@ -926,6 +931,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/a07t.vpcf"
 			}
 		}
 		"Modifiers"

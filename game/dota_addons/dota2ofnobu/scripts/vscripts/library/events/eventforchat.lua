@@ -21,6 +21,39 @@ skin_table = {
 	["377214232"] = true, --大陸 李維
 	["100789172"] = true, --大陸 Sai
 	
+	["38652551"] = true,
+	["159955467"] = true,
+	["47467611"] = true,
+	["159901591"] = true,
+	["175307731"] = true,
+	["175423750"] = true,
+	["219044134"] = true,
+	["159930923"] = true,
+	["440895734"] = true,
+	["411167283"] = true,
+	["19350721"] = true,
+	["230137710"] = true,
+	["167209936"] = true,
+	["21796396"] = true,
+	["24066882"] = true,
+	["399854621"] = true,
+	["156338995"] = true,
+	["78644565"] = true,
+	["407915261"] = true,
+	["421960552"] = true,
+	["196686525"] = true,
+	["246810545"] = true,
+	["126912859"] = true,
+	["162580111"] = true,
+	["275101304"] = true,
+	["68694022"] = true,
+	["54971063"] = true,
+	["109888730"] = true,
+	["30107422"] = true,
+	["6938200"] = true,
+	["20304940"] = true,
+	["30314550"] = true,
+	["49456980"] = true,
 	
 	["404284631"] = true,
 	["404414261"] = true,
@@ -124,7 +157,7 @@ function DumpTable( tTable )
 end
 
 
-function SendHTTPRequest(path, method, values, callback)
+function SendHTTPRequest_local(path, method, values, callback)
 	local req = CreateHTTPRequestScriptVM( method, "http://127.0.0.1/"..path )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
@@ -193,11 +226,12 @@ local function chat_of_test(keys)
 		end
 		DeepPrintTable(_G.CountUsedAbility_Table)
 		
-		SendHTTPRequest("save_ability_data", "POST",
+		SendHTTPRequest_local("save_ability_data", "GET",
 			{
 			  data = tostring(inspect(_G.CountUsedAbility_Table)),
 			},
 			function(result)
+				print("SendHTTPRequest_local")
 			  print(result)
 			end)
 		
@@ -337,7 +371,6 @@ local function chat_of_test(keys)
 			Timers:CreateTimer(function()
 				caster:SetMana(caster:GetMaxMana() )
 				--caster:SetHealth(caster:GetMaxHealth())
-
 				-- Reset cooldown for abilities that is not rearm
 				for i = 0, caster:GetAbilityCount() - 1 do
 					local ability = caster:GetAbilityByIndex( i )
@@ -345,10 +378,8 @@ local function chat_of_test(keys)
 						ability:EndCooldown()
 					end
 				end
-
 				-- Put item exemption in here
 				local exempt_table = {}
-
 				-- Reset cooldown for items
 				for i = 0, 5 do
 					local item = caster:GetItemInSlot( i )
@@ -365,7 +396,6 @@ local function chat_of_test(keys)
 			Timers:CreateTimer(0.1, function()
 				caster:SetMana(caster:GetMaxMana() )
 				--caster:SetHealth(caster:GetMaxHealth())
-
 				-- Reset cooldown for abilities that is not rearm
 				for i = 0, caster:GetAbilityCount() - 1 do
 					local ability = caster:GetAbilityByIndex( i )
@@ -373,10 +403,8 @@ local function chat_of_test(keys)
 						ability:EndCooldown()
 					end
 				end
-
 				-- Put item exemption in here
 				local exempt_table = {}
-
 				-- Reset cooldown for items
 				for i = 0, 5 do
 					local item = caster:GetItemInSlot( i )
@@ -426,70 +454,6 @@ local function chat_of_test(keys)
 			ShuaGuai_Of_AB( 2 )
 			ShuaGuai_Of_B( 2 )
 			ShuaGuai_Of_C( 2 )
-		end
-
-		if s == "a1" then
-			local  u = CreateUnitByName("com_ashigaru_spearmen",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
-		end
-
-		if s == "b1" then
-			local  u = CreateUnitByName("com_ashigaru_spearmen",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
-		end
-
-		if s == "a2" then
-			local  u = CreateUnitByName("com_archer",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
-		end
-
-		if s == "b2" then
-			local  u = CreateUnitByName("com_archer",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
-		end
-
-		if s == "a3" then
-			local  u = CreateUnitByName("com_cavalry",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
-		end
-
-		if s == "b3" then
-			local  u = CreateUnitByName("com_cavalry",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
-		end
-
-		if s == "a4" then
-			local  u = CreateUnitByName("Test_com_gunner_clone",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_GOODGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
-		end
-
-		if s == "b4" then
-			local  u = CreateUnitByName("Test_com_gunner_clone",caster:GetAbsOrigin()+Vector(1000,100,0),true,nil,nil,DOTA_TEAM_BADGUYS)    --創建一個斧王
-			u:SetControllableByPlayer(keys.playerid,true)
-			for i=1,30 do
-			u:HeroLevelUp(true)
-			end 
 		end
 
 		if s == "h" then

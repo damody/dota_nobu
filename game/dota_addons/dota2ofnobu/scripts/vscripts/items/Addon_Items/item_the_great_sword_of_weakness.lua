@@ -6,9 +6,14 @@ function Shock( keys )
 	local target = keys.target
 	local ability = keys.ability
     local time = caster:GetIntellect()/40*0.6+0.6
-    if target:IsMagicImmune() and time > 1.5 then
-        time = 1.5
+    if target:IsMagicImmune() then
+    	if time > 3 then
+    		time = 3
+    	end
     end
+    if time > 4.2 then
+		time = 4.2
+	end
     AMHC:Damage(caster,keys.target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
     target:AddNewModifier(caster, ability, "modifier_weakness", {duration = time})
 end

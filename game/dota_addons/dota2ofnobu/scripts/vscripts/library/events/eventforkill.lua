@@ -232,7 +232,7 @@ function Nobu:OnUnitKill( keys )
             FIND_ANY_ORDER, 
             false)
         if (#group > 0) then
-          local xp = killedUnit:GetLevel() * 40 / #group
+          local xp = killedUnit:GetLevel() * 30 / #group
           for _,v in ipairs(group) do
             v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
             if v:IsHero() and killedUnit:GetLevel() > 7 then

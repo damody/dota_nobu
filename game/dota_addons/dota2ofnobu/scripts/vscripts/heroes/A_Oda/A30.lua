@@ -112,27 +112,29 @@ function A30R_OnAttackLanded(keys)
 	local tsum = 0
 	ParticleManager:SetParticleControl(particle, 0, targetpos)
 	Timers:CreateTimer(0, function()
-		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
-			targetpos,							-- 搜尋的中心點
-			nil,
-			radius,					-- 搜尋半徑
-			ability:GetAbilityTargetTeam(),	-- 目標隊伍
-			ability:GetAbilityTargetType(),	-- 目標類型
-			0,-- 額外選擇或排除特定目標
-			FIND_ANY_ORDER,					-- 結果的排列方式
-			false) 
-		for _,it in pairs(units) do
-			if it:IsBuilding() then
-				ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
-			else
-				ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
+		if IsValidEntity(caster) then
+			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+				targetpos,							-- 搜尋的中心點
+				nil,
+				radius,					-- 搜尋半徑
+				ability:GetAbilityTargetTeam(),	-- 目標隊伍
+				ability:GetAbilityTargetType(),	-- 目標類型
+				0,-- 額外選擇或排除特定目標
+				FIND_ANY_ORDER,					-- 結果的排列方式
+				false) 
+			for _,it in pairs(units) do
+				if it:IsBuilding() then
+					ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
+				else
+					ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
+				end
 			end
+			tsum = tsum + 1
+	    	if tsum > duration then
+	    		return nil
+	    	end
+		    return 1
 		end
-		tsum = tsum + 1
-    	if tsum > duration then
-    		return nil
-    	end
-	    return 1
     end)
     Timers:CreateTimer(duration,function()
     	ParticleManager:DestroyParticle(particle,false)
@@ -294,29 +296,33 @@ function A30R_old_OnAttackLanded(keys)
 	end
 	ParticleManager:SetParticleControl(particle, 0, targetpos)
 	Timers:CreateTimer(0, function()
-		local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
-			targetpos,							-- 搜尋的中心點
-			nil,
-			radius,					-- 搜尋半徑
-			ability:GetAbilityTargetTeam(),	-- 目標隊伍
-			ability:GetAbilityTargetType(),	-- 目標類型
-			0,-- 額外選擇或排除特定目標
-			FIND_ANY_ORDER,					-- 結果的排列方式
-			false) 
-		for _,it in pairs(units) do
-			if it:IsBuilding() then
-				ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
-			else
-				ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
+		if IsValidEntity(caster) then
+			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+				targetpos,							-- 搜尋的中心點
+				nil,
+				radius,					-- 搜尋半徑
+				ability:GetAbilityTargetTeam(),	-- 目標隊伍
+				ability:GetAbilityTargetType(),	-- 目標類型
+				0,-- 額外選擇或排除特定目標
+				FIND_ANY_ORDER,					-- 結果的排列方式
+				false) 
+			for _,it in pairs(units) do
+				if it:IsBuilding() then
+					ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
+				else
+					ability:ApplyDataDrivenModifier(caster,it,"modifier_A30R2",{duration = 1.1})
+				end
 			end
+			tsum = tsum + 1
+	    	if tsum > duration then
+	    		return nil
+	    	end
+		    return 1
 		end
-		tsum = tsum + 1
-    	if tsum > duration then
-    		ParticleManager:DestroyParticle(particle,false)
-    		return nil
-    	end
-	    return 1
     end)
+    Timers:CreateTimer(duration,function()
+    	ParticleManager:DestroyParticle(particle,false)
+    	end)
 end
 
 function A30T_old_OnSpellStart(keys)

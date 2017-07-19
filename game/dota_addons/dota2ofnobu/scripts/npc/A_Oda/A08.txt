@@ -6,7 +6,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"precache"
 		{
-			"soundfile"	"soundevents/a06.vsndevts"
+			"soundfile"	"soundevents/a08.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
 	}
@@ -42,7 +42,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"C22W_old.vo1"
+				"EffectName"	"A08W.vo1"
 			}
 			"Damage"
 			{
@@ -112,6 +112,11 @@
 		}
 		"OnSpellStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Nevermore.ROS_Flames"
+			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A08.lua"
@@ -200,11 +205,6 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"berserkercaster"
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -297,17 +297,9 @@
 		}
 	}
 
-
-
-
-
-
 	//榊原康政 old  大覺渾沌擴散不會弄  小招圖示不知怎換 lua都用別人的
 	// 遊戲裡面季能都沒說明
 	//榊原康政    狂熱-------------------------------------------------------------------------------------------------------
-
-
-
 	"A08W_old"
 	{
 		// General
@@ -335,7 +327,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"A06W.vo1"
+				"EffectName"	"A08W_old.vo1"
 			}
 			"ApplyModifier"
 			{
@@ -421,6 +413,11 @@
 
 		"OnAbilityPhaseStart"
 		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_Nevermore.ROS_Flames"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -520,11 +517,6 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"berserkercaster"
-			}
 			"FireSound"
 			{
 				"Target"	"CASTER"

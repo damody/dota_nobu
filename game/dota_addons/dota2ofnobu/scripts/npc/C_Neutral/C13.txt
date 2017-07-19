@@ -23,6 +23,7 @@
 
 			// C13T_old
 			"particle"  "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf"
+			"particle"	"particles/title/c13t.vpcf"
 		}
 	}
 
@@ -303,6 +304,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
 				"Function"		"C13T_OnSpellStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c13t.vpcf"
 			}
 		}
 		"AbilitySpecial"
@@ -605,6 +612,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C13.lua"
 				"Function"		"C13T_old_OnSpellStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c13t.vpcf"
 			}
 		}
 		"AbilitySpecial"

@@ -20,6 +20,7 @@
 			"particle"  "particles/econ/items/zeus/lightning_weapon_fx/zuus_base_attack_immortal_lightning.vpcf"
 			"particle"  "particles/units/heroes/hero_rubick/rubick_fade_bolt_debuff.vpcf"
 			"particle"  "particles/items2_fx/rod_of_atos.vpcf"
+			"particle"	"particles/title/b27t.vpcf"
 
 			// B27E
 			"particle"  "particles/b27/b27e.vpcf"
@@ -332,6 +333,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B27.lua"
 				"Function"	"B27T_OnSpellStart"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b27t.vpcf"
+			}
 			"FireSound"
 			{
 				"Target"	"CASTER"
@@ -600,7 +607,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"8"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		"AbilitySpecial"
@@ -676,6 +683,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"Roshan.Slam"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b27t.vpcf"
 			}
 		}
 		"Modifiers"

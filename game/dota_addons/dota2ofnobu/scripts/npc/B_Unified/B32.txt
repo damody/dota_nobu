@@ -8,6 +8,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/b32.vsndevts"
+			"particle"	"particles/title/b32t.vpcf"
 		}
 	}
 	"Version"		"1"
@@ -928,6 +929,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B32_Uesugi_Kenshin.lua"
 				"Function"	"B32T_Start"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b32t.vpcf"
+			}
 		}
 		"Modifiers"
 		{
@@ -1069,6 +1076,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"stormspirit_ss_ability_lightning_14"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b32t.vpcf"
 			}
 		}
 		"Modifiers"

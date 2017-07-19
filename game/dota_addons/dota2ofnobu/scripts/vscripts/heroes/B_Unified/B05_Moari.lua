@@ -261,7 +261,7 @@ function OnDestroyEgg( event )
 	-- -- Play sound effect
 	-- local soundName = "Hero_Phoenix.SuperNova." .. ( isDead and "Death" or "Explode" )
 	-- StartSoundEvent( soundName, hero )
-	local dummy = AMHC:CreateUnit( "hide_unit",point,caster:GetForwardVector(),caster,caster:GetTeamNumber())
+	local dummy = CreateUnitByName("hide_unit", point , true, nil, caster, caster:GetTeamNumber()) 
    --添加馬甲技能
 	dummy:AddAbility("majia"):SetLevel(1)
 	--刪除馬甲
@@ -377,8 +377,8 @@ function B05T( event )
 		ability:ApplyDataDrivenModifier(caster, it,"modifier_B05T",nil)
 	end
 
-
-	local dummy = AMHC:CreateUnit( "hide_unit",point,caster:GetForwardVector(),caster,caster:GetTeamNumber())
+	
+	local dummy = CreateUnitByName("hide_unit", point , true, nil, caster, caster:GetTeamNumber()) 
    --添加馬甲技能
 	dummy:AddAbility("majia"):SetLevel(1)
 	--刪除馬甲

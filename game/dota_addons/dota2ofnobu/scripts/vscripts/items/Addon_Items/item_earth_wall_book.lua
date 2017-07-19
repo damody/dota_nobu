@@ -58,17 +58,6 @@ function Shock( keys )
 	wall2:AddNewModifier(caster,nil,"modifier_kill",{duration=duration})
 	wall1:RemoveModifierByName("modifier_invulnerable")
 	wall2:RemoveModifierByName("modifier_invulnerable")
-	-- 兩個石牆特效
-	local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,wall1)
-	ParticleManager:SetParticleControl(particle,0,center+wall_offset)
-	ParticleManager:SetParticleControl(particle,1,caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle,2,Vector(duration,0,0))
-	ParticleManager:ReleaseParticleIndex(particle)
-	local particle=ParticleManager:CreateParticle("particles/b24w/b24w.vpcf",PATTACH_POINT,wall2)
-	ParticleManager:SetParticleControl(particle,0,center-wall_offset)
-	ParticleManager:SetParticleControl(particle,1,caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle,2,Vector(duration,0,0))
-	ParticleManager:ReleaseParticleIndex(particle)
 end
 
 -- 充能

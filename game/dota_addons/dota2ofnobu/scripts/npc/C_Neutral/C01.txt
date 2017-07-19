@@ -7,6 +7,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/c01.vsndevts"
+			"particle"	"particles/title/c01t.vpcf"
 		}
 	}
 	// 明智光秀 血刃亂舞
@@ -330,6 +331,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
 				"Function"	"C01T_Mitsuhide_Akechi"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c01t.vpcf"
 			}
 		}
 		"Modifiers"
@@ -733,6 +740,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C01_Mitsuhide_Akechi.lua"
 				"Function"	"C01T_Mitsuhide_Akechi"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c01t.vpcf"
 			}
 		}
 		"Modifiers"

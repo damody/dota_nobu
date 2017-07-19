@@ -45,14 +45,15 @@ function _G.Nobu:InitGameMode()
     GameRules:SetSameHeroSelectionEnabled( true )
   end
   if _G.mo then
-    GameRules:SetCustomGameTeamMaxPlayers(2, 1)
-    GameRules:SetCustomGameTeamMaxPlayers(3, 1)
+    GameRules:SetCustomGameTeamMaxPlayers(2, 12)
+    GameRules:SetCustomGameTeamMaxPlayers(3, 12)
     --自定血條顏色
     GameRules:SetSameHeroSelectionEnabled( true )
   end
   -- 別在顯示pk畫面了
   GameRules:SetStrategyTime( 10 )
   GameRules:SetShowcaseTime( 1 )
+  GameRules:SetStartingGold( 2000 )
   --GameRules:SetCustomGameTeamMaxPlayers(2, 7)
   --GameRules:SetCustomGameTeamMaxPlayers(3, 7)
 
@@ -68,8 +69,13 @@ function _G.Nobu:InitGameMode()
   GameRules:SetTreeRegrowTime( 10000.0 )--设置砍倒的树木重生时间
   GameRules:SetUseCustomHeroXPValues ( true )-- 是否使用自定義的英雄經驗
   
-  GameRules:SetGoldPerTick(10)-- 設置金錢
-  GameRules:SetGoldTickTime(3)--金錢跳錢秒數
+  if _G.mo then
+    GameRules:SetGoldPerTick(20)-- 設置金錢
+    GameRules:SetGoldTickTime(2)--金錢跳錢秒數
+  else
+    GameRules:SetGoldPerTick(10)-- 設置金錢
+    GameRules:SetGoldTickTime(3)--金錢跳錢秒數
+  end
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励
   GameRules:SetFirstBloodActive(true) --設置第一殺獎勵
   GameRules:SetCustomGameEndDelay(30) --遊戲結束時間 --正常30

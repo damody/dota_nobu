@@ -18,7 +18,7 @@
 			}
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bAdditive = true
-			m_hTexture = resource:"materials/particle/particle_flares/particle_flare_004b_mod.vtex"
+			m_hTexture = resource:"materials/particle/particle_flares/particle_flare_004.vtex"
 		},
 	]
 	m_Operators = 
@@ -32,14 +32,16 @@
 		},
 		{
 			_class = "C_OP_FadeInSimple"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flStartScale = 0.0
-			m_flEndScale = 5.0
+			m_flStartScale = 3.0
+			m_flEndScale = 10.0
 		},
 	]
 	m_Initializers = 
@@ -85,6 +87,21 @@
 		},
 		{
 			m_ChildRef = resource:"particles/item/item_spell_book_light.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }
