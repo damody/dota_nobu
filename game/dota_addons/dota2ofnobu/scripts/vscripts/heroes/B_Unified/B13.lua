@@ -355,3 +355,6 @@ function B13E_OnTakeDamage( keys )
 	end
 end
 
+function B13T_old_upgrade( keys )
+	keys.caster:FindAbilityByName("B13D_old"):SetLevel(keys.ability:GetLevel()+1)
+end

@@ -151,7 +151,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"20 16 12 8"
-		"AbilityManaCost"	"260 300 340 380"
+		"AbilityManaCost"	"130 150 180 210"
 		"precache"
 		{
 			"soundfile"	"sounds/weapons/hero/omniknight/purification.vsnd"
@@ -185,7 +185,7 @@
 			{
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%atk"
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%atk"
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%def"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%cure"
 				}
@@ -215,7 +215,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk"	"20 40 60 80"
+				"atk"	"10 20 30 40"
 			}
 			"05"
 			{

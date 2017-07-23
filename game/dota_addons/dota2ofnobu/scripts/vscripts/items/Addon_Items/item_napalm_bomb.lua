@@ -27,7 +27,7 @@ function Shock( keys )
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
-			AMHC:Damage(caster,it,600,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			AMHC:Damage(caster,it,300,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			it:EmitSound("A17T.sound1")
 		end
 	end

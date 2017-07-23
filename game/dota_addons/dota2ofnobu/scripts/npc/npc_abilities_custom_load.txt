@@ -34,6 +34,41 @@
 			}
 		}
 	}
+	
+	//  附近的敵人愈多 受到的傷害愈高
+	"debuff_tower"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_145"
+		"Modifiers"
+		{
+			"modifier_debuff_x"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"debuff_tower"
+					}
+				}	
+			}
+			"debuff_tower"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"20"
+					"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-10"
+				}
+			}
+		}
+	}
 	// mvp
 	"play_mvp"
 	{
@@ -3335,7 +3370,53 @@
 			}
 		}
 	}
+	//捨身淨化
+	"forest_caster_T"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"                        "custom/a12w"
+		"AbilityCastPoint" "1" //stun
+		"AbilityCooldown"                        	"100"
+		"AbilityManaCost"                           "200"
+		"AbilityDamage"				"0"
+		"AbilityCastRange"			"200"
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"forest_caster_T_OnAbilityPhaseStart"
+				"Target"	"TARGET"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B22.lua"
+				"Function"	"forest_caster_T"
+				"Target"	"TARGET"
+			}
+		}
+		"Modifiers"
+		{
+		}
 
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_movement_speed"			"-100 -200 -300 -400"
+			}
+		}
+		
+    }
 	//池田鬼神丸國重．銘刀 抗魔
 	"great_sword_of_disease_W"
 	{

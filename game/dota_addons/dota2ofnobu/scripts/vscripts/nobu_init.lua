@@ -73,7 +73,7 @@ function _G.Nobu:InitGameMode()
     GameRules:SetGoldPerTick(20)-- 設置金錢
     GameRules:SetGoldTickTime(2)--金錢跳錢秒數
   else
-    GameRules:SetGoldPerTick(10)-- 設置金錢
+    GameRules:SetGoldPerTick(15)-- 設置金錢
     GameRules:SetGoldTickTime(3)--金錢跳錢秒數
   end
   GameRules:SetUseBaseGoldBountyOnHeroes( true ) --设置是否对英雄使用基础金钱奖励

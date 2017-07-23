@@ -225,7 +225,11 @@ function B36W_old_OnSpellStart( keys )
 	end)
 end
 
-
+function B36E_old_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local target = keys.target
+	AMHC:Damage(caster,unit, 5*caster:GetLevel(),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+end
 
 function B36E_old_OnIntervalThink( keys )
 	local caster = keys.caster
@@ -240,7 +244,7 @@ function B36E_old_OnIntervalThink( keys )
 		FIND_ANY_ORDER,					-- 結果的排列方式
 		false)
 	for _,unit in ipairs(units) do
-		AMHC:Damage(caster,unit,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		--AMHC:Damage(caster,unit,ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 	units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
 		caster:GetAbsOrigin(),							-- 搜尋的中心點

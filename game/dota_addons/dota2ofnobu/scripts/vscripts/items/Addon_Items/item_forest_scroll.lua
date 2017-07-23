@@ -169,6 +169,7 @@ function Shock4( keys )
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(4)
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(4)
 	monster2:FindAbilityByName("forest_caster_R"):SetLevel(3)
+	monster2:AddAbility("forest_caster_T"):SetLevel(1)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
 	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=30})
 end

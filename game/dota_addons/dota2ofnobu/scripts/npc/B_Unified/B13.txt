@@ -433,7 +433,7 @@
 		"AbilityTextureName"                        "skeleton_king_mortal_strike"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
-		"MaxLevel"									"1"
+		"MaxLevel"									"4"
 
 		"Modifiers"
 		{
@@ -457,7 +457,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"B13D_old_damage"		"300"
+				"B13D_old_damage"		"100 200 300 400"
 			}
 		}
 	}
@@ -711,6 +711,15 @@
 		"AbilityCastRange"              			"500"
 		"AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_4"
 		
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B13.lua"
+				"Function"			"B13T_old_upgrade"
+			}
+		}
+
 		"OnSpellStart"
 		{
 			"RunScript"

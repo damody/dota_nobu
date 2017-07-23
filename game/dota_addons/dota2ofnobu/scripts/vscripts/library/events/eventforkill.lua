@@ -211,9 +211,9 @@ function Nobu:OnUnitKill( keys )
         end
       else
         if killedUnit:GetLevel() >= 18 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+12)
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+20)
         elseif killedUnit:GetLevel() >= 12 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+7)
+          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+11)
         elseif killedUnit:GetLevel() >= 6 then
           killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+3)
         else
@@ -326,6 +326,10 @@ function Nobu:OnUnitKill( keys )
         Timers:CreateTimer(0.1, function()
           killedUnit:FindAbilityByName("for_magic_immune"):
           ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_for_magic_immune",nil)
+          local for_no_collision = killedUnit:FindAbilityByName("for_no_collision")
+          if for_no_collision then
+            for_no_collision:ApplyDataDrivenModifier(killedUnit,killedUnit,"modifier_for_no_collision",nil)
+          end
         end)
         killedUnit:SetOrigin(killedUnit.oripos)
       end

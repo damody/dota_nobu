@@ -128,7 +128,7 @@
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 
-		"AbilityCooldown"				"20 15 10 5"
+		"AbilityCooldown"				"20 15 10 8"
 		"AbilityManaCost"				"135 150 165 180"
 
 		"AbilityCastRange"				"650"
@@ -553,7 +553,7 @@
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"steal_hp"		"160 200 240 280"
+				"steal_hp"		"100 120 140 160"
 			}
 			"03"
 			{
@@ -675,7 +675,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"addv"	"10 20 30 40"
+				"addv"	"5 15 25 35"
 			}
 		}
 

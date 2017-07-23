@@ -77,7 +77,7 @@
 		"AbilityCooldown"							"22 19 16 13"
 		"AbilityCastPoint" "0.25" //stun
 		"AbilityManaCost"                      		"120 140 160 180"
-		"AbilityCastRange"							"%B20E_radius"
+		"AbilityCastRange"							"600"
 		
 		"OnSpellStart"
 		{
@@ -103,7 +103,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"B20E_damage"					"150 300 450 600"
+				"B20E_damage"					"200 300 400 500"
 			}
 			"03"
 			{

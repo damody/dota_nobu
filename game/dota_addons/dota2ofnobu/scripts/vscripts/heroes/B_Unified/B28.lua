@@ -359,10 +359,10 @@ end
 
 function B28R_create_meteor_particle_effect( caster, target_pos, radius )
 	local caster_pos = caster:GetAbsOrigin()
-	for i=1,10 do
+	for i=1,5 do
 		local ifx = ParticleManager:CreateParticle("particles/a23r/a23rfly.vpcf", PATTACH_CUSTOMORIGIN, caster)
 		ParticleManager:SetParticleControl(ifx, 0, caster_pos + Vector (0, 0, 1000)) -- 隕石產生的位置
-		ParticleManager:SetParticleControl(ifx, 1, target_pos + RandomVector(RandomInt(0,radius))) -- 命中位置
+		ParticleManager:SetParticleControl(ifx, 1, target_pos + RandomVector(RandomInt(0,radius*0.7))) -- 命中位置
 		ParticleManager:SetParticleControl(ifx, 2, Vector(0.5, 0, 0)) -- 效果存活時間
 	end
 end
@@ -390,7 +390,7 @@ function B28T_old( keys )
 		end
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 200, 1, false)
 		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 200, 1, false)
-		for i=1,5 do
+		for i=1,3 do
 			local random = RandomVector(RandomInt( (i-1)*radius/6 , i*radius/6 ))
 			local ifx = ParticleManager:CreateParticle("particles/b34t/b34t2_a.vpcf", PATTACH_CUSTOMORIGIN, caster)
 			ParticleManager:SetParticleControl(ifx, 0, point + random)

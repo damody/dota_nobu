@@ -3523,7 +3523,7 @@
 	                }
 	            }
 			}
-			"shield_modifier"
+			"shield_modifier4"
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
@@ -4925,7 +4925,7 @@
 				"Aura"        "modifier_great_sword_of_hurricane_debuff"
         		"Aura_Radius" "%aura_radius"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
 			}
 			"modifier_great_sword_of_hurricane_debuff"
@@ -5145,18 +5145,6 @@
 		}
 		"Modifiers"
 		{
-			"modifier_great_sword_of_spike"
-			{
-				"IsPurgable"	"1"
-				"IsDebuff" "1"
-
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-			}
 			"Passive_lightning_katana"
 			{
 				"IsHidden"	"1"
@@ -5474,7 +5462,7 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
-			"shield_modifier"
+			"shield_modifier1"
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
@@ -10355,6 +10343,46 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
+			"shield_modifier7"
+			{
+			    "Passive" "1"
+			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttacked"
+			    {
+			        "Random"
+			        {
+			            "Chance" "25"
+			            "OnSuccess"
+			            {
+			                "ApplyModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier7"
+			                }
+			            }
+			            "OnFailure"
+			            {
+			                "RemoveModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier7"
+			                }
+			            }
+			        }
+			    }
+			}
+			"block_modifier7"
+			{
+			    "IsBuff" "1"
+			    "IsHidden" "1"
+			    "Duration"	"1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
+			    }
+			}
 		}
 	}
 
@@ -12038,7 +12066,7 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 				}
 			}
-			"shield_modifier"
+			"shield_modifier5"
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
@@ -12251,10 +12279,10 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityCooldown"	"48"
 		"AbilityCastPoint"	"0.1"
-		"AbilityManaCost"	"500"
+		"AbilityManaCost"	"200"
 		"AbilityCastRange"	"1000"
 		"ID"	"2814"
 		"ItemQuality"	"component"
@@ -12314,10 +12342,10 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		
+		"AbilitySharedCooldown" "share_perceive_wine_hyper"
 		"AbilityCooldown"	"48"
 		"AbilityCastPoint"	"0.1"
-		"AbilityManaCost"	"1000"
+		"AbilityManaCost"	"200"
 		"AbilityCastRange"	"1000"
 		"ID"	"3842"
 		"ItemQuality"	"component"
@@ -13664,6 +13692,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"30"
@@ -13736,10 +13765,29 @@
 				"Type"			"DAMAGE_TYPE_MAGICAL"
 				"Damage"		"%ice_damage"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_ice_book.lua"
+				"Function"		"getIce"
+			}
 		}
 		
 		"Modifiers"
 		{
+			"modifier_slow_ice"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/generic_gameplay/generic_slowed_cold.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-30" 
+				}
+			}
 			"modifier_ice_creator"
 			{
 				"ThinkInterval"  "%aoe_delay"
@@ -13877,9 +13925,9 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		
-		"AbilityCooldown"	"40"
+		"AbilityCooldown"	"30"
 		
-		"AbilityManaCost"	"400"
+		"AbilityManaCost"	"200"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastRange"	"500"
 
@@ -14272,7 +14320,7 @@
 		}
 	}
 
-	// 忍法．土盾之書
+	// 忍法．土盾橫書
 	"item_earth_wall_book"
 	{
 		// General
@@ -14302,7 +14350,7 @@
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 
 		// 充能參數
-		"ItemInitialCharges"	"4"
+		"ItemInitialCharges"	"3"
 		"ItemRequiresCharges"	"1"
 		"ItemDisplayCharges" 	"1"
 		
@@ -14368,7 +14416,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"max_charge"	"4"
+				"max_charge"	"3"
 			}
 			"02"
 			{
@@ -14383,7 +14431,123 @@
 			"04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"6.0"
+				"duration"		"4"
+			}
+		}
+	}
+
+	// 忍法．土盾直書
+	"item_earth_wall_book2"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/rockfall_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.1"
+		"AbilityDamage"		"150"
+		"AbilityCooldown"	"0.2"
+		"AbilityCastRange"	"800"
+		"AoERadius"			"250"
+
+		"ID"	"3877"
+		"ItemCost"	"3050"
+		"SideShop"	"1"
+
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		// 充能參數
+		"ItemInitialCharges"	"3"
+		"ItemRequiresCharges"	"1"
+		"ItemDisplayCharges" 	"1"
+		
+		"OnSpellStart"
+		{
+			"SpendCharge" {} // 加了才會消耗次數
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_earth_wall_book.lua"
+				"Function"	"Shock2"
+				"Target"	"POINT"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Roshan.Slam"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_earth_wall_book_auto_charge"
+			{
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"ThinkInterval"  "%charge_delay"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_earth_wall_book.lua"
+						"Function"		"Charge"
+					}
+				}
+			}
+			"Passive_earth_wall_book"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" 		"0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" 		"0"	//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"20"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS"				"0" //血
+					"MODIFIER_PROPERTY_MANA_BONUS"					"0"	//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" 	"0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"			"0" //回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"		"0" //回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"0"	//跑速
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"max_charge"	"3"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"charge_delay"	"13.0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aoe_radius"	"250"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"4"
 			}
 		}
 	}
@@ -14410,7 +14574,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"250"
+		"ItemCost"	"150"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
 		"ItemStackable"					"1"
@@ -14462,7 +14626,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"210"
+		"ItemCost"	"150"
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
 		"ItemStackable"					"1"
@@ -15167,7 +15331,7 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "80"	//跑速
 				}
 			}
-			"shield_modifier"
+			"shield_modifier3"
 			{
 			    "Passive" "1"
 			    "IsHidden" "1"
@@ -15540,7 +15704,7 @@
 			    {
 			        "Random"
 			        {
-			            "Chance" "65"
+			            "Chance" "20"
 			            "OnSuccess"
 			            {
 			                "ApplyModifier"
@@ -15568,7 +15732,7 @@
 			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 			    "Properties"
 			    {
-			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "100"
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
 			    }
 			}
 		}
@@ -17412,7 +17576,7 @@
 		"FightRecapLevel"	"1"
 		"AbilityCooldown"	"160"
 		
-		"AbilityManaCost"	"200"
+		"AbilityManaCost"	"500"
 		"AbilityCastRange"				"2500"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"	"0.1"
@@ -17444,14 +17608,13 @@
 		{
 			"ApplyModifier"
 			{
-				"ModifierName"	"modifier_moon_x"
+				"ModifierName"	"modifier_moon_x2"
 				"Target" 		"CASTER"
 			}
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_stunned"
-				"Target" 		"CASTER"
-				"Duration"		"0.5"
+				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
+				"Function"	"Shock2"
 			}
 		}
 		
@@ -17478,69 +17641,14 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
 				}
 			}
-			"modifier_moon_x"
-			{
-				"Passive"	"0"
-				"EffectName"	"particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow.vpcf"
-				"EffectAttachType"  "follow_origin"
-				"OnAbilityExecuted"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
-						"Function"				"Shock2"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_moon_x"
-						"Target" 		"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_moon_x2"
-						"Target" 		"CASTER"
-						"Duration"		"4"
-					}
-				}
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
-						"Function"				"Shock2"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_moon_x"
-						"Target" 		"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_moon_x2"
-						"Target" 		"CASTER"
-						"Duration"		"4"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
 			"modifier_moon_x2"
 			{
 				"Passive"	"0"
+				"Duration"	"5"
 				"EffectName"	"particles/a19/a19_wfire/mk_arcana_spring_fire_ring_glow_2.vpcf"
 				"States"
 				{
 					"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OnAbilityExecuted"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
-						"Function"				"Shock3"
-					}
 				}
 			}
 		}
@@ -17549,7 +17657,7 @@
 	{
 	    "ID" "3876"
 	    "BaseClass" "item_recipe_arcane_boots"
-		"ItemCost" "7250"
+		"ItemCost" "50"
 		"ItemShopTags" ""
 		"ItemRecipe" "1"
 		"SideShop"						"1"
@@ -17559,5 +17667,263 @@
 			"01" "item_the_great_sword_of_xnew_moon"  //合成所需物品
 		}
 	}
-}
 
+	// 黑漆塗十字槍
+	"item_the_dark_cross_spear"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/dark_cross_spear"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastRange"				"700"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"30"
+		
+		"AbilityManaCost"	"0"
+
+		"ID"	"3878"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"2670"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"      "modifier_dark_armor_aura"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_dark_armor_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsBuff"			"1"
+				"Duration"      "8"
+
+				"Aura"	"modifier_dark_armor"
+				"Aura_Radius"	"700"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"  	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Aura_ApplyToCaster"	"1"
+			}
+			"modifier_dark_armor"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"		
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"		
+			
+				"EffectName"		"particles/econ/items/puck/puck_alliance_set/puck_dreamcoil_magic_aproset.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "70"	//回血
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "70"	//回魔
+				}
+			}
+			"Passive_lightning_katana"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "10"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "40"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "5"	//防禦
+				}
+			}
+
+			"Passive_insight_gem"
+			{
+				"Passive"          "1"  
+	            "IsHidden"      "1"
+	            "ThinkInterval"     "0.25"
+	            "OnIntervalThink"
+	            {
+	                "ApplyModifier"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "900"
+	                        "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	                        "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+	                        "Flags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	                    }
+	                    "ModifierName"      "modifier_truesight"
+	                    "Duration"      "0.50"
+	                }
+	            }
+			}
+			"shield_modifier8"
+			{
+			    "Passive" "1"
+			    "IsHidden" "1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttacked"
+			    {
+			        "Random"
+			        {
+			            "Chance" "15"
+			            "OnSuccess"
+			            {
+			                "ApplyModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier4"
+			                }
+			            }
+			            "OnFailure"
+			            {
+			                "RemoveModifier"
+			                {
+			                    "Target" "CASTER"
+			                    "ModifierName" "block_modifier4"
+			                }
+			            }
+			        }
+			    }
+			}
+			"block_modifier8"
+			{
+			    "IsBuff" "1"
+			    "IsHidden" "1"
+			    "Duration"	"1"
+			    "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "20000"
+			    }
+			}
+		}
+	}
+	"item_recipe_the_dark_cross_spear"
+	{
+	    "ID" "3879"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SideShop"						"1"
+		"ItemResult" "item_the_dark_cross_spear"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_cross_spear;item_the_dark_armor"  //合成所需物品
+		}
+	}
+
+	// 末代河童殼
+	"item_the_shell_of_last_kappa"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/the_shell_of_spirituality_kappa"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		
+		"AbilityCooldown"	"20"
+		
+		"AbilityManaCost"	"90"
+		"ID"	"3880"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"1620"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_the_shell_of_spirituality_kappa.lua"
+				"Function"	"Shock2"
+			}
+		}
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_mana_ingot.lua"
+				"Function"	"OnEquip"
+				"mana"	"300"
+			}
+		}
+		"OnUnequip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_mana_ingot.lua"
+				"Function"	"OnUnequip"
+				"mana"	"300"
+			}
+		}
+		"Modifiers"
+		{
+			"Passive_the_shell_of_spirituality_kappa"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "0"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "250" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "300"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "3" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "150" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "8"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "25" //魔抗
+				}
+			}
+		}
+	}
+
+	"item_recipe_the_shell_of_last_kappa"
+	{
+	    "ID" "3881"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SideShop"						"1"
+		"ItemResult" "item_the_shell_of_last_kappa"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_the_shell_of_spirituality_kappa;item_hachiman_bell"  //合成所需物品
+		}
+	}
+}

@@ -100,33 +100,6 @@ function b06e_Shot( keys )
 
     	local new_target = newgroup[RandomInt(1,#newgroup)]
 
-  		-- local new_target = group[RandomInt(1,#group)]
-
-    	--馬甲&技能(除非有單位才創造)
-    	local dummy = CreateUnitByName("hide_unit", point , true, nil, caster, caster:GetTeamNumber()) 
-		local level  = keys.ability:GetLevel()--獲取技能等級
-	    local spell = dummy:AddAbility("B06E_HIDE")  
-	    spell:SetLevel(level)
-	    spell:SetActivated(true) 
-
-	    --添加馬甲技能
-		dummy:AddAbility("majia"):SetLevel(1)
-
-		--刪除馬甲
-	    Timers:CreateTimer( 10.0, function()
-			dummy:ForceKill( true )
-			return nil
-		end )
-
-		--命令 
-		local order = { 
-	            UnitIndex = dummy:entindex(),
-	            OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-	            TargetIndex = new_target:entindex(),
-	            AbilityIndex = spell:entindex(),
-	            Queue = true
-	        }
-		--ExecuteOrderFromTable(order)
 		local projectile_info = 
 			{
 				EffectName = "particles/b06e2/b06e2.vpcf",

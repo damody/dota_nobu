@@ -92,78 +92,19 @@
 	// 羽柴秀吉 創念
 	"A28E"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"custom/icon_128x128_68"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastPoint"	"0.1"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"13 12 11 9"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"140 160 180 220"
-		// Casting
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"800"
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
-			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
-			"soundfile"	"sounds/weapons/hero/zuus/arc_lightning.vsnd"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-			"particle"	"particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"A28E.vo1"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-				"Function"	"A28E_start"
-				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"650 650 650 650"
-			}
-		}
-	}
-	// 羽柴秀吉 創念
-	"A28E_HIDE"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"zuus_arc_lightning"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"0"
+		"AbilityCooldown"	"7"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		"AbilityManaCost"	"120 140 160 180"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"800"
@@ -181,7 +122,7 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"A28E_HIDE.vo1"
+				"EffectName"	"A28E_old.vo1"
 			}
 			"ApplyModifier"
 			{
@@ -196,7 +137,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-				"Function"	"A28E"
+				"Function"	"A28E_OnSpellStart"
 				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
 			}
 			"AttachEffect"
@@ -213,7 +154,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_arc_lightning_datadriven"
+			"modifier_arc_lightning_datadriven_heal"
 			{
 				"IsHidden"	"1"
 				"OnCreated"
@@ -221,8 +162,32 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
-						"Function"	"A28E_Jump"
+						"Function"	"A28E_Jump_heal"
 						"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+					}
+					"Heal"
+		            {
+		                "Target"        "TARGET"
+		                "HealAmount"    "%HealAmount"
+		            }
+				}
+			}
+			"modifier_arc_lightning_datadriven_dmg"
+			{
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
+						"Function"	"A28E_Jump_dmg"
+						"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%AbilityDamage"
 					}
 				}
 			}
@@ -244,7 +209,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"jump_delay"	"0.2 0.2 0.1 0.1"
+				"jump_delay"	"0.3 0.2 0.1 0.05"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"HealAmount"	"65 85 105 125"
 			}
 		}
 		// Damage.
@@ -682,8 +652,6 @@
 	// 羽柴秀吉 [治療之風]
 	"A28E_old"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"zuus_arc_lightning"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"

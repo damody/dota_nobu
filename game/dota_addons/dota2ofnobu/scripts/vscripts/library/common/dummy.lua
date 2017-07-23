@@ -186,3 +186,26 @@ function showTitle( keys )
     ParticleManager:SetParticleControl(spike, 0, pos+Vector(0,0,300))
   end
 end
+
+
+function debuff_tower( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  local team = caster:GetTeamNumber()
+  local heros = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 1100, 
+          DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 
+          0, FIND_ANY_ORDER, false )
+  local count = 0
+  for i,v in pairs(heros) do
+    if not v:IsIllusion() then
+      count = count + 1
+    end
+  end
+  if count > 2 then
+    ability:ApplyDataDrivenModifier(caster,caster,"debuff_tower",{duration = 2})
+    local handle = caster:FindModifierByName("debuff_tower")
+    if handle then
+      handle:SetStackCount(count)
+    end
+  end
+end

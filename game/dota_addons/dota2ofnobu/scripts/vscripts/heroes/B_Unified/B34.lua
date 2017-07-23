@@ -70,7 +70,7 @@ function B34T( keys )
 	local level = ability:GetLevel() - 1
 	local radius = ability:GetLevelSpecialValueFor("radius",level)
 	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
-		nil,  1000 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		nil,  500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	for _, it in pairs(group) do
 		if it:IsHero() then

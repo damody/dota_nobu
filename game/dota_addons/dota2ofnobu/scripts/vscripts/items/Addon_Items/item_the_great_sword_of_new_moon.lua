@@ -54,10 +54,10 @@ end
 function Shock2( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster.magic_damage = 2.5
-	Timers:CreateTimer(4, function()
+	caster.magic_damage = 1.4
+	Timers:CreateTimer(5, function()
 				if caster:HasModifier("Passive_sword_of_xnew_moon_x") then
-					caster.magic_damage = 1.4
+					caster.magic_damage = 1.2
 				else
 					caster.magic_damage = nil
 				end
@@ -68,7 +68,7 @@ end
 function OnEquip( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster.magic_damage = 1.4
+	caster.magic_damage = 1.2
 end
 
 function OnUnequip( keys )

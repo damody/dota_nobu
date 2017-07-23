@@ -82,6 +82,10 @@ function DumpTable( tTable )
  	))
 end
 
+Special_skill = {
+	["B08D_old"] = true
+}
+
 function spell_ability ( filterTable )
 	local f = filterTable
 	local ordertype = filterTable.order_type
@@ -100,7 +104,7 @@ function spell_ability ( filterTable )
 	if len == 8 and string.sub(abname, 4, 8) == "T_old" then
 		big_skill = true
 	end
-	if target and target:GetTeamNumber() ~= caster:GetTeamNumber() and not big_skill then
+	if target and target:GetTeamNumber() ~= caster:GetTeamNumber() and not big_skill and Special_skill[abname] == nil then
 		local dis = (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length2D()
 		local items_protection = {
 	    	["modifier_protection_amulet"] = "item_protection_amulet",
@@ -155,6 +159,36 @@ function spell_ability ( filterTable )
 				end
 			end
 			if pro then
+				caster.go_protection = 1
+				Timers:CreateTimer(0, function()
+					if IsValidEntity(target) and caster.go_protection then
+						local dis = (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length2D()
+						local order = 1
+						if dis > range then
+							order = {
+								OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+								UnitIndex = caster:entindex(),
+								Position = target:GetOrigin()
+							}
+							ExecuteOrderFromTable(order)
+							caster.go_protection = 1
+						else
+							order = {
+								OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+								UnitIndex = caster:entindex(),
+								TargetIndex = target:entindex(),
+								AbilityIndex = ability:entindex()
+							}
+							ExecuteOrderFromTable(order)
+							Timers:CreateTimer(0.1, function()
+								caster:Stop()
+								end)
+							return nil
+						end
+						return 0.3
+					end
+				end)
+				
 				return false
 			end
 		end
@@ -244,6 +278,9 @@ function Nobu:eventfororder( filterTable )
 		local unit = EntIndexToHScript(filterTable.units["0"])
 		if IsValidEntity(unit) and unit.A21T then
 			return false
+		end
+		if IsValidEntity(unit) then
+			unit.go_protection = nil
 		end
 	end
 

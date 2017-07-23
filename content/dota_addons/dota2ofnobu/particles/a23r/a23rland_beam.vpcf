@@ -40,6 +40,11 @@
 			m_flFadeStartTime = 0.2
 			m_ColorFade = [ 180, 16, 16, 255 ]
 		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 2.0
+			m_flEndScale = 2.0
+		},
 	]
 	m_Initializers = 
 	[
@@ -51,7 +56,7 @@
 			_class = "C_INIT_CreateWithinSphere"
 			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
 			m_nControlPointNumber = 3
-			m_fRadiusMax = 48.0
+			m_fRadiusMax = 150.0
 		},
 		{
 			_class = "C_INIT_RandomRadius"

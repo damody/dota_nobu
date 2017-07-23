@@ -2,7 +2,7 @@
 
 function attribute_bonus(keys)
 	local level = keys.ability:GetLevel()
-	local upvalue = 3
+	local upvalue = 2
 	if (keys.caster.bonus == nil) then
 		keys.caster.bonus = level
 		keys.caster:ModifyStrength( upvalue*level )

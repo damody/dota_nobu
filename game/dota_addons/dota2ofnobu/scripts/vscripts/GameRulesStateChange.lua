@@ -133,8 +133,8 @@ function Nobu:OnGameRulesStateChange( keys )
 			end
 			if pres > 100 then
 				local money = math.floor(pres/100)*50
-				if money > 600 then
-					money = 600
+				if money > 300 then
+					money = 300
 				end
 				if n == 3 then
 					GameRules: SendCustomMessage("<font color='#ffff00'>聯合將領得到了"..(money).."金錢支援</font>", DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)

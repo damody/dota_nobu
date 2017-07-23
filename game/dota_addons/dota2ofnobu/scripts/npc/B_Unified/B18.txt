@@ -451,22 +451,34 @@
 	"B18R_old"
 	{
 		"BaseClass"                 				"ability_datadriven"
-		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"                		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"                		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"                        "custom/icon_128x128_75"
 		"AbilityCastPoint"                        	"0.1"
-
+		"AbilityCooldown"	"22"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 120 140 160"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1200"
 		"OnSpellStart"
 		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_B18R_old"
+				"Target" 		"CASTER"
+			}
 		}
 		"Modifiers"
 		{
 			"modifier_B18R_old"
 			{
-				"Passive"	"1"
+				"Passive"	"0"
+				"Duration"		"6"
 				"ThinkInterval"  "0.5"
 				"OnIntervalThink"
 				{
@@ -475,7 +487,7 @@
 						"Target"
 						{
 							"Center"  	"CASTER"
-							"Radius" 	"300"
+							"Radius" 	"1200"
 							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 						}
@@ -486,7 +498,7 @@
 							{
 								"ModifierName"	"modifier_B18R_old2"
 								"Target" 		"TARGET"
-								"Duration"		"0.45"
+								"Duration"		"0.48"
 							}
 						}
 					}

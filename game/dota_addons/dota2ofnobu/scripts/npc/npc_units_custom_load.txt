@@ -2420,8 +2420,8 @@
 		"AttackRange"	"128"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"100.0"
-		"BountyGoldMax"	"100.0"
+		"BountyGoldMin"	"10.0"
+		"BountyGoldMax"	"10.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"55"
@@ -2490,8 +2490,8 @@
 		"AttackRange"	"128"
 		// Bounty
 		// ----------------------------------------------------------------
-		"BountyGoldMin"	"100.0"
-		"BountyGoldMax"	"100.0"
+		"BountyGoldMin"	"10.0"
+		"BountyGoldMax"	"10.0"
 		// Gold and Lumber
 		// ----------------------------------------------------------------
 		"GoldCost"	"55"
@@ -4481,7 +4481,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"350"
+		"MovementSpeed"	"320"
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------
@@ -4612,7 +4612,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"415"
+		"MovementSpeed"	"320"
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------
@@ -4744,7 +4744,7 @@
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"	"415"
+		"MovementSpeed"	"320"
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------
@@ -5879,7 +5879,7 @@
 		"BaseClass"	"npc_dota_building"
 		// Add model
 		"Model"	"models/props_rock/riveredge_rock001a.vmdl"
-		"ModelScale"	"1"
+		"ModelScale"	"1.3"
 		"Level"	"1"
 		"BoundsHullName"	"DOTA_HULL_SIZE_BARRACKS"
 		"HealthBarOffset"	"200"
@@ -6370,7 +6370,7 @@
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_SIEGE"
-		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Ability5"	""
 		"Ability6"	""
@@ -6392,7 +6392,7 @@
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_tower"
 		// Add model
 		"Model"	"models/samurai_harquebus/samurai_harquebus_oda.vmdl"
 		"ModelScale"	"1.46"
@@ -6402,7 +6402,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: Adt1
-		"Ability1"	"for_magic_immune"
+		"Ability1"	"debuff_tower"
 		// Reference: Amim
 		"Ability2"	"com_bigattack"
 		// Reference: Aoar
@@ -6412,7 +6412,7 @@
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"55"
-		"MagicalResistance"	"100"
+		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -6451,7 +6451,7 @@
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_SIEGE"
-		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Ability5"	""
 		"Ability6"	""
@@ -6473,7 +6473,7 @@
 	{
 		// General
 		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_creature"
+		"BaseClass"	"npc_dota_tower"
 		// Add model
 		"Model"	"models/samurai_harquebus/samurai_harquebus_unified.vmdl"
 		"ModelScale"	"1.46"
@@ -6483,7 +6483,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: Adt1
-		"Ability1"	"for_magic_immune"
+		"Ability1"	"debuff_tower"
 		// Reference: Amim
 		"Ability2"	"com_bigattack"
 		// Reference: Aoar
@@ -6493,7 +6493,7 @@
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"55"
-		"MagicalResistance"	"100"
+		"MagicalResistance"	"0"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -6532,7 +6532,7 @@
 		// ----------------------------------------------------------------
 		"TeamName"	"DOTA_TEAM_NEUTRALS"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_SIEGE"
-		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		"Ability5"	""
 		"Ability6"	""
@@ -18320,10 +18320,10 @@
  		// Attack
  		//----------------------------------------------------------------
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
- 		"AttackDamageMin"			"1000"		// Damage range min.
- 		"AttackDamageMax"			"1200"		// Damage range max.	
- 		"AttackRate"				"1.2"		// Speed of attack.
- 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+ 		"AttackDamageMin"			"2000"		// Damage range min.
+ 		"AttackDamageMax"			"2200"		// Damage range max.	
+ 		"AttackRate"				"0.4"		// Speed of attack.
+ 		"AttackAnimationPoint"		"0.1"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"250"		// Range within a target can be attacked.
  		"ProjectileModel"			""			// Particle system model for projectile.
@@ -18347,8 +18347,8 @@
 
  		// Status
  		//----------------------------------------------------------------
- 		"StatusHealth"				"20000"		// Base health.
- 		"StatusHealthRegen"			"200"		// Health regeneration rate.
+ 		"StatusHealth"				"10000"		// Base health.
+ 		"StatusHealthRegen"			"100"		// Health regeneration rate.
  		"StatusMana"				"3000"			// Base mana.
  		"StatusManaRegen"			"1"			// Mana regeneration rate.		 
 	

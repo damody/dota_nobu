@@ -258,7 +258,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"shock_distance"	"1100"
+				"shock_distance"	"1400"
 			}
 			"04"
 			{
@@ -266,7 +266,7 @@
 				"shock_vision"	"175"
 			}
 		}
-		"AbilityDamage"	"150 300 450 600"
+		"AbilityDamage"	"200 300 400 500"
 	}
 
 	// 淺井長政 一刀．牙
@@ -397,7 +397,7 @@
 				"shock_vision"	"175"
 			}
 		}
-		"AbilityDamage"	"300 400 500 600"
+		"AbilityDamage"	"200 300 400 500"
 	}
 
 	// 淺井長政 一刀．閃瞬
@@ -498,7 +498,7 @@
 				"B08E_Damage"	"100 200 300 400"
 			}
 		}
-		"AbilityDamage"	"300 400 500 600"
+		"AbilityDamage"	"100 200 300 400"
 	}
 
 	// 淺井長政 一刀．閃瞬
@@ -518,10 +518,10 @@
 		"LevelsBetweenUpgrades"	"2"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCastAnimation"	"ACT_DOTA_ECHO_SLAM"
-		"AbilityCooldown"	"7"
+		"AbilityCooldown"	"14 13 12 11"
 		"AbilityManaCost"	"120 130 140 150"
 		"AbilityCastRange"	"1150 1200 1250 1300"
-		"AbilityDamage"	"300 400 500 600"
+		"AbilityDamage"	"200 300 400 500"
 		"precache"
 		{
 			"particle"	"particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_l_glow.vpcf"
@@ -586,7 +586,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"B08E_Damage"	"300 400 500 600"
+				"B08E_Damage"	"200 300 400 500"
 			}
 		}
 	}
@@ -853,7 +853,7 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/cps_d08_4"
-		"AbilityCooldown"	"110 90 70"
+		"AbilityCooldown"	"110 100 90"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"

@@ -196,10 +196,10 @@ end
 
 function A23R_create_meteor_particle_effect( caster, target_pos, radius )
 	local caster_pos = caster:GetAbsOrigin()
-	for i=1,10 do
+	for i=1,5 do
 		local ifx = ParticleManager:CreateParticle("particles/a23r/a23rfly.vpcf", PATTACH_CUSTOMORIGIN, caster)
 		ParticleManager:SetParticleControl(ifx, 0, caster_pos + Vector (0, 0, 1000)) -- 隕石產生的位置
-		ParticleManager:SetParticleControl(ifx, 1, target_pos + RandomVector(RandomInt(0,radius))) -- 命中位置
+		ParticleManager:SetParticleControl(ifx, 1, target_pos + RandomVector(RandomInt(0,radius*0.7))) -- 命中位置
 		ParticleManager:SetParticleControl(ifx, 2, Vector(0.5, 0, 0)) -- 效果存活時間
 	end
 end

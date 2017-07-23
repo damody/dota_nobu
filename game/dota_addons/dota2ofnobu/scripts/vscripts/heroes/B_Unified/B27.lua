@@ -98,7 +98,7 @@ function B27R_old_OnIntervalThink( keys )
 		if caster.B27R_effect then
 			ParticleManager:DestroyParticle(caster.B27R_effect,false)
 		end
-		caster.B27R_effect = ParticleManager:CreateParticle("particles/item/protection.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		caster.B27R_effect = ParticleManager:CreateParticle("particles/b27/b27r_old.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 		ParticleManager:SetParticleControl(caster.B27R_effect, 1, Vector(shield_size,0,shield_size))
 		ParticleManager:SetParticleControl(caster.B27R_effect, 2, Vector(shield_size,0,shield_size))
 		ParticleManager:SetParticleControl(caster.B27R_effect, 4, Vector(shield_size,0,shield_size))

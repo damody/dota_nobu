@@ -76,8 +76,8 @@ function B22E_OnSpellStart( keys )
 	dummy:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_fly",{duration = 3})
-	dummy:SetBaseMaxHealth(1200+caster:GetLevel()*hp_buff)
-	dummy:SetMaxHealth(1200+caster:GetLevel()*hp_buff)
+	dummy:SetBaseMaxHealth(900+caster:GetLevel()*hp_buff)
+	dummy:SetMaxHealth(900+caster:GetLevel()*hp_buff)
 	dummy:SetHealth(dummy:GetMaxHealth())
 	dummy:SetBaseDamageMax(51+caster:GetLevel()*atk_buff)
 	dummy:SetBaseDamageMin(41+caster:GetLevel()*atk_buff)
@@ -177,8 +177,8 @@ function B22E_old_OnSpellStart( keys )
 	dummy:SetOwner(caster)
 	dummy:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
-	dummy:SetBaseMaxHealth(1200+caster:GetLevel()*hp_buff)
-	dummy:SetMaxHealth(1200+caster:GetLevel()*hp_buff)
+	dummy:SetBaseMaxHealth(900+caster:GetLevel()*hp_buff)
+	dummy:SetMaxHealth(900+caster:GetLevel()*hp_buff)
 	dummy:SetHealth(dummy:GetMaxHealth())
 	dummy:SetBaseDamageMax(71+caster:GetLevel()*atk_buff)
 	dummy:SetBaseDamageMin(61+caster:GetLevel()*atk_buff)
@@ -310,4 +310,46 @@ function B22T_old_OnSpellStart( keys )
 				end
 			end
 			end)
+end
+
+function forest_caster_T_OnAbilityPhaseStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local spike1 = ParticleManager:CreateParticle("particles/a10e/a10e.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleControl(spike1, 0, target:GetAbsOrigin())
+	local particle = ParticleManager:CreateParticle("particles/a04e/a04e_f.vpcf", PATTACH_ABSORIGIN, target)
+	ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin()+Vector(0, 0, 100))
+	caster:EmitSound("MassTeleportTarget")
+	Timers:CreateTimer(2, function()
+		ParticleManager:DestroyParticle(spike1,false)
+		ParticleManager:DestroyParticle(particle,false)
+	end)
+end
+
+function forest_caster_T( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	if target:GetTeamNumber() == caster:GetTeamNumber() then
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B22R2",{duration = 0.8})
+		local am = caster:FindAllModifiers()
+		for _,v in pairs(am) do
+			if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+				if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+					caster:RemoveModifierByName(v:GetName())
+				end
+			end
+		end
+	else
+		if target:IsIllusion() then
+			target:ForceKill(true)
+		else
+			target:RemoveModifierByName("modifier_perceive_wine")
+			target.nomagic = true
+			Timers:CreateTimer(10, function() 
+				target.nomagic = nil
+			end)
+		end		
+	end
 end

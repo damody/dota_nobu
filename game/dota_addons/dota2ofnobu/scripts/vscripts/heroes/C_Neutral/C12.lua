@@ -5,11 +5,6 @@ function C12D_OnSpellStart( keys )
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_C12D_debuff",nil)
 	caster.C12D_target = target
 	target.C12D_count = 0
-	if ability.aim_effect then
-		ParticleManager:DestroyParticle(ability.aim_effect, true)
-		ability.aim_effect = nil
-	end
-	ability.aim_effect = ParticleManager:CreateParticle("particles/c12/c12d.vpcf",PATTACH_OVERHEAD_FOLLOW,target)
 end
 
 function C12D_OnUnitMoved( keys )
@@ -22,10 +17,6 @@ function C12D_OnUnitMoved( keys )
 			keys.unit:RemoveModifierByName("modifier_C12D_debuff")
 			caster.C12D_target = nil
 			keys.unit.C12D_count = nil
-			if ability.aim_effect then
-				ParticleManager:DestroyParticle(ability.aim_effect, true)
-				ability.aim_effect = nil
-			end
 		end
 	end
 end

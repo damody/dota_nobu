@@ -203,28 +203,11 @@ function B33R_old_on_attck_landed( keys )
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	
 	for _,unit in ipairs(group) do
-		if not unit:HasModifier("modifier_B33R_old_debuff") then
-			ability:ApplyDataDrivenModifier(caster,unit,"modifier_B33R_old_debuff",{duration=3})
-			local handle = unit:FindModifierByName("modifier_B33R_old_debuff")
-			handle:SetStackCount(1)
+		ability:ApplyDataDrivenModifier(caster,unit,"modifier_B33R_old_debuff",{duration=3})
+		if target:IsMagicImmune() then
+			AMHC:Damage(caster, unit, ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		else
-			local handle = unit:FindModifierByName("modifier_B33R_old_debuff")
-			local c = handle:GetStackCount()
-			c = c + 1
-			if c > 3 then
-				c = 3
-			end
-			ability:ApplyDataDrivenModifier(caster,unit,"modifier_B33R_old_debuff",{duration=3})
-			handle:SetStackCount(c)
-		end
-		local handle = target:FindModifierByName("modifier_B33R_old_debuff")
-		if handle then
-			local c = handle:GetStackCount()
-			if target:IsMagicImmune() then
-				AMHC:Damage(caster, unit, ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-			else
-				AMHC:Damage(caster, unit, ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-			end
+			AMHC:Damage(caster, unit, ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
 end
@@ -238,19 +221,7 @@ function B33R_old_OnIntervalThink( keys )
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 	
 	for _,unit in ipairs(group) do
-		if not unit:HasModifier("modifier_B33R_old_debuff") then
-			ability:ApplyDataDrivenModifier(caster,unit,"modifier_B33R_old_debuff",{duration=3})
-			local handle = unit:FindModifierByName("modifier_B33R_old_debuff")
-			handle:SetStackCount(1)
-		else
-			local handle = unit:FindModifierByName("modifier_B33R_old_debuff")
-			local c = handle:GetStackCount()
-			c = c + 1
-			if c > 2 then
-				c = 2
-			end
-			handle:SetStackCount(c)
-		end
+		ability:ApplyDataDrivenModifier(caster,unit,"modifier_B33R_old_debuff",{duration=3})
 	end
 end
 
@@ -262,9 +233,9 @@ function B33R_old_damage( keys )
 	if handle then
 		local c = handle:GetStackCount()
 		if target:IsMagicImmune() then
-			AMHC:Damage(caster, target, ability:GetAbilityDamage()*c*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster, target, ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		else
-			AMHC:Damage(caster, target, ability:GetAbilityDamage()*c,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster, target, ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
 end

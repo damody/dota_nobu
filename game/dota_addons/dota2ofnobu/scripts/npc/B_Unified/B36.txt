@@ -526,6 +526,11 @@
 				"Type"	"DAMAGE_TYPE_PHYSICAL"
 				"Damage"	"%dmg2"
 			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
+				"Function"		"B36E_old_OnProjectileHitUnit"
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------

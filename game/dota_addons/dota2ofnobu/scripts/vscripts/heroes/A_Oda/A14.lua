@@ -239,7 +239,6 @@ function A14W_old_OnSpellStart( event )
 		print("target:GetPhysicsVelocity():Length()", target:GetPhysicsVelocity():Length())
 		if (timecounter<80 and target:GetPhysicsVelocity():Length()<100) then
 			ApplyDamage(damageTable)
-			ApplyDamage(damageTable)
 			Physics:Unit(target)
 			target:SetPhysicsVelocity(Vector(0,0,0))
 			target:AddNewModifier(target,ability,"modifier_phased",{duration=0.1})
@@ -249,7 +248,6 @@ function A14W_old_OnSpellStart( event )
 		for _,unit in ipairs(units) do
 			if (unit~=target and CalcDistanceBetweenEntityOBB(unit,target)<=100) then
 				--target:RemoveModifierByName("modifier_stunned")
-				ApplyDamage(damageTable)
 				ApplyDamage(damageTable)
 				Physics:Unit(target)
 				target:SetPhysicsVelocity(Vector(0,0,0))

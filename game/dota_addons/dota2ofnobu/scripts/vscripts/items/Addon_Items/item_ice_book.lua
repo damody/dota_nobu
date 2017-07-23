@@ -33,6 +33,12 @@ function Shock( keys )
 	
 end
 
+function getIce( keys )
+	local caster = keys.caster
+	local target = keys.target
+	keys.ability:ApplyDataDrivenModifier(caster,target,"modifier_slow_ice",{duration = 3})
+end
+
 function CreateIce( keys )
 	local caster = keys.caster
 	local target = keys.target

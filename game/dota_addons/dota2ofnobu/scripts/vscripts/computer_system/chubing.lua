@@ -81,6 +81,10 @@ function ShuaGuai( )
 	if GetMapName() == "nobu_pk" then
 		start_time = 30
 	end
+	local no_buff = {
+		["com_general_oda"] = true,
+		["com_general_unified"] = true,
+	}
  	Timers:CreateTimer(start_time, function()--50
  		ShuaGuai_count = ShuaGuai_count + 1
  		--強化箭塔
@@ -89,8 +93,10 @@ function ShuaGuai( )
 		    if ent:IsTower() then
 		    	--ent:SetMaxHealth(ent:GetBaseMaxHealth()+ShuaGuai_count*10)
 		    	--ent:SetHealth(ent:GetHealth()+10)
-		    	ent:SetBaseDamageMax(ent:GetBaseDamageMax() + 4)
-		    	ent:SetBaseDamageMin(ent:GetBaseDamageMin() + 4)
+		    	if no_buff[ent:GetUnitName()] == nil then
+			    	ent:SetBaseDamageMax(ent:GetBaseDamageMax() + 4)
+			    	ent:SetBaseDamageMin(ent:GetBaseDamageMin() + 4)
+			    end
 		    	--ent:SetPhysicalArmorBaseValue(ent:GetPhysicalArmorBaseValue() + 0.5)
 			end
 		end
