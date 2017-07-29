@@ -739,13 +739,17 @@
 			"modifier_B16W_old_buff2" // 望月在身邊才有的buff
 			{
 				"EffectName"	"particles/a04/a04d_old_snow_b_arcana1.vpcf"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "-50"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%per_mov_spd"
+				}
 			}
 			"modifier_B16W_old_buff"
 			{
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%per_atk_spd"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%per_mov_spd" 
 				}
 				"OnAttackLanded"
 				{
@@ -812,7 +816,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"baseHP"	"1200 1400 1600 1800"
+				"baseHP"	"1400 1600 1800 2000"
 			}
 			"05"
 			{
@@ -838,7 +842,7 @@
 		"AbilityTextureName"		"custom/guanyu_xzizhan"
 		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastPoint"	"0.25"	//stun
-		"AbilityCooldown"	"16 13 10 7"
+		"AbilityCooldown"	"19 16 13 10"
 		"AbilityManaCost"	"100 120 140 160"
 		"OnSpellStart"
 		{

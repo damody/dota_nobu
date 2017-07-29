@@ -35,10 +35,11 @@ function B28R_OnProjectileHitUnit( keys )
 	local ability = keys.ability
 	local caster = keys.caster
 	local target = keys.target
+	local dmg = ability:GetSpecialValueFor("B28R_damage")+caster:GetLevel()*3
 	if target:IsBuilding() then
-		AMHC:Damage( caster,target,ability:GetSpecialValueFor("B28R_damage")*0.2,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+		AMHC:Damage( caster,target,dmg*0.2,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
 	else
-		AMHC:Damage( caster,target,ability:GetSpecialValueFor("B28R_damage"),AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType("DAMAGE_TYPE_MAGICAL") )
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_B28R_dot",nil)
 	end
 end

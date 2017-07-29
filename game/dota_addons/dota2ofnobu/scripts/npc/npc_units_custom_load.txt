@@ -4061,7 +4061,7 @@
 		"Ability2"	"A28TW"
 		// Armor
 		// ----------------------------------------------------------------
-		"ArmorPhysical"	"10"
+		"ArmorPhysical"	"20"
 		"MagicalResistance"	"75"
 		// Attack
 		// ----------------------------------------------------------------
@@ -4088,7 +4088,7 @@
 		"LumberCost"	"0"
 		// Movement
 		// ----------------------------------------------------------------
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"	"415"
 		"MovementTurnRate"	"1.50"
 		// Status
@@ -4657,8 +4657,8 @@
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"	"50.0"
-		"AttackDamageMax"	"60.0"
+		"AttackDamageMin"	"150.0"
+		"AttackDamageMax"	"160.0"
 		"AttackDamageType"	"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"	"0.8"
 		"AttackAnimationPoint"	"0.30"
@@ -4679,10 +4679,10 @@
 		"MovementTurnRate"	"2"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"2500"
+		"StatusHealth"	"3500"
 		"StatusHealthRegen"	"3"
-		"StatusMana"	"300"
-		"StatusStartingMana"	"300"
+		"StatusMana"	"200"
+		"StatusStartingMana"	"200"
 		// Vision
 		// ----------------------------------------------------------------
 		"VisionDaytimeRange"	"1400"
@@ -4693,7 +4693,7 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"Ability1"	"forest_soldier_W"
+		"Ability1"	"forest_soldier_W2"
 		"Ability2"	"forest_soldier_E"
 		"Ability3"	"forest_soldier_R"
 		"Ability4"	""
@@ -4748,7 +4748,7 @@
 		"MovementTurnRate"	"1.50"
 		// Status
 		// ----------------------------------------------------------------
-		"StatusHealth"	"1500"
+		"StatusHealth"	"2500"
 		"StatusHealthRegen"	"1"
 		"StatusMana"	"2000"
 		"StatusStartingMana"	"2000"
@@ -4765,7 +4765,7 @@
 		"Ability1"	"forest_caster_W"
 		"Ability2"	"forest_caster_E"
 		"Ability3"	"forest_caster_R"
-		"Ability4"	""
+		"Ability4"	"forest_caster_T"
 	}
 
 	// 雜賀眾
@@ -4879,7 +4879,7 @@
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
  		"AttackDamageMin"			"55"		// Damage range min.
  		"AttackDamageMax"			"61"		// Damage range max.	
- 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackRate"				"1"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -4906,7 +4906,7 @@
  		// Status
  		//----------------------------------------------------------------
  		"StatusHealth"				"1000"		// Base health.
- 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusHealthRegen"			"20"		// Health regeneration rate.
  		"StatusMana"				"400"		// Base mana.
  		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 	
@@ -4954,7 +4954,7 @@
  		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
  		"AttackDamageMin"			"55"		// Damage range min.
  		"AttackDamageMax"			"61"		// Damage range max.	
- 		"AttackRate"				"1.35"		// Speed of attack.
+ 		"AttackRate"				"1"		// Speed of attack.
  		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
  		"AttackAcquisitionRange"	"300"		// Range within a target can be acquired.
  		"AttackRange"				"128"		// Range within a target can be attacked.
@@ -4981,7 +4981,7 @@
  		// Status
  		//----------------------------------------------------------------
  		"StatusHealth"				"1000"		// Base health.
- 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+ 		"StatusHealthRegen"			"20"		// Health regeneration rate.
  		"StatusMana"				"400"		// Base mana.
  		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 	
@@ -6309,8 +6309,6 @@
 	// 侍大將
 	"com_general"
 	{
-		// General
-		// ----------------------------------------------------------------
 		"BaseClass"	"npc_dota_creature"
 		// Add model
 		"Model"	"models/samurai_harquebus/samurai_harquebus.vmdl"
@@ -6390,11 +6388,9 @@
 // 侍大將
 	"com_general_oda"
 	{
-		// General
-		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_tower"
+		"BaseClass"	"npc_dota_creature"
 		// Add model
-		"Model"	"models/samurai_harquebus/samurai_harquebus_oda.vmdl"
+		"Model"	"models/samurai_harquebus/samurai_harquebus.vmdl"
 		"ModelScale"	"1.46"
 		"Level"	"10"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
@@ -6402,7 +6398,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: Adt1
-		"Ability1"	"debuff_tower"
+		"Ability1"	"for_magic_immune"
 		// Reference: Amim
 		"Ability2"	"com_bigattack"
 		// Reference: Aoar
@@ -6412,7 +6408,7 @@
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"55"
-		"MagicalResistance"	"0"
+		"MagicalResistance"	"100"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -6471,11 +6467,9 @@
 // 侍大將
 	"com_general_unified"
 	{
-		// General
-		// ----------------------------------------------------------------
-		"BaseClass"	"npc_dota_tower"
+		"BaseClass"	"npc_dota_creature"
 		// Add model
-		"Model"	"models/samurai_harquebus/samurai_harquebus_unified.vmdl"
+		"Model"	"models/samurai_harquebus/samurai_harquebus.vmdl"
 		"ModelScale"	"1.46"
 		"Level"	"10"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
@@ -6483,7 +6477,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: Adt1
-		"Ability1"	"debuff_tower"
+		"Ability1"	"for_magic_immune"
 		// Reference: Amim
 		"Ability2"	"com_bigattack"
 		// Reference: Aoar
@@ -6493,7 +6487,7 @@
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"55"
-		"MagicalResistance"	"0"
+		"MagicalResistance"	"100"
 		// Attack
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -16183,7 +16177,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: Adt1
-		"Ability1"	"A0BM"
+		"Ability1"	""
 		// Reference: A00W
 		"Ability2"	"check_Unified_is_dead"
 		// Armor
@@ -16258,7 +16252,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Reference: Adt1
-		"Ability1"	"A0BM"
+		"Ability1"	""
 		// Reference: A00W
 		"Ability2"	"check_Oda_is_dead"
 		// Armor

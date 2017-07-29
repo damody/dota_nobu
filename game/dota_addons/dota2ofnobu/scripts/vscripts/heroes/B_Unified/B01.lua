@@ -252,35 +252,38 @@ end
 function B01R(keys)
 	--【Basic】
 	local caster = keys.caster
+
 	if caster.nobuorb1 == nil then
 		local target = keys.target
-		local ability = keys.ability
-		local level = ability:GetLevel() - 1
-		local dmg = keys.dmg
-		--print("B01R "..dmg)
-		local per_atk = 0
-		local targetArmor = target:GetPhysicalArmorValue()
+		if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+			local ability = keys.ability
+			local level = ability:GetLevel() - 1
+			local dmg = keys.dmg
+			--print("B01R "..dmg)
+			local per_atk = 0
+			local targetArmor = target:GetPhysicalArmorValue()
 
-		if target:IsHero() then 
-			per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
-			--print("hero")
-		elseif  target:IsBuilding() then
-			per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
-			--print("building")
-		else
-			per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
-			--print("unit")
-		end
-		local dmgori = dmg
-		dmg = dmg * per_atk  / 100
-		--print(dmgori, damageReduction, dmg)
-		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-		if IsValidEntity(target) then
-			local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
-			ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
-			Timers:CreateTimer(1, function()
-				ParticleManager:DestroyParticle(particle,false)
-				end)
+			if target:IsHero() then 
+				per_atk = ability:GetLevelSpecialValueFor("atk_hero",level)
+				--print("hero")
+			elseif  target:IsBuilding() then
+				per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
+				--print("building")
+			else
+				per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
+				--print("unit")
+			end
+			local dmgori = dmg
+			dmg = dmg * per_atk  / 100
+			--print(dmgori, damageReduction, dmg)
+			AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			if IsValidEntity(target) then
+				local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
+				ParticleManager:SetParticleControl(particle, 3, target:GetAbsOrigin()+Vector(0, 0, 100))
+				Timers:CreateTimer(1, function()
+					ParticleManager:DestroyParticle(particle,false)
+					end)
+			end
 		end
 	end
 end

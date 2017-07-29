@@ -515,7 +515,7 @@ function A26T_old_OnProjectileHitUnit( keys )
 	ParticleManager:SetParticleControl(ifx,3,target:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(ifx)
 
-	local ifx = ParticleManager:CreateParticle("particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion.vpcf",PATTACH_ABSORIGIN,target)
+	local ifx = ParticleManager:CreateParticle("particles/a26/a26t.vpcf",PATTACH_ABSORIGIN,target)
 	ParticleManager:SetParticleControl(ifx,3,target:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(ifx)
 

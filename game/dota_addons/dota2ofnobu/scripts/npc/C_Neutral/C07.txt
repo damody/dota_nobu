@@ -7,6 +7,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/c07.vsndevts"
+			"particle"	"particles/title/c07t.vpcf"
 		}
 	}
 	// 立花道雪 天雷降
@@ -349,6 +350,12 @@
 			{
 				"Target"	"CASTER"
 				"EffectName"	"Hero_Leshrac.Lightning_Storm"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c07t.vpcf"
 			}
 		}
 		"Modifiers"
@@ -838,6 +845,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C07.lua"
 				"Function"	"C07T"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c07t.vpcf"
 			}
 			"FireSound"
 			{

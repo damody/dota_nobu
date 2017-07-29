@@ -214,18 +214,20 @@ function B23W( keys )
 		return 1
 	end)
 --亡魂傷害
-	for i=1,#caster.B23D_ghostTable do
-		FindClearSpaceForUnit( caster.B23D_ghostTable[i], point + RandomVector(RandomInt(100,200)) , true)
-		local units = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
-		for _,unit in ipairs(units) do
-			ApplyDamage({
-				victim = unit,
-				attacker = caster,
-				ability = ability,
-				damage = ability:GetSpecialValueFor("B23W_shockDamage"),
-				damage_type = ability:GetAbilityDamageType(),
-				damage_flags = DOTA_DAMAGE_FLAG_NONE,
-			})
+	if caster.B23D_ghostTable then
+		for i=1,#caster.B23D_ghostTable do
+			FindClearSpaceForUnit( caster.B23D_ghostTable[i], point + RandomVector(RandomInt(100,200)) , true)
+			local units = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false )
+			for _,unit in ipairs(units) do
+				ApplyDamage({
+					victim = unit,
+					attacker = caster,
+					ability = ability,
+					damage = ability:GetSpecialValueFor("B23W_shockDamage"),
+					damage_type = ability:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+				})
+			end
 		end
 	end
 	--亡魂攻擊英雄

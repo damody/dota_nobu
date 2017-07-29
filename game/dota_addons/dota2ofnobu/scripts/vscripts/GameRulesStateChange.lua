@@ -12,6 +12,17 @@ gamestates =
 	[9] = "DOTA_GAMERULES_STATE_DISCONNECT"
 }
 
+
+function SendHTTPRequest(path, method, values, callback)
+	local req = CreateHTTPRequestScriptVM( method, "http://140.114.235.19/"..path )
+	for key, value in pairs(values) do
+		req:SetHTTPRequestGetOrPostParameter(key, value)
+	end
+	req:Send(function(result)
+		callback(result.Body)
+	end)
+end
+
 -- 測試模式送裝
 function for_test_equiment()
   Timers:CreateTimer ( 1, function ()
@@ -87,9 +98,45 @@ function Nobu:OnGameRulesStateChange( keys )
 	        building:RemoveModifierByName('modifier_invulnerable')
 	     end
 	  end
+	  local read_count = 0
 	  Timers:CreateTimer(1, function()
-	  	--SendToConsole("sv_cheats 1")
-	    --SendToConsole("r_farz 7000")
+	  	local ids = {}
+		local idcount = 0
+		for pID = 0, 9 do
+			if PlayerResource:GetPlayer(pID) ~= nil then
+				local hero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+				local steamID = PlayerResource:GetSteamAccountID(pID)
+				local nobu_id = _G.heromap[hero:GetName()]
+				local version = hero.version or "16"
+
+				ids[tostring(steamID)] = nobu_id.."_"..version
+				if steamID ~= 0 then
+					idcount = idcount + 1
+				end
+			end
+		end
+		SendHTTPRequest("query_focus", "POST",
+		ids,
+		function(result)
+			if not pcall(function()
+				resultTable = json.decode(result)
+			end) then
+				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
+			end
+			for pID = 0, 9 do
+				if PlayerResource:GetPlayer(pID) ~= nil then
+					local hero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+					local steamID = PlayerResource:GetSteamAccountID(pID)
+					if steamID ~= 0 then
+						hero.focus = resultTable[tostring(steamID)]
+					end
+				end
+			end
+		end)
+		if read_count < 10 then
+			read_count = read_count + 1
+			return 10
+		end
 	  end)
     --出兵觸發
     if _G.nobu_chubing_b then

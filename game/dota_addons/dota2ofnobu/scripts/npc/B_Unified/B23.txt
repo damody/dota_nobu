@@ -17,6 +17,7 @@
 			"particle"	"particles/econ/items/enigma/enigma_geodesic/enigma_base_attack_eidolon_geodesic.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"particle"	"particles/title/b23t.vpcf"
 		}
 	}
 
@@ -401,6 +402,12 @@
 			{
 				"ScriptFile"		"scripts/vscripts/heroes/B_Unified/B23.lua"
 				"Function"			"B23T"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/b23t.vpcf"
 			}
 		}
 

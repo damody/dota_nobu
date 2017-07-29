@@ -19,12 +19,12 @@ function choose_16( keys )
     local skill = _G.heromap_skill[nobu_id]["16"]
     for si=1,#skill do
       if si == #skill and #skill < 6 then
-        caster:AddAbility("attribute_bonusx")
+        caster:AddAbility("attribute_bonusx"):SetLevel(1)
       end
       caster:AddAbility(nobu_id..skill:sub(si,si))
     end
     if #skill >= 6 then
-      caster:AddAbility("attribute_bonusx")
+      caster:AddAbility("attribute_bonusx"):SetLevel(1)
     end
     -- 要自動學習的技能
     local askill = _G.heromap_autoskill[nobu_id]["16"]
@@ -74,12 +74,12 @@ function choose_11( keys )
     local skill = _G.heromap_skill[nobu_id]["11"]
     for si=1,#skill do
       if si == #skill and #skill < 6 then
-        caster:AddAbility("attribute_bonusx")
+        caster:AddAbility("attribute_bonusx"):SetLevel(1)
       end
       caster:AddAbility(nobu_id..skill:sub(si,si).."_old")
     end
     if #skill >= 6 then
-      caster:AddAbility("attribute_bonusx")
+      caster:AddAbility("attribute_bonusx"):SetLevel(1)
     end
     -- 要自動學習的技能
     local askill = _G.heromap_autoskill[nobu_id]["11"]

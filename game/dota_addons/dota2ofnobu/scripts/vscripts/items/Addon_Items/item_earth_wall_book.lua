@@ -90,8 +90,26 @@ function Shock2( keys )
 	local damage_type = ability:GetAbilityDamageType()
 	local damage = ability:GetAbilityDamage()
 
-	-- 搜尋
 	local units = FindUnitsInRadius(iTeam,	-- 關係
+                             center,			-- 搜尋的中心點
+                             nil, 				-- 好像是優化用的參數不懂怎麼用
+                             aoe_radius*2,		-- 搜尋半徑
+                             target_team,		-- 目標隊伍
+                             target_type,		-- 目標類型
+                             target_flags,		-- 額外選擇或排除特定目標
+                             FIND_ANY_ORDER,	-- 結果的排列方式
+                             false) 			-- 好像是優化用的參數不懂怎麼用
+
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+
+		-- 避免卡住
+		if _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+			unit:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
+		end
+	end
+	-- 搜尋
+	units = FindUnitsInRadius(iTeam,	-- 關係
                              center,			-- 搜尋的中心點
                              nil, 				-- 好像是優化用的參數不懂怎麼用
                              aoe_radius,		-- 搜尋半徑

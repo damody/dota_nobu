@@ -483,10 +483,10 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityCastPoint"	"0.1"	
-		"AbilityCooldown"	"35"
+		"AbilityCooldown"	"32 30 28 26"
 		"AbilityCastRange"	"800"
 		"AbilityManaCost"	"120 140 160 180"
-		"AbilityDamage"				"25 35 45 55"
+		"AbilityDamage"				"30 35 40 45"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -520,12 +520,6 @@
 		"OnProjectileHitUnit"
 		{
 			"DeleteOnHit"	"1"
-			"Damage"
-			{
-				"Target"	"TARGET"
-				"Type"	"DAMAGE_TYPE_PHYSICAL"
-				"Damage"	"%dmg2"
-			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B36.lua"
@@ -549,7 +543,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg2"							"40 60 80 100"
+				"dmg2"							"30 35 40 45"
 			}
 		}
 	}

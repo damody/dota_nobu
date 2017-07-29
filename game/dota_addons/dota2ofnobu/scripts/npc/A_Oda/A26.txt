@@ -10,6 +10,7 @@
 			"soundfile"	"soundevents/a26.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 			"soundfile" "particles/a26/a26t_bookecon/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"
+			"particle"  "particles/a26/a26t.vpcf"
 		}
 	}
 
@@ -77,7 +78,7 @@
 
 		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.3"	//move
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 
 		"AbilitySpecial"
 		{
@@ -338,7 +339,7 @@
 
 		"AbilityCastRange"				"1200"
 		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AnimationPlaybackRate"			"2"
 		"AoERadius"						"400"
 
@@ -469,7 +470,7 @@
 
 		"AbilityCastRange"				"300"
 		"AbilityCastPoint"				"0.3"	//move
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 
 		"AbilitySpecial"
 		{
@@ -616,7 +617,7 @@
 
 		"AbilityCastRange"				"1500"
 		"AbilityCastPoint"				"0.7"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AnimationPlaybackRate"			"0.7"
 
 		"AoERadius"						"%radius"

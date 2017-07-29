@@ -18,6 +18,7 @@
 		{
 			_class = "C_OP_SetToCP"
 			m_vecOffset = [ 0.0, 0.0, 16.0 ]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_Decay"
@@ -30,6 +31,7 @@
 		{
 			_class = "C_OP_FadeOutSimple"
 			m_flFadeOutTime = 0.5
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
@@ -39,7 +41,13 @@
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flStartScale = 5.0
-			m_flEndScale = 15.0
+			m_flEndScale = 5.0
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_nFieldOutput = 21
+			m_vecOutputMin = [ 0.0, 2.0, 0.0 ]
+			m_vecOutputMax = [ 1.0, 2.0, 1.0 ]
 		},
 	]
 	m_Initializers = 
@@ -49,12 +57,13 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 2.0
-			m_fLifetimeMax = 2.0
+			m_fLifetimeMin = 5.0
+			m_fLifetimeMax = 5.0
 		},
 		{
 			_class = "C_INIT_RandomVector"
-			m_vecMax = [ 0.0, 0.0, 500.0 ]
+			m_vecMax = [ 0.0, 0.0, 200.0 ]
+			m_vecMin = [ 0.0, 0.0, 200.0 ]
 		},
 	]
 	m_Emitters = 

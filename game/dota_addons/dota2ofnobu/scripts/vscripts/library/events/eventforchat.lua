@@ -290,6 +290,7 @@ local function chat_of_test(keys)
         donkey:FindAbilityByName("courier_take_stash_and_transfer_items"):SetLevel(1)
         donkey:FindAbilityByName("for_magic_immune"):SetLevel(1)
 	end
+	
 			
 	local sump = 0
 	for playerID = 0, 9 do
@@ -305,6 +306,12 @@ local function chat_of_test(keys)
 	local steamid = PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID())
 	if tostring(steamid) == "128732954" then
 		sump = 1
+	end
+	if s == "-me" then
+		local nobu_id = _G.heromap[caster:GetName()]
+		if sump <= 2 then
+			GameRules: SendCustomMessage(_G.hero_name_zh[nobu_id].." 英雄勝場為 " .. caster.focus, DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
+		end
 	end
 	if sump <= 2 then
 		if string.match(s,"uion") then

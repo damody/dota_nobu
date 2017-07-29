@@ -187,6 +187,33 @@ function showTitle( keys )
   end
 end
 
+function removeAbility( keys )
+  local caster = keys.caster
+  caster:RemoveAbility(keys.title)
+end
+
+local ok_modifier = {
+  ["modifier_great_sword_of_hurricane_debuff"] = true,
+  ["modifier_debuff_x"] = true,
+  ["modifier_A17T"] = true,
+  ["modifier_magical_1300_aura"] = true,
+  ["modifier_tower_truesight_aura"] = true,
+  ["modifier_tower_aura"] = true,
+  ["modifier_tower_armor_bonus"] = true,
+  ["modifier_great_sword_of_hurricane_debuff"] = true,
+}
+
+function debuff_tower2( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  local am = caster:FindAllModifiers()
+    for _,v in pairs(am) do
+      if ok_modifier[v:GetName()] == nil then
+        caster:RemoveModifierByName(v:GetName())
+      end
+    end
+  
+end
 
 function debuff_tower( keys )
   local caster = keys.caster

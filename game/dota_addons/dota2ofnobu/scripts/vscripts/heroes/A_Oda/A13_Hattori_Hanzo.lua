@@ -483,8 +483,7 @@ function a13e_modifier:OnIntervalThink()
 		                              false)
 				local hashook = false
 				for _,it in pairs(direUnits) do
-
-					if not string.match(it:GetUnitName(), "com_general") and not string.match(it:GetUnitName(), "warrior_souls") and not it:HasAbility("majia") then
+					if not string.match(it:GetUnitName(), "npc_dota_courier2") and _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil and not it:HasAbility("majia") then
 						local tbl = { victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
 							damage_type = self.damage_type, ability = self:GetAbility()}
 						if it:IsMagicImmune() then
@@ -519,13 +518,13 @@ function a13e_modifier:OnIntervalThink()
 			                          nil,
 			                          SEARCH_RADIUS,
 			                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-			                          DOTA_UNIT_TARGET_ALL,
+			                          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			                          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 			                          FIND_ANY_ORDER,
 			                          false)
 
 				for _,it in pairs(direUnits) do
-					if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) and not it:HasAbility("majia") then
+					if it ~= caster and _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil and not it:HasAbility("majia") then
 						hashook = true
 						it:AddNewModifier(it, self:GetCaster(), "a13e_hook_back", { duration = 2}) 
 						local hModifier = it:FindModifierByNameAndCaster("a13e_hook_back", it)

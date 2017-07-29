@@ -154,11 +154,11 @@ end
 function Shock4( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	for i=1,4 do
+	for i=1,1 do
 		local monster1 = CreateUnitByName("forest_soldier4",caster:GetAbsOrigin()+caster:GetForwardVector()*300 ,false,caster,caster,caster:GetTeamNumber())
 		monster1:SetControllableByPlayer(caster:GetPlayerOwnerID(),false)
 		monster1:AddNewModifier(monster1,ability,"modifier_phased",{duration=0.1})
-		monster1:FindAbilityByName("forest_soldier_W"):SetLevel(4)
+		monster1:FindAbilityByName("forest_soldier_W2"):SetLevel(1)
 		monster1:FindAbilityByName("forest_soldier_E"):SetLevel(1)
 		monster1:FindAbilityByName("forest_soldier_R"):SetLevel(1)
 		ability:ApplyDataDrivenModifier(monster1, monster1,"modifier_kill", {duration=30})
@@ -169,7 +169,7 @@ function Shock4( keys )
 	monster2:FindAbilityByName("forest_caster_W"):SetLevel(4)
 	monster2:FindAbilityByName("forest_caster_E"):SetLevel(4)
 	monster2:FindAbilityByName("forest_caster_R"):SetLevel(3)
-	monster2:AddAbility("forest_caster_T"):SetLevel(1)
+	monster2:FindAbilityByName("forest_caster_T"):SetLevel(1)
 	monster2:AddNewModifier(monster2,ability,"modifier_phased",{duration=0.1})
 	ability:ApplyDataDrivenModifier(monster2, monster2,"modifier_kill", {duration=30})
 end
@@ -206,6 +206,43 @@ function soldier1(keys)
 	end
 end
 
+
+function soldier1x(keys)
+	--【Basic】
+	local caster = keys.caster
+	local ability = keys.ability
+	--local player = caster:GetPlayerID()
+	local point = keys.target_points[1]
+
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),
+          point,
+          nil,
+          500,
+          DOTA_UNIT_TARGET_TEAM_ENEMY,
+          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+          0,
+          false)
+
+	local time = ability:GetSpecialValueFor("time")
+
+	for i,target in pairs(units) do
+		if target:IsMagicImmune() then
+			ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = time*0.5} )
+		else
+			ability:ApplyDataDrivenModifier( caster, target, "modifier_soldier_W", {duration = (time)} )
+		end
+		AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		local particle2 = ParticleManager:CreateParticle("particles/b02r3/b02r3.vpcf",PATTACH_POINT,target)
+		ParticleManager:SetParticleControl(particle2,0, target:GetAbsOrigin()+Vector(0,0,i*40))
+		ParticleManager:SetParticleControl(particle2,1, Vector(1,1,1))	
+		ParticleManager:SetParticleControl(particle2,3, target:GetAbsOrigin())	
+		Timers:CreateTimer(time,function ()
+			ParticleManager:DestroyParticle(particle2,true)
+		end	)
+	end
+
+end
 
 function Death(keys)
     keys.caster:ForceKill(false)

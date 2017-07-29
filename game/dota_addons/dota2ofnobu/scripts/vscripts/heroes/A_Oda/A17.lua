@@ -163,6 +163,7 @@ function A1300_Succes_Attack( keys )
 	local dmg = keys.dmg
     local group = {}
     local radius = ability:GetLevelSpecialValueFor("attacked_range",level)
+    ability:ApplyDataDrivenModifier( caster, target, "modifier_1300Attack", {duration = 1.5} )
     if not _G.hardcore then 	
 	   	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for i,v in ipairs(group) do

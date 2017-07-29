@@ -13619,7 +13619,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		
+		"AbilitySharedCooldown" "share_item_flood_book"
 		"AbilityCooldown"	"18"
 		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"280"
@@ -13629,7 +13629,7 @@
 		"ItemQuality"	"component"
 		"Model"	"models/props_gameplay/tpscroll01.vmdl"
 		"Effect"	"particles/q09_2/q09_2.vpcf"
-		"ItemCost"	"3000"
+		"ItemCost"	"2500"
 		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"OnSpellStart"
@@ -17574,7 +17574,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"160"
+		"AbilityCooldown"	"100"
 		
 		"AbilityManaCost"	"500"
 		"AbilityCastRange"				"2500"
@@ -17849,7 +17849,7 @@
 		"FightRecapLevel"	"1"
 		
 		"AbilityCooldown"	"20"
-		
+		"AbilityCastRange"	"800"
 		"AbilityManaCost"	"90"
 		"ID"	"3880"
 		"ItemQuality"	"component"
@@ -17884,8 +17884,49 @@
 				"mana"	"300"
 			}
 		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage_absorb"	"350"
+			}
+		}
 		"Modifiers"
 		{
+			"modifier_shell_of_last_kappa"
+			{
+				"IsBuff"	"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_shell_of_spirituality_kappa.lua"
+						"Function"	"last_kappa_spell_start"
+						"Target"	"TARGET"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/item_the_shell_of_spirituality_kappa.lua"
+						"Function"	"last_kappa_damage_check"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"items/Addon_Items/item_the_shell_of_spirituality_kappa.lua"
+						"Function"	"last_kappa_EndShieldParticle"
+					}
+				}
+				"Duration"	"10"
+			}
 			"Passive_the_shell_of_spirituality_kappa"
 			{
 				"IsHidden"	"1"
@@ -17924,6 +17965,96 @@
 		"ItemRequirements"
 		{
 			"01" "item_the_shell_of_spirituality_kappa;item_hachiman_bell"  //合成所需物品
+		}
+	}
+
+	// 水計之書．二階
+	"item_flood_book_1"
+	{
+		// General
+		
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_custom/flood_book"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilitySharedCooldown" "share_item_flood_book"
+		"AbilityCooldown"	"30"
+		"AbilityCastPoint"	"0.1"
+		"AbilityManaCost"	"280"
+		"AbilityCastRange"	"800"
+		"AOERadius"		"400"
+		"ID"	"3882"
+		"ItemQuality"	"component"
+		"Model"	"models/props_gameplay/tpscroll01.vmdl"
+		"Effect"	"particles/q09_2/q09_2.vpcf"
+		"ItemCost"	"4000"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"	"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_flood_book.lua"
+				"Function"	"Shock2"
+				"Target"	"POINT"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_flood_book"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+			
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"Passive_flood_book"
+			{
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "0"	//力
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "0"		//敏
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "30"	//智
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "0"	//攻
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "0" 			//血
+					"MODIFIER_PROPERTY_MANA_BONUS" "0"				//魔
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "0"	//回血
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "0" //回血%
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "0" 	//回魔
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "0" 	//回魔%
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "0" //攻速
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "0"	//防禦
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "0"	//跑速
+				}
+			}
+		}
+	}
+
+	"item_recipe_flood_book_1"
+	{
+	    "ID" "3883"
+	    "BaseClass" "item_recipe_arcane_boots"
+		"ItemCost" "1500"
+		"ItemShopTags" ""
+		"ItemRecipe" "1"
+		"SideShop"		"0"
+		"ItemResult" "item_flood_book_1"  //合成後物品
+		"ItemRequirements"
+		{
+			"01" "item_flood_book"  //合成所需物品
 		}
 	}
 }

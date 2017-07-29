@@ -32,7 +32,9 @@ function AON_Cleave_A28T(keys)
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 		for _, it in pairs(group) do
-			AMHC:Damage( caster,it,keys.dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				AMHC:Damage( caster,it,keys.dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			end
 		end
 	end
 end
@@ -55,7 +57,9 @@ function AON_Cleave_B32(keys)
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 		for _, it in pairs(group) do
-			AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			end
 		end
 	end
 end
@@ -80,10 +84,12 @@ function AON_Cleave_A07(keys)
 			if caster:HasModifier("modifier_A07T") and it:IsHero() then
 				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
 			end
-			if it ~= target then
-				AMHC:Damage( caster,it,keys.dmg*0.4,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-			else
-				AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				if it ~= target then
+					AMHC:Damage( caster,it,keys.dmg*0.4,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				else
+					AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				end
 			end
 		end
 	end
@@ -112,12 +118,14 @@ function AON_Cleave_A07_old(keys)
 			if it:IsHero() then
 				ParticleManager:CreateParticle("particles/shake3.vpcf", PATTACH_ABSORIGIN, it)
 			end
-			if it ~= target then
-				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			else
-				AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				if it ~= target then
+					AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+					AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				else
+					AMHC:Damage( caster,it,dmg*0.33,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 		end
 	end
@@ -144,10 +152,12 @@ function AON_Cleave_A06(keys)
 
 
 		for _, it in pairs(group) do
-			if it:IsMagicImmune() then
-				AMHC:Damage( caster,it,keys.dmg*dmgp*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-			else
-				AMHC:Damage( caster,it,keys.dmg*dmgp,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				if it:IsMagicImmune() then
+					AMHC:Damage( caster,it,keys.dmg*dmgp*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				else
+					AMHC:Damage( caster,it,keys.dmg*dmgp,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 		end
 	end
@@ -212,12 +222,14 @@ function AON_Cleave_C14(keys)
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 		for _, it in pairs(group) do
-			if it ~= target then
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			else
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				if it ~= target then
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				else
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 		end
 	else
@@ -241,12 +253,14 @@ function AON_Cleave_C20(keys)
 			DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 		for _, it in pairs(group) do
-			if it ~= target then
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			else
-				AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				if it ~= target then
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				else
+					AMHC:Damage( caster,it,keys.dmg*0.20,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				end
 			end
 		end
 	else
@@ -297,12 +311,14 @@ function AON_Cleave_A08(keys)
 		DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 
 	for _, it in pairs(group) do
-		if it ~= target then
-			AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-			AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-			AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-		else
-			AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+		if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+			if it ~= target then
+				AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			else
+				AMHC:Damage( caster,it,keys.dmg*0.1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			end
 		end
 	end
 end

@@ -350,7 +350,7 @@ function A04W_ATTACK_BUILDING( event )
 	local unit = event.target
 	local ability = event.ability
 	if unit:IsBuilding() then
-		ability:ApplyDataDrivenModifier(unit,unit,"modifier_A04W_AttackBuilding",nil)
+		ability:ApplyDataDrivenModifier(event.caster,unit,"modifier_A04W_AttackBuilding",nil)
 	end
 end
 

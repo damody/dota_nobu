@@ -48,7 +48,6 @@ end
 function Shock3( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster:SetMana(0)
 end
 
 function Shock2( keys )
@@ -62,7 +61,6 @@ function Shock2( keys )
 					caster.magic_damage = nil
 				end
 			end)
-	caster:SetMana(0)
 end
 
 function OnEquip( keys )

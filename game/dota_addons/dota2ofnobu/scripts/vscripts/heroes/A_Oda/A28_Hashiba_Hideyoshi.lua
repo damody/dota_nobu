@@ -290,17 +290,7 @@ function A28T(keys)
 	phoenix:SetBaseDamageMax(250+level*100)
 	phoenix:SetBaseDamageMin(200+level*110)
  	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 60})
- 	Timers:CreateTimer(2, function ()
- 			if phoenix:IsAlive() then
-				local dis = (phoenix:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
-				if dis > 1500 then 
-					phoenix:SetAbsOrigin(caster:GetAbsOrigin())
-				end
-				return 2
-			else
-				return nil
-			end
-		end)
+
 				
 end
 
@@ -366,8 +356,8 @@ function A28TE( keys )
 			a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
 			pointx2 	=  	pointx 	+ 	radius 	* 	math.cos(a)
 			pointy2 	=  	pointy 	+ 	radius 	*	math.sin(a)
-			point = Vector(pointx2 ,pointy2 , pointz)
-			A28TE_Effect(keys, point)
+			local point3 = Vector(pointx2 ,pointy2 , pointz)
+			A28TE_Effect(keys, point3)
 		end
 		caster:StartGesture( ACT_DOTA_CAST_ABILITY_1 )
 		Timers:CreateTimer(0.45, 

@@ -56,6 +56,15 @@
 						"Function"	"debuff_tower"
 					}
 				}	
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"debuff_tower2"
+					}
+				}
 			}
 			"debuff_tower"
 			{
@@ -2951,6 +2960,67 @@
 			}
 		}
 	}
+	//林卷小兵 綁人
+	"forest_soldier_W2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"meepo_earthbind"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCooldown"	"6"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"	"800"
+		"AOERadius"	"500"
+		"AbilityManaCost"	"100"
+		"precache"
+		{
+			"particle"	"particles/b02r4/b02r4.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/item_forest_scroll.lua"
+				"Function"	"soldier1x"
+				"Target"	"POINT"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_soldier_W"
+			{
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"1"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"time"	"3"
+			}
+		}
+	}
 
 	//林卷小兵 隱形
 	"forest_soldier_E"
@@ -3289,7 +3359,242 @@
 		}
 		"AbilityDamage"	"200 350 500 700"
 	}
+	// 屬性附加 黃十字
+	"attribute_bonusx"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_142"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"MaxLevel"	"100"
+		"HotKeyOverride"	"F"
+		"LevelsBetweenUpgrades"	"0"
+		"AbilityCooldown"	"8"
+		"precache"
+		{
+			"particle" "particles/focus/lv1_1.vpcf"
+    		"particle" "particles/focus/lv1_2.vpcf"
+    		"particle" "particles/focus/lv1_3.vpcf"
+    		"particle" "particles/focus/lv2_1.vpcf"
+    		"particle" "particles/focus/lv2_2.vpcf"
+    		"particle" "particles/focus/lv2_3.vpcf"
+    		"particle" "particles/focus/lv2_4.vpcf"
+		}
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
+				"Function"	"show_lv"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_bonusx_locker"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
+				"Function"	"attribute_bonus"
+			}
+		}
+		"Modifiers"
+		{
+			// 暫時鎖住此技能
+			"modifier_bonusx_locker"
+			{
+				"Duration" "8"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
+						"Function"		"bonusx_lock"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
+						"Function"		"bonusx_unlock"
+					}
+				}
+			}
+			"modifier_lv1_1"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.67"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv1_1.vpcf"
+					}
+				}	
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv1_2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv1_2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.67"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv1_2.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv1_3"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv1_3"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.67"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv1_3.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"removeAbility"
+						"title"	"show_lv1"
+					}
+				}
+			}
 
+			"modifier_lv2_1"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.58"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv2_1.vpcf"
+					}
+				}	
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv2_2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv2_2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.06"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv2_2.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv2_3"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv2_3"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"0.99"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv2_3.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv2_4"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv2_4"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.32"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv2_4.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"removeAbility"
+						"title"	"show_lv1"
+					}
+				}
+			}
+		}
+	}
 	//林卷小兵 法術書
 	"forest_caster_R"
 	{
@@ -3380,7 +3685,7 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"                        "custom/a12w"
-		"AbilityCastPoint" "1" //stun
+		"AbilityCastPoint"					 "0.5" //stun
 		"AbilityCooldown"                        	"100"
 		"AbilityManaCost"                           "200"
 		"AbilityDamage"				"0"
@@ -3739,27 +4044,6 @@
 			}
 		}
 	}
-
-	// 屬性附加
-	"attribute_bonusx"
-	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"custom/icon_128x128_142"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"	"100"
-		"HotKeyOverride"	"F"
-		"LevelsBetweenUpgrades"	"0"
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/heroes/attribute_bonus.lua"
-				"Function"	"attribute_bonus"
-			}
-		}
-	}
 	
 	"ability_dummy_unit"
 	{
@@ -3863,7 +4147,16 @@
 		}
 		"Modifiers"
 		{
-			"modifier_A17T"
+			"modifier_1300Attack"
+			{
+				"Passive"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-150"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-25" 
+				}
+			}
+			"modifier_1300"
 			{
 				"Passive"	"1"
 				"OnAttack"

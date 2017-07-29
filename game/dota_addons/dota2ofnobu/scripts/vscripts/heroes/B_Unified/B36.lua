@@ -228,7 +228,9 @@ end
 function B36E_old_OnProjectileHitUnit( keys )
 	local caster = keys.caster
 	local target = keys.target
-	AMHC:Damage(caster,unit, 5*caster:GetLevel(),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+	local ability = keys.ability
+	local dmg2 = ability:GetSpecialValueFor("dmg2")
+	AMHC:Damage(caster,target, dmg2+5*caster:GetLevel(),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 end
 
 function B36E_old_OnIntervalThink( keys )

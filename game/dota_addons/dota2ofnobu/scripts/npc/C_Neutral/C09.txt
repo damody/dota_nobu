@@ -12,6 +12,7 @@
 			"particle"  "particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_ice.vpcf" //r w
 			"particle"  "particles/b05t3/b05t3_j0.vpcf" //t 洞寶特效
 			"particle"  "particles/c09t/c09tneutral_prowler_shaman_stomp_debuff.vpcf" //t
+			"particle"	"particles/title/c09t.vpcf"
 		}
 	}
 
@@ -301,6 +302,12 @@
 			{
 				"ScriptFile"		"scripts/vscripts/heroes/C_Neutral/C09.lua"
 				"Function"			"C09T_OnSpellStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c09t.vpcf"
 			}
 		}
 
@@ -628,6 +635,12 @@
 			{
 				"ScriptFile"		"scripts/vscripts/heroes/C_Neutral/C09.lua"
 				"Function"			"C09T_old_OnSpellStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c09t.vpcf"
 			}
 		}
 

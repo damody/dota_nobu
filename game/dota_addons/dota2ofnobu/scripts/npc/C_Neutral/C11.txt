@@ -23,6 +23,7 @@
 
 			// C11T_old
 			"particle"  "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf"
+			"particle"	"particles/title/c11t.vpcf"
 		}
 	}
 
@@ -369,6 +370,15 @@
 						"Target"		"TARGET"
 					}
 				}
+				"OnHeroKilled"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/title/c11t.vpcf"
+					}
+				}
 			}
 		}
 	}
@@ -708,6 +718,15 @@
 						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C11.lua"
 						"Function"		"C11T_old_on_attack_landed"
 						"Target"		"TARGET"
+					}
+				}
+				"OnHeroKilled"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/title/c11t.vpcf"
 					}
 				}
 			}

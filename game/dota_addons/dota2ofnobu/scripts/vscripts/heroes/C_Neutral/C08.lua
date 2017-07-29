@@ -314,14 +314,14 @@ function C08R_modifier:OnIntervalThink()
 		                              nil,
 		                              SEARCH_RADIUS,
 		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-		                              DOTA_UNIT_TARGET_ALL,
+		                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		                              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 		                              FIND_ANY_ORDER,
 		                              false)
 				local hashook = false
 				for _,it in pairs(direUnits) do
 
-					if (not it:IsBuilding()) and not string.match(it:GetUnitName(), "com_general") and not string.match(it:GetUnitName(), "warrior_souls") and not it:HasAbility("majia") then
+					if not string.match(it:GetUnitName(), "npc_dota_courier2") and _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil and not it:HasAbility("majia") then
 						ApplyDamage({ victim = it, attacker = self:GetCaster(), damage = self.hook_damage, 
 							damage_type = self.damage_type, ability = self:GetAbility()})
  						it:AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_stunned",{duration = self:GetAbility():GetSpecialValueFor("stun_time")})
@@ -354,13 +354,13 @@ function C08R_modifier:OnIntervalThink()
 			                          nil,
 			                          SEARCH_RADIUS,
 			                          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-			                          DOTA_UNIT_TARGET_ALL,
+			                          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			                          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 			                          FIND_ANY_ORDER,
 			                          false)
 
 				for _,it in pairs(direUnits) do
-					if (not(it:IsBuilding()) and it ~= caster and not string.match(it:GetUnitName(), "com_general")) and not it:HasAbility("majia") then
+					if it ~= caster and _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil and not it:HasAbility("majia") then
 						hashook = true
 						caster:AddNewModifier(caster, self:GetCaster(), "C08R_hook_back", { duration = 2}) 
 						caster:AddNewModifier(caster,nil,"modifier_phased",{duration=1})
