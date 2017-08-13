@@ -12,23 +12,14 @@
 	}
 	"Version"		"1"
 
-	// Rewrite of the Lifestealer Rage ability
-	// Author: jacklarnes
-	// Date: 07.04.2015.
 	//今川義元 東海巨人
 	"B15W"
 	{
-		// General
-		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"ogre_magi_frost_armor"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-		// Time
-		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"19"
-		// Cost
-		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"120 140 160 180"
 		"precache"
 		{
@@ -203,13 +194,6 @@
 		}
 	}
 
-	// Rewrite of Clinkz Searing Arrows
-	// Author: Noya
-	// Date: December 31, 2015
-	// Version: 6.81
-	// Type: Datadriven
-	// NOTE: This uses the old Orb mechanic. Orb Labels seem to be malfunctioning, need to warn Valve about this issue.
-	// A non-orb rewrite might be impossible because OnAttackStart triggers earlier than OnOrbFire (i.e. there's no OnAttackLaunched)
 	//今川義元 烈焰箭
 	"B15E"
 	{
@@ -450,9 +434,6 @@
 		}
 	}
 
-	// Rewrite of the Medusa Split Shot ability
-	// Author: Pizzalol
-	// Date: 04.03.2015.
 	//今川義元 多重箭
 	"B15D"
 	{
@@ -746,6 +727,370 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"projectile_speed"	"1800"
+			}
+		}
+	}
+
+	//今川義元 百步穿楊
+	"B15D_20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_105"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"MaxLevel"	"1"
+
+		"Modifiers"
+		{
+			"Passive_B15D_20"
+			{
+				"IsHidden"	"0"
+				"Passive"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15D_20_OnAttackLanded"
+					}
+				}
+			}
+		}
+	}
+	//今川義元 巨人之臂力
+	"B15W_20"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"ogre_magi_frost_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"45"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"140 160 180 200"
+		"precache"
+		{
+			"soundfile"	"sounds/weapons/hero/lifestealer/rage.vsnd"
+			"particle"	"particles/b15w3/b15w3.vpcf"
+			"particle"	"particles/b15w/b15w.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+			"particle"	"particles/b15w3/b15w3.vpcf"
+			"particle"	"particles/b15w/b15w.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"B15W_old.vo1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_LifeStealer.Rage"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_b15w"
+				"Target"	"CASTER"
+				"Duration"	"40"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_b15w"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"IsDebuff"	"0"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/b15w/b15w.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"	"CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_hitloc"
+							"CASTER"	"attach_hitloc"
+							"CASTER"	"attach_hitloc"
+						}
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%attack_bonus"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%power"
+				}
+				"EffectName"	"particles/b15w3/b15w3.vpcf"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_bonus"	"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"power"	"5 10 15 20"
+			}
+		}
+	}
+
+	//今川義元 烈焰箭
+	"B15E_20"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
+		"OnToggleOn"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+				"Function"	"OnToggleOn"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_searing_arrow"
+				"Target"	"CASTER"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+				"Function"	"OnToggleOff"
+			}
+
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_searing_arrow"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_searing_arrow"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"	"0"
+					"ProjectileName"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+				}
+				"OnOrbFire"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E"
+					}
+				}
+				"States"	{}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E_attack2"
+						"Target"	"TARGET"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Medusa.AttackSplit"
+					}
+				}
+			}
+			// 分身的火箭傷害
+			"modifier_searing_arrow2"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"	"0"
+					"ProjectileName"	"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+				}
+				"OnOrbFire"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E"
+					}
+				}
+				"States"	{}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15E_attack2"
+						"Target"	"TARGET"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Hero_Medusa.AttackSplit"
+					}
+				}
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_bonus"	"15 30 45 60"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_bonus2"	"15 30 45 60"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"mana_cost"	"6 8 10 12"
+			}
+		}
+	}
+	
+	//今川義元 巨人之外皮
+	"B15R_20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"tiny_craggy_exterior"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_B15R"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%Stronger_Bonus"
+				}
+			}
+			"block_B15R_20"
+			{
+				"Passive"	"1"
+			    "IsBuff" "1"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%Damage_Income"
+			    }
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Stronger_Bonus"	"5 10 15 20"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Damage_Income"	"16 29 42 55"
+			}
+		}
+	}
+	
+	//今川義元 東海道一弓取
+	"B15T_20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"tiny_grow"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		
+		"RequiredLevel"	"6"
+		"LevelsBetweenUpgrades"	"6"
+		"AOERadius"	"500"
+		"Modifiers"
+		{
+			"modifier_B15T_20"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"IsHidden"	"0"
+				
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+						"Chance"			"%chance"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+								"Function"	"B15T_20_OnAttackLanded"
+							}
+						}
+						"OnFailure"
+						{
+						}
+					}
+					
+				}
+			}
+			"modifier_B15T_20_count"
+			{
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B15_Imagawa_Yoshimoto.lua"
+						"Function"	"B15T_20_OnDeath"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chance"	"23 28 33"
 			}
 		}
 	}

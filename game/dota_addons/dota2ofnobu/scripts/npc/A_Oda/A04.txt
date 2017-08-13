@@ -105,6 +105,12 @@
 					}
 				}
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"wing03"
+			}
 		}
 		"Modifiers"
 		{
@@ -843,6 +849,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A04_Takenaka_Juji.lua"
 				"Function"		"A04D_old_init"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"wing03"
 			}
 		}
 

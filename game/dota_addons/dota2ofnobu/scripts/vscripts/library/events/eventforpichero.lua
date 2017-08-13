@@ -24,13 +24,14 @@ function Nobu:PickHero( keys )
           if caster.donkey:HasModifier("Passive_insight_gem") then
             caster.donkey:RemoveModifierByName("Passive_insight_gem")
           end
+          if IsValidEntity(caster) then
             for itemSlot=0,5 do
               local item = caster:GetItemInSlot(itemSlot)
               if item ~= nil then
                 item:SetPurchaseTime(100000)
               end
             end
-          
+          end
           return 5
         end
         end)
@@ -52,7 +53,7 @@ function Nobu:PickHero( keys )
           end
         end
         ]]
-        if _G.game_level ~= nil and _G.game_level < 0 and caster:IsAlive() and caster.level ~= nil then
+        if _G.game_level ~= nil and _G.game_level < 0 and IsValidEntity(caster) and caster:IsAlive() and caster.level ~= nil then
           if caster.level == -1 and not caster:HasModifier("modifier_buff_4") then
             caster:AddAbility("buff_4"):SetLevel(1)
           elseif caster.level == 0 and not caster:HasModifier("modifier_buff_3") then
@@ -74,13 +75,15 @@ function Nobu:PickHero( keys )
           end
         end
       if caster:GetTeamNumber() < 4 then
-        if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["11"] == true then
+        if _G.heromap_version[nobu_id] and _G.heromap_version[nobu_id]["11"] and _G.heromap_version[nobu_id]["11"] == true then
           caster:AddAbility("choose_11"):SetLevel(1)
         end
-        if _G.heromap_version[nobu_id] ~= nil and _G.heromap_version[nobu_id]["16"] == true then
+        if _G.heromap_version[nobu_id] and _G.heromap_version[nobu_id]["16"] and _G.heromap_version[nobu_id]["16"] == true then
           caster:AddAbility("choose_16"):SetLevel(1)
         end
-
+        if _G.heromap_version[nobu_id] and _G.heromap_version[nobu_id]["20"] and _G.heromap_version[nobu_id]["20"] == true and _G.has20 == true then
+          caster:AddAbility("choose_20"):SetLevel(1)
+        end
         if _G.CountUsedAbility_Table == nil then
           _G.CountUsedAbility_Table = {}
         end
@@ -127,9 +130,11 @@ function Nobu:PickHero( keys )
             [24]=true}
             local lvcaster = caster
         Timers:CreateTimer(10, function ()
-          if (lvneed[lvcaster:GetLevel()]) then
-            lvneed[lvcaster:GetLevel()] = false
-            lvcaster:SetAbilityPoints(lvcaster:GetAbilityPoints()+1)
+          if IsValidEntity(lvcaster) then
+            if (lvneed[lvcaster:GetLevel()]) then
+              lvneed[lvcaster:GetLevel()] = false
+              lvcaster:SetAbilityPoints(lvcaster:GetAbilityPoints()+1)
+            end
           end
           return 0.3
         end)

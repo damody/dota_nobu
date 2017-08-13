@@ -131,6 +131,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A05.lua"
 				"Function"	"A05W_RunScript"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"pipe"
+			}
 		}
 		"Modifiers"
 		{
@@ -194,11 +200,6 @@
 			"FireSound"
 			{
 				"Target"	"CASTER"
-				"EffectName"	"berserkercaster"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
 				"EffectName"	"A05E_old.vo1"
 			}
 			"ApplyModifier"
@@ -209,6 +210,12 @@
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
 				"ModifierName"	"modifier_A05E"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"primal_roar"
 			}
 		}
 		"Modifiers"
@@ -452,6 +459,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A05.lua"
 				"Function"	"A05W_RunScript"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"pipe"
 			}
 		}
 		"Modifiers"

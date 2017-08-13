@@ -221,6 +221,12 @@
 				}
 				"ModifierName"	"modifier_A02E_buff"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"healing_salve"
+			}
 		}
 
 		"Modifiers"
@@ -351,7 +357,6 @@
 				"Target"	"CASTER"
 				"EffectName"	"A02T.vo1"
 			}
-			
 		}
 
 		"OnSpellStart"
@@ -371,6 +376,13 @@
 				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 				"Function"	"showTitle"
 				"title"	"particles/title/a02t.vpcf"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"time"	"%duration"
+				"sound"	"icy_wind01"
 			}
 		}
 
@@ -595,11 +607,6 @@
 
 		"OnAbilityPhaseStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"A02E_old.vo1"
-			}
 		}
 
 		"OnSpellStart"
@@ -613,6 +620,12 @@
 				}
 				"ModifierName"	"modifier_A02E_old_buff"
 				"Duration"		"%buff_duration"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"healing_salve"
 			}
 		}
 
@@ -776,6 +789,13 @@
 				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 				"Function"	"showTitle"
 				"title"	"particles/title/a02t.vpcf"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"time"	"%duration"
+				"sound"	"icy_wind01"
 			}
 		}
 

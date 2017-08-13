@@ -386,6 +386,12 @@
 						"Function"		"B04T_OnAttack"
 						"Target"		"TARGET"
 					}
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"rocket_barrage_target01"
+					}
 				}
 				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
 				"EffectAttachType"  "follow_origin"
@@ -836,6 +842,12 @@
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B04.lua"
 						"Function"		"B04T_old_OnAttackStart"
 						"Target"		"TARGET"
+					}
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"rocket_barrage_target01"
 					}
 				}
 			}

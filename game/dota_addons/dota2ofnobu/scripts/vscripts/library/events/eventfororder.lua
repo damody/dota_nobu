@@ -146,7 +146,11 @@ function spell_ability ( filterTable )
 						item:StartCooldown(item:GetCooldown(-1))
 					end
 				end
-				
+				caster:SpendMana(ability:GetManaCost(-1),ability)
+				-- 破隱形
+				if caster:HasModifier("modifier_invisible") then
+					caster:RemoveModifierByName("modifier_invisible")
+				end
 				return false
 			end
 		else

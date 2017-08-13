@@ -198,7 +198,7 @@ function B15D_SplitShotDamage( keys )
 end
 
 
-function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, illusion_outgoing_damage, illusion_duration)	
+function B15T_create_illusion(keys, illusion_origin, illusion_incoming_damage, illusion_outgoing_damage, illusion_duration)	
 	local caster = keys.caster
 	local player_id = keys.caster:GetPlayerID()
 	local caster_team = keys.caster:GetTeam()
@@ -250,9 +250,6 @@ function B15D_create_illusion(keys, illusion_origin, illusion_incoming_damage, i
 	
 	illusion:MakeIllusion()  --Without MakeIllusion(), the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.  Without it, IsIllusion() returns false and IsRealHero() returns true.
 	illusion:SetHealth(keys.caster:GetHealth())
-
-	--ParticleManager:CreateParticle("particles/generic_gameplay/illusion_killed.vpcf", PATTACH_ABSORIGIN_FOLLOW, illusion)
-	
 	return illusion
 end
 
@@ -302,7 +299,7 @@ function B15T(keys)
 			illusion1_origin = caster_origin + Vector(-100, 0, 0)
 		end
 		if keys.caster:IsAlive() then
-			B15D_create_illusion(keys, illusion1_origin)
+			B15T_create_illusion(keys, illusion1_origin)
 		end
 		if num < 0 or not keys.caster:IsAlive() then
 			return nil
@@ -311,4 +308,112 @@ function B15T(keys)
         	return time
         end
 	end)	
+end
+
+function B15T_20_OnDeath(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	ability.count = ability.count - 1
+end
+function B15T_20_OnAttackLanded(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	ability.count = ability.count or 0
+	if ability.count < 10 then
+		ability.count = ability.count + 1
+		local caster_origin = keys.caster:GetAbsOrigin()
+		
+		--Illusions are created to the North, South, East, or West of the hero (obviously, both cannot be created in the same direction).
+		local illusion1_direction = RandomInt(1, 4)
+		
+		local illusion1_origin
+		
+		if illusion1_direction == 1 then  --North
+			illusion1_origin = caster_origin + Vector(0, 100, 0)
+		elseif illusion1_direction == 2 then  --South
+			illusion1_origin = caster_origin + Vector(0, -100, 0)
+		elseif illusion1_direction == 3 then  --East
+			illusion1_origin = caster_origin + Vector(100, 0, 0)
+		else  --West
+			illusion1_origin = caster_origin + Vector(-100, 0, 0)
+		end
+		if keys.caster:IsAlive() then
+			B15T_20_create_illusion(keys, illusion1_origin)
+		end
+	end
+end
+
+
+function B15T_20_create_illusion(keys, illusion_origin, illusion_incoming_damage, illusion_outgoing_damage, illusion_duration)	
+	local caster = keys.caster
+	local player_id = keys.caster:GetPlayerID()
+	local caster_team = keys.caster:GetTeam()
+	
+	local illusion = CreateUnitByName(keys.caster:GetUnitName(), illusion_origin, true, keys.caster, nil, caster_team)  --handle_UnitOwner needs to be nil, or else it will crash the game.
+	illusion:SetPlayerID(player_id)
+	illusion:SetControllableByPlayer(player_id, true)
+
+	--Level up the illusion to the caster's level.
+	local caster_level = keys.caster:GetLevel()
+	for i = 1, caster_level - 1 do
+		illusion:HeroLevelUp(false)
+	end
+
+	--Set the illusion's available skill points to 0 and teach it the abilities the caster has.
+	illusion:SetAbilityPoints(0)
+	for abilitySlot=0,15 do
+		local ability = illusion:GetAbilityByIndex(abilitySlot)
+		if ability ~= nil then 
+			local abilityLevel = ability:GetLevel()
+			local abilityName = ability:GetAbilityName()
+			illusion:RemoveAbility(abilityName)
+		end
+	end
+	for abilitySlot=0,15 do
+		local ability = caster:GetAbilityByIndex(abilitySlot)
+		if ability ~= nil then 
+			local abilityLevel = ability:GetLevel()
+			local abilityName = ability:GetAbilityName()
+			if abilityName ~= "B15T_20" then
+				illusion:AddAbility(abilityName):SetLevel(abilityLevel)
+			end
+		end
+	end
+	keys.ability:ApplyDataDrivenModifier(illusion,illusion,"modifier_B15T_20_count",nil)
+	--Recreate the caster's items for the illusion.
+	for item_slot = 0, 5 do
+		local individual_item = keys.caster:GetItemInSlot(item_slot)
+		if individual_item ~= nil then
+			local illusion_duplicate_item = CreateItem(individual_item:GetName(), illusion, illusion)
+			illusion:AddItem(illusion_duplicate_item)
+		end
+	end
+	illusion:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
+	if (caster:HasModifier("modifier_b15w")) then
+		caster:FindAbilityByName("B15W_20"):ApplyDataDrivenModifier(illusion,illusion,"modifier_b15w",{duration=999})
+	end
+	if (caster:HasModifier("modifier_searing_arrow")) then
+		caster:FindAbilityByName("B15E_20"):ApplyDataDrivenModifier(illusion,illusion,"modifier_searing_arrow2",{duration=999})
+	else
+		--分身不能用法球
+		--illusion.nobuorb1 = "illusion"
+	end
+	
+	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle 
+	illusion:AddNewModifier(keys.caster, keys.ability, "modifier_illusion", {duration = 4, outgoing_damage = -80, incoming_damage = 200})
+	
+	illusion:MakeIllusion()  --Without MakeIllusion(), the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.  Without it, IsIllusion() returns false and IsRealHero() returns true.
+	illusion:SetHealth(keys.caster:GetHealth())
+	return illusion
+end
+
+function B15D_20_OnAttackLanded( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	if not target:IsBuilding() then
+		if RandomInt(1,100) <= 10 then
+			ability:ApplyDataDrivenModifier( caster, target, "modifier_stunned", {duration=0.1} )
+		end
+	end
 end

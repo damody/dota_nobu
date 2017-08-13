@@ -638,4 +638,407 @@
 		}
 		"AbilityDamage"	"175 270 375"
 	}
+
+	// 阿國 神速之舞
+	"C04W_20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_38"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"100 130 160 190"
+		"AbilityCastRange"	"700"
+		"precache"
+		{
+			"particle"	"particles/c04/c04w.vpcf"
+			"soundfile"	"sounds/weapons/hero/storm_spirit/attack4.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C04W.vo1"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_C04W"
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Radius" 	"10000"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C04W"
+			{
+				"EffectName"	"particles/c04/c04w.vpcf"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "30" 
+				}
+				"Duration"	"%duration"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"350"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"3 4 5 6"
+			}
+		}
+	}
+	// 阿國 凋零舞步
+	"C04E_20"
+	{
+		"BaseClass"                 				"ability_datadriven"
+		"AbilityBehavior"           				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"     				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"     				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"    				"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"                        "custom/icon_128x128_35"
+
+		"AbilityCastPoint"          	"0.1"
+		"AbilityCooldown"           	"2"
+		"AbilityManaCost"           	"0"
+		"AbilityDamage"					"70"
+		"AbilityCastRange"				"500"
+		"AOERadius"						"500"
+
+        "OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_C04E"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+				    "Center" "CASTER"
+				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName"	"modifier_C04E_locker"
+			}
+		}
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C04E"
+			}
+		}
+
+        "Modifiers"
+        {
+        	// 暫時鎖住此技能
+			"modifier_C04E_locker"
+			{
+				"Duration" "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"		"C04E_lock"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"		"C04E_unlock"
+					}
+				}
+			}
+           "modifier_C04E"
+			{
+				"IsBuff"	"1"
+				"EffectName" "particles/c04/c04w_steam.vpcf"
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"SpendMana"
+					{
+						"Mana"		"%mana"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"	"C04E_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_C04E_2"
+			{
+				"IsBuff"	"1"
+				"EffectName" "particles/c04/c04w_steam.vpcf"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-13" 
+				}
+			}
+        }
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dmghp"		"0.03 0.04 0.05 0.06"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"mana"	"12 16 20 25"
+			}
+		}
+	}
+	// 阿國 聚曳之舞
+	"C04R_20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"zuus_lightning_bolt_immortal"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint" "0.25" //stun
+		"AbilityCooldown"	"21 19 17 15"
+		"AbilityManaCost"	"115 140 165 190"
+		"AbilityCastRange"	"850"
+		"AOERadius"	"%radius"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C04R.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+				"Function"	"C04R_OnSpellStart"
+				"Target"	"POINT"
+			}
+		}
+		"Modifiers"
+		{
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"450 500 550 600"
+			}
+		}
+		"AbilityDamage"	"200 300 400 500"
+	}
+	// 阿國 巫魅之舞
+	"C04T_20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/icon_128x128_91"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"105"
+		"AbilityManaCost"	"200"
+		"AbilityCastRange"	"600"
+		"AbilityChannelTime"	"5"
+		"precache"
+		{
+			"particle"	"particles/C04T3/C04T3.vpcf"
+			"soundfile"	"sounds/weapons/hero/razor/razor_attack_reg_02.vsnd"
+			"soundfile"	"sounds/weapons/hero/razor/static_attack_end.vsnd"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"C04T_old.vo1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+				"Function"	"C04T"
+			}
+			"ApplyModifier"
+			{
+				"Target"
+				{
+					"Center"  	"TARGET"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+				"ModifierName"	"modifier_C04T"
+			}
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_C04T2"
+			}
+			"FireSound"
+			{
+				"Target"	"CASTER"
+				"EffectName"	"Hero_razor.Attack"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				"Function"	"showTitle"
+				"title"	"particles/title/c04t16.vpcf"
+			}
+		}
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_C04T"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_C04T"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_C04T2"
+			{
+				"IsHidden"	"1"
+				"Passive"	"0"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"	"C04T2_OnAbilityExecuted"
+					}
+				}
+			}
+			"modifier_C04T"
+			{
+				"Passive"	"0"
+				"Properties"	{}
+				"ThinkInterval"	"0.95"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%AbilityDamage"
+					}
+					"FireSound"
+					{
+						"Target"	"TARGET"
+						"EffectName"	"Ability.static.end"
+					}
+					"FireSound"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"Hero_razor.Attack"
+					}
+				}
+				"Duration"	"%duration"
+				"IsPurgable"	"1"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"5"
+			}
+		}
+		"AbilityDamage"	"175 270 375"
+	}
+	
+	// 阿國 巫魅之舞
+	"C04D_20"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/zhaoyun_shanbi"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"45"
+		"AbilityManaCost"	"180"
+		"AbilityCastRange"	"700"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_devil_supressor_armor.lua"
+				"Function"	"Shock_C04D_20"
+				"SHP1"	"%armor"
+				"SHP2"	"%armor"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"6"
+			}
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armor"	"45"
+			}
+		}
+	}
 }

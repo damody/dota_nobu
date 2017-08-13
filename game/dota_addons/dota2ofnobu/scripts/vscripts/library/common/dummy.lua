@@ -104,8 +104,15 @@ _G.EXCLUDE_TARGET_NAME = {
   EARTH_WALL = true,
   com_general_Unified2 = true,
   com_general_Nobu2 = true,
+  com_general_Unified2_1 = true,
+  com_general_Nobu2_1 = true,
   com_general_oda = true,
   com_general_unified = true,
+  com_general2_oda = true,
+  com_general2_unified = true,
+  com_general3_oda = true,
+  com_general3_unified = true,
+  com_general2_unified = true,
   C17R_old_SUMMEND_UNIT_bag_hero = true,
   C17R_old_SUMMEND_UNIT_hero = true,
   B13_MINE_hero = true,
@@ -114,6 +121,16 @@ _G.EXCLUDE_TARGET_NAME = {
   B17W_deathGuard_hero = true,
   npc_dummy_unit = true,
   npc_dummy_unit_Ver2 = true,
+  Dummy_Ver1 = true,
+  Dummy_B34E = true,
+  B24T_HIDE_hero = true,
+  EARTH_WALL_hero = true,
+  B33T_UNIT = true,
+  B24W_dummy_hero = true,
+  C03T_UNIT = true,
+  npc_dummy_unit_new = true,
+  npc_dummy = true,
+  A22T_old_UNIT = true,
 }
 
 _G.EXCLUDE_MODIFIER_NAME = {
@@ -201,18 +218,18 @@ local ok_modifier = {
   ["modifier_tower_aura"] = true,
   ["modifier_tower_armor_bonus"] = true,
   ["modifier_great_sword_of_hurricane_debuff"] = true,
+  ["modifier_1300"] = true,
 }
 
 function debuff_tower2( keys )
   local caster = keys.caster
   local ability = keys.ability
   local am = caster:FindAllModifiers()
-    for _,v in pairs(am) do
-      if ok_modifier[v:GetName()] == nil then
-        caster:RemoveModifierByName(v:GetName())
-      end
+  for _,v in pairs(am) do
+    if ok_modifier[v:GetName()] == nil then
+      caster:RemoveModifierByName(v:GetName())
     end
-  
+  end
 end
 
 function debuff_tower( keys )

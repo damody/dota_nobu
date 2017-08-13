@@ -33,6 +33,27 @@ function A28W_old(keys)
 	AMHC:Damage( caster,target,1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 end
 
+function A28W_20(keys)
+	local ability = keys.ability
+	local caster = keys.caster
+	local casterLocation = keys.target:GetAbsOrigin()
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local duration = ability:GetLevelSpecialValueFor("duration", ( ability:GetLevel() - 1 ))
+	local units =  FindUnitsInRadius(caster:GetTeamNumber(),
+                              casterLocation,
+                              nil,
+                              radius,
+                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                              0,
+                              0,
+                              false)
+	for i,unit in ipairs(units) do
+		unit:AddNewModifier(caster, ability, "modifier_voodoo_lua", {duration = duration})
+		unit:AddNewModifier(caster, ability, "modifier_A28W", {duration = duration})
+		AMHC:Damage( caster,unit,1,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+	end
+end
 --[[Author: YOLOSPAGHETTI
 	Date: March 24, 2016
 	Finds the next unit to jump to and deals the damage]]
@@ -89,7 +110,7 @@ function A28E_Jump(keys)
 		local new_target
 		for i,unit in ipairs(units) do
 			-- Positioning and distance variables
-			if unit ~= target then
+			if unit ~= target and _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
 				local unit_location = unit:GetAbsOrigin()
 				local vector_distance = pos - unit_location
 				local distance = (vector_distance):Length2D()
@@ -281,8 +302,8 @@ function A28T(keys)
  	--【Dummy Kv】
  	local player = caster:GetPlayerID()
  	local phoenix = CreateUnitByName("a28_phoenix",point2 ,false,caster,caster,caster:GetTeam())
- 	phoenix:FindAbilityByName("A28TE"):SetLevel(level+1)
- 	phoenix:FindAbilityByName("A28TW"):SetLevel(level+1)
+ 	phoenix:AddAbility("A28TE"):SetLevel(level+1)
+ 	phoenix:AddAbility("A28TW"):SetLevel(level+1)
  	--phoenix:SetPlayerID(player)
 	phoenix:SetControllableByPlayer(player, true)
 	phoenix:SetBaseMaxHealth(2000+level*1000)
@@ -291,7 +312,6 @@ function A28T(keys)
 	phoenix:SetBaseDamageMin(200+level*110)
  	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 60})
 
-				
 end
 
 
@@ -675,11 +695,6 @@ function A28E_Jump_heal(keys)
 	end
 	local pos = target:GetAbsOrigin()
 	-- Applies damage to the current target
-	if (team == DOTA_UNIT_TARGET_TEAM_ENEMY) then
-		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
-	else
-		target:Heal(ability:GetAbilityDamage(), caster)
-	end
 	
 	local count = 0
 	-- Waits on the jump delay
@@ -716,7 +731,7 @@ function A28E_Jump_heal(keys)
 		local new_target
 		for i,unit in ipairs(units) do
 			-- Positioning and distance variables
-			if unit ~= target then
+			if unit ~= target and _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
 				local unit_location = unit:GetAbsOrigin()
 				local vector_distance = pos - unit_location
 				local distance = (vector_distance):Length2D()
@@ -734,7 +749,7 @@ function A28E_Jump_heal(keys)
 			end
 		end
 		-- Checks if there is a new target
-		if new_target ~= nil then
+		if new_target ~= nil and new_target ~= target then
 			-- Creates the particle between the new target and the last target
 			local lightningBolt = ParticleManager:CreateParticle(keys.particle, PATTACH_WORLDORIGIN, target)
 			ParticleManager:SetParticleControl(lightningBolt,0,Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z + target:GetBoundingMaxs().z ))   
@@ -769,13 +784,6 @@ function A28E_Jump_dmg(keys)
 		team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	end
 	local pos = target:GetAbsOrigin()
-	-- Applies damage to the current target
-	if (team == DOTA_UNIT_TARGET_TEAM_ENEMY) then
-		ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType()})
-	else
-		target:Heal(ability:GetAbilityDamage(), caster)
-	end
-	
 	local count = 0
 	-- Waits on the jump delay
 
@@ -853,3 +861,131 @@ function A28E_Jump_dmg(keys)
 	end)
 end
 
+function A28E_OnAbilityPhaseStart( keys )
+	local caster = keys.caster
+	local target = keys.target
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] then
+		caster:Interrupt()
+	end
+end
+
+
+function A28T_20_OnSpellStart(keys)
+	--【Basic】
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local level = keys.ability:GetLevel()
+	--local player = caster:GetPlayerID()
+	local point = caster:GetAbsOrigin()
+	--local point2 = target:GetAbsOrigin() 
+	--local point2 = ability:GetCursorPosition()
+	local level = ability:GetLevel() - 1
+	local vec = caster:GetForwardVector():Normalized()	
+	local point2 = point + vec * 300
+
+	--【MOVE】
+	--target:SetAbsOrigin(point2)
+	--target:AddNewModifier(nil,nil,"modifier_phased",{duration=0.01})
+	--【Special】
+ 	--【Dummy Kv】
+ 	local player = caster:GetPlayerID()
+ 	local phoenix = CreateUnitByName("a28_phoenix",point2 ,false,caster,caster,caster:GetTeam())
+ 	phoenix:AddAbility("A28_20TW"):SetLevel(level+1)
+ 	phoenix:AddAbility("A28TE_old"):SetLevel(level+1)
+ 	--phoenix:SetPlayerID(player)
+	phoenix:SetControllableByPlayer(player, true)
+	phoenix:SetBaseMaxHealth(1000+caster:GetLevel()*100)
+	phoenix:SetHealth(phoenix:GetMaxHealth())
+	phoenix:SetBaseDamageMax(200+caster:GetLevel()*10)
+	phoenix:SetBaseDamageMin(150+caster:GetLevel()*10)
+ 	ability:ApplyDataDrivenModifier(phoenix,phoenix,"modifier_A28T",{duration = 60})
+ 	caster.phoenix = phoenix
+
+end
+
+function A28D_20_OnTakeDamage( keys )
+	local caster = keys.caster
+	if IsValidEntity(caster.phoenix) and caster.phoenix:IsAlive() and caster:IsAlive() then
+		local damage = keys.dmg
+		local ability = keys.ability
+		if caster:GetHealth() > 10 then
+			caster:SetHealth( caster:GetHealth() + damage*0.15 )
+		end
+	end
+end
+
+function A28D_20_OnIntervalThink( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	if IsValidEntity(caster.phoenix) and caster.phoenix:IsAlive() and caster:IsAlive() then
+		
+		local units =  FindUnitsInRadius(caster:GetTeamNumber(),
+                              caster:GetAbsOrigin(),
+                              nil,
+                              800,
+                              DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                              0,
+                              0,
+                              false)
+		for i,unit in ipairs(units) do
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_A28D_20_buff",nil)
+		end
+	end
+end
+
+
+function A28_20TW( keys )
+	local caster = keys.caster
+	local point = keys.target_points[1] 
+	local level = keys.ability:GetLevel()
+	local skillcount = 0
+	local skillmax = 3
+	--大絕直徑
+	local radius = keys.ability:GetLevelSpecialValueFor( "A28T_Radius", ( keys.ability:GetLevel() - 1 ) )
+	sk_radius = radius + 100
+	
+	--轉半徑
+	Timers:CreateTimer(0.1, function()
+		AddFOWViewer(caster:GetTeamNumber(), point, sk_radius+100, 1.0, false)
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 500, 0.5, false)
+		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 500, 0.5, false)
+		local maxrock = 5
+		for i=1,maxrock do
+			local pointx = point.x
+			local pointy = point.y
+			local pointz = point.z
+			a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
+			pointx2 	=  	pointx 	+ 	radius 	* 	math.cos(a)
+			pointy2 	=  	pointy 	+ 	radius 	*	math.sin(a)
+			local point3 = Vector(pointx2 ,pointy2 , pointz)
+			A28TE_Effect(keys, point3)
+		end
+		caster:StartGesture( ACT_DOTA_CAST_ABILITY_1 )
+		Timers:CreateTimer(0.45, 
+			function ()
+			GridNav:DestroyTreesAroundPoint(point, radius, false)
+			direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+		                          point,
+		                          nil,
+		                          radius,
+		                          DOTA_UNIT_TARGET_TEAM_ENEMY,
+		                          DOTA_UNIT_TARGET_ALL,
+		                          DOTA_UNIT_TARGET_FLAG_NONE,
+		                          FIND_ANY_ORDER,
+		                          false)
+
+			--effect:傷害+暈眩
+			for _,it in pairs(direUnits) do
+				AMHC:Damage(caster,it,it:GetMaxHealth()*0.02,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+			end)
+
+		if  (caster:IsAlive() and caster:IsChanneling() ) then
+			return 1
+		else
+			return nil
+		end
+	end)
+end

@@ -1,6 +1,6 @@
 
 die_time = {1, 2, 4, 7, 11, 16, 22, 29, 37, 46, 47, 49, 52, 56, 61, 67, 74, 80, 87, 95, 104, 114, 120}
-
+die_tim2 = {2, 4, 7, 10, 14, 20, 22, 25, 28, 32, 36, 42, 45, 48, 52, 56, 60, 65, 70, 75}
 
 function Nobu:OnUnitKill( keys )
 --每当单位死亡，检查其是否符合条件，如果符合就刷新任务
@@ -197,29 +197,24 @@ function Nobu:OnUnitKill( keys )
       else
         killedUnit.death_count = killedUnit.death_count + 1
       end
-      if _G.hardcore then
-        if killedUnit:GetLevel() >= 20 then
-          killedUnit:SetTimeUntilRespawn(80)
-        elseif killedUnit:GetLevel() >= 18 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*3+20)
-        elseif killedUnit:GetLevel() >= 12 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*3)
-        elseif killedUnit:GetLevel() >= 6 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+4)
-        else
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
-        end
+
+      if killedUnit:GetLevel() >= 18 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+20)
+      elseif killedUnit:GetLevel() >= 12 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+11)
+      elseif killedUnit:GetLevel() >= 6 then
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+3)
       else
-        if killedUnit:GetLevel() >= 18 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+20)
-        elseif killedUnit:GetLevel() >= 12 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+11)
-        elseif killedUnit:GetLevel() >= 6 then
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+3)
-        else
-          killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
-        end
+        killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
       end
+      
+      --[[
+      if die_tim2[killedUnit:GetLevel()] then
+        killedUnit:SetTimeUntilRespawn(die_tim2[killedUnit:GetLevel()])
+      else
+        killedUnit:SetTimeUntilRespawn(75)
+      end
+      ]]
       if not _G.hardcore then 
         group = FindUnitsInRadius(
             killedUnit:GetTeamNumber(), 

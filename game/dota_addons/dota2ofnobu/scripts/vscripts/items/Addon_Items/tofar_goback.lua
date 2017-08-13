@@ -1,12 +1,55 @@
 LinkLuaModifier("modifier_ninja2", "heroes/modifier_ninja2.lua", LUA_MODIFIER_MOTION_NONE)
-		
+
+function choose_20( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local nobu_id = _G.heromap[caster:GetName()]
+	-- 通知所有玩家該英雄已經變成新版
+	GameRules:SendCustomMessage("<font color='#ccbbff'>20版 ".._G.hero_name_zh[nobu_id].." 參戰</font>",0,0)
+	caster.isnew = true
+	caster:SetAbilityPoints(caster:GetLevel())
+	caster.version = "20"
+
+	for i = 0, caster:GetAbilityCount() - 1 do
+      local ability = caster:GetAbilityByIndex( i )
+      if ability  then
+        caster:RemoveAbility(ability:GetName())
+      end
+    end
+    local skill = _G.heromap_skill[nobu_id]["20"]
+    for si=1,#skill do
+      if si == 5 then
+        caster:AddAbility("attribute_bonusx"):SetLevel(1)
+      end
+      caster:AddAbility(nobu_id..skill:sub(si,si).."_20")
+    end
+    -- 要自動學習的技能
+    local askill = _G.heromap_autoskill[nobu_id]["20"]
+    for si=1,#askill do
+      caster:FindAbilityByName(nobu_id..askill:sub(si,si).."_20"):SetLevel(1)
+    end
+    -- 直江兼續新版要砍普攻距離
+    if nobu_id == "B36" and caster:HasModifier("modifier_B36D_old") then
+    	caster:RemoveModifierByName("modifier_B36D_old")
+    end
+    -- 加藤段藏天生技要拿掉
+    if nobu_id == "C08" and caster:HasModifier("modifier_C08D_old_duge") then
+    	caster:RemoveModifierByName("modifier_C08D_old_duge")
+    end
+    caster:AddAbility(nobu_id.."_precache"):SetLevel(1)
+    for i=1,4 do
+    	if caster:HasModifier("modifier_buff_"..i) then
+    		caster:AddAbility("buff_"..i):SetLevel(1)
+    	end
+    end
+end
+
 function choose_16( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local nobu_id = _G.heromap[caster:GetName()]
 	-- 通知所有玩家該英雄已經變成新版
 	GameRules:SendCustomMessage("<font color='#33ff88'>16版 ".._G.hero_name_zh[nobu_id].." 參戰</font>",0,0)
-	caster.isnew = true
 	caster:SetAbilityPoints(caster:GetLevel())
 	caster.version = "16"
 
@@ -53,8 +96,6 @@ function choose_11( keys )
 	local nobu_id = _G.heromap[caster:GetName()]
 	-- 通知所有玩家該英雄已經變成舊版
 	GameRules:SendCustomMessage("<font color='#ff3388'>11版 ".._G.hero_name_zh[nobu_id].." 參戰</font>",0,0)
-
-	caster.isold = true
 	caster:SetAbilityPoints(caster:GetLevel())
 	caster.version = "11"
 
@@ -429,6 +470,10 @@ function afk_gogo(keys)
 				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
    				if hero.stop == nil then
    					hero.stop = 1
+   					hero:ForceKill(true)
+   					Timers:CreateTimer(0.1, function()
+   						hero:SetTimeUntilRespawn(3600)
+   						end)
    				else
    					hero.stop = hero.stop + 1
    					if hero.stop > 3 then
@@ -440,10 +485,13 @@ function afk_gogo(keys)
    			hero:AddNewModifier(nil, nil, 'modifier_stunned', {duration=1.5})
    		elseif state == 2 then
    			if hero.stop ~= nil then
+   				hero:SetTimeUntilRespawn(0)
    				hero.stop = nil
-   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
-   				hero:RemoveModifierByName("modifier_stunned")
-   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+   				Timers:CreateTimer(0.1, function()
+	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
+	   				hero:RemoveModifierByName("modifier_stunned")
+	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+	   				end)
    			end
    			if hero:GetAbsOrigin().x > 90000 then
    				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)

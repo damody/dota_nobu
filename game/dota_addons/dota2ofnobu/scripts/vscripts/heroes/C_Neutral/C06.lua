@@ -207,7 +207,7 @@ function modifier_C06R_onattack_OnAttackLanded( event )
 	--print(target:GetMagicalArmorValue())
 	--print(event.caster:GetMagicalArmorValue())
 	--print(100-target:GetMagicalArmorValue())
-	if not target:IsBuilding() then
+	if not target:IsBuilding() and _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		local ability = event.ability
 		local caster = ability:GetCaster()
 		local damage = caster:GetGold()*0.04

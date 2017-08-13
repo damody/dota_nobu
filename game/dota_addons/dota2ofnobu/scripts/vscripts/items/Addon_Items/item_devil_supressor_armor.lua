@@ -58,6 +58,15 @@ function modifier_devil_supressor_armor:OnTakeDamage(event)
 	end
 end
 
+function Shock_C04D_20( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	keys.SHP1 = tonumber(keys.SHP1)
+	keys.SHP2 = tonumber(keys.SHP2)
+
+	ShockTarget(keys, keys.target, 6)
+end
+
 function Shock_C04_old( keys )
 	local caster = keys.caster
 	local ability = keys.ability

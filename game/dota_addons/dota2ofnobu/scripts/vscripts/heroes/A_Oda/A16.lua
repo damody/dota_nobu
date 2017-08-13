@@ -52,7 +52,9 @@ function modifier_A16R2:OnTakeDamage(event)
 						    if enemy:IsMagicImmune() then
 						    	damageTable.damage = dmg2*0.5
 						    end
-						    ApplyDamage(damageTable)
+						    if _G.EXCLUDE_TARGET_NAME[enemy:GetUnitName()] == nil then
+						    	ApplyDamage(damageTable)
+						    end
 						end
 					end
 		        end 

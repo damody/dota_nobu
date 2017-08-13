@@ -43,7 +43,7 @@ function Shock( keys )
 
 	--effect:傷害+暈眩
 	for _,it in pairs(direUnits) do
-		if not(it:IsBuilding()) then
+		if not(it:IsBuilding()) and _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
 			AMHC:Damage(caster, it, 250, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			if IsValidEntity(it) then
 				Physics:Unit(it)

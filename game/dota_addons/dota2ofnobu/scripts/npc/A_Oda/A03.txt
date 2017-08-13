@@ -107,6 +107,12 @@
 						"Type"			"DAMAGE_TYPE_MAGICAL"
 						"Damage"		"25"
 					}
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound_unit"
+						"sound"	"capture_point_timer_hallow"
+					}
 				}
 			}
 		}
@@ -432,6 +438,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A03.lua"
 				"Function"				"A03W_OnSpellStart"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"viper_strike"
+			}
 		}
 		"OnProjectileHitUnit"
 		{
@@ -471,6 +483,12 @@
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A03.lua"
 						"Function"      "A03W_old_OnDeath"
 						"Target"			"TARGET" 
+					}
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"crit_spatter02"
 					}
 				}
 				"ThinkInterval"  "1"
@@ -786,6 +804,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A03.lua"
 				"Function"		"A03TW_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dota2_music_stinger_009"
 			}
 		}
 

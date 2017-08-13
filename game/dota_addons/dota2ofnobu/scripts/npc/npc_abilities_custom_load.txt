@@ -34,7 +34,22 @@
 			}
 		}
 	}
-	
+	// 選20版
+	"choose_20"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"custom/icon_128x128_157"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"	"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+				"Function"		"choose_20"
+			}
+		}
+	}
 	//  附近的敵人愈多 受到的傷害愈高
 	"debuff_tower"
 	{
@@ -46,7 +61,7 @@
 			"modifier_debuff_x"
 			{
 				"Passive"	"1"
-				"IsHidden"	"0"
+				"IsHidden"	"1"
 				"ThinkInterval"  "1"
 				"OnIntervalThink"
 				{
@@ -69,10 +84,10 @@
 			"debuff_tower"
 			{
 				"Passive"	"0"
-				"IsHidden"	"0"
+				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"20"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"12"
 					"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-10"
 				}
 			}
@@ -290,7 +305,7 @@
 				"Passive"			"1"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
-				"ThinkInterval"  "3"
+				"ThinkInterval"  "1"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -590,7 +605,6 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastPoint"	"0.4"
 		"AbilityCooldown"	"10"
 
@@ -3370,7 +3384,7 @@
 		"MaxLevel"	"100"
 		"HotKeyOverride"	"F"
 		"LevelsBetweenUpgrades"	"0"
-		"AbilityCooldown"	"8"
+		"AbilityCooldown"	"6"
 		"precache"
 		{
 			"particle" "particles/focus/lv1_1.vpcf"
@@ -3380,6 +3394,14 @@
     		"particle" "particles/focus/lv2_2.vpcf"
     		"particle" "particles/focus/lv2_3.vpcf"
     		"particle" "particles/focus/lv2_4.vpcf"
+    		"particle" "particles/focus/lv3_1.vpcf"
+    		"particle" "particles/focus/lv3_2.vpcf"
+    		"particle" "particles/focus/lv3_3.vpcf"
+    		"particle" "particles/focus/lv3_4.vpcf"
+    		"particle" "particles/focus/lv4_1.vpcf"
+    		"particle" "particles/focus/lv4_2.vpcf"
+    		"particle" "particles/focus/lv4_3.vpcf"
+    		"particle" "particles/focus/lv4_4.vpcf"
 		}
 		"OnToggleOn"
 		{
@@ -3411,7 +3433,7 @@
 			// 暫時鎖住此技能
 			"modifier_bonusx_locker"
 			{
-				"Duration" "8"
+				"Duration" "6"
 				"OnCreated"
 				{
 					"RunScript"
@@ -3581,6 +3603,192 @@
 						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 						"Function"	"showTitle"
 						"title"	"particles/focus/lv2_4.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"removeAbility"
+						"title"	"show_lv1"
+					}
+				}
+			}
+			"modifier_lv3_1"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.58"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv3_1.vpcf"
+					}
+				}	
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv3_2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv3_2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.06"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv3_2.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv3_3"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv3_3"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"0.99"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv3_3.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv3_4"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv3_4"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.32"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv3_4.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"removeAbility"
+						"title"	"show_lv1"
+					}
+				}
+			}
+			"modifier_lv4_1"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.58"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv4_1.vpcf"
+					}
+				}	
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv4_2"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv4_2"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.06"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv4_2.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv4_3"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv4_3"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"0.99"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv4_3.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_lv4_4"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+			"modifier_lv4_4"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"Duration"			"1.32"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"showTitle"
+						"title"	"particles/focus/lv4_4.vpcf"
 					}
 				}
 				"OnDestroy"
@@ -4152,13 +4360,14 @@
 				"Passive"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-150"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-350"
 				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-25" 
 				}
 			}
 			"modifier_1300"
 			{
 				"Passive"	"1"
+				"IsHidden"	"0"
 				"OnAttack"
 				{
 					"RunScript"
@@ -4179,7 +4388,6 @@
 				{
 					"MODIFIER_STATE_CANNOT_MISS"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				"IsBuff"	"1"
 				"OnAttackLanded"
 				{
 					"RunScript"

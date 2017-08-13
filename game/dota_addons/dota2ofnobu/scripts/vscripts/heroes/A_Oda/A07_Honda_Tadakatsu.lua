@@ -283,3 +283,53 @@ function A07T_SE( keys )
 	local target = keys.target
 	AMHC:CreateParticle("particles/a07e/a07e.vpcf",PATTACH_ABSORIGIN,false,target,0.5,nil)
 end
+
+function A07D_20( keys )
+	local caster = keys.caster
+	local target = keys.target
+	print("A07D_20")
+	caster.currentD = caster.currentD or "E"
+	if caster.currentD == "E" then
+		caster:SwapAbilities("A07E_20","A07F_20",false,true)
+		caster.currentD = "F"
+	else
+		caster:SwapAbilities("A07F_20","A07E_20",false,true)
+		caster.currentD = "E"
+	end
+end
+
+function A07E_20_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local A07F_20 = caster:FindAbilityByName("A07F_20")
+	if IsValidEntity(A07F_20) and A07F_20:GetLevel() < ability:GetLevel() then
+		A07F_20:SetLevel(ability:GetLevel())
+	end
+end
+
+function A07F_20_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local A07E_20 = caster:FindAbilityByName("A07E_20")
+	if IsValidEntity(A07E_20) and A07E_20:GetLevel() < ability:GetLevel() then
+		A07E_20:SetLevel(ability:GetLevel())
+	end
+end
+
+function A07E_20CD( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local A07F_20 = caster:FindAbilityByName("A07F_20")
+	if IsValidEntity(A07F_20) then
+		A07F_20:StartCooldown(ability:GetCooldown(-1))
+	end
+end
+
+function A07F_20CD( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local A07E_20 = caster:FindAbilityByName("A07E_20")
+	if IsValidEntity(A07E_20) then
+		A07E_20:StartCooldown(ability:GetCooldown(-1))
+	end
+end

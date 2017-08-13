@@ -44,5 +44,25 @@ end
 
 function sound( keys )
     local caster = keys.caster
-    caster:EmitSound(keys.sound)
+    local unit = keys.unit
+    if keys.time then
+        Timers:CreateTimer(keys.time,function()
+                caster:StopSound(keys.sound)
+            end)
+    end
+    if unit then
+        unit:EmitSound(keys.sound)
+    else
+        caster:EmitSound(keys.sound)
+    end
+end
+
+function sound_unit( keys )
+    local unit = keys.unit
+    if keys.time then
+        Timers:CreateTimer(keys.time,function()
+                unit:StopSound(keys.sound)
+            end)
+    end
+    unit:EmitSound(keys.sound)
 end

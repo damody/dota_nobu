@@ -558,6 +558,12 @@
 				"ModifierName"	"modifier_A09R_old_passiveAura2"
 				"Duration"		"5"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"overwhelming_buff"
+			}
 		}
 
 		"Modifiers"

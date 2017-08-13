@@ -65,6 +65,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
 				"Function"	"A12W"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"item_mael_lightning_chain"
+			}
 		}
 		"Modifiers"
 		{
@@ -168,6 +174,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A12.lua"
 				"Function"	"A12E"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"orgremagi_iceboost"
 			}
 		}
 		"Modifiers"
@@ -292,6 +304,12 @@
 						"Damage"	"%damage"
 					}
 				}
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"item_mael_lightning_chain"
 			}
 		}
 		"Modifiers"

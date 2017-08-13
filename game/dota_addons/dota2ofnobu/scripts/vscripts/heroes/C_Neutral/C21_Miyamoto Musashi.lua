@@ -134,9 +134,9 @@ function Trig_C21TActions( keys )
         --如果元素大於0個單位才隨機抓取
         if #group > 0 and ti ~= 0 then
         	u2 = group[RandomInt(1,#group)]
-        	if u2:HasModifier("modifier_majia") then
+        	if u2:HasModifier("modifier_majia") or _G.EXCLUDE_TARGET_NAME[u2:GetUnitName()] == true then
         		for _,xx in pairs(group) do
-        			if not u2:HasModifier("modifier_majia") then
+        			if not xx:HasModifier("modifier_majia") and _G.EXCLUDE_TARGET_NAME[xx:GetUnitName()] == nil then
         				u2 = xx
         				break
         			end

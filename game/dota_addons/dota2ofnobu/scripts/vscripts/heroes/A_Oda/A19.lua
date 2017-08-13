@@ -122,6 +122,27 @@ function A19R_OnAbilityExecuted( keys )
 	end
 end
 
+function A19R_20_OnAbilityExecuted( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local dmg = ability:GetSpecialValueFor("dmg")
+	-- 搜尋
+	if keys.event_ability:IsToggle() then return end
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		caster:GetAbsOrigin(),							-- 搜尋的中心點
+		nil,
+		ability:GetCastRange(),			-- 搜尋半徑
+		ability:GetAbilityTargetTeam(),	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false)
+	local dmgx = caster:GetIntellect() * dmg
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+		AMHC:Damage(caster,unit, dmgx,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	end
+end
 
 function A19T_OnSpellStart( keys )
 	--【Basic】
@@ -177,6 +198,7 @@ function A19T_OnSpellStart( keys )
 			table.insert(pos[1], point_tem)
 			local ifx = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_CUSTOMORIGIN,nil)
 				ParticleManager:SetParticleControl(ifx, 0, point_tem)
+			AddFOWViewer(caster:GetTeamNumber(),point_tem,200,12.0,false)
 			Timers:CreateTimer(duration, function()
 					ParticleManager:DestroyParticle(ifx,true)
 				end)
@@ -194,6 +216,7 @@ function A19T_OnSpellStart( keys )
 			table.insert(pos[2], point_tem1)
 			local ifx = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_CUSTOMORIGIN,nil)
 				ParticleManager:SetParticleControl(ifx, 0, point_tem1)
+			AddFOWViewer(caster:GetTeamNumber(),point_tem1,200,12.0,false)
 			Timers:CreateTimer(duration, function()
 					ParticleManager:DestroyParticle(ifx,true)
 				end)
@@ -210,6 +233,7 @@ function A19T_OnSpellStart( keys )
 			table.insert(pos[3], point_tem2)
 			local ifx = ParticleManager:CreateParticle("particles/a19/a19_t.vpcf",PATTACH_CUSTOMORIGIN,nil)
 				ParticleManager:SetParticleControl(ifx, 0, point_tem2)
+			AddFOWViewer(caster:GetTeamNumber(),point_tem2,200,12.0,false)
 			Timers:CreateTimer(duration, function()
 					ParticleManager:DestroyParticle(ifx,true)
 				end)
@@ -387,6 +411,18 @@ function A19R_old_OnAttackLanded( keys )
 	end
 end
 
+function A19D_20_OnAttackLanded( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local dmg = ability:GetSpecialValueFor("dmg")
+	if not target:IsBuilding() and not caster:IsIllusion() then
+		if not target:HasModifier("modifier_A19D_20") then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_A19D_20",nil)
+		end
+	end
+end
+
 function A19R_old_OnDeath( keys )
 	local caster = keys.caster
 	local target = keys.unit
@@ -489,4 +525,14 @@ function A19T_old_OnSpellStart( keys )
 				return 1
 			end
 			end)
+end
+
+
+function A19T_20_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local A19D_20 = caster:FindAbilityByName("A19D_20")
+	if IsValidEntity(A19D_20) then
+		A19D_20:SetLevel(ability:GetLevel()+1)
+	end
 end

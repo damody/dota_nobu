@@ -161,6 +161,12 @@
 				"ModifierName"	"modifier_A06W"
 				"Duration"	"%A06W_Duration"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fireblast_cast"
+			}
 		}
 		"Modifiers"
 		{
@@ -237,6 +243,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
 				"Function"	"A06W_old"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fireblast_cast"
 			}
 		}
 		"Modifiers"
@@ -624,6 +636,14 @@
 			{
 				"IsBuff"	"1"
 				// 要改Effect
+				"OnAttackFailed"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A06_Ii_Naomasa.lua"
+						"Function"	"A06T_Count"
+					}
+				}
 				"OnAttackLanded"
 				{
 					"RunScript"

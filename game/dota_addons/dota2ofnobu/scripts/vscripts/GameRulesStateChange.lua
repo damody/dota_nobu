@@ -14,7 +14,7 @@ gamestates =
 
 
 function SendHTTPRequest(path, method, values, callback)
-	local req = CreateHTTPRequestScriptVM( method, "http://140.114.235.19/"..path )
+	local req = CreateHTTPRequestScriptVM( method, "http://172.104.107.13/"..path )
 	for key, value in pairs(values) do
 		req:SetHTTPRequestGetOrPostParameter(key, value)
 	end
@@ -83,7 +83,7 @@ function Nobu:OnGameRulesStateChange( keys )
       for_test_equiment()
     end
     
-    GameRules:SendCustomMessage("歡迎來到 AON信長的野望 20.7A", DOTA_TEAM_GOODGUYS, 0)
+    GameRules:SendCustomMessage("歡迎來到 AON信長的野望 20.7B", DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("5分鐘後可以打 -ff 投降" , DOTA_TEAM_GOODGUYS, 0)
     GameRules:SendCustomMessage("目前作者: Damody, 佐佐木小籠包, DowDow", DOTA_TEAM_GOODGUYS, 0)
 	elseif(newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) then --遊戲開始 --7
@@ -98,46 +98,6 @@ function Nobu:OnGameRulesStateChange( keys )
 	        building:RemoveModifierByName('modifier_invulnerable')
 	     end
 	  end
-	  local read_count = 0
-	  Timers:CreateTimer(1, function()
-	  	local ids = {}
-		local idcount = 0
-		for pID = 0, 9 do
-			if PlayerResource:GetPlayer(pID) ~= nil then
-				local hero = PlayerResource:GetPlayer(pID):GetAssignedHero()
-				local steamID = PlayerResource:GetSteamAccountID(pID)
-				local nobu_id = _G.heromap[hero:GetName()]
-				local version = hero.version or "16"
-
-				ids[tostring(steamID)] = nobu_id.."_"..version
-				if steamID ~= 0 then
-					idcount = idcount + 1
-				end
-			end
-		end
-		SendHTTPRequest("query_focus", "POST",
-		ids,
-		function(result)
-			if not pcall(function()
-				resultTable = json.decode(result)
-			end) then
-				Warning("[dota2.tools.Storage] Can't decode result: " .. result)
-			end
-			for pID = 0, 9 do
-				if PlayerResource:GetPlayer(pID) ~= nil then
-					local hero = PlayerResource:GetPlayer(pID):GetAssignedHero()
-					local steamID = PlayerResource:GetSteamAccountID(pID)
-					if steamID ~= 0 then
-						hero.focus = resultTable[tostring(steamID)]
-					end
-				end
-			end
-		end)
-		if read_count < 10 then
-			read_count = read_count + 1
-			return 10
-		end
-	  end)
     --出兵觸發
     if _G.nobu_chubing_b then
       ShuaGuai()

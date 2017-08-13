@@ -161,24 +161,13 @@ function A1300_Succes_Attack( keys )
 	local point2 = target:GetAbsOrigin()
 	local level = ability:GetLevel() - 1
 	local dmg = keys.dmg
-    local group = {}
+	
     local radius = ability:GetLevelSpecialValueFor("attacked_range",level)
     ability:ApplyDataDrivenModifier( caster, target, "modifier_1300Attack", {duration = 1.5} )
-    if not _G.hardcore then 	
-	   	group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+    local group = FindUnitsInRadius(caster:GetTeamNumber(), point2, nil, radius ,ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for i,v in ipairs(group) do
 			AMHC:Damage( caster,v,dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )	
 		end
-	else
-		local targetArmor = target:GetPhysicalArmorValue()
-		local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
-		local dmg = dmg * (1 - damageReduction)
-		Timers:CreateTimer(0.1, function()
-			if IsValidEntity(target) and target:IsAlive() then
-				target:SetHealth(target:GetHealth()+dmg*0.4)
-			end
-			end)
-	end
 end
 
 -- 11.2B

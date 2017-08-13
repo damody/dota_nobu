@@ -278,3 +278,36 @@ function A31T_old_split_shot( keys )
 		if max_targets == 0 then break end
 	end
 end
+
+
+function A31T_20_OnAttack( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local caster_location = caster:GetAbsOrigin()
+	if not caster:HasModifier("modifier_a31t_20") then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_a31t_20",nil)
+		local handle = caster:FindModifierByName("modifier_a31t_20")
+		if handle then
+			handle:SetStackCount(1)
+		end
+	else
+		local handle = caster:FindModifierByName("modifier_a31t_20")
+		if handle then
+			local c = handle:GetStackCount()
+			c = c + 1
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_a31t_20",nil)
+			handle:SetStackCount(c)
+		end
+	end
+end
+
+function A31D_20_OnSpellStart( keys )
+	local caster = keys.caster
+	local caster_location = caster:GetAbsOrigin()
+	Timers:CreateTimer(0.1,function( )
+		if caster:HasModifier("modifier_A31D_20") then
+			AddFOWViewer(caster:GetTeamNumber(), caster:GetAbsOrigin(), 1000, 1, false)
+			return 0.5
+		end
+		end)
+end

@@ -736,7 +736,6 @@
 		"AbilityTextureName"	"item_custom/magic_ring"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.01"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"200"
 		"AOERadius"	"425"
@@ -826,7 +825,6 @@
 		"AbilityTextureName"	"item_custom/flash_ring"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.01"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"250"
 		"AOERadius"	"850"
@@ -4465,6 +4463,12 @@
 				"Type"	"DAMAGE_TYPE_MAGICAL"
 				"Damage"	"1"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"iron_talon"
+			}
 		}
 		"Modifiers"
 		{
@@ -4541,6 +4545,12 @@
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_anger.lua"
 				"Function"	"Shock"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fade_bolt_cast"
 			}
 		}
 
@@ -5142,6 +5152,12 @@
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_spike.lua"
 				"Function"	"Shock"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"spiked_carapace"
+			}
 		}
 		"Modifiers"
 		{
@@ -5204,6 +5220,12 @@
 				"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_new_moon.lua"
 				"Function"				"Shock"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"edict_cast"
+			}
 		}
 		
 		"Modifiers"
@@ -5232,13 +5254,10 @@
 		}
 	}
 
-	
-
 	// 梅鶯毒．妖刀
 	"item_the_great_sword_of_toxic"
 	{
 		// General
-		
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_custom/the_great_sword_of_toxic"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -5284,6 +5303,12 @@
 			{
 				"ScriptFile"			"items/Addon_Items/item_the_great_sword_of_toxic.lua"
 				"Function"				"Shock"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"poison_attack_target_ti7"
 			}
 		}
 		"AbilitySpecial"
@@ -5542,6 +5567,12 @@
 				"Function"	"Shock"
 				"Target"	"TARGET"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"false_promise_heal"
+			}
 		}
 		"Modifiers"
 		{
@@ -5647,6 +5678,12 @@
 				"Function"	"Shock"
 				"Target"	"TARGET"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"time_lapse"
+			}
 		}
 		"Modifiers"
 		{
@@ -5708,6 +5745,12 @@
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_banish.lua"
 				"Function"	"Shock"
 				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"mek_cast"
 			}
 		}
 		"Modifiers"
@@ -5885,6 +5928,12 @@
 				"Target" 		"CASTER"
 				"Duration"		"20"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"hookshot_damage"
+			}
 		}
 		
 		"Modifiers"
@@ -5915,7 +5964,7 @@
 				"EffectName"	"particles/item/great_sword_of_disarmament_2.vpcf"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "15"
 				}
 			}
 
@@ -5928,7 +5977,7 @@
 				"EffectName"	"particles/item/great_sword_of_disarmament.vpcf"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"
+					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "15"
 				}
 			}
 			"Passive_great_sword_of_disarmament"
@@ -7238,18 +7287,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-10"	//防禦
-				}
-			}
-			"modifier_spear_of_saddle2"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsPurgable"	"1"
-				"IsDebuff"		"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-5"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle"
@@ -7335,18 +7373,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-18"	//防禦
-				}
-			}
-			"modifier_spear_of_saddle2"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsPurgable"	"1"
-				"IsDebuff"		"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-9"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1.5"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle_1"
@@ -7431,18 +7458,7 @@
 				"IsDebuff"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-26"	//防禦
-				}
-			}
-			"modifier_spear_of_saddle2"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsPurgable"	"1"
-				"IsDebuff"		"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-13"	//防禦
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-2"	//防禦
 				}
 			}
 			"Passive_spear_of_saddle_2"
@@ -10235,12 +10251,6 @@
 		            }
             	}
             }
-            "RunScript"
-			{
-			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
-				"Function"	"sound"
-				"sound"	"HealingWave"
-			}
 		}
 		"OnSpellStart"
 		{
@@ -10270,6 +10280,12 @@
 					"CASTER"	"start_at_origin"
 					"CASTER"	"attach_attack1"
 				}
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"HealingWave"
 			}
 		}
 		// Special
@@ -10311,15 +10327,6 @@
 		                "Target"        "TARGET"
 		                "HealAmount"    "800"
 		            }
-				}
-			}
-			"modifier_ninja_cloth"
-			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"20"	//閃避
 				}
 			}
 			"Passive_lightning_katana"
@@ -12280,7 +12287,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
-		"AbilityCooldown"	"48"
+		"AbilityCooldown"	"30"
 		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"200"
 		"AbilityCastRange"	"1000"
@@ -12343,7 +12350,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"1"
 		"AbilitySharedCooldown" "share_perceive_wine_hyper"
-		"AbilityCooldown"	"48"
+		"AbilityCooldown"	"40"
 		"AbilityCastPoint"	"0.1"
 		"AbilityManaCost"	"200"
 		"AbilityCastRange"	"1000"
@@ -13640,6 +13647,12 @@
 				"Function"	"Shock"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"watersword_crit_01"
+			}
 		}
 		
 		"Modifiers"
@@ -13754,6 +13767,25 @@
 				"Function"		"Shock"
 				"Target"		"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"cold_feet_tick"
+			}
+			"DelayedAction"
+			{
+				"Delay"     "0.1"
+				"Action"    
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"cold_feet_tick"
+					}
+				}
+			}
 		}
 
 		"OnProjectileHitUnit"
@@ -13863,6 +13895,12 @@
 				"Function"	"Shock"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fireblast_target"
+			}
 		}
 		
 		"Modifiers"
@@ -13945,6 +13983,12 @@
 				"ScriptFile"	"items/Addon_Items/item_storm_book.lua"
 				"Function"	"Shock"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"windrun"
 			}
 		}
 		
@@ -14255,6 +14299,12 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_ancient_doll.lua"
 				"Function"	"Shock"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"death_ghost"
 			}
 		}
 
@@ -14845,6 +14895,12 @@
 				"Target"	"TARGET"
 				"Type"	"DAMAGE_TYPE_MAGICAL"
 				"Damage"	"1"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"iron_talon"
 			}
 		}
 		"Modifiers"
@@ -16234,7 +16290,6 @@
 		"AbilityTextureName"	"item_custom/flash_shoes"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"FightRecapLevel"	"1"
-		"AbilityCastPoint"	"0.01"
 		"AbilityCooldown"	"40"
 		"AbilityManaCost"	"250"
 		"AOERadius"	"850"
@@ -16363,7 +16418,12 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_great_spirited_away.lua"
 				"Function"	"Shock"
-				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"rune_invis"
 			}
 		}
 		"Modifiers"

@@ -309,9 +309,7 @@ local function chat_of_test(keys)
 	end
 	if s == "-me" then
 		local nobu_id = _G.heromap[caster:GetName()]
-		if sump <= 2 then
-			GameRules: SendCustomMessage(_G.hero_name_zh[nobu_id].." 英雄勝場為 " .. caster.focus, DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
-		end
+		GameRules: SendCustomMessage(_G.hero_name_zh[nobu_id].." 英雄勝場為 " .. caster.focus, DOTA_TEAM_GOODGUYS + DOTA_TEAM_BADGUYS, 0)
 	end
 	if sump <= 2 then
 		if string.match(s,"uion") then

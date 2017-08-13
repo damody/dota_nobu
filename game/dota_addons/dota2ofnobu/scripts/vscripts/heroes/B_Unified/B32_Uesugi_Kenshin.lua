@@ -277,3 +277,39 @@ function B32T_End( keys )
 	local ability = caster:FindAbilityByName("B32D")
 	ability:SetActivated(false)
 end
+
+function B32T_20_upgrade( keys )
+	keys.caster:FindAbilityByName("B32D_20"):SetLevel(keys.ability:GetLevel())
+end
+
+function B32D_20_OnHeroKilled( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	GameRules: SendCustomMessage("<font color=\"#ddddff\">四十九年一睡夢、一期榮華一盃酒</font>", DOTA_TEAM_BADGUYS + DOTA_TEAM_GOODGUYS, 0)
+
+	-- Finds the units in a given radius with the given flags. ( iTeamNumber, vPosition, hCacheUnit, flRadius, iTeamFilter, iTypeFilter, iFlagFilter, iOrder, bCanGrowCache )
+	local units = FindUnitsInRadius(caster:GetTeamNumber(), Vector(0,0,0),
+			nil,  30000 , DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			0, 0, false)
+	
+	local i = 1
+	local last = #units
+
+	-- 慢慢加
+	Timers:CreateTimer( 0, function()
+		if i <= last then
+			local unit = units[i]
+			if IsValidEntity(unit) then
+				if unit:IsHero() then
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_B32D_20_buff_for_hero",{})
+				else
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_B32D_20_buff_for_soldier",{})
+				end
+			end
+			i = i + 1
+			return 0.01
+		else
+			return nil
+		end
+	end)
+end

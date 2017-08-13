@@ -527,10 +527,10 @@ function B16MME_old(keys)
 	local ran =  RandomInt(0, 100)
 	if ran <= 30 and not target:IsBuilding() then
 		if not target:IsMagicImmune() then
-			if caster:HasModifier("modifier_B16W_old_buff2") then
-				ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
-			end
 			AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		end
+		if caster:HasModifier("modifier_B16W_old_buff2") then
+			ability:ApplyDataDrivenModifier(caster,target,"modifier_B16MME_old_stun",nil)
 		end
 	end
 end

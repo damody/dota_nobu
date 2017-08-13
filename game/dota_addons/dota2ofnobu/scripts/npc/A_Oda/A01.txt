@@ -433,6 +433,12 @@
 				"Function"	"showTitle"
 				"title"	"particles/title/a01t.vpcf"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"quest_complete_01"
+			}
 		}
 		"Modifiers"
 		{
@@ -808,6 +814,12 @@
 				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 				"Function"	"showTitle"
 				"title"	"particles/title/a01t.vpcf"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"quest_complete_01"
 			}
 		}
 		"Modifiers"

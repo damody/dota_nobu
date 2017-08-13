@@ -153,8 +153,11 @@ function A23R( keys )
 		if not caster:IsChanneling() then
 			return nil
 		end
-		AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 1, false)
-		AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 1, false)
+		local units = FindUnitsInRadius(caster:GetOpposingTeamNumber(), caster:GetOrigin(), nil, 1000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, ability:GetAbilityTargetType(), DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )
+		if #units > 0 then
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 100, 1, false)
+			AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 100, 1, false)
+		end
 		-- 照亮目標周圍
 		AddFOWViewer(iTeam,center,aoe_radius*1.1,1.0,false)
 		-- 搜尋敵人

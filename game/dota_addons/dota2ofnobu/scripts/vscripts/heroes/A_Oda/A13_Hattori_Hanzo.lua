@@ -309,6 +309,10 @@ function A13E:OnSpellStart()
 	caster:SetForwardVector(dir:Normalized())
 	caster:AddNewModifier(caster, self, "a13e_modifier", { duration = 2}) 
 	caster:AddNewModifier(caster, self, "a13e_followthrough", { duration = 0.3 } )
+	caster:EmitSound("hook_throw")
+	Timers:CreateTimer(1,function()
+                caster:StopSound("hook_throw")
+            end)
 end
 
 function A13E:OnAbilityPhaseStart()
@@ -420,7 +424,7 @@ function a13e_modifier:OnCreated( event )
 			self.oriangle = self:GetParent():GetAnglesAsVector().y
 			self.hook_pos = self:GetParent():GetOrigin()
 			self.oripos = self:GetParent():GetOrigin()
-			self:StartIntervalThink(0.05) 
+			self:StartIntervalThink(0.05)
 		end
 	end
 end
@@ -676,7 +680,7 @@ function A13T_old( keys )
 	caster.dummy = dummy
 
 	casterLoc = keys.target_points[1] - right:Normalized() * 300
-	Timers:CreateTimer( 0.6, function()
+	Timers:CreateTimer( 0.8, function()
 		caster:AddNoDraw()
 		ability:ApplyDataDrivenModifier( caster, caster, "modifier_A13T", {duration = 3.4} )
 	end)

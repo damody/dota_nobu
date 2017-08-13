@@ -44,6 +44,12 @@
 				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A15.lua"
 				"Function"						"A15W_OnSpellStart"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"moon_shard"
+			}
 		}
 
 		"Modifiers"
@@ -107,9 +113,9 @@
 		"AbilityTextureName"    					"custom/A15/A15E"
 
 		"AbilityCooldown"							"16 13 10 7"
-		"AbilityCastPoint" "0.25" //stun
+		"AbilityCastPoint" 							"0.25" //stun
 		"AbilityManaCost"                      		"125 145 165 185"
-		"AbilityCastRange"              			"800"
+		"AbilityCastRange"              			"1000"
 		//"AnimationPlaybackRate"						"0.5"
 		"AbilityChannelTime"						"%A15E_duration"
 		"AOERadius"									"%A15E_radius"
@@ -143,7 +149,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"A15E_moonRadius"				"200"
+				"A15E_moonRadius"				"250"
 			}
 			"05"
 			{
@@ -256,6 +262,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
 				"Function"		"A15T_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"item_ghost_sceptre"
 			}
 		}
 
@@ -582,6 +594,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A15.lua"
 				"Function"		"A15T_old_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"item_ghost_sceptre"
 			}
 		}
 

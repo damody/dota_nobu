@@ -35,7 +35,6 @@ function A26W_OnSpellStart( keys )
 	end
 end
 
-
 function A26E_OnSpellStart( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -96,6 +95,15 @@ function A26R_OnUpgrade( keys )
 	end
 end
 
+function A26T_20_OnUpgrade( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local A26D = caster:FindAbilityByName("A26D_20")
+	if IsValidEntity(A26D) then
+		A26D:SetLevel(ability:GetLevel()+1)
+	end
+end
+
 function A26R_OnAttackStart( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -151,6 +159,7 @@ function CreateMine( ability, position, duration )
 	mine:RemoveModifierByName("modifier_invulnerable")
 	mine:SetForwardVector(RandomVector(1)) 
 	mine:SetOwner(caster)
+	mine.master = caster
 	ability:ApplyDataDrivenModifier(caster,mine,"modifier_A26D_mine_passive",{})
 	Timers:CreateTimer(active_delay, function()
 		if IsValidEntity(mine) and mine:IsAlive() then
@@ -520,4 +529,151 @@ function A26T_old_OnProjectileHitUnit( keys )
 	ParticleManager:ReleaseParticleIndex(ifx)
 
 	EmitSoundOn("Hero_Techies.RemoteMine.Detonate",target)
+end
+
+function A26T_20_OnProjectileHitUnit( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local center = target:GetAbsOrigin()
+	local ability = keys.ability
+	local stun_time = ability:GetSpecialValueFor("stun_time")
+	local radius = ability:GetSpecialValueFor("radius")
+
+	-- 搜尋
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		center,							-- 搜尋的中心點
+		nil,
+		radius,							-- 搜尋半徑
+		ability:GetAbilityTargetTeam(),	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false)
+	local dmg = ability:GetAbilityDamage() + caster:GetLevel()*10
+	-- 處理搜尋結果
+	for _,unit in ipairs(units) do
+		-- 製造傷害
+		ApplyDamage({
+			victim = unit,
+			attacker = caster,
+			ability = ability,
+			damage = dmg,
+			damage_type = ability:GetAbilityDamageType(),
+			damage_flags = DOTA_DAMAGE_FLAG_NONE
+		})
+		
+		if ability.count == 2 and not unit:IsHero() then
+			ApplyDamage({
+				victim = unit,
+				attacker = caster,
+				ability = ability,
+				damage = dmg,
+				damage_type = ability:GetAbilityDamageType(),
+				damage_flags = DOTA_DAMAGE_FLAG_NONE
+			})
+		end
+		if ability.need_stun then
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned",{duration=stun_time})
+		end
+	end
+
+	GridNav:DestroyTreesAroundPoint(center, radius, false)
+
+	if ability.need_stun then
+		local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf",PATTACH_ABSORIGIN,target)
+		ParticleManager:SetParticleControl(ifx,3,target:GetAbsOrigin())
+		ParticleManager:ReleaseParticleIndex(ifx)
+	end
+
+	local ifx = ParticleManager:CreateParticle("particles/econ/courier/courier_snapjaw/courier_snapjaw_ambient_rocket_explosion.vpcf",PATTACH_ABSORIGIN,target)
+	ParticleManager:SetParticleControl(ifx,3,target:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(ifx)
+
+	ability.need_stun = false
+
+	EmitSoundOn("Hero_Techies.RemoteMine.Detonate",target)
+end
+
+function A26D_20_OnTrigger( keys )
+	local caster = keys.caster -- mine
+	local ability = keys.ability
+	local radius_explosion = ability:GetSpecialValueFor("radius_explosion")
+
+	-- 搜尋
+	local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
+		caster:GetAbsOrigin(),			-- 搜尋的中心點
+		nil,
+		radius_explosion,				-- 搜尋半徑
+		ability:GetAbilityTargetTeam(),	-- 目標隊伍
+		ability:GetAbilityTargetType(),	-- 目標類型
+		ability:GetAbilityTargetFlags(),-- 額外選擇或排除特定目標
+		FIND_ANY_ORDER,					-- 結果的排列方式
+		false)
+
+	-- 處理搜尋結果
+	local attacker = ability:GetCaster()
+	for _,unit in ipairs(units) do
+		ApplyDamage({
+			victim = unit,
+			attacker = caster,
+			ability = ability,
+			damage = ability:GetAbilityDamage(),
+			damage_type = ability:GetAbilityDamageType(),
+			damage_flags = DOTA_DAMAGE_FLAG_NONE
+		})
+		print("master",caster.master:GetUnitName())
+		caster.master:PerformAttack(unit, true, true, true, true, true, false, true)
+	end
+
+	local center = caster:GetAbsOrigin()
+	local ifx = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf",PATTACH_POINT,caster)
+	ParticleManager:SetParticleControl(ifx,0,center)
+	ParticleManager:SetParticleControl(ifx,1,Vector(0,0,radius_explosion))
+	ParticleManager:SetParticleControl(ifx,2,Vector(1,0,0))
+	ParticleManager:ReleaseParticleIndex(ifx)
+
+	EmitSoundOn("Hero_Techies.LandMine.Detonate",caster)
+	caster:RemoveModifierByName("modifier_A26D_mine_aura")
+	for _,unit in ipairs(units) do
+		unit:RemoveModifierByName("modifier_A26D_mine_trigger")
+	end
+	caster:ForceKill(true)
+end
+
+function A26E_20_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local duration = ability:GetSpecialValueFor("duration")
+	local knockback_speed = ability:GetSpecialValueFor("knockback_speed")
+	local center = caster:GetAbsOrigin()
+	local target = keys.target
+
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_A26E_20", nil )
+	local count = 0
+	Timers:CreateTimer(0,function( )
+		count = count + 1
+		caster:PerformAttack(target, true, true, true, true, true, false, true)
+		print(count)
+		if count < 5 then
+			return 0.1
+		end
+		end)
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration=0.5})
+	Physics:Unit(target)
+	local diff = target:GetAbsOrigin()-center
+	diff.z = 0
+	local dir = diff:Normalized()
+	target:SetVelocity(Vector(0,0,-9.8))
+	target:AddPhysicsVelocity(dir*knockback_speed)
+
+
+	local ifx = ParticleManager:CreateParticle("particles/econ/items/techies/techies_arcana/techies_attack_smoke_arcana.vpcf",PATTACH_ABSORIGIN,caster)
+	local attack_point = caster:GetAbsOrigin() + dir*100
+	attack_point.z = 200
+	ParticleManager:SetParticleControl(ifx,0,attack_point)
+	ParticleManager:SetParticleControl(ifx,7,attack_point)
+	ParticleManager:SetParticleControlForward(ifx,0,dir)
+	ParticleManager:SetParticleControl(ifx,15,Vector(255,255,255))
+	ParticleManager:SetParticleControl(ifx,16,Vector(1,0,0))
+	ParticleManager:ReleaseParticleIndex(ifx)
 end

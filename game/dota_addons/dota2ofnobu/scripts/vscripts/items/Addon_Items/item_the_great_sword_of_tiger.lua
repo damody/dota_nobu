@@ -8,7 +8,9 @@ function Shock( keys )
 		if (caster.great_sword_of_tiger_count == nil) then
 			caster.great_sword_of_tiger_count = 0
 		end
-		
+		if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] then
+			return
+		end
 		if (ran > 30) then
 			caster.great_sword_of_tiger_count = caster.great_sword_of_tiger_count + 1
 		end

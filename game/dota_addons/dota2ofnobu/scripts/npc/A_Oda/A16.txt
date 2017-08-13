@@ -154,11 +154,6 @@
 				"Target"	"CASTER"
 				"EffectName"	"A16E.vo1"
 			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Huskar.Inner_Vitality"
-				"Target"	"TARGET"
-			}
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
@@ -168,6 +163,12 @@
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_A16E_2"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"false_promise_heal"
 			}
 		}
 		"Modifiers"

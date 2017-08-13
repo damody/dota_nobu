@@ -29,10 +29,16 @@ function Shock( keys )
 
 	if (caster.nobuorb1 == "spear_of_saddle" or caster.nobuorb1 == nil) and not keys.target:IsBuilding() then
 		caster.nobuorb1 = "spear_of_saddle"
-		if not keys.target:IsMagicImmune() then
-			skill:ApplyDataDrivenModifier(caster, keys.target,"modifier_spear_of_saddle",{ duration = 0.5 })
-		else
-			skill:ApplyDataDrivenModifier(caster, keys.target,"modifier_spear_of_saddle2",{ duration = 0.5 })
+		if _G.EXCLUDE_TARGET_NAME[keys.target:GetUnitName()] == nil then
+			skill:ApplyDataDrivenModifier(caster, keys.target,"modifier_spear_of_saddle",{ duration = 1 })
+			local handle = caster:FindAbilityByName("modifier_spear_of_saddle")
+			if handle then
+				local lv = caster:GetLevel()
+				if lv>12 then
+					lv = 12
+				end
+				handle:SetStackCount(lv)
+			end
 		end
 	end
 end
