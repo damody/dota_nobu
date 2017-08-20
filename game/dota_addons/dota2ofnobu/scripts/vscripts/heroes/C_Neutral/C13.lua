@@ -1,3 +1,10 @@
+
+flash_items = {
+	["item_magic_ring"] = true,
+	["item_flash_ring"] = true,
+	["item_flash_shoes"] = true,
+}
+
 function C13W_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
@@ -129,14 +136,7 @@ function C13T_OnSpellStart( keys )
 
 			-- 處理搜尋結果
 			for _,unit in ipairs(units) do
-				ApplyDamage({
-					victim = unit,
-					attacker = caster,
-					ability = ability,
-					damage = dmg,
-					damage_type = ability:GetAbilityDamageType(),
-					damage_flags = DOTA_DAMAGE_FLAG_NONE,
-				})
+				
 				if IsValidEntity(unit) and _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
 					local dir = -(unit:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
 					local right = Vector(0,0,0)
@@ -145,7 +145,26 @@ function C13T_OnSpellStart( keys )
 					unit:SetAbsOrigin(unit:GetAbsOrigin()+dir*50+right*100)
 					ability:ApplyDataDrivenModifier(caster,unit,"modifier_C13T",{duration = 0.2})
 					ability:ApplyDataDrivenModifier(caster,unit,"modifier_phased",{duration = 0.2})
+					if unit:IsHero() and not unit:IsIllusion() then
+						for itemSlot=0,5 do
+							local item = unit:GetItemInSlot(itemSlot)
+							if item ~= nil then
+								local itemName = item:GetName()
+								if flash_items[itemName] then
+									item:StartCooldown(0.3)
+								end
+							end
+						end
+					end
 				end
+				ApplyDamage({
+					victim = unit,
+					attacker = caster,
+					ability = ability,
+					damage = dmg,
+					damage_type = ability:GetAbilityDamageType(),
+					damage_flags = DOTA_DAMAGE_FLAG_NONE,
+				})
 			end
 		else
 			ParticleManager:DestroyParticle(ifx,false)
@@ -210,6 +229,25 @@ function C13T_old_OnSpellStart( keys )
 
 			-- 處理搜尋結果
 			for _,unit in ipairs(units) do
+				if IsValidEntity(unit) and _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+					local dir = -(unit:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
+					local right = Vector(0,0,0)
+					right.x = dir.y
+					right.y = -dir.x
+					unit:SetAbsOrigin(unit:GetAbsOrigin()+dir*30+right*50)
+					ability:ApplyDataDrivenModifier(caster,unit,"modifier_C13T",{duration = 0.1})
+					if unit:IsHero() and not unit:IsIllusion() then
+						for itemSlot=0,5 do
+							local item = unit:GetItemInSlot(itemSlot)
+							if item ~= nil then
+								local itemName = item:GetName()
+								if flash_items[itemName] then
+									item:StartCooldown(0.3)
+								end
+							end
+						end
+					end
+				end
 				ApplyDamage({
 					victim = unit,
 					attacker = caster,
@@ -218,14 +256,6 @@ function C13T_old_OnSpellStart( keys )
 					damage_type = ability:GetAbilityDamageType(),
 					damage_flags = DOTA_DAMAGE_FLAG_NONE,
 				})
-				if IsValidEntity(unit) and _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
-					local dir = -(unit:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
-					local right = Vector(0,0,0)
-					right.x = dir.y
-					right.y = -dir.x
-					unit:SetAbsOrigin(unit:GetAbsOrigin()+dir*30+right*50)
-					ability:ApplyDataDrivenModifier(caster,unit,"modifier_C13T",{duration = 0.1})
-				end
 			end
 		else
 			ParticleManager:DestroyParticle(ifx,false)

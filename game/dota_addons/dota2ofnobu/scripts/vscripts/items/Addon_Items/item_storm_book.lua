@@ -84,18 +84,21 @@ function storm_break( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	local dmg = ability:GetSpecialValueFor( "damage")
+	local dmg = ability:GetSpecialValueFor("damage") + caster:GetLevel()*2
+	if dmg > 70 then
+		dmg = 70
+	end
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	                              target:GetAbsOrigin(),
 	                              nil,
 	                              ability:GetLevelSpecialValueFor( "splash_radius", ability:GetLevel() - 1 ),
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
 	for _,it in pairs(direUnits) do
-		if (not(it:IsBuilding())) then
+		if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
 			if IsValidEntity(caster) and caster:IsAlive() then
 				AMHC:Damage(caster.dummy, it, dmg,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 			else

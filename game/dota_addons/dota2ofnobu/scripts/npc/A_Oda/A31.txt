@@ -61,7 +61,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%dmg"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "35"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "15"
 				}
 			}
 		}
@@ -108,7 +108,7 @@
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"dmg"	"6 12 18 24"
+				"dmg"	"6 9 12 15"
 			}
 		}
 	}
@@ -623,7 +623,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"18"
 		"AbilityManaCost"	"100 120 140 160"
-		"AbilityCastRange"	"600"
+		"AbilityCastRange"	"800"
 		"precache"
 		{
 			"particle"	"particles/a23r/necronomicon_archer_projectile_2.vpcf"
@@ -844,7 +844,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A31_Mori_Ranmaru.lua"
-				"Function"	"A31W"
+				"Function"	"A31W_20"
 				"Target"	"POINT"
 			}
 		}

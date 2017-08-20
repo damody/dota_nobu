@@ -80,7 +80,7 @@ function A21W_OnAttackLanded( keys )
 		for _,unit in pairs(units) do
 			if unit:IsBuilding() then
 				AMHC:Damage( caster,unit,dmg*0.35,ability:GetAbilityDamageType() )
-			else
+			elseif target ~= unit then
 				AMHC:Damage( caster,unit,dmg,ability:GetAbilityDamageType() )
 			end
 		end

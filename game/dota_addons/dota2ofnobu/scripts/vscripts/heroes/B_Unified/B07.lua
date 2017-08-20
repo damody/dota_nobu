@@ -129,7 +129,12 @@ function B07E_OnSpellStart(keys)
 			end)
 	end
  	--ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_invulnerable",nil)
- 	for itemSlot=0,1 do
+ 	local items = 1
+ 	local lv = caster:FindAbilityByName("B07T"):GetLevel()
+ 	if lv >= 2 then
+ 		items = 2
+ 	end
+ 	for itemSlot=0,items do
 		local item = caster:GetItemInSlot(itemSlot)
 		if item ~= nil then
 			local itemName = item:GetName()

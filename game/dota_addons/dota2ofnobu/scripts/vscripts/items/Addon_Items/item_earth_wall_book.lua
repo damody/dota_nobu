@@ -63,6 +63,7 @@ function Shock( keys )
 	local dy = math.sin(wall_angle*(3.14/180))
 	local wall_offset = Vector(dx,dy,0) * (aoe_radius)
 	
+	
 	-- 產生兩個石牆單位
 	local wall1 = CreateUnitByName("EARTH_WALL_hero",center+wall_offset,false,nil,nil,caster:GetTeam())
 	wall1:AddNewModifier(caster,nil,"modifier_kill",{duration=duration})
@@ -93,7 +94,7 @@ function Shock2( keys )
 	local units = FindUnitsInRadius(iTeam,	-- 關係
                              center,			-- 搜尋的中心點
                              nil, 				-- 好像是優化用的參數不懂怎麼用
-                             aoe_radius*2,		-- 搜尋半徑
+                             aoe_radius*3,		-- 搜尋半徑
                              target_team,		-- 目標隊伍
                              target_type,		-- 目標類型
                              target_flags,		-- 額外選擇或排除特定目標
@@ -143,6 +144,7 @@ function Shock2( keys )
 	local dx = math.cos(wall_angle*(3.14/180))
 	local dy = math.sin(wall_angle*(3.14/180))
 	local wall_offset = Vector(dx,dy,0) * (aoe_radius)
+	local wall_offset2 = Vector(dx,dy,0) * (aoe_radius+200)
 	
 	-- 產生兩個石牆單位
 	local wall1 = CreateUnitByName("EARTH_WALL_hero",center+wall_offset,false,nil,nil,caster:GetTeam())
@@ -151,9 +153,16 @@ function Shock2( keys )
 	wall2:AddNewModifier(caster,nil,"modifier_kill",{duration=duration})
 	local wall3 = CreateUnitByName("EARTH_WALL_hero",center,false,nil,nil,caster:GetTeam())
 	wall3:AddNewModifier(caster,nil,"modifier_kill",{duration=duration})
+
+	local wall4 = CreateUnitByName("EARTH_WALL_hero",center-wall_offset2,false,nil,nil,caster:GetTeam())
+	wall4:AddNewModifier(caster,nil,"modifier_kill",{duration=duration})
+	local wall5 = CreateUnitByName("EARTH_WALL_hero",center+wall_offset2,false,nil,nil,caster:GetTeam())
+	wall5:AddNewModifier(caster,nil,"modifier_kill",{duration=duration})
 	wall1:RemoveModifierByName("modifier_invulnerable")
 	wall2:RemoveModifierByName("modifier_invulnerable")
 	wall3:RemoveModifierByName("modifier_invulnerable")
+	wall4:RemoveModifierByName("modifier_invulnerable")
+	wall5:RemoveModifierByName("modifier_invulnerable")
 end
 
 -- 充能

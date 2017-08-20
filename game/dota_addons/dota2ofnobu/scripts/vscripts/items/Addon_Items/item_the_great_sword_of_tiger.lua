@@ -27,7 +27,7 @@ function Shock( keys )
 							ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.2})
 						end
 					end
-					AMHC:Damage(caster,target,280,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+					AMHC:Damage(caster,target,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				end
 			end
 			

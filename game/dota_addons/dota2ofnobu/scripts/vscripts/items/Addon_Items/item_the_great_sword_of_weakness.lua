@@ -15,6 +15,8 @@ function Shock( keys )
 		time = 4.2
 	end
     AMHC:Damage(caster,keys.target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-    target:AddNewModifier(caster, ability, "modifier_weakness", {duration = time})
+    if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+        target:AddNewModifier(caster, ability, "modifier_weakness", {duration = time})
+    end
 end
 

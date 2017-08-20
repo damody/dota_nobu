@@ -45,14 +45,14 @@ function B24T( keys )
    		caster:GetTeamNumber(), 
    		caster:GetAbsOrigin(), 
    		nil, 
-   		radius ,
+   		radius-100,
    		DOTA_UNIT_TARGET_TEAM_ENEMY, 
    		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 
-   		0, 
+   		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
    		FIND_ANY_ORDER, 
    		false)
 	for _,v in ipairs(group) do
-		ability:ApplyDataDrivenModifier(caster, v,"modifier_B24T_2",{duration=100})
+		ability:ApplyDataDrivenModifier(caster, v,"modifier_B24T_2",{})
 	end
 
 	--【For】

@@ -319,20 +319,23 @@ function A28T_dead(keys)
 	local caster = keys.caster
 	local dead_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_sphere_model.vpcf", PATTACH_ABSORIGIN, keys.caster)
 	ParticleManager:SetParticleControl(dead_effect, 0, caster:GetAbsOrigin())
-
+	local am = caster:FindAllModifiers()
+	for _,v in pairs(am) do
+		caster:RemoveModifierByName(v:GetName())
+	end
 	Timers:CreateTimer(0.5, function()
 		local dead_effect2 = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_shockwave.vpcf", PATTACH_ABSORIGIN, keys.caster)
 		ParticleManager:SetParticleControl(dead_effect2, 0, caster:GetAbsOrigin() + Vector (0, 0, 100))
 		end)
 	caster:ForceKill(false)
 	Timers:CreateTimer(1.5, function()
-		caster:Destroy()
+		--caster:Destroy()
 		end)
 	local count = 0
 	Timers:CreateTimer(function()
 		count = count + 1
 		caster:SetAbsOrigin(caster:GetAbsOrigin() - Vector (0, 0, 10))
-		if (count < 30) then
+		if (count < 60) then
 			return 0.05
 		else
 			return nil

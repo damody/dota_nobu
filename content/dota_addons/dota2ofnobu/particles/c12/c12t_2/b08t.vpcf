@@ -22,7 +22,7 @@
 		{
 			_class = "C_OP_RenderTrails"
 			m_nOrientationType = 3
-			m_hTexture = resource:"materials/particle/basic_rope.vtex"
+			m_hTexture = resource:"materials/particle/beam_generic_5.vtex"
 		},
 	]
 	m_Operators = 
@@ -114,7 +114,7 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 43, 202, 247, 255 ]
+			m_ColorMin = [ 207, 244, 255, 255 ]
 			m_ColorMax = [ 50, 237, 247, 255 ]
 		},
 		{

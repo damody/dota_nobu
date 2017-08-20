@@ -23,7 +23,7 @@ function Shock2( keys )
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
 				local flame = ParticleManager:CreateParticle("particles/a07t2/a07t2.vpcf", PATTACH_ABSORIGIN, it)
-				AMHC:Damage(caster,it, 190,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				AMHC:Damage(caster,it, 100,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				Timers:CreateTimer(0.5, function ()
 					ParticleManager:DestroyParticle(flame, false)
 				end)
@@ -76,17 +76,17 @@ function Shock( keys )
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
 			if (not(it:IsBuilding())) then
-				if it:GetUnitName() == "npc_dota_cursed_warrior_souls" then
-					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.005,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				elseif it:IsMagicImmune() then
-					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.011,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-				else
-					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.022,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+					if it:IsMagicImmune() then
+						AMHC:Damage(dummy,it, it:GetMaxHealth()*0.016,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					else
+						AMHC:Damage(dummy,it, it:GetMaxHealth()*0.016,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+					end
 				end
 			end
 		end
 
-		if sumtime < 11.1 then
+		if sumtime < 11 then
 			return 0.2
 		else
 			dummy:ForceKill( true )

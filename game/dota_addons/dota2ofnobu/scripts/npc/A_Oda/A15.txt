@@ -224,12 +224,12 @@
 			"01" // 每次彈跳增加的傷害比例
 			{
 				"var_type" 				"FIELD_FLOAT"
-				"bonus_damage" 			"-0.25"
+				"bonus_damage" 			"-0.1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"jump_max"				"2 3 4 5"
+				"jump_max"				"3 4 5 6"
 			}
 			"03"
 			{
@@ -426,7 +426,7 @@
 		//"AbilityUnitDamageType"               		"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"    					"custom/A15/A15E_old"
 
-		"AbilityCooldown"							"28"
+		"AbilityCooldown"							"36"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"200 220 240 260"
 		"AbilityCastRange"              			"0"

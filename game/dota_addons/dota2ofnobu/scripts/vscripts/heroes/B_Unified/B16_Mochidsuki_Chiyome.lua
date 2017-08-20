@@ -195,8 +195,11 @@ function B16_AbilityAdjust( keys )
 		-- Todo: 調整月月能力
 		local caster_level = caster:GetLevel()
 		moonMoon:FindModifierByName("modifier_B16D_MoonMoon"):SetStackCount(caster_level)
-		moonMoon:SetBaseMaxHealth(caster:GetMaxHealth()+caster:GetLevel()*100)
-
+		local hp = caster:GetMaxHealth()+caster:GetLevel()*100
+		if hp > 2200 then
+			hp =  2200
+		end
+		moonMoon:SetBaseMaxHealth(hp)
 	end
 end
 
@@ -392,7 +395,11 @@ function B16W_old_SpawnMoonMoon( keys )
 	local B16MMT_old = moonMoon:AddAbility("B16MMT_old") -- [永久隱形]
 
 	local baseHP = ability:GetLevelSpecialValueFor("baseHP",ability:GetLevel()-1)
-	moonMoon:SetBaseMaxHealth(baseHP + caster:GetLevel()*100)
+	local hp = baseHP + caster:GetLevel()*100
+	if hp > 2200 then
+		hp =  2200
+	end
+	moonMoon:SetBaseMaxHealth(hp)
 end
 
 function B16R_old_M_OnCreated( keys )
@@ -467,16 +474,16 @@ function B16W_old( keys )
 			-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf", PATTACH_POINT, keys.target)
 			-- ParticleManager:SetParticleControlEnt(particle, 0, keys.target, PATTACH_POINT, "attach_hitloc", Vector(0,0,0), true)
 			--動作
-				local rate = caster:GetAttackSpeed()
-				--print(tostring(rate))
+			local rate = caster:GetAttackSpeed()
+			--print(tostring(rate))
 
-				--播放動畫
-			    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
-				if rate < 1 then
-				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
-				else
-				    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
-				end
+			--播放動畫
+		    --caster:StartGesture( ACT_SLAM_TRIPMINE_ATTACH )
+			if rate < 1 then
+			    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,1)
+			else
+			    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
+			end
 		end
 	end
 end
@@ -501,7 +508,6 @@ function B16W_old_attack(keys)
 		end)
 	elseif  target:IsBuilding() then
 		per_atk = ability:GetLevelSpecialValueFor("atk_building",level)
-		
 	else
 		per_atk = ability:GetLevelSpecialValueFor("atk_unit",level)
 		local particle = ParticleManager:CreateParticle("particles/b01r/b01r.vpcf", PATTACH_ABSORIGIN, target)
@@ -509,6 +515,7 @@ function B16W_old_attack(keys)
 		Timers:CreateTimer(1, function()
 			ParticleManager:DestroyParticle(particle,false)
 		end)
+		AMHC:Damage( caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 	local dmgori = dmg
 	dmg = dmg * per_atk  / 100
@@ -525,7 +532,7 @@ function B16MME_old(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local ran =  RandomInt(0, 100)
-	if ran <= 30 and not target:IsBuilding() then
+	if ran <= 20 and not target:IsBuilding() then
 		if not target:IsMagicImmune() then
 			AMHC:Damage( caster,target,60,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		end

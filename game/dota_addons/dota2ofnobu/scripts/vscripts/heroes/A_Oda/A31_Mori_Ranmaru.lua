@@ -57,7 +57,13 @@ function A31W( keys )
 		end )
 	
 	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
+	local lv = caster:FindAbilityByName("A31T"):GetLevel()
 	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_A31W", {duration = 10})
+	local handle = caster:FindModifierByName("modifier_A31W")
+	if handle then
+		handle:SetStackCount(lv)
+	end
+
 	Timers:CreateTimer( 1, 
 		function()
 			second = second + 1
@@ -81,7 +87,58 @@ function A31W( keys )
 				return nil
 			end
 		end)
+end
+
+
+function A31W_20( keys )
+	local ability = keys.ability
+	local caster = keys.caster
+	local casterLocation = keys.target_points[1]
+	local radius =  ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local duration =  ability:GetLevelSpecialValueFor( "duration", ( ability:GetLevel() - 1 ) )
+	local abilityDamage = ability:GetLevelSpecialValueFor( "abilityDamage", ( ability:GetLevel() - 1 ) )
+	local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
+	local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	local damageType = ability:GetAbilityDamageType()
+	local second = 0
+	local count = 0;
+	Timers:CreateTimer( 0, function()
+		A31W_2(keys)
+		count = count + 1
+		if (count < duration*10) then
+			return 0.1
+		else
+			return nil
+		end
+		end )
 	
+	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
+	keys.ability:ApplyDataDrivenModifier(caster, caster,"modifier_A31W", {duration = 10})
+
+	Timers:CreateTimer( 1, 
+		function()
+			second = second + 1
+			local units = FindUnitsInRadius(caster:GetTeamNumber(),
+	                              casterLocation,
+	                              nil,
+	                              radius,
+	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_FLAG_NONE,
+	                              FIND_ANY_ORDER,
+	                              false)
+			for _, it in pairs( units ) do
+				if (not(it:IsBuilding())) then
+					AMHC:Damage(caster, it, abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+				end
+			end
+			if (second <= 10) then
+				return 1
+			else
+				return nil
+			end
+		end)
 end
 
 function A31W_2( keys )

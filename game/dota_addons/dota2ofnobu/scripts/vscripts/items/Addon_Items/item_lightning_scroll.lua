@@ -190,7 +190,7 @@ function OnUnequip( keys )
 	end
 end
 
-function Shock2( keys )
+function item_raikiri( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
@@ -271,9 +271,9 @@ function Shock2( keys )
 						particle = ParticleManager:CreateParticle("particles/item/d09/d09.vpcf",PATTACH_POINT,caster)
 						ParticleManager:SetParticleControl(particle,0, point + vec * 100)
 						ParticleManager:SetParticleControl(particle,1, tem_point)
-					
+						
 						--【DMG】
-						ApplyDamage({ victim = unit, attacker = caster, damage = damage, damage_type = AbilityDamageType})
+						ApplyDamage({ victim = unit, attacker = caster, damage = 500, damage_type = AbilityDamageType})
 
 						-- Increment counter
 						targets_shocked = targets_shocked + 1

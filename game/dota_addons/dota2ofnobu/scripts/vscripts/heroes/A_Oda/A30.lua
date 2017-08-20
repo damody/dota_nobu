@@ -194,7 +194,7 @@ function A30T_OnSpellStart(keys)
     	if tsum > wave then
     		return nil
     	end
-	    return 0.49
+	    return 0.5
     end)
 end
 
@@ -375,6 +375,6 @@ function A30T_old_OnSpellStart(keys)
     	if tsum >= wave then
     		return nil
     	end
-	    return 0.95
+	    return 1
     end)
 end

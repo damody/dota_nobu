@@ -66,7 +66,25 @@ function Shock( keys )
 			else
 			    caster:StartGestureWithPlaybackRate(ACT_DOTA_ECHO_SLAM,rate)
 			end
+		end
+	end
+end
 
+
+function Shock2( keys )
+	local caster = keys.caster
+	local skill = keys.ability
+	local target = keys.target
+	
+	if (caster.nobuorb1 == "item_the_spear_of_ghost" or caster.nobuorb1 == nil) and not keys.target:IsBuilding() then
+		caster.nobuorb1 = "item_the_spear_of_ghost"
+		if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+			local hp = target:GetHealth()
+			if hp > 2000 then
+				local lv = (hp-2000)/100
+				AMHC:Damage(caster,target,lv*keys.dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				AMHC:CreateNumberEffect(target,lv*keys.dmg,1,AMHC.MSG_DAMAGE,{255,100,100})
+			end
 		end
 	end
 end

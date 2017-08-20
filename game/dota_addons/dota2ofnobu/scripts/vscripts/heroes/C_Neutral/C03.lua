@@ -184,7 +184,7 @@ function C03T_OnSpellStart( keys )
 				damage_table.victim = unit
 				ApplyDamage(damage_table)
 				if unit:IsMagicImmune() then
-					ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=stun_time2})
+					--ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=stun_time2})
 				else
 					ability:ApplyDataDrivenModifier(caster,unit,"modifier_stunned", {duration=stun_time})
 				end

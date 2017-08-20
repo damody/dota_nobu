@@ -162,7 +162,7 @@ function Nobu:OnGameRulesStateChange( keys )
 		return 60
 		end)
 
-    Timers:CreateTimer(120, function()
+    Timers:CreateTimer(60, function()
     	_G.can_bomb = true
 	    GameRules:SendCustomMessage("可以開始使用爆裂彈了！",0,0)
     end)

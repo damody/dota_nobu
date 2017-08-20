@@ -608,8 +608,8 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"19 16 13 10"
-		"AbilityManaCost"	"150 170 190 210"
+		"AbilityCooldown"	"7"
+		"AbilityManaCost"	"150 120 90 60"
 		"AoERadius"			"%radius_stun"
 		"AbilityCastRange"	"500"
 		"AbilityDamage"		"100 200 300 400"
@@ -667,6 +667,7 @@
         		"Aura_Radius" "%radius_trigger"
         		"Aura_Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
         		"Aura_Types"  "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        		"Aura_Flags"  "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         		"Aura_ApplyToCaster" "0"   // Not Apply to Self, default is 1
 
         		"EffectName" 		"particles/c17/c17r_old_trigger.vpcf"
@@ -702,7 +703,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration_stun"		"2 3 4 5"
+				"duration_stun"		"2.5"
 			}
 			"02"
 			{

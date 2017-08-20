@@ -83,6 +83,7 @@ function A07R_old( keys )
 	local skill = keys.ability
 	local ability = keys.ability
 	local ran =  RandomInt(0, 100)
+	caster.A07R_noncrit_count = 0 or caster.A07R_noncrit_count
 	caster:RemoveModifierByName("A07R_critical")
 	if not keys.target:IsUnselectable() or keys.target:IsUnselectable() then
 		if (ran > 36) then

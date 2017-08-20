@@ -68,7 +68,7 @@ function A12E_OnAttackLanded1( keys )
 	local chance = ability:GetLevelSpecialValueFor("Chance",ability:GetLevel() - 1) 
 	--print("CHANCE"..tostring(caster.A12E_CHANCE))
 	caster.A12E_CHANCE = RandomInt(0,10)
-	if caster:IsAlive()  then
+	if caster:IsAlive() then
 		if caster.A12E_CHANCE >= 7 then 
 			local cure = caster:GetMaxMana() * cure_count / 100
 			caster:SetMana(caster:GetMana() + cure)
@@ -151,17 +151,17 @@ function A12T( keys )
 	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 		if caster:GetMana() > 30 and not target:IsBuilding() and caster.nobuorb1 == nil then
 			damage = caster:GetMana()*special_dmg/100
-			if caster.A12T == true then
-				damage = damage * 2
-			end
-			
-			if (target:IsMagicImmune()) then
-				AMHC:Damage( caster,target,damage*0.3,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-			else
-				AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			end
+			AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			AMHC:CreateNumberEffect(target,damage,2,AMHC.MSG_ORIT ,{0,0,225},4)
-			--print("A12T"..tostring(damage))		
+			if caster.A12T == true then
+				Physics:Unit(target)
+				local diff = target:GetAbsOrigin()-caster:GetAbsOrigin()
+				diff.z = 0
+				local dir = diff:Normalized()
+				target:SetVelocity(Vector(0,0,-9.8))
+				target:AddPhysicsVelocity(-dir*500)
+				ability:ApplyDataDrivenModifier(caster, target,"modifier_rooted", {duration = 0.4})
+			end
 		end
 	end
 	caster.A12T = false
@@ -176,7 +176,6 @@ function A12T_Start( keys )
 	local SpendMana = ability:GetLevelSpecialValueFor("SpendMana",ability:GetLevel() - 1)
 	
 	if caster:GetMana() > 30 and not target:IsBuilding() then
-		print("SpendManaSpendMana")
 		caster:SpendMana(SpendMana,ability)	--消耗mana
 		if caster:GetMana() < SpendMana then
 		else

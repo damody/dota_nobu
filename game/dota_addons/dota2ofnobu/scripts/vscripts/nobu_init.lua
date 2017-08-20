@@ -138,7 +138,7 @@ function _G.Nobu:InitGameMode()
   math.randomseed(tonumber(timeTxt))
 
   -- --【經驗值設定】
-  MaxLevel = 30 --最大等級
+  MaxLevel = 25 --最大等級
   XpTable = {} --升級所需經驗
   local xp = 80
   XpTable[1]=0

@@ -67,7 +67,7 @@ function OnUnequip( keys )
 	end
 end
 
-function Shock3( keys )
+function item_kokumo( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
@@ -80,7 +80,7 @@ function Shock3( keys )
 		if (ran > 16) then
 			caster.kokumo = caster.kokumo + 1
 		end
-		if (caster.kokumo > (100/16) or ran <= 16) then
+		if (caster.kokumo > (100/18) or ran <= 18) then
 			caster.kokumo = 0
 		local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 							target:GetAbsOrigin(),
@@ -91,15 +91,16 @@ function Shock3( keys )
 							DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 							FIND_ANY_ORDER,
 							false)
-		AMHC:Damage(caster,target,300,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		local dmg = 400
+		AMHC:Damage(caster,target,dmg,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 		for _,it in pairs(direUnits) do
-			ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=2})
+			ability:ApplyDataDrivenModifier(caster, it,"modifier_frozen_ring",{duration=3})
 			if it ~= target then
 				AMHC:Damage(caster,it,100,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			end
 		end
 		local particle = ParticleManager:CreateParticle("particles/a34e2/a34e2.vpcf", PATTACH_ABSORIGIN, target)
-		Timers:CreateTimer(2, function ()
+		Timers:CreateTimer(3, function ()
 			ParticleManager:DestroyParticle(particle, true)
 			end)
 		end
@@ -201,8 +202,8 @@ function Shock_book( keys )
 						FIND_ANY_ORDER,
 						false)
 	for _,it in pairs(direUnits) do
-		ability:ApplyDataDrivenModifier(caster, it,"modifier_frost_bite_root_datadriven",{duration=1.5})
-		AMHC:Damage(caster,it,1000,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+		ability:ApplyDataDrivenModifier(caster, it,"modifier_frost_bite_root_datadriven",{duration=1})
+		AMHC:Damage(caster,it,700,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 	end
 	local pointx = point.x
 	local pointy = point.y

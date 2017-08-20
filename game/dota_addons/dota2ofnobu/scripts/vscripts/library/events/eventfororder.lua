@@ -104,6 +104,9 @@ function spell_ability ( filterTable )
 	if len == 8 and string.sub(abname, 4, 8) == "T_old" then
 		big_skill = true
 	end
+	if len == 8 and string.sub(abname, 4, 7) == "T_20" then
+		big_skill = true
+	end
 	if target and target:GetTeamNumber() ~= caster:GetTeamNumber() and not big_skill and Special_skill[abname] == nil then
 		local dis = (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length2D()
 		local items_protection = {
@@ -204,6 +207,8 @@ function spell_ability ( filterTable )
     	["item_contemporary_armor"] = true,
     	["item_contemporary_armor_1"] = true,
     	["item_rations"] = true,
+    	["item_the_shell_of_spirituality_kappa"] = true,
+    	["item_the_shell_of_last_kappa"] = true,
     }
 	if caster:GetUnitName() == "B07E_UNIT" and items_nosell[ability:GetName()] == true then
 		return false

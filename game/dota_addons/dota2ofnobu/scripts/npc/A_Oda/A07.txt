@@ -360,7 +360,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
-						"Function"	"AON_Cleave_A07"
+						"Function"	"AON_Cleave_A07E"
 						"dmg"	"%attack_damage"
 						"Target"	"TARGET"
 					}
@@ -386,7 +386,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"CleavePercent"	"40"
+				"CleavePercent"	"60"
 			}
 			"02"
 			{
@@ -446,7 +446,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"crit_persent"	"140 160 180 200"
+				"crit_persent"	"120 140 160 180"
 			}
 		}
 	}
@@ -600,7 +600,7 @@
 		"AnimationPlaybackRate"	"1.0"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"15"
+		"AbilityCooldown"	"10"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100 120 140 160"
@@ -780,6 +780,13 @@
 						"Target"	"CASTER"
 						"EffectName"	"A07T.attack"
 					}
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/AON_Cleave.lua"
+						"Function"	"AON_Cleave_A07T"
+						"dmg"	"%attack_damage"
+						"Target"	"TARGET"
+					}
 				}
 				"IsHidden"	"0"
 				"IsPurgable"	"0"
@@ -797,6 +804,7 @@
 						"EffectAttachType"	"follow_origin"
 					}
 				}
+
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%bonus_movement_speed"
@@ -877,10 +885,10 @@
 		"AOERadius"	"400"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"130"
+		"AbilityCooldown"	"130 120 110"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"300 400 500"
+		"AbilityManaCost"	"150 200 250"
 		// Precache
 		// -------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -1032,7 +1040,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"15 18 21"
+				"duration"	"19 24 29"
 			}
 			"02"
 			{
@@ -1490,6 +1498,21 @@
 				}
 				"Properties"	{}
 			}
+			"modifier_A07R_critical_strike"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A07_Honda_Tadakatsu.lua"
+						"Function"	"A07R_old"
+					}
+				}
+				"IsBuff"	"1"
+			}
 		}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
@@ -1505,10 +1528,15 @@
 				"var_type"	"FIELD_INTEGER"
 				"CleavePercent"	"50"
 			}
-			"02"
+			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"radius"	"250 300 350 400"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"crit_persent"	"140 160 180 200"
 			}
 		}
 	}
@@ -1693,12 +1721,12 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/weiyan_fenlie"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"HotKeyOverride"	"R"
 		"MaxLevel"	"1"
-		"AbilityCooldown"	"10"
+		"AbilityCooldown"	"0"
 		
 		"OnSpellStart"
 		{

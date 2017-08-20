@@ -1,6 +1,6 @@
 
 die_time = {1, 2, 4, 7, 11, 16, 22, 29, 37, 46, 47, 49, 52, 56, 61, 67, 74, 80, 87, 95, 104, 114, 120}
-die_tim2 = {2, 4, 7, 10, 14, 20, 22, 25, 28, 32, 36, 42, 45, 48, 52, 56, 60, 65, 70, 75}
+die_tim2 = {2, 4, 7, 10, 14, 20, 22, 25, 28, 32, 36, 42, 45, 48, 52, 56, 60, 66, 70, 74, 78, 85}
 
 function Nobu:OnUnitKill( keys )
 --每当单位死亡，检查其是否符合条件，如果符合就刷新任务
@@ -198,6 +198,7 @@ function Nobu:OnUnitKill( keys )
         killedUnit.death_count = killedUnit.death_count + 1
       end
 
+      --[[
       if killedUnit:GetLevel() >= 18 then
         killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2+20)
       elseif killedUnit:GetLevel() >= 12 then
@@ -207,14 +208,14 @@ function Nobu:OnUnitKill( keys )
       else
         killedUnit:SetTimeUntilRespawn(killedUnit:GetLevel()*2)
       end
+      ]]
       
-      --[[
       if die_tim2[killedUnit:GetLevel()] then
         killedUnit:SetTimeUntilRespawn(die_tim2[killedUnit:GetLevel()])
       else
-        killedUnit:SetTimeUntilRespawn(75)
+        killedUnit:SetTimeUntilRespawn(85)
       end
-      ]]
+      
       if not _G.hardcore then 
         group = FindUnitsInRadius(
             killedUnit:GetTeamNumber(), 

@@ -288,6 +288,7 @@ function C17R_old( keys )
 	unit:AddAbility("for_no_collision"):SetLevel(1)
 	unit:RemoveModifierByName("modifier_invulnerable")
 	unit:SetHealth(200)
+	unit:SetHullRadius(175)
 	unit:SetMana(ability:GetAbilityDamage())
 	if ability then
 		ability:ApplyDataDrivenModifier(unit,unit,"modifier_C17R_old_delay_enable",nil)

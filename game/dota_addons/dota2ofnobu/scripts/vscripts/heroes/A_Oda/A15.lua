@@ -125,7 +125,7 @@ function A15R_bounceAttack(keys)
 		end
 		-- Sets it to true for this instance
 		target.hit[current] = true
-		local tt = 0.25
+		local tt = 0.15
 		if target:IsBuilding() then
 			tt = 0.1
 		end
@@ -148,7 +148,7 @@ function A15R_bounceAttack(keys)
 			damage_type = ability:GetAbilityDamageType()
 		}
 		if target:IsBuilding() then
-			damageTable.damage = damageTable.damage * 0.5
+			damageTable.damage = damageTable.damage * 0.3
 		end
 		ApplyDamage( damageTable )
 		if caster:HasModifier("modifier_A15T") then

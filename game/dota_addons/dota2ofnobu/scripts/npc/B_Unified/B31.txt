@@ -430,6 +430,11 @@
 				"Function"	"showTitle"
 				"title"	"particles/title/b31t.vpcf"
 			}
+			"Heal"
+			{
+				"Target"        "CASTER"
+				"HealAmount"	"%bonus_health"
+			}
 		}
 		"Modifiers"
 		{

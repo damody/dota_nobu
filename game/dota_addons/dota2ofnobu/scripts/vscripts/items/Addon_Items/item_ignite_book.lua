@@ -3,7 +3,7 @@ function Shock( keys )
 	local caster = keys.caster
 	local point = keys.target_points[1] 
 	local ability = keys.ability
-	local particle = ParticleManager:CreateParticle("particles/item/item_ignite_book.vpcf", PATTACH_POINT, caster)
+	local particle = ParticleManager:CreateParticle("particles/item/item_ignite_book.vpcf", PATTACH_CUSTOMORIGIN, nil)
 	ParticleManager:SetParticleControl(particle,3,point)
 	Timers:CreateTimer(2, function ()
 		ParticleManager:DestroyParticle(particle, false)

@@ -264,9 +264,6 @@ function C11T_on_attack_landed( keys )
 		damage_table["damage"] = damage
 	end
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,target,damage_table["damage"],nil)
-	if target:IsMagicImmune() then
-		damage_table["damage"] = damage_table["damage"] * 0.5
-	end
 	ApplyDamage(damage_table)
 end
 
@@ -405,9 +402,6 @@ function C11T_old_on_attack_landed( keys )
 		damage_table["damage"] = remove_mana * damage_adjust_for_creep
 	end
 	SendOverheadEventMessage(nil,OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,target,damage_table["damage"],nil)
-	if target:IsMagicImmune() then
-		damage_table["damage"] = damage_table["damage"] * 0.5
-	end
 	ApplyDamage(damage_table)
 end
 

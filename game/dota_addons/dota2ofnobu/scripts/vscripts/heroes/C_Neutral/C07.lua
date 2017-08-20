@@ -158,12 +158,13 @@ end
 function C07T( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	local radius = ability:GetSpecialValueFor("radius")
 	local point = caster:GetAbsOrigin()
 	local level = ability:GetLevel() - 1
 	local height = 0
 	local distance = 100
 	local life_time = ability:GetLevelSpecialValueFor("duration",level)
-	AddFOWViewer(caster:GetTeamNumber(), point, 1400, life_time, false)
+	AddFOWViewer(caster:GetTeamNumber(), point, radius, life_time, false)
 	local dummy = CreateUnitByName("Dummy_Ver1",point ,false,nil,nil,caster:GetTeam())
 	ability:ApplyDataDrivenModifier(caster,dummy,"modifier_C07T",nil)
 	dummy:FindAbilityByName("majia"):SetLevel(1)
@@ -211,6 +212,7 @@ function C07_Effect( keys )
 	local caster = keys.caster
 	local dummy = keys.target
 	local ability = keys.ability
+	local radius = ability:GetSpecialValueFor("radius")
 	local point = dummy:GetAbsOrigin()
 	local point2
 	local dmg = keys.C07_dmg
@@ -219,7 +221,7 @@ function C07_Effect( keys )
 	local group = FindUnitsInRadius(dummy:GetTeamNumber(),
                               point,
                               nil,
-                              1400,
+                              radius,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,
                               DOTA_UNIT_TARGET_ALL,
                               DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
@@ -232,7 +234,7 @@ function C07_Effect( keys )
 	if caster.C07E_target ~= nil and IsValidEntity(caster.C07E_target) then
 		local dis = (caster.C07E_target:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
 	end
-	if dis<1400 then
+	if dis<radius then
 		local v = caster.C07E_target
 		ii = 1
 		StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )

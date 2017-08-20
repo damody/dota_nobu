@@ -80,9 +80,6 @@ function A23E( keys )
 		print("ability.state", ability.state)
 		if ability.state ~= "PURGE" then
 			local damageCount = (100 + caster:GetIntellect())*( 1 + 0.05*math.floor(((target:GetOrigin() - stick:GetOrigin()):Length() / increaseDistance)) )
-			if target:IsMagicImmune() then
-				damageCount = damageCount *0.5
-			end
 			print("damageCount", damageCount)
 			ApplyDamage({
 				victim = target,

@@ -31,14 +31,6 @@ function Shock( keys )
 		caster.nobuorb1 = "spear_of_saddle"
 		if _G.EXCLUDE_TARGET_NAME[keys.target:GetUnitName()] == nil then
 			skill:ApplyDataDrivenModifier(caster, keys.target,"modifier_spear_of_saddle",{ duration = 1 })
-			local handle = caster:FindAbilityByName("modifier_spear_of_saddle")
-			if handle then
-				local lv = caster:GetLevel()
-				if lv>12 then
-					lv = 12
-				end
-				handle:SetStackCount(lv)
-			end
 		end
 	end
 end

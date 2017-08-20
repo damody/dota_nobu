@@ -19,7 +19,7 @@ function Shock( keys )
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = mana_to_burn,
+		damage = mana_to_burn*0.33,
 		damage_type = damageType
 	}
 	ApplyDamage( damageTable )

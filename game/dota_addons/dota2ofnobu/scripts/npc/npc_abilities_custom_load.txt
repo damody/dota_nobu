@@ -3381,7 +3381,7 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/icon_128x128_142"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"MaxLevel"	"100"
+		"MaxLevel"	"7"
 		"HotKeyOverride"	"F"
 		"LevelsBetweenUpgrades"	"0"
 		"AbilityCooldown"	"6"
@@ -4360,8 +4360,8 @@
 				"Passive"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-350"
-				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-25" 
+					//"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-250"
+				    //"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-25" 
 				}
 			}
 			"modifier_1300"

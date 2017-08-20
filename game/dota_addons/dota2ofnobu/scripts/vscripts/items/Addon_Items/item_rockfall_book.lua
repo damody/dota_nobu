@@ -31,7 +31,7 @@ function Shock( keys )
 	for _,it in pairs(direUnits) do
 		if (not(it:IsBuilding())) then
 			AMHC:Damage(caster,it,ability:GetLevelSpecialValueFor("damage", 0 ),AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-			ability:ApplyDataDrivenModifier(caster, target,"modifier_stunned", {duration = 0.1})
+			ability:ApplyDataDrivenModifier(caster, it,"modifier_stunned", {duration = 0.1})
 		end
 	end
 end

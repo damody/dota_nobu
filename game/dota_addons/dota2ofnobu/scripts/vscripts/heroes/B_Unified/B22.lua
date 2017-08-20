@@ -76,8 +76,12 @@ function B22E_OnSpellStart( keys )
 	dummy:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_fly",{duration = 3})
-	dummy:SetBaseMaxHealth(900+caster:GetLevel()*hp_buff)
-	dummy:SetMaxHealth(900+caster:GetLevel()*hp_buff)
+	local maxhp = 900+caster:GetLevel()*hp_buff
+	if maxhp > 2000 then
+		maxhp = 2000
+	end
+	dummy:SetBaseMaxHealth(maxhp)
+	dummy:SetMaxHealth(maxhp)
 	dummy:SetHealth(dummy:GetMaxHealth())
 	dummy:SetBaseDamageMax(51+caster:GetLevel()*atk_buff)
 	dummy:SetBaseDamageMin(41+caster:GetLevel()*atk_buff)
@@ -177,8 +181,12 @@ function B22E_old_OnSpellStart( keys )
 	dummy:SetOwner(caster)
 	dummy:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_kill",{duration = duration})
-	dummy:SetBaseMaxHealth(900+caster:GetLevel()*hp_buff)
-	dummy:SetMaxHealth(900+caster:GetLevel()*hp_buff)
+	local maxhp = 900+caster:GetLevel()*hp_buff
+	if maxhp > 2000 then
+		maxhp = 2000
+	end
+	dummy:SetBaseMaxHealth(maxhp)
+	dummy:SetMaxHealth(maxhp)
 	dummy:SetHealth(dummy:GetMaxHealth())
 	dummy:SetBaseDamageMax(71+caster:GetLevel()*atk_buff)
 	dummy:SetBaseDamageMin(61+caster:GetLevel()*atk_buff)
