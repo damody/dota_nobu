@@ -181,3 +181,20 @@ function A03TW_OnSpellStart( event )
 		end
 	end
 end
+
+
+function A03T_old_OnIntervalThink( event )
+	-- Variables
+	local ability = event.ability
+	local damage = ability:GetSpecialValueFor("damage")
+	local duration = ability:GetSpecialValueFor("stun")
+	local caster = event.caster
+	local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(),
+			nil,  1000 , DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
+	for _,unit in ipairs(units) do
+		if unit:GetUnitName() == "A03W_old" then
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_A03T_armor",{duration = 2})
+		end
+	end
+end

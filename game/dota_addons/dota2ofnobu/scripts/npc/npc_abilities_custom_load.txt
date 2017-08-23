@@ -5001,12 +5001,29 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"Modifiers"
 		{
-			"modifier_nodmg_courier"
+			"modifier_for_move300x"
 			{
 				"Passive"			"1"
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 				"Duration"		"600"
+				"ThinkInterval"	"0.5"
+
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"for_move300"
+					}
+				}
+			}
+			"modifier_nodmg_courier"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
 				"ThinkInterval"	"0.5"
 
 				"OnIntervalThink"

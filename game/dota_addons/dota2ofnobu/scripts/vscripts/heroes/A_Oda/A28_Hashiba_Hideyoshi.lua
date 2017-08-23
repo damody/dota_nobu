@@ -914,6 +914,7 @@ function A28D_20_OnTakeDamage( keys )
 		local ability = keys.ability
 		if caster:GetHealth() > 10 then
 			caster:SetHealth( caster:GetHealth() + damage*0.15 )
+			AMHC:Damage(caster, caster.phoenix, keys.dmg, AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
 end
@@ -933,7 +934,7 @@ function A28D_20_OnIntervalThink( keys )
                               0,
                               false)
 		for i,unit in ipairs(units) do
-			ability:ApplyDataDrivenModifier(caster,target,"modifier_A28D_20_buff",nil)
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_A28D_20_buff",nil)
 		end
 	end
 end

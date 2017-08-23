@@ -171,6 +171,7 @@ function Nobu:OnGameRulesStateChange( keys )
 			_G.war_magic_mana = 0
 		end)
     local start = 0
+    
     for playerID = 0, 9 do
 		local id       = playerID
   		local p        = PlayerResource:GetPlayer(id)

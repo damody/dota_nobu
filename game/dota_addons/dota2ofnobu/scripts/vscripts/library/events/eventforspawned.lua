@@ -68,6 +68,7 @@ function Nobu:OnHeroIngame( keys )
           if not donkey:HasModifier("modifier_for_no_collision") then
             for_no_collision:ApplyDataDrivenModifier(donkey,donkey,"modifier_for_no_collision",nil)
           end
+          return 1
           end)
         
         donkey.oripos = donkey:GetAbsOrigin()

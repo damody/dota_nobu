@@ -728,6 +728,29 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "30" //攻速
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"	//防禦
 				}
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A03.lua"
+						"Function"	"A03T_old_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_A03T_armor"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particles/a03/a03r_old.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%indmg"
+				}
 			}
 		}
 		// Special
@@ -743,6 +766,11 @@
 			{
 				"var_type" "FIELD_INTEGER"
 				"life_time" "50 60 70"
+			}
+			"03"
+			{
+				"var_type" "FIELD_INTEGER"
+				"indmg" "-30 -40 -50"
 			}
 		}
 	}

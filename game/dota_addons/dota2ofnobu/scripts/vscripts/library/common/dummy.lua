@@ -72,16 +72,21 @@ function nodmg_courier( keys )
       it:AddNewModifier(it, nil, "modifier_invulnerable", {duration = 5})
     end
   end
-  if not _G.hardcore then 
-    local units = FindUnitsInRadius(caster:GetTeamNumber(),  
-          caster:GetAbsOrigin(),nil,1400,DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
-            DOTA_UNIT_TARGET_HERO,
-            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 
-            FIND_ANY_ORDER, 
-          false)
-    for _,it in pairs(units) do
-      ability:ApplyDataDrivenModifier( caster , it , "modifier_for_move300" , { duration = 6 } )
-    end
+end
+
+function for_move300( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  --print(dummy:GetUnitName())
+
+  local units = FindUnitsInRadius(caster:GetTeamNumber(),  
+        caster:GetAbsOrigin(),nil,1400,DOTA_UNIT_TARGET_TEAM_FRIENDLY, 
+          DOTA_UNIT_TARGET_HERO,
+          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 
+          FIND_ANY_ORDER, 
+        false)
+  for _,it in pairs(units) do
+    ability:ApplyDataDrivenModifier( caster , it , "modifier_for_move300" , { duration = 6 } )
   end
 end
 
