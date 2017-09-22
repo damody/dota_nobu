@@ -259,7 +259,7 @@ function A13R_old( event )
 
 				-- Set the unit as an illusion
 				-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-				illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = -90, incoming_damage = incomingDamage })
+				illusion[i]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = -70, incoming_damage = incomingDamage })
 				-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 				illusion[i]:MakeIllusion()
 
@@ -759,7 +759,7 @@ function A13T_break( keys )
 	                              nil,
 	                              ability:GetLevelSpecialValueFor( "splash_radius", ability:GetLevel() - 1 ),
 	                              DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                              DOTA_UNIT_TARGET_ALL,
+	                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 	                              DOTA_UNIT_TARGET_FLAG_NONE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 	                              FIND_ANY_ORDER,
 	                              false)
@@ -769,7 +769,7 @@ function A13T_break( keys )
 				ParticleManager:SetParticleControlForward(ifx,1,target:GetForwardVector())
 				ParticleManager:ReleaseParticleIndex(ifx)
 	for _,it in pairs(direUnits) do
-		if (not(it:IsBuilding())) then
+		if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
 			if IsValidEntity(caster) and caster:IsAlive() then
 				if it:IsMagicImmune() then
 					AMHC:Damage(caster, it, dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )

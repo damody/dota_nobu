@@ -509,11 +509,12 @@ function A26T_old_OnProjectileHitUnit( keys )
 	for _,unit in ipairs(units) do
 		-- 製造傷害
 		damage_table.victim = unit
-		if unit:IsHero() then
-			ApplyDamage(damage_table)
-		else
-			for i=1,10 do
-				ApplyDamage(damage_table)
+		ApplyDamage(damage_table)
+		if not unit:IsHero() then
+			if unit:GetUnitName() ~= "npc_dota_cursed_warrior_souls" then
+				for i=1,10 do
+					ApplyDamage(damage_table)
+				end
 			end
 		end
 	end

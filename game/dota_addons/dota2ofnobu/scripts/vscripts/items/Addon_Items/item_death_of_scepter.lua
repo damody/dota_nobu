@@ -5,11 +5,7 @@ function Shock( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local dmg = keys.dmg
-	if target:IsMagicImmune() then
-		AMHC:Damage( caster,target, target:GetHealth()*0.15,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-	else
-		AMHC:Damage( caster,target, target:GetHealth()*0.35,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
-	end
+	AMHC:Damage( caster,target, target:GetMaxHealth()*0.2,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	ParticleManager:CreateParticle("particles/generic_gameplay/illusion_killed_halo.vpcf",PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:CreateParticle("particles/generic_gameplay/dust_impact_medium.vpcf",PATTACH_ABSORIGIN_FOLLOW, target)
 end

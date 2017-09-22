@@ -141,6 +141,10 @@ function A30R_OnAttackLanded(keys)
     	end)
 end
 
+EXCLUDE_A30 = {
+	com_general_oda = true,
+	com_general_unified = true
+}
 
 function A30T_OnSpellStart(keys)
 	--【Basic】
@@ -180,11 +184,13 @@ function A30T_OnSpellStart(keys)
 				FIND_ANY_ORDER,					-- 結果的排列方式
 				false) 
 			for _,it in pairs(units) do
-				if it:IsBuilding() then
-					ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
-				else
-					AMHC:Damage(caster, it, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-					ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
+				if EXCLUDE_A30[it:GetUnitName()] == nil then
+					if it:IsBuilding() then
+						ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
+					else
+						AMHC:Damage(caster, it, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+						ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
+					end
 				end
 			end
 		else
@@ -363,12 +369,13 @@ function A30T_old_OnSpellStart(keys)
 				FIND_ANY_ORDER,					-- 結果的排列方式
 				false) 
 			for _,it in pairs(units) do
-				if it:IsBuilding() then
-					AMHC:Damage(caster, it, ability:GetAbilityDamage()*0.5, AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-					ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
-				else
-					AMHC:Damage(caster, it, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
-					ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
+				if EXCLUDE_A30[it:GetUnitName()] == nil then
+					if it:IsBuilding() then
+						AMHC:Damage(caster, it, ability:GetAbilityDamage()*0.5, AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+					else
+						AMHC:Damage(caster, it, ability:GetAbilityDamage(), AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+						ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = stun})
+					end
 				end
 			end
 		tsum = tsum + 1

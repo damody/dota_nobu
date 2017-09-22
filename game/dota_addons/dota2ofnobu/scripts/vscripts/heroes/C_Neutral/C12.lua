@@ -246,6 +246,7 @@ function C12T_OnSpellStart( keys )
 		ProjectileManager:CreateLinearProjectile(projectileTable)
 		projectileTable.vVelocity = vec4 * 2000
 		ProjectileManager:CreateLinearProjectile(projectileTable)
+		caster:EmitSound("art_barrage_fire")
 		if count < 5 and caster:IsAlive() then
 			count = count + 1
 			return 0.2
@@ -257,6 +258,7 @@ function C12T_OnSpellStart( keys )
 		projectileTable.vVelocity = vec * 2000
 		ProjectileManager:CreateLinearProjectile(projectileTable)
 		ProjectileManager:CreateLinearProjectile(projectileTable)
+		caster:EmitSound("art_barrage_fire")
 		if count < 29 and caster:IsAlive() then
 			count = count + 1
 			return 0.33

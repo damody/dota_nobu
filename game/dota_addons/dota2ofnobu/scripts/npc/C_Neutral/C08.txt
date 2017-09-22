@@ -152,6 +152,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
 				"Function"		"C08W_OnSpellStart"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dismember_blood2"
+			}
 		}
 		"Modifiers"
 		{
@@ -245,6 +251,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C08.lua"
 				"Function"		"C08E_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"tree_jump03"
 			}
 		}
 		"AbilitySpecial"

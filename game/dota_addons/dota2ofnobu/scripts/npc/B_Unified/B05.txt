@@ -651,11 +651,6 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"B05R_old.vo1"
-			}
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_B05R"
@@ -663,7 +658,7 @@
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Zuus.LightningBolt"
+				"EffectName"	"stinger_short"
 				"Target"	"CASTER"
 			}
 		}

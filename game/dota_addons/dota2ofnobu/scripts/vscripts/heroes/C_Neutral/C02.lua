@@ -316,6 +316,7 @@ function C02R_OnAttackLanded( keys )
 
 	-- 建築不能複製
 	if target:IsBuilding() then return end
+	if target:GetUnitName() == "npc_dota_cursed_warrior_souls" then return end
 
 	-- 只能是英雄或野怪
 	if not target:IsHero() and not target:IsCreep() then return end
@@ -742,7 +743,6 @@ function C02T_old_OnSpellStart( keys )
 		-- 延遲一個frame在移除暈眩狀態
 		Timers:CreateTimer(0, function ()
 			if IsValidEntity(caster) then caster:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster) end
-			if IsValidEntity(target) then target:RemoveModifierByNameAndCaster("modifier_C02T_old_stunned",caster) end
 		end)
 	end)
 end

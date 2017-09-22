@@ -421,7 +421,7 @@
 		"LevelsBetweenUpgrades"	"2"
 		"AbilityCastPoint" "0.25" //stun
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"35"
+		"AbilityCooldown"	"26"
 		"AbilityManaCost"	"120 140 160 180"
 		"AbilityCastRange"	"800"
 		"AOERadius"	"400"
@@ -438,7 +438,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B19.lua"
-				"Function"	"B19E_OnSpellStart"
+				"Function"	"B19E_old_OnSpellStart"
 				"Target"	"POINT"
 			}
 			"FireSound"

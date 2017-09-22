@@ -223,7 +223,11 @@ function A10E_OnProjectileHitUnit( keys )
 										 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	for _,unit in pairs(direUnits) do
 		if unit:IsMagicImmune() then
-			AMHC:Damage( caster, unit, A10E:GetSpecialValueFor("damage") * 0.5 * damageMultiplier , AMHC:DamageType("DAMAGE_TYPE_PURE"))
+			if caster:GetLevel() >= 12 then
+				AMHC:Damage( caster, unit, A10E:GetSpecialValueFor("damage") * damageMultiplier , AMHC:DamageType("DAMAGE_TYPE_PURE"))
+			else
+				AMHC:Damage( caster, unit, A10E:GetSpecialValueFor("damage") * 0.5 * damageMultiplier , AMHC:DamageType("DAMAGE_TYPE_PURE"))
+			end
 		else
 			AMHC:Damage( caster, unit, A10E:GetSpecialValueFor("damage") * damageMultiplier, AMHC:DamageType("DAMAGE_TYPE_PURE"))
 		end
@@ -560,7 +564,7 @@ function modifier_A10R_old_passive_OnDeath( keys )
 	local radius = ability:GetSpecialValueFor("radius2")
 	local duration = ability:GetSpecialValueFor("duration")
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
-										 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+										 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 
 										 FIND_ANY_ORDER, false)
 	for _,unit in pairs(units) do
 		ability:ApplyDataDrivenModifier( caster , unit , "modifier_A10R_old" , { duration = duration } )
@@ -573,7 +577,7 @@ function modifier_A10R_old_passive_OnIntervalThink( keys )
 	local radius = ability:GetSpecialValueFor("radius")
 	local duration = ability:GetSpecialValueFor("duration")
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
-										 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 
+										 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 
 										 FIND_ANY_ORDER, false)
 	for _,unit in pairs(units) do
 		ability:ApplyDataDrivenModifier( caster , unit , "modifier_A10R_old" , { duration = duration } )
@@ -585,6 +589,7 @@ function modifier_A10R_old_OnIntervalThink( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local damage = ability:GetSpecialValueFor("damage")
+	--[[
 	ApplyDamage({
 		victim = target,
 		attacker = caster,
@@ -592,7 +597,10 @@ function modifier_A10R_old_OnIntervalThink( keys )
 		damage = damage,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL,
-	})
+	})]]
+	if target:GetHealth() == 1 then
+		target:RemoveModifierByName("modifier_A10R_old")
+	end
 end
 
 function A10T_old_OnAbilityPhaseStart( keys )

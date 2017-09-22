@@ -9,7 +9,7 @@ function table.shallow_copy(t)
   return t2
 end
 
-_G.has20 = true
+_G.has20 = false
 
 _G.CountUsedAbility_Table = {}
 

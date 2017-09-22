@@ -232,9 +232,9 @@ function C07_Effect( keys )
 	local ii = 0
 	local dis = 99999
 	if caster.C07E_target ~= nil and IsValidEntity(caster.C07E_target) then
-		local dis = (caster.C07E_target:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
+		dis = (caster.C07E_target:GetAbsOrigin()-dummyx:GetAbsOrigin()):Length2D()
 	end
-	if dis<radius then
+	if dis<radius and caster.C07E_target ~= nil then
 		local v = caster.C07E_target
 		ii = 1
 		StartSoundEvent( "Hero_Leshrac.Lightning_Storm", dummy )

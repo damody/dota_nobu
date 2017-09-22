@@ -27,11 +27,6 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"B01W.vo1"
-			}
 			"ApplyModifier"
 			{
 				"Target"
@@ -46,9 +41,11 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
 				"Function"	"B01W"
 			}
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"sniper_assassinate_load"
 			}
 		}
 		"Modifiers"
@@ -135,6 +132,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B01.lua"
 				"Function"	"B01W"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"sniper_assassinate_load"
 			}
 		}
 		"OnToggleOff"
@@ -314,7 +317,7 @@
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"16 15 14 13"
+		"AbilityCooldown"	"13 16 19 22"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"
@@ -324,10 +327,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"B01E.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"MassTeleportTarget"
 			}
 			"RunScript"
 			{
@@ -399,10 +403,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"B01E_old.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"MassTeleportTarget"
 			}
 			"RunScript"
 			{

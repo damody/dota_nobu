@@ -18,6 +18,7 @@ function B07W_OnSpellStart( keys )
 	caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_2 )
 	Timers:CreateTimer( 0.5, function()
 			if caster:IsChanneling() then
+				caster:EmitSound("starstorm_impact01")
 				caster:StartGesture( ACT_DOTA_OVERRIDE_ABILITY_2 )
 				second = second + 1
 				local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考
@@ -132,9 +133,9 @@ function B07E_OnSpellStart(keys)
  	local items = 1
  	local lv = caster:FindAbilityByName("B07T"):GetLevel()
  	if lv >= 2 then
- 		items = 2
+ 		ability:ApplyDataDrivenModifier(caster,wolf,"modifier_magic_immune",{})
  	end
- 	for itemSlot=0,items do
+ 	for itemSlot=0,1 do
 		local item = caster:GetItemInSlot(itemSlot)
 		if item ~= nil then
 			local itemName = item:GetName()

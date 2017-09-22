@@ -13,7 +13,7 @@ function Shock( keys )
 	          0,
 	          false)
 	for _,target in pairs(direUnits) do
-		target:SetMana(target:GetMana()+250)
+		target:SetMana(target:GetMana()+caster:GetLevel()*10+150)
 		ParticleManager:CreateParticle("particles/generic_gameplay/generic_manaburn.vpcf",PATTACH_ABSORIGIN_FOLLOW, target)
 	end
 
@@ -43,12 +43,13 @@ end
 
 function last_kappa_spell_start( event )
 	-- Variables
+	local caster = event:GetCaster()
 	local target = event.target
 	local max_damage_absorb = event.ability:GetLevelSpecialValueFor("damage_absorb", event.ability:GetLevel() - 1 )
 	local shield_size = 75 -- could be adjusted to model scale
 
 	-- Reset the shield
-	target.AphoticShieldRemaining = max_damage_absorb
+	target.AphoticShieldRemaining = caster:GetLevel()*10+150
 
 
 	target.ShieldParticle = ParticleManager:CreateParticle("particles/a04r3/a04r3.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)

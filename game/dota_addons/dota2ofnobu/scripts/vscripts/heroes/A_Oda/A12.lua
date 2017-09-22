@@ -154,6 +154,8 @@ function A12T( keys )
 			AMHC:Damage( caster,target,damage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 			AMHC:CreateNumberEffect(target,damage,2,AMHC.MSG_ORIT ,{0,0,225},4)
 			if caster.A12T == true then
+				caster:SetMana(caster:GetMana() + SpendMana*2)
+				--[[
 				Physics:Unit(target)
 				local diff = target:GetAbsOrigin()-caster:GetAbsOrigin()
 				diff.z = 0
@@ -161,6 +163,7 @@ function A12T( keys )
 				target:SetVelocity(Vector(0,0,-9.8))
 				target:AddPhysicsVelocity(-dir*500)
 				ability:ApplyDataDrivenModifier(caster, target,"modifier_rooted", {duration = 0.4})
+				]]
 			end
 		end
 	end
@@ -185,7 +188,7 @@ function A12T_Start( keys )
 			else
 				caster.A12T = false
 			end
-			caster.A12D_B = false			
+			caster.A12D_B = false
 		end
 	end	
 end

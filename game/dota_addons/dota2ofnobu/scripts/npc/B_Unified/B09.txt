@@ -44,7 +44,7 @@
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"800"
-		"AbilityDamage" "7 9 11 13"
+		"AbilityDamage" "7 10 13 16"
 		"OnSpellStart"
 		{
 			"ApplyModifier"
@@ -56,6 +56,12 @@
 			{
 				"ModifierName"	"modifier_B09W_counter"
 				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fire_spirits_cast"
 			}
 		}
 		"Modifiers"
@@ -225,6 +231,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
 				"Function"	"B09R_OnToggleOn"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"keybind_open"
+			}
 		}
 		"OnToggleOff"
 		{
@@ -232,6 +244,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
 				"Function"	"B09R_OnToggleOff"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"keybind_open"
 			}
 		}
 		"AbilitySpecial"
@@ -272,6 +290,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
 				"Function"	"B09T_OnSpellStart"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"magic_missile_impact"
 			}
 		}
 		
@@ -323,7 +347,12 @@
 				"Function"	"B09W_old_OnSpellStart"
 				"Target"	"POINT"
 			}
-			"FireSound"	{}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"thunder_strike_target"
+			}
 			"ActOnTargets"
 			{
 				"Target"
@@ -379,6 +408,12 @@
 				"Function"	"B09E_old_OnSpellStart"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"burrow_out_water"
+			}
 		}
 		"Modifiers"
 		{
@@ -433,6 +468,12 @@
 			{
 				"Target"	"TARGET"
 				"ModifierName"	"modifier_B09R_old"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"death_ghost_fellbeast_01"
 			}
 		}
 		"Modifiers"
@@ -557,6 +598,31 @@
 					{
 						"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B09.lua"
 						"Function"		"modifier_B09TE_old_OnIntervalThink"
+					}
+				}
+			}
+			"modifier_B09TW_old_sound"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"ThinkInterval"  	"4"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"tornado"
+					}
+				}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"tornado"
 					}
 				}
 			}

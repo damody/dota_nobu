@@ -114,6 +114,12 @@
 					}
 				}
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"shadowword_cast_heal"
+			}
 		}
 		"AbilitySpecial"
 		{

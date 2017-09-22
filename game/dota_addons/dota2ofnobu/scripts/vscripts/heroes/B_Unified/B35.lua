@@ -204,7 +204,9 @@ end
 function B35E_old_OnProjectileHitUnit( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster:PerformAttack(keys.target, true, true, true, true, true, false, true)
+	if not keys.target:IsMagicImmune() then
+		caster:PerformAttack(keys.target, true, true, true, true, true, false, true)
+	end
 end
 
 function B35E_old_OnAttackLanded( keys )
@@ -257,7 +259,7 @@ function B35T_Copy(u, u2, ability)
     		if (tu:IsAlive()) then
     			tu:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_1, 1 )	
     		end
-    		if (count > 25) then
+    		if (count > 12) then
     			tu:ForceKill(false)
                 tu:Destroy()
     			return nil
@@ -274,10 +276,10 @@ function B35T_old_OnSpellStart( keys )
 	local damage = ability:GetAbilityDamage()
 	local damage_type = ability:GetAbilityDamageType()
 	local play_time = ability:GetSpecialValueFor("play_time")
+	local play_time2 = ability:GetSpecialValueFor("play_time2")
 	local direction = (target:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
 	local spos = target:GetAbsOrigin() - direction * 400
 	local epos = target:GetAbsOrigin() + direction * 400
-	print("B35T_old_OnSpellStart")
 	caster:Stop()
 	target:Stop()
 	ApplyDamage({
@@ -286,14 +288,13 @@ function B35T_old_OnSpellStart( keys )
 		damage_type=damage_type,
 		damage=1
 	})
-
-	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B35T_old_stunned",{duration=play_time+2})
+	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B35T_old_stunned",{duration=play_time2})
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_B35T_old_playing",{duration=play_time})
 	Timers:CreateTimer(0.15, function ()
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time+2})
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time2})
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_playing",{duration=play_time})
 		end)
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time+2})
+	ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_stunned",{duration=play_time2})
 	ability:ApplyDataDrivenModifier(caster,target,"modifier_B35T_old_playing",{duration=play_time})
 
 	local arena = ParticleManager:CreateParticle("particles/B35/B35t_old_arena.vpcf",PATTACH_ABSORIGIN,target)
@@ -307,7 +308,7 @@ function B35T_old_OnSpellStart( keys )
 
 	for i=1,hit_num-2 do
 		Timers:CreateTimer((i-1)*hit_delay, function()
-			local angle = ((360.0/maxrock)*i	)* bj_DEGTORAD
+			local angle = ((360.0/maxrock)*-i)* bj_DEGTORAD
 			local dx = math.cos(angle)
 			local dy = math.sin(angle)
 			local dir = Vector(dx,dy,0)
@@ -381,7 +382,6 @@ function B35T_old_OnSpellStart( keys )
 		-- 延遲一個frame在移除暈眩狀態
 		Timers:CreateTimer(0, function ()
 			if IsValidEntity(caster) then caster:RemoveModifierByNameAndCaster("modifier_B35T_old_stunned",caster) end
-			if IsValidEntity(target) then target:RemoveModifierByNameAndCaster("modifier_B35T_old_stunned",caster) end
 		end)
 	end)
 

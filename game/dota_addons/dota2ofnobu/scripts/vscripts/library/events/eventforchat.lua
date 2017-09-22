@@ -529,15 +529,32 @@ local function chat_of_test(keys)
 				-- 織田軍
 				local u = CreateUnitByName(dota_hero_name,caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_GOODGUYS)
 				u:SetControllableByPlayer(keys.playerid,true)
-				for i=1,30 do
-				u:HeroLevelUp(true)
+				for i=1,caster:GetLevel() do
+					u:HeroLevelUp(true)
+				end
+				for itemSlot=0,5 do
+					local item = caster:GetItemInSlot(itemSlot)
+					if item ~= nil then
+						local itemName = item:GetName()
+						local newItem = CreateItem(itemName, u, u)
+						u:AddItem(newItem)
+					end
 				end
 			elseif team == "1" then
 				-- 聯合軍
 				local u = CreateUnitByName(dota_hero_name,caster:GetAbsOrigin(),true,nil,nil,DOTA_TEAM_BADGUYS)
 				u:SetControllableByPlayer(keys.playerid,true)
-				for i=1,30 do
-				u:HeroLevelUp(true)
+				for i=1,caster:GetLevel() do
+					u:HeroLevelUp(true)
+				end
+
+				for itemSlot=0,5 do
+					local item = caster:GetItemInSlot(itemSlot)
+					if item ~= nil then
+						local itemName = item:GetName()
+						local newItem = CreateItem(itemName, u, u)
+						u:AddItem(newItem)
+					end
 				end
 			end
 		end

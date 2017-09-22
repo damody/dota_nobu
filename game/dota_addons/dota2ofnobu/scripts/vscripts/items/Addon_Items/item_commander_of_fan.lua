@@ -21,7 +21,7 @@ function Shock( keys )
 	
 	for _,target in pairs(direUnits) do
 		AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-		if not target:IsBuilding() then
+		if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 			if (target:IsMagicImmune()) then
 				ability:ApplyDataDrivenModifier(caster,target,"modifier_commander_of_fan1",nil)
 			elseif (target:IsHero()) then
@@ -56,7 +56,7 @@ function Shock2( keys )
 	
 	for _,target in pairs(direUnits) do
 		AMHC:Damage(caster,target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-		if not target:IsBuilding() then
+		if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
 			if (target:IsMagicImmune()) then
 				ability:ApplyDataDrivenModifier(caster,target,"modifier_commander_of_fan1",nil)
 			elseif (target:IsHero()) then

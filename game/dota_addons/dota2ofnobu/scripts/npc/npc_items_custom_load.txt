@@ -579,6 +579,12 @@
 				"Function"	"Shock"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"flare_explode"
+			}
 		}
 		"Modifiers"
 		{
@@ -1695,6 +1701,13 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_spell_book.lua"
 				"Function"	"Shock"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"black_hole_loop"
+				"time"	"3"
 			}
 		}
 		
@@ -3794,6 +3807,12 @@
                 "ModifierName"      "modifier_variety_tachi"
                 "Duration"      "15"
             }
+            "RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"thunderlizard_roar"
+			}
 		}
 		
 		"Modifiers"
@@ -3867,6 +3886,13 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_spell_book.lua"
 				"Function"	"Shock"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"black_hole_loop"
+				"time"	"3"
 			}
 		}
 		"Modifiers"
@@ -4375,6 +4401,12 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_great_sword_of_disease.lua"
 				"Function"	"Shock"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"stinger01"
 			}
 		}
 		"Modifiers"
@@ -6090,6 +6122,12 @@
 					{}
             	}
             }
+            "RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"time_dilation_cast"
+			}
 		}
 		"Modifiers"
 		{
@@ -6136,10 +6174,6 @@
 		"ItemInitialCharges"			"3"
 		"SideShop"						"1"
 		
-
-		
-
-		
 		"ItemRequirements"	{}
 		"OnSpellStart"
 		{
@@ -6157,6 +6191,12 @@
 					{}
             	}
             }
+            "RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"tidebringer"
+			}
 		}
 		"Modifiers"
 		{
@@ -6210,6 +6250,12 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_mana_thief.lua"
 				"Function"	"OnEquip"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"sprint_on"
 			}
 		}
 		"OnUnequip"
@@ -6316,6 +6362,12 @@
 				"Target"	"TARGET"
 				"dmg"		"300"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"mana_void_cast"
+			}
 		}
 		"OnEquip"
 		{
@@ -6395,6 +6447,12 @@
 				"Function"	"Shock"
 				"Target"	"TARGET"
 				"dmg"		"400"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"mana_void_cast"
 			}
 		}
 		"OnEquip"
@@ -6476,6 +6534,12 @@
 				"Target"	"TARGET"
 				"dmg"		"500"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"mana_void_cast"
+			}
 		}
 		
 		"Modifiers"
@@ -6544,7 +6608,7 @@
 			{
 			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
 				"Function"	"sound"
-				"sound"	"AncestralSpirit"
+				"sound"	"relocate"
 			}
 			"ActOnTargets"
 			{
@@ -6863,7 +6927,7 @@
 			{
 			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
 				"Function"	"sound"
-				"sound"	"WindWalk"
+				"sound"	"powershot_falcon_bow"
 			}
 		}
 		
@@ -8819,10 +8883,11 @@
 				"EffectName"	"particles/a34w/a34w.vpcf"
 				"MoveSpeed"	"3000"
 			}
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"TARGET"
-				"EffectName"	"hero_Crystal.frostbite"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"cold_feet_tick"
 			}
 		}
 		"OnProjectileHitUnit"
@@ -8927,6 +8992,12 @@
 				"ModifierName"	"modifier_blade_of_blood_devourer"
 				"Target" 		"CASTER"
 				"Duration"		"20"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"requiem_of_souls"
 			}
 		}
 		
@@ -9354,6 +9425,12 @@
 				"ScriptFile"	"items/Addon_Items/item_the_sword_of_kaminaobi.lua"
 				"Function"	"Shock"
 				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"glaives01"
 			}
 		}
 		
@@ -10843,6 +10920,12 @@
 				"ScriptFile"	"items/Addon_Items/item_fubuki_shoulders.lua"
 				"Function"	"Start"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"duel_cast_arcana"
+			}
 		}
 		"Modifiers"
 		{
@@ -11284,6 +11367,12 @@
 				"Function"	"Shock"
 				"Target"	"TARGET"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"death_ghost"
+			}
 		}
 		"OnEquip"
 		{
@@ -11359,6 +11448,12 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_shell_of_spirituality_kappa.lua"
 				"Function"	"Shock"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dust_of_appearance"
 			}
 		}
 		"OnEquip"
@@ -11440,6 +11535,12 @@
 				"Function"	"Shock"
 				"Target"	"TARGET"
 				"Time"	"5"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"queenofpain_sonicwave"
 			}
 		}
 		
@@ -11749,6 +11850,12 @@
 				"Target" 		"CASTER"
 				"Duration"		"20"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"requiem_of_souls"
+			}
 		}
 		
 		"Modifiers"
@@ -11837,6 +11944,12 @@
 				"MoveSpeed"	"2500"
 				"VisionRadius"	"225"
 				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"shackleshot_stun"
 			}
 		}
 		"OnProjectileHitUnit"
@@ -13253,6 +13366,12 @@
 				"Function"	"Shock"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"relocate"
+			}
 		}
 	}
 
@@ -13760,7 +13879,6 @@
 		
 		"OnSpellStart"
 		{
-			
 			"TrackingProjectile"
 			{
 				"Target"	"TARGET"
@@ -13780,6 +13898,12 @@
 					{}
             	}
             }
+            "RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"snake_shoot"
+			}
 		}
 
 		"OnProjectileHitUnit"
@@ -13857,6 +13981,12 @@
 				"MoveSpeed"	"2500"
 				"VisionRadius"	"225"
 				"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"shackleshot_stun"
 			}
 		}
 		"OnProjectileHitUnit"
@@ -15729,6 +15859,12 @@
 				"ScriptFile"	"items/Addon_Items/item_ksitigarbha.lua"
 				"Function"	"Shock"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"gods_strength"
+			}
 		}
 
 		"AbilitySpecial"
@@ -16708,6 +16844,12 @@
 			{
 				"ScriptFile"	"items/Addon_Items/item_the_shell_of_spirituality_kappa.lua"
 				"Function"	"Shock2"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dust_of_appearance"
 			}
 		}
 		"OnEquip"

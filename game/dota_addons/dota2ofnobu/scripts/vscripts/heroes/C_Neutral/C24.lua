@@ -90,6 +90,7 @@ function C24E_OnAttackLanded( keys )
 			else
 				ability:ApplyDataDrivenModifier( caster, unit, "modifier_stunned", {duration=stun_time} )
 			end
+			AMHC:Damage(caster, it, keys.dmg, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			local ifx = ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_ABSORIGIN,unit)
 			ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
 			ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())
@@ -207,7 +208,7 @@ function C24T_old_OnSpellStart( keys )
 	local damage = ability:GetAbilityDamage()
 	local damage_type = ability:GetAbilityDamageType()
 	local play_time = ability:GetSpecialValueFor("play_time")
-	print("C24T_old_OnSpellStart")
+
 	caster:Stop()
 	target:Stop()
 	ApplyDamage({
@@ -316,6 +317,16 @@ function C24T_old_OnSpellStart( keys )
 		Timers:CreateTimer(0, function ()
 			if IsValidEntity(caster) then caster:RemoveModifierByNameAndCaster("modifier_C24T_old_stunned",caster) end
 			if IsValidEntity(target) then target:RemoveModifierByNameAndCaster("modifier_C24T_old_stunned",caster) end
+			local tsum = 0.1
+			Timers:CreateTimer(0.0, function()
+				if IsValidEntity(target) and not target:HasModifier("modifier_C24T_old_slow") then
+					ability:ApplyDataDrivenModifier(caster,target,"modifier_C24T_old_slow",{duration = 7})
+				end
+				tsum = tsum + 0.1
+				if tsum < 7 then
+					return 0.1
+				end
+			end)
 		end)
 	end)
 end

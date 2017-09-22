@@ -184,11 +184,6 @@ function Shock( keys )
 		local life_time = 2.0
 		local digits = string.len( math.floor( mana_to_burn ) ) + 1
 		
-		-- Fail check
-		if target:IsMagicImmune() then
-			mana_to_burn = mana_to_burn * 0.5
-		end
-		
 		-- Apply effect of ability
 		target:ReduceMana( mana_to_burn )
 		local damageTable = {

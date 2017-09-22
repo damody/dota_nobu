@@ -39,11 +39,6 @@
 
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"A31W.vo1"
-			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A31_Mori_Ranmaru.lua"
@@ -342,6 +337,12 @@
 				"ModifierName"	"modifier_split_shot_datadriven"
 				"Target"	"CASTER"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"panorama_find_match_change_options_01"
+			}
 		}
 		"OnToggleOff"
 		{
@@ -359,6 +360,12 @@
 					"Center"	"CASTER"
 					"Flags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 				}
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"panorama_find_match_change_options_01"
 			}
 		}
 		"OnProjectileHitUnit"

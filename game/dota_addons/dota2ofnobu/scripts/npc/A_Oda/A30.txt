@@ -36,10 +36,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"A30W.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"diretide_wolf_03"
 			}
 			"RunScript"
 			{
@@ -365,10 +366,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"A30W.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"diretide_wolf_03"
 			}
 			"RunScript"
 			{

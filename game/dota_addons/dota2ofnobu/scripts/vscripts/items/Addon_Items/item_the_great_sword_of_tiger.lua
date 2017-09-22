@@ -21,11 +21,7 @@ function Shock( keys )
 			if (not(target:IsBuilding())) then
 				if (caster.great_sword_of_tiger == nil) then					
 					if IsValidEntity(target) then
-						if target:IsMagicImmune() then
-							ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.1})
-						else
-							ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.2})
-						end
+						ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 0.2})
 					end
 					AMHC:Damage(caster,target,200,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				end

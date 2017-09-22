@@ -45,6 +45,12 @@
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B14.lua"
 				"Function"							"B14D_OnSpellStart"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"arcana_ult_layer"
+			}
 		}
 
 		"AbilitySpecial"

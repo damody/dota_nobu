@@ -212,8 +212,15 @@ function Nobu:OnUnitKill( keys )
       
       if die_tim2[killedUnit:GetLevel()] then
         killedUnit:SetTimeUntilRespawn(die_tim2[killedUnit:GetLevel()])
+        killedUnit.death = true
+        Timers:CreateTimer(die_tim2[killedUnit:GetLevel()], function()
+          killedUnit.death = nil
+          end)
       else
         killedUnit:SetTimeUntilRespawn(85)
+        Timers:CreateTimer(85, function()
+          killedUnit.death = nil
+          end)
       end
       
       if not _G.hardcore then 
@@ -230,15 +237,16 @@ function Nobu:OnUnitKill( keys )
         if (#group > 0) then
           local xp = killedUnit:GetLevel() * 30 / #group
           for _,v in ipairs(group) do
-            v:AddExperience(xp, DOTA_ModifyGold_HeroKill, false, false)
-            if v:IsHero() and killedUnit:GetLevel() > 7 then
-              if killedUnit:GetLevel() > v:GetLevel()+4 then
+            if v:IsHero() then
+              if killedUnit:GetLevel() > v:GetLevel()+3 then
+                v:AddExperience(xp*4, DOTA_ModifyGold_HeroKill, false, false)
+              elseif killedUnit:GetLevel() == v:GetLevel()+3 then
                 v:AddExperience(xp*3, DOTA_ModifyGold_HeroKill, false, false)
-              elseif killedUnit:GetLevel() > v:GetLevel()+3 then
+              elseif killedUnit:GetLevel() == v:GetLevel()+2 then
                 v:AddExperience(xp*2, DOTA_ModifyGold_HeroKill, false, false)
-              elseif killedUnit:GetLevel() > v:GetLevel()+2 then
+              elseif killedUnit:GetLevel() == v:GetLevel()+1 then
                 v:AddExperience(xp*1, DOTA_ModifyGold_HeroKill, false, false)
-              elseif killedUnit:GetLevel() > v:GetLevel()+1 then
+              elseif killedUnit:GetLevel() == v:GetLevel() then
                 v:AddExperience(xp*0.5, DOTA_ModifyGold_HeroKill, false, false)
               end
             end

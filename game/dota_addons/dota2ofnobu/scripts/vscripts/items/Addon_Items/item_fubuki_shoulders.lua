@@ -36,8 +36,8 @@ function modifier_fubuki_shoulders:OnTakeDamage(event)
 	    if (self.caster ~= nil) and IsValidEntity(self.caster) then
 
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster and self.hp ~= nil then
-		        local dmg = self.hp - self.caster:GetHealth()
-				local healmax = dmg*0.45
+		        local dmg = event.damage
+				local healmax = dmg*0.35
 				local mana = healmax / 2.5
 
 				if (self.caster:GetMana() >= mana and self.caster:GetHealth() > healmax) then

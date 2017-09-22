@@ -24,10 +24,11 @@
 		"AbilityManaCost"	"50"
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C22D.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fur_army_channel"
 			}
 			"RunScript"
 			{
@@ -470,10 +471,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C22T.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"split_earth"
 			}
 			"RunScript"
 			{
@@ -857,10 +859,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C22T_old.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"split_earth"
 			}
 			"RunScript"
 			{

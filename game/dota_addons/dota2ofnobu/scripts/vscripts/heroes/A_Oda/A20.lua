@@ -553,12 +553,14 @@ function A20T_old_OnIntervalThink( keys )
 	local ability = keys.ability
 	local target = keys.target
 	local caster = keys.caster
-	local am = caster:FindAllModifiers()
-	for _,v in pairs(am) do
-		if IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
-			if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
-				caster:RemoveModifierByName(v:GetName())
+	Timers:CreateTimer (0.01, function ()
+		local am = caster:FindAllModifiers()
+		for _,v in pairs(am) do
+			if v:GetCaster() and IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
+				if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+					caster:RemoveModifierByName(v:GetName())
+				end
 			end
 		end
-	end
+		end)
 end

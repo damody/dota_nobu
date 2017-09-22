@@ -7,6 +7,14 @@ function C04E_unlock( keys )
 	keys.ability:SetActivated(true)
 end
 
+function C04E_sound_start( keys )
+	local caster = keys.caster
+	caster:EmitSound("ball_lightning_loop")
+end
+function C04E_sound_end( keys )
+	local caster = keys.caster
+	caster:StopSound("ball_lightning_loop")
+end
 
 function C04E_OnIntervalThink( keys )
 	local caster = keys.caster
@@ -87,11 +95,7 @@ function C04T( keys )
 	local ability = keys.ability
 	local point  = keys.caster:GetAbsOrigin()
 
-	--se
-	-- local particle = ParticleManager:CreateParticle( "particles/C04T3/C04T3.vpcf", PATTACH_POINT, caster )
-	-- ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT, "attach_attack1", target:GetAbsOrigin(), true)
-	-- ParticleManager:SetParticleControlEnt(particle, 1, caster, PATTACH_POINT, "attach_attack1", target:GetAbsOrigin(), true)
-
+	caster:EmitSound("dsadowski_01.laning_02_layer_01")
 	--se2
 	local particle = ParticleManager:CreateParticle("particles/c04/c04tshield.vpcf", PATTACH_ABSORIGIN_FOLLOW, target )
 	ParticleManager:SetParticleControl(particle,0,target:GetAbsOrigin()+Vector(0,0,220))
@@ -119,6 +123,7 @@ function C04T( keys )
       		end
           	caster.C04T_target = nil
           	ParticleManager:DestroyParticle(particle,false)
+          	caster:StopSound("dsadowski_01.laning_02_layer_01")
           	return nil
           end
         end)

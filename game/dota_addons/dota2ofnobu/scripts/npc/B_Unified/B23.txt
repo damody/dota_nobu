@@ -250,6 +250,12 @@
 				"Target"					"CASTER"
 				"EffectName"				"Hero_VengefulSpirit.WaveOfTerror"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"death_ghost_fellbeast_02"
+			}
 		}
 		
 		"OnProjectileHitUnit"
@@ -327,6 +333,12 @@
 					"Center"     			"CASTER"
 					"Radius"     		   	"800"
 				}
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"healing_salve"
 			}
 		}
 
@@ -408,6 +420,12 @@
 				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 				"Function"	"showTitle"
 				"title"	"particles/title/b23t.vpcf"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dsadowski_02.dire_win"
 			}
 		}
 
@@ -769,6 +787,12 @@
 					"Center"     			"CASTER"
 					"Radius"     		   	"800"
 				}
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"healing_salve"
 			}
 		}
 

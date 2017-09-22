@@ -32,7 +32,9 @@ function B30W_OnTakeDamage( keys )
 		if attacker:GetUnitName() ~= "dota_fountain" then
 			caster:SetHealth( caster:GetHealth() + damage )
 		end
-		caster.B30W = caster.B30W + damage
+		if not attacker:IsBuilding() then
+			caster.B30W = caster.B30W + damage
+		end
 	end
 end
 

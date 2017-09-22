@@ -388,12 +388,13 @@ function B15T_20_create_illusion(keys, illusion_origin, illusion_incoming_damage
 			illusion:AddItem(illusion_duplicate_item)
 		end
 	end
+	illusion.illusion_damage = 0.3
 	illusion:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	if (caster:HasModifier("modifier_b15w")) then
 		caster:FindAbilityByName("B15W_20"):ApplyDataDrivenModifier(illusion,illusion,"modifier_b15w",{duration=999})
 	end
 	if (caster:HasModifier("modifier_searing_arrow")) then
-		caster:FindAbilityByName("B15E_20"):ApplyDataDrivenModifier(illusion,illusion,"modifier_searing_arrow2",{duration=999})
+		caster:FindAbilityByName("B15E_20"):ApplyDataDrivenModifier(illusion,illusion,"modifier_searing_arrow",{duration=999})
 	else
 		--分身不能用法球
 		--illusion.nobuorb1 = "illusion"

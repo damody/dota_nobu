@@ -756,7 +756,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Damage_Income"	"80 160 240 320"
+				"Damage_Income"	"120 160 200 240"
 			}
 		}
 	}
@@ -783,6 +783,12 @@
 				"ModifierName"	"modifier_A20T_old"
 				"Target" 		"CASTER"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"jboberg_01.smoke_end_hero"
+			}
 		}
 
 		"Modifiers"
@@ -807,8 +813,7 @@
 						"Target" 		"CASTER"
 					}
 				}
-				"ThinkInterval"  "%think"
-				"OnIntervalThink"
+				"OnTakeDamage"
 				{
 					"RunScript"
 					{
@@ -817,14 +822,22 @@
 					}
 				}
 			}
-
+			"modifier_A20T_old_invincible"
+			{
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectAttachType"	"follow_origin"
+			}
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"	"FIELD_FLOAT"
-				"During"	"30"
+				"var_type"	"FIELD_INTEGER"
+				"During"	"20 25 30"
 			}
 			"02"
 			{
@@ -834,7 +847,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"movespeed_bonus"	"30 35 40"
+				"movespeed_bonus"	"15"
 			}
 			"03"
 			{

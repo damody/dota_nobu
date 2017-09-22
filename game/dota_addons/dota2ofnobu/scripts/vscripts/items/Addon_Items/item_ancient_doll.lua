@@ -44,7 +44,7 @@ function AbilityExecuted(keys)
 		local hModifier = caster:FindModifierByNameAndCaster("modifier_ancient_doll", hCaster)
 		local scount = hModifier:GetStackCount()
 		scount = scount + 1
-		if (scount <= 6) then
+		if (scount <= 8) then
 			hModifier:SetStackCount(scount)
 		end
 	end
@@ -80,7 +80,7 @@ function AbilityExecuted2(keys)
 		local hModifier = caster:FindModifierByNameAndCaster("modifier_dark_yellow_teeth_and_zimbabwe", hCaster)
 		local scount = hModifier:GetStackCount()
 		scount = scount + 1
-		if (scount <= 6) then
+		if (scount <= 8) then
 			hModifier:SetStackCount(scount)
 		end
 	end

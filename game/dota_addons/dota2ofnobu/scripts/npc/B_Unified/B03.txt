@@ -314,6 +314,12 @@
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B03.lua"
 				"Function"							"B03T_OnSpellStart"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"thunder_strike_target"
+			}
 		}
 
 		"OnProjectileHitUnit"
@@ -419,6 +425,12 @@
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B03.lua"
 				"Function"							"B03W_old_OnSpellStart"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"overwhelming_buff"
+			}
 		}
 
 		"Modifiers"
@@ -488,7 +500,7 @@
 			"01"
 			{
 				"var_type"                		"FIELD_INTEGER"
-				"B03E_old_armorBonus"           "6 10 14 18"
+				"B03E_old_armorBonus"           "9 15 20 24"
 			}
 		}
 	}
@@ -562,7 +574,7 @@
 		"AbilityTextureName"                        "custom/B03/B03T_old"
 		"AbilityCastRange"							"200"
 		"AbilityCastPoint"          				"0.1"
-		"AbilityCooldown"           				"125 115 105"
+		"AbilityCooldown"           				"115 105 95"
 		"AbilityManaCost"           				"195 245 295"
 		"AOERadius"                                 "600"
 		
@@ -572,6 +584,12 @@
 			{
 				"ScriptFile"						"scripts/vscripts/heroes/B_Unified/B03.lua"
 				"Function"							"B03T_old_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"thunder_strike_target"
 			}
 		}
 

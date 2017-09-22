@@ -682,7 +682,7 @@
 		}
 	}
 
-	//疫病
+	//口臭
 	"A10R_old"
 	{
 		"BaseClass"                 				"ability_datadriven"
@@ -730,21 +730,17 @@
 				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%damage2"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%damage2"
 				}
-				//"Properties"
-				//{
-				//	"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
-				//}
-				//"ThinkInterval"  	"1.0"
-				//"OnIntervalThink"
-				//{
-				//	"RunScript"
-				//	{
-				//		"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
-				//		"Function"		"modifier_A10R_old_OnIntervalThink"
-				//	}
-				//}
+				"ThinkInterval"  	"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A10.lua"
+						"Function"		"modifier_A10R_old_OnIntervalThink"
+					}
+				}
 			}
 		}
 

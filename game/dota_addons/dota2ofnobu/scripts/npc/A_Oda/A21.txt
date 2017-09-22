@@ -37,6 +37,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A21.lua"
 				"Function"		"A21D_OnSpellStart"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"mana_break"
+			}
 		}
 
 		"AbilitySpecial"
@@ -337,6 +343,12 @@
 				"Function"	"A21T_OnSpellStart"
 				"Target"	"TARGET"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"sad_bone"
+			}
 		}
 
 		"Modifiers"
@@ -384,6 +396,12 @@
 			{
 				"ModifierName"	"modifier_A21D_old"
 				"Target" 		"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"mana_break"
 			}
 		}
 
@@ -715,6 +733,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A21.lua"
 				"Function"	"A21T_old_OnSpellStart"
 				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"sad_bone"
 			}
 		}
 

@@ -163,9 +163,59 @@ function B19E_OnSpellStart( keys )
 			dummy:ForceKill( true )
 			return nil
 		end)
-
 end
 
+function B19E_old_OnSpellStart( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local id  = caster:GetPlayerID()
+	local targetLocation = keys.target_points[1]
+	local range = ability:GetSpecialValueFor( "A25E_range")
+	local randonint = 5
+	local dura = ability:GetSpecialValueFor( "A25E_Duration")
+	local damage = ability:GetSpecialValueFor( "A25E_damage")
+	local spike = ParticleManager:CreateParticle("particles/b19/b19eikes.vpcf", PATTACH_ABSORIGIN, keys.caster)
+	local maxrock = 20
+	local pos = {}
+	local pointx = targetLocation.x
+	local pointy = targetLocation.y
+	local pointz = targetLocation.z
+	for i=1,maxrock do
+		a	=	(	(360.0/maxrock)	*	i	)* bj_DEGTORAD
+		pointx2 	=  	pointx 	+ 	(range-100) 	* 	math.cos(a)
+		pointy2 	=  	pointy 	+ 	(range-100) 	*	math.sin(a)
+		point = Vector(pointx2 ,pointy2 , pointz)
+		table.insert(pos, point)
+	end
+	local ct = 0
+	local interval = 0.05
+	Timers:CreateTimer(interval, function()
+		ct = ct + 1
+		ParticleManager:SetParticleControl(spike, 3, pos[math.fmod(ct,#pos)+1])
+		if ct*interval < dura+0.6 then
+			return interval
+		else
+			ParticleManager:DestroyParticle(spike,false)
+		end
+		end)
+	
+	Timers:CreateTimer(0.6, function()
+		local enemies = FindUnitsInRadius( caster:GetTeamNumber(), targetLocation, nil, range+50, 
+			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+		for _,it in pairs(enemies) do
+			if (not(it:IsBuilding())) then
+				ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = dura})
+				AMHC:Damage(caster,it, damage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			end
+		end
+		end)
+	local dummy = CreateUnitByName( "npc_dummy", targetLocation, false, caster, caster, caster:GetTeamNumber() )
+	dummy:EmitSound( "A25E.spiked_carapace" )
+	Timers:CreateTimer( 0.5, function()
+			dummy:ForceKill( true )
+			return nil
+		end)
+end
 
 function B19R_OnSpellStart( keys )
 	local caster = keys.caster

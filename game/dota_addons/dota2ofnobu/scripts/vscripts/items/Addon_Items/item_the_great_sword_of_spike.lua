@@ -13,7 +13,7 @@ function Shock( keys )
 	local a	
 	local maxrock = 6
 
-	for radius=100,800,100 do
+	for radius=100,650,100 do
 		maxrock = maxrock + 8
 		local maxspike = maxrock
 		Timers:CreateTimer(radius*0.0003, function() 
@@ -34,7 +34,7 @@ function Shock( keys )
 	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
                               caster:GetAbsOrigin(),
                               nil,
-                              800,
+                              650,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,
                               DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
                               DOTA_UNIT_TARGET_FLAG_NONE,
@@ -47,8 +47,8 @@ function Shock( keys )
 			AMHC:Damage(caster, it, 250, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			if IsValidEntity(it) and not it:HasModifier("great_sword_of_spike") then
 				Physics:Unit(it)
-				keys.ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = 2.2})
-				keys.ability:ApplyDataDrivenModifier(caster,it,"great_sword_of_spike",{duration = 2.3})
+				keys.ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = 2.6})
+				keys.ability:ApplyDataDrivenModifier(caster,it,"great_sword_of_spike",{duration = 2.7})
 				keys.ability:ApplyDataDrivenModifier(caster,it,"modifier_invulnerable",{duration = 1})
 				it:SetPhysicsVelocity(Vector(0,0,1500))
 			end

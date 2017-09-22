@@ -37,10 +37,11 @@
 
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C24W.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dk_intro"
 			}
 			"ApplyModifier"
 			{
@@ -563,16 +564,21 @@
 		"AbilityCastRange"				"250"
 		"AbilityCastPoint"				"0.1"
 
-		"AbilityCooldown"				"90"
+		"AbilityCooldown"				"110 100 90"
 		"AbilityManaCost"				"200 250 300"
-		"AbilityDamage"					"1300 1600 2000"
+		"AbilityDamage"					"900 1100 1300"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"		"FIELD_INTEGER"
-				"play_time"		"5"
+				"var_type"		"FIELD_FLOAT"
+				"play_time"		"2.5"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"slow"		"-50 -70 -90"
 			}
 		}
 
@@ -614,6 +620,19 @@
 
 		"Modifiers"
 		{
+			"modifier_C24T_old_slow"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+				"EffectName"	"particles/generic_gameplay/move_slow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Duration"	"%duration"
+				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+			}
 			"modifier_C24T_old_playing"
 			{
 				"Duration"	"%play_time"

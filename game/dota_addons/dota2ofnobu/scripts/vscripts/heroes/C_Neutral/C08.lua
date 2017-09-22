@@ -150,6 +150,7 @@ function C08R:OnSpellStart()
 	local debuff_duraiton = self:GetSpecialValueFor("flux_duration")
 	local dir = self:GetCursorPosition() - caster:GetOrigin()
 	caster:SetForwardVector(dir:Normalized())
+	caster:EmitSound("hook_throw")
 	caster:AddNewModifier(caster, self, "C08R_modifier", { duration = 2}) 
 	caster:AddNewModifier(caster, self, "C08R_followthrough", { duration = 0.3 } )
 end
@@ -410,6 +411,7 @@ function C08T_OnSpellStart( keys )
 	local ability = keys.ability
 	local duration = ability:GetSpecialValueFor("duration")
 	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+		caster:EmitSound("lion_manadrain")
 		StartSoundEvent( "Hero_NyxAssassin.Vendetta.Crit", target )
 		
 		local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta.vpcf", PATTACH_CUSTOMORIGIN, caster )
@@ -435,6 +437,7 @@ function C08T_OnSpellStart( keys )
 			caster.C08T_IsMagicImmune = true
 		end
 		Timers:CreateTimer(4, function ()
+			caster:StopSound("lion_manadrain")
 			target:RemoveNoDraw()
 		end)
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_C08T_bleeding",{})
@@ -458,7 +461,7 @@ function modifier_C08T_bleeding_OnIntervalThink( keys )
 	else
 		target:SetAbsOrigin(caster:GetAbsOrigin())
 		if caster.C08T_IsMagicImmune == false then
-			AMHC:Damage(caster,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster.donkey,target,abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
 	caster.last_pos = caster:GetAbsOrigin()

@@ -35,10 +35,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C04W.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"powershot_falcon_bow"
 			}
 			"ApplyModifier"
 			{
@@ -154,6 +155,22 @@
 				"IsBuff"	"1"
 				"EffectName" "particles/c04/c04w_steam.vpcf"
 				"ThinkInterval"  "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"	"C04E_sound_start"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"	"C04E_sound_end"
+					}
+				}
 				"OnIntervalThink"
 				{
 					"SpendMana"
@@ -213,10 +230,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C04R.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"magic_missile2"
 			}
 			"RunScript"
 			{
@@ -265,11 +283,6 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"C04T_old.vo1"
-			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
@@ -289,11 +302,6 @@
 			{
 				"Target"	"CASTER"
 				"ModifierName"	"modifier_C04T2"
-			}
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"Hero_razor.Attack"
 			}
 			"RunScript"
 			{
@@ -402,10 +410,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"C04W.vo1"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"powershot_falcon_bow"
 			}
 			"ApplyModifier"
 			{
@@ -521,6 +530,22 @@
 				"IsBuff"	"1"
 				"EffectName" "particles/c04/c04w_steam.vpcf"
 				"ThinkInterval"  "0.2"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"	"C04E_sound_start"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
+						"Function"	"C04E_sound_end"
+					}
+				}
 				"OnIntervalThink"
 				{
 					"SpendMana"
@@ -561,7 +586,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_NONE"
 		"AbilityCastPoint" "0.25" //stun
-		"AbilityCooldown"	"15"
+		"AbilityCooldown"	"15 14 13 12"
 		"AbilityManaCost"	"100 120 140 160"
 		"AbilityCastRange"	"800"
 		"OnSpellStart"
@@ -571,6 +596,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C04.lua"
 				"Function"	"C04R_old_OnSpellStart"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dispel_magic"
 			}
 		}
 		"Modifiers"
@@ -588,7 +619,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"1 1.5 2 2.5"
+				"duration"	"0.5 1 1.5 2"
 			}
 		}
 	}
@@ -621,6 +652,12 @@
 				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 				"Function"	"showTitle"
 				"title"	"particles/title/c04t11.vpcf"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"jbrice_01.respawn"
 			}
 		}
 		"AbilitySpecial"

@@ -81,6 +81,7 @@ function A31W( keys )
 					AMHC:Damage(caster, it, abilityDamage,AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 				end
 			end
+			caster:EmitSound("starstorm_impact01")
 			if (second <= 10) then
 				return 1
 			else

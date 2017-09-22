@@ -45,6 +45,12 @@
 				"Function"		"C12D_OnSpellStart"
 				"Target"	"TARGET"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"matrix_grid"
+			}
 		}
 
 		"Modifiers"

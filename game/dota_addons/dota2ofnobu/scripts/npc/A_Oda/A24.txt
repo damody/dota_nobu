@@ -198,11 +198,12 @@
 		}
 		"OnSpellStart"
 		{
-			//"FireSound"
-			//{
-				//"Target"	"CASTER"
-				//"EffectName"	"Hero_Batrider.StickyNapalm.Impact"
-			//}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"rupture_cast"
+			}
 			"RunScript"
 			{
 				"Target"	"TARGET"
@@ -297,6 +298,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A24.lua"
 				"Function"		"A24R_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"deafening_blast_ti6"
 			}
 		}
 		"Modifiers"

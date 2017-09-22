@@ -342,8 +342,8 @@ function MoonMoonAdjust_old( keys )
 		local B16MMT_old = moonMoon:FindAbilityByName("B16MMT_old") -- [永久隱形]
 
 		B16MMW_old:SetLevel(1)
-		B16MME_old:SetLevel(1)
-		if B16W_old:GetLevel() >= 4 then B16MMT_old:SetLevel(1) end
+		if B16W_old:GetLevel() >= 2 then B16MMT_old:SetLevel(1) end
+		if B16W_old:GetLevel() >= 4 then B16MME_old:SetLevel(1) end
 
 		-- Todo: 調整月月能力
 		local caster_level = caster:GetLevel()

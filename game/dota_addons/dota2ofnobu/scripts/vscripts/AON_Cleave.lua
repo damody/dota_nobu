@@ -187,9 +187,9 @@ function AON_Cleave_A07_old(keys)
 			end
 			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
 				if it ~= target then
-					AMHC:Damage( caster,it,dmg*1.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+					AMHC:Damage( caster,it,dmg*1.35,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 				else
-					AMHC:Damage( caster,it,dmg*0.5,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
+					AMHC:Damage( caster,it,dmg*0.35,AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 				end
 			end
 		end

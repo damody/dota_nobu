@@ -75,7 +75,6 @@ function modifier_B12R_onattack_OnAttackLanded( event )
 			damage=ability:GetSpecialValueFor("damage")/100*caster:GetIntellect(),
 			damage_type=ability:GetAbilityDamageType()}
 			if target:IsMagicImmune() then
-				damageTable.damage=damageTable.damage*0.5
 				ApplyDamage(damageTable)
 			else
 				ApplyDamage(damageTable)

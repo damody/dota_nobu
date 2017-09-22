@@ -189,6 +189,12 @@
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A14.lua"
 						"Function"	"modifier_A14R_OnAttackLanded"
 					}
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"sound"	"fade_bolt_target"
+					}
 				}
 				"Properties"
 				{

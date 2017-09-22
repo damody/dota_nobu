@@ -62,22 +62,22 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
-				"ThinkInterval"  "1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
-						"Function"	"debuff_tower"
-					}
-				}	
+				"ThinkInterval"  "2"
+				//"OnIntervalThink"
+				//{
+				//	"RunScript"
+				//	{
+				//		"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+				//		"Function"	"debuff_tower"
+				//	}
+				//}	
 				"OnTakeDamage"
 				// "%attack_damage" is set to the damage value after mitigation
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
-						"Function"	"debuff_tower2"
+						"Function"	"debuff_tower1"
 					}
 				}
 			}
@@ -90,6 +90,30 @@
 					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"12"
 					"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-10"
 				}
+			}
+		}
+	}
+
+	"soul_tower"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_145"
+		"Modifiers"
+		{
+			"modifier_debuff_x"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"ThinkInterval"  "2"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"debuff_tower2"
+					}
+				}	
 			}
 		}
 	}
@@ -374,7 +398,7 @@
 					}
 				}
 				"Aura"	"modifier_magical_800"
-				"Aura_Radius"	"700"
+				"Aura_Radius"	"1300"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_BUILDING"
 				"Aura_ApplyToCaster"	"0"
@@ -773,14 +797,14 @@
 			"Passive_warrior_souls_skill"
 			{
 				"Passive"          "1"  
-	            "IsHidden"      "1"
+	            "IsHidden"      "0"
 
 	            "Aura"          	"modifier_warrior_souls_debuff"
 	            "Aura_Radius"   	"600"
 	            "Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	            "Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	            "Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
-
+	            
 	            "OnDeath"
 				{
 					"RunScript"
@@ -800,6 +824,15 @@
 						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
 						"Function"	"warrior_souls_OnAttackLanded"
 						"dmg"	"%attack_damage"
+					}
+				}
+				"ThinkInterval"  "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/Addon_Items/tofar_goback.lua"
+						"Function"	"donkey_back"
 					}
 				}
 			}
@@ -2620,6 +2653,13 @@
 				"Target" 		"TARGET"
 				"Duration"		"10"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"Target" 		"TARGET"
+				"sound"	"MassTeleportTarget"
+			}
 		}
 		"Modifiers"
 		{
@@ -2656,6 +2696,13 @@
 				"Function"	"findanything"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"Target"	"POINT"
+				"sound"	"luna_lucentbeam_cast"
+			}
 		}
 	}
 
@@ -2682,6 +2729,13 @@
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"light"
 				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"Target"	"POINT"
+				"sound"	"purification"
 			}
 		}
 	}
@@ -2731,6 +2785,13 @@
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"speedup"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"powershot_falcon_bow"
+				"all"	"1"
+			}
 		}
 		"Modifiers"
 		{
@@ -2768,6 +2829,13 @@
 			{
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"slowattack"
+				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"black_hole_stop"
 				"Target"	"POINT"
 			}
 		}
@@ -2809,7 +2877,13 @@
 			{
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"lessattack"
-				"Target"	"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"starfall"
+				"all"	"1"
 			}
 		}
 		"Modifiers"
@@ -2850,6 +2924,13 @@
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"moreattack"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"berserkers_shoutmask"
+				"all"	"1"
+			}
 		}
 		"Modifiers"
 		{
@@ -2887,6 +2968,13 @@
 			{
 				"ScriptFile"	"items/Addon_Items/war_magic.lua"
 				"Function"	"regen"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"healing_salve"
+				"all"	"1"
 			}
 		}
 		"Modifiers"

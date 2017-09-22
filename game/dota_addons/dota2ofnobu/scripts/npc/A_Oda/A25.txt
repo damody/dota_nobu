@@ -410,6 +410,13 @@
 						"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A25_Oda_Nobunaga.lua"
 						"Function"		"A25D_old"
 					}
+					"RunScript"
+					{
+					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+						"Function"	"sound"
+						"Target"	"POINT"
+						"sound"	"press_cast"
+					}
 				}
 			}
 			"modifier_A25D_old_buff_for_soldier"

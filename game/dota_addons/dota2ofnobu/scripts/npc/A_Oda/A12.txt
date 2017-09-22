@@ -69,7 +69,7 @@
 			{
 			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
 				"Function"	"sound"
-				"sound"	"item_mael_lightning_chain"
+				"sound"	"hurricane_pike"
 			}
 		}
 		"Modifiers"
@@ -133,6 +133,12 @@
 				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 				"Function"	"showTitle"
 				"title"	"particles/title/a12d.vpcf"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"ball_lightning"
 			}
 		}
 		"Modifiers"

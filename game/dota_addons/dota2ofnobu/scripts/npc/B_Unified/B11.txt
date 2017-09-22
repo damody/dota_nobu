@@ -96,6 +96,12 @@
 				"Function"		"B11W_OnSpellStart"
 				"A11W_agiMul"	"%A11W_agiMul"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"gods_strength_heavy_sword_impact1"
+			}
 		}
 		"AbilitySpecial"
 		{
@@ -153,6 +159,12 @@
 			{
 				"Target" 		"CASTER"
 				"ModifierName" 	"modifier_B11E_agiBonus"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"troll_priest_heal"
 			}
 		}
 
@@ -447,6 +459,12 @@
 				"Function"		"B11F_OnSpellStart"
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B11.lua"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"phoenix_bird_kill"
+			}
 		}
 		"OnAbilityPhaseStart"
 		{
@@ -629,6 +647,12 @@
 				"Function"		"B11E_old_OnSpellStart"
 				"Target"	"POINT"
 				"radius"     "%radius"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"troll_cast_net"
 			}
 		}
 		"Modifiers"

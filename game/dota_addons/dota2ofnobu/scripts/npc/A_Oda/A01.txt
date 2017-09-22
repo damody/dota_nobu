@@ -241,7 +241,7 @@
 			"modifier_A01E_2"
 			{
 				"IsDebuff"		"1"
-				"Duration"	"1.91"
+				"Duration"	"%time"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -586,7 +586,7 @@
 		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"HotKeyOverride"	"W"
 		"MaxLevel"	"4"
-		"AbilityCooldown"	"10"
+		"AbilityCooldown"	"10 9 8 7"
 		"AbilityManaCost"	"40 55 70 85"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
@@ -909,7 +909,7 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "10"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "20"
 				}
 			}
 			"modifier_A01T_old"

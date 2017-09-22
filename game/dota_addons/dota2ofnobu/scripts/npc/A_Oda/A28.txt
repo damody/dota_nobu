@@ -88,6 +88,12 @@
 				"Function"		"A28W"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"frog"
+			}
 		}
 	}
 	// 羽柴秀吉 創念
@@ -129,10 +135,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"A28E_old.vo1"
+				"ScriptFile"	"items/Addon_Items/item_reito_lantern.lua"
+				"Function"	"reito_lantern"
+				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
 			}
 			"ApplyModifier"
 			{
@@ -587,7 +594,6 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/icon_128x128_92"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AOERadius"						"%radius"
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
@@ -619,7 +625,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2 3 4 5"
+				"duration"				"1 2 3 4"
 			}
 		}
 		"Modifiers"
@@ -645,16 +651,17 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"A28W_old.vo1"
-			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A28_Hashiba_Hideyoshi.lua"
 				"Function"		"A28W_old"
 				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"frog"
 			}
 		}
 	}
@@ -698,10 +705,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"A28E_old.vo1"
+				"ScriptFile"	"items/Addon_Items/item_reito_lantern.lua"
+				"Function"	"reito_lantern"
+				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
 			}
 			"ApplyModifier"
 			{
@@ -1238,6 +1246,12 @@
 				"Function"		"A28W_20"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"frog"
+			}
 		}
 	}
 	// 羽柴秀吉 創念
@@ -1279,10 +1293,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"A28E_old.vo1"
+				"ScriptFile"	"items/Addon_Items/item_reito_lantern.lua"
+				"Function"	"reito_lantern"
+				"particle"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf" 
 			}
 			"ApplyModifier"
 			{

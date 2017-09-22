@@ -42,6 +42,12 @@
 				"ScriptFile"					"scripts/vscripts/heroes/A_Oda/A23.lua"
 				"Function"						"A23W"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fire_spirits_cast"
+			}
 			"AttachEffect"
             {
                 "EffectName"                	"particles/a23w/a23w.vpcf"
@@ -99,10 +105,11 @@
 				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
 				"Function"							"A23E"
 			}
-			"FireSound"
+			"RunScript"
 			{
-				"EffectName"						"Hero_Ursa.Attack"
-				"Target" 							"CASTER"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dismember_blood1"
 			}
 		}
 
@@ -179,6 +186,13 @@
 				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
 				"Function"							"A23R"
 				"TARGET"							"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"time"	"4"
+				"sound"	"batrider_firefly_loop"
 			}
 		}
 
@@ -287,6 +301,12 @@
 			{
 				"ScriptFile"						"scripts/vscripts/heroes/A_Oda/A23.lua"
 				"Function"							"A23T"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"death_ghost_fellbeast_01"
 			}
 		}
 

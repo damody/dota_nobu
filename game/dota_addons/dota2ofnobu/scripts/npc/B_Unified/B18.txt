@@ -249,6 +249,12 @@
 				"Function"	"showTitle"
 				"title"	"particles/title/b18t.vpcf"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"queenofpain_sonicwave"
+			}
 		}
 
 		"Modifiers"
@@ -551,6 +557,12 @@
 				"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 				"Function"	"showTitle"
 				"title"	"particles/title/b18t.vpcf"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"queenofpain_sonicwave"
 			}
 		}
 

@@ -210,6 +210,12 @@
 				"Function"	"A27E"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"relocate"
+			}
 		}
 		"Modifiers"
 		{
@@ -591,11 +597,11 @@
 				"Target"	"CASTER"
 				"EffectName"	"A27E_old.vo1"
 			}
-			"FireEffect"
+			"RunScript"
 			{
-				"EffectName"        "particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
-				"EffectAttachType"  "follow_origin"
-				"Target"            "CASTER"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"boulder_smash_target"
 			}
 			"ActOnTargets"
 			{

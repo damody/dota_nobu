@@ -253,7 +253,7 @@ function item_raikiri( keys )
 		                              500,
 		                              DOTA_UNIT_TARGET_TEAM_ENEMY,
 		                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		                              DOTA_UNIT_TARGET_FLAG_NONE,
+		                              DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
 		                              FIND_ANY_ORDER,
 		                              false)
 			local targets_shocked = 1 --Is targets=extra targets or total?

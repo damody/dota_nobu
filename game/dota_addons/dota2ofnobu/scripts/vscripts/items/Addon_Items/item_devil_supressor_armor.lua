@@ -76,6 +76,26 @@ function Shock_C04_old( keys )
 	ShockTarget(keys, keys.target, 90)
 end
 
+function ShockNew( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	keys.SHP1 = 700+caster:GetLevel()*20
+	keys.SHP2 = 400+caster:GetLevel()*20
+
+	local direUnits = FindUnitsInRadius(caster:GetTeamNumber(),
+	          caster:GetAbsOrigin(),
+	          nil,
+	          1000,
+	          DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+	          DOTA_UNIT_TARGET_FLAG_NONE,
+	          0,
+	          false)
+	for _,target in pairs(direUnits) do
+		ShockTarget(keys, target, 20)
+	end
+end
+
 function Shock( keys )
 	local caster = keys.caster
 	local ability = keys.ability

@@ -45,9 +45,22 @@ end
 function sound( keys )
     local caster = keys.caster
     local unit = keys.unit
+    local target = keys.target
+    local tpoint = keys.target_points
+    if tpoint then
+        tpoint = tpoint[1]
+    end
     if keys.time then
         Timers:CreateTimer(keys.time,function()
+            if unit then
+                unit:StopSound(keys.sound)
+            end
+            if target then
+                target:StopSound(keys.sound)
+            end
+            if caster then
                 caster:StopSound(keys.sound)
+            end
             end)
     end
     if unit then
@@ -55,14 +68,20 @@ function sound( keys )
     else
         caster:EmitSound(keys.sound)
     end
-end
-
-function sound_unit( keys )
-    local unit = keys.unit
-    if keys.time then
-        Timers:CreateTimer(keys.time,function()
-                unit:StopSound(keys.sound)
-            end)
+    if target then
+       target:EmitSound(keys.sound) 
     end
-    unit:EmitSound(keys.sound)
+    if keys.all then
+        local allHeroes = HeroList:GetAllHeroes()
+        for k, v in pairs( allHeroes ) do
+            v:EmitSound(keys.sound) 
+        end
+    end
+    if tpoint then
+        local dummy = CreateUnitByName("npc_dummy_unit",tpoint,false,nil,nil,caster:GetTeamNumber())
+        dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=3})
+        dummy:SetOwner(caster)
+        dummy:AddAbility("majia"):SetLevel(1)
+        dummy:EmitSound(keys.sound)
+    end
 end

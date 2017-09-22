@@ -40,7 +40,7 @@
 #CustomBg
 {
 
-  margin-top: 250px;
+  margin-top: 0px;
     overflow: clip;
   pre-transform-scale2d: 1.5;
   animation-name: gamemode_anim;
@@ -52,22 +52,21 @@
 
 #gamemode
 {
-  margin-left: 120px;
+  /*margin-left: 120px;*/
   /*margin-bottom: 0px;*/
-  
 }
 
 @keyframes 'gamemode_anim'
 {
   0%
   {
-    transform: translateX( 0px ) translateY( 300px );
-    pre-transform-scale2d: .8;
+    transform: translateX( 0px ) translateY( 0px );
+    pre-transform-scale2d: 1;
   }
 
   100%
   {
     transform: translateX( 0px ) translateY( 0px );
-	pre-transform-scale2d: 1.5;
+	pre-transform-scale2d: 1;
   }
 }

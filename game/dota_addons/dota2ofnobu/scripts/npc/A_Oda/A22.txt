@@ -44,11 +44,6 @@
 
 		"OnSpellStart"
 		{
-			"FireSound"
-			{
-				"Target"	"CASTER"
-				"EffectName"	"A22W.vo1"
-			}
 			"RunScript"
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A22.lua"
@@ -234,7 +229,12 @@
 				"Target"	"CASTER"
 				"EffectName"	"Hero_Sven.StormBolt"
 			}
-			
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"firestorm_cast"
+			}
 		}
 		"OnProjectileHitUnit"
 		{
@@ -382,6 +382,12 @@
 				"Target"	"TARGET"
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A22.lua"
 				"Function"	"A22T_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"death_ghost_fellbeast_01"
 			}
 		}
 		"Modifiers"
@@ -534,6 +540,12 @@
 				"Function"	"A22W_old_OnSpellStart"
 				"Target"	"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"heavy_sword_impact1"
+			}
 		}
 		"OnProjectileHitUnit"
 		{
@@ -577,6 +589,12 @@
 			{
 				"ModifierName"	"modifier_A22E_old2"
 				"Target" 		"CASTER"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"charge_impact"
 			}
 		}
 		"Modifiers"

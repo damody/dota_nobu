@@ -675,7 +675,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"addv"	"5 15 25 35"
+				"addv"	"8 12 16 20"
 			}
 		}
 
@@ -787,16 +787,16 @@
 		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.1"
 
-		"AbilityCooldown"				"90"
+		"AbilityCooldown"				"110 100 90"
 		"AbilityManaCost"				"200 250 300"
-		"AbilityDamage"					"1250 1500 1750"
+		"AbilityDamage"					"950 1100 1250"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"		"FIELD_INTEGER"
-				"play_time"		"5"
+				"var_type"		"FIELD_FLOAT"
+				"play_time"		"2.5"
 			}
 			"02"
 			{
@@ -806,12 +806,12 @@
 			"03"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"aoe_chance"	"50"
+				"aoe_chance"	"100"
 			}
 			"04"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"aoe_damage"	"180 230 280"
+				"aoe_damage"	"100 130 160"
 			}
 			"05"
 			{

@@ -1,3 +1,59 @@
+LinkLuaModifier( "modifier_soul", "scripts/vscripts/library/common/dummy.lua",LUA_MODIFIER_MOTION_NONE )
+modifier_soul = class({})
+
+--------------------------------------------------------------------------------
+
+function modifier_soul:DeclareFunctions()
+    local funcs = {
+        MODIFIER_EVENT_ON_TAKEDAMAGE
+    }
+
+    return funcs
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_soul:OnCreated( event )
+  self:StartIntervalThink(0.2)
+end
+
+function modifier_soul:OnIntervalThink()
+  if (self.caster ~= nil) and IsValidEntity(self.caster) then
+    self.hp = self.caster:GetHealth()
+  end
+end
+
+function modifier_soul:OnTakeDamage(event)
+  if IsServer() then
+    local attacker = event.unit
+    local victim = event.attacker
+    local caster = self.caster
+    local return_damage = event.original_damage
+    local damage_type = event.damage_type
+    local damage_flags = event.damage_flags
+    local ability = self:GetAbility()
+    
+    if (caster ~= nil) and IsValidEntity(caster) then
+      if attacker == self.caster then
+        if damage_type == DAMAGE_TYPE_PURE and caster:GetHealth() < 15000 then
+          caster:Heal(event.damage*1.1, caster)
+        end
+        if damage_type == DAMAGE_TYPE_PHYSICAL and caster:GetHealth() < 5000 then
+          if caster.big == nil then
+            caster.big = 1
+            local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 2000, 
+              DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+            for _,it in pairs(enemies) do
+              ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = 3})
+            end
+          end
+          caster:Heal(event.damage*1.1, caster)
+        end
+      end
+    end
+  end
+end
+
 
 function top_broken( keys )
   local caster = keys.caster
@@ -101,12 +157,14 @@ function killdummy( keys )
 end
 
 _G.EXCLUDE_TARGET_NAME = {
-  npc_dota_cursed_warrior_souls = true,
+  --npc_dota_cursed_warrior_souls = true,
   npc_dota_the_king_of_robbers  = true,
   com_general = true,
   com_general2 = true,
   com_general3 = true,
   EARTH_WALL = true,
+  com_soldiercamp_Unified = true,
+  com_soldiercamp_Oda = true,
   com_general_Unified2 = true,
   com_general_Nobu2 = true,
   com_general_Unified2_1 = true,
@@ -224,7 +282,19 @@ local ok_modifier = {
   ["modifier_tower_armor_bonus"] = true,
   ["modifier_great_sword_of_hurricane_debuff"] = true,
   ["modifier_1300"] = true,
+  ["Passive_warrior_souls_skill"] = true,
 }
+
+function debuff_tower1( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  local am = caster:FindAllModifiers()
+  for _,v in pairs(am) do
+    if ok_modifier[v:GetName()] == nil then
+      caster:RemoveModifierByName(v:GetName())
+    end
+  end
+end
 
 function debuff_tower2( keys )
   local caster = keys.caster
@@ -234,6 +304,11 @@ function debuff_tower2( keys )
     if ok_modifier[v:GetName()] == nil then
       caster:RemoveModifierByName(v:GetName())
     end
+  end
+  caster:AddNewModifier(caster,ability,"modifier_soul",{})
+  local handle = caster:FindModifierByName("modifier_soul")
+  if handle then
+    handle.caster = caster
   end
 end
 

@@ -461,6 +461,12 @@
 				"Function"		"B10T_heal"
 				"Target"		"CASTER"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"ability_ghost_ship"
+			}
 		}
 		
 		"Modifiers"
@@ -641,6 +647,12 @@
 				    "Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
 				"ModifierName"	"modifier_B10W"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"powershot_falcon_bow"
 			}
 		}
 		
@@ -871,6 +883,12 @@
 				}
 				"ModifierName"	"modifier_A06W"
 				"Duration"	"%B10T_Duration"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"berserkercaster"
 			}
 		}
 		"Modifiers"

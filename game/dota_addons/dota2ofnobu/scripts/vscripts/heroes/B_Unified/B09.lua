@@ -16,11 +16,7 @@ function modifier_B09W_OnCreated( keys )
 		print(count - math.floor(count/10)*10)
 		if target:HasModifier("modifier_B09W_counter") then
 			if math.mod(count, 10) == 0 then
-				if target:IsMagicImmune() then
-					AMHC:Damage( caster,target,ability:GetAbilityDamage()*B09W_counter*0.5,AMHC:DamageType("DAMAGE_TYPE_PURE") )
-				else
-					AMHC:Damage( caster,target,ability:GetAbilityDamage()*B09W_counter,AMHC:DamageType("DAMAGE_TYPE_PURE") )
-				end
+				AMHC:Damage( caster,target,ability:GetAbilityDamage()*B09W_counter,AMHC:DamageType("DAMAGE_TYPE_PURE") )
 			end
 		elseif target:IsMagicImmune() then
 			ability:ApplyDataDrivenModifier(caster,target,"modifier_B09W_counter", {duration=20-B09W_counter})
@@ -102,6 +98,11 @@ function modifier_B09E_OnIntervalThink( keys )
 		target:RemoveModifierByName("modifier_B09E")
 		caster:InterruptChannel()	
 	end
+	Timers:CreateTimer ( 0.1, function ()
+		if not caster:IsChanneling() and IsValidEntity(target) then
+			target:RemoveModifierByName("modifier_B09E")
+		end
+	end)
 end
 
 
@@ -109,7 +110,7 @@ function B09E_OnSpellStart( keys )
 	local caster = keys.caster
 	local target = keys.target
 	caster.B09E_target = target
-
+	caster:EmitSound("static_attack_loop")
 	local particle3 = ParticleManager:CreateParticle("particles/b09e/b09e.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	ParticleManager:SetParticleControlEnt(particle3, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(particle3, 4, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -121,6 +122,7 @@ function B09E_OnSpellStart( keys )
       		return 0.2
       	else
       		caster.B09E_target = nil
+      		caster:StopSound("static_attack_loop")
       		--ParticleManager:DestroyParticle(particle,false)
       		return nil
       	end

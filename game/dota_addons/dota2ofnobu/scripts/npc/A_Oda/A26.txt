@@ -47,6 +47,12 @@
 				"Target"	"CASTER"
 				"EffectName"	"A26W.vo1"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"flack_cannon"
+			}
 		}
 
 		"OnSpellStart"
@@ -114,6 +120,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
 				"Function"		"A26E_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"rocket_barrage_fire"
 			}
 		}
 	}
@@ -439,6 +451,12 @@
 				"Target"	"CASTER"
 				"EffectName"	"A26W_old.vo1"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"flack_cannon"
+			}
 		}
 
 		"OnSpellStart"
@@ -521,6 +539,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
 				"Function"		"A26E_old_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"rocket_barrage_fire"
 			}
 		}
 
@@ -726,6 +750,12 @@
 				"Target"	"CASTER"
 				"EffectName"	"A26W.vo1"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"flack_cannon"
+			}
 		}
 
 		"OnSpellStart"
@@ -803,6 +833,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A26.lua"
 				"Function"		"A26E_20_OnSpellStart"
 				"Target"	"TARGET"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"rocket_barrage_fire"
 			}
 		}
 	}

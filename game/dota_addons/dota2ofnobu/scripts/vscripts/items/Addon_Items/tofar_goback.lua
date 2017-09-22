@@ -474,27 +474,16 @@ function afk_gogo(keys)
    					Timers:CreateTimer(0.1, function()
    						hero:SetTimeUntilRespawn(3600)
    						end)
-   				else
-   					hero.stop = hero.stop + 1
-   					if hero.stop > 3 then
-		   				hero:SetAbsOrigin(Vector(99999,99999,0))
-		   			end
-		   			hero:Stop()
    				end
    			end
    			hero:AddNewModifier(nil, nil, 'modifier_stunned', {duration=1.5})
    		elseif state == 2 then
    			if hero.stop ~= nil then
-   				hero:SetTimeUntilRespawn(0)
-   				hero.stop = nil
-   				Timers:CreateTimer(0.1, function()
+   				if hero.death == nil then
+	   				hero:SetTimeUntilRespawn(0)
+	   				hero.stop = nil
 	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
-	   				hero:RemoveModifierByName("modifier_stunned")
-	   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
-	   				end)
-   			end
-   			if hero:GetAbsOrigin().x > 90000 then
-   				FindClearSpaceForUnit(hero,hero.donkey.oripos+Vector(100,100,0),true)
+	   			end
    			end
    			if hero.donkey ~= nil and hero.donkey:GetAbsOrigin().x > 90000 then
    				FindClearSpaceForUnit(hero.donkey,hero.donkey.oripos,true)
@@ -503,3 +492,17 @@ function afk_gogo(keys)
 	end
 end
 
+
+function donkey_back(keys)
+	local caster = keys.caster
+    local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 1000, 
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+    for _,enemy in pairs(enemies) do
+    	print(enemy:GetUnitName())
+		if string.match(enemy:GetUnitName(),"npc_dota_courier") then
+			enemy:SetAbsOrigin(caster:GetAbsOrigin()+(enemy:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()*1000)
+			enemy:AddNewModifier(nil, nil, 'modifier_phased', {duration = 0.1})
+			FindClearSpaceForUnit(enemy,enemy:GetAbsOrigin(),true)
+		end
+	end
+end

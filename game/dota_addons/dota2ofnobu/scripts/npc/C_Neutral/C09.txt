@@ -482,7 +482,7 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"    					"custom/C09/C09E"
-		"AbilityCooldown"							"6 5 4 3"
+		"AbilityCooldown"							"15"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"70 80 90 100"
 		
@@ -492,11 +492,6 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/C_Neutral/C09.lua"
 				"Function"		"C09E_old_OnSpellStart"
-			}
-			"Heal"
-			{
-				"Target"        "CASTER"
-				"HealAmount"	"%C09E_heal"
 			}
 		}
 
@@ -547,7 +542,7 @@
 
 		"AbilityCooldown"							"16 14 12 10"
 		"AbilityCastPoint"							"0.1"
-		"AbilityManaCost"                      		"100 110 120 130 140"
+		"AbilityManaCost"                      		"70 80 90 100"
 
 		"OnSpellStart"
 		{

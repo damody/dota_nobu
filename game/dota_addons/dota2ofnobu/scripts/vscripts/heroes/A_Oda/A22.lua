@@ -50,7 +50,7 @@ function A22R_OnIntervalThink( keys )
 		if enemy:IsMagicImmune() then
 			ability:ApplyDataDrivenModifier(caster,enemy,"modifier_A22R",{duration = 1})
 		end
-		if enemy:GetUnitName() ~= "npc_dota_cursed_warrior_souls" and not string.match(enemy:GetUnitName(),"C17R_old") then
+		if not string.match(enemy:GetUnitName(),"C17R_old") then
 			AMHC:Damage(caster,enemy, regen * enemy:GetMaxHealth()*0.01,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end
 	end
@@ -343,6 +343,7 @@ function A22T_old_OnSpellStart( keys )
 	robon:SetOwner(caster)
 	robon:FindAbilityByName("majia_vison"):SetLevel(1)
 	robon:AddNoDraw()
+	robon:EmitSound("batrider_firefly_loop")
 
 	local rp = robon:GetAbsOrigin()
 	rp.z = rp.z + 300
@@ -441,6 +442,7 @@ function A22T_old_OnSpellStart( keys )
 		end
 	end)
 	Timers:CreateTimer(tduration,function()
+		robon:StopSound("batrider_firefly_loop")
 		robon:ForceKill(false)
 		robon:Destroy()
 	end)

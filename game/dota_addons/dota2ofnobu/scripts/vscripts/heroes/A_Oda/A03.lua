@@ -33,9 +33,6 @@ function A03W_OnUnitMoved( keys )
 		lastpos = pos
 		target.A03W_len = 0
 	else
-		if target:IsMagicImmune() then
-			dmg = dmg *0.5
-		end
 		local dis = (pos-lastpos):Length2D()
 		target.A03W_len = target.A03W_len + dis
 		if target.A03W_len > triggerlen then

@@ -110,7 +110,7 @@
 					"RunScript"
 					{
 					  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
-						"Function"	"sound_unit"
+						"Function"	"sound"
 						"sound"	"capture_point_timer_hallow"
 					}
 				}
@@ -121,7 +121,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"			"6 7 8 10"
+				"duration"			"10"
 			}
 			"02"
 			{
@@ -131,12 +131,12 @@
 			"03"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"triggerlen"	"600 500 400 300"
+				"triggerlen"	"500 400 300 200"
 			}
 			"04"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"dmg"	"240"
+				"dmg"	"100"
 			}
 		}
 	}
@@ -220,7 +220,7 @@
 						"dmg"	"%attack_damage"
 						"ScriptFile"	"items/Addon_Items/item_muramasa_katana.lua"
 						"Function"	"StealLife2"
-						"StealPercent"	"30"
+						"StealPercent"	"40"
 					}
 				}
 			}
@@ -334,7 +334,7 @@
 		"AbilityCastPoint"                          "0.1"
 		"AbilityCastRange"							"800"
 		"AbilityCooldown"                           "15 12 9"
-		"AbilityManaCost"                           "200 300 400"
+		"AbilityManaCost"                           "100 150 200"
 		"AbilityDamage"								"500 750 1000"
 
 		"OnSpellStart"
@@ -547,6 +547,12 @@
 				"ModifierName"	"modifier_A03E_old_passiveAura2"
 				"Duration"		"5"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"stinger_short"
+			}
 		}
 
 		"Modifiers"
@@ -716,6 +722,12 @@
 			{
 				"ScriptFile"	"scripts/vscripts/heroes/A_Oda/A03.lua"
 				"Function"	"A03T_old_OnSpellStart"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dota2_music_stinger_009"
 			}
 		}
 		"Modifiers"

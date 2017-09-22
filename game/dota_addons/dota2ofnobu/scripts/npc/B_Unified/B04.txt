@@ -217,6 +217,12 @@
 				"Function"		"B04E_OnSpellStart"
 				"Target"		"POINT"
 			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fireblast_target"
+			}
 		}
 	}
 
@@ -439,15 +445,11 @@
 		}
 		"OnSpellStart"
 		{
-			"FireSound"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"EffectName"	"B08W.vo1"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Magnataur.ShockWave.Cast"
-				"Target"	"CASTER"
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"dragonknight_fire"
 			}
 			"FireSound"
 			{
@@ -684,6 +686,12 @@
 				"ScriptFile"	"scripts/vscripts/heroes/B_Unified/B04.lua"
 				"Function"		"B04E_OnSpellStart"
 				"Target"		"POINT"
+			}
+			"RunScript"
+			{
+			  	"ScriptFile"	"items/Addon_Items/item_soul_adder.lua"
+				"Function"	"sound"
+				"sound"	"fireblast_target"
 			}
 		}
 	}

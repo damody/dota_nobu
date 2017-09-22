@@ -49,11 +49,8 @@ function C21T_Effect(u,u2,i)
 	u:SetForwardVector((point-point2):Normalized())
 
 	--傷害
-	if not u2:IsMagicImmune() then
-		AMHC:Damage( u,u2,125,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-	else
-		AMHC:Damage( u,u2,62,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-	end
+	AMHC:Damage( u,u2,110,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+	AMHC:Damage( u,u2,u:GetAttackDamage(),AMHC:DamageType( "DAMAGE_TYPE_PHYSICAL" ) )
 	if IsValidEntity(u2) then
 		u:PerformAttack(u2, true, true, true, true, true, false, true)
 	end
@@ -146,7 +143,7 @@ function Trig_C21TActions( keys )
 			C21T_Copy(u,i, u2)
 			C21T_Effect(u,u2,i)
 			StartSoundEvent( "Hero_SkeletonKing.CriticalStrike", keys.target )
-			return 0.1    
+			return 0.15
 		else 
 			u:AddNewModifier(u,keys.ability,"modifier_phased",{duration=0.1})
             --刪除無敵

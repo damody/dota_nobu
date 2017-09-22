@@ -48,11 +48,14 @@ function Shock( keys )
 		radius     = 500,		-- 半徑
 	}
 	dummy:AddNewModifier(dummy,nil,"nobu_modifier_spell_hint",spell_hint_table)
-
+	local count = 0
 	local sumtime = 0
 	Timers:CreateTimer(0.2, function ()
+		if math.mod(count, 3) == 0 then
+			dummy:EmitSound("lightningbolt")
+		end
+		count = count + 1
 		sumtime = sumtime + 0.2
-		dummy:EmitSound("ITEM_D09.sound")
 		for i=1,3 do
 			local pp = point + RandomVector(RandomInt(1, 400))
 
@@ -68,20 +71,18 @@ function Shock( keys )
 		      nil,
 		      500,
 		      DOTA_UNIT_TARGET_TEAM_ENEMY,
-		      DOTA_UNIT_TARGET_ALL,
+		      DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		      DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 		      FIND_ANY_ORDER,
 		      false)
 
 		--effect:傷害+暈眩
 		for _,it in pairs(direUnits) do
-			if (not(it:IsBuilding())) then
-				if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
-					if it:IsMagicImmune() then
-						AMHC:Damage(dummy,it, it:GetMaxHealth()*0.016,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-					else
-						AMHC:Damage(dummy,it, it:GetMaxHealth()*0.016,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-					end
+			if _G.EXCLUDE_TARGET_NAME[it:GetUnitName()] == nil then
+				if it:IsMagicImmune() then
+					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.016,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+				else
+					AMHC:Damage(dummy,it, it:GetMaxHealth()*0.016,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 				end
 			end
 		end
