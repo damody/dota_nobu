@@ -341,7 +341,7 @@ function B21T_old_OnHealthChange( keys )
 	if ability.modifier == nil then
 		if hp <= hp_threshold then
 			if not caster:IsIllusion() then
-				caster:SetHealth(hp_threshold)
+				--caster:SetHealth(hp_threshold)
 			end
 			ability.modifier = ability:ApplyDataDrivenModifier(caster,caster,"modifier_B21T_old",nil)
 		end

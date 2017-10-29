@@ -19,6 +19,12 @@ function Shock( keys )
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_invulnerable",{duration = aura_duration})
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_ksitigarbha_aura", {duration=aura_duration})
 	ability:ApplyDataDrivenModifier(dummy,dummy,"modifier_ksitigarbha_hero_aura", {duration=aura_duration})
+
+	local enemies = FindUnitsInRadius( caster:GetTeamNumber(), ability:GetCursorPosition(), nil, 1000, 
+              DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
+    for _,it in pairs(enemies) do
+      it:Heal(700,caster)
+    end
 end
 
 function SplitShotLaunch( keys )

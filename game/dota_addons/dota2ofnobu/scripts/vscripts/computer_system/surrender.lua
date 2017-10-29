@@ -57,6 +57,15 @@ function SurrenderSystem:OnPlayerChat( keys )
 	end
 end
 
+
+function getMVP_value(hero)
+	if hero.building_count == nil then
+		hero.building_count = 0
+	end
+	local kda = hero:GetKills()*1.5-hero:GetDeaths()+hero:GetAssists()+hero.building_count
+	return kda
+end
+
 -- playerid 是輸入指令的使用者
 function SurrenderSystem:CheckVoteResults(playerid)
 	local iTeam = PlayerResource:GetTeam(playerid)
@@ -136,10 +145,75 @@ SurrenderSystem:Init()
 
 function OnOdaGiveUp()
 	SurrenderSystem:SendMsgToAll("織田軍已經投降")
-	_G.Oda_home:ForceKill(false)
+	local mvp = nil
+	local mvp_value = -100
+	for _,hero in ipairs(HeroList:GetAllHeroes()) do
+		if not hero:IsIllusion() then
+			if not hero:IsAlive() then
+				hero:SetTimeUntilRespawn(0)
+			end
+			if getMVP_value(hero)>mvp_value then
+				mvp_value = getMVP_value(hero)
+				mvp = hero
+			end
+		end
+	end
+	_G.Unified_home:AddNewModifier(_G.Unified_home, nil, "modifier_invulnerable", nil )
+	Timers:CreateTimer(0.1, function()
+		local pos = _G.Oda_home:GetAbsOrigin()
+		if mvp then
+			_G.Oda_home:ForceKill(false)
+			for i=0,9 do
+				AMHC:SetCamera(i, mvp)
+			end
+			mvp:SetAbsOrigin(pos+Vector(0,0,250))
+			local nobu_id = _G.heromap[mvp:GetName()]
+			local mesg = "本場MVP為 ".._G.hero_name_zh[nobu_id]
+			mesg = mesg.."\n聯合軍獲勝"
+			GameRules:SetCustomVictoryMessage(mesg)
+			Timers:CreateTimer(0.1, function()
+				mvp:SetAbsOrigin(pos+Vector(0,0,250))
+				mvp:AddNewModifier(mvp, nil, "modifier_invulnerable", nil )
+				return 0.1
+			end)
+		end
+		end)
 end
 
 function OnUnifiedGiveUp()
 	SurrenderSystem:SendMsgToAll("聯合軍已經投降")
-	_G.Unified_home:ForceKill(false)
+	local mvp = nil
+	local mvp_value = -100
+	for _,hero in ipairs(HeroList:GetAllHeroes()) do
+		if not hero:IsIllusion() then
+			if not hero:IsAlive() then
+				hero:SetTimeUntilRespawn(0)
+			end
+			if getMVP_value(hero)>mvp_value then
+				mvp_value = getMVP_value(hero)
+				mvp = hero
+				
+			end
+		end
+	end
+	_G.Oda_home:AddNewModifier(_G.Oda_home, nil, "modifier_invulnerable", nil )
+	Timers:CreateTimer(0.1, function()
+		local pos = _G.Unified_home:GetAbsOrigin()
+		if mvp then
+			_G.Unified_home:ForceKill(false)
+			for i=0,9 do
+				AMHC:SetCamera(i, mvp)
+			end
+			mvp:SetAbsOrigin(pos+Vector(0,0,250))
+			local nobu_id = _G.heromap[mvp:GetName()]
+			local mesg = "本場MVP為 ".._G.hero_name_zh[nobu_id]
+			mesg = mesg.."\n織田軍獲勝"
+			GameRules:SetCustomVictoryMessage(mesg)
+			Timers:CreateTimer(0.1, function()
+				mvp:SetAbsOrigin(pos+Vector(0,0,250))
+				mvp:AddNewModifier(mvp, nil, "modifier_invulnerable", nil )
+				return 0.1
+			end)
+		end
+		end)
 end

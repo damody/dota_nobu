@@ -88,6 +88,8 @@ function choose_16( keys )
     		caster:AddAbility("buff_"..i):SetLevel(1)
     	end
     end
+    caster:AddAbility("halloween_attack"):SetLevel(1)
+    
 end
 
 function choose_11( keys )
@@ -133,6 +135,7 @@ function choose_11( keys )
     		caster:AddAbility("buff_"..i):SetLevel(1)
     	end
     end
+    caster:AddAbility("halloween_attack"):SetLevel(1)
 end
 
 function play_1v1( keys )
@@ -165,10 +168,10 @@ function robbers_checkfly( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	if (caster:GetAbsOrigin()-caster.origin_pos):Length2D() > 200 then
-		ability:ApplyDataDrivenModifier( caster , caster , "modifier_fly" , { duration = 1 } )
+		ability:ApplyDataDrivenModifier( caster , caster , "modifier_fly" , { duration = 1.1 } )
 	else
 		if caster:GetHealth() == caster:GetMaxHealth() then
-			ability:ApplyDataDrivenModifier(caster,caster,"modifier_stunned",{ duration = 1 })
+			ability:ApplyDataDrivenModifier(caster,caster,"modifier_stunned",{ duration = 1.1 })
 		end
 	end
 	
@@ -375,7 +378,6 @@ function near_hero_then_can_use_ability(keys)
     	--print("caster.buyer "..it:GetUnitName())
     	break
     end
-
 end
 
 function update_buy_ninja3(keys)
@@ -465,6 +467,9 @@ function afk_gogo(keys)
 		local id = hero:GetPlayerID()
 		local team = PlayerResource:GetTeam(id)
 		local state = PlayerResource:GetConnectionState(id)
+		if hero.deathtime and hero.deathtime > 0 then
+			hero.deathtime = hero.deathtime - 1
+		end
 		if state == 3 then -- 2 = connected
 			if hero.donkey ~= nil then
 				hero.donkey:SetAbsOrigin(Vector(99999,99999,0))
@@ -472,18 +477,20 @@ function afk_gogo(keys)
    					hero.stop = 1
    					hero:ForceKill(true)
    					Timers:CreateTimer(0.1, function()
+   						hero.death = nil
    						hero:SetTimeUntilRespawn(3600)
    						end)
    				end
    			end
-   			hero:AddNewModifier(nil, nil, 'modifier_stunned', {duration=1.5})
    		elseif state == 2 then
    			if hero.stop ~= nil then
-   				if hero.death == nil then
+   				if hero.deathtime > 0 then
+	   				hero:SetTimeUntilRespawn(hero.deathtime)
+	   			else
 	   				hero:SetTimeUntilRespawn(0)
-	   				hero.stop = nil
-	   				hero.donkey:SetAbsOrigin(hero.donkey.oripos)
 	   			end
+	   			hero.stop = nil
+	   			hero.donkey:SetAbsOrigin(hero.donkey.oripos)
    			end
    			if hero.donkey ~= nil and hero.donkey:GetAbsOrigin().x > 90000 then
    				FindClearSpaceForUnit(hero.donkey,hero.donkey.oripos,true)
@@ -495,6 +502,7 @@ end
 
 function donkey_back(keys)
 	local caster = keys.caster
+	local ability = keys.ability
     local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 1000, 
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
     for _,enemy in pairs(enemies) do
@@ -503,6 +511,13 @@ function donkey_back(keys)
 			enemy:SetAbsOrigin(caster:GetAbsOrigin()+(enemy:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()*1000)
 			enemy:AddNewModifier(nil, nil, 'modifier_phased', {duration = 0.1})
 			FindClearSpaceForUnit(enemy,enemy:GetAbsOrigin(),true)
+		end
+	end
+	if caster:GetHealthPercent() == 100 then
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_stunned",{duration = 1.1})
+		ability:ApplyDataDrivenModifier(caster,caster,"modifier_magic_immune",{duration = 1.1})
+		if caster.origin_pos then
+			caster:SetAbsOrigin(caster.origin_pos)
 		end
 	end
 end

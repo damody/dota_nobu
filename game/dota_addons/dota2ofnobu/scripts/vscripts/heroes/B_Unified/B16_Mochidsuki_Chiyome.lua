@@ -270,7 +270,7 @@ function B16MMD_M_Think( keys )
 	local ability = keys.ability
 
 	-- 判斷雙方距離決定是否開啟此技能
-	if IsValidEntity(target) and target:IsAlive() and CalcDistanceBetweenEntityOBB(caster,target) <= 2000 then
+	if IsValidEntity(target) and target:IsAlive() and CalcDistanceBetweenEntityOBB(caster,target) <= 1600 then
 		ability:SetActivated(true)
 	else
 		ability:SetActivated(false)

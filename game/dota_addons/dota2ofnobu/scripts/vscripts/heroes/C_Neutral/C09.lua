@@ -154,7 +154,9 @@ function C09T_OnSpellStart( keys )
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, 
 		ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 	for _,unit in ipairs(units) do
-		ability:ApplyDataDrivenModifier( caster , unit , "modifier_C09T_debuff" , { duration = debuffDuration } )
+		if _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+			ability:ApplyDataDrivenModifier( caster , unit , "modifier_C09T_debuff" , { duration = debuffDuration } )
+		end
 	end
 end
 
@@ -232,7 +234,11 @@ function C09E_old_OnSpellStart( keys )
 	local ability = keys.ability
 	--local healPoint = ability:GetSpecialValueFor("C09E_heal")
 	local duration = ability:GetSpecialValueFor("C09E_duration")
-	ability:ApplyDataDrivenModifier( caster , target, "modifier_C09E_old" , { duration = duration } )
+	if _G.EXCLUDE_TARGET_NAME[target:GetUnitName()] == nil then
+		ability:ApplyDataDrivenModifier( caster , target, "modifier_C09E_old" , { duration = duration } )
+	else
+		ability:EndCooldown()
+	end
 	--PopupNumbers(caster, "heal", Vector(0, 255, 0), 1.0, healPoint, POPUP_SYMBOL_PRE_PLUS, nil)
 end
 
@@ -314,6 +320,8 @@ function C09T_old_OnSpellStart( keys )
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius, 
 		ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 	for _,unit in ipairs(units) do
-		ability:ApplyDataDrivenModifier( caster , unit , "modifier_C09T_old_debuff" , { duration = debuffDuration } )
+		if _G.EXCLUDE_TARGET_NAME[unit:GetUnitName()] == nil then
+			ability:ApplyDataDrivenModifier( caster , unit , "modifier_C09T_old_debuff" , { duration = debuffDuration } )
+		end
 	end
 end

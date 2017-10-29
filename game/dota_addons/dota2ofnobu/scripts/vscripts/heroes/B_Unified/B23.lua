@@ -336,6 +336,10 @@ function B23T( keys )
 			ability:ApplyDataDrivenModifier( caster, caster.B23D_ghostTable[i], "modifier_B23T_attackspeedBonus", nil )
 		end
 	end
+	local units = FindUnitsInRadius(caster:GetOpposingTeamNumber(), caster:GetOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, ability:GetAbilityTargetType(), DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )
+	if #units > 0 then
+	 	AddFOWViewer(caster:GetOpposingTeamNumber(), caster:GetAbsOrigin(), 300, 3, true)
+	end
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_B23T_castAnimation", nil )
 	ability:ApplyDataDrivenModifier( caster, caster, "modifier_B23T_invulnerableAura", nil )
 	local spell_hint_table = {
@@ -344,6 +348,7 @@ function B23T( keys )
 	}
 	
 	Timers:CreateTimer(0, function ()
+		AddFOWViewer(DOTA_TEAM_NEUTRALS,caster:GetAbsOrigin(), 300,10,false)
 		caster:RemoveModifierByName("nobu_modifier_spell_hint")
 		caster:AddNewModifier(caster,nil,"nobu_modifier_spell_hint",spell_hint_table)
 		local units = FindUnitsInRadius(caster:GetTeamNumber(),  

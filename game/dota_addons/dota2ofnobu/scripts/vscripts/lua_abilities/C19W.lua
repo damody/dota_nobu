@@ -51,29 +51,4 @@ function C19W:OnSpellStart()
 
 	--播放動作
 	caster:StartGestureWithPlaybackRate( ACT_GAUSS_SPINCYCLE, 1)
-
-	--兩秒鐘後停止撥放動作
-	--timer
-	-- local time = 0
-	-- C19W:Timer( "C19W"..tostring(id),function( )
-	-- 	time = time + 1
-	-- 		--播放動作
-	-- 		caster:StartGestureWithPlaybackRate( ACT_GAUSS_SPINCYCLE, 1)
-
-	-- 		if time > 2 then
-	-- 			return nil
-	-- 		else
-	-- 			return 0.5
-	-- 		end	
-	-- end,0.5)
-
-
-	-- --<<test>>
-	-- C19W:Timer("C19W"..tostring(id),function( )
-	-- 	caster:AddNewModifier(caster, self, "modifier_C19W", { duration = 2})
-	-- end,0.5)
-	-- --<<endtest>>
 end
-
-
-

@@ -63,7 +63,7 @@
 						"Target"		"TARGET"
 					}
 				}
-				"OnOrbImpact"
+				"OnAttackLanded"
 				{
 					"RunScript"
 					{
@@ -392,7 +392,7 @@
 						"Target"		"TARGET"
 					}
 				}
-				"OnOrbImpact"
+				"OnAttackLanded"
 				{
 					"RunScript"
 					{
@@ -482,10 +482,11 @@
 		"AbilityUnitTargetFlags"					"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityType"  								"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"    					"custom/C09/C09E"
-		"AbilityCooldown"							"15"
+		"AbilityCooldown"							"15 14 13 12"
 		"AbilityCastPoint"							"0.1"
 		"AbilityManaCost"                      		"70 80 90 100"
-		
+		"AbilityCastRange"							"1200"
+
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -583,7 +584,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"C09R_distance"			"550 600 650 700"
+				"C09R_distance"			"600 700 800 900"
 			}
 			"02"
 			{

@@ -205,7 +205,6 @@ function C21E_OnSpellStart(keys)
 				u:SetOrigin(point3)
 				u:SetForwardVector((point-point2):Normalized())
 
-
 				--發動攻擊	 
 				local order_target = 
 				{

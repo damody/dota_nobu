@@ -213,11 +213,14 @@ function Nobu:OnUnitKill( keys )
       if die_tim2[killedUnit:GetLevel()] then
         killedUnit:SetTimeUntilRespawn(die_tim2[killedUnit:GetLevel()])
         killedUnit.death = true
+        killedUnit.deathtime = die_tim2[killedUnit:GetLevel()]
         Timers:CreateTimer(die_tim2[killedUnit:GetLevel()], function()
           killedUnit.death = nil
           end)
       else
         killedUnit:SetTimeUntilRespawn(85)
+        killedUnit.death = true
+        killedUnit.deathtime = 85
         Timers:CreateTimer(85, function()
           killedUnit.death = nil
           end)

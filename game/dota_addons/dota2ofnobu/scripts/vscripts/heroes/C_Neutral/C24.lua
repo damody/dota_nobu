@@ -90,7 +90,7 @@ function C24E_OnAttackLanded( keys )
 			else
 				ability:ApplyDataDrivenModifier( caster, unit, "modifier_stunned", {duration=stun_time} )
 			end
-			AMHC:Damage(caster, it, keys.dmg, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
+			AMHC:Damage(caster, unit, keys.dmg, AMHC:DamageType( "DAMAGE_TYPE_MAGICAL" ) )
 			local ifx = ParticleManager:CreateParticle("particles/c19e/c19e.vpcf",PATTACH_ABSORIGIN,unit)
 			ParticleManager:SetParticleControl(ifx,0,unit:GetAbsOrigin())
 			ParticleManager:SetParticleControl(ifx,1,unit:GetAbsOrigin())

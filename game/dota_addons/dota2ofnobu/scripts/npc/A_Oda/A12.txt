@@ -417,7 +417,7 @@
 					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
 					"ProjectileName"	"particles/a12t2/a12t2.vpcf"
 				}
-				"OnOrbImpact"
+				"OnAttackLanded"
 				{
 					"RunScript"
 					{
@@ -425,7 +425,7 @@
 						"Function"	"A12T"
 					}
 				}
-				"OnOrbFire"
+				"OnAttackStart"
 				{
 					"RunScript"
 					{

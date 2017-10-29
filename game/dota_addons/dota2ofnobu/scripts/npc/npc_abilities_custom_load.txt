@@ -18,6 +18,41 @@
 			}
 		}
 	}
+	"halloween_attack"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"bristleback_viscous_nasal_goo"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"Modifiers"
+		{
+			"modifier_halloween"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Orb"
+				{
+					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/halloween.vpcf"
+				}
+				
+				"OnAttackStart"
+				{
+				}
+				
+				"OnAttackLanded"
+				{
+				}
+				
+				"AllowIllusionDuplicate"	"1"
+			}
+		}
+	}
 	// 選16版
 	"choose_16"
 	{
@@ -62,15 +97,6 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
-				"ThinkInterval"  "2"
-				//"OnIntervalThink"
-				//{
-				//	"RunScript"
-				//	{
-				//		"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
-				//		"Function"	"debuff_tower"
-				//	}
-				//}	
 				"OnTakeDamage"
 				// "%attack_damage" is set to the damage value after mitigation
 				{
@@ -89,6 +115,39 @@
 				{
 					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"12"
 					"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE"	"-10"
+				}
+			}
+		}
+	}
+	//  附近的敵人愈多 受到的傷害愈高
+	"buff_tower"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/icon_128x128_145"
+		"Modifiers"
+		{
+			"modifier_buff_tower"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"buff_tower"
+					}
+				}
+			}
+			"buff_tower"
+			{
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"20"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-50"
 				}
 			}
 		}
@@ -374,7 +433,7 @@
 		{
 			"modifier_magical_800_aura"
 			{
-				"Passive"			"1"
+				"Passive"			"0"
 				"IsHidden"			"1"
 				"IsDebuff"			"0"
 				"OnCreated"
@@ -785,6 +844,16 @@
 		
 		"Modifiers"
 		{
+			"modifier_invulnerable_souls"
+			{
+				"Passive"          "1"
+	            "IsHidden"      "0"
+	            "Duration"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
 			"modifier_warrior_souls_debuff"
 			{
 				"Passive"          "0"
@@ -1020,7 +1089,7 @@
 
 		"Modifiers"
 		{
-			"modifier_dead_give_item"
+			"modifier_dead_give_item1"
 			{
 				"IsHidden"      "1"
 				"Passive"	"1"
@@ -1055,7 +1124,7 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/icon_128x128_21"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -1064,7 +1133,7 @@
 		"AbilityCooldown"	"60"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"	"50000"
-		"AbilityManaCost"	"20"
+		"AbilityManaCost"	"0"
 		"AOERadius"		"900"
 
 		"Modifiers"
@@ -5220,6 +5289,29 @@
 					}
 				}
 			}
+			"modifier_buff_tower"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"buff_tower"
+					}
+				}
+			}
+			"buff_tower"
+			{
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"20"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-50"
+				}
+			}
 		}
 	}
 
@@ -5245,6 +5337,29 @@
 					}
 				}
 			}
+			"modifier_buff_tower"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"buff_tower"
+					}
+				}
+			}
+			"buff_tower"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"20"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-50"
+				}
+			}
 		}
 	}
 
@@ -5268,6 +5383,29 @@
 						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
 						"Function"	"down_broken"
 					}
+				}
+			}
+			"modifier_buff_tower"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/library/common/dummy.lua"
+						"Function"	"buff_tower"
+					}
+				}
+			}
+			"buff_tower"
+			{
+				"Passive"	"0"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"20"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-50"
 				}
 			}
 		}

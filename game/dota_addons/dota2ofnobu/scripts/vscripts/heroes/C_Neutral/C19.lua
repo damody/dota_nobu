@@ -101,22 +101,27 @@ function CreateTeleportParticles2( event )
 	local point = event.target_points[1]
 	local particleName = "particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
 	
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 1500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-  	
+	local group = FindUnitsInRadius(caster:GetTeamNumber(), point, nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+  	local fail = false
 	for _,v in ipairs(group) do
 		if v:GetUnitName() == "com_towera" then
 			caster:Interrupt()
+			fail = true
 			break
 		end
 	end
-	local group = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
-  	
-	for _,v in ipairs(group) do
-		caster:Interrupt()
-		break
+	
+	if caster.befow == nil then
+		caster.befow = 0
 	end
-	caster.teleportParticle = ParticleManager:CreateParticle(particleName, PATTACH_WORLDORIGIN, caster)
-	ParticleManager:SetParticleControl(caster.teleportParticle, 1, point)
+	if caster.befow > -3 then
+		caster:Interrupt()
+	else
+		if not fail then
+			caster.teleportParticle = ParticleManager:CreateParticle(particleName, PATTACH_WORLDORIGIN, caster)
+			ParticleManager:SetParticleControl(caster.teleportParticle, 1, point)
+		end
+	end
 end
 
 function C19W_old( keys )
@@ -203,4 +208,26 @@ function C19T_old_OnSpellStart( keys )
 		ParticleManager:DestroyParticle(particle,true)
 		nc:SetStackCount(1)
 		end)
+end
+
+function check_FOW(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local befow = false
+	if caster.befow == nil then
+		caster.befow = 0
+	end
+	for _,hero in ipairs(HeroList:GetAllHeroes()) do
+		if hero:GetTeamNumber() ~= caster:GetTeamNumber() then
+			if hero:CanEntityBeSeenByMyTeam(caster) then
+				befow = true
+			end
+			break
+		end
+	end
+	if befow then
+		caster.befow = 1
+	else
+		caster.befow = caster.befow - 1
+	end
 end

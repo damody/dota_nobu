@@ -38,6 +38,9 @@ function item_soul_OnTakeDamage( event )
 end
 
 function getMVP_value(hero)
+	if hero.building_count == nil then
+		hero.building_count = 0
+	end
 	if hero.building_count then
 		local kda = hero:GetKills()*1.5-hero:GetDeaths()+hero:GetAssists()+hero.building_count
 		return kda
@@ -45,29 +48,6 @@ function getMVP_value(hero)
 	return 0
 end
 
-function getK_value(hero)
-	if hero.building_count then
-		local kda = hero:GetKills()
-		return kda
-	end
-	return 0
-end
-
-function getD_value(hero)
-	if hero.building_count then
-		local kda = hero:GetDeaths()
-		return kda
-	end
-	return 0
-end
-
-function getA_value(hero)
-	if hero.building_count then
-		local kda = hero:GetAssists()
-		return kda
-	end
-	return 0
-end
 
 function MVP_OnTakeDamage( event )
 	-- Variables
@@ -94,7 +74,13 @@ function MVP_OnTakeDamage( event )
 						end
 					end
 				end
-				
+				local ancient1 =  Entities:FindByName( nil, "dota_goodguys_fort" )
+				local ancient2 =  Entities:FindByName( nil, "dota_badguys_fort" )
+				if ancient1:IsAlive() then
+					ancient2:AddNewModifier(ancient2, nil, "modifier_invulnerable", nil )
+				else
+					ancient1:AddNewModifier(ancient1, nil, "modifier_invulnerable", nil )
+				end
 				Timers:CreateTimer(0.1, function()
 					local pos = caster:GetAbsOrigin()
 					if mvp then
@@ -103,7 +89,13 @@ function MVP_OnTakeDamage( event )
 						end
 						mvp:SetAbsOrigin(pos+Vector(0,0,250))
 						local nobu_id = _G.heromap[mvp:GetName()]
-						GameRules:SetCustomVictoryMessage("本場MVP為 ".._G.hero_name_zh[nobu_id])
+						local mesg = "本場MVP為 ".._G.hero_name_zh[nobu_id]
+						if caster:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+							mesg = mesg.."\n織田軍獲勝"
+						else
+							mesg = mesg.."\n聯合軍獲勝"
+						end
+						GameRules:SetCustomVictoryMessage(mesg)
 						Timers:CreateTimer(0.1, function()
 							mvp:SetAbsOrigin(pos+Vector(0,0,250))
 							mvp:AddNewModifier(mvp, nil, "modifier_invulnerable", nil )

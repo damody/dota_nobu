@@ -520,6 +520,7 @@ function CreateMirror( caster, ability, spawn_point )
 			end
 		end
 	end
+	illusion.illusion_damage = (100+outgoingDamage)*0.01
 	-- Set the illusion hp to be the same as the caster
 	illusion:SetHealth(caster:GetHealth())
 	illusion:SetMana(caster:GetMana())

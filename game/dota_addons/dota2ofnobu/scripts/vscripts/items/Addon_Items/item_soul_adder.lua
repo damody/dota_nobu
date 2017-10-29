@@ -7,7 +7,7 @@ function Shock( keys )
     if target:GetTeamNumber() ~= caster:GetTeamNumber() then
         AMHC:Damage(caster,keys.target, 1,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
         if target:IsMagicImmune() then
-            ability:ApplyDataDrivenModifier(caster,target,"modifier_soul_adder",{duration = 1.5})
+            ability:ApplyDataDrivenModifier(caster,target,"modifier_soul_adder",{duration = 3})
         else
             ability:ApplyDataDrivenModifier(caster,target,"modifier_soul_adder",{duration = 3})
             Timers:CreateTimer(2.9, function() 
@@ -21,7 +21,7 @@ function Shock( keys )
     else
         target:Stop()
         ability:ApplyDataDrivenModifier(caster,target,"modifier_stunned",{duration = 1})
-        ability:ApplyDataDrivenModifier(caster,target,"modifier_soul_adderx",{duration = 4})
+        ability:ApplyDataDrivenModifier(caster,target,"modifier_soul_adderx",{duration = 5})
     end
     target:EmitSound("SleepBirth1")
 end

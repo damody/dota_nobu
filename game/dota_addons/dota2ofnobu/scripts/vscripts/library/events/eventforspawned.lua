@@ -65,12 +65,19 @@ function Nobu:OnHeroIngame( keys )
         donkey:FindAbilityByName("for_no_collision"):SetLevel(1)
         local for_no_collision = donkey:FindAbilityByName("for_no_collision")
         Timers:CreateTimer(1, function()
-          if not donkey:HasModifier("modifier_for_no_collision") then
+          if IsValidEntity(donkey) and not donkey:HasModifier("modifier_for_no_collision") then
             for_no_collision:ApplyDataDrivenModifier(donkey,donkey,"modifier_for_no_collision",nil)
           end
           return 1
           end)
-        
+        local models ={
+          "models/props_gameplay/halloween_cupcakes001_bat.vmdl",
+          "models/props_gameplay/halloween_cupcakes001_spider.vmdl",
+          "models/items/furion/treant/hallowed_horde/hallowed_horde.vmdl",
+        }
+        local pszModelName = models[RandomInt(1,#models)]
+        donkey:SetOriginalModel(pszModelName)
+        donkey:SetModel(pszModelName)
         donkey.oripos = donkey:GetAbsOrigin()
         hero.donkey = donkey
 

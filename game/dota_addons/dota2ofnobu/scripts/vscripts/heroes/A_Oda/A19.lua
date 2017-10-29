@@ -114,11 +114,7 @@ function A19R_OnAbilityExecuted( keys )
 	local dmgx = caster:GetIntellect() * dmg
 	-- 處理搜尋結果
 	for _,unit in ipairs(units) do
-		if unit:IsMagicImmune() then
-			AMHC:Damage(caster,unit, dmgx*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-		else
-			AMHC:Damage(caster,unit, dmgx,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
-		end
+		AMHC:Damage(caster,unit, dmgx,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 end
 

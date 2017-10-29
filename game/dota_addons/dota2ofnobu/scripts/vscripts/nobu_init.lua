@@ -144,9 +144,10 @@ function _G.Nobu:InitGameMode()
   XpTable[1]=0
   for i=2,MaxLevel do
     XpTable[i]=xp
-    xp = xp + i*60
-    if i > 15 then
-      --xp = xp + i*20
+    if i < 12 then
+      xp = xp + i*60
+    else
+      xp = xp + 12*60
     end
   end
   GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(MaxLevel)

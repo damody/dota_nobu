@@ -1,18 +1,18 @@
 --直江兼續
 LinkLuaModifier("modifier_voodoo_lua", "heroes/modifier_voodoo_lua.lua", LUA_MODIFIER_MOTION_NONE)
-B36D_point=Vector(0,0,0)
 
 function B36W_OnSpellStart( keys )
 	local caster=keys.caster
-	B36D_point = keys.target_points[1]
+	caster.B36D_point = keys.target_points[1]
 	local particle = ParticleManager:CreateParticle("particles/b36w/b36w.vpcf", PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(particle, 0, B36D_point+Vector(0,0,200))
+	ParticleManager:SetParticleControl(particle, 0, caster.B36D_point+Vector(0,0,200))
 	caster:FindAbilityByName("B36D"):SetLevel(1)
 	caster:FindAbilityByName("B36D"):SetActivated(true)
 	Timers:CreateTimer(5, function ()
 		caster:FindAbilityByName("B36D"):SetActivated(false)
 		ParticleManager:DestroyParticle(particle,true)
 	end)
+	AddFOWViewer(caster:GetTeamNumber(),caster.B36D_point,500,5,false)
 end
 
 
@@ -47,7 +47,7 @@ end
 function B36D_OnSpellStart( keys )
 	local caster = keys.caster
 	caster:FindAbilityByName("B36D"):SetActivated(false)
-	FindClearSpaceForUnit(caster,B36D_point,false)
+	FindClearSpaceForUnit(caster,caster.B36D_point,false)
 end
 
 function B36E_OnSpellStart( keys )
@@ -212,9 +212,9 @@ end
 function B36W_old_OnSpellStart( keys )
 	local caster=keys.caster
 	local ability=keys.ability
-	B36D_point = keys.target_points[1]
+	caster.B36D_point = keys.target_points[1]
 	local particle = ParticleManager:CreateParticle("particles/b36w/b36w.vpcf", PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(particle, 0, B36D_point+Vector(0,0,200))
+	ParticleManager:SetParticleControl(particle, 0, caster.B36D_point+Vector(0,0,200))
 	local dummy = CreateUnitByName("npc_dummy_unit",keys.target_points[1],false,nil,nil,caster:GetTeamNumber())
 	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=10})
 	dummy:SetOwner(caster)

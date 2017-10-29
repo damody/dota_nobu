@@ -733,6 +733,7 @@ function Precache( context )
     "particles/item/great_sword_of_disarmament_2.vpcf",
     "particles/item/great_sword_of_disarmament.vpcf",
     
+    "particles/halloween.vpcf",
     --注意要加,
     }
     for i,v in ipairs(particle_Precache_Table) do

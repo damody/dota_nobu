@@ -32,7 +32,7 @@ function modifier_A16R2:OnTakeDamage(event)
 	    local damage_type = event.damage_type
 	    local damage_flags = event.damage_flags
 	    local ability = self:GetAbility()
-	    local dmg = {0.25, 0.35, 0.45, 0.55}
+	    local dmg = {0.15, 0.30, 0.45, 0.60}
 	    local dmg2 = event.damage*dmg[self.level]
 	    if (caster ~= nil) and IsValidEntity(caster) then
 		    if victim:GetTeam() ~= attacker:GetTeam() and attacker == self.caster and not event.attacker:IsBuilding() then

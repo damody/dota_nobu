@@ -142,8 +142,10 @@ function A21R_OnSpellStart(keys)
 	local dmg = ability:GetSpecialValueFor("dmg")
  	local player = caster:GetPlayerID()
  	local roubang = CreateUnitByName("a21_weapon",targetLoc ,false,caster,caster,caster:GetTeam())
- 	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 300, 3, true)
- 	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 300, 3, true)
+ 	local units = FindUnitsInRadius(caster:GetOpposingTeamNumber(), caster:GetOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, ability:GetAbilityTargetType(), DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )
+	if #units > 0 then
+	 	AddFOWViewer(caster:GetOpposingTeamNumber(), caster:GetAbsOrigin(), 300, 3, true)
+	end
 	roubang:SetControllableByPlayer(player, true)
 	caster.A21R_unit = roubang
 	roubang:SetBaseMaxHealth(800+level*150)
@@ -256,8 +258,10 @@ function A21W_old_OnSpellStart(keys)
 
  	local player = caster:GetPlayerID()
  	local roubang = CreateUnitByName("A19W_old_SUMMEND_UNIT",targetLoc ,false,caster,caster,caster:GetTeam())
- 	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 300, 3, true)
- 	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 300, 3, true)
+ 	local units = FindUnitsInRadius(caster:GetOpposingTeamNumber(), caster:GetOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, ability:GetAbilityTargetType(), DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )
+	if #units > 0 then
+	 	AddFOWViewer(caster:GetOpposingTeamNumber(), caster:GetAbsOrigin(), 300, 3, true)
+	end
 	roubang:SetControllableByPlayer(player, true)
 	roubang:SetBaseMaxHealth(900+level*100)
 	roubang:SetHealth(roubang:GetMaxHealth())
@@ -300,8 +304,10 @@ function A21E_old_OnSpellStart(keys)
 
  	local player = caster:GetPlayerID()
  	local roubang = CreateUnitByName("a21_weapon",targetLoc ,false,caster,caster,caster:GetTeam())
- 	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 300, 3, true)
- 	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 300, 3, true)
+ 	local units = FindUnitsInRadius(caster:GetOpposingTeamNumber(), caster:GetOrigin(), nil, 1500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, ability:GetAbilityTargetType(), DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )
+	if #units > 0 then
+	 	AddFOWViewer(caster:GetOpposingTeamNumber(), caster:GetAbsOrigin(), 300, 3, true)
+	end
 	roubang:SetControllableByPlayer(player, true)
 	roubang:SetBaseMaxHealth(800+level*150)
 	roubang:SetHealth(roubang:GetMaxHealth())

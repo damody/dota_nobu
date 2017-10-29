@@ -3,7 +3,13 @@
 function B12W_OnSpellStart( keys )
 	local point = keys.target_points[1]
 	local ability=keys.ability
-	local caster = keys.caster            
+	local caster = keys.caster
+	
+	local dummy = CreateUnitByName("npc_dummy_unit_new",point,false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
+	local ifx = ParticleManager:CreateParticleForTeam("particles/c01/c01e_aoe_hint.vpcf",PATTACH_ABSORIGIN,dummy, caster:GetTeamNumber())
+	ParticleManager:ReleaseParticleIndex(ifx)
+
 	local particle = ParticleManager:CreateParticle("particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_trigger_ground_symbol_add.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:SetParticleControl(particle, 0, point)
 	Timers:CreateTimer(2, function()

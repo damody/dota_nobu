@@ -162,6 +162,8 @@ function A30T_OnSpellStart(keys)
 
 	local particle = ParticleManager:CreateParticle("particles/a30/a30t.vpcf", PATTACH_CUSTOMORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, targetpos)
+	AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 700, 1, false)
+	AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 700, 1, false)
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, targetpos, 300, 1, false)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, targetpos, 300, 1, false)
 	Timers:CreateTimer(1, function()
@@ -171,7 +173,8 @@ function A30T_OnSpellStart(keys)
 			ParticleManager:SetParticleControl(particle, 0, targetpos)
 			local particle2 = ParticleManager:CreateParticle("particles/a30/a30t2flame.vpcf", PATTACH_CUSTOMORIGIN, nil)
 			ParticleManager:SetParticleControl(particle2, 0, targetpos)
-			
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, caster:GetAbsOrigin(), 700, 1, false)
+			AddFOWViewer(DOTA_TEAM_BADGUYS, caster:GetAbsOrigin(), 700, 1, false)
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, targetpos, 300, 1, false)
 	        AddFOWViewer(DOTA_TEAM_BADGUYS, targetpos, 300, 1, false)
 			local units = FindUnitsInRadius(caster:GetTeamNumber(),	-- 關係參考

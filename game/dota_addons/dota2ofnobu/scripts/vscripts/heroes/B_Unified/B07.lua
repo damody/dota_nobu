@@ -110,6 +110,7 @@ function B07E_OnSpellStart(keys)
  	wolf:SetHealth(wolf:GetHealth())
  	wolf:SetBaseDamageMax(100+caster:GetLevel()*5)
  	wolf:SetBaseDamageMin(80+caster:GetLevel()*5)
+ 	wolf:SetPhysicalArmorBaseValue(1.5+caster:GetLevel()*0.5)
 	wolf:AddNewModifier(wolf,ability,"modifier_phased",{duration=0.1})
 	ability:ApplyDataDrivenModifier(wolf,wolf,"Passive_mana_max",nil)
 	wolf:AddAbility("B07W_old_soldiercamp"):SetLevel(1)
@@ -132,9 +133,7 @@ function B07E_OnSpellStart(keys)
  	--ability:ApplyDataDrivenModifier(wolf,wolf,"modifier_invulnerable",nil)
  	local items = 1
  	local lv = caster:FindAbilityByName("B07T"):GetLevel()
- 	if lv >= 2 then
- 		ability:ApplyDataDrivenModifier(caster,wolf,"modifier_magic_immune",{})
- 	end
+
  	for itemSlot=0,1 do
 		local item = caster:GetItemInSlot(itemSlot)
 		if item ~= nil then

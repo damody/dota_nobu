@@ -205,7 +205,7 @@ function B33R_old_on_attck_landed( keys )
 	for _,unit in ipairs(group) do
 		ability:ApplyDataDrivenModifier(caster,unit,"modifier_B33R_old_debuff",{duration=3})
 		if target:IsMagicImmune() then
-			AMHC:Damage(caster, unit, ability:GetAbilityDamage()*0.5,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
+			AMHC:Damage(caster, unit, ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		else
 			AMHC:Damage(caster, unit, ability:GetAbilityDamage(),AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 		end

@@ -36,18 +36,25 @@ function modifier_soul:OnTakeDamage(event)
     if (caster ~= nil) and IsValidEntity(caster) then
       if attacker == self.caster then
         if damage_type == DAMAGE_TYPE_PURE and caster:GetHealth() < 15000 then
-          caster:Heal(event.damage*1.1, caster)
+          caster:Heal(event.damage, caster)
         end
         if damage_type == DAMAGE_TYPE_PHYSICAL and caster:GetHealth() < 5000 then
           if caster.big == nil then
             caster.big = 1
+            caster:EmitSound("berserkercaster")
+            Timers:CreateTimer(30, function()
+              caster.big = nil
+            end)
             local enemies = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 2000, 
               DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false )
             for _,it in pairs(enemies) do
               ability:ApplyDataDrivenModifier(caster,it,"modifier_stunned",{duration = 3})
+              if it:IsIllusion() then 
+                it:ForceKill(true)
+              end
             end
           end
-          caster:Heal(event.damage*1.1, caster)
+          caster:Heal(event.damage, caster)
         end
       end
     end
@@ -193,7 +200,8 @@ _G.EXCLUDE_TARGET_NAME = {
   C03T_UNIT = true,
   npc_dummy_unit_new = true,
   npc_dummy = true,
-  A22T_old_UNIT = true,
+  npc_dummy = true,
+  hide_unit = true,
 }
 
 _G.EXCLUDE_MODIFIER_NAME = {
@@ -283,6 +291,13 @@ local ok_modifier = {
   ["modifier_great_sword_of_hurricane_debuff"] = true,
   ["modifier_1300"] = true,
   ["Passive_warrior_souls_skill"] = true,
+  ["modifier_dead_give_item1"] = true,
+  ["modifier_dead_give_item2"] = true,
+  ["modifier_invulnerable_souls"] = true,
+  ["modifier_soul"] = true,
+  ["modifier_magic_immune"] = true,
+  ["modifier_stunned"] = true,
+  ["modifier_for_magic_immune"] = true,
 }
 
 function debuff_tower1( keys )
@@ -333,3 +348,44 @@ function debuff_tower( keys )
     end
   end
 end
+
+local ok_unit = {
+  ["B16D_SUMMEND_UNIT"] = true,
+  ["B16W_old_SUMMEND_UNIT"] = true,
+  ["A04W_SUMMEND_UNIT"] = true,
+  ["B07W_old"] = true,
+  ["A03T_old"] = true,
+  ["A03W_old"] = true,
+  ["B23D_ghost"] = true,
+}
+
+function buff_tower( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  local team = caster:GetTeamNumber()
+  local enemys = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 1500, 
+          DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 
+          0, FIND_ANY_ORDER, false )
+  local counth = 0
+  for i,v in pairs(enemys) do
+    counth = counth + 1
+  end
+  local enemys = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 1000, 
+          DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, 
+          0, FIND_ANY_ORDER, false )
+  local count = 0
+  for i,v in pairs(enemys) do
+    if ok_unit[v:GetUnitName()] then
+      count = 1
+      break
+    end
+    if not v:IsIllusion() and not v:GetOwner() then
+      count = 1
+      break
+    end
+  end
+  if count == 0 and counth < 3 then
+    ability:ApplyDataDrivenModifier(caster, caster, "buff_tower", {duration = 2})
+  end
+end
+

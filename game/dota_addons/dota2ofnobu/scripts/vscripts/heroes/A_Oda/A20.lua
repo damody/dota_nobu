@@ -549,6 +549,11 @@ function modifier_A20E_old_aura_OnIntervalThink( keys )
 
 end
 
+local ok_modifier = {
+  ["modifier_flame_armor_debuff2"] = true,
+  ["modifier_flame_armor_debuff"] = true,
+}
+
 function A20T_old_OnIntervalThink( keys )
 	local ability = keys.ability
 	local target = keys.target
@@ -557,7 +562,8 @@ function A20T_old_OnIntervalThink( keys )
 		local am = caster:FindAllModifiers()
 		for _,v in pairs(am) do
 			if v:GetCaster() and IsValidEntity(v:GetCaster()) and v:GetParent().GetTeamNumber ~= nil then
-				if v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
+				if ok_modifier[v:GetName()] then
+				elseif v:GetParent():GetTeamNumber() ~= caster:GetTeamNumber() or v:GetCaster():GetTeamNumber() ~= caster:GetTeamNumber() then
 					caster:RemoveModifierByName(v:GetName())
 				end
 			end

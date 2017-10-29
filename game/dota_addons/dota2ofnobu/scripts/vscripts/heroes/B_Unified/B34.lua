@@ -50,9 +50,6 @@ function B34R_old( keys )
 	local level = ability:GetLevel() - 1
 	local dmg = ability:GetLevelSpecialValueFor("dmg",level)
 	if not target:IsBuilding() then
-		if target:IsMagicImmune() then
-			dmg = dmg * 0.5
-		end
 		AMHC:Damage(caster,target, dmg,AMHC:DamageType( "DAMAGE_TYPE_PURE" ) )
 	end
 end

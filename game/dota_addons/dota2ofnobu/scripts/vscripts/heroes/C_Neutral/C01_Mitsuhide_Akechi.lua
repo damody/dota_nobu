@@ -128,7 +128,7 @@ end
 
 
 -- 傳入單位盡量統一名稱用keys
-function C01E_Mitsuhide_Akechi ( keys )
+function C01E_Mitsuhide_Akechi( keys )
 	local caster = keys.caster --unit
 	local caster_abs = caster:GetAbsOrigin() -- vectorv
 	local point = keys.target_points[1] 
@@ -137,6 +137,11 @@ function C01E_Mitsuhide_Akechi ( keys )
 	local level = keys.ability:GetLevel()
 	local skillcount = 0
 
+	local dummy = CreateUnitByName("npc_dummy_unit_new",point,false,nil,nil,caster:GetTeamNumber())
+	dummy:AddNewModifier(dummy,nil,"modifier_kill",{duration=5})
+	local ifx = ParticleManager:CreateParticleForTeam("particles/c01/c01e_aoe_hint.vpcf",PATTACH_ABSORIGIN,dummy, caster:GetTeamNumber())
+	ParticleManager:ReleaseParticleIndex(ifx)
+	
 	--timer : 第一次火焰
     Timers:CreateTimer(time, function()
     	C01E_Mitsuhide_Akechi_Effect(keys, skillcount, caster,level,point)

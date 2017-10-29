@@ -282,7 +282,7 @@ function B13T_old( keys )
 					victim = unit,
 					attacker = caster,
 					ability = ability,
-					damage = ability:GetSpecialValueFor("B13T_old_damage") / tickPerSec * 0.5,
+					damage = ability:GetSpecialValueFor("B13T_old_damage") / tickPerSec * 0.3,
 					damage_type = ability:GetAbilityDamageType(),
 					damage_flags = DOTA_DAMAGE_FLAG_NONE,
 				})
